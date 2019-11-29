@@ -11,7 +11,8 @@
 employment_rate <- function(data = df,
                             geo.unit = "uy",
                             by = NULL,
-                            pobcoac = "pobcoac"){
+                            pobcoac = "pobcoac",
+                            weights = "pesoano"){
     if (exists("pea", data)) warning('pea pre-existing')
 
   # df %<>% mutate(pea = if_else(pobpcoac %in% 2:5, 1, 0),
@@ -27,7 +28,7 @@ employment_rate <- function(data = df,
                          pd = if_else(pobpcoac %in% c("Desocupados buscan trab. por 1a. vez", "Desocupados propiamente dichos", "Desocupados en seguro de paro"), 1, 0)
   )
 
-  design_p <- survey.design.ech(df, nivel = "p")
+  design_p <- survey.design.ech(df, nivel = "p", weights = weights)
   if (is.null(by) & geo.unit == "uy") {
     table <- design_p %>%
              srvyr::summarise(tasa_empleo = survey_ratio(po, pet, vartype = "ci"))
