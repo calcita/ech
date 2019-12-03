@@ -8,7 +8,9 @@
 #' @examples
 #' edu.asist(df)
 
-enrolled_school <- function(data = df, geo.unit = c("uy", "region_3", "region_4", "dpto", "secc"), by = NULL){
+enrolled_school <- function(data = df,
+                            geo.unit = c("uy", "region_3", "region_4", "dpto", "secc"),
+                            by = NULL){
     if (exists("edu_asist", df)) warning('enrolled_school pre-existing')
 
    data %<>% mutate(edu_asist = case_when((e193 == "Asiste actualmente" | # == 1
