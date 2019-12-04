@@ -4,7 +4,8 @@
 \alias{employment_rate}
 \title{An employment Function}
 \usage{
-employment_rate(data = df, geo.unit = "uy", by = NULL, pobcoac = "pobcoac")
+employment_rate(data = df, geo.unit = "uy", by = NULL,
+  pobcoac = "pobcoac", weights = "pesoano")
 }
 \description{
 This function allows you to..
