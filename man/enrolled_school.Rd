@@ -4,8 +4,11 @@
 \alias{enrolled_school}
 \title{A function to estimate people enrolled in school}
 \usage{
-enrolled_school(data = df, geo.unit = c("uy", "region_3", "region_4",
-  "dpto", "secc"), by = NULL)
+enrolled_school(
+  data = df,
+  geo.unit = c("uy", "region_3", "region_4", "dpto", "secc"),
+  by = NULL
+)
 }
 \arguments{
 \item{base}{Base with necessary variables Defaults to ech.}

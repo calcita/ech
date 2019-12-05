@@ -4,8 +4,7 @@
 \alias{extract}
 \title{Extract ECH from zip/rar file}
 \usage{
-extract(archive, file = 1L, mode = "r", format = NULL,
-  filter = NULL)
+extract(archive, file = 1L, mode = "r", format = NULL, filter = NULL)
 }
 \arguments{
 \item{mode}{how to open the connection as used in \code{base::connections()}}
