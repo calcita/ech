@@ -1,16 +1,31 @@
 Package: ech
-Title: What the Package Does (One Line, Title Case)
+Title: Toolbox for ECH with R
 Version: 0.0.0.9000
 Authors@R: 
-    person(given = "First",
-           family = "Last",
-           role = c("aut", "cre"),
-           email = "first.last@example.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
+    c(person("Gabriela", "Mathieu", email = "gmathieu@gmx.com", role = c("aut", "cre"),
+            comment = c(ORCID = "0000-0003-3965-9024")),
+            person("Richard", "Detomasi", email = "richard.detomasi@gmail.com", role = "aut",
+            comment = c(ORCID = "0000-0002-6725-0261")))
 Description: What the package does (one paragraph).
-License: What license it uses
+License: GPL-3
 Encoding: UTF-8
+LinkingTo: Rcpp
+ByteCompile: true
 LazyData: true
 RoxygenNote: 7.0.1
+Imports:
+    fs,
+    glue,
+    haven,
+    janitor,
+    magrittr,
+    srvyr,
+    survey (>= 1.2.0), 
+    tidyverse, 
+    sf, 
+    kableExtra
 Suggests: 
-    testthat (>= 2.1.0)
+    knitr,
+    testthat (>= 2.1.0),
+    rmarkdown
+VignetteBuilder: knitr

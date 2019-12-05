@@ -60,12 +60,12 @@ download_ech <- function(years = NULL, folder = getwd(), format = "sav") {
                                                                                     "get_file?uuid=54f72e41-e671-4bea-993c-631596e16883&groupId=10181",
                                                                                     "get_file?uuid=b60f247b-03cb-4bb1-b84b-5d7328479fe2&groupId=10181",
                                                                                     "get_file?uuid=73b6cc21-1bb0-483b-a463-819315b5fff3&groupId=10181")),
-                           file = paste0(folder, "/ech_", all_years, "_spss.rar"),
+                           file = paste0(folder, "/ech_", all_years, "_", format,".rar"),
                      stringsAsFactors = FALSE)
   links <- urls[urls$year %in% years, ] # urls %>% filter(year %in% years)
 
   for (j in 1:nrow(links)) {
-    u <- links[ifelse(format == "sav", 2, 3)][[j]] # parametrizar con formato
+    u <- links[ifelse(format == "sav", 2, 3)][[j]]
     f <- links$file[[j]]
     y <- links$year[[j]]
 
@@ -139,7 +139,7 @@ read_ech <- function(archivo) {
 
   if (any(ext %in% compressed_formats)) {
     message(glue::glue("Los metadatos de {archivo} indican que el formato comprimido es adecuado, intentando leer..."))
-    d <- try(haven::read_sav(casen::extract(archivo)))
+    d <- try(haven::read_sav(ech::extract(archivo)))
   }
 
   if (any(ext %in% uncompressed_formats)) {
@@ -174,16 +174,11 @@ read_ech <- function(archivo) {
 #' @importFrom janitor clean_names
 #' @return la encuesta ECH en formato tibble
 #' @examples
-#' # datos de ejemplo en el paquete
-#' read_ech(system.file(package = "ech", "extdata", "ech_2017_spss.rar"))
-#'
-#' # descargando los datos
-#' # download_ech(2017, "data-raw")
-#' # read_ech("data-raw/ech_2017_spss.rar")
+#' # Obtener la ECH 2017
+#' get_microdata(2017)
 #' @export
 
-get_ech <- function(years = NULL, folder = tempdir(), format = "sav"){
+get_microdata <- function(years = NULL, folder = tempdir(), format = "sav"){
   read_ech(download_ech())
 }
-download_ech(2017, "data-raw")
-read_ech("data-raw/ech_2017_spss.rar")
+
