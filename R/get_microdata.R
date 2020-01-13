@@ -35,7 +35,7 @@ download_ech <- function(years = NULL, folder = getwd(), format = "sav") {
   }
 
   urls <- data.frame(year = 2011:2018,
-                           md_sav = fs::path("http://www.ine.gub.uy/c/document_library", c("get_file?uuid=cc986929-5916-4d4f-a87b-3fb20a169879&groupId=10181",
+                           md_sav = fs::path("www.ine.gub.uy/c/document_library", c("get_file?uuid=cc986929-5916-4d4f-a87b-3fb20a169879&groupId=10181",
                                                                                        "get_file?uuid=144daa3d-0ebf-4106-ae11-a150511addf9&groupId=10181",
                                                                                        "get_file?uuid=9ddf38cc-99bb-4196-992b-77530b025237&groupId=10181",
                                                                                        "get_file?uuid=68cc1d11-e017-4a6d-a749-5a1e1a4a5306&groupId=10181",
@@ -44,7 +44,7 @@ download_ech <- function(years = NULL, folder = getwd(), format = "sav") {
                                                                                        "get_file?uuid=e38ea53c-7253-4007-9f67-2f5f161eea91&groupId=10181",
                                                                                        "get_file?uuid=b63b566f-8d11-443d-bcd8-944f137c5aaf&groupId=10181"
                            )),
-                           md_dat = fs::path("http://www.ine.gub.uy/c/document_library", c("get_file?uuid=7eecaefc-be12-4f5f-93a4-d53cc2a20070&groupId=10181",
+                           md_dat = fs::path("www.ine.gub.uy/c/document_library", c("get_file?uuid=7eecaefc-be12-4f5f-93a4-d53cc2a20070&groupId=10181",
                                                                                        "get_file?uuid=47ff59b2-ed30-408d-a94c-05220e75d39b&groupId=10181",
                                                                                        "get_file?uuid=de9bb13a-9740-4732-8826-10b3489999b7&groupId=10181",
                                                                                        "get_file?uuid=7aa5ba66-dc54-418d-85d9-9985c88ffde8&groupId=10181",
@@ -52,7 +52,7 @@ download_ech <- function(years = NULL, folder = getwd(), format = "sav") {
                                                                                        "get_file?uuid=2043b2a5-d328-48a6-a65e-27be2a974924&groupId=10181",
                                                                                        "get_file?uuid=e30dd18d-c9df-4740-952d-f7ab9ef4f8e4&groupId=10181",
                                                                                        "get_file?uuid=32a696cf-38d9-46cb-ad16-8fea69262581&groupId=10181")),
-                           dic = fs::path("http://www.ine.gub.uy/c/document_library", c("get_file?uuid=54523778-5f53-4df1-a265-3ff520941bca&groupId=10181",
+                           dic = fs::path("www.ine.gub.uy/c/document_library", c("get_file?uuid=54523778-5f53-4df1-a265-3ff520941bca&groupId=10181",
                                                                                     "get_file?uuid=8e8963a6-b9f2-47f3-abf5-119f988ad868&groupId=10181",
                                                                                     "get_file?uuid=055d37e5-d587-4ba7-8a0d-358cd99a9e24&groupId=10181",
                                                                                     "get_file?uuid=9c9612fd-3bc3-47c5-a684-06daaf25da6c&groupId=10181",
@@ -62,7 +62,7 @@ download_ech <- function(years = NULL, folder = getwd(), format = "sav") {
                                                                                     "get_file?uuid=73b6cc21-1bb0-483b-a463-819315b5fff3&groupId=10181")),
                            file = paste0(folder, "/ech_", all_years, "_", format,".rar"),
                      stringsAsFactors = FALSE)
-  links <- urls[urls$year %in% years, ] # urls %>% filter(year %in% years)
+  links <- urls[urls$year %in% years, ]
 
   for (j in 1:nrow(links)) {
     u <- links[ifelse(format == "sav", 2, 3)][[j]]
