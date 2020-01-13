@@ -79,35 +79,13 @@ download_ech <- function(years = NULL, folder = getwd(), format = "sav") {
 }
 
 
-#' Extract ECH from zip/rar file
-#' @param mode how to open the connection as used in \code{base::connections()}
-#' @keywords internal
-#' @export
-extract <- function(archive, file = 1L, mode = "r", format = NULL, filter = NULL) {
-  archive <- as_archive(archive)
-  if (is_number(file)) {
-    file <- archive$path[[file]]
-  }
-
-  assert(
-    "`file` must be a length one character vector or numeric",
-    length(file) == 1 && (is.character(file) || is.numeric(file))
-  )
-
-  assert(
-    paste0("`file` {file} not found in `archive` {archive}"),
-    file %in% archive$path
-  )
-
-  read_connection(attr(archive, "path"), mode = mode, file, archive_formats()[format], archive_filters()[filter])
-}
-
 #' Lee los archivos descargados de la ECH
 #' @param archivo cadena de texto con la ruta de la encuesta en formato zip/rar o sav/dat
 #' @importFrom glue glue
 #' @importFrom fs file_exists path_ext
 #' @importFrom haven read_sav read_dta
 #' @importFrom janitor clean_names
+#' @importFrom archive archive_read
 #' @return la encuesta ECH en formato tibble
 #' @examples
 #' # datos de ejemplo en el paquete
@@ -119,13 +97,12 @@ extract <- function(archive, file = 1L, mode = "r", format = NULL, filter = NULL
 #' @export
 
 
-read_ech <- function(archivo) {
+read_ech <- function(folder) {
   # checks ----
-  stopifnot(is.character(archivo))
-  message(glue::glue("Intentando leer el archivo {archivo}..."))
-  if (!fs::file_exists(archivo)) {
-    stop("No se pudo encontrar el archivo especificado.")
-  }
+  if (!is.character(folder) | length(folder) != 1) {
+     message(glue::glue("Debe ingresar un directorio..."))
+   }
+  archivo <- fs::dir_ls(folder)
   ext <- fs::path_ext(archivo)
   compressed_formats <- c("zip", "rar")
   uncompressed_formats <- c("sav", "dat")
@@ -139,7 +116,7 @@ read_ech <- function(archivo) {
 
   if (any(ext %in% compressed_formats)) {
     message(glue::glue("Los metadatos de {archivo} indican que el formato comprimido es adecuado, intentando leer..."))
-    d <- try(haven::read_sav(ech::extract(archivo)))
+    d <- try(haven::read_sav(archive::archive_read(archivo)))
   }
 
   if (any(ext %in% uncompressed_formats)) {
