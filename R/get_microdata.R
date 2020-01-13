@@ -31,7 +31,7 @@ download_ech <- function(years = NULL, folder = getwd(), format = "sav") {
   }
 
   if (is.null(years)) {
-    years <- all_years
+    all_years <- years
   }
 
   urls <- data.frame(year = 2011:2018,
