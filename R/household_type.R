@@ -9,9 +9,11 @@
 #'
 #
 
-household_type <- function(data = df) {
+household_type <- function(data = df,
+                           weights = "pesoano",
+                           strata = "estred13") {
 
-  data <- data %>% mutate_at(vars(e30,e26), unclass(.))
+  #data <- data %>% mutate_at(vars(e30,e26), unclass(.))
 
   data <- data %>% dplyr::mutate(sex_householder = ifelse(e26 == 1 & e30 == 1,1, # 1 is man and householder
                                                    ifelse(e26 == 2 & e30 == 1,2,0)), #0 is woman householder
@@ -47,7 +49,7 @@ household_type <- function(data = df) {
   )
   # Estimación Total País
   est_total <- data_h %>%
-    srvyr::as_survey_design(ids = numero, strata = estred13, weights = pesoano) %>%
+    srvyr::as_survey_design(ids = numero, strata = strata, weights = weights) %>%
     srvyr::group_by(household_type) %>%
     srvyr::summarise(tipo_hogar = srvyr::survey_total(vartype = "ci"))
 
