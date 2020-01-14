@@ -11,11 +11,18 @@
 
 household_type <- function(data = df,
                            weights = "pesoano",
-                           strata = "estred13") {
+                           strata = "estred13",
+                           by.x = NULL,
+                           by.y = NULL,
+                           e26 = e26,
+                           e27 = e27,
+                           e30 = e30) {
 
   #data <- data %>% mutate_at(vars(e30,e26), unclass(.))
 
-  data <- data %>% dplyr::mutate(sex_householder = ifelse(e26 == 1 & e30 == 1,1, # 1 is man and householder
+  data <- data %>%
+    #select(numero, estred13, pesoano, e26, e27, e30, {{by.x}}, {{by.y}}) %>%
+    dplyr::mutate(sex_householder = ifelse(e26 == 1 & e30 == 1,1, # 1 is man and householder
                                                    ifelse(e26 == 2 & e30 == 1,2,0)), #0 is woman householder
                                    partner = ifelse(e30 == 2, 1, 0),
                                    child = ifelse(e30 %in% 3:5, 1, 0),
@@ -48,10 +55,24 @@ household_type <- function(data = df,
                                                                                          ifelse(no_rel > 0, "compuesto","error")))))))) # composite)
   )
   # Estimación Total País
-  est_total <- data_h %>%
-    srvyr::as_survey_design(ids = numero, strata = strata, weights = weights) %>%
-    srvyr::group_by(household_type) %>%
-    srvyr::summarise(tipo_hogar = srvyr::survey_total(vartype = "ci"))
+
+    #if(is.null(by.x) & is.null(by.y)){
+      est_total <- data_h %>%
+        srvyr::as_survey_design(ids = numero, strata = strata, weights = weights) %>%
+        srvyr::group_by(household_type) %>%
+        srvyr::summarise(tipo_hogar = srvyr::survey_total(vartype = "ci"))
+    # } else if(!is.null(by.x) & is.null(by.y)){
+    #   est_total <- data_h %>%
+    #     srvyr::as_survey_design(ids = numero, strata = strata, weights = weights) %>%
+    #     srvyr::group_by(household_type, {{by.x}}) %>%
+    #     srvyr::summarise(tipo_hogar = srvyr::survey_total(vartype = "ci"))
+    # } else {
+    #   est_total <- data_h %>%
+    #     srvyr::as_survey_design(ids = numero, strata = strata, weights = weights) %>%
+    #     srvyr::group_by(household_type, {{by.x}}, {{by.y}}) %>%
+    #     srvyr::summarise(tipo_hogar = srvyr::survey_total(vartype = "ci"))
+    # }
+
 
   return(est_total)
 }
