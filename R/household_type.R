@@ -1,6 +1,6 @@
 #' A data Function
 #'
-#' Esta función permite calcular la variable tipo de hogar.
+#' This function allows you to calculate the household type for each household in the survey. A household is composed of one or more people who occupy a housing unit.
 #' @param
 #' @keywords household_type
 #' @export
