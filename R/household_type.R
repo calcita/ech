@@ -51,4 +51,5 @@ household_type <- function(data = df) {
     srvyr::group_by(household_type) %>%
     srvyr::summarise(tipo_hogar = srvyr::survey_total(vartype = "ci"))
 
+  return(est_total)
 }
