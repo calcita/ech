@@ -15,23 +15,31 @@
 #'
 #' # descargar ECH 2017 en carpeta especifica
 #' # download_ech(2017, "data-raw")
-download_ech <- function(years = NULL, folder = getwd(), format = "sav") {
+
+get_microdata <- function(year = NULL, folder = getwd(), format = "sav"){
+
+# download_ech <- function(years = NULL, folder = getwd(), format = "sav") {
+# download_ech
 
   # checks ----
-  stopifnot(is.numeric(years) | is.null(years))
+  stopifnot(is.numeric(year) | is.null(year) | length(year) != 1)
   stopifnot(is.character(folder), length(folder) == 1)
 
+  # warnings ----
+  if (length(fs::dir_ls(folder, regexp = "\\.rar$")) != 0){
+    message(glue::glue("Existen en la carpeta otros archivos .rar que serán leídos..."))
+  }
   # download ----
   try(dir.create(folder))
 
   all_years <- 2011:2018
 
-  if (!is.null(years) & any(years %in% all_years) == FALSE) {
-    stop("Por el momento ech solo funciona con microdatos de 2011 a 2017")
+  if (!is.null(year) & any(year %in% all_years) == FALSE) {
+    stop("Por el momento ech solo funciona con microdatos de 2011 a 2018")
   }
 
-  if (is.null(years)) {
-    all_years <- years
+  if (is.null(year)) {
+    year <- max(all_years)
   }
 
   urls <- data.frame(year = 2011:2018,
@@ -62,7 +70,7 @@ download_ech <- function(years = NULL, folder = getwd(), format = "sav") {
                                                                                     "get_file?uuid=73b6cc21-1bb0-483b-a463-819315b5fff3&groupId=10181")),
                            file = paste0(folder, "/ech_", all_years, "_", format,".rar"),
                      stringsAsFactors = FALSE)
-  links <- urls[urls$year %in% years, ]
+  links <- urls[urls$year %in% year, ]
 
   for (j in 1:nrow(links)) {
     u <- links[ifelse(format == "sav", 2, 3)][[j]]
@@ -101,8 +109,9 @@ read_ech <- function(folder) {
   # checks ----
   if (!is.character(folder) | length(folder) != 1) {
      message(glue::glue("Debe ingresar un directorio..."))
-   }
-  archivo <- fs::dir_ls(folder)
+  }
+
+  archivo <- fs::dir_ls(folder, regexp = "\\.rar$")
   ext <- fs::path_ext(archivo)
   compressed_formats <- c("zip", "rar")
   uncompressed_formats <- c("sav", "dat")
@@ -117,6 +126,7 @@ read_ech <- function(folder) {
   if (any(ext %in% compressed_formats)) {
     message(glue::glue("Los metadatos de {archivo} indican que el formato comprimido es adecuado, intentando leer..."))
     d <- try(haven::read_sav(archive::archive_read(archivo)))
+
   }
 
   if (any(ext %in% uncompressed_formats)) {
@@ -155,7 +165,7 @@ read_ech <- function(folder) {
 #' get_microdata(2017)
 #' @export
 
-get_microdata <- function(years = NULL, folder = tempdir(), format = "sav"){
+
   read_ech(download_ech())
 }
 
