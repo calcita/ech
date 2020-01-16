@@ -16,7 +16,7 @@
 #' set_design(data = d)
 #
 
-set_design <- function(data = data, ids = 1, strata = estred13, weights = pesoano){
+set_design <- function(data = data, ids = 1, strata = "estred13", weights = "pesoano"){
   d <- data %>%
     srvyr::as_survey_design(ids = ids, strata = strata, weights = weights)
   return(d)

@@ -25,16 +25,16 @@ get_estimation <- function(data = df,
                            variable = NULL,
                            by.x = NULL,
                            by.y = NULL,
+                           domain = NULL,
                            level = NULL,
                            design = d){
 
-  stopifnot(!is.null(data) | !is.null(variable) | is.null(design))
-  message(glue:glue("Debe indicar una variable a estimar"))
+ # stopifnot(!is.null(data) | !is.null(variable) | is.null(design))
+ #  message(glue:glue("Debe indicar una variable a estimar"))
 
   #if(is.null(by.x) & is.null(by.y)){
   estimation <- design %>%
-    srvyr::group_by(variable) %>%
-    srvyr::summarise(colname = srvyr::survey_total(vartype = "ci"))
+        srvyr::summarise(colname = srvyr::survey_total(vartype = "ci"))
   # } else if(!is.null(by.x) & is.null(by.y)){
   #   est_total <- data_h %>%
   #     srvyr::as_survey_design(ids = numero, strata = strata, weights = weights) %>%
@@ -47,6 +47,23 @@ get_estimation <- function(data = df,
   #     srvyr::summarise(tipo_hogar = srvyr::survey_total(vartype = "ci"))
   # }
 
+  # if (is.null(by.y) & !is.null(by.x)) {
+  #   table <- d %>%
+  #     srvyr::summarise(tasa_empleo = survey_ratio(po, pet, vartype = "ci"))
+  # } else if (!is.null(by) & length(by) == 1 & geo.unit == "uy") {
+  #   table <- design_p %>%
+  #     srvyr::group_by({{by}}) %>%
+  #     srvyr::summarise(tasa_empleo = survey_ratio(po, pet, vartype = "ci"))
+  # } else if (is.null(by) & geo.unit != "uy") {
+  #   table <- design_p %>%
+  #     srvyr::group_by({{geo.unit}}) %>%
+  #     srvyr::summarise(tasa_empleo = survey_ratio(po, pet, vartype = "ci"))
+  # } else {
+  #   table <- design_p %>%
+  #     srvyr::group_by({{by}}, {{geo.unit}}) %>%
+  #     srvyr::summarise(tasa_empleo = survey_ratio(po, pet, vartype = "ci"))
+  # }
+  # return(table)
 
   return(estimation)
 
