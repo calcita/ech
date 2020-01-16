@@ -26,17 +26,14 @@ get_estimation <- function(data = df,
                            by.x = NULL,
                            by.y = NULL,
                            level = NULL,
-                           ids = 1,
-                           strata = strata,
-                           weights = weights){
+                           design = d){
 
-  stopifnot(!is.null(data) | !is.null(variable))
+  stopifnot(!is.null(data) | !is.null(variable) | is.null(design))
   message(glue:glue("Debe indicar una variable a estimar"))
 
   #if(is.null(by.x) & is.null(by.y)){
-  estimation <- data %>%
-    srvyr::as_survey_design(ids = numero, strata = strata, weights = weights) %>%
-    srvyr::group_by(household_type) %>%
+  estimation <- design %>%
+    srvyr::group_by(variable) %>%
     srvyr::summarise(colname = srvyr::survey_total(vartype = "ci"))
   # } else if(!is.null(by.x) & is.null(by.y)){
   #   est_total <- data_h %>%
