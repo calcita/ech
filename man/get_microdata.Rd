@@ -2,25 +2,26 @@
 % Please edit documentation in R/get_microdata.R
 \name{get_microdata}
 \alias{get_microdata}
-\title{Descarga y lee los archivos de la ECH}
+\title{Download and read ECH from INE website}
 \usage{
-get_microdata(years = NULL, folder = tempdir(), format = "sav")
+get_microdata(year = NULL, folder = getwd(), format = "sav",
+  download = TRUE)
 }
 \arguments{
-\item{years}{si no se indica un anio, descarga todos los anios disponibles}
+\item{year}{allows download data from 2011 to 2018. Default the last year}
 
-\item{folder}{si no se indica una carpeta, descarga en la carpeta temp}
+\item{folder}{Folder where are the files or be download}
 
-\item{format}{si no se indica se descarga en formato .sav (SPSS), la otra
-opción sería "dat"}
+\item{format}{File format .sav (SPSS), otherwise .dat}
 }
 \value{
-la encuesta ECH en formato tibble
+unrar files from INE web and the respective data frame in tibble format
 }
 \description{
-Descarga y lee los archivos de la ECH
+Download and read ECH from INE website
 }
 \examples{
-# Obtener la ECH 2017
+# download and read all surveys available
+# Download and read ECH 2017
 get_microdata(2017)
 }

@@ -2,14 +2,15 @@
 % Please edit documentation in R/household_type.R
 \name{household_type}
 \alias{household_type}
-\title{A data Function}
+\title{A household function}
 \usage{
-household_type(data = df)
+household_type(data = df, weights = "pesoano", strata = "estred13",
+  by.x = NULL, by.y = NULL, e26 = e26, e27 = e27, e30 = e30)
 }
 \description{
-This function allows you to ...
+This function allows you to calculate the household type for each household in the survey. A household is composed of one or more people who occupy a housing unit.
 }
 \examples{
 
 }
-\keyword{income}
+\keyword{household_type}

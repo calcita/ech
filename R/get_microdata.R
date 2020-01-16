@@ -1,30 +1,31 @@
-#' Download ECH from INE website
-#' @param years si no se indica un anio, descarga todos los anios disponibles
-#' @param folder si no se indica una carpeta, descarga en la carpeta de
-#' trabajo o la raiz del proyecto
-#' @param format si no se indica se descarga en formato .sav (SPSS), la otra
-#' opción sería "dat"
+#' Download and read ECH from INE website
+#' @param year allows download data from 2011 to 2018. Default the last year
+#' @param folder Folder where are the files or be download
+#' @param format File format .sav (SPSS), otherwise .dat
 #' @importFrom utils download.file
 #' @importFrom glue glue
-#' @return los archivos comprimidos de la encuesta ECH descargados desde el
-#' sitio web del INE
+#' @importFrom fs file_exists path_ext
+#' @importFrom haven read_sav read_dta
+#' @importFrom janitor clean_names
+#' @importFrom archive archive_read
+#' @return unrar files from INE web and the respective data frame in tibble format
 #' @export
 #' @examples
-#' # descargar todas las encuestas disponibles
-#' # download_ech()
-#'
-#' # descargar ECH 2017 en carpeta especifica
-#' # download_ech(2017, "data-raw")
+#' # download and read all surveys available
+#' # Download and read ECH 2017
+#' get_microdata(2017)
 
-get_microdata <- function(year = NULL, folder = getwd(), format = "sav"){
+get_microdata <- function(year = NULL, folder = getwd(), format = "sav", download = TRUE){
 
-# download_ech <- function(years = NULL, folder = getwd(), format = "sav") {
 # download_ech
+  if(isTRUE(download)){
 
   # checks ----
-  stopifnot(is.numeric(year) | is.null(year) | length(year) != 1)
-  stopifnot(is.character(folder), length(folder) == 1)
-
+  stopifnot(is.numeric(year) | is.null(year) | length(year) <= 1)
+  #stopifnot(is.character(folder), length(folder) == 1)
+  if (!is.character(folder) | length(folder) != 1) {
+    message(glue::glue("Debe ingresar un directorio..."))
+  }
   # warnings ----
   if (length(fs::dir_ls(folder, regexp = "\\.rar$")) != 0){
     message(glue::glue("Existen en la carpeta otros archivos .rar que serán leídos..."))
@@ -42,7 +43,7 @@ get_microdata <- function(year = NULL, folder = getwd(), format = "sav"){
     year <- max(all_years)
   }
 
-  urls <- data.frame(year = 2011:2018,
+  urls <- data.frame(yy = 2011:2018,
                            md_sav = fs::path("www.ine.gub.uy/c/document_library", c("get_file?uuid=cc986929-5916-4d4f-a87b-3fb20a169879&groupId=10181",
                                                                                        "get_file?uuid=144daa3d-0ebf-4106-ae11-a150511addf9&groupId=10181",
                                                                                        "get_file?uuid=9ddf38cc-99bb-4196-992b-77530b025237&groupId=10181",
@@ -70,12 +71,11 @@ get_microdata <- function(year = NULL, folder = getwd(), format = "sav"){
                                                                                     "get_file?uuid=73b6cc21-1bb0-483b-a463-819315b5fff3&groupId=10181")),
                            file = paste0(folder, "/ech_", all_years, "_", format,".rar"),
                      stringsAsFactors = FALSE)
-  links <- urls[urls$year %in% year, ]
+  links <- urls[urls$yy %in% year, ]
 
-  for (j in 1:nrow(links)) {
-    u <- links[ifelse(format == "sav", 2, 3)][[j]]
-    f <- links$file[[j]]
-    y <- links$year[[j]]
+    u <- ifelse(format == "sav", links$md_sav, links$md_dat)
+    f <- links$file
+    y <- links$yy
 
     if (!file.exists(f)) {
       message(glue::glue("Intentando descargar ECH {y}..."))
@@ -83,59 +83,33 @@ get_microdata <- function(year = NULL, folder = getwd(), format = "sav"){
     } else {
       message(glue::glue("ECH {y} ya existe, se omite la descarga"))
     }
-  }
-}
 
-
-#' Lee los archivos descargados de la ECH
-#' @param archivo cadena de texto con la ruta de la encuesta en formato zip/rar o sav/dat
-#' @importFrom glue glue
-#' @importFrom fs file_exists path_ext
-#' @importFrom haven read_sav read_dta
-#' @importFrom janitor clean_names
-#' @importFrom archive archive_read
-#' @return la encuesta ECH en formato tibble
-#' @examples
-#' # datos de ejemplo en el paquete
-#' read_ech(system.file(package = "ech", "extdata", "ech_2017_spss.rar"))
-#'
-#' # descargando los datos
-#' # download_ech(2017, "data-raw")
-#' # read_ech("data-raw/ech_2017_spss.rar")
-#' @export
-
-
-read_ech <- function(folder) {
-  # checks ----
-  if (!is.character(folder) | length(folder) != 1) {
-     message(glue::glue("Debe ingresar un directorio..."))
   }
 
+# read_ech
   archivo <- fs::dir_ls(folder, regexp = "\\.rar$")
   ext <- fs::path_ext(archivo)
   compressed_formats <- c("zip", "rar")
   uncompressed_formats <- c("sav", "dat")
 
-  # read ----
-  if (any(ext %in% c(compressed_formats, uncompressed_formats)) != TRUE) {
+  if (ext %in% c(compressed_formats, uncompressed_formats) != TRUE) {
     formats_string <- paste(c(compressed_formats, uncompressed_formats[length(uncompressed_formats) - 1]), collapse = ", ")
     formats_string <- paste(c(formats_string, uncompressed_formats[length(uncompressed_formats)]), collapse = " o ")
     stop(glue::glue("Los metadatos de {archivo} indica que este archivo no sirve. Asegurate de que el formato es {formats_string}."))
   }
 
-  if (any(ext %in% compressed_formats)) {
+  if (ext %in% compressed_formats) {
     message(glue::glue("Los metadatos de {archivo} indican que el formato comprimido es adecuado, intentando leer..."))
     d <- try(haven::read_sav(archive::archive_read(archivo)))
-
   }
 
-  if (any(ext %in% uncompressed_formats)) {
+  if (ext %in% uncompressed_formats) {
     message(glue::glue("Los metadatos de {archivo} indican que el formato no comprimido es adecuado, intentando leer..."))
     if (ext == uncompressed_formats[[1]]) {
       d <- haven::read_sav(archivo)
     }
     if (ext == uncompressed_formats[[2]]) {
-      d <- haven::read_dta(archivo)
+      d <- haven::read_dat(archivo)
     }
   }
 
@@ -145,27 +119,9 @@ read_ech <- function(folder) {
     return(d)
   } else {
     stop(glue::glue("{archivo} no se pudo leer como tibble :-("))
-  }
+ }
 }
 
 
-#' Descarga y lee los archivos de la ECH
-#' @param years si no se indica un anio, descarga todos los anios disponibles
-#' @param folder si no se indica una carpeta, descarga en la carpeta temp
-#' @param format si no se indica se descarga en formato .sav (SPSS), la otra
-#' opción sería "dat"
-#' @importFrom utils download.file
-#' @importFrom glue glue
-#' @importFrom fs file_exists path_ext
-#' @importFrom haven read_sav read_dta
-#' @importFrom janitor clean_names
-#' @return la encuesta ECH en formato tibble
-#' @examples
-#' # Obtener la ECH 2017
-#' get_microdata(2017)
-#' @export
 
-
-  read_ech(download_ech())
-}
 
