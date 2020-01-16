@@ -7,6 +7,9 @@
 employment_rate(data = df, geo.unit = "uy", by = NULL,
   pobcoac = "pobcoac", weights = "pesoano")
 }
+\arguments{
+\item{data}{data frame with microdata}
+}
 \description{
 This function allows you to..
 }

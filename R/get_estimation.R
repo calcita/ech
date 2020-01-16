@@ -1,23 +1,22 @@
 #' A function to estimate variables at universe level
 #'
 #' This function allows you to estimate variable.
-#' @param
 #' @param data data frame with ECH microdata
 #' @param variable data frame column to estimate
 #' @param by.x data frame column
 #' @param by.y data frame column
-#' @param domain
+#' @param domain subpopulation reference
 #' @param level is household or individual
 #' @param ids survey phase
 #' @param strata survey strata
 #' @param weights ponderation variable
 #' @importFrom dplyr mutate, select, filter, group_by
 #' @importFrom glue glue
-#' @importFrom srvyr
+#' @importFrom srvyr summarise
 #' @keywords household_type
 #' @export
 #' @import tidyverse
-#' @return
+#' @return table
 #' @examples
 #' get_estimation(data = d)
 #

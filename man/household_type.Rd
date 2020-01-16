@@ -4,13 +4,22 @@
 \alias{household_type}
 \title{A household function}
 \usage{
-household_type(data = df, weights = "pesoano", strata = "estred13",
-  by.x = NULL, by.y = NULL, e26 = e26, e27 = e27, e30 = e30)
+household_type(data = df, e26 = e26, e27 = e27, e30 = e30,
+  colname = "tipo_hogar")
+}
+\arguments{
+\item{data}{data frame with ECH microdata}
+
+\item{e26}{data frame column ('sex')}
+
+\item{e27}{data frame column ('age')}
+
+\item{colname}{custom name for the new variable}
 }
 \description{
 This function allows you to calculate the household type for each household in the survey. A household is composed of one or more people who occupy a housing unit.
 }
 \examples{
-
+household_type(data = d)
 }
 \keyword{household_type}

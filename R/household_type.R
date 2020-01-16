@@ -1,7 +1,6 @@
 #' A household function
 #'
 #' This function allows you to calculate the household type for each household in the survey. A household is composed of one or more people who occupy a housing unit.
-#' @param
 #' @param data data frame with ECH microdata
 #' @param e26 data frame column ('sex')
 #' @param e27 data frame column ('age')
@@ -11,7 +10,6 @@
 #' @keywords household_type
 #' @export
 #' @import tidyverse
-#' @return
 #' @examples
 #' household_type(data = d)
 #

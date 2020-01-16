@@ -1,7 +1,7 @@
 #' An employment Function
 #'
 #' This function allows you to..
-#' @param
+#' @param data data frame with microdata
 #' @keywords employment
 #' @export
 #' @import tidyverse srvyr magrittr
