@@ -64,7 +64,7 @@ get_microdata <- function(year = NULL,
                                                                                     "get_file?uuid=73b6cc21-1bb0-483b-a463-819315b5fff3&groupId=10181")),
                            file = paste0(folder, "ech_", all_years, "_sav.rar"),
                      stringsAsFactors = FALSE)
-  links <- urls[urls$yy %in% year, ]
+  links <- urls %>% filter(yy %in% year)
 
     u <- links$md_sav
     f <- links$file
@@ -79,6 +79,7 @@ get_microdata <- function(year = NULL,
 
 # read_ech
   archivo <- fs::dir_ls(folder, regexp = "\\.rar$")
+  archivo <- archivo[which.max(file.info(archivo)$mtime)]
   ext <- fs::path_ext(archivo)
   compressed_formats <- c("zip", "rar")
   uncompressed_formats <- "sav"

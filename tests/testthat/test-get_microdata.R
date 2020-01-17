@@ -1,3 +1,6 @@
-test_that("multiplication works", {
-  expect_equal(2 * 2, 4)
+context("Testing get_microdata")
+
+test_that("download and read data", {
+  expect_is(get_microdata(year = "2017"), "data.frame")
 })
+
