@@ -1,7 +1,7 @@
 #' Download and read ECH from INE website
 #' @param year allows download data from 2011 to 2018. Default the last year
 #' @param folder Folder where are the files or be download
-#' @param format File format .sav (SPSS), otherwise .dat
+#' @param toR write data frame in R format and delete download file
 #' @importFrom utils download.file
 #' @importFrom glue glue
 #' @importFrom fs file_exists path_ext
@@ -15,10 +15,11 @@
 #' # Download and read ECH 2017
 #' get_microdata(2017)
 
-get_microdata <- function(year = NULL, folder = getwd(), format = "sav", download = TRUE){
+get_microdata <- function(year = NULL,
+                          folder = getwd(),
+                          toR = TRUE){
 
 # download_ech
-  if(isTRUE(download)){
 
   # checks ----
   stopifnot(is.numeric(year) | is.null(year) | length(year) <= 1)
@@ -53,14 +54,6 @@ get_microdata <- function(year = NULL, folder = getwd(), format = "sav", downloa
                                                                                        "get_file?uuid=e38ea53c-7253-4007-9f67-2f5f161eea91&groupId=10181",
                                                                                        "get_file?uuid=b63b566f-8d11-443d-bcd8-944f137c5aaf&groupId=10181"
                            )),
-                           md_dat = fs::path("www.ine.gub.uy/c/document_library", c("get_file?uuid=7eecaefc-be12-4f5f-93a4-d53cc2a20070&groupId=10181",
-                                                                                       "get_file?uuid=47ff59b2-ed30-408d-a94c-05220e75d39b&groupId=10181",
-                                                                                       "get_file?uuid=de9bb13a-9740-4732-8826-10b3489999b7&groupId=10181",
-                                                                                       "get_file?uuid=7aa5ba66-dc54-418d-85d9-9985c88ffde8&groupId=10181",
-                                                                                       "get_file?uuid=ecdb10a5-c2a6-46ba-bc49-d539e0264bbd&groupId=10181",
-                                                                                       "get_file?uuid=2043b2a5-d328-48a6-a65e-27be2a974924&groupId=10181",
-                                                                                       "get_file?uuid=e30dd18d-c9df-4740-952d-f7ab9ef4f8e4&groupId=10181",
-                                                                                       "get_file?uuid=32a696cf-38d9-46cb-ad16-8fea69262581&groupId=10181")),
                            dic = fs::path("www.ine.gub.uy/c/document_library", c("get_file?uuid=54523778-5f53-4df1-a265-3ff520941bca&groupId=10181",
                                                                                     "get_file?uuid=8e8963a6-b9f2-47f3-abf5-119f988ad868&groupId=10181",
                                                                                     "get_file?uuid=055d37e5-d587-4ba7-8a0d-358cd99a9e24&groupId=10181",
@@ -73,7 +66,7 @@ get_microdata <- function(year = NULL, folder = getwd(), format = "sav", downloa
                      stringsAsFactors = FALSE)
   links <- urls[urls$yy %in% year, ]
 
-    u <- ifelse(format == "sav", links$md_sav, links$md_dat)
+    u <- links$md_sav
     f <- links$file
     y <- links$yy
 
@@ -84,13 +77,11 @@ get_microdata <- function(year = NULL, folder = getwd(), format = "sav", downloa
       message(glue::glue("ECH {y} ya existe, se omite la descarga"))
     }
 
-  }
-
 # read_ech
   archivo <- fs::dir_ls(folder, regexp = "\\.rar$")
   ext <- fs::path_ext(archivo)
   compressed_formats <- c("zip", "rar")
-  uncompressed_formats <- c("sav", "dat")
+  uncompressed_formats <- "sav"
 
   if (ext %in% c(compressed_formats, uncompressed_formats) != TRUE) {
     formats_string <- paste(c(compressed_formats, uncompressed_formats[length(uncompressed_formats) - 1]), collapse = ", ")
@@ -105,23 +96,19 @@ get_microdata <- function(year = NULL, folder = getwd(), format = "sav", downloa
 
   if (ext %in% uncompressed_formats) {
     message(glue::glue("Los metadatos de {archivo} indican que el formato no comprimido es adecuado, intentando leer..."))
-    if (ext == uncompressed_formats[[1]]) {
-      d <- haven::read_sav(archivo)
+    d <- haven::read_sav(archivo)
     }
-    if (ext == uncompressed_formats[[2]]) {
-      d <- haven::read_dat(archivo)
-    }
-  }
 
   if (any(class(d) %in% "data.frame")) {
     message(glue::glue("{archivo} se pudo leer como tibble :-)"))
     d <- janitor::clean_names(d)
     return(d)
-  } else {
+   } else {
     stop(glue::glue("{archivo} no se pudo leer como tibble :-("))
- }
+   }
+  if (isTRUE(toR)){
+    # saveRDS(d, file = paste0(tools::file_path_sans_ext(archivo), ".Rds"))
+    saveRDS(d, file = paste0("ECH_", year, ".Rds"))
+    fs::file_delete(archivo)
+  }
 }
-
-
-
-
