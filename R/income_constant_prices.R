@@ -25,22 +25,8 @@ income_constant_prices <- function(data = df,
                                    ht19 = ht19){
 
   #load("data/toy_ech_2017_income.rda")
-  load("R/sysdata.rda")
-  mes_base <- ipc_base2010 %>%
-    filter(fecha == paste0(base.year, "-",base.month, "-01")) %>%
-    select(indice) %>% as.numeric
-
-  rows1 <- which(ipc_base2010$fecha == paste0(base.year-1, "-",12, "-01"))
-  rows2 <- which(ipc_base2010$fecha == paste0(base.year, "-",11, "-01"))
-
-  # Calcula el deflactor
-  deflate <- ipc_base2010 %>%
-    slice(rows1:rows2) %>%
-    mutate(deflate = mes_base/as.numeric(indice),
-           mes = 1:12
-    ) %>%
-    select(deflate, mes)
-
+  deflate <- deflate(base.month = base.month,
+                     base.year = base.year)
   # Asigna deflactor
   df <- df %>% mutate(aux = as.integer(haven::zap_labels(mes)))
 

@@ -17,3 +17,29 @@ get_ipc < function(){
   ipc_base2010 <- df
   saveRDS(df, "ipc_base2010.rds")
   }
+
+deflate <- function(base.month = base.month,
+                    base.year = base.year,
+                    ipc = "country") {
+  load("R/sysdata.rda")
+  if (ipc = "country") {
+    mes_base <- ipc_base2010 %>%
+      filter(fecha == paste0(base.year, "-",base.month, "-01")) %>%
+      select(indice) %>% as.numeric
+
+    rows1 <- which(ipc_base2010$fecha == paste0(base.year-1, "-",12, "-01"))
+    rows2 <- which(ipc_base2010$fecha == paste0(base.year, "-",11, "-01"))
+
+    # Calcula el deflactor
+    deflate <- ipc_base2010 %>%
+      slice(rows1:rows2) %>%
+      mutate(deflate = mes_base/as.numeric(indice),
+             mes = 1:12
+      ) %>%
+      select(deflate, mes)
+
+  } else {
+    # ipc mont int
+  }
+
+}
