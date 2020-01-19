@@ -28,7 +28,7 @@ get_microdata <- function(year = NULL,
     message(glue::glue("Debe ingresar un directorio..."))
   }
   # warnings ----
-  if (length(fs::dir_ls(folder, regexp = "\\.rar$")) != 0){
+  if (length(fs::dir_ls(folder, regexp = "\\.rar$")) != 0) {
     message(glue::glue("Existen en la carpeta otros archivos .rar que serán leídos..."))
   }
   # download ----
@@ -62,9 +62,9 @@ get_microdata <- function(year = NULL,
                                                                                     "get_file?uuid=54f72e41-e671-4bea-993c-631596e16883&groupId=10181",
                                                                                     "get_file?uuid=b60f247b-03cb-4bb1-b84b-5d7328479fe2&groupId=10181",
                                                                                     "get_file?uuid=73b6cc21-1bb0-483b-a463-819315b5fff3&groupId=10181")),
-                           file = paste0(folder, "/ech_", all_years, "_", format,".rar"),
+                           file = paste0(folder, "ech_", all_years, "_sav.rar"),
                      stringsAsFactors = FALSE)
-  links <- urls[urls$yy %in% year, ]
+  links <- urls %>% filter(yy %in% year)
 
     u <- links$md_sav
     f <- links$file
@@ -72,13 +72,14 @@ get_microdata <- function(year = NULL,
 
     if (!file.exists(f)) {
       message(glue::glue("Intentando descargar ECH {y}..."))
-      try(utils::download.file(u, f, mode = "wb"))
+      try(utils::download.file(u, f, mode = "wb", method = "libcurl"))
     } else {
       message(glue::glue("ECH {y} ya existe, se omite la descarga"))
     }
 
 # read_ech
   archivo <- fs::dir_ls(folder, regexp = "\\.rar$")
+  archivo <- archivo[which.max(file.info(archivo)$mtime)]
   ext <- fs::path_ext(archivo)
   compressed_formats <- c("zip", "rar")
   uncompressed_formats <- "sav"
@@ -106,7 +107,7 @@ get_microdata <- function(year = NULL,
    } else {
     stop(glue::glue("{archivo} no se pudo leer como tibble :-("))
    }
-  if (isTRUE(toR)){
+  if (isTRUE(toR)) {
     # saveRDS(d, file = paste0(tools::file_path_sans_ext(archivo), ".Rds"))
     saveRDS(d, file = paste0("ECH_", year, ".Rds"))
     fs::file_delete(archivo)
