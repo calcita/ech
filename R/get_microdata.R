@@ -7,7 +7,6 @@
 #' @importFrom fs file_exists path_ext
 #' @importFrom haven read_sav read_dta
 #' @importFrom janitor clean_names
-#' @importFrom archive archive_read
 #' @return unrar files from INE web and the respective data frame in tibble format
 #' @export
 #' @examples
@@ -92,7 +91,7 @@ get_microdata <- function(year = NULL,
 
   if (ext %in% compressed_formats) {
     message(glue::glue("Los metadatos de {archivo} indican que el formato comprimido es adecuado, intentando leer..."))
-    d <- try(haven::read_sav(archive::archive_read(archivo)))
+    d <- try(haven::read_sav(archive_read(archivo)))
   }
 
   if (ext %in% uncompressed_formats) {
