@@ -3,7 +3,7 @@
 #' @param data
 #' @param weights
 #' @param domain
-#'
+#' @importFrom laeken gini
 #' @return
 #' @export
 #'

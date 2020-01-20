@@ -18,6 +18,7 @@ LazyData: true
 RoxygenNote: 7.0.2
 Imports:
     fs,
+    Rcpp (>= 1.0.2),
     glue,
     dplyr,
     haven,
@@ -32,5 +33,6 @@ Suggests:
     knitr,
     testthat (>= 2.1.0),
     rmarkdown
-SystemRequirements: archive.deb
+SystemRequirements: libarchive: libarchive-dev (deb), libarchive-devel (rpm), libarchive
+  (homebrew), libarchive_dev (csw)
 VignetteBuilder: knitr

@@ -16,14 +16,18 @@ collapse_quote_transformer <- function(code, envir) {
 }
 
 
+#' Error messages
 #' @importFrom glue glue
+#' @keywords internal
+#' @export
 assert <- function(msg, ...) {
   tests <- unlist(list(...))
 
   if (!all(tests)) {
     stop(structure(list(
-      message = glue::glue(msg, .envir = parent.frame(), .transformer = collapse_quote_transformer),
-      .call = sys.call(-1)), class = c("error", "condition")))
+      message = glue::glue(msg, .envir = parent.frame()),
+      .call = sys.call(-1)
+    ), class = c("error", "condition")))
   }
 }
 
