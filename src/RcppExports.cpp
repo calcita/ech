@@ -7,7 +7,7 @@ using namespace Rcpp;
 
 // archive_metadata
 Rcpp::List archive_metadata(const std::string& path);
-RcppExport SEXP _casen_archive_metadata(SEXP pathSEXP) {
+RcppExport SEXP _ech_archive_metadata(SEXP pathSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -18,7 +18,7 @@ END_RCPP
 }
 // archive_filters
 Rcpp::IntegerVector archive_filters();
-RcppExport SEXP _casen_archive_filters() {
+RcppExport SEXP _ech_archive_filters() {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -28,7 +28,7 @@ END_RCPP
 }
 // archive_formats
 Rcpp::IntegerVector archive_formats();
-RcppExport SEXP _casen_archive_formats() {
+RcppExport SEXP _ech_archive_formats() {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -38,7 +38,7 @@ END_RCPP
 }
 // libarchive_version_
 std::string libarchive_version_();
-RcppExport SEXP _casen_libarchive_version_() {
+RcppExport SEXP _ech_libarchive_version_() {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -48,7 +48,7 @@ END_RCPP
 }
 // archive_extract_
 void archive_extract_(const std::string& archive_filename, Rcpp::CharacterVector filenames, size_t sz);
-RcppExport SEXP _casen_archive_extract_(SEXP archive_filenameSEXP, SEXP filenamesSEXP, SEXP szSEXP) {
+RcppExport SEXP _ech_archive_extract_(SEXP archive_filenameSEXP, SEXP filenamesSEXP, SEXP szSEXP) {
 BEGIN_RCPP
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const std::string& >::type archive_filename(archive_filenameSEXP);
@@ -60,7 +60,7 @@ END_RCPP
 }
 // read_connection
 SEXP read_connection(const std::string& archive_filename, const std::string& filename, const std::string& mode, Rcpp::NumericVector format, Rcpp::NumericVector filters, size_t sz);
-RcppExport SEXP _casen_read_connection(SEXP archive_filenameSEXP, SEXP filenameSEXP, SEXP modeSEXP, SEXP formatSEXP, SEXP filtersSEXP, SEXP szSEXP) {
+RcppExport SEXP _ech_read_connection(SEXP archive_filenameSEXP, SEXP filenameSEXP, SEXP modeSEXP, SEXP formatSEXP, SEXP filtersSEXP, SEXP szSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -76,16 +76,16 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_casen_archive_metadata", (DL_FUNC) &_casen_archive_metadata, 1},
-    {"_casen_archive_filters", (DL_FUNC) &_casen_archive_filters, 0},
-    {"_casen_archive_formats", (DL_FUNC) &_casen_archive_formats, 0},
-    {"_casen_libarchive_version_", (DL_FUNC) &_casen_libarchive_version_, 0},
-    {"_casen_archive_extract_", (DL_FUNC) &_casen_archive_extract_, 3},
-    {"_casen_read_connection", (DL_FUNC) &_casen_read_connection, 6},
+    {"_ech_archive_metadata", (DL_FUNC) &_ech_archive_metadata, 1},
+    {"_ech_archive_filters", (DL_FUNC) &_ech_archive_filters, 0},
+    {"_ech_archive_formats", (DL_FUNC) &_ech_archive_formats, 0},
+    {"_ech_libarchive_version_", (DL_FUNC) &_ech_libarchive_version_, 0},
+    {"_ech_archive_extract_", (DL_FUNC) &_ech_archive_extract_, 3},
+    {"_ech_read_connection", (DL_FUNC) &_ech_read_connection, 6},
     {NULL, NULL, 0}
 };
 
-RcppExport void R_init_casen(DllInfo *dll) {
+RcppExport void R_init_ech(DllInfo *dll) {
     R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
     R_useDynamicSymbols(dll, FALSE);
 }
