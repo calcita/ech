@@ -78,7 +78,7 @@ get_estimation_mean <- function(data = df,
 #' @param domain subpopulation reference
 #' @param level is household or individual
 #' @param design survey design
-#' @importFrom dplyr mutate, select, filter, group_by
+#' @importFrom dplyr mutate select filter group_by
 #' @importFrom glue glue
 #' @importFrom srvyr summarise
 #' @keywords inference
