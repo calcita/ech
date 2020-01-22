@@ -17,6 +17,7 @@ ByteCompile: true
 LazyData: true
 RoxygenNote: 7.0.2
 Imports:
+    assertthat,
     fs,
     Rcpp (>= 1.0.2),
     glue,
@@ -25,6 +26,7 @@ Imports:
     janitor,
     magrittr,
     srvyr,
+    statar,
     survey (>= 1.2.0), 
     tidyverse, 
     sf, 

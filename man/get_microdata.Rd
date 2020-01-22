@@ -4,15 +4,14 @@
 \alias{get_microdata}
 \title{Download and read ECH from INE website}
 \usage{
-get_microdata(year = NULL, folder = getwd(), format = "sav",
-  download = TRUE)
+get_microdata(year = NULL, folder = getwd(), toR = TRUE)
 }
 \arguments{
 \item{year}{allows download data from 2011 to 2018. Default the last year}
 
 \item{folder}{Folder where are the files or be download}
 
-\item{format}{File format .sav (SPSS), otherwise .dat}
+\item{toR}{write data frame in R format and delete download file}
 }
 \value{
 unrar files from INE web and the respective data frame in tibble format

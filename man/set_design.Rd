@@ -4,8 +4,8 @@
 \alias{set_design}
 \title{A function to set survey design}
 \usage{
-set_design(data = data, ids = 1, strata = estred13,
-  weights = pesoano)
+set_design(data = data, ids = 1, strata = "estred13",
+  weights = "pesoano")
 }
 \arguments{
 \item{data}{data frame with ECH microdata}

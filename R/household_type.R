@@ -5,7 +5,7 @@
 #' @param e26 data frame column ('sex')
 #' @param e27 data frame column ('age')
 #' @param colname custom name for the new variable
-#' @importFrom dplyr mutate select filter group_by
+#' @import dplyr
 #' @importFrom glue glue
 #' @keywords household_type
 #' @export

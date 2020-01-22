@@ -2,10 +2,9 @@
 % Please edit documentation in R/employment_rate.R
 \name{employment_rate}
 \alias{employment_rate}
-\title{An employment Function}
+\title{An employment rate function}
 \usage{
-employment_rate(data = df, geo.unit = "uy", by = NULL,
-  pobcoac = "pobcoac", weights = "pesoano")
+employment_rate(data = df, pobcoac = "pobcoac")
 }
 \arguments{
 \item{data}{data frame with microdata}
