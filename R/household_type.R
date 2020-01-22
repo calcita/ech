@@ -5,7 +5,7 @@
 #' @param e26 data frame column ('sex')
 #' @param e27 data frame column ('age')
 #' @param colname custom name for the new variable
-#' @importFrom dplyr mutate, select, filter, group_by
+#' @importFrom dplyr mutate select filter group_by
 #' @importFrom glue glue
 #' @keywords household_type
 #' @export
@@ -35,8 +35,8 @@ household_type <- function(data = df,
                  grandchild = ifelse(e30 == 11, 1, 0),
                  other_rel = ifelse(e30 == 12, 1, 0),
                  no_rel = ifelse(e30 == 13, 1, 0)) %>%
-    group_by(numero) %>%
-    mutate(sex_householder = max(sex_householder),
+    dplyr::group_by(numero) %>%
+    dplyr::mutate(sex_householder = max(sex_householder),
            under_18 = max(under_18),
            partner = max(partner),
            child = max(child),
@@ -55,6 +55,6 @@ household_type <- function(data = df,
                             ifelse(no_rel > 0, "compuesto","error")))))))) # composite) %>%
            )
 
-  data <- data %>% select(everything(), -sex_householder:-no_rel)
+  data <- data %>% dplyr::select(everything(), -sex_householder:-no_rel)
   message(glue::glue("Se ha creado la variable {{colname}} en {{data}}"))
 }

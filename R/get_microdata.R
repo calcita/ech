@@ -5,8 +5,9 @@
 #' @importFrom utils download.file
 #' @importFrom glue glue
 #' @importFrom fs file_exists path_ext
-#' @importFrom haven read_sav read_dta
+#' @importFrom haven read_sav
 #' @importFrom janitor clean_names
+#' @importFrom dplyr filter
 #' @return unrar files from INE web and the respective data frame in tibble format
 #' @export
 #' @examples
@@ -63,7 +64,7 @@ get_microdata <- function(year = NULL,
                                                                            "get_file?uuid=73b6cc21-1bb0-483b-a463-819315b5fff3&groupId=10181")),
                      file = paste0(folder, "ech_", all_years, "_sav.rar"),
                      stringsAsFactors = FALSE)
-  links <- urls %>% filter(yy %in% year)
+  links <- urls %>% dplyr::filter(yy %in% year)
 
   u <- links$md_sav
   f <- links$file

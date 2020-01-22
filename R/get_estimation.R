@@ -8,12 +8,11 @@
 #' @param domain subpopulation reference
 #' @param level is household or individual
 #' @param design survey design
-#' @importFrom dplyr mutate, select, filter, group_by
+#' @importFrom assertthat assert_that
 #' @importFrom glue glue
-#' @importFrom srvyr summarise
 #' @keywords inference
 #' @export
-#' @import tidyverse
+#' @import srvyr
 #' @return table
 #' @examples
 #' get_estimation(data = df)
@@ -61,8 +60,6 @@ get_estimation_mean <- function(data = df,
          srvyr::group_by({{by.x}},{{by.y}}) %>%
          srvyr::summarise(colname = srvyr::survey_mean(variable))
      }
-
-
   }
 
  return(estimation)

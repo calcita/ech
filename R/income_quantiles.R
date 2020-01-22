@@ -7,7 +7,9 @@
 #' @param design
 #' @param quantile
 #' @param namecol
-#'
+#' @importFrom statar xtile
+#' @importFrom dplyr mutate
+#' @importFrom magrittr %<>%
 #' @return
 #' @export
 #'
@@ -30,13 +32,13 @@ income_quintiles <- function(data = df,
     #                                        ifelse(ht11_svl_per_capita_deflate <= q[3], 3,
     #                                               ifelse(ht11_svl_per_capita_deflate <= q[4], 4,
     #                                                      ifelse(ht11_svl_per_capita_deflate <= q[5], 5, "error")))))
-    df %<>% mutate(quantile = statar::xtile(ht11_per_capita_deflate, n = 5, wt = weights))
+    df %<>% dplyr::mutate(quantile = statar::xtile(ht11_per_capita_deflate, n = 5, wt = weights))
 
   }
 
   if (quintil == 10){
     ## deciles
-    df %<>% mutate(quantile = statar::xtile(ht11_per_capita_deflate, n = 10, wt = weights))
+    df %<>% dplyr::mutate(quantile = statar::xtile(ht11_per_capita_deflate, n = 10, wt = weights))
   }
 
 }

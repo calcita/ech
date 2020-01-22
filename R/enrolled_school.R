@@ -4,7 +4,8 @@
 #' @param base Base with necessary variables Defaults to ech.
 #' @keywords education
 #' @export
-#' @import tidyverse survey
+#' @importFrom dplyr mutate case_when
+#' @importFrom magrittr %<>%
 #' @examples
 #' edu.asist(df)
 
@@ -13,7 +14,7 @@ enrolled_school <- function(data = df,
                             by = NULL){
     if (exists("edu_asist", df)) warning('enrolled_school pre-existing')
 
-   data %<>% mutate(edu_asist = case_when((e193 == "Asiste actualmente" | # == 1
+   data %<>% dplyr::mutate(edu_asist = dplyr::case_when((e193 == "Asiste actualmente" | # == 1
                                                        e197 == "Asiste actualmente" |
                                                        e201 == "Asiste actualmente" |
                                                        e212 == "Asiste actualmente" |

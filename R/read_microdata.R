@@ -6,7 +6,6 @@
 #' @importFrom fs file_exists path_ext
 #' @importFrom haven read_sav read_dta
 #' @importFrom janitor clean_names
-#' @importFrom archive archive_read
 #' @return unrar files from INE web and the respective data frame in tibble format
 #' @export
 #' @examples

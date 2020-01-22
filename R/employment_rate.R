@@ -4,17 +4,18 @@
 #' @param data data frame with microdata
 #' @keywords employment
 #' @export
-#' @import tidyverse srvyr magrittr
+#' @importFrom magrittr %<>%
+#' @importFrom dplyr mutate
 #' @examples
 #' employment_rate()
 
 employment_rate <- function(data = df,
                             pobcoac = "pobcoac"){
 
-  data %<>% mutate(pea = if_else(pobpcoac %in% 2:5, 1, 0),
-                   pet = if_else(pobpcoac != 1, 1, 0),
-                   po = if_else(pobpcoac == 2, 1, 0),
-                   pd = if_else(pobpcoac %in% 3:5, 1, 0)
+  data %<>% dplyr::mutate(pea = ifelse(pobpcoac %in% 2:5, 1, 0),
+                   pet = ifelse(pobpcoac != 1, 1, 0),
+                   po = ifelse(pobpcoac == 2, 1, 0),
+                   pd = ifelse(pobpcoac %in% 3:5, 1, 0)
                         )
   # chequear si es numérica y si lo es convertir a character
 

@@ -9,8 +9,8 @@
 #' @param ysvl
 #' @param ht13
 #' @param ht19
-#'
-#' @importFrom magrittr %<>%
+#' @import dplyr
+#' @importFrom magrittr %<>% %>%
 #' @return
 #' @export
 #'
@@ -28,12 +28,12 @@ income_constant_prices <- function(data = df,
   deflate <- deflate(base.month = base.month,
                      base.year = base.year)
   # Asigna deflactor
-  df <- df %>% mutate(aux = as.integer(haven::zap_labels(mes)))
+  df <- df %>% dplyr::mutate(aux = as.integer(haven::zap_labels(mes)))
 
-  df <- left_join(df, deflate, by = c("aux" = "mes"))
+  df <- dplyr::left_join(df, deflate, by = c("aux" = "mes"))
 
   # Ingresos deflactados
-  df %<>% mutate(ht11_per_capita = ht11 / ht19,
+  df %<>% dplyr::mutate(ht11_per_capita = ht11 / ht19,
                  ht11_deflate = ht11 * deflate,
                  ht13_deflate = ht13 * deflate,
                  ht11_svl_def = YSVL * deflate,
