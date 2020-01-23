@@ -1,7 +1,7 @@
 #' income_constant_prices
 #'
 #' @description Household income constant prices
-#' @param data
+#' @param data data frame with ECH microdata
 #' @param base.month
 #' @param base.year
 #' @param mes
@@ -15,7 +15,7 @@
 #' @export
 #'
 #' @examples
-income_constant_prices <- function(data = df,
+income_constant_prices <- function(data = ech::toy_ech_2017_income,
                                    base.month = 6,
                                    base.year = 2017,
                                    mes = mes,
