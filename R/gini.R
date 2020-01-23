@@ -1,7 +1,7 @@
 #' gini
 #'
-#' @param data
-#' @param weights
+#' @param data data frame with ECH microdata
+#' @param weights ponderation variable
 #' @param domain
 #' @return
 #' @export

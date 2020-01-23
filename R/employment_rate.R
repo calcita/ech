@@ -2,6 +2,7 @@
 #'
 #' This function allows you to..
 #' @param data data frame with microdata
+#' @param poboac Definition of categories: "Ocupados", "Desocupados buscan trab. por 1a. vez", "Desocupados propiamente dichos", "Desocupados en seguro de paro"
 #' @keywords employment
 #' @export
 #' @importFrom magrittr %<>%
@@ -13,10 +14,10 @@ employment_rate <- function(data = df,
                             pobcoac = "pobcoac"){
 
   data %<>% dplyr::mutate(pea = ifelse(pobpcoac %in% 2:5, 1, 0),
-                   pet = ifelse(pobpcoac != 1, 1, 0),
-                   po = ifelse(pobpcoac == 2, 1, 0),
-                   pd = ifelse(pobpcoac %in% 3:5, 1, 0)
-                        )
+                          pet = ifelse(pobpcoac != 1, 1, 0),
+                          po = ifelse(pobpcoac == 2, 1, 0),
+                          pd = ifelse(pobpcoac %in% 3:5, 1, 0)
+  )
   # chequear si es numérica y si lo es convertir a character
 
   # data %<>% mutate(pea = if_else(pobpcoac %in% c("Ocupados", "Desocupados buscan trab. por 1a. vez", "Desocupados propiamente dichos", "Desocupados en seguro de paro"), 1, 0),

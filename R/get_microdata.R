@@ -29,7 +29,7 @@ get_microdata <- function(year = NULL,
   }
   # warnings ----
   if (length(fs::dir_ls(folder, regexp = "\\.rar$")) != 0) {
-    message(glue::glue("Existen en la carpeta otros archivos .rar que serán leídos..."))
+    message(glue::glue("Existen en la carpeta otros archivos .rar que seran leidos..."))
   }
   # download ----
   try(dir.create(folder))

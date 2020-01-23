@@ -4,6 +4,7 @@
 #' @param data data frame with ECH microdata
 #' @param e26 data frame column ('sex')
 #' @param e27 data frame column ('age')
+#' @param e30 data frame column ('householder')
 #' @param colname custom name for the new variable
 #' @import dplyr
 #' @importFrom glue glue
@@ -20,8 +21,8 @@ household_type <- function(data = df,
                            e30 = e30,
                            colname = "tipo_hogar") {
 
-  if(colname %in% names(data)) {
-    message(glue::glue("El data frame ya contiene una variable con ese nombre, se sobreescribirá"))
+  if (colname %in% names(data)) {
+    message(glue::glue("El data frame ya contiene una variable con ese nombre, se sobreescribira"))
   }
 
   data <- data %>%

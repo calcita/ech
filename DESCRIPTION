@@ -5,17 +5,19 @@ Authors@R:
     c(person("Gabriela", "Mathieu", email = "gmathieu@gmx.com", role = c("aut", "cre"),
             comment = c(ORCID = "0000-0003-3965-9024")),
             person("Richard", "Detomasi", email = "richard.detomasi@gmail.com", role = "aut",
-            comment = c(ORCID = "0000-0002-6725-0261")))
+            comment = c(ORCID = "0000-0002-6725-0261")),
+            person(family = "Instituto Nacional de Estadística, Uruguay (INE)", role = "dtc"))
 Maintainer: Gabriela Mathieu <gmathieu@gmx.com>
 Description: R toolbox for the processing of the Encuesta Continua de Hogares from Uruguay
             [ECH](http://www.ine.gub.uy/encuesta-continua-de-hogares1) conducted by the
             Instituto Nacional de Estadística (INE).
-License: GPL-3
+License: GPL-3 + file LICENSE
 Encoding: UTF-8
 LinkingTo: Rcpp
 ByteCompile: true
 LazyData: true
 RoxygenNote: 7.0.2
+Depends: R (>= 2.10)
 Imports:
     assertthat,
     fs,

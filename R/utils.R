@@ -20,6 +20,17 @@
 #  saveRDS(df, "ipc_base2010.rds")
  # }
 
+#' deflate
+#'
+#' @param base.month
+#' @param base.year
+#' @param ipc
+#' @importFrom dplyr select slice mutate %>%
+#' @return
+#' @export
+#'
+#' @examples
+
 # deflate <- function(base.month = base.month,
 #                     base.year = base.year,
 #                     ipc = "country") {
