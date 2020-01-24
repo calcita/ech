@@ -13,7 +13,6 @@ Description: R toolbox for the processing of the Encuesta Continua de Hogares fr
             Instituto Nacional de Estadística (INE).
 License: GPL-3 + file LICENSE
 Encoding: UTF-8
-LinkingTo: Rcpp
 ByteCompile: true
 LazyData: true
 RoxygenNote: 7.0.2
@@ -30,8 +29,6 @@ Imports:
     srvyr,
     statar,
     survey (>= 1.2.0), 
-    tidyverse, 
-    sf, 
     stringr,
     kableExtra
 Suggests: 

@@ -10,6 +10,8 @@ gini(data = df, weights = pesoano, domain = NULL)
 \item{data}{data frame with ECH microdata}
 
 \item{weights}{ponderation variable}
+
+\item{domain}{dominio de interes}
 }
 \value{
 

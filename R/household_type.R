@@ -6,13 +6,12 @@
 #' @param e27 data frame column ('age')
 #' @param e30 data frame column ('householder')
 #' @param colname custom name for the new variable
-#' @import dplyr
+#' @importFrom dplyr mutate group_by select
 #' @importFrom glue glue
 #' @keywords household_type
 #' @export
-#' @import tidyverse
 #' @examples
-#' household_type(data = d)
+#' household_type(data = df)
 #
 
 household_type <- function(data = df,

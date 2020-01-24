@@ -9,7 +9,7 @@ employment_rate(data = df, pobcoac = "pobcoac")
 \arguments{
 \item{data}{data frame with microdata}
 
-\item{poboac}{Definition of categories: "Ocupados", "Desocupados buscan trab. por 1a. vez", "Desocupados propiamente dichos", "Desocupados en seguro de paro"}
+\item{pobcoac}{Definition of categories: "Ocupados", "Desocupados buscan trab. por 1a. vez", "Desocupados propiamente dichos", "Desocupados en seguro de paro"}
 }
 \description{
 This function allows you to..

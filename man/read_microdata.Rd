@@ -4,7 +4,7 @@
 \alias{read_microdata}
 \title{Read ECH from a local folder}
 \usage{
-read_microdata(folder = getwd(), filename = NULL, format = "rds")
+read_microdata(folder = NULL, filename = NULL, format = "rds")
 }
 \arguments{
 \item{folder}{Folder where are the files or be download}

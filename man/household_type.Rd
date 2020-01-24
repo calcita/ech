@@ -27,6 +27,6 @@ household_type(
 This function allows you to calculate the household type for each household in the survey. A household is composed of one or more people who occupy a housing unit.
 }
 \examples{
-household_type(data = d)
+household_type(data = df)
 }
 \keyword{household_type}

@@ -11,7 +11,7 @@ get_microdata(year = NULL, folder = NULL, toR = TRUE)
 
 \item{folder}{Folder where are the files or be download}
 
-\item{toR}{write data frame in R format and delete download file}
+\item{toR}{write data frame in R format and delete download file and unpack files}
 }
 \value{
 unrar files from INE web and the respective data frame in tibble format
@@ -22,5 +22,5 @@ Download and read ECH from INE website
 \examples{
 # download and read all surveys available
 # Download and read ECH 2017
-get_microdata(year = "2017", folder = getwd(), toR = FALSE)
+get_microdata(year = "2014", folder = "/home/calcita/Escritorio/pruebaech/", toR = FALSE)
 }

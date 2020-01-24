@@ -17,6 +17,20 @@ income_constant_prices(
 }
 \arguments{
 \item{data}{data frame with ECH microdata}
+
+\item{base.month}{mes base}
+
+\item{base.year}{anio base}
+
+\item{mes}{mes}
+
+\item{ht11}{ht11}
+
+\item{ysvl}{ysvl}
+
+\item{ht13}{ht13}
+
+\item{ht19}{ht19}
 }
 \value{
 

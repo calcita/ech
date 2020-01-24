@@ -7,10 +7,18 @@
 income_quintiles(
   data = df,
   ht11_per_capita_deflate = ht11_per_capita_deflate,
-  design = d,
   quantile = 5,
   weights = pesoano
 )
+}
+\arguments{
+\item{data}{data.frame}
+
+\item{ht11_per_capita_deflate}{ingeso per capita deflactado}
+
+\item{quantile}{cuantiles}
+
+\item{weights}{ponderador de los casos}
 }
 \value{
 

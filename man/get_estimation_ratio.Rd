@@ -11,8 +11,7 @@ get_estimation_ratio(
   by.x = NULL,
   by.y = NULL,
   domain = NULL,
-  level = NULL,
-  design = d
+  level = NULL
 )
 }
 \arguments{
@@ -29,8 +28,6 @@ get_estimation_ratio(
 \item{domain}{subpopulation reference}
 
 \item{level}{is household or individual}
-
-\item{design}{survey design}
 }
 \value{
 table
@@ -39,6 +36,6 @@ table
 This function allows you to estimate variable.
 }
 \examples{
-get_estimation(data = df)
+get_estimation_ratio(data = df)
 }
 \keyword{inference}

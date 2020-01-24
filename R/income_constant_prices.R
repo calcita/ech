@@ -2,14 +2,14 @@
 #'
 #' @description Household income constant prices
 #' @param data data frame with ECH microdata
-#' @param base.month
-#' @param base.year
-#' @param mes
-#' @param ht11
-#' @param ysvl
-#' @param ht13
-#' @param ht19
-#' @import dplyr
+#' @param base.month mes base
+#' @param base.year anio base
+#' @param mes mes
+#' @param ht11 ht11
+#' @param ysvl ysvl
+#' @param ht13 ht13
+#' @param ht19 ht19
+#' @importFrom dplyr mutate left_join
 #' @importFrom magrittr %<>% %>%
 #' @return
 #' @export

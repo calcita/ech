@@ -1,7 +1,7 @@
 #' Download and read ECH from INE website
 #' @param year allows download data from 2011 to 2018. Default the last year
 #' @param folder Folder where are the files or be download
-#' @param toR write data frame in R format and delete download file
+#' @param toR write data frame in R format and delete download file and unpack files
 #' @importFrom utils download.file
 #' @importFrom glue glue
 #' @importFrom fs file_exists path_ext
@@ -14,7 +14,7 @@
 #' @examples
 #' # download and read all surveys available
 #' # Download and read ECH 2017
-#' get_microdata(year = "2017", folder = getwd(), toR = FALSE)
+#' get_microdata(year = "2014", folder = "/home/calcita/Escritorio/pruebaech/", toR = FALSE)
 
 get_microdata <- function(year = NULL,
                           folder = NULL,
@@ -95,7 +95,7 @@ get_microdata <- function(year = NULL,
     message(glue::glue("Los metadatos de {archivo} indican que el formato comprimido es adecuado, intentando leer..."))
     try(archive_extract(archive.path = archivo, dest.path = folder))
     descomprimido <- fs::dir_ls(folder, regexp = "\\.sav$")
-    descomprimido <- descomprimido[stringr::str_detect(descomprimido, "HyP") == T]
+    descomprimido <- descomprimido[(stringr::str_detect(descomprimido, "HyP") == T | stringr::str_detect(descomprimido, "Fusionado") == T) & stringr::str_detect(descomprimido, as.character(year)) == T]
     d <- try(haven::read_sav(descomprimido))
   }
 
@@ -115,6 +115,8 @@ get_microdata <- function(year = NULL,
     # saveRDS(d, file = paste0(tools::file_path_sans_ext(archivo), ".Rds"))
     saveRDS(d, file = fs::path(folder, paste0("ECH_", year, ".Rds")))
     message(glue::glue("Se ha guardado el archivo en formato R"))
+    sav <- fs::dir_ls(folder, regexp = "\\.sav$")
     fs::file_delete(archivo)
+    fs::file_delete(sav)
   }
 }

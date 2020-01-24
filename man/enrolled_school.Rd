@@ -7,12 +7,12 @@
 enrolled_school(data = ech::toy_ech_2018)
 }
 \arguments{
-\item{data}{Base with necessary variables Defaults to ech.}
+\item{data}{data.frame with necessary variables Defaults to ech.}
 }
 \description{
 This function allows you to estimate people enrolled in school
 }
 \examples{
-edu.asist(df)
+enrolled_school(data = ech::toy_ech_2018)
 }
 \keyword{education}

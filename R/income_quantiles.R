@@ -2,11 +2,10 @@
 #'
 #' @description Household Income Quantiles
 #'
-#' @param data
-#' @param ht11_per_capita_deflate
-#' @param design
-#' @param quantile
-#' @param namecol
+#' @param data data.frame
+#' @param ht11_per_capita_deflate ingeso per capita deflactado
+#' @param quantile cuantiles
+#' @param weights ponderador de los casos
 #' @importFrom statar xtile
 #' @importFrom dplyr mutate
 #' @importFrom magrittr %<>%
@@ -16,7 +15,6 @@
 #' @examples
 income_quintiles <- function(data = df,
                              ht11_per_capita_deflate = ht11_per_capita_deflate,
-                             design = d,
                              quantile = 5,
                              weights = pesoano) {
 

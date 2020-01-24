@@ -11,7 +11,7 @@
 #' @examples
 #' read_microdata()
 
-read_microdata <- function(folder = getwd(), filename = NULL, format = "rds"){
+read_microdata <- function(folder = NULL, filename = NULL, format = "rds"){
 
   stopifnot(format %in% c("rds", "rdata", "sav", "dta"))
   stopifnot(is.character(filename))
