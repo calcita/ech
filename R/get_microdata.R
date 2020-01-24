@@ -92,7 +92,7 @@ get_microdata <- function(year = NULL,
 
   if (ext %in% compressed_formats) {
     message(glue::glue("Los metadatos de {archivo} indican que el formato comprimido es adecuado, intentando leer..."))
-    d <- try(haven::read_sav(archive_read(archivo)))
+    d <- try(haven::read_sav(archive_extract(archive.path = archivo, dest.path = folder)))
   }
 
   if (ext %in% uncompressed_formats) {

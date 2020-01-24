@@ -1,9 +1,0 @@
-*.o
-*.so
-*.dll
-lib/
-include/
-bin/
-share/
-libarchive-3.3.1/
-RcppExports.cpp
