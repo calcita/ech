@@ -100,10 +100,10 @@ archive_extract <- function(archive.path = getwd(), dest.path = NULL) {
   # file = paste('"', 'U:/base femicidio.rar', '"',sep = '')
 
   file = paste('"', archive.path, '"',sep = '')
-  cmd = paste(exe.path, ' e ', file, ' -ir!*.* -o', '"', getwd(), '"', sep='')
+  cmd = paste(exe.path, ' e ', file, ' -ir!*.* -o', '"', dest.path, '"', sep = '')
 
   # unpack file
   system(cmd)
-  print("El archivo fue descomprimido con correctamente")
+  print("El archivo fue descomprimido correctamente")
 }
 
