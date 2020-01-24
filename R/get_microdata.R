@@ -8,6 +8,7 @@
 #' @importFrom haven read_sav
 #' @importFrom janitor clean_names
 #' @importFrom dplyr filter
+#' @importFrom stringr str_detect
 #' @return unrar files from INE web and the respective data frame in tibble format
 #' @export
 #' @examples
@@ -16,7 +17,7 @@
 #' get_microdata(2017)
 
 get_microdata <- function(year = NULL,
-                          folder = getwd(),
+                          folder = NULL,
                           toR = TRUE){
 
 # download_ech
@@ -92,7 +93,10 @@ get_microdata <- function(year = NULL,
 
   if (ext %in% compressed_formats) {
     message(glue::glue("Los metadatos de {archivo} indican que el formato comprimido es adecuado, intentando leer..."))
-    d <- try(haven::read_sav(archive_extract(archive.path = archivo, dest.path = folder)))
+    try(archive_extract(archive.path = archivo, dest.path = folder))
+    descomprimido <- fs::dir_ls(folder, regexp = "\\.sav$")
+    descomprimido <- descomprimido[stringr::str_detect(descomprimido, "HyP") == T]
+    d <- try(haven::read_sav(descomprimido))
   }
 
   if (ext %in% uncompressed_formats) {
@@ -109,7 +113,8 @@ get_microdata <- function(year = NULL,
   }
   if (isTRUE(toR)) {
     # saveRDS(d, file = paste0(tools::file_path_sans_ext(archivo), ".Rds"))
-    saveRDS(d, file = paste0("ECH_", year, ".Rds"))
+    saveRDS(d, file = fs::path(folder, paste0("ECH_", year, ".Rds")))
+    message(glue::glue("Se ha guardado el archivo en formato R"))
     fs::file_delete(archivo)
   }
 }

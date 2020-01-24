@@ -87,7 +87,7 @@ isWindows <- function() identical(.Platform$OS.type, "windows")
 #'
 #' @examples
 #'
-archive_extract <- function(archive.path = getwd(), dest.path = NULL) {
+archive_extract <- function(archive.path = NULL, dest.path = NULL) {
   # busca archivo binario
   archiveExtractBinary <- .archiveExtractBinary()
   if (is.null(archiveExtractBinary))
