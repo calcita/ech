@@ -14,7 +14,7 @@
 #' @examples
 #' # download and read all surveys available
 #' # Download and read ECH 2017
-#' get_microdata(2017)
+#' get_microdata(year = "2017", folder = getwd(), toR = FALSE)
 
 get_microdata <- function(year = NULL,
                           folder = NULL,

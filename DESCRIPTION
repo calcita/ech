@@ -32,11 +32,11 @@ Imports:
     survey (>= 1.2.0), 
     tidyverse, 
     sf, 
+    stringr,
     kableExtra
 Suggests: 
     knitr,
     testthat (>= 2.1.0),
     rmarkdown
-SystemRequirements: libarchive: libarchive-dev (deb), libarchive-devel (rpm), libarchive
-  (homebrew), libarchive_dev (csw)
+SystemRequirements: 'unrar' (Linux/macOS) or '7-Zip' (Windows) to work with '.rar' files.
 VignetteBuilder: knitr

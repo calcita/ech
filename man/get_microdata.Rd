@@ -22,5 +22,5 @@ Download and read ECH from INE website
 \examples{
 # download and read all surveys available
 # Download and read ECH 2017
-get_microdata(2017)
+get_microdata(year = "2017", folder = getwd(), toR = FALSE)
 }
