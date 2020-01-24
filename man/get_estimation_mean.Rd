@@ -4,8 +4,15 @@
 \alias{get_estimation_mean}
 \title{A function to estimate variables at universe level}
 \usage{
-get_estimation_mean(data = df, variable = NULL, by.x = NULL,
-  by.y = NULL, domain = NULL, level = NULL, design = d)
+get_estimation_mean(
+  data = df,
+  variable = NULL,
+  by.x = NULL,
+  by.y = NULL,
+  domain = NULL,
+  level = NULL,
+  design = d
+)
 }
 \arguments{
 \item{data}{data frame with ECH microdata}

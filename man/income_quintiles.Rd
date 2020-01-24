@@ -4,9 +4,16 @@
 \alias{income_quintiles}
 \title{income_quintiles}
 \usage{
-income_quintiles(data = df,
-  ht11_per_capita_deflate = ht11_per_capita_deflate, design = d,
-  quantile = 5, weights = pesoano)
+income_quintiles(
+  data = df,
+  ht11_per_capita_deflate = ht11_per_capita_deflate,
+  design = d,
+  quantile = 5,
+  weights = pesoano
+)
+}
+\value{
+
 }
 \description{
 Household Income Quantiles

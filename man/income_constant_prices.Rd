@@ -4,8 +4,22 @@
 \alias{income_constant_prices}
 \title{income_constant_prices}
 \usage{
-income_constant_prices(data = df, base.month = 6, base.year = 2017,
-  mes = mes, ht11 = ht11, ysvl = ysvl, ht13 = ht13, ht19 = ht19)
+income_constant_prices(
+  data = ech::toy_ech_2017_income,
+  base.month = 6,
+  base.year = 2017,
+  mes = mes,
+  ht11 = ht11,
+  ysvl = ysvl,
+  ht13 = ht13,
+  ht19 = ht19
+)
+}
+\arguments{
+\item{data}{data frame with ECH microdata}
+}
+\value{
+
 }
 \description{
 Household income constant prices

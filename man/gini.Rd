@@ -6,6 +6,14 @@
 \usage{
 gini(data = df, weights = pesoano, domain = NULL)
 }
+\arguments{
+\item{data}{data frame with ECH microdata}
+
+\item{weights}{ponderation variable}
+}
+\value{
+
+}
 \description{
 gini
 }

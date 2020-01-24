@@ -4,9 +4,16 @@
 \alias{get_estimation_ratio}
 \title{A function to estimate variables at universe level}
 \usage{
-get_estimation_ratio(data = df, variable.x = NULL, variable.y = NULL,
-  by.x = NULL, by.y = NULL, domain = NULL, level = NULL,
-  design = d)
+get_estimation_ratio(
+  data = df,
+  variable.x = NULL,
+  variable.y = NULL,
+  by.x = NULL,
+  by.y = NULL,
+  domain = NULL,
+  level = NULL,
+  design = d
+)
 }
 \arguments{
 \item{data}{data frame with ECH microdata}

@@ -4,8 +4,7 @@
 \alias{archive_read}
 \title{archive_read ech from zip/rar file}
 \usage{
-archive_read(archive, file = 1L, mode = "r", format = NULL,
-  filter = NULL)
+archive_read(archive, file = 1L, mode = "r", format = NULL, filter = NULL)
 }
 \arguments{
 \item{mode}{how to open the connection as used in \code{base::connections()}}

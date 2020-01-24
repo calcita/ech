@@ -4,8 +4,13 @@
 \alias{household_type}
 \title{A household function}
 \usage{
-household_type(data = df, e26 = e26, e27 = e27, e30 = e30,
-  colname = "tipo_hogar")
+household_type(
+  data = df,
+  e26 = e26,
+  e27 = e27,
+  e30 = e30,
+  colname = "tipo_hogar"
+)
 }
 \arguments{
 \item{data}{data frame with ECH microdata}
@@ -13,6 +18,8 @@ household_type(data = df, e26 = e26, e27 = e27, e30 = e30,
 \item{e26}{data frame column ('sex')}
 
 \item{e27}{data frame column ('age')}
+
+\item{e30}{data frame column ('householder')}
 
 \item{colname}{custom name for the new variable}
 }
