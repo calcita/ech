@@ -1,26 +1,24 @@
-#' income_quintiles
+#' income_quantiles
 #'
 #' @description Household Income Quantiles
 #'
 #' @param data data.frame
-#' @param ht11_per_capita_deflate ingeso per capita deflactado
-#' @param quantile cuantiles
-#' @param weights ponderador de los casos
+#' @param quantile cuantiles: quintiles (5) o deciles (10)
 #' @importFrom statar xtile
 #' @importFrom dplyr mutate
 #' @importFrom magrittr %<>%
-#' @return
 #' @export
 #'
 #' @examples
-income_quintiles <- function(data = df,
-                             ht11_per_capita_deflate = ht11_per_capita_deflate,
-                             quantile = 5,
-                             weights = pesoano) {
+#' income_quantiles()
+income_quantiles <- function(data = ech::toy_ech_2017_income,
+                             quantile = 5) {
 
+  weights = data$pesoano
+  ht11_per_capita_deflate = data$ht11
   # Defino el disenio
   # d <- set_design()
-  if (quintil == 5){
+  if (quantile == 5){
     ## quintiles
     # aux <- d %>% summarise(quintiles = srvyr::survey_quantile(ht11_per_capita_deflate, quantile = seq(0.2,1,0.2))) %>%
     #  select(1:5)
@@ -30,13 +28,13 @@ income_quintiles <- function(data = df,
     #                                        ifelse(ht11_svl_per_capita_deflate <= q[3], 3,
     #                                               ifelse(ht11_svl_per_capita_deflate <= q[4], 4,
     #                                                      ifelse(ht11_svl_per_capita_deflate <= q[5], 5, "error")))))
-    df %<>% dplyr::mutate(quantile = statar::xtile(ht11_per_capita_deflate, n = 5, wt = weights))
+    data %<>% dplyr::mutate(quintil = statar::xtile(ht11_per_capita_deflate, n = 5, wt = weights))
 
   }
 
-  if (quintil == 10){
+  if (quantile == 10){
     ## deciles
-    df %<>% dplyr::mutate(quantile = statar::xtile(ht11_per_capita_deflate, n = 10, wt = weights))
+    data %<>% dplyr::mutate(decil = statar::xtile(ht11_per_capita_deflate, n = 10, wt = weights))
   }
 
 }

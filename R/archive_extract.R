@@ -82,11 +82,10 @@ isWindows <- function() identical(.Platform$OS.type, "windows")
 #' @param archive.path Ruta de origen del archivo comprimido
 #' @param dest.path Ruta destino del archivo descomprimido
 #'
-#' @return
 #' @export
 #'
 #' @examples
-#'
+#' archive_extract()
 archive_extract <- function(archive.path = NULL, dest.path = NULL) {
   # busca archivo binario
   archiveExtractBinary <- .archiveExtractBinary()

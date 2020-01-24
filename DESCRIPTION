@@ -20,7 +20,6 @@ Depends: R (>= 2.10)
 Imports:
     assertthat,
     fs,
-    Rcpp (>= 1.0.2),
     glue,
     dplyr,
     haven,
@@ -30,6 +29,7 @@ Imports:
     statar,
     survey (>= 1.2.0), 
     stringr,
+    readxl,
     kableExtra
 Suggests: 
     knitr,

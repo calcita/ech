@@ -3,10 +3,10 @@
 #' @param data data frame with ECH microdata
 #' @param weights ponderation variable
 #' @param domain dominio de interes
-#' @return
 #' @export
 #'
 #' @examples
+#' gini(df, pesoano)
 gini <- function(data = df,
                  weights = pesoano,
                  domain = NULL) {

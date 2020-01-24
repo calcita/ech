@@ -11,10 +11,11 @@
 #' @param ht19 ht19
 #' @importFrom dplyr mutate left_join
 #' @importFrom magrittr %<>% %>%
-#' @return
+#' @importFrom haven zap_labels
 #' @export
 #'
 #' @examples
+#' income_constant_prices(data = ech::toy_ech_2017_income)
 income_constant_prices <- function(data = ech::toy_ech_2017_income,
                                    base.month = 6,
                                    base.year = 2017,
@@ -28,12 +29,12 @@ income_constant_prices <- function(data = ech::toy_ech_2017_income,
   deflate <- deflate(base.month = base.month,
                      base.year = base.year)
   # Asigna deflactor
-  df <- df %>% dplyr::mutate(aux = as.integer(haven::zap_labels(mes)))
+  data <- data %>% dplyr::mutate(aux = as.integer(haven::zap_labels(mes)))
 
-  df <- dplyr::left_join(df, deflate, by = c("aux" = "mes"))
+  data <- dplyr::left_join(data, deflate, by = c("aux" = "mes"))
 
   # Ingresos deflactados
-  df %<>% dplyr::mutate(ht11_per_capita = ht11 / ht19,
+  data %<>% dplyr::mutate(ht11_per_capita = ht11 / ht19,
                  ht11_deflate = ht11 * deflate,
                  ht13_deflate = ht13 * deflate,
                  ht11_svl_def = YSVL * deflate,

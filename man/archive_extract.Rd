@@ -11,12 +11,9 @@ archive_extract(archive.path = NULL, dest.path = NULL)
 
 \item{dest.path}{Ruta destino del archivo descomprimido}
 }
-\value{
-
-}
 \description{
 archive_extract
 }
 \examples{
-
+archive_extract()
 }

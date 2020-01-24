@@ -32,9 +32,9 @@ income_constant_prices(
 
 \item{ht19}{ht19}
 }
-\value{
-
-}
 \description{
 Household income constant prices
+}
+\examples{
+income_constant_prices(data = ech::toy_ech_2017_income)
 }

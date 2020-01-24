@@ -13,9 +13,9 @@ gini(data = df, weights = pesoano, domain = NULL)
 
 \item{domain}{dominio de interes}
 }
-\value{
-
-}
 \description{
 gini
+}
+\examples{
+gini(df, pesoano)
 }
