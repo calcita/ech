@@ -22,5 +22,5 @@ Download and read ECH from INE website
 \examples{
 # download and read all surveys available
 # Download and read ECH 2017
-get_microdata(year = "2014", folder = "/home/calcita/Escritorio/pruebaech/", toR = FALSE)
+get_microdata(year = "2014", folder = tempdir(), toR = FALSE)
 }

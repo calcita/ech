@@ -14,7 +14,7 @@
 #' @examples
 #' # download and read all surveys available
 #' # Download and read ECH 2017
-#' get_microdata(year = "2014", folder = "/home/calcita/Escritorio/pruebaech/", toR = FALSE)
+#' get_microdata(year = "2017", folder = tempdir(), toR = FALSE)
 
 get_microdata <- function(year = NULL,
                           folder = NULL,
@@ -63,7 +63,7 @@ get_microdata <- function(year = NULL,
                                                                            "get_file?uuid=54f72e41-e671-4bea-993c-631596e16883&groupId=10181",
                                                                            "get_file?uuid=b60f247b-03cb-4bb1-b84b-5d7328479fe2&groupId=10181",
                                                                            "get_file?uuid=73b6cc21-1bb0-483b-a463-819315b5fff3&groupId=10181")),
-                     file = paste0(folder, "ech_", all_years, "_sav.rar"),
+                     file = paste0(folder, "/ech_", all_years, "_sav.rar"),
                      stringsAsFactors = FALSE)
   links <- urls %>% dplyr::filter(yy %in% year)
 
