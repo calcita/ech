@@ -4,7 +4,7 @@
 \alias{get_microdata}
 \title{Download and read ECH from INE website}
 \usage{
-get_microdata(year = NULL, folder = NULL, toR = TRUE)
+get_microdata(year = NULL, folder = tempdir(), toR = TRUE)
 }
 \arguments{
 \item{year}{allows download data from 2011 to 2018. Default the last year}
@@ -22,5 +22,5 @@ Download and read ECH from INE website
 \examples{
 # download and read all surveys available
 # Download and read ECH 2017
-get_microdata(year = "2014", folder = tempdir(), toR = FALSE)
+get_microdata(year = "2017", folder = tempdir(), toR = FALSE)
 }

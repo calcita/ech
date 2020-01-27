@@ -76,6 +76,16 @@ isWindows <- function() identical(.Platform$OS.type, "windows")
   return(extractSystemCallPath)
 }
 
+#' The known path for unrar or 7z
+#' @rdname unrarPath
+#' @name unrarPath
+.unrarPath <- NULL
+
+missingUnrarMess <- "The archive is a 'rar' archive; your system does not have unrar or 7zip;\n"
+
+knownInternalArchiveExtensions <- c("zip", "tar", "tar.gz", "gz")
+knownSystemArchiveExtensions <- c("rar", "7z")
+knownArchiveExtensions <- c(knownInternalArchiveExtensions, knownSystemArchiveExtensions)
 
 #' archive_extract
 #'

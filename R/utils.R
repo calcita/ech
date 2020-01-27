@@ -37,7 +37,7 @@ get_ipc <- function(folder = tempdir()){
 #' @examples
 #' deflate(base.month = 6, base.year = 2016)
 
- deflate <- function(base.month = base.month,
+deflate <- function(base.month = base.month,
                      base.year = base.year,
                      ipc = "country") {
    system.file("R", "sysdata.rda", package = "ech")

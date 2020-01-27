@@ -17,7 +17,7 @@
 #' get_microdata(year = "2017", folder = tempdir(), toR = FALSE)
 
 get_microdata <- function(year = NULL,
-                          folder = NULL,
+                          folder = tempdir(),
                           toR = TRUE){
 
 # download_ech
