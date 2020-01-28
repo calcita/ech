@@ -30,7 +30,9 @@ Imports:
     survey (>= 1.2.0), 
     stringr,
     readxl,
-    kableExtra
+    kableExtra,
+    laeken,
+    rlang
 Suggests: 
     knitr,
     testthat (>= 2.1.0),
