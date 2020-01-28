@@ -37,8 +37,8 @@ income_constant_prices <- function(data = ech::toy_ech_2017_income,
   data %<>% dplyr::mutate(ht11_per_capita = ht11 / ht19,
                  ht11_deflate = ht11 * deflate,
                  ht13_deflate = ht13 * deflate,
-                 ht11_svl_def = YSVL * deflate,
-                 ht11_svl_per_capita_deflate = YSVL / ht19 * deflate,
+                 ht11_svl_def = ysvl * deflate,
+                 ht11_svl_per_capita_deflate = ysvl / ht19 * deflate,
                  ht11_per_capita_deflate = ht11 / ht19 * deflate # Ingresos promedio per cápita a precios constantes de month.base year.base
   )
 

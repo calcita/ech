@@ -14,10 +14,12 @@
 #' @import srvyr
 #' @return table
 #' @examples
-#' get_estimation_mean(data = df)
+#' \donttest{
+#' get_estimation_mean(data = ech::toy_ech_2018)
+#' }
 #
 
-get_estimation_mean <- function(data = df,
+get_estimation_mean <- function(data = ech::toy_ech_2018,
                            variable = NULL,
                            by.x = NULL,
                            by.y = NULL,
@@ -82,10 +84,12 @@ get_estimation_mean <- function(data = df,
 #' @export
 #' @return table
 #' @examples
-#' get_estimation_ratio(data = df)
-#
+#' \donttest{
+#' get_estimation_ratio(data = ech::toy_ech_2018)
+#' }
 
-get_estimation_ratio <- function(data = df,
+
+get_estimation_ratio <- function(data = ech::toy_ech_2018,
                                 variable.x = NULL,
                                 variable.y = NULL,
                                 by.x = NULL,

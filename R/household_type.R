@@ -8,13 +8,14 @@
 #' @param colname custom name for the new variable
 #' @importFrom dplyr mutate group_by select
 #' @importFrom glue glue
+#' @importFrom rlang .data
 #' @keywords household_type
 #' @export
 #' @examples
-#' household_type(data = df)
+#' household_type(data = ech::toy_ech_2018)
 #
 
-household_type <- function(data = df,
+household_type <- function(data = ech::toy_ech_2018,
                            e26 = e26,
                            e27 = e27,
                            e30 = e30,

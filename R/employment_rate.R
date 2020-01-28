@@ -7,10 +7,11 @@
 #' @export
 #' @importFrom magrittr %<>%
 #' @importFrom dplyr mutate
+#' @importFrom rlang .data
 #' @examples
 #' employment_rate()
 
-employment_rate <- function(data = df,
+employment_rate <- function(data = ech::toy_ech_2018,
                             pobcoac = "pobcoac"){
 
   # data %<>% dplyr::mutate(pea = ifelse(pobpcoac %in% 2:5, 1, 0),

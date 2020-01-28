@@ -3,12 +3,15 @@
 #' @param data data frame with ECH microdata
 #' @param weights ponderation variable
 #' @param domain dominio de interes
+#' @importFrom rlang .data
+#' @importFrom dplyr filter mutate select
+#' @importFrom laeken gini
 #' @export
 #'
 #' @examples
-#' gini(df, pesoano)
-gini <- function(data = df,
-                 weights = pesoano,
+#' gini(df, "pesoano")
+gini <- function(data = ech::toy_ech_2018,
+                 weights = "pesoano",
                  domain = NULL) {
 
   #data %<>% filter (nper == 1)

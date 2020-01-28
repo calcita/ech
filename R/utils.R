@@ -6,6 +6,7 @@
 #' @importFrom janitor clean_names excel_numeric_to_date
 #' @importFrom fs path
 #' @importFrom magrittr %>%
+#' @importFrom rlang .data
 #' @export
 #'
 #' @examples
@@ -20,8 +21,8 @@ get_ipc <- function(folder = tempdir()){
   df <- df[-1,]
   df <- janitor::clean_names(df)
   df <- df %>%
-     dplyr::mutate(fecha = janitor::excel_numeric_to_date(as.numeric(as.character(mes_y_ano)), date_system = "modern"))
-  df <- df %>% dplyr::select(fecha, dplyr::everything(), -mes_y_ano)
+     dplyr::mutate(fecha = janitor::excel_numeric_to_date(as.numeric(as.character(.data$mes_y_ano)), date_system = "modern"))
+  df <- df %>% dplyr::select(.data$fecha, dplyr::everything(), - .data$mes_y_ano)
   ipc_base2010 <- df
   saveRDS(df, "ipc_base2010.rds")
 }
@@ -32,6 +33,7 @@ get_ipc <- function(folder = tempdir()){
 #' @param base.year anio base
 #' @param ipc IPC a nivel nacional o Mdeo-Interior
 #' @importFrom dplyr select slice mutate %>%
+#' @importFrom rlang .data
 #' @export
 #'
 #' @examples
@@ -43,19 +45,19 @@ deflate <- function(base.month = base.month,
    system.file("R", "sysdata.rda", package = "ech")
 #   if (ipc = "country") {
      mes_base <- ipc_base2010 %>%
-       filter(fecha == paste0(base.year, "-",base.month, "-01")) %>%
-       select(indice) %>% as.numeric
+       filter(.data$fecha == paste0(base.year, "-",base.month, "-01")) %>%
+       select(.data$indice) %>% as.numeric
 
-     rows1 <- which(ipc_base2010$fecha == paste0(base.year-1, "-",12, "-01"))
+     rows1 <- which(ipc_base2010$fecha == paste0(base.year - 1, "-",12, "-01"))
      rows2 <- which(ipc_base2010$fecha == paste0(base.year, "-",11, "-01"))
 
      # Calcula el deflactor
      deflate <- ipc_base2010 %>%
        slice(rows1:rows2) %>%
-       mutate(deflate = mes_base/as.numeric(indice),
+       mutate(deflate = mes_base/as.numeric(.data$indice),
               mes = 1:12
        ) %>%
-       select(deflate, mes)
+       select(.data$deflate, .data$mes)
 
 #   } else {
 #     # ipc mont int
