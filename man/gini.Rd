@@ -4,7 +4,7 @@
 \alias{gini}
 \title{gini}
 \usage{
-gini(data = df, weights = pesoano, domain = NULL)
+gini(data = ech::toy_ech_2018, weights = "pesoano", domain = NULL)
 }
 \arguments{
 \item{data}{data frame with ECH microdata}
@@ -17,5 +17,5 @@ gini(data = df, weights = pesoano, domain = NULL)
 gini
 }
 \examples{
-gini(df, pesoano)
+gini(df, "pesoano")
 }

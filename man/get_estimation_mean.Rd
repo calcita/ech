@@ -5,7 +5,7 @@
 \title{A function to estimate variables at universe level}
 \usage{
 get_estimation_mean(
-  data = df,
+  data = ech::toy_ech_2018,
   variable = NULL,
   by.x = NULL,
   by.y = NULL,
@@ -33,6 +33,8 @@ table
 This function allows you to estimate variable.
 }
 \examples{
-get_estimation_mean(data = df)
+\donttest{
+get_estimation_mean(data = ech::toy_ech_2018)
+}
 }
 \keyword{inference}
