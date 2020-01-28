@@ -34,6 +34,7 @@ Imports:
 Suggests: 
     knitr,
     testthat (>= 2.1.0),
-    rmarkdown
+    rmarkdown,
+    covr
 SystemRequirements: 'unrar' (Linux/macOS) or '7-Zip' (Windows) to work with '.rar' files.
 VignetteBuilder: knitr

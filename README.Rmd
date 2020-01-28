@@ -15,6 +15,8 @@ knitr::opts_chunk$set(
 
 <!-- badges: start -->
 [![Travis build status](https://travis-ci.org/calcita/ech.svg?branch=master)](https://travis-ci.org/calcita/ech)
+[![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/calcita/ech?branch=master&svg=true)](https://ci.appveyor.com/project/calcita/ech)
+[![Codecov test coverage](https://codecov.io/gh/calcita/ech/branch/master/graph/badge.svg)](https://codecov.io/gh/calcita/ech?branch=master)
 <!-- badges: end -->
 
 
