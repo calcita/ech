@@ -6,7 +6,7 @@
 #' @param e27 data frame column ('age')
 #' @param e30 data frame column ('householder')
 #' @param colname custom name for the new variable
-#' @importFrom dplyr mutate group_by select enqou
+#' @importFrom dplyr mutate group_by select enquo
 #' @importFrom glue glue
 #' @importFrom rlang .data sym quo_name
 #' @keywords household_type
