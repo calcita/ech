@@ -6,10 +6,12 @@
 #' @importFrom rlang .data
 #' @importFrom dplyr filter mutate select
 #' @importFrom laeken gini
-#' @export
-#'
+#' @export#'
 #' @examples
+#' \donttest{
 #' gini(df, "pesoano")
+#' }
+
 gini <- function(data = ech::toy_ech_2018,
                  weights = "pesoano",
                  domain = NULL) {

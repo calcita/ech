@@ -9,7 +9,9 @@
 #' @importFrom dplyr mutate
 #' @importFrom rlang .data
 #' @examples
+#' \dontest{
 #' employment_rate()
+#' }
 
 employment_rate <- function(data = ech::toy_ech_2018,
                             pobcoac = "pobcoac"){

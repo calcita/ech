@@ -6,36 +6,40 @@
 #' @param e27 data frame column ('age')
 #' @param e30 data frame column ('householder')
 #' @param colname custom name for the new variable
-#' @importFrom dplyr mutate group_by select
+#' @importFrom dplyr mutate group_by select enqou
 #' @importFrom glue glue
-#' @importFrom rlang .data
+#' @importFrom rlang .data sym quo_name
 #' @keywords household_type
 #' @export
 #' @examples
+#' \donttest{
 #' household_type(data = ech::toy_ech_2018)
-#
+#' }
 
 household_type <- function(data = ech::toy_ech_2018,
-                           e26 = e26,
-                           e27 = e27,
-                           e30 = e30,
+                           e26 = "e26",
+                           e27 = "e27",
+                           e30 = "e30",
                            colname = "tipo_hogar") {
 
+  e26 = quo_name(enquo(e26))
+  e27 = quo_name(enquo(e27))
+  e30 = quo_name(enquo(e30))
 #   if (colname %in% names(data)) {
 #     message(glue::glue("El data frame ya contiene una variable con ese nombre, se sobreescribira"))
 #   }
 #
 #   data <- data %>%
-#     dplyr::mutate(sex_householder = ifelse(e26 == 1 & e30 == 1,1, # 1 is man and householder
-#                                         ifelse(e26 == 2 & e30 == 1,2,0)), #0 is woman householder
-#                  partner = ifelse(e30 == 2, 1, 0),
-#                  child = ifelse(e30 %in% 3:5, 1, 0),
-#                  child_law = ifelse(e30 == 6, 1, 0),
-#                  under_18 = ifelse(e27 < 18, 1, 0),
-#                  parents_brosis = ifelse(e30 %in% 7:10, 1, 0),
-#                  grandchild = ifelse(e30 == 11, 1, 0),
-#                  other_rel = ifelse(e30 == 12, 1, 0),
-#                  no_rel = ifelse(e30 == 13, 1, 0)) %>%
+#     dplyr::mutate(sex_householder = ifelse(!!sym(e26) == 1 & !!sym(e30) == 1,1, # 1 is man and householder
+#                                         ifelse(!!sym(e26) == 2 & !!sym(e30) == 1,2,0)), #0 is woman householder
+#                  partner = ifelse(!!sym(e30) == 2, 1, 0),
+#                  child = ifelse(!!sym(e30) %in% 3:5, 1, 0),
+#                  child_law = ifelse(!!sym(e30) == 6, 1, 0),
+#                  under_18 = ifelse(!!sym(e27) < 18, 1, 0),
+#                  parents_brosis = ifelse(!!sym(e30) %in% 7:10, 1, 0),
+#                  grandchild = ifelse(!!sym(e30) == 11, 1, 0),
+#                  other_rel = ifelse(!!sym(e30) == 12, 1, 0),
+#                  no_rel = ifelse(!!sym(e30) == 13, 1, 0)) %>%
 #     dplyr::group_by(numero) %>%
 #     dplyr::mutate(sex_householder = max(sex_householder),
 #            under_18 = max(under_18),
