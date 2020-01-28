@@ -8,9 +8,8 @@
 #' @importFrom magrittr %>%
 #' @importFrom rlang .data
 #' @export
-#'
 #' @examples
-#' \dontest{
+#' \donttest{
 #' get_ipc(folder = tempdir())
 #' }
 

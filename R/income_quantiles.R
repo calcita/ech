@@ -8,7 +8,6 @@
 #' @importFrom dplyr mutate
 #' @importFrom magrittr %<>%
 #' @export
-#'
 #' @examples
 #' income_quantiles()
 income_quantiles <- function(data = ech::toy_ech_2017_income,

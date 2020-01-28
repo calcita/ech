@@ -9,7 +9,7 @@
 #' @importFrom dplyr mutate
 #' @importFrom rlang .data
 #' @examples
-#' \dontest{
+#' \donttest{
 #' employment_rate()
 #' }
 

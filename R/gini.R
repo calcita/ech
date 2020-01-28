@@ -6,7 +6,7 @@
 #' @importFrom rlang .data
 #' @importFrom dplyr filter mutate select
 #' @importFrom laeken gini
-#' @export#'
+#' @export
 #' @examples
 #' \donttest{
 #' gini(df, "pesoano")

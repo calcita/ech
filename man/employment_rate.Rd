@@ -15,7 +15,7 @@ employment_rate(data = ech::toy_ech_2018, pobcoac = "pobcoac")
 This function allows you to..
 }
 \examples{
-\dontest{
+\donttest{
 employment_rate()
 }
 }

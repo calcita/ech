@@ -13,7 +13,7 @@ get_ipc(folder = tempdir())
 get_ipc
 }
 \examples{
-\dontest{
+\donttest{
 get_ipc(folder = tempdir())
 }
 }
