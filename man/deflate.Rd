@@ -17,5 +17,7 @@ deflate(base.month = base.month, base.year = base.year, ipc = "country")
 deflate
 }
 \examples{
+\donttest{
 deflate(base.month = 6, base.year = 2016)
+}
 }

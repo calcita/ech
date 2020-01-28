@@ -8,11 +8,11 @@ income_constant_prices(
   data = ech::toy_ech_2017_income,
   base.month = 6,
   base.year = 2017,
-  mes = mes,
-  ht11 = ht11,
-  ysvl = ysvl,
-  ht13 = ht13,
-  ht19 = ht19
+  mes = "mes",
+  ht11 = "ht11",
+  ysvl = "ysvl",
+  ht13 = "ht13",
+  ht19 = "ht19"
 )
 }
 \arguments{
@@ -36,5 +36,7 @@ income_constant_prices(
 Household income constant prices
 }
 \examples{
+\donttest{
 income_constant_prices(data = ech::toy_ech_2017_income)
+}
 }

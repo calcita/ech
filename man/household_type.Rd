@@ -6,9 +6,9 @@
 \usage{
 household_type(
   data = ech::toy_ech_2018,
-  e26 = e26,
-  e27 = e27,
-  e30 = e30,
+  e26 = "e26",
+  e27 = "e27",
+  e30 = "e30",
   colname = "tipo_hogar"
 )
 }
@@ -27,6 +27,8 @@ household_type(
 This function allows you to calculate the household type for each household in the survey. A household is composed of one or more people who occupy a housing unit.
 }
 \examples{
+\donttest{
 household_type(data = ech::toy_ech_2018)
+}
 }
 \keyword{household_type}
