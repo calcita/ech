@@ -13,9 +13,10 @@
 #' @importFrom magrittr %<>% %>%
 #' @importFrom haven zap_labels
 #' @export
-#'
 #' @examples
+#' \donttest{
 #' income_constant_prices(data = ech::toy_ech_2017_income)
+#' }
 income_constant_prices <- function(data = ech::toy_ech_2017_income,
                                    base.month = 6,
                                    base.year = 2017,
