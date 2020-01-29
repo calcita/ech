@@ -25,41 +25,42 @@ household_type <- function(data = ech::toy_ech_2018,
   e26 = quo_name(enquo(e26))
   e27 = quo_name(enquo(e27))
   e30 = quo_name(enquo(e30))
-#   if (colname %in% names(data)) {
-#     message(glue::glue("El data frame ya contiene una variable con ese nombre, se sobreescribira"))
-#   }
-#
-#   data <- data %>%
-#     dplyr::mutate(sex_householder = ifelse(!!sym(e26) == 1 & !!sym(e30) == 1,1, # 1 is man and householder
-#                                         ifelse(!!sym(e26) == 2 & !!sym(e30) == 1,2,0)), #0 is woman householder
-#                  partner = ifelse(!!sym(e30) == 2, 1, 0),
-#                  child = ifelse(!!sym(e30) %in% 3:5, 1, 0),
-#                  child_law = ifelse(!!sym(e30) == 6, 1, 0),
-#                  under_18 = ifelse(!!sym(e27) < 18, 1, 0),
-#                  parents_brosis = ifelse(!!sym(e30) %in% 7:10, 1, 0),
-#                  grandchild = ifelse(!!sym(e30) == 11, 1, 0),
-#                  other_rel = ifelse(!!sym(e30) == 12, 1, 0),
-#                  no_rel = ifelse(!!sym(e30) == 13, 1, 0)) %>%
-#     dplyr::group_by(numero) %>%
-#     dplyr::mutate(sex_householder = max(sex_householder),
-#            under_18 = max(under_18),
-#            partner = max(partner),
-#            child = max(child),
-#            child_law = max(child_law),
-#            parents_brosis = max(parents_brosis),
-#            grandchild = max(grandchild),
-#            other_rel = max(other_rel),
-#            no_rel = max(no_rel),
-#            household_type = ifelse(sum(partner, child, parents_brosis, grandchild, child_law, other_rel, no_rel) == 0, "unipersonal", #Single person
-#                             ifelse(partner > 0 & sum(child, parents_brosis, grandchild, child_law, other_rel, no_rel) == 0, "pareja",#Couple without children
-#                             ifelse(partner == 0 & child > 0  & sex_householder == 1 & sum(parents_brosis, grandchild, child_law, other_rel, no_rel) == 0,"monoparental", #Single parent or Single father
-#                             ifelse(partner == 0 & child > 0 & sex_householder == 2 & sum(parents_brosis, grandchild, child_law, other_rel, no_rel) == 0, "monomarental", #Single parent or Single mother
-#                             ifelse(partner > 0 & child > 0 & sum(parents_brosis, grandchild, child_law, other_rel, no_rel) == 0, "biparental", #Couple with children
-#                             ifelse(under_18 == 0 & (parents_brosis > 0 | grandchild > 0 | child_law > 0 | other_rel > 0) & no_rel == 0, "extendido sin menores", #Extended without children
-#                             ifelse(under_18 == 1 & (parents_brosis > 0 | grandchild > 0 | child_law > 0 | other_rel > 0) & no_rel == 0, "extendido con menores", #Extended with children
-#                             ifelse(no_rel > 0, "compuesto","error")))))))) # composite) %>%
-#            )
-#
-#   data <- data %>% dplyr::select(everything(), -sex_householder:-no_rel)
-#   message(glue::glue("Se ha creado la variable {{colname}} en {{data}}"))
+  if (colname %in% names(data)) {
+    message(glue::glue("El data frame ya contiene una variable con ese nombre, se sobreescribira"))
+  }
+  colname = quo_name(enquo(colname))
+  data <- data %>%
+    dplyr::mutate(sex_householder = ifelse(!!sym(e26) == 1 & !!sym(e30) == 1,1, # 1 is man and householder
+                                        ifelse(!!sym(e26) == 2 & !!sym(e30) == 1,2,0)), #0 is woman householder
+                 partner = ifelse(!!sym(e30) == 2, 1, 0),
+                 child = ifelse(!!sym(e30) %in% 3:5, 1, 0),
+                 child_law = ifelse(!!sym(e30) == 6, 1, 0),
+                 under_18 = ifelse(!!sym(e27) < 18, 1, 0),
+                 parents_brosis = ifelse(!!sym(e30) %in% 7:10, 1, 0),
+                 grandchild = ifelse(!!sym(e30) == 11, 1, 0),
+                 other_rel = ifelse(!!sym(e30) == 12, 1, 0),
+                 no_rel = ifelse(!!sym(e30) == 13, 1, 0)) %>%
+    dplyr::group_by(.data$numero) %>%
+    dplyr::mutate(sex_householder = max(.data$sex_householder),
+           under_18 = max(.data$under_18),
+           partner = max(.data$partner),
+           child = max(.data$child),
+           child_law = max(.data$child_law),
+           parents_brosis = max(.data$parents_brosis),
+           grandchild = max(.data$grandchild),
+           other_rel = max(.data$other_rel),
+           no_rel = max(.data$no_rel),
+           household_type = ifelse(sum(.data$partner, .data$child, .data$parents_brosis, .data$grandchild, .data$child_law, .data$other_rel, .data$no_rel) == 0, "unipersonal", #Single person
+                            ifelse(.data$partner > 0 & sum(.data$child, .data$parents_brosis, .data$grandchild, .data$child_law, .data$other_rel, .data$no_rel) == 0, "pareja",#Couple without children
+                            ifelse(.data$partner == 0 & .data$child > 0  & .data$sex_householder == 1 & sum(.data$parents_brosis, .data$grandchild, .data$child_law, .data$other_rel, .data$no_rel) == 0,"monoparental", #Single parent or Single father
+                            ifelse(.data$partner == 0 & .data$child > 0 & .data$sex_householder == 2 & sum(.data$parents_brosis, .data$grandchild, .data$child_law, .data$other_rel, .data$no_rel) == 0, "monomarental", #Single parent or Single mother
+                            ifelse(.data$partner > 0 & .data$child > 0 & sum(.data$parents_brosis, .data$grandchild, .data$child_law, .data$other_rel, .data$no_rel) == 0, "biparental", #Couple with children
+                            ifelse(.data$under_18 == 0 & (.data$parents_brosis > 0 | .data$grandchild > 0 | .data$child_law > 0 | .data$other_rel > 0) & .data$no_rel == 0, "extendido sin menores", #Extended without children
+                            ifelse(.data$under_18 == 1 & (.data$parents_brosis > 0 | .data$grandchild > 0 | .data$child_law > 0 | .data$other_rel > 0) & .data$no_rel == 0, "extendido con menores", #Extended with children
+                            ifelse(.data$no_rel > 0, "compuesto","error")))))))) # composite) %>%
+           )
+  data <- data %>% dplyr::select(everything(), -.data$sex_householder:-.data$no_rel)
+  names(data)[which(names(data) == "household_type")] <- colname
+  message(glue::glue("Se ha creado la variable {colname} en la base"))
+  return(data)
  }
