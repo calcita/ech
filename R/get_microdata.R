@@ -119,7 +119,6 @@ get_microdata <- function(year = NULL,
   if (any(class(d) %in% "data.frame")) {
     message(glue::glue("{archivo} se pudo leer como tibble :-)"))
     d <- janitor::clean_names(d)
-    return(d)
   } else {
     stop(glue::glue("{archivo} no se pudo leer como tibble :-("))
   }
@@ -131,4 +130,5 @@ get_microdata <- function(year = NULL,
     fs::file_delete(archivo)
     fs::file_delete(sav)
   }
+  return(d)
 }
