@@ -13,6 +13,8 @@ enrolled_school(data = ech::toy_ech_2018)
 This function allows you to estimate people enrolled in school
 }
 \examples{
+\donttest{
 enrolled_school(data = ech::toy_ech_2018)
+}
 }
 \keyword{education}

@@ -10,7 +10,7 @@ income_constant_prices(
   base.year = 2017,
   mes = "mes",
   ht11 = "ht11",
-  ysvl = "ysvl",
+  ysvl = "YSVL",
   ht13 = "ht13",
   ht19 = "ht19"
 )

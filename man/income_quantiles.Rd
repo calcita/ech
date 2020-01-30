@@ -4,16 +4,24 @@
 \alias{income_quantiles}
 \title{income_quantiles}
 \usage{
-income_quantiles(data = ech::toy_ech_2017_income, quantile = 5)
+income_quantiles(
+  data = ech::toy_ech_2017_income,
+  quantile = 5,
+  weights = "pesoano"
+)
 }
 \arguments{
 \item{data}{data.frame}
 
 \item{quantile}{cuantiles: quintiles (5) o deciles (10)}
+
+\item{weights}{ponderation variable}
 }
 \description{
 Household Income Quantiles
 }
 \examples{
+\donttest{
 income_quantiles()
+}
 }
