@@ -4,20 +4,25 @@
 #'
 #' @param data data.frame
 #' @param quantile cuantiles: quintiles (5) o deciles (10)
+#' @param weights ponderation variable
 #' @importFrom statar xtile
-#' @importFrom dplyr mutate
+#' @importFrom dplyr mutate pull
 #' @importFrom magrittr %<>%
 #' @export
 #' @examples
+#' \donttest{
 #' income_quantiles()
-income_quantiles <- function(data = ech::toy_ech_2017_income,
-                             quantile = 5) {
+#' }
 
-  weights = data$pesoano
+income_quantiles <- function(data = ech::toy_ech_2017_income,
+                             quantile = 5,
+                             weights = "pesoano") {
+
+  weights = pull(data[,weights])
   ht11_per_capita_deflate = data$ht11
   # Defino el disenio
   # d <- set_design()
-  if (quantile == 5){
+  if (quantile == 5) {
     ## quintiles
     # aux <- d %>% summarise(quintiles = srvyr::survey_quantile(ht11_per_capita_deflate, quantile = seq(0.2,1,0.2))) %>%
     #  select(1:5)
@@ -31,7 +36,7 @@ income_quantiles <- function(data = ech::toy_ech_2017_income,
 
   }
 
-  if (quantile == 10){
+  if (quantile == 10) {
     ## deciles
     data %<>% dplyr::mutate(decil = statar::xtile(ht11_per_capita_deflate, n = 10, wt = weights))
   }

@@ -6,21 +6,23 @@
 #' @keywords employment
 #' @export
 #' @importFrom magrittr %<>%
-#' @importFrom dplyr mutate
-#' @importFrom rlang .data
+#' @importFrom dplyr mutate enquo
+#' @importFrom rlang .data sym quo_name
 #' @examples
 #' \donttest{
 #' employment_rate()
 #' }
 
 employment_rate <- function(data = ech::toy_ech_2018,
-                            pobcoac = "pobcoac"){
-
-  # data %<>% dplyr::mutate(pea = ifelse(pobpcoac %in% 2:5, 1, 0),
-  #                         pet = ifelse(pobpcoac != 1, 1, 0),
-  #                         po = ifelse(pobpcoac == 2, 1, 0),
-  #                         pd = ifelse(pobpcoac %in% 3:5, 1, 0)
-  # )
+                            pobpcoac = "pobpcoac"){
+  if (exists("pea", data)) warning('pea pre-existing')
+  if (!exists(pobpcoac, data)) stop("pobpcoac variable name not in data")
+  pobpcoac = quo_name(enquo(pobpcoac))
+  data %<>% dplyr::mutate(pea = ifelse(!!sym(pobpcoac) %in% 2:5, 1, 0),
+                          pet = ifelse(!!sym(pobpcoac) != 1, 1, 0),
+                          po = ifelse(!!sym(pobpcoac) == 2, 1, 0),
+                          pd = ifelse(!!sym(pobpcoac) %in% 3:5, 1, 0)
+  )
   # chequear si es numérica y si lo es convertir a character
 
   # data %<>% mutate(pea = if_else(pobpcoac %in% c("Ocupados", "Desocupados buscan trab. por 1a. vez", "Desocupados propiamente dichos", "Desocupados en seguro de paro"), 1, 0),
