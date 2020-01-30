@@ -4,7 +4,7 @@
 \alias{employment_rate}
 \title{An employment rate function}
 \usage{
-employment_rate(data = ech::toy_ech_2018, pobcoac = "pobcoac")
+employment_rate(data = ech::toy_ech_2018, pobpcoac = "pobpcoac")
 }
 \arguments{
 \item{data}{data frame with microdata}
