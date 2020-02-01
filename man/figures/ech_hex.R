@@ -1,6 +1,4 @@
 library(hexSticker) # https://github.com/GuangchuangYu/hexSticker
-library(ggplot2)
-
 
 # add special text font
 library(sysfonts)
@@ -11,44 +9,20 @@ font_import()
 loadfonts(device = "win")
 
 ### .png
-plot_a <-
-  ggplot() +
-  # geom_sf(data = d_s, fill = NA, size = .3, color = "#5796c905") +
-  geom_sf(data = s_s, fill = NA, size = .4, color = "#4dc0d1") +
-  theme_void() +
-  theme(panel.grid.major = element_line(colour = "transparent")) +
-  #  theme(legend.position = "none") +
-  annotate("text", x = -54.7, y = -30.8, label = "geouy", color = "#4dc0d1",
-           size = 25, family = "Roboto", fontface = "bold", angle = -35) # (.png  size = 25)(.svg  size = 6)
-
-
-
-sticker(plot_a, package = "",
+sticker("https://cdn.imgbin.com/17/13/2/imgbin-capybara-rodent-rat-wikia-rat-0SuAbJNicCjwzZ0Ci7DtL7yQh.jpg", package = "ech",
         s_x = 1.03, s_y = 1, s_width = 1.5, s_height = 1.5, # ggplot image size and position
-        h_fill = "black", h_color = "black", # hexagon
-        url = "https://github.com/RichDeto/geouy", u_color = "#4dc0d1", u_size = 6,
+        h_fill = "#4dc0d1", h_color = "#4dc0d1", # hexagon
+        url = "https://github.com/holatam/ech", u_color = "black", u_size = 6,
         spotlight = T, l_height = 17,
-        filename = "./man/figures/geouy_logo_a.png", dpi = 400)  # output name and resolution
+        filename = "./man/figures/ech_logo.png", dpi = 400)  # output name and resolution
 
 
 ### .svg
-plot_a_svg <-
-  ggplot() +
-  # geom_sf(data = d_s, fill = NA, size = .08, color = "#5796c905") +
-  geom_sf(data = s_s, fill = NA, size = .35, color = "#4dc0d1") +
-  theme_void() +
-  theme(panel.grid.major = element_line(colour = "transparent")) +
-  #  theme(legend.position = "none") +
-  annotate("text", x = -54.7, y = -30.8, label = "geouy", color = "#4dc0d1",
-           size = 6, family = "Roboto", fontface = "bold", angle = -35) # (.png  size = 25)(.svg  size = 6)
-
-
-
-sticker(plot_a_svg, package = "",
+sticker("https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTK-_QKgH49LY-a9Pj3yZdn8SewwMiJP65MmGqiD5L-whxXLlsl", package = "ech",
         s_x = 1.03, s_y = 1, s_width = 1.5, s_height = 1.5, # ggplot image size and position
-        h_fill = "black", h_color = "black", # hexagon
-        url = "https://github.com/RichDeto/geouy", u_color = "#4dc0d1",
+        h_fill = "#4dc0d1", h_color = "#4dc0d1", # hexagon
+        url = "https://github.com/holatam/ech", u_color = "black",
         spotlight = T, l_height = 17,
-        filename = "./man/figures/geouy_logo_a.svg")  # output name and resolution
+        filename = "./man/figures/ech_logo.svg")  # output name and resolution
 
 

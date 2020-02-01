@@ -22,24 +22,20 @@ household_type <- function(data = ech::toy_ech_2018,
                            e30 = "e30",
                            colname = "tipo_hogar") {
 
-  e26 = quo_name(enquo(e26))
-  e27 = quo_name(enquo(e27))
-  e30 = quo_name(enquo(e30))
   if (colname %in% names(data)) {
     message(glue::glue("El data frame ya contiene una variable con ese nombre, se sobreescribira"))
   }
-  colname = quo_name(enquo(colname))
   data <- data %>%
-    dplyr::mutate(sex_householder = ifelse(!!sym(e26) == 1 & !!sym(e30) == 1,1, # 1 is man and householder
-                                        ifelse(!!sym(e26) == 2 & !!sym(e30) == 1,2,0)), #0 is woman householder
-                 partner = ifelse(!!sym(e30) == 2, 1, 0),
-                 child = ifelse(!!sym(e30) %in% 3:5, 1, 0),
-                 child_law = ifelse(!!sym(e30) == 6, 1, 0),
-                 under_18 = ifelse(!!sym(e27) < 18, 1, 0),
-                 parents_brosis = ifelse(!!sym(e30) %in% 7:10, 1, 0),
-                 grandchild = ifelse(!!sym(e30) == 11, 1, 0),
-                 other_rel = ifelse(!!sym(e30) == 12, 1, 0),
-                 no_rel = ifelse(!!sym(e30) == 13, 1, 0)) %>%
+    dplyr::mutate(sex_householder = ifelse(.data[[e26]] == 1 & .data[[e30]] == 1,1, # 1 is man and householder
+                                        ifelse(.data[[e26]] == 2 & .data[[e30]] == 1, 2, 0)), #0 is woman householder
+                 partner = ifelse(.data[[e30]] == 2, 1, 0),
+                 child = ifelse(.data[[e30]] %in% 3:5, 1, 0),
+                 child_law = ifelse(.data[[e30]] == 6, 1, 0),
+                 under_18 = ifelse(.data[[e27]] < 18, 1, 0),
+                 parents_brosis = ifelse(.data[[e30]] %in% 7:10, 1, 0),
+                 grandchild = ifelse(.data[[e30]] == 11, 1, 0),
+                 other_rel = ifelse(.data[[e30]] == 12, 1, 0),
+                 no_rel = ifelse(.data[[e30]] == 13, 1, 0)) %>%
     dplyr::group_by(.data$numero) %>%
     dplyr::mutate(sex_householder = max(.data$sex_householder),
            under_18 = max(.data$under_18),
