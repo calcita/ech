@@ -2,7 +2,7 @@
 #'
 #' This function allows you to..
 #' @param data data frame with microdata
-#' @param pobcoac Definition of categories: "Ocupados", "Desocupados buscan trab. por 1a. vez", "Desocupados propiamente dichos", "Desocupados en seguro de paro"
+#' @param pobpcoac Definition of categories: "Ocupados", "Desocupados buscan trab. por 1a. vez", "Desocupados propiamente dichos", "Desocupados en seguro de paro"
 #' @keywords employment
 #' @export
 #' @importFrom magrittr %<>%
