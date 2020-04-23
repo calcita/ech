@@ -5,7 +5,9 @@
 #' @return an object called df
 #' @export
 #' @examples
+#' \donttest{
 #' read_microdata(folder = "/home/usuarie/Escritorio/HyP_2017_Terceros.sav")
+#' }
 
 read_microdata <- function(path = NULL){
 
@@ -14,12 +16,12 @@ read_microdata <- function(path = NULL){
   if (!is.null(path)) {
     format = tolower(fs::path_ext(path))
     if (!format %in% c("sav", "dta", "rds", "rdata"))
-      stop(glue::glue("No es posible abrir un archivo con extensión {format}"))
+      stop(glue::glue("No es posible abrir un archivo con formato {format}"))
   } else {
     stop(glue::glue("No es posible abrir {path}"))
   }
 
-  # read spss file ---
+  # read file
   if(format == "sav"){
     df <- haven::read_sav(path)
       haven::zap_labels() %>%  haven::zap_formats() %>%  haven::zap_label()
