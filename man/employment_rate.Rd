@@ -9,7 +9,7 @@ employment_rate(data = ech::toy_ech_2018, pobpcoac = "pobpcoac")
 \arguments{
 \item{data}{data frame with microdata}
 
-\item{pobcoac}{Definition of categories: "Ocupados", "Desocupados buscan trab. por 1a. vez", "Desocupados propiamente dichos", "Desocupados en seguro de paro"}
+\item{pobpcoac}{Definition of categories: "Ocupados", "Desocupados buscan trab. por 1a. vez", "Desocupados propiamente dichos", "Desocupados en seguro de paro"}
 }
 \description{
 This function allows you to..
