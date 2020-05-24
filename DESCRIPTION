@@ -15,14 +15,14 @@ License: GPL-3 + file LICENSE
 Encoding: UTF-8
 ByteCompile: true
 LazyData: true
-RoxygenNote: 7.0.2
+RoxygenNote: 7.1.0
 Depends: R (>= 2.10)
 Imports:
     assertthat,
     fs,
     glue,
     dplyr,
-    haven,
+    haven (>= 2.3.0),
     janitor,
     magrittr,
     srvyr,

@@ -4,7 +4,8 @@
 \name{toy_ech_2018}
 \alias{toy_ech_2018}
 \title{Data of size 1000}
-\format{A data frame with 1000 rows and 579 variables:
+\format{
+A data frame with 1000 rows and 579 variables:
 \describe{
   \item{numero}{household id}
   \item{nper}{ }
@@ -586,7 +587,8 @@
   \item{pobre06}{ }
   \item{indigente06}{ }
   ...
-}}
+}
+}
 \source{
 \url{http://www.ine.gub.uy/}
 }

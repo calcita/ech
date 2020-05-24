@@ -24,10 +24,10 @@ read_microdata <- function(path = NULL){
   # read file
   if(format == "sav"){
     df <- haven::read_sav(path)
-      haven::zap_labels() %>%  haven::zap_formats() %>%  haven::zap_label()
+      #haven::zap_labels() %>%  haven::zap_formats() %>%  haven::zap_label()
   } else if(format == "dta"){
     df <- haven::read_dta(path)
-      haven::zap_labels() %>%  haven::zap_formats() %>%  haven::zap_label()
+      #haven::zap_labels() %>%  haven::zap_formats() %>%  haven::zap_label()
   } else if (format == "rds"){
     df <- readRDS(path)
   } else{

@@ -1,5 +1,5 @@
 #' Download and read ECH from INE website
-#' @param year allows download data from 2011 to 2018. Default the last year
+#' @param year allows download data from 2011 to 2019. Default the last year
 #' @param folder Folder where are the files or be download
 #' @param toR write data frame in R format and delete download file and unpack files
 #' @importFrom utils download.file
@@ -23,32 +23,29 @@ get_microdata <- function(year = NULL,
                           folder = tempdir(),
                           toR = TRUE){
 
-# download_ech
-
   # checks ----
   stopifnot(is.numeric(year) | is.null(year) | length(year) <= 1)
-  #stopifnot(is.character(folder), length(folder) == 1)
   if (!is.character(folder) | length(folder) != 1) {
     message(glue::glue("Debe ingresar un directorio..."))
   }
-  # warnings ----
   if (length(fs::dir_ls(folder, regexp = "\\.rar$")) != 0) {
-    message(glue::glue("Existen en la carpeta otros archivos .rar que seran leidos..."))
+    message(glue::glue("Existen en la carpeta otros archivos .rar que se van a leer..."))
   }
+
   # download ----
   try(dir.create(folder))
 
-  all_years <- 2011:2018
+  all_years <- 2011:2019
 
   if (!is.null(year) & any(year %in% all_years) == FALSE) {
-    stop("Por el momento ech solo funciona con microdatos de 2011 a 2018")
+    stop("Por el momento ech solo funciona con microdatos de 2011 a 2019")
   }
 
   if (is.null(year)) {
     year <- max(all_years)
   }
 
-  urls <- data.frame(yy = 2011:2018,
+  urls <- data.frame(yy = 2011:2019,
                      md_sav = fs::path("www.ine.gub.uy/c/document_library",
                                        c("get_file?uuid=cc986929-5916-4d4f-a87b-3fb20a169879&groupId=10181",
                                          "get_file?uuid=144daa3d-0ebf-4106-ae11-a150511addf9&groupId=10181",
@@ -57,7 +54,8 @@ get_microdata <- function(year = NULL,
                                          "get_file?uuid=7c62ef78-0cc6-4fba-aae4-921ff5ceddd6&groupId=10181",
                                          "get_file?uuid=715c873b-539f-4e92-9159-d38063270951&groupId=10181",
                                          "get_file?uuid=e38ea53c-7253-4007-9f67-2f5f161eea91&groupId=10181",
-                                         "get_file?uuid=b63b566f-8d11-443d-bcd8-944f137c5aaf&groupId=10181"
+                                         "get_file?uuid=b63b566f-8d11-443d-bcd8-944f137c5aaf&groupId=10181",
+                                         "get_file?uuid=8c934d2a-ad67-4208-8f21-96989696510e&groupId=10181"
                      )),
                      dic = fs::path("www.ine.gub.uy/c/document_library",
                                     c("get_file?uuid=54523778-5f53-4df1-a265-3ff520941bca&groupId=10181",
@@ -67,7 +65,8 @@ get_microdata <- function(year = NULL,
                                       "get_file?uuid=6287d12b-1003-4402-86ba-a48866743d88&groupId=10181",
                                       "get_file?uuid=54f72e41-e671-4bea-993c-631596e16883&groupId=10181",
                                       "get_file?uuid=b60f247b-03cb-4bb1-b84b-5d7328479fe2&groupId=10181",
-                                      "get_file?uuid=73b6cc21-1bb0-483b-a463-819315b5fff3&groupId=10181")),
+                                      "get_file?uuid=73b6cc21-1bb0-483b-a463-819315b5fff3&groupId=10181",
+                                      "get_file?uuid=800e3c63-5cbc-4842-ad00-745f801f9220&groupId=10181")),
                      file = paste0(folder, "/ech_", all_years, "_sav.rar"),
                      stringsAsFactors = FALSE)
   links <- urls %>% dplyr::filter(.data$yy %in% year)
@@ -83,7 +82,7 @@ get_microdata <- function(year = NULL,
     message(glue::glue("ECH {y} ya existe, se omite la descarga"))
   }
 
-# read_ech
+  # read----
   archivo <- fs::dir_ls(folder, regexp = "\\.rar$")
   archivo <- archivo[which.max(file.info(archivo)$mtime)]
   ext <- fs::path_ext(archivo)
@@ -105,8 +104,8 @@ get_microdata <- function(year = NULL,
     try(archive_extract(archive.path = archivo, dest.path = folder))
     descomprimido <- fs::dir_ls(folder, regexp = "\\.sav$")
     descomprimido <- descomprimido[(stringr::str_detect(descomprimido, "HyP") == T |
-                                      stringr::str_detect(descomprimido, "Fusionado") == T) &
-                                     stringr::str_detect(descomprimido, as.character(year)) == T]
+                                    stringr::str_detect(descomprimido, "Fusionado") == T) &
+                                    stringr::str_detect(descomprimido, as.character(year)) == T]
     d <- try(haven::read_sav(descomprimido))
   }
 
@@ -122,13 +121,15 @@ get_microdata <- function(year = NULL,
   } else {
     stop(glue::glue("{archivo} no se pudo leer como tibble :-("))
   }
+
+  # save ----
   if (isTRUE(toR)) {
-    # saveRDS(d, file = paste0(tools::file_path_sans_ext(archivo), ".Rds"))
-    saveRDS(d, file = fs::path(folder, paste0("ECH_", year, ".Rds")))
+    saveRDS(d, file = fs::path(folder, glue:glue("ECH_", year, ".Rds")))
     message(glue::glue("Se ha guardado el archivo en formato R"))
     sav <- fs::dir_ls(folder, regexp = "\\.sav$")
     fs::file_delete(archivo)
     fs::file_delete(sav)
   }
+
   return(d)
 }

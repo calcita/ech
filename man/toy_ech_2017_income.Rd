@@ -4,7 +4,8 @@
 \name{toy_ech_2017_income}
 \alias{toy_ech_2017_income}
 \title{Data of 2017 incomes}
-\format{A data frame with 1000 rows and 9 variables:
+\format{
+A data frame with 1000 rows and 9 variables:
 \describe{
   \item{numero}{household id}
   \item{mes}{}
@@ -16,7 +17,8 @@
   \item{pesoano}{}
   \item{estred13}{}
   ...
-}}
+}
+}
 \source{
 \url{http://www.ine.gub.uy/}
 }
