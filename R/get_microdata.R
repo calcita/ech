@@ -124,7 +124,7 @@ get_microdata <- function(year = NULL,
 
   # save ----
   if (isTRUE(toR)) {
-    saveRDS(d, file = fs::path(folder, glue:glue("ECH_", year, ".Rds")))
+    saveRDS(d, file = fs::path(folder, paste0("ECH_", year, ".Rds")))
     message(glue::glue("Se ha guardado el archivo en formato R"))
     sav <- fs::dir_ls(folder, regexp = "\\.sav$")
     fs::file_delete(archivo)

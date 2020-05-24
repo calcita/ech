@@ -6,7 +6,7 @@
 #' @export
 #' @examples
 #' \donttest{
-#' read_microdata(folder = "/home/usuarie/Escritorio/HyP_2017_Terceros.sav")
+#' df <- read_microdata(folder = "/home/usuarie/Escritorio/HyP_2017_Terceros.sav")
 #' }
 
 read_microdata <- function(path = NULL){
