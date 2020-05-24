@@ -16,7 +16,7 @@
 #' @export
 #' @examples
 #' \donttest{
-#' income_constant_prices(data = ech::toy_ech_2017_income)
+#' df <- income_constant_prices(data = ech::toy_ech_2017_income)
 #' }
 income_constant_prices <- function(data = ech::toy_ech_2017_income,
                                    base.month = 6,
@@ -27,13 +27,13 @@ income_constant_prices <- function(data = ech::toy_ech_2017_income,
                                    ht13 = "ht13",
                                    ht19 = "ht19"){
 
-  #load("data/toy_ech_2017_income.rda")
   deflate <- deflate(base.month = base.month,
                      base.year = base.year)
   # Asigna deflactor
   data <- data %>% dplyr::mutate(aux = as.integer(haven::zap_labels(.data[[mes]])))
 
   data <- dplyr::left_join(data, deflate, by = c("aux" = "mes"))
+  data$aux = NULL
 
   # Ingresos deflactados
   data %<>% dplyr::mutate(ht11_per_capita = .data[[ht11]] / .data[[ht19]],
