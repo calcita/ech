@@ -7,7 +7,8 @@
 income_quantiles(
   data = ech::toy_ech_2017_income,
   quantile = 5,
-  weights = "pesoano"
+  weights = "pesoano",
+  income = "ht11_per_capita_deflate"
 )
 }
 \arguments{

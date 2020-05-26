@@ -13,7 +13,7 @@
 #' @export
 #' @examples
 #' \donttest{
-#' household_type(data = ech::toy_ech_2018)
+#' df <- household_type(data = ech::toy_ech_2018)
 #' }
 
 household_type <- function(data = ech::toy_ech_2018,

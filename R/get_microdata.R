@@ -12,12 +12,6 @@
 #' @importFrom rlang .data
 #' @return unrar files from INE web and the respective data frame in tibble format
 #' @export
-#' @examples
-#'\donttest{
-#' # download and read all surveys available
-#' # Download and read ECH 2017
-#' get_microdata(year = "2017", folder = tempdir(), toR = FALSE)
-#' }
 
 get_microdata <- function(year = NULL,
                           folder = tempdir(),

@@ -4,10 +4,6 @@
 #' @importFrom haven read_sav read_dta
 #' @return an object called df
 #' @export
-#' @examples
-#' \donttest{
-#' df <- read_microdata(folder = "/home/usuarie/Escritorio/HyP_2017_Terceros.sav")
-#' }
 
 read_microdata <- function(path = NULL){
 

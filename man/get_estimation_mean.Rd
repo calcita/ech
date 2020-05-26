@@ -32,9 +32,4 @@ table
 \description{
 This function allows you to estimate variable.
 }
-\examples{
-\donttest{
-get_estimation_mean(data = ech::toy_ech_2018)
-}
-}
 \keyword{inference}

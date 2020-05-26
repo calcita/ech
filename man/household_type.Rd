@@ -28,7 +28,7 @@ This function allows you to calculate the household type for each household in t
 }
 \examples{
 \donttest{
-household_type(data = ech::toy_ech_2018)
+df <- household_type(data = ech::toy_ech_2018)
 }
 }
 \keyword{household_type}

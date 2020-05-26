@@ -16,8 +16,3 @@ gini(data = ech::toy_ech_2018, weights = "pesoano", domain = NULL)
 \description{
 gini
 }
-\examples{
-\donttest{
-gini(df, "pesoano")
-}
-}

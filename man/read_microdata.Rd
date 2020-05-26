@@ -15,8 +15,3 @@ an object called df
 \description{
 Read ECH from a local folder
 }
-\examples{
-\donttest{
-read_microdata(folder = "/home/usuarie/Escritorio/HyP_2017_Terceros.sav")
-}
-}
