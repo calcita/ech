@@ -27,17 +27,15 @@ income_constant_prices <- function(data = ech::toy_ech_2017_income,
   deflate <- deflate(base.month = base.month,
                      base.year = base.year)
   # Asigna deflactor
-  data <- data %>% dplyr::mutate(aux = as.integer(haven::zap_labels(.data[[mes]])))
-
-  data <- dplyr::left_join(data, deflate, by = c("aux" = "mes"))
-  data$aux = NULL
+  data <- data %>% dplyr::mutate(aux = as.integer(haven::zap_labels(.data[[mes]]))) %>%
+    dplyr::left_join(deflate, by = c("aux" = "mes"), keep = F)
 
   # Ingresos deflactados
   data %<>% dplyr::mutate(ht11_per_capita = .data[[ht11]] / .data[[ht19]],
-                 ht11_deflate = .data[[ht11]] * deflate,
-                 ht13_deflate = .data[[ht13]] * deflate,
-                 ht11_svl_def = .data[[ysvl]] * deflate,
-                 ht11_svl_per_capita_deflate = .data[[ysvl]] / .data[[ht19]] * deflate,
-                 ht11_per_capita_deflate = .data[[ht11]] / .data[[ht19]] * deflate # Ingresos promedio per cápita a precios constantes de month.base year.base
+                          ht11_deflate = .data[[ht11]] * deflate,
+                          ht13_deflate = .data[[ht13]] * deflate,
+                          ht11_svl_def = .data[[ysvl]] * deflate,
+                          ht11_svl_per_capita_deflate = .data[[ysvl]] / .data[[ht19]] * deflate,
+                          ht11_per_capita_deflate = .data[[ht11]] / .data[[ht19]] * deflate # Ingresos promedio per cápita a precios constantes de month.base year.base
   )
 }

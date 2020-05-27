@@ -6,4 +6,5 @@ apt_packages:
   - unrar-free
 after_success:
   - Rscript -e 'covr::codecov()'
+  - travis_wait 120 Rscript -e 'pkgdown::build_site()'
 warnings_are_errors: false
