@@ -20,14 +20,15 @@ get_estimation_mean <- function(data = ech::toy_ech_2018,
                            by.y = NULL,
                            domain = NULL,
                            level = NULL){
-
-  assertthat::assert_that(is.null(data) | is.null(variable), msg = "Debe indicar la variable")
-  assertthat::assert_that(all(variable %in% names(data)))
-
- #  message(glue:glue("Debe indicar una variable a estimar"))
  # checks ---
+  assertthat::assert_that(is.null(data) | is.null(variable), msg = "Debe indicar la variable")
+  assertthat::assert_that(all(variable %in% names(data)), msg = glue:glue("La variable {variable} no está en {data}"))
+  if(!is.null(by.x)) assertthat::assert_that(by.x %in% names(data), msg = glue:glue("La variable {by.x} no está en {data}"))
+  if(!is.null(by.y)) assertthat::assert_that(by.y %in% names(data), msg = glue:glue("La variable {by.y} no está en {data}"))
+  if(!is.null(domain)) assertthat::assert_that(domain %in% names(data), msg = glue:glue("La variable {domain} no está en {data}"))
+  if(!is.null(level)) assertthat::assert_that(level %in% c(household, h, individual, i), msg = "Verifica el nivel seleccionado")
 
- # estimation ---
+# estimation ---
  #  if(is.character(variable) & nchar(variable)==2 | is.numeric(variable)){
  #
  #    if(is.null(by.x) & is.null(by.y) & is.null(domain)){
