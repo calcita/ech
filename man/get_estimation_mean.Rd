@@ -24,7 +24,7 @@ get_estimation_mean(
 
 \item{domain}{subpopulation reference}
 
-\item{level}{is household or individual}
+\item{level}{is household ("h") or individual ("i").}
 }
 \value{
 table

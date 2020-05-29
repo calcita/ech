@@ -5,6 +5,7 @@
 #' @param data data.frame
 #' @param quantile cuantiles: quintiles (5) o deciles (10)
 #' @param weights ponderation variable
+#' @param income Name of the income variables. Default: "ht11_per_capita_deflate"
 #' @importFrom statar xtile
 #' @importFrom dplyr mutate pull
 #' @importFrom magrittr %<>%

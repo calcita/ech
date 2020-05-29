@@ -17,6 +17,8 @@ income_quantiles(
 \item{quantile}{cuantiles: quintiles (5) o deciles (10)}
 
 \item{weights}{ponderation variable}
+
+\item{income}{Name of the income variables. Default: "ht11_per_capita_deflate"}
 }
 \description{
 Household Income Quantiles

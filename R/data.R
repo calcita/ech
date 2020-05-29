@@ -608,3 +608,31 @@
 #' }
 #' @source \url{http://www.ine.gub.uy/}
 "toy_ech_2017_income"
+
+
+
+#' Data of variables names in time
+#'
+#' A dataset containing variables names change of the ECH 2006-2018
+#'
+#' @format A data frame with 580 rows and 15 variables:
+#' \describe{
+#'   \item{descripcion }{}
+#'   \item{unidad}{Level of variable h or i}
+#'   \item{var06}{ECH variables names 2006}
+#'   \item{var07}{ECH variables names 2007}
+#'   \item{var08}{ECH variables names 2008}
+#'   \item{var09}{ECH variables names 2009}
+#'   \item{var10}{ECH variables names 2010}
+#'   \item{var11}{ECH variables names 2011}
+#'   \item{var12}{ECH variables names 2012}
+#'   \item{var13}{ECH variables names 2013}
+#'   \item{var14}{ECH variables names 2014}
+#'   \item{var15}{ECH variables names 2015}
+#'   \item{var16}{ECH variables names 2016}
+#'   \item{var17}{ECH variables names 2017}
+#'   \item{var18}{ECH variables names 2018}
+#'   ...
+#'}
+#' @source \url{http://www.ine.gub.uy/}
+"dic"

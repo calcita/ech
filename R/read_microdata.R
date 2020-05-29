@@ -27,7 +27,6 @@ read_microdata <- function(path = NULL){
   } else if (format == "rds"){
     df <- readRDS(path)
   } else{
-    load(archivo)
+    load(path)
   }
-
 }
