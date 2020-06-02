@@ -7,8 +7,11 @@
 \format{
 A data frame with 580 rows and 15 variables:
 \describe{
-  \item{descripcion }{}
-  \item{unidad}{Level of variable h or i}
+  \item{codigos}{Code oh label}
+  \item{descripcion}{Description of label}
+  \item{modulo}{Module in the form 2017}
+  \item{obs}{Observations}
+  \item{unidad}{Level of variable household (H) or individual (P)}
   \item{var06}{ECH variables names 2006}
   \item{var07}{ECH variables names 2007}
   \item{var08}{ECH variables names 2008}
