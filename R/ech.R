@@ -6,7 +6,7 @@
 #' \href{https://github.com/calcita/ech/blob/master/README.md}{Github}
 #'
 #' @docType package
-#' @name eph
+#' @name ech
 NULL
 
 ## quiets concerns of R CMD check re: the .'s that appear in pipelines

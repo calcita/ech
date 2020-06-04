@@ -1,12 +1,12 @@
 #'Funcion para etiquetar las bases de la ECH con referencia al 2017.
 #'
-#'@param df type de microdatos de la ECH
-#'@param level (string) aclaracion sobre si la base a etiquetar es de tipo "household", "h", "individual", "i", "hyp"
-#'@param year numeric reference year of the df. Avaible 2006 to 2018
+#'@param df data frame contains the ECH microdata
+#'@param level (string) indicates whether the base to be labelled is of the type "household", "h", "individual", "i" or both, "hyp"
+#'@param year numeric reference year of the df. Available from 2006 to 2019
 #'@details
 #'Disclaimer: El script no es un producto oficial de INE.
 #'@examples
-#'df <- organize_labels(df = toy_ech_2018, year = 2018, level="h")
+#'df <- organize_labels(df = toy_ech_2018, year = 2018, level = "h")
 #'@export
 
 
