@@ -18,6 +18,6 @@ d
 This function allows you to set the survey desing
 }
 \examples{
-set_design(data = ech::toy_ech_2018)
+set_design(data = ech::toy_ech_2018, level = "h")
 }
 \keyword{design}
