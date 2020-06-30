@@ -28,7 +28,7 @@ get_estimation_mean <- function(data = ech::toy_ech_2018,
   # if(!is.null(domain)) assertthat::assert_that(domain %in% names(data), msg = glue:glue("La variable {domain} no esta en {data}"))
   # if(!is.null(level)) assertthat::assert_that(level %in% c("household", "h", "individual", "i"), msg = "Verifica el nivel seleccionado")
 
-  design_ech <- set_design(data = data, level = level)
+  design_ech <- ech::set_design(data = data, level = level)
 # estimation ---
   #if(is.character(variable) & nchar(variable)==2 | is.numeric(variable)){
 
@@ -101,6 +101,8 @@ get_estimation_ratio <- function(data = ech::toy_ech_2018,
   # estimation ---
   # if(is.character(variable) | is.numeric(variable)){
   #
+  design_ech <- ech::set_design(data = data, level = level)
+
     if(is.null(by.x) & is.null(by.y) & is.null(domain)){
       estimation <- design_ech %>%
         srvyr::summarise(colname = srvyr::survey_ratio(.data[[variable.x]], .data[[variable.y]]))
