@@ -4,10 +4,12 @@
 \alias{set_design}
 \title{A function to set survey design}
 \usage{
-set_design(data = ech::toy_ech_2018)
+set_design(data = ech::toy_ech_2018, level = "i")
 }
 \arguments{
 \item{data}{data frame with ECH microdata}
+
+\item{level}{is household ("h") or individual ("i")}
 }
 \value{
 d
