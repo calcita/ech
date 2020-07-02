@@ -3,6 +3,9 @@
 #' This function allows you to set the survey desing
 #' @param data data frame with ECH microdata
 #' @param level is household ("h") or individual ("i")
+#' @param ids Variables specifying cluster ids from largest level to smallest level (leaving the argument empty, NULL, 1, or 0 indicate no clusters).
+#' @param strata Variables specifying strata.
+#' @param weights Variables specifying weights (inverse of probability).
 #' @importFrom glue glue
 #' @importFrom srvyr as_survey_design
 #' @importFrom magrittr %>%
@@ -11,19 +14,18 @@
 #' @return d
 #' @examples
 #' \donttest{
-#' d_toy_ech_2018 <- set_design(data = ech::toy_ech_2018, level = "h")
+#' set_design(data = ech::toy_ech_2018, level = "h")
 #' }
 #
 
-set_design <- function(data = ech::toy_ech_2018, level = "i"){
-  utils::globalVariables(c("numero", "estred13", "pesoano"))
-  if (level == "h") {
+set_design <- function(data = ech::toy_ech_2018, level = "i", ids = "numero", strata = "estred13", weights = "pesoano"){
+   if (level == "h") {
     d <- data %>%
-      filter(duplicated(numero) == FALSE) %>%
-      srvyr::as_survey_design(ids = numero, strata = estred13, weights = pesoano)
+      filter(duplicated(ids) == FALSE) %>%
+      srvyr::as_survey_design(ids, strata, weights)
   } else {
     d <- data %>%
-     srvyr::as_survey_design(ids = numero, strata = estred13, weights = pesoano)
+     srvyr::as_survey_design(ids, strata, weights)
   }
 
   # return(d)

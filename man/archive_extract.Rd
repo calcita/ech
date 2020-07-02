@@ -15,5 +15,7 @@ archive_extract(archive.path = NULL, dest.path = NULL)
 archive_extract
 }
 \examples{
+\donttest{
 archive_extract()
+}
 }

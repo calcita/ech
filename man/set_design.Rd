@@ -4,12 +4,24 @@
 \alias{set_design}
 \title{A function to set survey design}
 \usage{
-set_design(data = ech::toy_ech_2018, level = "i")
+set_design(
+  data = ech::toy_ech_2018,
+  level = "i",
+  ids = "numero",
+  strata = "estred13",
+  weights = "pesoano"
+)
 }
 \arguments{
 \item{data}{data frame with ECH microdata}
 
 \item{level}{is household ("h") or individual ("i")}
+
+\item{ids}{Variables specifying cluster ids from largest level to smallest level (leaving the argument empty, NULL, 1, or 0 indicate no clusters).}
+
+\item{strata}{Variables specifying strata.}
+
+\item{weights}{Variables specifying weights (inverse of probability).}
 }
 \value{
 d
@@ -18,6 +30,8 @@ d
 This function allows you to set the survey desing
 }
 \examples{
+\donttest{
 set_design(data = ech::toy_ech_2018, level = "h")
+}
 }
 \keyword{design}
