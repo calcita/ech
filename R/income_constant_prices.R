@@ -14,6 +14,10 @@
 #' @importFrom haven zap_labels
 #' @importFrom rlang .data
 #' @export
+#' @examples
+#' \donttest{
+#' income_constant_prices()
+#' }
 
 income_constant_prices <- function(data = ech::toy_ech_2017_income,
                                    base.month = 6,

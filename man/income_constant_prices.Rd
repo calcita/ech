@@ -35,3 +35,8 @@ income_constant_prices(
 \description{
 Household income constant prices
 }
+\examples{
+\donttest{
+income_constant_prices()
+}
+}

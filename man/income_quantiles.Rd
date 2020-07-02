@@ -25,6 +25,7 @@ Household Income Quantiles
 }
 \examples{
 \donttest{
-income_quantiles()
+a <- income_constant_prices()
+b <- income_quantiles(data = a)
 }
 }

@@ -12,7 +12,8 @@
 #' @export
 #' @examples
 #' \donttest{
-#' income_quantiles()
+#' a <- income_constant_prices()
+#' b <- income_quantiles(data = a)
 #' }
 
 income_quantiles <- function(data = ech::toy_ech_2017_income,
