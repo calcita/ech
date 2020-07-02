@@ -11,7 +11,7 @@
 #' @return d
 #' @examples
 #' \donttest{
-#' set_design(data = ech::toy_ech_2018, level = "h")
+#' d_toy_ech_2018 <- set_design(data = ech::toy_ech_2018, level = "h")
 #' }
 #
 

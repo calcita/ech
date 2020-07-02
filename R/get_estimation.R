@@ -80,10 +80,10 @@ get_estimation_mean <- function(data = ech::toy_ech_2018,
 #' @keywords inference
 #' @export
 #' @return table
-#' @examples
-#' \donttest{
-#' get_estimation_ratio(data = ech::toy_ech_2018)
-#' }
+# @examples
+# \donttest{
+# get_estimation_ratio(data = ech::toy_ech_2018)
+# }
 
 
 get_estimation_ratio <- function(data = ech::toy_ech_2018,
