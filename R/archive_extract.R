@@ -93,9 +93,11 @@ knownArchiveExtensions <- c(knownInternalArchiveExtensions, knownSystemArchiveEx
 #' @param dest.path Ruta destino del archivo descomprimido
 #'
 #' @export
-#'
 #' @examples
+#' \donttest{
 #' archive_extract()
+#' }
+
 archive_extract <- function(archive.path = NULL, dest.path = NULL) {
   # busca archivo binario
   archiveExtractBinary <- .archiveExtractBinary()
