@@ -111,19 +111,19 @@ get_estimation_ratio <- function(data = ech::toy_ech_2018,
         srvyr::filter(.data[[domain]]) %>%
         srvyr::summarise(colname = srvyr::survey_ratio(.data[[variable.x]], .data[[variable.y]]))
     } else if(is.character(by.x) & is.null(by.y) & is.null(domain)){
-      estimation <-design_ech %>%
+      estimation <- design_ech %>%
         srvyr::group_by(.data[[by.x]]) %>%
         srvyr::summarise(colname = srvyr::survey_ratio(.data[[variable.x]], .data[[variable.y]]))
     } else if(is.character(by.x) & is.character(by.y) & is.null(domain)){
-      estimation <-design_ech %>%
+      estimation <- design_ech %>%
         srvyr::group_by(.data[[by.x]], .data[[by.y]]) %>%
         srvyr::summarise(colname = srvyr::survey_ratio(.data[[variable.x]], .data[[variable.y]]))
     } else if(is.character(by.x) & is.null(by.y) & is.character(domain)){
-      estimation <-design_ech %>%
+      estimation <- design_ech %>%
         srvyr::group_by(.data[[by.x]]) %>%
         srvyr::summarise(colname = srvyr::survey_ratio(.data[[variable.x]], .data[[variable.y]]))
     } else {
-      estimation <-design_ech %>%
+      estimation <- design_ech %>%
         srvyr::filter(domain) %>%
         srvyr::group_by(.data[[by.x]], .data[[by.y]]) %>%
         srvyr::summarise(colname = srvyr::survey_ratio(.data[[variable.x]], .data[[variable.y]]))

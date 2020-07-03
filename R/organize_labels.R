@@ -15,7 +15,7 @@ organize_labels <- function(data, year, level = "individual"){
   assertthat::assert_that(level %in% c("household", "h", "individual", "i", "hyp"),
                           msg = "Check the level selected")
   assertthat::assert_that(year %in% 2006:2018, msg = "Your year is not already process")
-  n <- ech::dic %>% filter(!var17 == "pt4")
+  n <- ech::dic
   if(level %in% "hyp"){
     nh <- n %>%
       dplyr::filter(!duplicated(var17)) %>%
