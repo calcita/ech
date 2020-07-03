@@ -13,6 +13,10 @@
 #' @export
 #' @import srvyr
 #' @return table
+#' @examples
+#' \donttest{
+#' get_estimation_mean(variable = "pobre06", by.x = "dpto", level = "h")
+#' }
 
 get_estimation_mean <- function(data = ech::toy_ech_2018,
                            variable = NULL,

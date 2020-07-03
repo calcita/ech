@@ -21,7 +21,7 @@ Imports:
     assertthat,
     fs,
     glue,
-    dplyr,
+    dplyr (>= 1.0.0),
     haven (>= 2.3.0),
     janitor,
     magrittr,
