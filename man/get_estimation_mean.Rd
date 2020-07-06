@@ -32,4 +32,12 @@ table
 \description{
 This function allows you to estimate variable.
 }
+\details{
+Disclaimer: El script no es un producto oficial de INE.
+}
+\examples{
+\donttest{
+get_estimation_mean(variable = "pobre06", by.x = "dpto", level = "h")
+}
+}
 \keyword{inference}

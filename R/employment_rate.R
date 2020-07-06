@@ -8,6 +8,8 @@
 #' @importFrom magrittr %<>%
 #' @importFrom dplyr mutate
 #' @importFrom rlang .data
+#' @details
+#' Disclaimer: El script no es un producto oficial de INE.
 #' @examples
 #' \donttest{
 #' employment_rate()

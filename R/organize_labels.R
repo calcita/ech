@@ -14,7 +14,7 @@ organize_labels <- function(data, year, level = "individual"){
   assertthat::assert_that(is.data.frame(data))
   assertthat::assert_that(level %in% c("household", "h", "individual", "i", "hyp"),
                           msg = "Check the level selected")
-  assertthat::assert_that(year %in% 2006:2018, msg = "Your year is not already process")
+  assertthat::assert_that(year %in% 2006:2018, msg = glue::glue("Para {year} aun no esta procesado"))
   n <- ech::dic
   if(level %in% "hyp"){
     nh <- n %>%

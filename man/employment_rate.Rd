@@ -14,6 +14,9 @@ employment_rate(data = ech::toy_ech_2018, pobpcoac = "pobpcoac")
 \description{
 This function allows you to..
 }
+\details{
+Disclaimer: El script no es un producto oficial de INE.
+}
 \examples{
 \donttest{
 employment_rate()

@@ -35,4 +35,7 @@ table
 \description{
 This function allows you to estimate variable.
 }
+\details{
+Disclaimer: El script no es un producto oficial de INE.
+}
 \keyword{inference}

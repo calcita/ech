@@ -7,6 +7,8 @@
 #' @importFrom dplyr mutate case_when
 #' @importFrom magrittr %<>%
 #' @importFrom rlang .data
+#' @details
+#' Disclaimer: El script no es un producto oficial de INE.
 #' @examples
 #' \donttest{
 #' enrolled_school(data = ech::toy_ech_2018)

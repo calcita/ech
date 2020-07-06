@@ -12,6 +12,9 @@ enrolled_school(data = ech::toy_ech_2018)
 \description{
 This function allows you to estimate people enrolled in school
 }
+\details{
+Disclaimer: El script no es un producto oficial de INE.
+}
 \examples{
 \donttest{
 enrolled_school(data = ech::toy_ech_2018)

@@ -7,12 +7,14 @@
 #' @param by.y data frame column
 #' @param domain subpopulation reference
 #' @param level is household ("h") or individual ("i").
+#' @import srvyr
 #' @importFrom assertthat assert_that
 #' @importFrom glue glue
 #' @keywords inference
 #' @export
-#' @import srvyr
 #' @return table
+#' @details
+#' Disclaimer: El script no es un producto oficial de INE.
 #' @examples
 #' \donttest{
 #' get_estimation_mean(variable = "pobre06", by.x = "dpto", level = "h")
@@ -24,16 +26,18 @@ get_estimation_mean <- function(data = ech::toy_ech_2018,
                            by.y = NULL,
                            domain = NULL,
                            level = NULL){
- # checks ---
-  # assertthat::assert_that(is.null(data) | is.null(variable), msg = "Debe indicar la variable")
-  # assertthat::assert_that(all(variable %in% names(data)), msg = glue:glue("La variable {variable} no esta en {data}"))
-  # if(!is.null(by.x)) assertthat::assert_that(by.x %in% names(data), msg = glue:glue("La variable {by.x} no esta en {data}"))
-  # if(!is.null(by.y)) assertthat::assert_that(by.y %in% names(data), msg = glue:glue("La variable {by.y} no esta en {data}"))
-  # if(!is.null(domain)) assertthat::assert_that(domain %in% names(data), msg = glue:glue("La variable {domain} no esta en {data}"))
-  # if(!is.null(level)) assertthat::assert_that(level %in% c("household", "h", "individual", "i"), msg = "Verifica el nivel seleccionado")
+ # checks ----
+  assertthat::assert_that(is.null(data) | is.null(variable), msg = "Debe indicar la variable")
+  assertthat::assert_that(all(variable %in% names(data)), msg = glue:glue("La variable {variable} no esta en {data}"))
+  if(!is.null(by.x)) assertthat::assert_that(by.x %in% names(data), msg = glue:glue("La variable {by.x} no esta en {data}"))
+  if(!is.null(by.y)) assertthat::assert_that(by.y %in% names(data), msg = glue:glue("La variable {by.y} no esta en {data}"))
+  if(!is.null(domain)) assertthat::assert_that(domain %in% names(data), msg = glue:glue("La variable {domain} no esta en {data}"))
+  if(!is.null(level)) assertthat::assert_that(level %in% c("household", "h", "individual", "i"), msg = "Verifica el nivel seleccionado")
 
+# design ----
   design_ech <- ech::set_design(data = data, level = level)
-# estimation ---
+
+# estimation ----
   #if(is.character(variable) & nchar(variable)==2 | is.numeric(variable)){
 
     if(is.null(by.x) & is.null(by.y) & is.null(domain)){
@@ -84,6 +88,8 @@ get_estimation_mean <- function(data = ech::toy_ech_2018,
 #' @keywords inference
 #' @export
 #' @return table
+#' @details
+#' Disclaimer: El script no es un producto oficial de INE.
 # @examples
 # \donttest{
 # get_estimation_ratio(data = ech::toy_ech_2018)
@@ -98,9 +104,14 @@ get_estimation_ratio <- function(data = ech::toy_ech_2018,
                                 domain = NULL,
                                 level = NULL){
 
-  # stopifnot(!is.null(data) | !is.null(variable) | is.null(design))
-  #  message(glue:glue("Debe indicar una variable a estimar"))
-  # checks ---
+  # checks ----
+  assertthat::assert_that(is.null(data) | is.null(variable.x) | is.null(variable.y), msg = "Debe indicar la variable")
+  assertthat::assert_that(all(variable.x %in% names(data)), msg = glue:glue("La variable {variable.x} no esta en {data}"))
+  assertthat::assert_that(all(variable.y %in% names(data)), msg = glue:glue("La variable {variable.y} no esta en {data}"))
+  if(!is.null(by.x)) assertthat::assert_that(by.x %in% names(data), msg = glue:glue("La variable {by.x} no esta en {data}"))
+  if(!is.null(by.y)) assertthat::assert_that(by.y %in% names(data), msg = glue:glue("La variable {by.y} no esta en {data}"))
+  if(!is.null(domain)) assertthat::assert_that(domain %in% names(data), msg = glue:glue("La variable {domain} no esta en {data}"))
+  if(!is.null(level)) assertthat::assert_that(level %in% c("household", "h", "individual", "i"), msg = "Verifica el nivel seleccionado")
 
   # estimation ---
   # if(is.character(variable) | is.numeric(variable)){
