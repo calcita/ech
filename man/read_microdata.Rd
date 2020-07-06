@@ -15,3 +15,6 @@ an object called df
 \description{
 Read ECH from a local folder
 }
+\details{
+Disclaimer: El script no es un producto oficial de INE.
+}

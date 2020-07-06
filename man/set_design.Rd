@@ -24,10 +24,13 @@ set_design(
 \item{weights}{Variables specifying weights (inverse of probability).}
 }
 \value{
-d
+a list
 }
 \description{
 This function allows you to set the survey desing
+}
+\details{
+Disclaimer: El script no es un producto oficial de INE.
 }
 \examples{
 \donttest{

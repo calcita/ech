@@ -171,7 +171,7 @@ get_estimation_total <- function(data = ech::toy_ech_2018,
 #' Disclaimer: El script no es un producto oficial de INE.
 # @examples
 # \donttest{
-# get_estimation_ratio(data = ech::toy_ech_2018)
+# get_estimation_ratio(data = ech::toy_ech_2018, variable.x = "po", variable.y = "pea", level = "i")
 # }
 
 

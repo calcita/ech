@@ -11,7 +11,9 @@
 #' @importFrom magrittr %>%
 #' @keywords design
 #' @export
-#' @return d
+#' @details
+#' Disclaimer: El script no es un producto oficial de INE.
+#' @return a list
 #' @examples
 #' \donttest{
 #' set_design(data = ech::toy_ech_2018, level = "h")
@@ -28,10 +30,6 @@ set_design <- function(data = ech::toy_ech_2018, level = "i", ids = "numero", st
      srvyr::as_survey_design(ids, strata, weights)
   }
 
-  # return(d)
-  # define package environment and package wide parameters
-  # .ech.pkg.env <<- new.env(parent = emptyenv())
-  # # # rm(list = ls(envir = .ech.pkg.env), envir = .ech.pkg.env)
-  #
-  # .ech.pkg.env$design <- d
+ return(d)
+
 }

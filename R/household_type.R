@@ -11,9 +11,11 @@
 #' @importFrom rlang .data
 #' @keywords household_type
 #' @export
+#' @details
+#' Disclaimer: El script no es un producto oficial de INE.
 #' @examples
 #' \donttest{
-#' df <- household_type(data = ech::toy_ech_2018)
+#' toy_ech_2018 <- household_type(data = ech::toy_ech_2018)
 #' }
 
 household_type <- function(data = ech::toy_ech_2018,
@@ -22,8 +24,13 @@ household_type <- function(data = ech::toy_ech_2018,
                            e30 = "e30",
                            colname = "tipo_hogar") {
 
+  assertthat::assert_that(is.data.frame(data))
+  assertthat::assert_that(e26  %in% names(data), msg =  glue:glue("Sorry... :( \n {e26} is not in data"))
+  assertthat::assert_that(e27  %in% names(data), msg =  glue:glue("Sorry... :( \n {e27} is not in data"))
+  assertthat::assert_that(e30  %in% names(data), msg =  glue:glue("Sorry... :( \n {e30} is not in data"))
+
   if (colname %in% names(data)) {
-    message(glue::glue("El data frame ya contiene una variable con ese nombre, se sobreescribira"))
+    message(glue::glue("El data frame ya contiene una variable con ese nombre, se va a sobreescribir"))
   }
   data <- data %>%
     dplyr::mutate(sex_householder = ifelse(.data[[e26]] == 1 & .data[[e30]] == 1,1, # 1 is man and householder
@@ -55,8 +62,10 @@ household_type <- function(data = ech::toy_ech_2018,
                             ifelse(.data$under_18 == 1 & (.data$parents_brosis > 0 | .data$grandchild > 0 | .data$child_law > 0 | .data$other_rel > 0) & .data$no_rel == 0, "extendido con menores", #Extended with children
                             ifelse(.data$no_rel > 0, "compuesto","error")))))))) # composite) %>%
            )
+
   data <- data %>% dplyr::select(everything(), -.data$sex_householder:-.data$no_rel)
+
   names(data)[which(names(data) == "household_type")] <- colname
   message(glue::glue("Se ha creado la variable {colname} en la base"))
-  return(data)
+ # return(data)
  }

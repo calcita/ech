@@ -4,10 +4,36 @@
 \alias{enrolled_school}
 \title{A function to estimate people enrolled in school}
 \usage{
-enrolled_school(data = ech::toy_ech_2018)
+enrolled_school(
+  data = ech::toy_ech_2018,
+  e193 = "e193",
+  e197 = "e197",
+  e201 = "e201",
+  e212 = "e212",
+  e215 = "e215",
+  e218 = "e218",
+  e221 = "e221",
+  e224 = "e224"
+)
 }
 \arguments{
 \item{data}{data.frame with necessary variables Defaults to ech.}
+
+\item{e193}{attendance school}
+
+\item{e197}{attendance primary}
+
+\item{e201}{attendance secondary}
+
+\item{e212}{attendance educacion tecnica}
+
+\item{e215}{attendance magisterio}
+
+\item{e218}{attendance university}
+
+\item{e221}{attendance terciario no universitario}
+
+\item{e224}{attendance postgrade}
 }
 \description{
 This function allows you to estimate people enrolled in school
@@ -17,7 +43,7 @@ Disclaimer: El script no es un producto oficial de INE.
 }
 \examples{
 \donttest{
-enrolled_school(data = ech::toy_ech_2018)
+toy_ech_2018 <- enrolled_school(data = ech::toy_ech_2018)
 }
 }
 \keyword{education}

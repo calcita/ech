@@ -14,9 +14,11 @@
 #' @importFrom haven zap_labels
 #' @importFrom rlang .data
 #' @export
+#' @details
+#' Disclaimer: El script no es un producto oficial de INE.
 #' @examples
 #' \donttest{
-#' income_constant_prices()
+#' toy_ech_2018 <- income_constant_prices(data = ech::toy_ech_2017_income)
 #' }
 
 income_constant_prices <- function(data = ech::toy_ech_2017_income,
@@ -42,4 +44,5 @@ income_constant_prices <- function(data = ech::toy_ech_2017_income,
                           ht11_svl_per_capita_deflate = .data[[ysvl]] / .data[[ht19]] * deflate,
                           ht11_per_capita_deflate = .data[[ht11]] / .data[[ht19]] * deflate # Ingresos promedio per cápita a precios constantes de month.base year.base
   )
+  # message(glue::glue("Se ha creado la variable {colname} en la base"))
 }

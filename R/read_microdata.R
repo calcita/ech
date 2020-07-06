@@ -2,6 +2,8 @@
 #' @param path Folder where are the files or be download
 #' @importFrom fs path
 #' @importFrom haven read_sav read_dta
+#' @details
+#' Disclaimer: El script no es un producto oficial de INE.
 #' @return an object called df
 #' @export
 

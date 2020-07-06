@@ -10,10 +10,12 @@
 #' @importFrom dplyr mutate pull
 #' @importFrom magrittr %<>%
 #' @export
+#' @details
+#' Disclaimer: El script no es un producto oficial de INE.
 #' @examples
 #' \donttest{
-#' a <- income_constant_prices()
-#' b <- income_quantiles(data = a)
+#' toy_ech_2018 <- income_constant_prices(data = ech::toy_ech_2017_income)
+#' toy_ech_2018 <- income_quantiles(data = ech::toy_ech_2017_income)
 #' }
 
 income_quantiles <- function(data = ech::toy_ech_2017_income,
@@ -35,5 +37,5 @@ income_quantiles <- function(data = ech::toy_ech_2017_income,
     ## deciles
     data %<>% dplyr::mutate(decil = statar::xtile(income, n = 10, wt = weights))
   }
-
+  # message(glue::glue("Se ha creado la variable {colname} en la base"))
 }
