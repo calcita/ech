@@ -18,7 +18,7 @@
 #' Disclaimer: El script no es un producto oficial de INE.
 #' @examples
 #' \donttest{
-#' toy_ech_2018 <- income_constant_prices(data = ech::toy_ech_2017_income)
+#' toy_ech_2017_income <- income_constant_prices(data = ech::toy_ech_2017_income)
 #' }
 
 income_constant_prices <- function(data = ech::toy_ech_2017_income,
@@ -30,7 +30,7 @@ income_constant_prices <- function(data = ech::toy_ech_2017_income,
                                    ht13 = "ht13",
                                    ht19 = "ht19"){
 
-  deflate <- deflate(base.month = base.month,
+  deflate <- ech::deflate(base.month = base.month,
                      base.year = base.year)
   # Asigna deflactor
   data <- data %>% dplyr::mutate(aux = as.integer(haven::zap_labels(.data[[mes]]))) %>%

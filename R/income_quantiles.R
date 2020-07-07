@@ -14,14 +14,15 @@
 #' Disclaimer: El script no es un producto oficial de INE.
 #' @examples
 #' \donttest{
-#' toy_ech_2018 <- income_constant_prices(data = ech::toy_ech_2017_income)
-#' toy_ech_2018 <- income_quantiles(data = ech::toy_ech_2017_income)
+#' toy_ech_2017_income <- income_quantiles(data = ech::toy_ech_2017_income)
 #' }
 
 income_quantiles <- function(data = ech::toy_ech_2017_income,
                              quantile = 5,
                              weights = "pesoano",
                              income = "ht11_per_capita_deflate") {
+
+  data <- income_constant_prices(data = ech::toy_ech_2017_income)
 
   assertthat::assert_that(is.data.frame(data))
   assertthat::assert_that(weights %in% names(data))
@@ -32,10 +33,10 @@ income_quantiles <- function(data = ech::toy_ech_2017_income,
 
   if (quantile == 5) {
     ## quintiles
-    data %<>% dplyr::mutate(quintil = statar::xtile(income, n = 5, wt = weights))
+    data %<>% dplyr::mutate(quintil = statar::xtile(.data[[income]], n = 5, wt = weights))
   }  else {
     ## deciles
-    data %<>% dplyr::mutate(decil = statar::xtile(income, n = 10, wt = weights))
+    data %<>% dplyr::mutate(decil = statar::xtile(.data[[income]], n = 10, wt = weights))
   }
   # message(glue::glue("Se ha creado la variable {colname} en la base"))
 }

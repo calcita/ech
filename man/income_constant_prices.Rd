@@ -40,6 +40,6 @@ Disclaimer: El script no es un producto oficial de INE.
 }
 \examples{
 \donttest{
-toy_ech_2018 <- income_constant_prices(data = ech::toy_ech_2017_income)
+toy_ech_2017_income <- income_constant_prices(data = ech::toy_ech_2017_income)
 }
 }
