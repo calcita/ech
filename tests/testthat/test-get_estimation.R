@@ -42,6 +42,6 @@ test_that("get_estimation_ratio works", {
   expect_equal(nrow(a), 19)
   a <- get_estimation_ratio(data = ech_2018, variable.x = "po", variable.y = "pea", by.x = "dpto", by.y = "mes",level = "i")
   expect_equal(nrow(a), 207)
-  a <- get_estimation_ratio(data = ech_2018, variable.x = "po", variable.y = "pea", by.x = "secc", by.y = "mes", domain = d$dpto == 1,level = "i")
+  a <- get_estimation_ratio(data = ech_2018, variable.x = "po", variable.y = "pea", by.x = "secc", by.y = "mes", domain = ech_2018$dpto == 1,level = "i")
   expect_equal(nrow(a), 175)
 })
