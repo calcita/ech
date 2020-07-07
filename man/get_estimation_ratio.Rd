@@ -38,4 +38,10 @@ This function allows you to estimate ratio variable.
 \details{
 Disclaimer: El script no es un producto oficial de INE.
 }
+\examples{
+\donttest{
+toy_ech_2018 <- employment(data = ech::toy_ech_2018, pobpcoac = "pobpcoac")
+get_estimation_ratio(data = toy_ech_2018, variable.x = "po", variable.y = "pea", level = "i")
+}
+}
 \keyword{inference}

@@ -25,9 +25,9 @@ household_type <- function(data = ech::toy_ech_2018,
                            colname = "tipo_hogar") {
 
   assertthat::assert_that(is.data.frame(data))
-  assertthat::assert_that(e26  %in% names(data), msg =  glue:glue("Sorry... :( \n {e26} is not in data"))
-  assertthat::assert_that(e27  %in% names(data), msg =  glue:glue("Sorry... :( \n {e27} is not in data"))
-  assertthat::assert_that(e30  %in% names(data), msg =  glue:glue("Sorry... :( \n {e30} is not in data"))
+  assertthat::assert_that(e26  %in% names(data), msg =  glue::glue("Sorry... :( \n {e26} is not in data"))
+  assertthat::assert_that(e27  %in% names(data), msg =  glue::glue("Sorry... :( \n {e27} is not in data"))
+  assertthat::assert_that(e30  %in% names(data), msg =  glue::glue("Sorry... :( \n {e30} is not in data"))
 
   if (colname %in% names(data)) {
     message(glue::glue("El data frame ya contiene una variable con ese nombre, se va a sobreescribir"))
@@ -67,5 +67,5 @@ household_type <- function(data = ech::toy_ech_2018,
 
   names(data)[which(names(data) == "household_type")] <- colname
   message(glue::glue("Se ha creado la variable {colname} en la base"))
- # return(data)
+  data
  }
