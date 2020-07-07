@@ -22,7 +22,7 @@ get_estimation_mean(
 
 \item{by.y}{data frame column}
 
-\item{domain}{subpopulation reference}
+\item{domain}{subpopulation reference setted as logical}
 
 \item{level}{is household ("h") or individual ("i").}
 }
