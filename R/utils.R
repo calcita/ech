@@ -26,7 +26,7 @@ get_ipc <- function(folder = tempdir()){
      dplyr::mutate(fecha = janitor::excel_numeric_to_date(as.numeric(as.character(.data$mes_y_ano)), date_system = "modern"))
   df <- df %>% dplyr::select(.data$fecha, dplyr::everything(), -.data$mes_y_ano)
   ipc_base2010 <- df
-  saveRDS(df, "ipc_base2010.rds")
+
 }
 
 #' deflate
@@ -68,6 +68,39 @@ deflate <- function(base.month = base.month,
 
 }
 
+
+
+#' Title
+#'
+#' @param folder temp folder
+#' @param version by default the last ciiu version
+#'
+#' @importFrom utils read.csv
+#' @importFrom pdftables convert_pdf
+#' @importFrom rstudioapi askForSecret
+#' @return
+#' @export
+#'
+#' @examples
+#' \donttest{
+#' get_ciiu(folder = tempdir())
+#' }
+
+get_ciiu <- function(folder = tempdir(), version = 4){
+  u <- "http://www.ine.gub.uy/documents/10181/33330/CORRESPONDENCIA+CIUU4+A+CIUU3.pdf/623c43cb-009c-4da9-b48b-45282745063b"
+  f <- fs::path(folder, "ciiu4.pdf")
+  try(utils::download.file(u, f, mode = "wb", method = "libcurl"))
+
+  key <- rstudioapi::askForSecret()
+  pdftables::convert_pdf(f, "ciiu4.csv",api_key = key)
+  df <- read.csv("ciiu4.csv")
+  df <- df[,-3]
+  names(df) <- c("ciuu_4","description", "ciuu_3")
+  df <- df[-1,]
+  df[] <- lapply(df, ech::to_ascii)
+  ciiu4 <- df
+}
+
 #' Pipe operator
 #'
 #' See \code{magrittr::\link[magrittr]{\%>\%}} for details.
@@ -79,3 +112,26 @@ deflate <- function(base.month = base.month,
 #' @importFrom magrittr %>%
 #' @usage lhs \%>\% rhs
 NULL
+
+#' Title
+#'
+#' @param x a column
+#' @param upper logic
+#'
+#' @importFrom stringr str_replace_all
+#' @return
+#' @export
+#'
+#' @examples
+to_ascii <- function(x, upper = T ){
+  x <- x %>% as.character() %>%
+    toupper() %>%
+    stringr::str_replace_all("Ñ", "NI") %>%
+    stringr::str_replace_all("Ó", "O") %>%
+    stringr::str_replace_all("Á", "A") %>%
+    stringr::str_replace_all("É", "E") %>%
+    stringr::str_replace_all("Í", "I") %>%
+    stringr::str_replace_all("Ú", "U")
+  if (!upper == T) x <- tolower(x)
+  x
+}

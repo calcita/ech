@@ -32,7 +32,9 @@ Imports:
     readxl,
     kableExtra,
     laeken,
-    rlang
+    rlang,
+    pdftables,
+    rstudioapi
 Suggests: 
     knitr,
     testthat (>= 2.1.0),

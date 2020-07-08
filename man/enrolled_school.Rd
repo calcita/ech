@@ -25,13 +25,13 @@ enrolled_school(
 
 \item{e201}{attendance secondary}
 
-\item{e212}{attendance educacion tecnica}
+\item{e212}{attendance technical education (non-university)}
 
 \item{e215}{attendance magisterio}
 
 \item{e218}{attendance university}
 
-\item{e221}{attendance terciario no universitario}
+\item{e221}{attendance tertiary}
 
 \item{e224}{attendance postgrade}
 }

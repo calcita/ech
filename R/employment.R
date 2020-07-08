@@ -23,9 +23,9 @@ employment <- function(data = ech::toy_ech_2018,
    if (!exists(pobpcoac, data)) stop("pobpcoac variable name not in data")
 
 # variables ---
-    data %<>% dplyr::mutate(pea = ifelse(.data[[pobpcoac]] %in% 2:5, 1, 0),
-                            pet = ifelse(.data[[pobpcoac]] != 1, 1, 0),
-                            po = ifelse(.data[[pobpcoac]] == 2, 1, 0),
-                            pd = ifelse(.data[[pobpcoac]] %in% 3:5, 1, 0)
+    data %<>% dplyr::mutate(pea = ifelse({{pobpcoac}} %in% 2:5, 1, 0),
+                            pet = ifelse({{pobpcoac}} != 1, 1, 0),
+                            po  = ifelse({{pobpcoac}} == 2, 1, 0),
+                            pd  = ifelse({{pobpcoac}} %in% 3:5, 1, 0)
   )
 }
