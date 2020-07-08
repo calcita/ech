@@ -70,17 +70,14 @@ deflate <- function(base.month = base.month,
 
 
 
-#' Title
+#' get_ciiu
 #'
 #' @param folder temp folder
 #' @param version by default the last ciiu version
-#'
 #' @importFrom utils read.csv
 #' @importFrom pdftables convert_pdf
 #' @importFrom rstudioapi askForSecret
-#' @return
 #' @export
-#'
 #' @examples
 #' \donttest{
 #' get_ciiu(folder = tempdir())
@@ -90,14 +87,13 @@ get_ciiu <- function(folder = tempdir(), version = 4){
   u <- "http://www.ine.gub.uy/documents/10181/33330/CORRESPONDENCIA+CIUU4+A+CIUU3.pdf/623c43cb-009c-4da9-b48b-45282745063b"
   f <- fs::path(folder, "ciiu4.pdf")
   try(utils::download.file(u, f, mode = "wb", method = "libcurl"))
-
-  key <- rstudioapi::askForSecret()
+  key <- rstudioapi::askForSecret("api_key")
   pdftables::convert_pdf(f, "ciiu4.csv",api_key = key)
   df <- read.csv("ciiu4.csv")
   df <- df[,-3]
-  names(df) <- c("ciuu_4","description", "ciuu_3")
+  names(df) <- c("ciiu_4","description", "ciiu_3")
   df <- df[-1,]
-  df[] <- lapply(df, ech::to_ascii)
+  df[] <- lapply(df, textclean::replace_non_ascii)
   ciiu4 <- df
 }
 
@@ -113,25 +109,27 @@ get_ciiu <- function(folder = tempdir(), version = 4){
 #' @usage lhs \%>\% rhs
 NULL
 
-#' Title
-#'
-#' @param x a column
-#' @param upper logic
-#'
-#' @importFrom stringr str_replace_all
-#' @return
-#' @export
-#'
-#' @examples
-to_ascii <- function(x, upper = T ){
-  x <- x %>% as.character() %>%
-    toupper() %>%
-    stringr::str_replace_all("Ñ", "NI") %>%
-    stringr::str_replace_all("Ó", "O") %>%
-    stringr::str_replace_all("Á", "A") %>%
-    stringr::str_replace_all("É", "E") %>%
-    stringr::str_replace_all("Í", "I") %>%
-    stringr::str_replace_all("Ú", "U")
-  if (!upper == T) x <- tolower(x)
-  x
-}
+# #' to_ascii
+# #'
+# #' @param x a column
+# #' @param upper logic
+# #'
+# #' @importFrom stringr str_replace_all
+# #' @return
+# #' @export
+# #' @examples
+# #' \donttest{
+# #' d <- lapply(dic, to_ascii)
+# #' }
+# to_ascii <- function(x, upper = T ){
+#   x <- x %>% as.character() %>%
+#     toupper() %>%
+#     stringr::str_replace_all("Ñ", "NI") %>%
+#     stringr::str_replace_all("Ó", "O") %>%
+#     stringr::str_replace_all("Á", "A") %>%
+#     stringr::str_replace_all("É", "E") %>%
+#     stringr::str_replace_all("Í", "I") %>%
+#     stringr::str_replace_all("Ú", "U")
+#   if (!upper == T) x <- tolower(x)
+#   x
+# }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{get_ciiu}
 \alias{get_ciiu}
-\title{Title}
+\title{get_ciiu}
 \usage{
 get_ciiu(folder = tempdir(), version = 4)
 }
@@ -11,11 +11,8 @@ get_ciiu(folder = tempdir(), version = 4)
 
 \item{version}{by default the last ciiu version}
 }
-\value{
-
-}
 \description{
-Title
+get_ciiu
 }
 \examples{
 \donttest{

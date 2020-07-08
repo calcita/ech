@@ -639,3 +639,18 @@
 #'}
 #' @source \url{http://www.ine.gub.uy/}
 "dic"
+
+
+#' Data CIIU4 and 3
+#'
+#' A dataset containing Clasificación Industrial Internacional Uniforme Rev. 4 and 3
+#'
+#' @format A data frame with 738 rows and 3 variables:
+#' \describe{
+#'   \item{ciiu_4}{Code of Clasificación Industrial Internacional Uniforme Rev. 4}
+#'   \item{description}{Description of Clasificación Industrial Internacional Uniforme Rev. 4}
+#'   \item{ciiu_3}{Code of Clasificación Industrial Internacional Uniforme Rev. 3}
+#'   ...
+#'  }
+#' @source \url{http://www.ine.gub.uy/}
+"ciiu4"
