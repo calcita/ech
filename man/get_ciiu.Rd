@@ -14,8 +14,3 @@ get_ciiu(folder = tempdir(), version = 4)
 \description{
 get_ciiu
 }
-\examples{
-\donttest{
-get_ciiu(folder = tempdir())
-}
-}

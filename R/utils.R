@@ -78,10 +78,6 @@ deflate <- function(base.month = base.month,
 #' @importFrom pdftables convert_pdf
 #' @importFrom rstudioapi askForSecret
 #' @export
-#' @examples
-#' \donttest{
-#' get_ciiu(folder = tempdir())
-#' }
 
 get_ciiu <- function(folder = tempdir(), version = 4){
   u <- "http://www.ine.gub.uy/documents/10181/33330/CORRESPONDENCIA+CIUU4+A+CIUU3.pdf/623c43cb-009c-4da9-b48b-45282745063b"
