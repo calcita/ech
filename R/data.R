@@ -615,13 +615,13 @@
 #'
 #' A dataset containing variables names change of the ECH 2006-2018
 #'
-#' @format A data frame with 977 rows and 19 variables:
+#' @format A data frame with 973 rows and 19 variables:
 #' \describe{
 #'   \item{codigos}{Code oh label}
 #'   \item{descripcion}{Description of label}
 #'   \item{modulo}{Module in the form 2017}
 #'   \item{obs}{Observations}
-#'   \item{unidad}{Level of variable household (H) or individual (P)}
+#'   \item{unidad}{Level of variable household (H) individual (P) or general (G)}
 #'   \item{var06}{ECH variables names 2006}
 #'   \item{var07}{ECH variables names 2007}
 #'   \item{var08}{ECH variables names 2008}

@@ -13,7 +13,7 @@ read_microdata <- function(path = NULL){
 
   if (!is.null(path)) {
     format = tolower(fs::path_ext(path))
-    if (!format %in% c("sav", "dta", "rds", "rdata"))
+    if (!format %in% c("sav", "dta", "rds", "rda", "rdata"))
       stop(glue::glue("No es posible abrir un archivo con formato {format}"))
   } else {
     stop(glue::glue("No es posible abrir {path}"))
