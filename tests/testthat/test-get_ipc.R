@@ -1,4 +1,4 @@
 test_that("get_ipc works", {
-  get_ipc(folder = tempdir())
-  expect_true("ipc_base2010.rds" %in% list.files(getwd()))
+  ipc_base2010 <- get_ipc(folder = tempdir())
+  testthat::expect_true("ipc_base2010" %in% ls())
 })

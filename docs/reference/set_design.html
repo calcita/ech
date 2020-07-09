@@ -69,7 +69,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ech</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.10</span>
       </span>
     </div>
 
@@ -82,7 +82,13 @@
   </a>
 </li>
 <li>
+  <a href="../articles/ech.html">Get started</a>
+</li>
+<li>
   <a href="../reference/index.html">Reference</a>
+</li>
+<li>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -109,7 +115,13 @@
     <p>This function allows you to set the survey desing</p>
     </div>
 
-    <pre class="usage"><span class='fu'>set_design</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ech</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/ech/man/toy_ech_2018.html'>toy_ech_2018</a></span>)</pre>
+    <pre class="usage"><span class='fu'>set_design</span>(
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ech</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/ech/man/toy_ech_2018.html'>toy_ech_2018</a></span>,
+  <span class='kw'>level</span> <span class='kw'>=</span> <span class='st'>"i"</span>,
+  <span class='kw'>ids</span> <span class='kw'>=</span> <span class='st'>"numero"</span>,
+  <span class='kw'>strata</span> <span class='kw'>=</span> <span class='st'>"estred13"</span>,
+  <span class='kw'>weights</span> <span class='kw'>=</span> <span class='st'>"pesoano"</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -118,20 +130,169 @@
       <th>data</th>
       <td><p>data frame with ECH microdata</p></td>
     </tr>
+    <tr>
+      <th>level</th>
+      <td><p>is household ("h") or individual ("i")</p></td>
+    </tr>
+    <tr>
+      <th>ids</th>
+      <td><p>Variables specifying cluster ids from largest level to smallest level (leaving the argument empty, NULL, 1, or 0 indicate no clusters).</p></td>
+    </tr>
+    <tr>
+      <th>strata</th>
+      <td><p>Variables specifying strata.</p></td>
+    </tr>
+    <tr>
+      <th>weights</th>
+      <td><p>Variables specifying weights (inverse of probability).</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>d</p>
+    <p>a list</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Disclaimer: El script no es un producto oficial de INE.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>set_design</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ech</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/ech/man/toy_ech_2018.html'>toy_ech_2018</a></span>)</div><div class='output co'>#&gt; NULL</div></pre>
+    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
+<span class='fu'>set_design</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ech</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/ech/man/toy_ech_2018.html'>toy_ech_2018</a></span>, <span class='kw'>level</span> <span class='kw'>=</span> <span class='st'>"h"</span>)</div><div class='output co'>#&gt; Stratified 1 - level Cluster Sampling design (with replacement)
+#&gt; With (987) clusters.
+#&gt; Called via srvyr
+#&gt; Sampling variables:
+#&gt;  - ids: numero
+#&gt;  - probs: estred13
+#&gt;  - strata: pesoano
+#&gt; Data variables: numero (chr), nper (dbl), anio (chr), mes (dbl+lbl), dpto
+#&gt;   (dbl+lbl), nomdpto (chr), secc (chr), segm (chr), loc_agr_13 (chr),
+#&gt;   nom_loc_agr_13 (chr), ccz (dbl), barrio (dbl), nombarrio (chr), estred13
+#&gt;   (dbl+lbl), region_3 (dbl+lbl), region_4 (dbl+lbl), pesoano (dbl), pesotri
+#&gt;   (dbl), pesomen (dbl), c1 (dbl+lbl), c2 (dbl+lbl), c3 (dbl+lbl), c4 (dbl+lbl),
+#&gt;   c5_1 (dbl+lbl), c5_2 (dbl+lbl), c5_3 (dbl+lbl), c5_4 (dbl+lbl), c5_5
+#&gt;   (dbl+lbl), c5_6 (dbl+lbl), c5_7 (dbl+lbl), c5_8 (dbl+lbl), c5_9 (dbl+lbl),
+#&gt;   c5_10 (dbl+lbl), c5_11 (dbl+lbl), c5_12 (dbl+lbl), c6 (dbl), d8_1 (dbl+lbl),
+#&gt;   d8_2 (dbl), d8_3 (dbl), d8_4 (dbl+lbl), d9 (dbl), d10 (dbl), d11 (dbl+lbl),
+#&gt;   d12 (dbl+lbl), d13 (dbl+lbl), d14 (dbl), d15 (dbl+lbl), d16 (dbl+lbl), d18
+#&gt;   (dbl+lbl), d260 (dbl+lbl), d19 (dbl+lbl), d20 (dbl+lbl), d21_1 (dbl+lbl),
+#&gt;   d21_2 (dbl+lbl), d21_3 (dbl+lbl), d21_4 (dbl+lbl), d21_4_1 (dbl), d21_5
+#&gt;   (dbl+lbl), d21_5_1 (dbl), d21_6 (dbl+lbl), d21_20 (dbl+lbl), d21_7 (dbl+lbl),
+#&gt;   d21_9 (dbl+lbl), d21_8 (dbl+lbl), d21_10 (dbl+lbl), d21_11 (dbl+lbl), d21_12
+#&gt;   (dbl+lbl), d21_13 (dbl+lbl), d21_14 (dbl+lbl), d21_14_1 (dbl), d21_15
+#&gt;   (dbl+lbl), d21_15_1 (dbl+lbl), d21_15_2 (dbl), d21_15_3 (dbl+lbl), d21_15_4
+#&gt;   (dbl), d21_15_5 (dbl+lbl), d21_15_6 (dbl), d21_16 (dbl+lbl), d21_16_1
+#&gt;   (dbl+lbl), d21_16_2 (dbl+lbl), d21_17 (dbl+lbl), d21_18 (dbl+lbl), d21_18_1
+#&gt;   (dbl), d21_19 (dbl+lbl), d21_19_1 (dbl), d181 (dbl+lbl), d229 (dbl), d230
+#&gt;   (dbl), d231 (dbl+lbl), d232 (dbl), d184 (dbl+lbl), d184_1 (dbl), d23 (dbl),
+#&gt;   d24 (dbl), d25 (dbl), h155 (dbl+lbl), h155_1 (dbl), h156 (dbl+lbl), h156_1
+#&gt;   (dbl), h252 (dbl+lbl), h252_1 (dbl), h158_1 (dbl), h158_2 (dbl), h159
+#&gt;   (dbl+lbl), h160 (dbl+lbl), h160_1 (dbl), h160_2 (dbl), h161 (dbl+lbl), h162
+#&gt;   (dbl+lbl), h163_1 (dbl), h163_2 (dbl), h164 (dbl), h165 (dbl), h227
+#&gt;   (dbl+lbl), h166 (dbl), h269 (dbl+lbl), h269_1 (dbl), h167_1 (dbl+lbl),
+#&gt;   h167_1_1 (dbl), h167_1_2 (dbl), h167_2 (dbl+lbl), h167_2_1 (dbl), h167_2_2
+#&gt;   (dbl), h167_3 (dbl+lbl), h167_3_1 (dbl), h167_3_2 (dbl), h167_4 (dbl+lbl),
+#&gt;   h167_4_1 (dbl), h167_4_2 (dbl), h169 (dbl+lbl), h170_1 (dbl), h170_2 (dbl),
+#&gt;   h271 (dbl+lbl), h271_1 (dbl), h171 (dbl+lbl), h171_1 (dbl), h171_2 (dbl),
+#&gt;   h172 (dbl+lbl), h172_1 (dbl), h173 (dbl+lbl), h173_1 (dbl), i228 (dbl+lbl),
+#&gt;   i174 (dbl), i259 (dbl+lbl), i175 (dbl), ht1 (dbl), ht2 (dbl), ht3 (dbl), ht4
+#&gt;   (dbl), ht5 (dbl), ht6 (dbl), ht7 (dbl), ht8 (dbl), ht9 (dbl), ht10 (dbl),
+#&gt;   ht11 (dbl), ht13 (dbl), ht14 (dbl), ht19 (dbl), YHOG (dbl), YSVL (dbl), lp_06
+#&gt;   (dbl), li_06 (dbl), e557 (dbl+lbl), e558 (dbl), e26 (dbl+lbl), e27 (dbl),
+#&gt;   e29_1 (dbl+lbl), e29_2 (dbl+lbl), e29_3 (dbl+lbl), e29_4 (dbl+lbl), e29_5
+#&gt;   (dbl+lbl), e29_5_1 (chr), e29_6 (dbl+lbl), e30 (dbl+lbl), e31 (dbl+lbl), e32
+#&gt;   (dbl+lbl), e33 (dbl+lbl), e34 (dbl), e35 (dbl+lbl), e36 (dbl+lbl), e185
+#&gt;   (dbl+lbl), e186_1 (dbl), e186_2 (dbl), e186_3 (dbl), e186_4 (dbl), e37
+#&gt;   (dbl+lbl), e37_2 (dbl), e234_2 (dbl), e38 (dbl+lbl), e38_1 (dbl), e39
+#&gt;   (dbl+lbl), e39_2 (dbl), e235_2 (dbl), e236 (dbl+lbl), e236_2 (dbl), e236_4
+#&gt;   (dbl), e45_1 (dbl+lbl), e45_1_1 (dbl+lbl), e45_1_1_1 (dbl), e45_1_2
+#&gt;   (dbl+lbl), e45_1_2_1 (chr), e45_2 (dbl+lbl), e45_2_1 (dbl+lbl), e45_2_1_1
+#&gt;   (dbl), e45_2_2 (dbl+lbl), e45_2_2_1 (chr), e45_3 (dbl+lbl), e45_3_1
+#&gt;   (dbl+lbl), e45_3_1_1 (dbl), e45_3_2 (dbl+lbl), e45_3_2_1 (chr), e45_4
+#&gt;   (dbl+lbl), e45_4_1 (dbl+lbl), e45_4_2 (dbl), e45_4_3 (dbl+lbl), e45_4_3_1
+#&gt;   (chr), e45_5 (dbl+lbl), e45_5_1 (dbl+lbl), e45_5_1_1 (chr), e45_6 (dbl+lbl),
+#&gt;   e45_7 (dbl+lbl), e45_7_1 (chr), e237 (dbl+lbl), e46 (dbl+lbl), e47 (dbl+lbl),
+#&gt;   e47_1 (dbl), e190 (dbl+lbl), e190_1 (dbl+lbl), e190_1_1 (dbl+lbl), e190_2
+#&gt;   (dbl+lbl), e190_2_1 (dbl+lbl), e190_3 (dbl+lbl), e190_3_1 (dbl+lbl), e191
+#&gt;   (dbl+lbl), e192 (dbl+lbl), e48 (dbl+lbl), e49 (dbl+lbl), e238 (dbl+lbl), e239
+#&gt;   (dbl+lbl), e240_1 (dbl), e240_2 (dbl), e241 (dbl+lbl), e242 (dbl+lbl), e242_1
+#&gt;   (chr), e193 (dbl+lbl), e194 (dbl+lbl), e243_1 (dbl), e243_2 (dbl), e244
+#&gt;   (dbl+lbl), e245 (dbl+lbl), e245_1 (chr), e196 (dbl+lbl), e196_1 (dbl), e196_2
+#&gt;   (dbl), e196_3 (dbl), e197 (dbl+lbl), e197_1 (dbl+lbl), e51_2 (dbl), e51_3
+#&gt;   (dbl), e198 (dbl+lbl), e199 (dbl+lbl), e200 (dbl+lbl), e200_1 (dbl), e200_2
+#&gt;   (dbl), e200_3 (dbl), e201 (dbl+lbl), e201_1 (dbl+lbl), e202_1 (dbl+lbl),
+#&gt;   e202_2 (dbl+lbl), e202_3 (dbl+lbl), e202_4 (dbl+lbl), e202_8 (dbl+lbl),
+#&gt;   e202_5 (dbl+lbl), e202_6 (dbl+lbl), e202_6_1 (chr), e202_7 (dbl+lbl), e51_4
+#&gt;   (dbl), e210_1 (dbl+lbl), e51_5 (dbl), e210_2 (dbl+lbl), e51_6 (dbl), e209_1
+#&gt;   (dbl), e210_3 (dbl+lbl), e211 (dbl+lbl), e211_1 (dbl), e211_2 (dbl), e211_3
+#&gt;   (dbl), e562 (dbl+lbl), e212 (dbl+lbl), e212_1 (dbl+lbl), e213 (dbl+lbl),
+#&gt;   e51_7 (dbl), e51_7_1 (dbl+lbl), e214_1 (dbl), e215 (dbl+lbl), e215_1
+#&gt;   (dbl+lbl), e216 (dbl+lbl), e51_8 (dbl), e217_1 (dbl), e218 (dbl+lbl), e218_1
+#&gt;   (dbl+lbl), e219 (dbl+lbl), e51_9 (dbl), e220_1 (dbl), e221 (dbl+lbl), e221_1
+#&gt;   (dbl+lbl), e222 (dbl+lbl), e51_10 (dbl), e223_1 (dbl), e224 (dbl+lbl), e224_1
+#&gt;   (dbl+lbl), e225 (dbl+lbl), e51_11 (dbl), e226_1 (dbl), e559 (dbl+lbl), e559_1
+#&gt;   (dbl), e559_2 (dbl), e560 (dbl+lbl), e560_1 (dbl+lbl), e560_1_1 (dbl), e560_2
+#&gt;   (dbl+lbl), e560_2_1 (dbl), e561 (dbl+lbl), e561_1 (dbl), e59 (dbl+lbl), e246
+#&gt;   (dbl+lbl), e246_1 (chr), e247 (dbl), e60 (dbl+lbl), e61 (dbl+lbl), e248
+#&gt;   (dbl+lbl), e62 (dbl+lbl), e249 (dbl+lbl), e250 (dbl+lbl), e64_1 (dbl+lbl),
+#&gt;   e64_2 (dbl+lbl), e64_3 (dbl+lbl), e64_4 (dbl+lbl), e64_5 (dbl+lbl), e64_6
+#&gt;   (dbl+lbl), e64_7 (dbl+lbl), e65 (dbl+lbl), f66 (dbl+lbl), f67 (dbl+lbl), f261
+#&gt;   (dbl+lbl), f68 (dbl+lbl), f69 (dbl+lbl), f70 (dbl), f71_2 (chr), f72_2 (chr),
+#&gt;   f73 (dbl+lbl), f74 (dbl+lbl), f75 (dbl+lbl), f76_2 (chr), f262 (dbl+lbl),
+#&gt;   f263 (dbl+lbl), f264 (dbl+lbl), f264_1 (chr), f265 (dbl+lbl), f265_1 (chr),
+#&gt;   f77 (dbl+lbl), f78 (dbl+lbl), f79 (dbl+lbl), f79_1 (chr), f80 (dbl+lbl),
+#&gt;   f80_2 (dbl), f81 (dbl+lbl), f82 (dbl+lbl), f83 (dbl+lbl), f84 (dbl+lbl), f266
+#&gt;   (dbl+lbl), f267 (dbl+lbl), f268 (dbl+lbl), f85 (dbl), f86 (dbl+lbl), f87
+#&gt;   (dbl), f88_1 (dbl), f88_2 (dbl), f89 (dbl+lbl), f90_2 (chr), f91_2 (chr), f92
+#&gt;   (dbl+lbl), f93 (dbl+lbl), f94 (dbl+lbl), f94_2 (dbl), f95 (dbl+lbl), f96
+#&gt;   (dbl+lbl), f97 (dbl+lbl), f98 (dbl), f99 (dbl+lbl), f100 (dbl+lbl), f101
+#&gt;   (dbl+lbl), f102 (dbl+lbl), f103 (dbl+lbl), f104 (dbl+lbl), f105 (dbl+lbl),
+#&gt;   f106 (dbl+lbl), f107 (dbl+lbl), f108 (dbl+lbl), f109 (dbl+lbl), f110
+#&gt;   (dbl+lbl), f111 (dbl+lbl), f112 (dbl+lbl), f113 (dbl), f114 (dbl+lbl), f115
+#&gt;   (dbl+lbl), f116 (dbl+lbl), f117 (dbl+lbl), f118_1 (dbl), f118_2 (dbl), f119_2
+#&gt;   (chr), f120_2 (chr), f121 (dbl+lbl), f122 (dbl+lbl), f123 (dbl+lbl), f124_1
+#&gt;   (dbl+lbl), f124_2 (dbl+lbl), f124_3 (dbl+lbl), f124_4 (dbl+lbl), f124_5
+#&gt;   (dbl+lbl), f125 (dbl+lbl), g_id_1 (dbl+lbl), g_id_2 (dbl+lbl), g_id_3
+#&gt;   (dbl+lbl), g_id_1a (dbl+lbl), g_id_2a (dbl+lbl), g_id_3a (dbl+lbl), g126_1
+#&gt;   (dbl), g126_2 (dbl), g126_3 (dbl), g126_4 (dbl), g126_5 (dbl), g126_6 (dbl),
+#&gt;   g126_7 (dbl), g126_8 (dbl), g250_1 (dbl+lbl), g250_2 (dbl+lbl), g250_5
+#&gt;   (dbl+lbl), g250_3 (dbl+lbl), g250_4 (dbl+lbl), g127 (dbl+lbl), g127_1 (dbl),
+#&gt;   g127_2 (dbl), g127_3 (dbl), g128 (dbl+lbl), g128_1 (dbl), g129 (dbl+lbl),
+#&gt;   g129_1 (dbl+lbl), g129_2 (dbl), g130 (dbl+lbl), g130_1 (dbl), g131 (dbl+lbl),
+#&gt;   g131_1 (dbl), g132 (dbl+lbl), g132_1 (dbl), g132_2 (dbl), g132_3 (dbl), g133
+#&gt;   (dbl+lbl), g133_1 (dbl), g133_2 (dbl), g_st_1 (dbl+lbl), g134_1 (dbl), g134_2
+#&gt;   (dbl), g134_3 (dbl), g134_4 (dbl), g134_5 (dbl), g134_6 (dbl), g134_7 (dbl),
+#&gt;   g134_8 (dbl), g251_1 (dbl+lbl), g251_2 (dbl+lbl), g251_3 (dbl+lbl), g251_4
+#&gt;   (dbl+lbl), g251_5 (dbl+lbl), g135 (dbl+lbl), g135_1 (dbl), g135_2 (dbl),
+#&gt;   g135_3 (dbl), g136 (dbl+lbl), g136_1 (dbl), g137 (dbl+lbl), g137_1 (dbl+lbl),
+#&gt;   g137_2 (dbl), g138 (dbl+lbl), g138_1 (dbl), g139 (dbl+lbl), g139_1 (dbl),
+#&gt;   g140 (dbl+lbl), g140_1 (dbl), g140_2 (dbl), g140_3 (dbl), g141 (dbl+lbl),
+#&gt;   g141_1 (dbl), g141_2 (dbl), g_itnd_1 (dbl+lbl), g142 (dbl), g_itnd_2
+#&gt;   (dbl+lbl), g143 (dbl), g144 (dbl+lbl), g144_1 (dbl), g144_2_1 (dbl), g144_2_2
+#&gt;   (dbl), g144_2_3 (dbl), g144_2_4 (dbl), g144_2_5 (dbl), g_itnd_3 (dbl+lbl),
+#&gt;   g145 (dbl), g146 (dbl), g147 (dbl), g_it_1 (dbl+lbl), g148_1_1 (dbl),
+#&gt;   g148_1_2 (dbl), g148_1_3 (dbl), g148_1_4 (dbl), g148_1_5 (dbl), g148_1_6
+#&gt;   (dbl), g148_1_7 (dbl), g148_1_8 (dbl), g148_1_9 (dbl), g148_1_12 (dbl),
+#&gt;   g148_1_10 (dbl), g148_1_11 (dbl), g_it_2 (dbl+lbl), g148_2_1 (dbl), g148_2_2
+#&gt;   (dbl), g148_2_3 (dbl), g148_2_4 (dbl), g148_2_5 (dbl), g148_2_6 (dbl),
+#&gt;   g148_2_7 (dbl), g148_2_8 (dbl), g148_2_9 (dbl), g148_2_12 (dbl), g148_2_10
+#&gt;   (dbl), g148_2_11 (dbl), g148_3 (dbl), g148_4 (dbl), g148_5_1 (dbl), g148_5_2
+#&gt;   (dbl), g149 (dbl+lbl), g149_1 (dbl+lbl), g150 (dbl+lbl), g255 (dbl+lbl), g256
+#&gt;   (dbl+lbl), g152 (dbl+lbl), g151_5 (dbl), g151_1 (dbl), g151_2 (dbl), g151_3
+#&gt;   (dbl), g151_3_1 (dbl), g151_4 (dbl), g257 (dbl), g153 (dbl+lbl), g153_1
+#&gt;   (dbl), g153_2 (dbl), g258 (dbl+lbl), g258_1 (dbl), g154 (dbl+lbl), g154_1
+#&gt;   (dbl), pobpcoac (dbl+lbl), subempleo (dbl), mto_cuota (dbl), mto_emer (dbl),
+#&gt;   mto_hogcon (dbl), mto_desay (dbl), mto_almue (dbl), mto_vacas (dbl),
+#&gt;   mto_oveja (dbl), mto_caball (dbl), lecheenpol (dbl), indaceliac (dbl),
+#&gt;   indaucc (dbl), indaemer (dbl), PT1 (dbl), PT2 (dbl), PT4 (dbl), pobre06
+#&gt;   (dbl+lbl), indigente06 (dbl+lbl)</div><div class='input'># }
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       <li><a href="#value">Value</a></li>
+      <li><a href="#details">Details</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>
 

@@ -26,7 +26,6 @@ get_ipc <- function(folder = tempdir()){
      dplyr::mutate(fecha = janitor::excel_numeric_to_date(as.numeric(as.character(.data$mes_y_ano)), date_system = "modern"))
   df <- df %>% dplyr::select(.data$fecha, dplyr::everything(), -.data$mes_y_ano)
   ipc_base2010 <- df
-
 }
 
 #' deflate

@@ -1,0 +1,6 @@
+test_that("emploiment works", {
+  a <- employment()
+  testthat::expect_equal(ncol(a), 583)
+  testthat::expect_warning(employment(a))
+  testthat::expect_error(employment(pobpcoac = "aaa"))
+})

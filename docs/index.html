@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">ech</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.10</span>
       </span>
     </div>
 
@@ -46,7 +46,13 @@
   </a>
 </li>
 <li>
+  <a href="articles/ech.html">Get started</a>
+</li>
+<li>
   <a href="reference/index.html">Reference</a>
+</li>
+<li>
+  <a href="news/index.html">Changelog</a>
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right"></ul>
@@ -62,29 +68,51 @@
       </header><div class="row">
   <div class="contents col-md-9">
 
-
-<!-- badges: end -->
 <div id="ech" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#ech" class="anchor"></a>ech</h1></div>
-<p>Caja de herramientas para el procesamiento de la <a href="http://www.ine.gub.uy/encuesta-continua-de-hogares1">Encuesta Continua de Hogares de Uruguay</a> realizada por en Instituto Nacional de Estadística (INE).</p>
-<div id="motivacion" class="section level2">
-<h2 class="hasAnchor">
-<a href="#motivacion" class="anchor"></a>Motivación</h2>
-<p>Este paquete pretende contribuir a la comunidad de usuaries de R en Uruguay, facilitando el uso de una de las encuestas socioeconómicas más importantes del país. En este sentido, el paquete implementa una serie de funciones que permiten el cálculo de los principales indicadores socioeconómicos que permite la encuesta.</p>
-</div>
+<a href="#ech" class="anchor"></a>ech <img align="right" src="reference/figures/ech_logo.png" alt="logo" width="160">
+</h1></div>
+<!-- badges: start -->
+<!-- [![CRAN/METACRAN Version](https://www.r-pkg.org/badges/version/ech)](https://CRAN.R-project.org/package=ech) -->
+<!-- [![CRAN/METACRAN Total downloads](http://cranlogs.r-pkg.org/badges/grand-total/ech?color=blue)](https://CRAN.R-project.org/package=ech)  -->
+<!-- [![CRAN/METACRAN downloads per month](http://cranlogs.r-pkg.org/badges/ech?color=orange)](https://CRAN.R-project.org/package=ech) -->
+
+<p>Caja de herramientas para el procesamiento de la <a href="http://www.ine.gub.uy/encuesta-continua-de-hogares1">Encuesta Continua de Hogares de Uruguay</a> realizada por en Instituto Nacional de Estadística (INE). Pretendiendo contribuir a la comunidad de usuaries de R en Uruguay, facilitando el uso de una de las encuestas socioeconómicas más importantes del país. En este sentido, el paquete implementa una serie de funciones que permiten el cálculo de los principales indicadores socioeconómicos que permite la encuesta.</p>
 </div>
 <div id="modo-de-uso" class="section level1">
 <h1 class="hasAnchor">
 <a href="#modo-de-uso" class="anchor"></a>Modo de uso</h1>
 <p>El paquete ech permite descargar los microdatos oficiales desde la web del INE o bien utilizar microdatos ya procesados. En el primer caso los datos se obtiene a través de la función get_microdata(). En el segundo caso, si la persona ha modificado los nombres originales de las variables deberá indicarlo en cada función que utilice.</p>
+<p>Ejemplo de descarga de microdatos:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">
+<span class="co"># Cargo la libreria</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ech)
+
+<span class="co"># Cargo la base</span>
+<span class="kw"><a href="reference/get_microdata.html">get_microdata</a></span>(<span class="dt">year =</span> <span class="st">"2016"</span>, <span class="co"># Año/s a descargar (2011-2019)</span>
+              <span class="dt">folder =</span> <span class="kw"><a href="https://rdrr.io/r/base/tempfile.html">tempdir</a></span>(), <span class="co"># Carpeta para descarga   </span>
+              <span class="dt">toR =</span> <span class="ot">TRUE</span>) <span class="co"># Si lo cargamos al entorno de R</span></code></pre></div>
+<p>Ejemplo de estimación:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Genero la estimación</span>
+<span class="kw"><a href="reference/get_estimation_mean.html">get_estimation_mean</a></span>(<span class="dt">data =</span> ech<span class="op">::</span>toy_ech_<span class="dv">2018</span>,
+                           <span class="dt">variable =</span> <span class="ot">NULL</span>,
+                           <span class="dt">by.x =</span> <span class="ot">NULL</span>,
+                           <span class="dt">by.y =</span> <span class="ot">NULL</span>,
+                           <span class="dt">domain =</span> <span class="ot">NULL</span>,
+                           <span class="dt">level =</span> <span class="ot">NULL</span>)</code></pre></div>
 <p>El uso de este paquete se potencia al usarlo en conjunto con <a href="https://github.com/RichDeto/geouy">geouy</a> posibilitando mapear utilizando diferentes capas geográficas de Uruguay.</p>
 </div>
 <div id="instalacion" class="section level1">
 <h1 class="hasAnchor">
 <a href="#instalacion" class="anchor"></a>Instalación</h1>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages("devtools")</span>
-devtools<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/devtools/man/remote-reexports.html">install_github</a></span>(<span class="st">"calcita/ech"</span>)</code></pre></div>
+<!-- Para la versión estable -->
+<p>Para la versión en desarrollo</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">
+<span class="co"># install.packages('devtools') </span>
+<span class="co"># si no tiene instalado devtools</span>
+
+devtools<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/devtools/man/remote-reexports.html">install_github</a></span>(<span class="st">"calcita/ech"</span>)
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ech)</code></pre></div>
 <div id="contribuciones" class="section level2">
 <h2 class="hasAnchor">
 <a href="#contribuciones" class="anchor"></a>Contribuciones</h2>
