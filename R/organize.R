@@ -1,20 +1,23 @@
-#'Funcion para etiquetar las bases de la ECH con referencia al 2017.
+#' A funtion to organize variables names of ECH with reference in 2017.
 #'
 #'@param data data frame contains the ECH microdata
 #'@param level (string) indicates whether the base to be labelled is of the type "household", "h", "individual", "i" or both, "hyp"
 #'@param year numeric reference year of the data. Available from 2006 to 2019
+#'@export
 #'@details
 #'Disclaimer: El script no es un producto oficial de INE.
 #'@examples
-#'df <- organize_labels(data = ech::toy_ech_2018, year = 2018, level = "h")
-#'@export
+#'\donttest{
+#'df <- organize_names(data = ech::toy_ech_2018, year = 2018, level = "h")
+#'}
 
 
-organize_labels <- function(data, year, level = "individual"){
+
+organize_names <- function(data, year, level = "individual"){
   assertthat::assert_that(is.data.frame(data))
   assertthat::assert_that(level %in% c("household", "h", "individual", "i", "hyp"),
                           msg = "Check the level selected")
-  assertthat::assert_that(year %in% 2006:2018, msg = glue::glue("Para {year} aun no esta procesado"))
+  assertthat::assert_that(year %in% 2006:2019,  msg = glue::glue("Para {year} aun no esta procesado"))
   n <- ech::dic
   if(level %in% "hyp"){
     nh <- n %>%

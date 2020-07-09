@@ -5,7 +5,7 @@
 \alias{dic}
 \title{Data of variables names in time}
 \format{
-A data frame with 580 rows and 15 variables:
+A data frame with 977 rows and 19 variables:
 \describe{
   \item{codigos}{Code oh label}
   \item{descripcion}{Description of label}
@@ -25,6 +25,7 @@ A data frame with 580 rows and 15 variables:
   \item{var16}{ECH variables names 2016}
   \item{var17}{ECH variables names 2017}
   \item{var18}{ECH variables names 2018}
+  \item{var19}{ECH variables names 2019}
   ...
 }
 }

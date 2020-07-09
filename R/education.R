@@ -33,7 +33,7 @@ enrolled_school <- function(data = ech::toy_ech_2018,
                             e221 = "e221",
                             e224 = "e224") {
 
-# checks ---
+  # checks ---
   assertthat::assert_that(is.data.frame(data))
   assertthat::assert_that(e193  %in% names(data), msg =  glue:glue("Sorry... :( \n {e193} is not in data"))
   assertthat::assert_that(e197  %in% names(data), msg =  glue:glue("Sorry... :( \n {e197} is not in data"))
@@ -57,7 +57,6 @@ enrolled_school <- function(data = ech::toy_ech_2018,
                                                        TRUE ~ 0))
 }
 
-
 #' A function to calculate the years of schooling
 #'
 #' @param data data frame
@@ -73,11 +72,16 @@ enrolled_school <- function(data = ech::toy_ech_2018,
 #' @param e51_9 years passed in university or similar
 #' @param e51_10 years passed in tertiary (non-university)
 #' @param e51_11 years passed in postgrade
+#' @export
+#' @importFrom dplyr mutate case_when
+#' @importFrom magrittr %<>%
+#' @importFrom rlang .data
+#' @importFrom glue glue
 #' @details
 #' Disclaimer: El script no es un producto oficial de INE.
 #' @examples
 #' \donttest{
-#' toy_ech_2018 <-years_of_schooling(data = ech::toy_ech_2018)
+#' toy_ech_2018 <- years_of_schooling(data = ech::toy_ech_2018)
 #' }
 
 years_of_schooling <- function(data = ech::toy_ech_2018,
@@ -92,8 +96,22 @@ years_of_schooling <- function(data = ech::toy_ech_2018,
                                e51_8 = "e51_8",
                                e51_9 = "e51_9",
                                e51_10 = "e51_10",
-                               e51_11 = "e51_11"
-                               ){
+                               e51_11 = "e51_11"){
+
+  # checks ---
+  assertthat::assert_that(is.data.frame(data))
+  assertthat::assert_that(e193  %in% names(data), msg =  glue:glue("Sorry... :( \n {e193} is not in data"))
+  assertthat::assert_that(e51_2  %in% names(data), msg =  glue:glue("Sorry... :( \n {e51_2} is not in data"))
+  assertthat::assert_that(e51_3  %in% names(data), msg =  glue:glue("Sorry... :( \n {e51_3} is not in data"))
+  assertthat::assert_that(e51_4  %in% names(data), msg =  glue:glue("Sorry... :( \n {e51_4} is not in data"))
+  assertthat::assert_that(e51_5  %in% names(data), msg =  glue:glue("Sorry... :( \n {e51_5} is not in data"))
+  assertthat::assert_that(e51_6  %in% names(data), msg =  glue:glue("Sorry... :( \n {e51_6} is not in data"))
+  assertthat::assert_that(e51_7  %in% names(data), msg =  glue:glue("Sorry... :( \n {e51_7} is not in data"))
+  assertthat::assert_that(e51_7_1  %in% names(data), msg =  glue:glue("Sorry... :( \n {e51_7_1} is not in data"))
+  assertthat::assert_that(e51_8  %in% names(data), msg =  glue:glue("Sorry... :( \n {e51_8} is not in data"))
+  assertthat::assert_that(e51_9  %in% names(data), msg =  glue:glue("Sorry... :( \n {e51_9} is not in data"))
+  assertthat::assert_that(e51_10  %in% names(data), msg =  glue:glue("Sorry... :( \n {e51_10} is not in data"))
+  assertthat::assert_that(e51_11  %in% names(data), msg =  glue:glue("Sorry... :( \n {e51_11} is not in data"))
 
   data %<>%
     dplyr::mutate_at(dplyr::vars({{e51_2}}, {{e51_3}}, {{e51_4}}, {{e51_5}}, {{e51_6}}, {{e51_7}}), list(~ ifelse( . == 9, 0, .))) %>%
@@ -105,33 +123,32 @@ years_of_schooling <- function(data = ech::toy_ech_2018,
 
 
   data %<>% dplyr::mutate(anios_edu = dplyr::case_when(e49 == 2 ~ 0, # nunca asistió
-                                     e51_11 %in% 1:6 ~ pmax(12 + e51_9 + e51_11, # sec + uni + pos
-                                                            12 + e51_8 + e51_11, # sec + mag + pos
-                                                            12 + e51_10 + e51_11), # sec + ter + pos
-                                     e51_9 %in% 1:8 | e51_10 %in% 1:8 |
-                                       e51_8 %in% 1:8 | e51_7_1 == 1 |
-                                       (e51_7_1 == 2 & e51_72 > 3) ~ pmax(12 + e51_9, # sec + uni
-                                                                          12 + e51_10, # sec + ter
-                                                                          12 + e51_8, # sec + mag
-                                                                          12 + e51_71, # sec + tec
-                                                                          9 + e51_72), # cb + tec
-                                     e51_7_1 == 2 | e51_6 %in% 1:3 |
-                                       e51_5 %in% 1:3 ~ pmax(9 + e51_72, # cb + tec
-                                                             9 + e51_6, # cb + bach tec.
-                                                             9 + e51_5, # cb + bach
-                                                             6 + e51_73), # cb + tec
-                                     e51_4 %in% 1:3 | e51_7_1 == 3 ~ pmax(6 + e51_4, # pri + cb
-                                                                          6 + e51_73), # pri + tec
-                                     e51_2 %in% 1:6 | e51_7_1 == 4 | e51_3 %in% 1:4 ~ pmax(e51_2, # pri
-                                                                                           e51_74, # tec
-                                                                                           e51_3), # pri esp
-                                     e193 %in% 1:2 ~ 0,
-                                     TRUE ~ 0))
+                                                       e51_11 %in% 1:6 ~ pmax(12 + e51_9 + e51_11, # sec + uni + pos
+                                                                              12 + e51_8 + e51_11, # sec + mag + pos
+                                                                              12 + e51_10 + e51_11), # sec + ter + pos
+                                                       e51_9 %in% 1:8 | e51_10 %in% 1:8 |
+                                                         e51_8 %in% 1:8 | e51_7_1 == 1 |
+                                                         (e51_7_1 == 2 & e51_72 > 3) ~ pmax(12 + e51_9, # sec + uni
+                                                                                            12 + e51_10, # sec + ter
+                                                                                            12 + e51_8, # sec + mag
+                                                                                            12 + e51_71, # sec + tec
+                                                                                            9 + e51_72), # cb + tec
+                                                       e51_7_1 == 2 | e51_6 %in% 1:3 |
+                                                         e51_5 %in% 1:3 ~ pmax(9 + e51_72, # cb + tec
+                                                                               9 + e51_6, # cb + bach tec.
+                                                                               9 + e51_5, # cb + bach
+                                                                               6 + e51_73), # cb + tec
+                                                       e51_4 %in% 1:3 | e51_7_1 == 3 ~ pmax(6 + e51_4, # pri + cb
+                                                                                            6 + e51_73), # pri + tec
+                                                       e51_2 %in% 1:6 | e51_7_1 == 4 | e51_3 %in% 1:4 ~ pmax(e51_2, # pri
+                                                                                                             e51_74, # tec
+                                                                                                             e51_3), # pri esp
+                                                       e193 %in% 1:2 ~ 0,
+                                                       TRUE ~ 0))
 
   data %<>% dplyr::mutate(anios_edu = dplyr::case_when(anios_edu < 12 & (e51_9 == 9 | e51_8 == 9 |
-                                                           e51_10 == 9 | (e51_7 == 9 & e51_7_1 == 1)) ~ 12,
-                                               anios_edu > 22 ~ 22,
-                                               TRUE ~ anios_edu))
+                                                                           e51_10 == 9 | (e51_7 == 9 & e51_7_1 == 1)) ~ 12,
+                                                       anios_edu > 22 ~ 22,
+                                                       TRUE ~ anios_edu))
 }
-
 

@@ -1,0 +1,58 @@
+---
+title: "Ejemplo de uso del paquete `ech`"
+author: Richard Detomasi
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Ejemplo de uso del paquete `ech`}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+	eval = FALSE,
+	message = FALSE,
+	warning = FALSE,
+	include = FALSE
+)
+```
+
+
+El paquete `ech` tiene como objetivo facilitar el trabajo de les usuaries que trabajen con los datos de la Encuesta Continua de Hogares (ECH) de Uruguay, y este tutorial busca ejemplificar el uso de las funciones del paquete.
+
+## Instalación
+
+Para instalar la versión estable del paquete usar:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, include=TRUE}
+install.packages('ech')
+```
+
+Para instalar la versión en desarrollo:
+
+```{r, eval=FALSE, message=FALSE, warning=FALSE, include=TRUE}
+# install.packages('devtools') si no tiene instalado devtools
+devtools::install_github("calcita/ech")
+```
+
+Para activarla 
+
+```{r  message=FALSE, warning=FALSE, include=TRUE }
+library(ech)
+```
+
+
+## Ejemplos de usos
+
+
+### Cargar bases
+
+#### ECH
+
+#### IPC
+
+#### CIIU
+
