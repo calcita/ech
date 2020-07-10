@@ -7,6 +7,7 @@
 #' @param by.y data frame column
 #' @param domain subpopulation reference setted as logical
 #' @param level is household ("h") or individual ("i").
+#' @param name name for the estimation new column
 #' @import survey
 #' @import srvyr
 #' @importFrom assertthat assert_that
@@ -26,7 +27,8 @@ get_estimation_mean <- function(data = ech::toy_ech_2018,
                            by.x = NULL,
                            by.y = NULL,
                            domain = NULL,
-                           level = NULL){
+                           level = NULL,
+                           name = "estimacion"){
  # checks ----
   assertthat::assert_that(!is.null(data) | !is.null(variable), msg = "Debe indicar la variable")
   assertthat::assert_that(all(variable %in% names(data)), msg = glue::glue("La variable {variable} no esta en {data}"))
@@ -70,7 +72,9 @@ get_estimation_mean <- function(data = ech::toy_ech_2018,
       srvyr::group_by(.data[[by.x]], .data[[by.y]], add = T) %>%
       srvyr::summarise(colname = srvyr::survey_mean(.data[[variable]]))
   }
-
+  if (name != "estimacion"){
+    names(estimation) <- stringr::str_replace_all(names(estimation), "colname", name)
+  }
   return(estimation)
 
 }
@@ -84,6 +88,7 @@ get_estimation_mean <- function(data = ech::toy_ech_2018,
 #' @param by.y data frame column
 #' @param domain subpopulation reference setted as logical
 #' @param level is household ("h") or individual ("i").
+#' @param name name for the estimation new column
 #' @import survey
 #' @import srvyr
 #' @importFrom assertthat assert_that
@@ -103,7 +108,8 @@ get_estimation_total <- function(data = ech::toy_ech_2018,
                                 by.x = NULL,
                                 by.y = NULL,
                                 domain = NULL,
-                                level = NULL){
+                                level = NULL,
+                                name = "estimacion"){
   # checks ----
   assertthat::assert_that(!is.null(data) | !is.null(variable), msg = "Debe indicar la variable")
   assertthat::assert_that(all(variable %in% names(data)), msg = glue::glue("La variable {variable} no esta en {data}"))
@@ -146,7 +152,9 @@ get_estimation_total <- function(data = ech::toy_ech_2018,
       srvyr::group_by(.data[[by.x]], .data[[by.y]]) %>%
       srvyr::summarise(colname = srvyr::survey_total(.data[[variable]]))
   }
-
+  if (name != "estimacion"){
+    names(estimation) <- stringr::str_replace_all(names(estimation), "colname", name)
+  }
   return(estimation)
 
 }
@@ -161,7 +169,8 @@ get_estimation_total <- function(data = ech::toy_ech_2018,
 #' @param by.x data frame column
 #' @param by.y data frame column
 #' @param domain subpopulation reference setted as logical
-#' @param level is household or individual
+#' @param level is household ("h") or individual ("i")
+#' @param name name for the estimation new column
 #' @importFrom dplyr mutate select filter group_by %>%
 #' @importFrom glue glue
 #' @importFrom srvyr summarise
@@ -183,7 +192,8 @@ get_estimation_ratio <- function(data = ech::toy_ech_2018,
                                 by.x = NULL,
                                 by.y = NULL,
                                 domain = NULL,
-                                level = NULL){
+                                level = NULL,
+                                name = "estimacion"){
 
   # checks ----
   assertthat::assert_that(!is.null(data) | !is.null(variable.x) | !is.null(variable.y), msg = "Debe indicar la variable")
@@ -228,7 +238,9 @@ get_estimation_ratio <- function(data = ech::toy_ech_2018,
       srvyr::group_by(.data[[by.x]], .data[[by.y]]) %>%
       srvyr::summarise(colname = srvyr::survey_ratio(.data[[variable.x]], .data[[variable.y]]))
   }
-
+  if (name != "estimacion"){
+    names(estimation) <- stringr::str_replace_all(names(estimation), "colname", name)
+  }
   return(estimation)
 
 }

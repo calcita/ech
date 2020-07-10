@@ -10,7 +10,8 @@ get_estimation_mean(
   by.x = NULL,
   by.y = NULL,
   domain = NULL,
-  level = NULL
+  level = NULL,
+  name = "estimacion"
 )
 }
 \arguments{
@@ -25,6 +26,8 @@ get_estimation_mean(
 \item{domain}{subpopulation reference setted as logical}
 
 \item{level}{is household ("h") or individual ("i").}
+
+\item{name}{name for the estimation new column}
 }
 \value{
 table

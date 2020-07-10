@@ -1,5 +1,5 @@
-test_that("read_microdata works", {
-  # get_microdata(year = 2018, folder = tempdir(), toR = TRUE)
-  aaa <- read_microdata(path = "data/toy_ech_2018.rda")
-  expect_true("aaa" %in% ls())
-})
+# test_that("read_microdata works", {
+#   get_microdata(year = 2016, folder = tempdir(), toR = FALSE)
+#   read_microdata(path = paste0(fs::path_package("ech"),"data/toy_ech_2018.rda"))
+#   expect_true("toy_ech_2018" %in% ls())
+# })

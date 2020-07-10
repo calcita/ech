@@ -1,6 +1,6 @@
 test_that("get_estimation_mean works", {
   d = ech::toy_ech_2018
-  a <- get_estimation_mean(data = d, variable = "pobre06", level = "h")
+  a <- get_estimation_mean(data = d, variable = "pobre06", level = "h", name = "hogares_pobre_mean")
   expect_equal(nrow(a), 1)
   a <- get_estimation_mean(data = d, variable = "pobre06", domain = d$dpto == 1, level = "h")
   expect_equal(nrow(a), 1)
@@ -16,7 +16,7 @@ test_that("get_estimation_mean works", {
 
 test_that("get_estimation_total works", {
   d = ech::toy_ech_2018
-  a <- get_estimation_total(variable = "pobre06", level = "h")
+  a <- get_estimation_total(variable = "pobre06", level = "h", name = "hogares_pobre_total")
   expect_equal(nrow(a), 1)
   a <- get_estimation_total(data = d, variable = "pobre06", domain = d$dpto == 1, level = "h")
   expect_equal(nrow(a), 1)
@@ -32,7 +32,7 @@ test_that("get_estimation_total works", {
 
 test_that("get_estimation_ratio works", {
   ech_2018 <- employment(data = ech::toy_ech_2018, pobpcoac = "pobpcoac")
-  a <- get_estimation_ratio(data = ech_2018, variable.x = "po", variable.y = "pea", level = "i")
+  a <- get_estimation_ratio(data = ech_2018, variable.x = "po", variable.y = "pea", level = "i", name = "tasa_ocupacion")
   expect_equal(nrow(a), 1)
   a <- get_estimation_ratio(data = ech_2018, variable.x = "po", variable.y = "pea", domain = ech_2018$dpto == 1, level = "i")
   expect_equal(nrow(a), 1)
