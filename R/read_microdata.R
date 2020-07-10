@@ -6,6 +6,9 @@
 #' Disclaimer: El script no es un producto oficial de INE.
 #' @return an object called df
 #' @export
+#' @example
+#' path <- system.file("data", "toy_ech_2018.rda", package = "ech")
+#' read_microdata(path)
 
 read_microdata <- function(path = NULL){
 
