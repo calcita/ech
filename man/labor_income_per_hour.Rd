@@ -10,8 +10,8 @@ labor_income_per_hour(
   f85 = "f85",
   pobpcoac = "pobpcoac",
   pt4 = "pt4",
-  base_month = "base.month",
-  base_year = "base.year"
+  base_month = NULL,
+  base_year = NULL
 )
 }
 \arguments{

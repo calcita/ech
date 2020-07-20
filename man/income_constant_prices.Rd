@@ -6,8 +6,8 @@
 \usage{
 income_constant_prices(
   data = ech::toy_ech_2017_income,
-  base.month = 6,
-  base.year = 2017,
+  base_month = 6,
+  base_year = 2017,
   mes = "mes",
   ht11 = "ht11",
   ysvl = "YSVL",
@@ -18,9 +18,9 @@ income_constant_prices(
 \arguments{
 \item{data}{data frame with ECH microdata}
 
-\item{base.month}{mes base}
+\item{base_month}{mes base}
 
-\item{base.year}{anio base}
+\item{base_year}{anio base}
 
 \item{mes}{mes}
 

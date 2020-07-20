@@ -62,7 +62,7 @@ get_ipc_region <- function(folder = tempdir(), region = "M", sheet = NULL){
   try(utils::download.file(u, f, mode = "wb", method = "libcurl"))
   df <- readxl::read_xls(f, sheet = sheet)
   df <- df[,-1] %>% janitor::remove_empty("rows")
-  df <- dplyr::bind_rows(slice(df, 1), dplyr::filter_all(df, dplyr::any_vars(grepl('Índice General', .))))
+  df <- dplyr::bind_rows(slice(df, 1), dplyr::filter_all(df, dplyr::any_vars(grepl('ndice General', .))))
   names(df) <- df[1,]
   df <- df[-1,]
   df <- df %>% dplyr::select(dplyr::contains("20"))

@@ -2,8 +2,8 @@
 #'
 #' @description Household income constant prices
 #' @param data data frame with ECH microdata
-#' @param base.month mes base
-#' @param base.year anio base
+#' @param base_month mes base
+#' @param base_year anio base
 #' @param mes mes
 #' @param ht11 ht11
 #' @param ysvl ysvl
@@ -22,16 +22,16 @@
 #' }
 
 income_constant_prices <- function(data = ech::toy_ech_2017_income,
-                                   base.month = 6,
-                                   base.year = 2017,
+                                   base_month = 6,
+                                   base_year = 2017,
                                    mes = "mes",
                                    ht11 = "ht11",
                                    ysvl = "YSVL",
                                    ht13 = "ht13",
                                    ht19 = "ht19"){
 
-  deflate <- ech::deflate(base.month = base.month,
-                          base.year = base.year)
+  deflate <- ech::deflate(base_month = base_month,
+                          base_year = base_year)
   # Asigna deflactor
   data <- data %>% dplyr::mutate(aux = as.integer(haven::zap_labels(.data[[mes]]))) %>%
     dplyr::left_join(deflate, by = c("aux" = "mes"), keep = F)
@@ -217,7 +217,7 @@ labor_income_per_capita <- function(data = ech::toy_ech_2018,
 #'
 #' @example
 #' \donttest{
-#' toy_ech_2018 <- labor_income_per_hour(data =  ech::toy_ech_2018)
+#' toy_ech_2018 <- labor_income_per_hour(data = ech::toy_ech_2018, base_month = 6, base_year = 2018)
 #' }
 #'
 labor_income_per_hour <- function(data = ech::toy_ech_2018,
@@ -225,17 +225,17 @@ labor_income_per_hour <- function(data = ech::toy_ech_2018,
                                   f85 = "f85",
                                   pobpcoac = "pobpcoac",
                                   pt4 = "pt4",
-                                  base_month = "base.month",
-                                  base_year = "base.year"){
+                                  base_month = NULL,
+                                  base_year = NULL){
 
   names(data) <- tolower(names(data))
-  deflate_mdeo <- ech::deflate(base.month = base.month,
-                            base.year = base.year,
+  deflate_mdeo <- ech::deflate(base_month = base_month,
+                            base_year = base_year,
                             ipc = "M")
   names(deflate_mdeo)[1] <- "deflate_mdeo"
 
-  deflate_int <- ech::deflate(base.month = base.month,
-                               base.year = base.year,
+  deflate_int <- ech::deflate(base_month = base_month,
+                               base_year = base_year,
                                ipc = "I")
   names(deflate_int)[1] <- "deflate_int"
 
