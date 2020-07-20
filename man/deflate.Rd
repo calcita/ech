@@ -4,20 +4,22 @@
 \alias{deflate}
 \title{deflate}
 \usage{
-deflate(base.month = base.month, base.year = base.year, ipc = "country")
+deflate(base_month = NULL, base_year = NULL, ipc = "G", df_year = NULL)
 }
 \arguments{
-\item{base.month}{mes base}
+\item{base_month}{mes base}
 
-\item{base.year}{anio base}
+\item{base_year}{anio base}
 
-\item{ipc}{IPC a nivel nacional o Mdeo-Interior}
+\item{ipc}{IPC a nivel nacional ('G'), IPC para Montevideo ('M') e IPC para Interior ('I')}
+
+\item{df_year}{anio del data frame}
 }
 \description{
 deflate
 }
 \examples{
 \donttest{
-deflate(base.month = 6, base.year = 2016)
+deflate(base_month = 6, base_year = 2016, df_year = 2016)
 }
 }

@@ -28,43 +28,115 @@ get_ipc <- function(folder = tempdir()){
   ipc_base2010 <- df
 }
 
+#' Title
+#'
+#' @param folder ruta temporal para descargar el archivo
+#' @param region Montevideo ("M") o Interior ("I")
+#' @param sheet numero de hoja de la planilla
+#'
+#' @importFrom readxl read_xls
+#' @importFrom dplyr slice mutate select everything filter_all slice any_vars bind_rows
+#' @importFrom tidyr gather separate
+#' @importFrom janitor clean_names excel_numeric_to_date
+#' @importFrom fs path
+#' @importFrom magrittr %>%
+#' @return
+#' @export
+#'
+#' @examples
+#' \donttest{
+#' get_ipc_region(folder = tempdir(), region = "M")
+#' }
+#'
+get_ipc_region <- function(folder = tempdir(), region = "M", sheet = NULL){
+
+  if (region == "M") {
+    u <- "http://www.ine.gub.uy/c/document_library/get_file?uuid=c7628833-9b64-44a4-ac97-d13353ee79ac&groupId=10181"
+    f <- fs::path(folder, "IPC 3.1 indvarinc_ div M_B10_Mon.xls")
+  }
+  else {
+    u <- "http://www.ine.gub.uy/c/document_library/get_file?uuid=61f9e884-781d-44be-9760-6d69f214b5b3&groupId=10181"
+    f <- fs::path(folder, "IPC 3.2 indvarinc_ div M_B10_Int.xls")
+  }
+
+  try(utils::download.file(u, f, mode = "wb", method = "libcurl"))
+  df <- readxl::read_xls(f, sheet = sheet)
+  df <- df[,-1] %>% janitor::remove_empty("rows")
+  df <- dplyr::bind_rows(slice(df, 1), dplyr::filter_all(df, dplyr::any_vars(grepl('Índice General', .))))
+  names(df) <- df[1,]
+  df <- df[-1,]
+  df <- df %>% dplyr::select(dplyr::contains("20"))
+  df <- janitor::clean_names(df)
+  df <- tidyr::gather(df, fecha, indice, names(df)[1]:names(df)[ncol(df)], factor_key = TRUE)
+  df <- df %>%
+    tidyr::separate(fecha, into = c("mm", "yy"), sep ="_") %>%
+    dplyr::mutate(
+    mm = dplyr::case_when(mm == "enero" ~ "01",
+                   mm == "febrero" ~ "02",
+                   mm == "marzo" ~ "03",
+                   mm == "abril" ~ "04",
+                   mm == "mayo" ~ "05",
+                   mm == "junio" ~ "06",
+                   mm == "julio" ~ "07",
+                   mm == "agosto" ~ "08",
+                   mm == "setiembre" ~ "09",
+                   mm == "octubre" ~ "10",
+                   mm == "noviembre" ~ "11",
+                   TRUE ~ "12"),
+    dd = "01",
+    fecha = paste(yy, mm, dd, sep ="-")
+  )
+  df <- df %>% dplyr::select(fecha, indice)
+
+  if (region == "M") {
+    ipc_base2010_mdeo <- df
+  }
+  else{
+    ipc_base2010_int <- df
+  }
+}
+
 #' deflate
 #'
-#' @param base.month mes base
-#' @param base.year anio base
-#' @param ipc IPC a nivel nacional o Mdeo-Interior
-#' @importFrom dplyr select slice mutate %>%
+#' @param base_month mes base
+#' @param base_year anio base
+#' @param ipc IPC a nivel nacional ('G'), IPC para Montevideo ('M') e IPC para Interior ('I')
+#' @param df_year anio del data frame
+#'
+#' @importFrom dplyr select slice mutate
 #' @importFrom rlang .data
 #' @export
 #' @examples
 #' \donttest{
-#' deflate(base.month = 6, base.year = 2016)
+#' deflate(base_month = 6, base_year = 2016, df_year = 2016)
 #' }
 
-deflate <- function(base.month = base.month,
-                     base.year = base.year,
-                     ipc = "country") {
-   system.file("R", "sysdata.rda", package = "ech")
-#   if (ipc = "country") {
-     mes_base <- ipc_base2010 %>%
-       filter(.data$fecha == paste0(base.year, "-",base.month, "-01")) %>%
-       select(.data$indice) %>% as.numeric
+deflate <- function(base_month = NULL,
+                    base_year = NULL,
+                    ipc = "G",
+                    df_year = NULL) {
 
-     rows1 <- which(ipc_base2010$fecha == paste0(base.year - 1, "-",12, "-01"))
-     rows2 <- which(ipc_base2010$fecha == paste0(base.year, "-",11, "-01"))
+  if (ipc == "G") {
+     df <- ech::ipc_base2010
+   }  else if (ipc == "M"){
+    df <- ech::ipc_base2010_mdeo
+   } else {
+     df <- ech::ipc_base2010_int
+  }
 
-     # Calcula el deflactor
-     deflate <- ipc_base2010 %>%
-       slice(rows1:rows2) %>%
-       mutate(deflate = mes_base/as.numeric(.data$indice),
+     mes_base <- df %>%
+       dplyr::filter(.data$fecha == paste0(base_year, "-", base_month, "-01")) %>%
+       dplyr::select(.data$indice) %>% as.numeric
+
+     rows1 <- which(df$fecha == paste0(df_year - 1, "-",12, "-01"))
+     rows2 <- which(df$fecha == paste0(df_year, "-",11, "-01"))
+
+     deflate <- df %>%
+       dplyr::slice(rows1:rows2) %>%
+       dplyr::mutate(deflate = mes_base/as.numeric(.data$indice),
               mes = 1:12
        ) %>%
-       select(.data$deflate, .data$mes)
-
-#   } else {
-#     # ipc mont int
-#   }
-
+       dplyr::select(.data$deflate, .data$mes)
 }
 
 

@@ -655,3 +655,43 @@
 #'  }
 #' @source \url{http://www.ine.gub.uy/}
 "ciiu4"
+
+
+#' Data IPC
+#'
+#' A dataset containing the IPC base 2010
+#'
+#' @format A data frame with 990 rows and 5 variables:
+#' \describe{
+#'   \item{fecha}{date from 1937 to 2019}
+#'   \item{indice}{IPC}
+#'   \item{mensual}{value of IPC}
+#'   \item{acum_ano}{acumulated IPC}
+#'   \item{acum_12_meses}{acumulated IPC last 12 month}
+#'  }
+#' @source \url{http://www.ine.gub.uy/}
+"ipc_base2010"
+
+#' Data IPC (Interior)
+#'
+#' A dataset containing the IPC base 2010 only for the Interior region
+#'
+#' @format A data frame with 120 rows and 2 variables:
+#' \describe{
+#'   \item{fecha}{date from 2011 to 2019}
+#'   \item{indice}{IPC}
+#'  }
+#' @source \url{http://www.ine.gub.uy/}
+"ipc_base2010_int"
+
+#' Data IPC (Montevideo)
+#'
+#' A dataset containing the IPC base 2010 only for the Montevideo region
+#'
+#' @format A data frame with 120 rows and 2 variables:
+#' \describe{
+#'   \item{fecha}{date from 2011 to 2019}
+#'   \item{indice}{IPC}
+#'  }
+#' @source \url{http://www.ine.gub.uy/}
+"ipc_base2010_mdeo"
