@@ -125,6 +125,9 @@ labor_income_per_capita(
 
 \item{g144_2_5}{retiro de productos para consumo propio (trabajador/a no agropecuario/a)}
 }
+\value{
+
+}
 \description{
 Labor income per capita
 }

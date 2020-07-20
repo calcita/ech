@@ -4,6 +4,7 @@
 #' @param data data frame with ECH microdata
 #' @param base_month mes base
 #' @param base_year anio base
+#' @param df_year anio ech (default anio base)
 #' @param mes mes
 #' @param ht11 ht11
 #' @param ysvl ysvl
@@ -24,6 +25,7 @@
 income_constant_prices <- function(data = ech::toy_ech_2017_income,
                                    base_month = 6,
                                    base_year = 2017,
+                                   df_year = base_year,
                                    mes = "mes",
                                    ht11 = "ht11",
                                    ysvl = "YSVL",
@@ -31,7 +33,8 @@ income_constant_prices <- function(data = ech::toy_ech_2017_income,
                                    ht19 = "ht19"){
 
   deflate <- ech::deflate(base_month = base_month,
-                          base_year = base_year)
+                          base_year = base_year,
+                          df_year = df_year)
   # Asigna deflactor
   data <- data %>% dplyr::mutate(aux = as.integer(haven::zap_labels(.data[[mes]]))) %>%
     dplyr::left_join(deflate, by = c("aux" = "mes"), keep = F)
@@ -133,7 +136,8 @@ income_quantiles <- function(data = ech::toy_ech_2017_income,
 #' @param g144_2_3 retiro de productos para consumo propio (trabajador/a no agropecuario/a)
 #' @param g144_2_4 retiro de productos para consumo propio (trabajador/a no agropecuario/a)
 #' @param g144_2_5 retiro de productos para consumo propio (trabajador/a no agropecuario/a)
-#'
+#' @export
+#' @return
 #' @importFrom dplyr mutate case_when
 #' @details
 #' Disclaimer: El script no es un producto oficial de INE.
