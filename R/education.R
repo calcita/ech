@@ -148,7 +148,104 @@ years_of_schooling <- function(data = ech::toy_ech_2018,
 
   data %<>% dplyr::mutate(anios_edu = dplyr::case_when(anios_edu < 12 & (e51_9 == 9 | e51_8 == 9 |
                                                                            e51_10 == 9 | (e51_7 == 9 & e51_7_1 == 1)) ~ 12,
-                                                       anios_edu > 22 ~ 22,
                                                        TRUE ~ anios_edu))
 }
 
+
+
+#' Title
+#'
+#' @param data data frame
+#' @param e51_2 years passed in primary
+#' @param e51_3 years passed in special primary
+#' @param e51_4 years passed in lower secondary
+#' @param e51_5 years passed in upper secondary
+#' @param e51_6 years passed in bachillerato tecnologico
+#' @param e51_7 years passed in technical education
+#' @param e51_7_1 technical education requirements
+#' @param e51_8 years passed in magisterio/profesorado
+#' @param e51_9 years passed in university or similar
+#' @param e51_10 years passed in tertiary (non-university)
+#' @param e51_11 years passed in postgrade
+#' @param e193  attendance school
+#' @param e49 attendance school ever
+#'
+#' @details
+#' Disclaimer: El script no es un producto oficial de INE.
+#' @examples
+#' \donttest{
+#' toy_ech_2018 <- max_level_education(data = ech::toy_ech_2018)
+#' }
+
+max_level_education <- function(data = ech::toy_ech_2018,
+                                e51_2 = "e51_2",
+                                e51_3 = "e51_3",
+                                e51_4 = "e51_4",
+                                e51_5 = "e51_5",
+                                e51_6 = "e51_6",
+                                e51_7 = "e51_7",
+                                e51_7_1 = "e51_7_1",
+                                e51_8 = "e51_8",
+                                e51_9 = "e51_9",
+                                e51_10 = "e51_10",
+                                e51_11 = "e51_11",
+                                e193 = "e193",
+                                e49 = "e49"
+                                ){
+
+  data <- data %>% dplyr::mutate(
+    nivel_educativo = dplyr::case_when(
+      e49 == 2 & e51_2 == 0 & e51_3 == 0 & e51_4 == 0 & e51_5 == 0 & e51_6 == 0 & e51_7 == 0 & e51_8 == 0 & e51_9 == 0 & e51_10 == 0 & e51_11 == 0 ~ "Sin instruccion",
+      e51_2 == 9 | e51_3 == 9 | e193 == 1 ~ "Sin instruccion",
+      e51_2 == 0 & e51_3 == 0 ~ "Sin instruccion",
+      e51_2 %in% 1:6 & e51_4 %in% c(0, 9) ~ "Primaria",
+      e51_3 %in% 1:6 & e51_4 %in% c(0, 9) ~ "Primaria",
+      e51_7 > 0 & e51_7_1 == 4 & e51_4 %in% c(0, 9) ~ "Primaria",
+      e51_4 %in% 1:3 | e51_5 %in% 1:3 | (e51_6 > 0 & e51_4 <= 6) & (e51_8 == 0 & e51_9 == 0 & e51_10 == 0 & e51_11 == 0) ~ "Secundaria",
+      ((e51_4 == 3 & e51_8 == 9) | (e51_5 == 3 & e51_8 == 9) | (e51_6 == 3 & e51_8 == 9)) ~ "Secundaria",
+      e51_7 != 0 & e51_7_1 == 3 ~ "Secundaria",
+      ((e51_7 %in% 1:9 & e51_7_1 < 3) | (e51_7 != 0 & e51_7_1 == 3 & e51_4 == 0 & e51_5 == 0 & e51_6 == 0)) & (e51_8 == 0 & e51_9 == 0 & e51_10 == 0) ~ "UTU",
+      e51_8 %in% 1:5 & e51_9 == 0 & e51_10 == 0 & e51_11 == 0 ~ "Magisterio",
+       e51_9 %in% 1:9  | e51_10 %in% 1:9 | e51_11 %in% 1:9 ~ "Universidad",
+        TRUE ~ "")
+    )
+
+}
+
+
+
+#' Title
+#'
+#' @param data ech
+#' @param e197 attends primary school
+#' @param e197_1 completed primary
+#' @param e201 attends secondary
+#' @param e51_4 years passed in lower secondary
+#' @param e51_5 years passed in upper secondary
+#' @param e51_6 years passed in bachillerato tecnologico
+#'
+#' @importFrom dplyr mutate
+#' @return
+#' @export
+#'
+#' @details
+#' Disclaimer: El script no es un producto oficial de INE.
+#' @examples
+#' \donttest{
+#' toy_ech_2018 <- level_completion(data = ech::toy_ech_2018)
+#' }
+level_completion <- function(data = ech::toy_ech_2018,
+                             e197 = "e197",
+                             e197_1 = "e197_1",
+                             e201 = "e201",
+                             e51_4 = "e51_4",
+                             e51_5 = "e51_5",
+                             e51_6 = "e51_6"){
+
+ data <- data %>% dplyr::mutate(primaria_completa = ifelse(e197 == 2 & e197_1 == 1, 1, 0),
+                         media_baja_completa = ifelse(e201 %in% 1:2 & e51_4 == 3, 1, 0),
+                         media_alta_completa = ifelse(e201 %in% 1:2 & (e51_5 == 3 | e51_6 == 3), 1, 0)#,
+                         #terciaria_completa =
+)
+
+}

@@ -8,6 +8,7 @@ income_constant_prices(
   data = ech::toy_ech_2017_income,
   base_month = 6,
   base_year = 2017,
+  df_year = base_year,
   mes = "mes",
   ht11 = "ht11",
   ysvl = "YSVL",
@@ -21,6 +22,8 @@ income_constant_prices(
 \item{base_month}{mes base}
 
 \item{base_year}{anio base}
+
+\item{df_year}{anio ech (default anio base)}
 
 \item{mes}{mes}
 

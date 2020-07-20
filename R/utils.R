@@ -140,6 +140,50 @@ deflate <- function(base_month = NULL,
 }
 
 
+#' deflate_gini
+#'
+#' @param base_month mes base
+#' @param base_year anio base
+#' @param ipc IPC a nivel nacional ('G'), IPC para Montevideo ('M') e IPC para Interior ('I')
+#' @param df_year anio del data frame
+#'
+#' @importFrom dplyr select slice mutate
+#' @importFrom rlang .data
+#' @export
+#' @examples
+#' \donttest{
+#' deflate(base_month = "06", base_year = "2016", df_year = 2016)
+#' }
+
+deflate_gini <- function(base_month = "01",
+                         base_year = "2005",
+                         ipc = "G",
+                         df_year = NULL) {
+
+  if (ipc == "G") {
+    df <- ech::ipc_base2010
+  }  else if (ipc == "M"){
+    df <- ech::ipc_base2010_mdeo
+  } else {
+    df <- ech::ipc_base2010_int
+  }
+
+  mes_base <- ipc_base2010 %>%
+    dplyr::filter(.data$fecha == paste0(base_year, "-", base_month, "-01")) %>%
+    dplyr::select(.data$indice) %>% as.numeric
+
+  rows1 <- which(df$fecha == paste0(df_year - 1, "-",12, "-01"))
+  rows2 <- which(df$fecha == paste0(df_year, "-",11, "-01"))
+
+  deflate <- df %>%
+    dplyr::slice(rows1:rows2) %>%
+    dplyr::mutate(deflate = mes_base/as.numeric(.data$indice),
+                  mes = 1:12
+    ) %>%
+    dplyr::select(.data$deflate, .data$mes)
+}
+
+
 
 #' get_ciiu
 #'

@@ -36,6 +36,7 @@ Imports:
     pdftables,
     tidyr,
     textclean,
+    convey,
     rstudioapi
 Suggests: 
     knitr,

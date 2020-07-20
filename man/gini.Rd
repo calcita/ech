@@ -4,14 +4,12 @@
 \alias{gini}
 \title{gini}
 \usage{
-gini(data = ech::toy_ech_2018, weights = "pesoano", domain = NULL)
+gini(data = ech::toy_ech_2018, df_year = 2018)
 }
 \arguments{
 \item{data}{data frame with ECH microdata}
 
-\item{weights}{ponderation variable}
-
-\item{domain}{dominio de interes}
+\item{df_year}{year of the ech data.frame}
 }
 \description{
 gini
