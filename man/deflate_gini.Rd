@@ -20,6 +20,6 @@ deflate_gini
 }
 \examples{
 \donttest{
-deflate(base_month = "06", base_year = "2016", df_year = 2016)
+deflate_gini(base_month = "06", base_year = "2016", df_year = 2016)
 }
 }

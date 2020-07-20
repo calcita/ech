@@ -20,6 +20,6 @@ deflate
 }
 \examples{
 \donttest{
-deflate(base_month = 6, base_year = 2016, df_year = 2016)
+deflate(base_month = "06", base_year = "2016", df_year = "2016")
 }
 }

@@ -11,7 +11,8 @@ labor_income_per_hour(
   pobpcoac = "pobpcoac",
   pt4 = "pt4",
   base_month = NULL,
-  base_year = NULL
+  base_year = NULL,
+  df_year = NULL
 )
 }
 \arguments{
@@ -28,6 +29,8 @@ labor_income_per_hour(
 \item{base_month}{mes base}
 
 \item{base_year}{anio base}
+
+\item{df_year}{anio}
 }
 \value{
 

@@ -108,7 +108,7 @@ get_ipc_region <- function(folder = tempdir(), region = "M", sheet = NULL){
 #' @export
 #' @examples
 #' \donttest{
-#' deflate(base_month = 6, base_year = 2016, df_year = 2016)
+#' deflate(base_month = "06", base_year = "2016", df_year = "2016")
 #' }
 
 deflate <- function(base_month = NULL,
@@ -128,7 +128,7 @@ deflate <- function(base_month = NULL,
        dplyr::filter(.data$fecha == paste0(base_year, "-", base_month, "-01")) %>%
        dplyr::select(.data$indice) %>% as.numeric
 
-     rows1 <- which(df$fecha == paste0(df_year - 1, "-",12, "-01"))
+     rows1 <- which(df$fecha == paste0(as.numeric(df_year) - 1, "-",12, "-01"))
      rows2 <- which(df$fecha == paste0(df_year, "-",11, "-01"))
 
      deflate <- df %>%
@@ -152,7 +152,7 @@ deflate <- function(base_month = NULL,
 #' @export
 #' @examples
 #' \donttest{
-#' deflate(base_month = "06", base_year = "2016", df_year = 2016)
+#' deflate_gini(base_month = "06", base_year = "2016", df_year = 2016)
 #' }
 
 deflate_gini <- function(base_month = "01",
@@ -172,7 +172,7 @@ deflate_gini <- function(base_month = "01",
     dplyr::filter(.data$fecha == paste0(base_year, "-", base_month, "-01")) %>%
     dplyr::select(.data$indice) %>% as.numeric
 
-  rows1 <- which(df$fecha == paste0(df_year - 1, "-",12, "-01"))
+  rows1 <- which(df$fecha == paste0(as.numeric(df_year) - 1, "-",12, "-01"))
   rows2 <- which(df$fecha == paste0(df_year, "-",11, "-01"))
 
   deflate <- df %>%
