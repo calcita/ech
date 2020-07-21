@@ -35,6 +35,9 @@ enrolled_school(
 
 \item{e224}{attendance postgrade}
 }
+\value{
+data.frame
+}
 \description{
 This function allows you to estimate people enrolled in school
 }

@@ -11,6 +11,7 @@
 #' @param e221 attendance tertiary
 #' @param e224 attendance postgrade
 #' @keywords education
+#' @return data.frame
 #' @export
 #' @importFrom dplyr mutate case_when
 #' @importFrom magrittr %<>%
@@ -169,7 +170,7 @@ years_of_schooling <- function(data = ech::toy_ech_2018,
 #' @param e51_11 years passed in postgrade
 #' @param e193  attendance school
 #' @param e49 attendance school ever
-#'
+#' @export
 #' @details
 #' Disclaimer: El script no es un producto oficial de INE.
 #' @examples
@@ -212,7 +213,7 @@ max_level_education <- function(data = ech::toy_ech_2018,
 
 
 
-#' Title
+#' level_campletion
 #'
 #' @param data ech
 #' @param e197 attends primary school
@@ -223,7 +224,7 @@ max_level_education <- function(data = ech::toy_ech_2018,
 #' @param e51_6 years passed in bachillerato tecnologico
 #'
 #' @importFrom dplyr mutate
-#' @return
+#' @return data.frame
 #' @export
 #'
 #' @details

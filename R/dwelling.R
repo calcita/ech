@@ -19,11 +19,11 @@
 #'
 #' @importFrom dplyr mutate
 #' @importFrom rlang .data
-#' @return
+#' @return data.frame
 #' @details Disclaimer: El script no es un producto oficial de INE.
 #' @export
 #'
-#' @example
+#' @examples
 #' \donttest{
 #' toy_ech_2018 <- housing_deprivation(data =  ech::toy_ech_2018)
 #' }

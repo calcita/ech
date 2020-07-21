@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_microdata.R
 \name{get_microdata}
 \alias{get_microdata}
-\title{Download and read ECH from INE website}
+\title{get_microdata}
 \usage{
 get_microdata(year = NULL, folder = tempdir(), toR = TRUE)
 }

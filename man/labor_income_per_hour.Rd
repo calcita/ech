@@ -2,7 +2,7 @@
 % Please edit documentation in R/income.R
 \name{labor_income_per_hour}
 \alias{labor_income_per_hour}
-\title{Title}
+\title{labor_income_per_hour}
 \usage{
 labor_income_per_hour(
   data = ech::toy_ech_2018,
@@ -12,7 +12,7 @@ labor_income_per_hour(
   pt4 = "pt4",
   base_month = NULL,
   base_year = NULL,
-  df_year = NULL
+  df_year = base_year
 )
 }
 \arguments{
@@ -33,11 +33,18 @@ labor_income_per_hour(
 \item{df_year}{anio}
 }
 \value{
-
+data.frame
 }
 \description{
-Title
+labor_income_per_hour
 }
 \details{
 Disclaimer: El script no es un producto oficial de INE.
+}
+\examples{
+\donttest{
+toy_ech_2018 <- labor_income_per_hour(data = ech::toy_ech_2018,
+                                      base_month = "06", base_year = "2018")
+}
+
 }

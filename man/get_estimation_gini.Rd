@@ -30,7 +30,7 @@ get_estimation_gini(
 \item{name}{nombre}
 }
 \value{
-
+table
 }
 \description{
 Title

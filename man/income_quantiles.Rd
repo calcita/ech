@@ -20,6 +20,9 @@ income_quantiles(
 
 \item{income}{Name of the income variables. Default: "ht11_per_capita_deflate"}
 }
+\value{
+data.frame
+}
 \description{
 Household Income Quantiles
 }

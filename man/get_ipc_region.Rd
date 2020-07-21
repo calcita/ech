@@ -14,7 +14,7 @@ get_ipc_region(folder = tempdir(), region = "M", sheet = NULL)
 \item{sheet}{numero de hoja de la planilla}
 }
 \value{
-
+data.frame
 }
 \description{
 Title

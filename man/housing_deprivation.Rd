@@ -54,11 +54,16 @@ housing_deprivation(
 \item{region_4}{region}
 }
 \value{
-
+data.frame
 }
 \description{
 This function allows you to estimate the housing status
 }
 \details{
 Disclaimer: El script no es un producto oficial de INE.
+}
+\examples{
+\donttest{
+toy_ech_2018 <- housing_deprivation(data =  ech::toy_ech_2018)
+}
 }

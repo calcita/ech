@@ -15,6 +15,9 @@ deflate_gini(base_month = "01", base_year = "2005", ipc = "G", df_year = NULL)
 
 \item{df_year}{anio del data frame}
 }
+\value{
+data.frame
+}
 \description{
 deflate_gini
 }

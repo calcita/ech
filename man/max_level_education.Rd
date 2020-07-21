@@ -2,7 +2,7 @@
 % Please edit documentation in R/education.R
 \name{max_level_education}
 \alias{max_level_education}
-\title{Title}
+\title{max_level_education}
 \usage{
 max_level_education(
   data = ech::toy_ech_2018,
@@ -51,7 +51,7 @@ max_level_education(
 \item{e49}{attendance school ever}
 }
 \description{
-Title
+max_level_education
 }
 \details{
 Disclaimer: El script no es un producto oficial de INE.

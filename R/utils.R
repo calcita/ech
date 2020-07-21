@@ -40,7 +40,7 @@ get_ipc <- function(folder = tempdir()){
 #' @importFrom janitor clean_names excel_numeric_to_date
 #' @importFrom fs path
 #' @importFrom magrittr %>%
-#' @return
+#' @return data.frame
 #' @export
 #'
 #' @examples
@@ -146,7 +146,7 @@ deflate <- function(base_month = NULL,
 #' @param base_year anio base
 #' @param ipc IPC a nivel nacional ('G'), IPC para Montevideo ('M') e IPC para Interior ('I')
 #' @param df_year anio del data frame
-#'
+#' @return data.frame
 #' @importFrom dplyr select slice mutate
 #' @importFrom rlang .data
 #' @export

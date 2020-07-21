@@ -255,10 +255,9 @@ get_estimation_ratio <- function(data = ech::toy_ech_2018,
 #' @param level nivel
 #' @param name nombre
 #'
-#' @return
+#' @return table
 #' @export
-#'
-#' @examples
+
 get_estimation_gini <- function(data = ech::toy_ech_2018,
                                 variable = ht11_svl_per_capita_deflate_gini,
                                 by.x = NULL,

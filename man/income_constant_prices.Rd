@@ -35,6 +35,9 @@ income_constant_prices(
 
 \item{ht19}{ht19}
 }
+\value{
+data.frame
+}
 \description{
 Household income constant prices
 }

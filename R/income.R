@@ -15,6 +15,7 @@
 #' @importFrom haven zap_labels
 #' @importFrom rlang .data
 #' @export
+#' @return data.frame
 #' @details
 #' Disclaimer: El script no es un producto oficial de INE.
 #' @examples
@@ -62,6 +63,7 @@ income_constant_prices <- function(data = ech::toy_ech_2017_income,
 #' @importFrom dplyr mutate pull
 #' @importFrom magrittr %<>%
 #' @export
+#' @return data.frame
 #' @details
 #' Disclaimer: El script no es un producto oficial de INE.
 #' @examples
@@ -137,7 +139,7 @@ income_quantiles <- function(data = ech::toy_ech_2017_income,
 #' @param g144_2_4 retiro de productos para consumo propio (trabajador/a no agropecuario/a)
 #' @param g144_2_5 retiro de productos para consumo propio (trabajador/a no agropecuario/a)
 #' @export
-#' @return
+#' @return data.frame
 #' @importFrom dplyr mutate case_when
 #' @details
 #' Disclaimer: El script no es un producto oficial de INE.
@@ -211,13 +213,14 @@ labor_income_per_capita <- function(data = ech::toy_ech_2018,
 #' @param base_month mes base
 #' @param base_year anio base
 #' @param df_year anio
-#' @return
+#' @return data.frame
 #' @details Disclaimer: El script no es un producto oficial de INE.
 #' @export
 #'
-#' @example
+#' @examples
 #' \donttest{
-#' toy_ech_2018 <- labor_income_per_hour(data = ech::toy_ech_2018, base_month = "06", base_year = "2018", df_year = "2018")
+#' toy_ech_2018 <- labor_income_per_hour(data = ech::toy_ech_2018,
+#'                                       base_month = "06", base_year = "2018")
 #' }
 #'
 labor_income_per_hour <- function(data = ech::toy_ech_2018,
@@ -227,7 +230,7 @@ labor_income_per_hour <- function(data = ech::toy_ech_2018,
                                   pt4 = "pt4",
                                   base_month = NULL,
                                   base_year = NULL,
-                                  df_year = NULL){
+                                  df_year = base_year){
 
   names(data) <- tolower(names(data))
   deflate_mdeo <- ech::deflate(base_month = base_month, base_year = base_year, ipc = "M", df_year = df_year)

@@ -11,6 +11,7 @@
 #' @importFrom rlang .data
 #' @keywords household_type
 #' @export
+#' @return data.frame
 #' @details
 #' Disclaimer: El script no es un producto oficial de INE.
 #' @examples

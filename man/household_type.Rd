@@ -23,6 +23,9 @@ household_type(
 
 \item{colname}{custom name for the new variable}
 }
+\value{
+data.frame
+}
 \description{
 This function allows you to calculate the household type for each household in the survey. A household is composed of one or more people who occupy a housing unit.
 }
