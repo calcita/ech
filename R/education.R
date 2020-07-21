@@ -190,8 +190,7 @@ max_level_education <- function(data = ech::toy_ech_2018,
                                 e51_10 = "e51_10",
                                 e51_11 = "e51_11",
                                 e193 = "e193",
-                                e49 = "e49"
-                                ){
+                                e49 = "e49"){
 
   data <- data %>% dplyr::mutate(
     nivel_educativo = dplyr::case_when(
@@ -204,12 +203,11 @@ max_level_education <- function(data = ech::toy_ech_2018,
       e51_4 %in% 1:3 | e51_5 %in% 1:3 | (e51_6 > 0 & e51_4 <= 6) & (e51_8 == 0 & e51_9 == 0 & e51_10 == 0 & e51_11 == 0) ~ "Secundaria",
       ((e51_4 == 3 & e51_8 == 9) | (e51_5 == 3 & e51_8 == 9) | (e51_6 == 3 & e51_8 == 9)) ~ "Secundaria",
       e51_7 != 0 & e51_7_1 == 3 ~ "Secundaria",
-      ((e51_7 %in% 1:9 & e51_7_1 < 3) | (e51_7 != 0 & e51_7_1 == 3 & e51_4 == 0 & e51_5 == 0 & e51_6 == 0)) & (e51_8 == 0 & e51_9 == 0 & e51_10 == 0) ~ "UTU",
+      ((e51_7 %in% 1:9 & e51_7_1 < 3) | (e51_7 != 0 & e51_7_1 == 3 & e51_4 == 0 & e51_5 == 0 & e51_6 == 0)) & e51_8 == 0 & e51_9 == 0 & e51_10 == 0 ~ "UTU",
       e51_8 %in% 1:5 & e51_9 == 0 & e51_10 == 0 & e51_11 == 0 ~ "Magisterio",
-       e51_9 %in% 1:9  | e51_10 %in% 1:9 | e51_11 %in% 1:9 ~ "Universidad",
-        TRUE ~ "")
+      e51_9 %in% 1:9 | e51_10 %in% 1:9 | e51_11 %in% 1:9 ~ "Universidad",
+      TRUE ~ "Error")
     )
-
 }
 
 
