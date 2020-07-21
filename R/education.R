@@ -153,7 +153,7 @@ years_of_schooling <- function(data = ech::toy_ech_2018,
 
 
 
-#' Title
+#' max_level_education
 #'
 #' @param data data frame
 #' @param e51_2 years passed in primary

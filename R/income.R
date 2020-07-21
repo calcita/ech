@@ -201,7 +201,7 @@ labor_income_per_capita <- function(data = ech::toy_ech_2018,
 }
 
 
-#' Title
+#' labor_income_per_hour
 #'
 #' @param data data frame
 #' @param numero identificador de hogar
