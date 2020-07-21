@@ -4,7 +4,6 @@
 #' @param data data frame with ECH microdata
 #' @param base_month mes base
 #' @param base_year anio base
-#' @param df_year anio ech (default anio base)
 #' @param mes mes
 #' @param ht11 ht11
 #' @param ysvl ysvl
@@ -20,22 +19,21 @@
 #' Disclaimer: El script no es un producto oficial de INE.
 #' @examples
 #' \donttest{
-#' toy_ech_2017_income <- income_constant_prices(data = ech::toy_ech_2017_income)
+#' toy_ech_2018_income <- income_constant_prices(data = ech::toy_ech_2018_income)
 #' }
 
-income_constant_prices <- function(data = ech::toy_ech_2017_income,
+income_constant_prices <- function(data = ech::toy_ech_2018_income,
                                    base_month = 6,
-                                   base_year = 2017,
-                                   df_year = base_year,
+                                   base_year = 2018,
                                    mes = "mes",
                                    ht11 = "ht11",
-                                   ysvl = "YSVL",
+                                   ysvl = "ysvl",
                                    ht13 = "ht13",
                                    ht19 = "ht19"){
 
   deflate <- ech::deflate(base_month = base_month,
                           base_year = base_year,
-                          df_year = df_year)
+                          df_year = max(data$anio))
   # Asigna deflactor
   data <- data %>% dplyr::mutate(aux = as.integer(haven::zap_labels(.data[[mes]]))) %>%
     dplyr::left_join(deflate, by = c("aux" = "mes"), keep = F)
@@ -68,15 +66,15 @@ income_constant_prices <- function(data = ech::toy_ech_2017_income,
 #' Disclaimer: El script no es un producto oficial de INE.
 #' @examples
 #' \donttest{
-#' toy_ech_2017_income <- income_quantiles(data = ech::toy_ech_2017_income)
+#' toy_ech_2018_income <- income_quantiles(data = ech::toy_ech_2018_income)
 #' }
 
-income_quantiles <- function(data = ech::toy_ech_2017_income,
+income_quantiles <- function(data = ech::toy_ech_2018_income,
                              quantile = 5,
                              weights = "pesoano",
                              income = "ht11_per_capita_deflate") {
 
-  data <- income_constant_prices(data = ech::toy_ech_2017_income)
+  data <- income_constant_prices(data = ech::toy_ech_2018_income)
 
   assertthat::assert_that(is.data.frame(data))
   assertthat::assert_that(weights %in% names(data))
@@ -143,7 +141,7 @@ income_quantiles <- function(data = ech::toy_ech_2017_income,
 #' @importFrom dplyr mutate case_when
 #' @details
 #' Disclaimer: El script no es un producto oficial de INE.
-#' @examples
+#' @example
 #' \donttest{
 #' toy_ech_2018 <- labor_income_per_capita(data = ech::toy_ech_2018)
 #' }
@@ -212,15 +210,14 @@ labor_income_per_capita <- function(data = ech::toy_ech_2018,
 #' @param pt4 total de ingresos por trabajo
 #' @param base_month mes base
 #' @param base_year anio base
-#' @param df_year anio
+#' @param mes mes
 #' @return data.frame
 #' @details Disclaimer: El script no es un producto oficial de INE.
 #' @export
 #'
-#' @examples
+#' @example
 #' \donttest{
-#' toy_ech_2018 <- labor_income_per_hour(data = ech::toy_ech_2018,
-#'                                       base_month = "06", base_year = "2018")
+#' toy_ech_2018 <- labor_income_per_hour(data = ech::toy_ech_2018, base_month = "06", base_year = "2018")
 #' }
 #'
 labor_income_per_hour <- function(data = ech::toy_ech_2018,
@@ -230,13 +227,12 @@ labor_income_per_hour <- function(data = ech::toy_ech_2018,
                                   pt4 = "pt4",
                                   base_month = NULL,
                                   base_year = NULL,
-                                  df_year = base_year){
+                                  mes = "mes"){
 
-  names(data) <- tolower(names(data))
-  deflate_mdeo <- ech::deflate(base_month = base_month, base_year = base_year, ipc = "M", df_year = df_year)
+  deflate_mdeo <- ech::deflate(base_month = base_month, base_year = base_year, ipc = "M", df_year = max(data$anio))
   names(deflate_mdeo)[1] <- "deflate_mdeo"
 
-  deflate_int <- ech::deflate(base_month = base_month, base_year = base_year, ipc = "I", df_year = df_year)
+  deflate_int <- ech::deflate(base_month = base_month, base_year = base_year, ipc = "I", df_year = max(data$anio))
   names(deflate_int)[1] <- "deflate_int"
 
   data <- data %>% dplyr::mutate(aux = as.integer(haven::zap_labels(mes))) %>%
@@ -252,5 +248,43 @@ labor_income_per_hour <- function(data = ech::toy_ech_2018,
 
 }
 
+
+#' gini income
+#'
+#' @param data data frame with ECH microdata
+#' @param base_month month base
+#' @param base_year year base
+#' @param mes mes
+#' @importFrom dplyr mutate
+#' @importFrom convey svygini
+#' @export
+#'
+#' @details Disclaimer: El script no es un producto oficial de INE.
+#'
+#' @example
+#' \donttest{
+#' toy_ech_2018 <- gini_income(data = ech::toy_ech_2018)
+#' }
+#'
+
+gini_income <- function(data = ech::toy_ech_2018,
+                        base_month = "01",
+                        base_year = "2005",
+                        mes = "mes") {
+
+  deflactor_gini_i <-  deflate_gini(base_month = base_month, base_year = base_year, ipc = "I", df_year = max(data$anio))
+  deflactor_gini_m <-  deflate_gini(base_month = base_month, base_year = base_year, ipc = "M", df_year = max(data$anio))
+
+  data <- data %>%
+    dplyr::mutate(aux = as.integer(haven::zap_labels(data$mes))) %>%
+    dplyr::left_join(deflactor_gini_i, by = c("aux" = "mes"), keep = F) %>%
+    dplyr::rename(deflactor_gini_i = deflate) %>%
+    dplyr::left_join(deflactor_gini_m, by = c("aux" = "mes"), keep = F) %>%
+    dplyr::rename(deflactor_gini_m = deflate)
+
+  data <- data %>%  dplyr::mutate(deflactor_gini = ifelse(dpto == 1, deflactor_gini_m, deflactor_gini_i),
+                                  ht11_svl_per_capita_deflate_gini = ysvl / ht19 * deflactor_gini)
+
+}
 
 

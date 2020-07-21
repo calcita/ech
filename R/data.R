@@ -163,8 +163,8 @@
 #'   \item{ht13}{ }
 #'   \item{ht14}{ }
 #'   \item{ht19}{ }
-#'   \item{YHOG}{ }
-#'   \item{YSVL}{ }
+#'   \item{yhog}{ }
+#'   \item{ysvl}{ }
 #'   \item{lp_06}{ }
 #'   \item{li_06}{ }
 #'   \item{e557}{ }
@@ -578,9 +578,9 @@
 #'   \item{indaceliac}{ }
 #'   \item{indaucc}{ }
 #'   \item{indaemer}{ }
-#'   \item{PT1}{ }
-#'   \item{PT2}{ }
-#'   \item{PT4}{ }
+#'   \item{pt1}{ }
+#'   \item{pt2}{ }
+#'   \item{pt4}{ }
 #'   \item{pobre06}{ }
 #'   \item{indigente06}{ }
 #'   ...
@@ -589,16 +589,16 @@
 "toy_ech_2018"
 
 
-#' Data of 2017 incomes
+#' Data of 2018 incomes
 #'
-#' A dataset containing only 1000 raws of the ECH 2017 income variables
+#' A dataset containing only 1000 raws of the ECH 2018 income variables
 #'
 #' @format A data frame with 1000 rows and 9 variables:
 #' \describe{
 #'   \item{numero}{household id}
 #'   \item{mes}{}
 #'   \item{ht11}{}
-#'   \item{YSVL}{}
+#'   \item{ysvl}{}
 #'   \item{ht13}{}
 #'   \item{ht19}{}
 #'   \item{dpto}{}
@@ -607,7 +607,7 @@
 #'   ...
 #' }
 #' @source \url{http://www.ine.gub.uy/}
-"toy_ech_2017_income"
+"toy_ech_2018_income"
 
 
 

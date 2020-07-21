@@ -3,8 +3,8 @@
 usethis::use_data("toy_ech_2018")
 
 # random
-d <- haven::read_sav("/home/calcita/Desktop/pruebaech/HyP_2018_Terceros.sav")
+d <- ech::get_microdata(year = 2018)
 x <- sample(1:108608, 1000)
 toy_ech_2018 <- d %>% slice(x)
 
-usethis::use_data(toy_ech_2018)
+usethis::use_data(toy_ech_2018, overwrite = TRUE)

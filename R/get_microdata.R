@@ -244,6 +244,9 @@ get_microdata <- function(year = NULL,
     stop(glue::glue("{archivo} no se pudo leer como tibble :-("))
   }
 
+  # standarize names
+  names(d) <- tolower(names(d))
+
   # save ----
   if (isTRUE(toR)) {
     saveRDS(d, file = fs::path(folder, paste0("ECH_", year, ".Rds")))
@@ -297,4 +300,8 @@ read_microdata <- function(path = NULL){
   } else{
     load(path)
   }
+
+  # standarize names
+  names(df) <- tolower(names(df))
+
 }

@@ -166,8 +166,8 @@ A data frame with 1000 rows and 579 variables:
   \item{ht13}{ }
   \item{ht14}{ }
   \item{ht19}{ }
-  \item{YHOG}{ }
-  \item{YSVL}{ }
+  \item{yhog}{ }
+  \item{ysvl}{ }
   \item{lp_06}{ }
   \item{li_06}{ }
   \item{e557}{ }
@@ -581,9 +581,9 @@ A data frame with 1000 rows and 579 variables:
   \item{indaceliac}{ }
   \item{indaucc}{ }
   \item{indaemer}{ }
-  \item{PT1}{ }
-  \item{PT2}{ }
-  \item{PT4}{ }
+  \item{pt1}{ }
+  \item{pt2}{ }
+  \item{pt4}{ }
   \item{pobre06}{ }
   \item{indigente06}{ }
   ...

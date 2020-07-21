@@ -5,7 +5,7 @@
 \title{income_quantiles}
 \usage{
 income_quantiles(
-  data = ech::toy_ech_2017_income,
+  data = ech::toy_ech_2018_income,
   quantile = 5,
   weights = "pesoano",
   income = "ht11_per_capita_deflate"
@@ -31,6 +31,6 @@ Disclaimer: El script no es un producto oficial de INE.
 }
 \examples{
 \donttest{
-toy_ech_2017_income <- income_quantiles(data = ech::toy_ech_2017_income)
+toy_ech_2018_income <- income_quantiles(data = ech::toy_ech_2018_income)
 }
 }

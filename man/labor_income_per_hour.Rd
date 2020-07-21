@@ -12,7 +12,7 @@ labor_income_per_hour(
   pt4 = "pt4",
   base_month = NULL,
   base_year = NULL,
-  df_year = base_year
+  mes = "mes"
 )
 }
 \arguments{
@@ -30,7 +30,7 @@ labor_income_per_hour(
 
 \item{base_year}{anio base}
 
-\item{df_year}{anio}
+\item{mes}{mes}
 }
 \value{
 data.frame
@@ -40,11 +40,4 @@ labor_income_per_hour
 }
 \details{
 Disclaimer: El script no es un producto oficial de INE.
-}
-\examples{
-\donttest{
-toy_ech_2018 <- labor_income_per_hour(data = ech::toy_ech_2018,
-                                      base_month = "06", base_year = "2018")
-}
-
 }

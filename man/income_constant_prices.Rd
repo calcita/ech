@@ -5,13 +5,12 @@
 \title{income_constant_prices}
 \usage{
 income_constant_prices(
-  data = ech::toy_ech_2017_income,
+  data = ech::toy_ech_2018_income,
   base_month = 6,
-  base_year = 2017,
-  df_year = base_year,
+  base_year = 2018,
   mes = "mes",
   ht11 = "ht11",
-  ysvl = "YSVL",
+  ysvl = "ysvl",
   ht13 = "ht13",
   ht19 = "ht19"
 )
@@ -22,8 +21,6 @@ income_constant_prices(
 \item{base_month}{mes base}
 
 \item{base_year}{anio base}
-
-\item{df_year}{anio ech (default anio base)}
 
 \item{mes}{mes}
 
@@ -46,6 +43,6 @@ Disclaimer: El script no es un producto oficial de INE.
 }
 \examples{
 \donttest{
-toy_ech_2017_income <- income_constant_prices(data = ech::toy_ech_2017_income)
+toy_ech_2018_income <- income_constant_prices(data = ech::toy_ech_2018_income)
 }
 }

@@ -108,7 +108,7 @@ get_ipc_region <- function(folder = tempdir(), region = "M", sheet = NULL){
 #' @export
 #' @examples
 #' \donttest{
-#' deflate(base_month = "06", base_year = "2016", df_year = "2016")
+#' deflate(base_month = "06", base_year = "2016", df_year = "2018")
 #' }
 
 deflate <- function(base_month = NULL,
@@ -145,14 +145,14 @@ deflate <- function(base_month = NULL,
 #' @param base_month mes base
 #' @param base_year anio base
 #' @param ipc IPC a nivel nacional ('G'), IPC para Montevideo ('M') e IPC para Interior ('I')
-#' @param df_year anio del data frame
+#' @param df_year anio del dataframe
 #' @return data.frame
 #' @importFrom dplyr select slice mutate
 #' @importFrom rlang .data
 #' @export
 #' @examples
 #' \donttest{
-#' deflate_gini(base_month = "06", base_year = "2016", df_year = 2016)
+#' deflate_gini(base_month = "06", base_year = "2016", df_year = "2018")
 #' }
 
 deflate_gini <- function(base_month = "01",
@@ -178,8 +178,7 @@ deflate_gini <- function(base_month = "01",
   deflate <- df %>%
     dplyr::slice(rows1:rows2) %>%
     dplyr::mutate(deflate = mes_base/as.numeric(.data$indice),
-                  mes = 1:12
-    ) %>%
+                  mes = 1:12) %>%
     dplyr::select(.data$deflate, .data$mes)
 }
 

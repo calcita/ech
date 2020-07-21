@@ -13,7 +13,7 @@ deflate_gini(base_month = "01", base_year = "2005", ipc = "G", df_year = NULL)
 
 \item{ipc}{IPC a nivel nacional ('G'), IPC para Montevideo ('M') e IPC para Interior ('I')}
 
-\item{df_year}{anio del data frame}
+\item{df_year}{anio del dataframe}
 }
 \value{
 data.frame
@@ -23,6 +23,6 @@ deflate_gini
 }
 \examples{
 \donttest{
-deflate_gini(base_month = "06", base_year = "2016", df_year = 2016)
+deflate_gini(base_month = "06", base_year = "2016", df_year = "2018")
 }
 }
