@@ -17,7 +17,7 @@
 #' @return data.frame
 #' @details
 #' Disclaimer: El script no es un producto oficial de INE.
-#' @example
+#' @examples
 #' \donttest{
 #' toy_ech_2018 <- income_constant_prices(data = ech::toy_ech_2018)
 #' }
@@ -58,7 +58,7 @@ income_constant_prices <- function(data = ech::toy_ech_2018_income,
 #' @param weights ponderation variable
 #' @param income Name of the income variables. Default: "ht11_per_capita_deflate"
 #' @importFrom statar xtile
-#' @importFrom dplyr mutate
+#' @importFrom dplyr mutate pull
 #' @importFrom magrittr %<>%
 #' @export
 #' @return data.frame
@@ -80,7 +80,7 @@ income_quantiles <- function(data = ech::toy_ech_2018,
   assertthat::assert_that(quantile %in% c(5, 10))
   assertthat::assert_that(income  %in% names(data), msg = "Sorry... :( \n Income parameter is not calculated, please use income_constant_prices() to obtain the variable.")
 
-  weights = data[,weights]
+  weights = pull(data[,weights])
 
   if (quantile == 5) {
     ## quintiles

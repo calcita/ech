@@ -26,5 +26,5 @@ library(hexSticker) # https://github.com/GuangchuangYu/hexSticker
 sticker("C:/Users/Usuario/Desktop/R/ech/man/figures/capybara.png",
         package = "ech", p_size = 40, p_family = "Sanchez", s_x = 1, s_y = .75,
         s_width = .6, s_height = .4, h_color = "#a1c6c7",
-        h_fill = "#74a9cf", url = "https://github.com/holatam/ech", u_color = "black",
+        h_fill = "#74a9cf", url = "https://github.com/rlabuy/ech", u_color = "black",
         u_size = 5, filename = "./man/figures/ech_logo.png")

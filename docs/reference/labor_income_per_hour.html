@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>An employment function — employment • ech</title>
+<title>labor_income_per_hour — labor_income_per_hour • ech</title>
 
 
 <!-- jquery -->
@@ -35,8 +35,8 @@
 
 
 
-<meta property="og:title" content="An employment function — employment" />
-<meta property="og:description" content="This function allows you to calculate the variables: PEA, PET, PO, PD" />
+<meta property="og:title" content="labor_income_per_hour — labor_income_per_hour" />
+<meta property="og:description" content="labor_income_per_hour" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -106,43 +106,81 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>An employment function</h1>
+    <h1>labor_income_per_hour</h1>
     
-    <div class="hidden name"><code>employment.Rd</code></div>
+    <div class="hidden name"><code>labor_income_per_hour.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This function allows you to calculate the variables: PEA, PET, PO, PD</p>
+    <p>labor_income_per_hour</p>
     </div>
 
-    <pre class="usage"><span class='fu'>employment</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ech</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/ech/man/toy_ech_2018.html'>toy_ech_2018</a></span>, <span class='kw'>pobpcoac</span> <span class='kw'>=</span> <span class='st'>"pobpcoac"</span>)</pre>
+    <pre class="usage"><span class='fu'>labor_income_per_hour</span>(
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ech</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/ech/man/toy_ech_2018.html'>toy_ech_2018</a></span>,
+  <span class='kw'>numero</span> <span class='kw'>=</span> <span class='st'>"numero"</span>,
+  <span class='kw'>f85</span> <span class='kw'>=</span> <span class='st'>"f85"</span>,
+  <span class='kw'>pobpcoac</span> <span class='kw'>=</span> <span class='st'>"pobpcoac"</span>,
+  <span class='kw'>pt4</span> <span class='kw'>=</span> <span class='st'>"pt4"</span>,
+  <span class='kw'>base_month</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>base_year</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>mes</span> <span class='kw'>=</span> <span class='st'>"mes"</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>data</th>
-      <td><p>data frame with microdata</p></td>
+      <td><p>data frame</p></td>
+    </tr>
+    <tr>
+      <th>numero</th>
+      <td><p>identificador de hogar</p></td>
+    </tr>
+    <tr>
+      <th>f85</th>
+      <td><p>horas trabajadas por semana</p></td>
     </tr>
     <tr>
       <th>pobpcoac</th>
-      <td><p>Definition of population by activity status</p></td>
+      <td><p>condicion de actividad economica</p></td>
+    </tr>
+    <tr>
+      <th>pt4</th>
+      <td><p>total de ingresos por trabajo</p></td>
+    </tr>
+    <tr>
+      <th>base_month</th>
+      <td><p>mes base</p></td>
+    </tr>
+    <tr>
+      <th>base_year</th>
+      <td><p>anio base</p></td>
+    </tr>
+    <tr>
+      <th>mes</th>
+      <td><p>mes</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>data.frame</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Disclaimer: El script no es un producto oficial de INE.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='no'>toy_ech_2018</span> <span class='kw'>&lt;-</span> <span class='fu'>employment</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ech</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/ech/man/toy_ech_2018.html'>toy_ech_2018</a></span>, <span class='kw'>pobpcoac</span> <span class='kw'>=</span> <span class='st'>"pobpcoac"</span>)
+<span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>ech</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/ech/man/toy_ech_2018.html'>toy_ech_2018</a></span>
+<span class='no'>toy_ech_2018</span> <span class='kw'>&lt;-</span> <span class='fu'>labor_income_per_hour</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>df</span>, <span class='kw'>base_month</span> <span class='kw'>=</span> <span class='st'>"06"</span>, <span class='kw'>base_year</span> <span class='kw'>=</span> <span class='st'>"2018"</span>)
 <span class='co'># }</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#value">Value</a></li>
       <li><a href="#details">Details</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>

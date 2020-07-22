@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>An employment function — employment • ech</title>
+<title>Data IPC (Interior) — ipc_base2010_int • ech</title>
 
 
 <!-- jquery -->
@@ -35,8 +35,8 @@
 
 
 
-<meta property="og:title" content="An employment function — employment" />
-<meta property="og:description" content="This function allows you to calculate the variables: PEA, PET, PO, PD" />
+<meta property="og:title" content="Data IPC (Interior) — ipc_base2010_int" />
+<meta property="og:description" content="A dataset containing the IPC base 2010 only for the Interior region" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -106,45 +106,36 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>An employment function</h1>
+    <h1>Data IPC (Interior)</h1>
     
-    <div class="hidden name"><code>employment.Rd</code></div>
+    <div class="hidden name"><code>ipc_base2010_int.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This function allows you to calculate the variables: PEA, PET, PO, PD</p>
+    <p>A dataset containing the IPC base 2010 only for the Interior region</p>
     </div>
 
-    <pre class="usage"><span class='fu'>employment</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ech</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/ech/man/toy_ech_2018.html'>toy_ech_2018</a></span>, <span class='kw'>pobpcoac</span> <span class='kw'>=</span> <span class='st'>"pobpcoac"</span>)</pre>
+    <pre class="usage"><span class='no'>ipc_base2010_int</span></pre>
 
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>data</th>
-      <td><p>data frame with microdata</p></td>
-    </tr>
-    <tr>
-      <th>pobpcoac</th>
-      <td><p>Definition of population by activity status</p></td>
-    </tr>
-    </table>
 
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>Disclaimer: El script no es un producto oficial de INE.</p>
+    <p>A data frame with 120 rows and 2 variables:</p><dl class='dl-horizontal'>
+  <dt>fecha</dt><dd><p>date from 2011 to 2019</p></dd>
+  <dt>indice</dt><dd><p>IPC</p></dd>
+ 
+</dl>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='no'>toy_ech_2018</span> <span class='kw'>&lt;-</span> <span class='fu'>employment</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ech</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/ech/man/toy_ech_2018.html'>toy_ech_2018</a></span>, <span class='kw'>pobpcoac</span> <span class='kw'>=</span> <span class='st'>"pobpcoac"</span>)
-<span class='co'># }</span></div></pre>
+    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
+
+    <p><a href='http://www.ine.gub.uy/'>http://www.ine.gub.uy/</a></p>
+
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#details">Details</a></li>
-      <li><a href="#examples">Examples</a></li>
+      <li><a href="#format">Format</a></li>
+      <li><a href="#source">Source</a></li>
     </ul>
 
   </div>

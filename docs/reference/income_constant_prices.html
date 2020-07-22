@@ -69,7 +69,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ech</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.10</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.13</span>
       </span>
     </div>
 
@@ -116,12 +116,12 @@
     </div>
 
     <pre class="usage"><span class='fu'>income_constant_prices</span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ech</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/ech/man/toy_ech_2017_income.html'>toy_ech_2017_income</a></span>,
-  <span class='kw'>base.month</span> <span class='kw'>=</span> <span class='fl'>6</span>,
-  <span class='kw'>base.year</span> <span class='kw'>=</span> <span class='fl'>2017</span>,
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ech</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/ech/man/toy_ech_2018_income.html'>toy_ech_2018_income</a></span>,
+  <span class='kw'>base_month</span> <span class='kw'>=</span> <span class='fl'>6</span>,
+  <span class='kw'>base_year</span> <span class='kw'>=</span> <span class='fl'>2018</span>,
   <span class='kw'>mes</span> <span class='kw'>=</span> <span class='st'>"mes"</span>,
   <span class='kw'>ht11</span> <span class='kw'>=</span> <span class='st'>"ht11"</span>,
-  <span class='kw'>ysvl</span> <span class='kw'>=</span> <span class='st'>"YSVL"</span>,
+  <span class='kw'>ysvl</span> <span class='kw'>=</span> <span class='st'>"ysvl"</span>,
   <span class='kw'>ht13</span> <span class='kw'>=</span> <span class='st'>"ht13"</span>,
   <span class='kw'>ht19</span> <span class='kw'>=</span> <span class='st'>"ht19"</span>
 )</pre>
@@ -134,11 +134,11 @@
       <td><p>data frame with ECH microdata</p></td>
     </tr>
     <tr>
-      <th>base.month</th>
+      <th>base_month</th>
       <td><p>mes base</p></td>
     </tr>
     <tr>
-      <th>base.year</th>
+      <th>base_year</th>
       <td><p>anio base</p></td>
     </tr>
     <tr>
@@ -163,19 +163,23 @@
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>data.frame</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Disclaimer: El script no es un producto oficial de INE.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='no'>toy_ech_2017_income</span> <span class='kw'>&lt;-</span> <span class='fu'>income_constant_prices</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ech</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/ech/man/toy_ech_2017_income.html'>toy_ech_2017_income</a></span>)
+<span class='no'>toy_ech_2018</span> <span class='kw'>&lt;-</span> <span class='fu'>income_constant_prices</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ech</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/ech/man/toy_ech_2018.html'>toy_ech_2018</a></span>)
 <span class='co'># }</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#value">Value</a></li>
       <li><a href="#details">Details</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>
