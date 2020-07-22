@@ -3,7 +3,6 @@
 export("%>%")
 export(archive_extract)
 export(deflate)
-export(deflate_gini)
 export(employment)
 export(enrolled_school)
 export(get_ciiu)

@@ -17,9 +17,9 @@
 #' @return data.frame
 #' @details
 #' Disclaimer: El script no es un producto oficial de INE.
-#' @examples
+#' @example
 #' \donttest{
-#' toy_ech_2018_income <- income_constant_prices(data = ech::toy_ech_2018_income)
+#' toy_ech_2018 <- income_constant_prices(data = ech::toy_ech_2018)
 #' }
 
 income_constant_prices <- function(data = ech::toy_ech_2018_income,
@@ -66,22 +66,19 @@ income_constant_prices <- function(data = ech::toy_ech_2018_income,
 #' Disclaimer: El script no es un producto oficial de INE.
 #' @examples
 #' \donttest{
-#' toy_ech_2018_income <- income_quantiles(data = ech::toy_ech_2018_income)
+#' toy_ech_2018 <- income_constant_prices(data = ech::toy_ech_2018)
+#' toy_ech_2018 <- income_quantiles(data = toy_ech_2018)
 #' }
 
-income_quantiles <- function(data = ech::toy_ech_2018_income,
+income_quantiles <- function(data = ech::toy_ech_2018,
                              quantile = 5,
                              weights = "pesoano",
                              income = "ht11_per_capita_deflate") {
 
-  if (!income  %in% names(data)){
-    data %<>% income_constant_prices(data = .)
-    message("Income parameter was not in data, and auto-estimated with income_constant_prices()")
-  }
-
   assertthat::assert_that(is.data.frame(data))
   assertthat::assert_that(weights %in% names(data))
   assertthat::assert_that(quantile %in% c(5, 10))
+  assertthat::assert_that(income  %in% names(data), msg = "Sorry... :( \n Income parameter is not calculated, please use income_constant_prices() to obtain the variable.")
 
   weights = data[,weights]
 
@@ -219,8 +216,8 @@ labor_income_per_capita <- function(data = ech::toy_ech_2018,
 #'
 #' @examples
 #' \donttest{
-#' base <- ech::toy_ech_2018
-#' toy_ech_2018 <- labor_income_per_hour(data = base, base_month = "06", base_year = "2018")
+#' df <- ech::toy_ech_2018
+#' toy_ech_2018 <- labor_income_per_hour(data = df, base_month = "06", base_year = "2018")
 #' }
 #'
 labor_income_per_hour <- function(data = ech::toy_ech_2018,
@@ -275,8 +272,8 @@ gini_income <- function(data = ech::toy_ech_2018,
                         base_year = "2005",
                         mes = "mes") {
 
-  deflactor_gini_i <-  deflate_gini(base_month = base_month, base_year = base_year, ipc = "I", df_year = max(data$anio))
-  deflactor_gini_m <-  deflate_gini(base_month = base_month, base_year = base_year, ipc = "M", df_year = max(data$anio))
+  deflactor_gini_i <-  deflate(base_month = base_month, base_year = base_year, ipc = "I", df_year = max(data$anio))
+  deflactor_gini_m <-  deflate(base_month = base_month, base_year = base_year, ipc = "M", df_year = max(data$anio))
 
   data <- data %>%
     dplyr::mutate(aux = as.integer(haven::zap_labels(data$mes))) %>%

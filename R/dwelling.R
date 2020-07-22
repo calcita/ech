@@ -1,6 +1,6 @@
-#' A function to estimate housing status
+#' A function to calculate housing status
 #'
-#' This function allows you to estimate the housing status
+#' This function allows you to calculate the housing status
 #' @param data data frame con las variables necesarias de ech
 #' @param ht19 cantidad de personas sin servicio domestico
 #' @param d9 cantidad de habitaciones para dormir
@@ -25,7 +25,9 @@
 #'
 #' @examples
 #' \donttest{
-#' toy_ech_2018 <- housing_deprivation(data = ech::toy_ech_2018)
+#' toy_ech_2018 <- income_constant_prices(data = ech::toy_ech_2018)
+#' toy_ech_2018 <- income_quantiles(data = toy_ech_2018)
+#' toy_ech_2018 <- housing_deprivation(data = toy_ech_2018)
 #' }
 housing_deprivation <- function(data = ech::toy_ech_2018,
                          ht19 = "ht19",
@@ -59,11 +61,8 @@ housing_deprivation <- function(data = ech::toy_ech_2018,
   assertthat::assert_that(c3  %in% names(data), msg =  glue:glue("Sorry... :( \n {c3} is not in data"))
   assertthat::assert_that(c4  %in% names(data), msg =  glue:glue("Sorry... :( \n {c4} is not in data"))
   assertthat::assert_that(region_4  %in% names(data), msg =  glue:glue("Sorry... :( \n {region_4} is not in data"))
+  assertthat::assert_that(quintil %in% names(data), msg = "Sorry... :( \n quintil parameter is not calculated, please use income_constant_prices() to obtain the variable.")
 
-  if (!quintil  %in% names(data)) {
-    data %<>% income_quantiles(data = .)
-    message("quintil parameter was not in data, and auto-estimated with income_quantiles()")
-  }
 
   data <- data %>%
     dplyr::mutate(

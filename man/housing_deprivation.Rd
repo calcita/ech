@@ -2,7 +2,7 @@
 % Please edit documentation in R/dwelling.R
 \name{housing_deprivation}
 \alias{housing_deprivation}
-\title{A function to estimate housing status}
+\title{A function to calculate housing status}
 \usage{
 housing_deprivation(
   data = ech::toy_ech_2018,
@@ -57,13 +57,15 @@ housing_deprivation(
 data.frame
 }
 \description{
-This function allows you to estimate the housing status
+This function allows you to calculate the housing status
 }
 \details{
 Disclaimer: El script no es un producto oficial de INE.
 }
 \examples{
 \donttest{
-toy_ech_2018 <- housing_deprivation(data = ech::toy_ech_2018)
+toy_ech_2018 <- income_constant_prices(data = ech::toy_ech_2018)
+toy_ech_2018 <- income_quantiles(data = toy_ech_2018)
+toy_ech_2018 <- housing_deprivation(data = toy_ech_2018)
 }
 }

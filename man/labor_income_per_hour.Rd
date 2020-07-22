@@ -43,8 +43,8 @@ Disclaimer: El script no es un producto oficial de INE.
 }
 \examples{
 \donttest{
-base <- ech::toy_ech_2018
-toy_ech_2018 <- labor_income_per_hour(data = base, base_month = "06", base_year = "2018")
+df <- ech::toy_ech_2018
+toy_ech_2018 <- labor_income_per_hour(data = df, base_month = "06", base_year = "2018")
 }
 
 }
