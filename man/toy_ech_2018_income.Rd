@@ -16,6 +16,8 @@ A data frame with 1000 rows and 9 variables:
   \item{dpto}{}
   \item{pesoano}{}
   \item{estred13}{}
+  \item{anio}{}
+  \item{region_4}{}
   ...
 }
 }

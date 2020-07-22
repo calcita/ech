@@ -58,7 +58,7 @@ income_constant_prices <- function(data = ech::toy_ech_2018_income,
 #' @param weights ponderation variable
 #' @param income Name of the income variables. Default: "ht11_per_capita_deflate"
 #' @importFrom statar xtile
-#' @importFrom dplyr mutate pull
+#' @importFrom dplyr mutate
 #' @importFrom magrittr %<>%
 #' @export
 #' @return data.frame
@@ -74,14 +74,16 @@ income_quantiles <- function(data = ech::toy_ech_2018_income,
                              weights = "pesoano",
                              income = "ht11_per_capita_deflate") {
 
-  data <- income_constant_prices(data = ech::toy_ech_2018_income)
+  if (!income  %in% names(data)){
+    data <- income_constant_prices(data)
+    message("Income parameter was not in data, and auto-estimated with income_constant_prices()")
+  }
 
   assertthat::assert_that(is.data.frame(data))
   assertthat::assert_that(weights %in% names(data))
   assertthat::assert_that(quantile %in% c(5, 10))
-  assertthat::assert_that(income  %in% names(data), msg = "Sorry... :( \n Income parameter is not estimated, please use income_constant_prices() to obtain the variable.")
 
-  weights = pull(data[,weights])
+  weights = data[,weights]
 
   if (quantile == 5) {
     ## quintiles
@@ -141,7 +143,7 @@ income_quantiles <- function(data = ech::toy_ech_2018_income,
 #' @importFrom dplyr mutate case_when
 #' @details
 #' Disclaimer: El script no es un producto oficial de INE.
-#' @example
+#' @examples
 #' \donttest{
 #' toy_ech_2018 <- labor_income_per_capita(data = ech::toy_ech_2018)
 #' }
@@ -215,9 +217,10 @@ labor_income_per_capita <- function(data = ech::toy_ech_2018,
 #' @details Disclaimer: El script no es un producto oficial de INE.
 #' @export
 #'
-#' @example
+#' @examples
 #' \donttest{
-#' toy_ech_2018 <- labor_income_per_hour(data = ech::toy_ech_2018, base_month = "06", base_year = "2018")
+#' base <- ech::toy_ech_2018
+#' toy_ech_2018 <- labor_income_per_hour(data = base, base_month = "06", base_year = "2018")
 #' }
 #'
 labor_income_per_hour <- function(data = ech::toy_ech_2018,
@@ -261,7 +264,7 @@ labor_income_per_hour <- function(data = ech::toy_ech_2018,
 #'
 #' @details Disclaimer: El script no es un producto oficial de INE.
 #'
-#' @example
+#' @examples
 #' \donttest{
 #' toy_ech_2018 <- gini_income(data = ech::toy_ech_2018)
 #' }

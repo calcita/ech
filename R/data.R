@@ -604,6 +604,8 @@
 #'   \item{dpto}{}
 #'   \item{pesoano}{}
 #'   \item{estred13}{}
+#'   \item{anio}{}
+#'   \item{region_4}{}
 #'   ...
 #' }
 #' @source \url{http://www.ine.gub.uy/}

@@ -64,6 +64,6 @@ Disclaimer: El script no es un producto oficial de INE.
 }
 \examples{
 \donttest{
-toy_ech_2018 <- housing_deprivation(data =  ech::toy_ech_2018)
+toy_ech_2018 <- housing_deprivation(data = ech::toy_ech_2018)
 }
 }

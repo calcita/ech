@@ -25,7 +25,7 @@
 #'
 #' @examples
 #' \donttest{
-#' toy_ech_2018 <- housing_deprivation(data =  ech::toy_ech_2018)
+#' toy_ech_2018 <- housing_deprivation(data = ech::toy_ech_2018)
 #' }
 housing_deprivation <- function(data = ech::toy_ech_2018,
                          ht19 = "ht19",
@@ -58,8 +58,12 @@ housing_deprivation <- function(data = ech::toy_ech_2018,
   assertthat::assert_that(c2  %in% names(data), msg =  glue:glue("Sorry... :( \n {c2} is not in data"))
   assertthat::assert_that(c3  %in% names(data), msg =  glue:glue("Sorry... :( \n {c3} is not in data"))
   assertthat::assert_that(c4  %in% names(data), msg =  glue:glue("Sorry... :( \n {c4} is not in data"))
-  assertthat::assert_that(quintil  %in% names(data), msg =  glue:glue("Sorry... :( \n {quintil} is not in data"))
   assertthat::assert_that(region_4  %in% names(data), msg =  glue:glue("Sorry... :( \n {region_4} is not in data"))
+
+  if (!quintil  %in% names(data)) {
+    data <- income_quantiles(data)
+    message("quintil parameter was not in data, and auto-estimated with income_quantiles()")
+  }
 
   data <- data %>%
     dplyr::mutate(

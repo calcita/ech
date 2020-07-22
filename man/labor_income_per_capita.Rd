@@ -134,3 +134,9 @@ Labor income per capita
 \details{
 Disclaimer: El script no es un producto oficial de INE.
 }
+\examples{
+\donttest{
+toy_ech_2018 <- labor_income_per_capita(data = ech::toy_ech_2018)
+}
+
+}

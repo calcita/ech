@@ -26,3 +26,9 @@ gini income
 \details{
 Disclaimer: El script no es un producto oficial de INE.
 }
+\examples{
+\donttest{
+toy_ech_2018 <- gini_income(data = ech::toy_ech_2018)
+}
+
+}
