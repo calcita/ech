@@ -19,3 +19,9 @@
 * Add CBA/CBNA data 
 * Merge deflate.R and deflate_gini.R
 * Merge income_constante_price.R and income_gini.R
+
+
+# ech v0.0.1.13
+
+* Add housing_situation, housing_condition, homeownership, branch_ciuu and overcrowding
+

@@ -46,5 +46,8 @@ if(getRversion() >= "2.15.1") utils::globalVariables(c(".",
                                                        'labor_income',
                                                        'labor_income_h',
                                                        'mes',
-                                                       'hours_per_month'
+                                                       'hours_per_month',
+                                                       'housing_situation',
+                                                       'overcrowding',
+                                                       "homeownership"
                                                        ))

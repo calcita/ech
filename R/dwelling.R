@@ -81,3 +81,123 @@ housing_deprivation <- function(data = ech::toy_ech_2018,
   )
 
 }
+
+
+
+#' Title
+#'
+#' @param data data.frame
+#' @param c5_1 roof dampness
+#' @param c5_2 roof leaks
+#' @param c5_3 cracked walls
+#' @param c5_4 broken doors or windows
+#' @param c5_5 cracked floors
+#' @param c5_6 caida de revoque en paredes
+#' @param c5_7 cielos rasos desprendidos
+#' @param c5_8 poca luz solar
+#' @param c5_9 escasa ventilacion
+#' @param c5_10 se inunda cuando llueve
+#' @param c5_11 peligro de derrumbe
+#' @param c5_12 humedades en los cimientos
+#'
+#' @return data.frame
+#' @export
+#'
+#' @example
+#' toy_ech_2018 <- housing_situation(data = ech::toy_ech_2018)
+#'
+housing_situation <- function(data = ech::toy_ech_2018,
+                              c5_1 = "c5_1",
+                              c5_2 = "c5_2",
+                              c5_3 = "c5_3",
+                              c5_4 = "c5_4",
+                              c5_5 = "c5_5",
+                              c5_6 = "c5_6",
+                              c5_7 = "c5_7",
+                              c5_8 = "c5_8",
+                              c5_9 = "c5_9",
+                              c5_10 = "c5_10",
+                              c5_11 = "c5_11",
+                              c5_12 = "c5_12"){
+
+  data <- data %>%
+    dplyr::mutate(housing_situation = dplyr::case_when(
+      c5_1 == 2 & c5_2 == 2 &  c5_3 == 2 & c5_4 == 2 & c5_5 == 2 & c5_6 == 2 & c5_7 == 2 & c5_8 == 2 & c5_9 == 2 & c5_10 == 2 & c5_11 == 2 & c5_12 == 2 ~ 1,
+      (c5_1 == 2 & c5_2 == 2 & c5_3 == 2 & c5_6 == 2  & c5_7 == 2  & c5_10 == 2 & c5_11 == 2 & c5_12 == 2)  & (c5_4 == 1 | c5_5 == 1 | c5_8 == 1  | c5_9 == 1) ~ 2,
+      (c5_3==2 & c5_10==2 & c5_11==2 ) & (c5_1==1 | c5_2==1 | c5_6==1 | c5_7==1 | c5_12==1) ~ 3,
+      c5_3== 1 | c5_10== 1  | c5_11== 1 ~ 4,
+      TRUE ~ 0
+    )
+
+  )
+
+}
+
+
+
+# housing_conditions <- function(data = ech::toy_ech_2018,
+#                                c2 = "c2",
+#                                c3 = "c3",
+#                                c4 = "c4"){
+#
+#   data <- data %>%
+#     dplyr::mutate(housing_conditions = dplyr::case_when(
+#       c2 == 6 | (c3 == 6 & c2 %in% c(2, 4, 5)) | (c3 == 6 & c4 %in% 4:5) | (c3 == 5 & c4== 5 & c2 %in% c(2, 4, 5)) | ( c3==4 & c4 == 5 & c2 %in% c(2, 4)) ~ 1,
+#       c3== 6 & c4 %in% 1:3 & c2 %in% c(1, 3) | c3 == 4 & c4!=5 & c2!= 6 | c3 == 4 & c4 == 5 & c2 %in% c(1, 3, 5) | c3 == 5 & c4 != 5 & c2 == 4 | c3 == 5 &  c4 == 5 & c2 %in% c(1, 3) | c3 == 5 & c4 == 4 & c2 == 2 | c3 %in% 1:3 & c4 == 5 & c2 != 6 | c3 %in% 1:3 & c4 == 4 & c2 %in% c(2, 4, 5) | c3 %in% 1:3  & c4 %in% 1:3 & c2 == 4 | c3 %in% 2:3 & c4 == 3 & c2 == 2 ~ 2,
+#        c3 == 5  & c4 == 4 & c2 %in% c(1, 3, 5) | ((c3 == 5) & c4 %in% 1:3 & c2 %in% c(2, 5) | ((c3== 1 | c3 == 2 | c3 == 3) & (c4 == 4)  &  (c2 == 1 | c2 == 3)) | ((c3 == 1 | c3 == 2 | c3 == 3) & ( c4 == 2 | c4 == 3) & (c2 == 5)) | ((c3 == 1 | c3 == 2) & (c4 == 1) & (c2 == 5)) | (( c3==3 ) & (c4== 1 | c4 == 2) & (c2== 2)) | (( c3==3 ) & (c4 == 2 | c4 == 3) & (c2 == 2)) | ((c3== 2) & (c4 == 2 | c4 == 3) & (c2 == 3)) | ((c3 == 1 | c3 == 2) & (c4 == 1 | c4 == 2) & (c2 == 2))  |  ((c3 == 2) & (c4 ==2 | c4== 3) & (c2 == 1)) | ((c3== 1) & (c4== 1) & (c2== 2)) |(c3==1) & (c4==3) & (c2==2)	), 3,
+#        c3 %in% c(1, 3, 5) & c4 %in% 1:3 & c2 %in% c(1, 3) |  (c3 == 3 & c4 == 1 & c2 == 5) | (c3 == 2 & c4 == 1 & c2 %in% c(1, 3)) ~ 4,
+#        TRUE ~ 0
+#       )
+# }
+
+
+#' Title
+#'
+#' @param data data.frame
+#' @param ht19 cantidad integrantes
+#' @param d10 bedrooms
+#'
+#' @return data.frame
+#' @export
+#'
+#' @example
+#' toy_ech_2018 <- overcrowding(data = ech::toy_ech_2018)
+#'
+overcrowding <- function(data = ech::toy_ech_2018,
+                         ht19 = "ht19",
+                         d10 = "d10"){
+
+  data <- data %>%
+    dplyr::mutate(overcrowding = dplyr::case_when(
+     ht19 / d10 > 2 ~ 1,
+     TRUE ~ 0
+    )
+  )
+
+}
+
+
+#' Title
+#'
+#' @param data data.frame
+#' @param d8_1 tenencia de la vivienda
+#'
+#' @return data.frame
+#' @export
+#'
+#' @example
+#' toy_ech_2018 <- homeownership(data = ech::toy_ech_2018)
+#'
+homeownership <- function(data = ech::toy_ech_2018,
+                          d8_1 = "d8_1"){
+
+  data <- data %>% dplyr::mutate(homeownership = dplyr::case_when(
+    d8_1 %in% c(1, 2, 10) ~ 1,
+    d8_1 == 5 ~ 2,
+    d8_1 %in% 6:8, 3,
+    d8_1 == 9, 4,
+    d8_1 %in% 3:4, 5,
+    TRUE ~ NA
+    )
+  )
+}
