@@ -61,7 +61,7 @@ housing_deprivation <- function(data = ech::toy_ech_2018,
   assertthat::assert_that(region_4  %in% names(data), msg =  glue:glue("Sorry... :( \n {region_4} is not in data"))
 
   if (!quintil  %in% names(data)) {
-    data <- income_quantiles(data)
+    data %<>% income_quantiles(data = .)
     message("quintil parameter was not in data, and auto-estimated with income_quantiles()")
   }
 

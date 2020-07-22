@@ -75,7 +75,7 @@ income_quantiles <- function(data = ech::toy_ech_2018_income,
                              income = "ht11_per_capita_deflate") {
 
   if (!income  %in% names(data)){
-    data <- income_constant_prices(data)
+    data %<>% income_constant_prices(data = .)
     message("Income parameter was not in data, and auto-estimated with income_constant_prices()")
   }
 
