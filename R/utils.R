@@ -129,19 +129,16 @@ get_cba_cbna <- function(folder = tempdir(),
     cba_mdeo <- df[, 1:3]
     names(cba_mdeo) <- df[2,]
     cba_mdeo <- cba_mdeo %>% dplyr::slice(-1:-3) %>% janitor::clean_names() %>% dplyr::bind_cols(date,.)
-  }
-
-  if (region == "I"){
+  } else if (region == "I"){
     cba_int_urb <- df[, 4:6]
     names(cba_int_urb) <- df[2,]
     cba_int_urb <- cba_int_urb %>% dplyr::slice(-1:-3) %>% janitor::clean_names() %>% dplyr::bind_cols(date,.)
-  }
-
-  if (region == "R"){
+  } else {
    cba_int_rur <- df[, 7:9]
    names(cba_int_rur) <- df[2,]
    cba_int_rur <- cba_int_rur %>% dplyr::slice(-1:-3) %>% janitor::clean_names() %>% dplyr::bind_cols(date,.)
   }
+
 }
 
 #' deflate
