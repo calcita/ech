@@ -8,5 +8,5 @@ test_that("return structure", {
   expect_equal(ncol(toy_ech_2018), 585)
   df <- ech::toy_ech_2018
   toy_ech_2018 <- labor_income_per_hour(data = df, base_month = "06", base_year = "2018")
-  expect_equal(ncol(toy_ech_2018), 579)
+  expect_equal(ncol(toy_ech_2018), 585)
 })
