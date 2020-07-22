@@ -96,6 +96,54 @@ get_ipc_region <- function(folder = tempdir(), region = "M", sheet = NULL){
   }
 }
 
+#' Title
+#'
+#' @param folder temporal folder
+#' @param sheet number of sheet
+#' @param region Montevideo ("M"), Interior Urbano ("I"), Interior Rural ("R")
+#'
+#' @return data.frame
+#' @export
+#'
+#' @example
+#' get_cba_cbna(folder = tempdir(), sheet = 1, region = "M")
+#'
+get_cba_cbna <- function(folder = tempdir(),
+                    sheet = NULL,
+                    region = NULL){
+
+  u <- "http://www.ine.gub.uy/c/document_library/get_file?uuid=1675e7d0-6fe0-49bd-bf3f-a46bd6334c0c&groupId=10181"
+  f <- fs::path(folder, "CBA_LP_LI M.xls")
+  try(utils::download.file(u, f, mode = "wb", method = "libcurl"))
+
+  df <- readxl::read_xls(f, sheet = sheet)
+  date <- df[9:nrow(df),1]
+  names(date) <- "fecha"
+    date <- date %>%
+        dplyr::mutate(fecha = janitor::excel_numeric_to_date(as.numeric(as.character(fecha)), date_system = "modern")) %>%
+        janitor::remove_empty("rows")
+
+  df <- df[,-1] %>% janitor::remove_empty("rows") %>% janitor::remove_empty("cols")
+
+  if (region == "M"){
+    cba_mdeo <- df[, 1:3]
+    names(cba_mdeo) <- df[2,]
+    cba_mdeo <- cba_mdeo %>% dplyr::slice(-1:-3) %>% janitor::clean_names() %>% dplyr::bind_cols(date,.)
+  }
+
+  if (region == "I"){
+    cba_int_urb <- df[, 4:6]
+    names(cba_int_urb) <- df[2,]
+    cba_int_urb <- cba_int_urb %>% dplyr::slice(-1:-3) %>% janitor::clean_names() %>% dplyr::bind_cols(date,.)
+  }
+
+  if (region == "R"){
+   cba_int_rur <- df[, 7:9]
+   names(cba_int_rur) <- df[2,]
+   cba_int_rur <- cba_int_rur %>% dplyr::slice(-1:-3) %>% janitor::clean_names() %>% dplyr::bind_cols(date,.)
+  }
+}
+
 #' deflate
 #'
 #' @param base_month mes base

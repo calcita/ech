@@ -697,3 +697,57 @@
 #'  }
 #' @source \url{http://www.ine.gub.uy/}
 "ipc_base2010_mdeo"
+
+#' Data IPC (Montevideo)
+#'
+#' A dataset containing the IPC base 2010 only for the Montevideo region
+#'
+#' @format A data frame with 120 rows and 2 variables:
+#' \describe{
+#'   \item{fecha}{date from 2011 to 2019}
+#'   \item{indice}{IPC}
+#'  }
+#' @source \url{http://www.ine.gub.uy/}
+"ipc_base2010_mdeo"
+
+#' Data CBA-CBNA (Montevideo)
+#'
+#' A dataset containing the CBA and CBNA for the Montevideo region
+#'
+#' @format A data frame with 234 rows and 4 variables:
+#' \describe{
+#'   \item{fecha}{date from 2001 to 2020}
+#'   \item{cba_li}{CBA}
+#'   \item{cbna}{CBNA}
+#'   \item{cbt_lp}{CBT}
+#'  }
+#' @source \url{http://www.ine.gub.uy/}
+"cba_cbna_mdeo"
+
+#' Data CBA-CBNA (Interior Urbano)
+#'
+#' A dataset containing the CBA and CBNA for the Interior Urbano region
+#'
+#' @format A data frame with 234 rows and 4 variables:
+#' \describe{
+#'   \item{fecha}{date from 2001 to 2020}
+#'   \item{cba_li}{CBA}
+#'   \item{cbna}{CBNA}
+#'   \item{cbt_lp}{CBT}
+#'  }
+#' @source \url{http://www.ine.gub.uy/}
+"cba_cbna_int"
+
+#' Data CBA-CBNA (Interior Rural)
+#'
+#' A dataset containing the CBA and CBNA for the Interior Rural region
+#'
+#' @format A data frame with 234 rows and 4 variables:
+#' \describe{
+#'   \item{fecha}{date from 2001 to 2020}
+#'   \item{cba_li}{CBA}
+#'   \item{cbna}{CBNA}
+#'   \item{cbt_lp}{CBT}
+#'  }
+#' @source \url{http://www.ine.gub.uy/}
+"cba_cbna_rur"

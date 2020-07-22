@@ -6,9 +6,9 @@
 #' @param base_year anio base
 #' @param mes mes
 #' @param ht11 ht11
-#' @param ysvl ysvl
 #' @param ht13 ht13
 #' @param ht19 ht19
+#' @param ipc  General ("G") or Regional ("R")
 #' @importFrom dplyr mutate left_join
 #' @importFrom magrittr %<>% %>%
 #' @importFrom haven zap_labels
@@ -25,27 +25,48 @@
 income_constant_prices <- function(data = ech::toy_ech_2018_income,
                                    base_month = 6,
                                    base_year = 2018,
+                                   ipc = "G",
                                    mes = "mes",
                                    ht11 = "ht11",
-                                   ysvl = "ysvl",
                                    ht13 = "ht13",
                                    ht19 = "ht19"){
 
-  deflate <- ech::deflate(base_month = base_month,
-                          base_year = base_year,
-                          df_year = max(data$anio))
-  # Asigna deflactor
-  data <- data %>% dplyr::mutate(aux = as.integer(haven::zap_labels(.data[[mes]]))) %>%
-    dplyr::left_join(deflate, by = c("aux" = "mes"), keep = F)
+  if (ipc == "G") {
 
-  # Ingresos deflactados
-  data %<>% dplyr::mutate(ht11_per_capita = .data[[ht11]] / .data[[ht19]],
-                          ht11_deflate = .data[[ht11]] * deflate,
-                          ht13_deflate = .data[[ht13]] * deflate,
-                          ht11_svl_def = .data[[ysvl]] * deflate,
-                          ht11_svl_per_capita_deflate = .data[[ysvl]] / .data[[ht19]] * deflate,
-                          ht11_per_capita_deflate = .data[[ht11]] / .data[[ht19]] * deflate # Ingresos promedio per cápita a precios constantes de month.base year.base
-  )
+    deflate <- ech::deflate(base_month = base_month,
+                            base_year = base_year,
+                            df_year = max(data$anio))
+    # Asigna deflactor
+    data <- data %>% dplyr::mutate(aux = as.integer(haven::zap_labels(.data[[mes]]))) %>%
+      dplyr::left_join(deflate, by = c("aux" = "mes"), keep = F)
+
+
+    # Ingresos deflactados
+    data %<>% dplyr::mutate(y_pc_d = .data[[ht11]] / .data[[ht19]] * deflate, # income per capita deflated
+                            rv_d = .data[[ht13]] * deflate, # rental value deflated
+                            y_wrv_d = (.data[[ht11]] - .data[[ht13]]) * deflate, # income without rental value deflated
+                            y_wrv_pc_d = (.data[[ht11]] - .data[[ht13]]) / .data[[ht19]] * deflate, # income without rental value per capita deflated
+    )
+  }
+
+  if (ipc == "R") {
+
+    deflactor_i <-  deflate(base_month = base_month, base_year = base_year, ipc = "I", df_year = max(data$anio))
+    deflactor_m <-  deflate(base_month = base_month, base_year = base_year, ipc = "M", df_year = max(data$anio))
+
+    data <- data %>%
+      dplyr::mutate(aux = as.integer(haven::zap_labels(data$mes))) %>%
+      dplyr::left_join(deflactor_i, by = c("aux" = "mes"), keep = F) %>%
+      dplyr::rename(deflactor_i = deflate) %>%
+      dplyr::left_join(deflactor_m, by = c("aux" = "mes"), keep = F) %>%
+      dplyr::rename(deflactor_m = deflate)
+
+    data <- data %>%  dplyr::mutate(deflactor_r = ifelse(dpto == 1, deflactor_m, deflactor_i),
+                                    y_wrv_pc_d_r = (ht11 - ht13) / ht19 * deflactor_r)  # income without rental value per capita deflated (regional)
+
+  }
+
+
   # message(glue::glue("Se ha creado la variable {colname} en la base"))
 }
 
@@ -56,7 +77,7 @@ income_constant_prices <- function(data = ech::toy_ech_2018_income,
 #' @param data data.frame
 #' @param quantile cuantiles: quintiles (5) o deciles (10)
 #' @param weights ponderation variable
-#' @param income Name of the income variables. Default: "ht11_per_capita_deflate"
+#' @param income Name of the income variables. Default: "y_pc_d"
 #' @importFrom statar xtile
 #' @importFrom dplyr mutate pull
 #' @importFrom magrittr %<>%
@@ -73,7 +94,7 @@ income_constant_prices <- function(data = ech::toy_ech_2018_income,
 income_quantiles <- function(data = ech::toy_ech_2018,
                              quantile = 5,
                              weights = "pesoano",
-                             income = "ht11_per_capita_deflate") {
+                             income = "y_pc_d") {
 
   assertthat::assert_that(is.data.frame(data))
   assertthat::assert_that(weights %in% names(data))
@@ -247,44 +268,4 @@ labor_income_per_hour <- function(data = ech::toy_ech_2018,
       total_income_per_hour = ifelse(pobpcoac == 2 & pt4 != 0, (pt4/deflate)*100/hours_per_month, NA)) # Total de ingresos por trabajo por hora
 
 }
-
-
-#' gini income
-#'
-#' @param data data frame with ECH microdata
-#' @param base_month month base
-#' @param base_year year base
-#' @param mes mes
-#' @importFrom dplyr mutate
-#' @importFrom convey svygini
-#' @export
-#'
-#' @details Disclaimer: El script no es un producto oficial de INE.
-#'
-#' @examples
-#' \donttest{
-#' toy_ech_2018 <- gini_income(data = ech::toy_ech_2018)
-#' }
-#'
-
-gini_income <- function(data = ech::toy_ech_2018,
-                        base_month = "01",
-                        base_year = "2005",
-                        mes = "mes") {
-
-  deflactor_gini_i <-  deflate(base_month = base_month, base_year = base_year, ipc = "I", df_year = max(data$anio))
-  deflactor_gini_m <-  deflate(base_month = base_month, base_year = base_year, ipc = "M", df_year = max(data$anio))
-
-  data <- data %>%
-    dplyr::mutate(aux = as.integer(haven::zap_labels(data$mes))) %>%
-    dplyr::left_join(deflactor_gini_i, by = c("aux" = "mes"), keep = F) %>%
-    dplyr::rename(deflactor_gini_i = deflate) %>%
-    dplyr::left_join(deflactor_gini_m, by = c("aux" = "mes"), keep = F) %>%
-    dplyr::rename(deflactor_gini_m = deflate)
-
-  data <- data %>%  dplyr::mutate(deflactor_gini = ifelse(dpto == 1, deflactor_gini_m, deflactor_gini_i),
-                                  ht11_svl_per_capita_deflate_gini = ysvl / ht19 * deflactor_gini)
-
-}
-
 

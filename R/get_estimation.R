@@ -248,18 +248,18 @@ get_estimation_ratio <- function(data = ech::toy_ech_2018,
 #' Title
 #'
 #' @param data ech data frame
-#' @param variable igreso sin valor locativo deflactado
+#' @param variable income without rental value per capita deflated
 #' @param by.x variable
 #' @param by.y variable
 #' @param domain subpoblacion
-#' @param level nivel
+#' @param level household or individual
 #' @param name nombre
 #'
 #' @return table
 #' @export
 
 get_estimation_gini <- function(data = ech::toy_ech_2018,
-                                variable = ht11_svl_per_capita_deflate_gini,
+                                variable = y_wrv_pc_d_r,
                                 by.x = NULL,
                                 by.y = NULL,
                                 domain = NULL,

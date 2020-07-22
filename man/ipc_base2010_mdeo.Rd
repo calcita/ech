@@ -10,14 +10,26 @@ A data frame with 120 rows and 2 variables:
   \item{fecha}{date from 2011 to 2019}
   \item{indice}{IPC}
  }
+
+A data frame with 120 rows and 2 variables:
+\describe{
+  \item{fecha}{date from 2011 to 2019}
+  \item{indice}{IPC}
+ }
 }
 \source{
+\url{http://www.ine.gub.uy/}
+
 \url{http://www.ine.gub.uy/}
 }
 \usage{
 ipc_base2010_mdeo
+
+ipc_base2010_mdeo
 }
 \description{
+A dataset containing the IPC base 2010 only for the Montevideo region
+
 A dataset containing the IPC base 2010 only for the Montevideo region
 }
 \keyword{datasets}

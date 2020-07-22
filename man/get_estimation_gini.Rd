@@ -6,7 +6,7 @@
 \usage{
 get_estimation_gini(
   data = ech::toy_ech_2018,
-  variable = ht11_svl_per_capita_deflate_gini,
+  variable = y_wrv_pc_d_r,
   by.x = NULL,
   by.y = NULL,
   domain = NULL,
@@ -17,7 +17,7 @@ get_estimation_gini(
 \arguments{
 \item{data}{ech data frame}
 
-\item{variable}{igreso sin valor locativo deflactado}
+\item{variable}{income without rental value per capita deflated}
 
 \item{by.x}{variable}
 
@@ -25,7 +25,7 @@ get_estimation_gini(
 
 \item{domain}{subpoblacion}
 
-\item{level}{nivel}
+\item{level}{household or individual}
 
 \item{name}{nombre}
 }
