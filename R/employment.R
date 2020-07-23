@@ -31,7 +31,7 @@ employment <- function(data = ech::toy_ech_2018,
 }
 
 
-#' Title
+#' branch_ciuu
 #'
 #' @param data data.frame
 #' @param f72_2 ciiu code rev.4
@@ -49,7 +49,7 @@ branch_ciiu <- function(data = ech::toy_ech_2018,
                         f72_2 = "f72_2",
                         group = TRUE){
 
- data <- data %>%  mutate(branch_ciiu = dplyr::case_when(f72_2 == "" ~ NA,
+ data <- data %>% dplyr::mutate(branch_ciiu = dplyr::case_when(f72_2 == "" ~ NA,
                                         f72_2 < 1000 ~ 1,
                                         f72_2 < 4000 ~ 2,
                                         f72_2 < 4500 ~ 3,
@@ -73,7 +73,7 @@ branch_ciiu <- function(data = ech::toy_ech_2018,
 
  if (group == TRUE){
    data <- data %>%
-     mutate(branch_group_ciiu = dplyr::case_when(
+     dplyr::mutate(branch_group_ciiu = dplyr::case_when(
        branch_ciiu == "" ~ NA,
        branch_ciiu == 1 ~ 1,
        branch_ciiu == 2 ~ 2,
