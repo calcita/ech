@@ -17,3 +17,7 @@ data.frame
 \description{
 Title
 }
+\examples{
+toy_ech_2018 <- homeownership(data = ech::toy_ech_2018)
+
+}

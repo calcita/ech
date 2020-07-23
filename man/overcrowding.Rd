@@ -19,3 +19,7 @@ data.frame
 \description{
 Title
 }
+\examples{
+toy_ech_2018 <- overcrowding(data = ech::toy_ech_2018)
+
+}

@@ -2,7 +2,7 @@
 % Please edit documentation in R/dwelling.R
 \name{housing_situation}
 \alias{housing_situation}
-\title{Title}
+\title{Housing situation}
 \usage{
 housing_situation(
   data = ech::toy_ech_2018,
@@ -51,5 +51,9 @@ housing_situation(
 data.frame
 }
 \description{
-Title
+Housing situation
+}
+\examples{
+toy_ech_2018 <- housing_situation(data = ech::toy_ech_2018)
+
 }

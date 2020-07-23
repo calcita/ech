@@ -19,3 +19,8 @@ data.frame
 \description{
 Title
 }
+\examples{
+\donttest{
+toy_ech_2018 <- branch_ciiu(data = ech::toy_ech_2018)
+}
+}

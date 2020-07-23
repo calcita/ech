@@ -28,7 +28,7 @@ get_ipc <- function(folder = tempdir()){
   ipc_base2010 <- df
 }
 
-#' Title
+#' IPC by region
 #'
 #' @param folder ruta temporal para descargar el archivo
 #' @param region Montevideo ("M") o Interior ("I")
@@ -96,16 +96,21 @@ get_ipc_region <- function(folder = tempdir(), region = "M", sheet = NULL){
   }
 }
 
-#' Title
+#' CBA-CBNA
 #'
 #' @param folder temporal folder
 #' @param sheet number of sheet
 #' @param region Montevideo ("M"), Interior Urbano ("I"), Interior Rural ("R")
+#' @importFrom readxl read_xls
+#' @importFrom dplyr slice mutate bind_cols
+#' @importFrom janitor clean_names excel_numeric_to_date remove_empty
+#' @importFrom fs path
+#' @importFrom magrittr %>%
 #'
 #' @return data.frame
 #' @export
 #'
-#' @example
+#' @examples
 #' get_cba_cbna(folder = tempdir(), sheet = 1, region = "M")
 #'
 get_cba_cbna <- function(folder = tempdir(),
@@ -138,6 +143,40 @@ get_cba_cbna <- function(folder = tempdir(),
    names(cba_int_rur) <- df[2,]
    cba_int_rur <- cba_int_rur %>% dplyr::slice(-1:-3) %>% janitor::clean_names() %>% dplyr::bind_cols(date,.)
   }
+
+}
+
+
+#' IPAB (Indice de precios de alimentos y bebidas)
+#'
+#' @param folder temporal folder
+#' @param sheet number of sheet
+#'
+#' @importFrom readxl read_xls
+#' @importFrom janitor remove_empty
+#' @importFrom dplyr bind_rows slice filter_all bind_cols any_vars
+#' @importFrom tidyr fill
+#' @return data.frame
+#' @export
+#'
+#' @examples
+#' get_ipab(folder = tempdir(), sheet = 1)
+#'
+get_ipab <- function(folder = tempdir(),
+                     sheet = NULL){
+
+  u <- "http://www.ine.gub.uy/c/document_library/get_file?uuid=c4b5efaa-cdd4-497a-ab78-e3138e4f08dc&groupId=10181"
+  f <- fs::path(folder, "IPC Div M_B10.xls")
+  try(utils::download.file(u, f, mode = "wb", method = "libcurl"))
+
+  df <- readxl::read_xls(f, sheet = sheet)
+  df <- df[,-1:-2] %>% janitor::remove_empty("rows")
+  df <- dplyr::bind_rows(dplyr::slice(df, 1), dplyr::filter_all(df, dplyr::any_vars(grepl(c('Divisiones'), .))), dplyr::filter_all(df, dplyr::any_vars(grepl(c('Alimentos y Bebidas No Alcoh'), .))))
+  df [,1] <- c("yy", "mm", "indice")
+  df <- dplyr::bind_cols(t(df[1,]), t(df[2,]), t(df[3,]))
+  names(df) <- df[1,]
+  df <- df %>% dplyr::slice(-1) %>% janitor::remove_empty("rows")
+  df <- df %>% tidyr::fill(yy)
 
 }
 

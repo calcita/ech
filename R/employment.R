@@ -40,7 +40,7 @@ employment <- function(data = ech::toy_ech_2018,
 #' @return data.frame
 #' @export
 #'
-#' @example
+#' @examples
 #' \donttest{
 #' toy_ech_2018 <- branch_ciiu(data = ech::toy_ech_2018)
 #' }

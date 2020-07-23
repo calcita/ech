@@ -751,3 +751,18 @@
 #'  }
 #' @source \url{http://www.ine.gub.uy/}
 "cba_cbna_rur"
+
+
+
+#' Data IPAB
+#'
+#' A dataset containing the IPAB
+#'
+#' @format A data frame with 286 rows and 3 variables:
+#' \describe{
+#'   \item{yy}{date from 1997 to 2020}
+#'   \item{mm}{month}
+#'   \item{indice}{IPAB}
+#'  }
+#' @source \url{http://www.ine.gub.uy/}
+"ipab_base2010"

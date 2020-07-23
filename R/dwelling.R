@@ -84,7 +84,7 @@ housing_deprivation <- function(data = ech::toy_ech_2018,
 
 
 
-#' Title
+#' Housing situation
 #'
 #' @param data data.frame
 #' @param c5_1 roof dampness
@@ -103,7 +103,7 @@ housing_deprivation <- function(data = ech::toy_ech_2018,
 #' @return data.frame
 #' @export
 #'
-#' @example
+#' @examples
 #' toy_ech_2018 <- housing_situation(data = ech::toy_ech_2018)
 #'
 housing_situation <- function(data = ech::toy_ech_2018,
@@ -121,35 +121,43 @@ housing_situation <- function(data = ech::toy_ech_2018,
                               c5_12 = "c5_12"){
 
   data <- data %>%
-    dplyr::mutate(housing_situation = dplyr::case_when(
-      c5_1 == 2 & c5_2 == 2 &  c5_3 == 2 & c5_4 == 2 & c5_5 == 2 & c5_6 == 2 & c5_7 == 2 & c5_8 == 2 & c5_9 == 2 & c5_10 == 2 & c5_11 == 2 & c5_12 == 2 ~ 1,
-      (c5_1 == 2 & c5_2 == 2 & c5_3 == 2 & c5_6 == 2  & c5_7 == 2  & c5_10 == 2 & c5_11 == 2 & c5_12 == 2)  & (c5_4 == 1 | c5_5 == 1 | c5_8 == 1  | c5_9 == 1) ~ 2,
-      (c5_3==2 & c5_10==2 & c5_11==2 ) & (c5_1==1 | c5_2==1 | c5_6==1 | c5_7==1 | c5_12==1) ~ 3,
-      c5_3== 1 | c5_10== 1  | c5_11== 1 ~ 4,
-      TRUE ~ 0
-    )
-
-  )
+    dplyr::mutate(
+      housing_situation = ifelse(c5_1 == 2 & c5_2 == 2 &  c5_3 == 2 & c5_4 == 2 & c5_5 == 2 & c5_6 == 2 & c5_7 == 2 & c5_8 == 2 & c5_9 == 2 & c5_10 == 2 & c5_11 == 2 & c5_12 == 2, "Sin problemas",
+                                 ifelse(c5_1 == 2 & c5_2 == 2 & c5_3 == 2 & c5_6 == 2  & c5_7 == 2  & c5_10 == 2 & c5_11 == 2 & c5_12 == 2  & (c5_4 == 1 | c5_5 == 1 | c5_8 == 1  | c5_9 == 1), "Problemas leves",
+                                        ifelse(c5_3 == 2 & c5_10 == 2 & c5_11 == 2 & (c5_1 == 1 | c5_2 == 1 | c5_6 == 1 | c5_7 == 1 | c5_12 == 1), "Problemas moderados",
+                                               ifelse(c5_3 == 1 | c5_10 == 1  | c5_11 == 1, "Problemas graves", ""
+    )))))
 
 }
 
 
 
-# housing_conditions <- function(data = ech::toy_ech_2018,
-#                                c2 = "c2",
-#                                c3 = "c3",
-#                                c4 = "c4"){
-#
-#   data <- data %>%
-#     dplyr::mutate(housing_conditions = dplyr::case_when(
-#       c2 == 6 | (c3 == 6 & c2 %in% c(2, 4, 5)) | (c3 == 6 & c4 %in% 4:5) | (c3 == 5 & c4== 5 & c2 %in% c(2, 4, 5)) | ( c3==4 & c4 == 5 & c2 %in% c(2, 4)) ~ 1,
-#       c3== 6 & c4 %in% 1:3 & c2 %in% c(1, 3) | c3 == 4 & c4!=5 & c2!= 6 | c3 == 4 & c4 == 5 & c2 %in% c(1, 3, 5) | c3 == 5 & c4 != 5 & c2 == 4 | c3 == 5 &  c4 == 5 & c2 %in% c(1, 3) | c3 == 5 & c4 == 4 & c2 == 2 | c3 %in% 1:3 & c4 == 5 & c2 != 6 | c3 %in% 1:3 & c4 == 4 & c2 %in% c(2, 4, 5) | c3 %in% 1:3  & c4 %in% 1:3 & c2 == 4 | c3 %in% 2:3 & c4 == 3 & c2 == 2 ~ 2,
-#        c3 == 5  & c4 == 4 & c2 %in% c(1, 3, 5) | ((c3 == 5) & c4 %in% 1:3 & c2 %in% c(2, 5) | ((c3== 1 | c3 == 2 | c3 == 3) & (c4 == 4)  &  (c2 == 1 | c2 == 3)) | ((c3 == 1 | c3 == 2 | c3 == 3) & ( c4 == 2 | c4 == 3) & (c2 == 5)) | ((c3 == 1 | c3 == 2) & (c4 == 1) & (c2 == 5)) | (( c3==3 ) & (c4== 1 | c4 == 2) & (c2== 2)) | (( c3==3 ) & (c4 == 2 | c4 == 3) & (c2 == 2)) | ((c3== 2) & (c4 == 2 | c4 == 3) & (c2 == 3)) | ((c3 == 1 | c3 == 2) & (c4 == 1 | c4 == 2) & (c2 == 2))  |  ((c3 == 2) & (c4 ==2 | c4== 3) & (c2 == 1)) | ((c3== 1) & (c4== 1) & (c2== 2)) |(c3==1) & (c4==3) & (c2==2)	), 3,
-#        c3 %in% c(1, 3, 5) & c4 %in% 1:3 & c2 %in% c(1, 3) |  (c3 == 3 & c4 == 1 & c2 == 5) | (c3 == 2 & c4 == 1 & c2 %in% c(1, 3)) ~ 4,
-#        TRUE ~ 0
-#       )
-# }
+#' Title
+#'
+#' @param data data.frame
+#' @param c2 material predominante en paredes externas
+#' @param c3 material predominante en techos
+#' @param c4 material predominante en pisos
+#'
+#' @return data.frame
+#' @export
+#'
+#' @examples
+#' toy_ech_2018 <- housing_conditions(data = ech::toy_ech_2018)
+#'
+housing_conditions <- function(data = ech::toy_ech_2018,
+                               c2 = "c2",
+                               c3 = "c3",
+                               c4 = "c4"){
 
+  data <- data %>%
+    dplyr::mutate(
+      housing_conditions = ifelse(c2 == 6 | (c3 == 6 & c2 %in% c(2, 4, 5)) | (c3 == 6 & c4 %in% 4:5 & c2 %in% c(1,3)) | (c3 == 5 & c4 == 5 & c2 %in% c(2, 4, 5)) | (c3 == 4 & c4 == 5 & c2 %in% c(2, 4)), "Precaria",
+        ifelse((c3== 6 & c4 %in% 1:3 & c2 %in% c(1, 3)) | (c3 == 4 & c4 %in% 1:4 & c2 %in% 1:5) | (c3 == 4 & c4 == 5 & c2 %in% c(1, 3, 5)) | (c3 == 5 & c4 %in% 1:4 & c2 == 4) | (c3 == 5 &  c4 == 5 & c2 %in% c(1, 3)) | (c3 == 5 & c4 == 4 & c2 == 2) | (c3 %in% 1:3 & c4 == 5 & c2 %in% 1:5) | (c3 %in% 1:3 & c4 == 4 & c2 %in% c(2, 4, 5)) | (c3 %in% 1:3  & c4 %in% 1:3 & c2 == 4) | (c3 %in% 2:3 & c4 == 3 & c2 == 2), "Modesta",
+        ifelse((c3 == 5 & c4 == 4 & c2 %in% c(1, 3, 5)) | (c3 == 5 & c4 %in% 1:3 & c2 %in% c(2, 5)) | (c3 %in% 1:3 & c4 == 4  & c2 %in% 1:3) | (c3 %in% 1:3 & c4 %in% 2:3 & c2 == 5) | (c3 %in% 1:2 & c4 == 1 & c2 == 5) | (c3 == 3 & c4 %in% 1:2 & c2 == 2) | (c3 == 2 & c4 %in% 2:3 & c2 == 3) | (c3 %in% 1:2 & c4 %in% 1:2 & c2 == 2) | (c3 == 2 & c4 %in% 2:3 & c2 == 1) | (c3 == 1 & c4 == 3 & c2 == 2), "Mediana",
+        ifelse((c3 %in% c(1, 3, 5) & c4 %in% 1:3 & c2 %in% c(1, 3)) | (c3 == 3 & c4 == 1 & c2 == 5) | (c3 == 2 & c4 == 1 & c2 %in% c(1, 3)), "Buena", ""
+        )))))
+}
 
 #' Title
 #'
@@ -160,7 +168,7 @@ housing_situation <- function(data = ech::toy_ech_2018,
 #' @return data.frame
 #' @export
 #'
-#' @example
+#' @examples
 #' toy_ech_2018 <- overcrowding(data = ech::toy_ech_2018)
 #'
 overcrowding <- function(data = ech::toy_ech_2018,
@@ -185,19 +193,18 @@ overcrowding <- function(data = ech::toy_ech_2018,
 #' @return data.frame
 #' @export
 #'
-#' @example
+#' @examples
 #' toy_ech_2018 <- homeownership(data = ech::toy_ech_2018)
 #'
 homeownership <- function(data = ech::toy_ech_2018,
                           d8_1 = "d8_1"){
 
-  data <- data %>% dplyr::mutate(homeownership = dplyr::case_when(
-    d8_1 %in% c(1, 2, 10) ~ 1,
-    d8_1 == 5 ~ 2,
-    d8_1 %in% 6:8, 3,
-    d8_1 == 9, 4,
-    d8_1 %in% 3:4, 5,
-    TRUE ~ NA
+  data <- data %>%
+    dplyr::mutate(
+      homeownership = ifelse(as.integer(d8_1) %in% c(1, 2, 10), "Propietaria-o",
+        ifelse(as.integer(d8_1) == 5, "Inquilina-o",
+        ifelse(as.integer(d8_1) %in% 6:8, "Ocupante gratuito",
+        ifelse(as.integer(d8_1) == 9, "Ocupante sin permiso",
+        ifelse(as.integer(d8_1) %in% 3:4, "Propietaria-o solo de la vivienda", "")))))
     )
-  )
 }
