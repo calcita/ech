@@ -3,4 +3,6 @@ test_that("emploiment works", {
   testthat::expect_equal(ncol(a), 583)
   testthat::expect_warning(employment(a))
   testthat::expect_error(employment(pobpcoac = "aaa"))
+  b <- branch_ciiu(data = ech::toy_ech_2018)
+  testthat::expect_equal(ncol(b), 581)
 })

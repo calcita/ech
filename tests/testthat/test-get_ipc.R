@@ -1,4 +1,12 @@
 test_that("get_ipc works", {
   ipc_base2010 <- get_ipc(folder = tempdir())
   testthat::expect_true("ipc_base2010" %in% ls())
+  ipc_region <- get_ipc_region(folder = tempdir(), region = "M")
+  testthat::expect_equal(nrow(ipc_region), 36)
+  cba_cbna_m <- get_cba_cbna(folder = tempdir(), sheet = 1, region = "M")
+  testthat::expect_equal(nrow(cba_cbna_m), 234)
+  cba_cbna_i <- get_cba_cbna(folder = tempdir(), sheet = 1, region = "I")
+  testthat::expect_equal(nrow(cba_cbna_i), 234)
+  ipab <- get_ipab(folder = tempdir(), sheet = 1)
+  testthat::expect_equal(nrow(ipab), 226)
 })
