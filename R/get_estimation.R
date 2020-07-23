@@ -245,42 +245,42 @@ get_estimation_ratio <- function(data = ech::toy_ech_2018,
 
 }
 
-#' get_estimation_gini
-#'
-#' @param data ech data frame
-#' @param variable income without rental value per capita deflated
-#' @param by.x variable
-#' @param by.y variable
-#' @param domain subpoblacion
-#' @param level household or individual
-#' @param name nombre
-#'
-#' @return table
-#' @export
-#' @examples
-#' \donttest{
-#' toy_ech_18 <- gini_income(data = ech::toy_ech_2018)
-#' get_estimation_gini(data = toy_ech_18, level = "h")
-#' }
-
-get_estimation_gini <- function(data = ech::toy_ech_2018,
-                                variable = y_wrv_pc_d_r,
-                                by.x = NULL,
-                                by.y = NULL,
-                                domain = NULL,
-                                level = NULL,
-                                name = "estimacion"){
-
-
-  # design ---
-  design_ech <- ech::set_design(data = data, level = level)
-
-  # supressed warnings ---
-  options(survey.lonely.psu = "adjust")
-  options(dplyr.summarise.inform = FALSE)
-
-  # estimation ---
-  design_ech <- convey::convey_prep(design_ech)
-  estimation <- convey::svygini(~variable, design_ech, na.rm = TRUE)
-
-}
+# #' get_estimation_gini
+# #'
+# #' @param data ech data frame
+# #' @param variable income without rental value per capita deflated
+# #' @param by.x variable
+# #' @param by.y variable
+# #' @param domain subpoblacion
+# #' @param level household or individual
+# #' @param name nombre
+# #'
+# #' @return table
+# #' @export
+# #' @examples
+# #' \donttest{
+# #' toy_ech_18 <- gini_income(data = ech::toy_ech_2018)
+# #' get_estimation_gini(data = toy_ech_18, by.x = "dpto", level = "h")
+# #' }
+#
+# get_estimation_gini <- function(data = ech::toy_ech_2018,
+#                                 variable = "y_wrv_pc_d_r",
+#                                 by.x = NULL,
+#                                 by.y = NULL,
+#                                 domain = NULL,
+#                                 level = NULL,
+#                                 name = "estimacion"){
+#
+#
+#   # design ---
+#   design_ech <- ech::set_design(data = data, level = level)
+#
+#   # supressed warnings ---
+#   options(survey.lonely.psu = "adjust")
+#   options(dplyr.summarise.inform = FALSE)
+#
+#   # estimation ---
+#   design_ech <- convey::convey_prep(design_ech)
+#   estimation <- convey::svygini(~.data[[variable]], design_ech, na.rm = TRUE)
+#
+# }
