@@ -28,7 +28,7 @@ get_ipc <- function(folder = tempdir()){
   ipc_base2010 <- df
 }
 
-#' IPC by region
+#' get_ipc_region
 #'
 #' @param folder ruta temporal para descargar el archivo
 #' @param region Montevideo ("M") o Interior ("I")
@@ -96,7 +96,7 @@ get_ipc_region <- function(folder = tempdir(), region = "M", sheet = NULL){
   }
 }
 
-#' CBA-CBNA
+#' get_cba_cbna
 #'
 #' @param folder temporal folder
 #' @param sheet number of sheet
@@ -147,6 +147,8 @@ get_cba_cbna <- function(folder = tempdir(),
 }
 
 
+#' get_ipab
+#'
 #' IPAB (Indice de precios de alimentos y bebidas)
 #'
 #' @param folder temporal folder

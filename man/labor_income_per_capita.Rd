@@ -2,7 +2,7 @@
 % Please edit documentation in R/income.R
 \name{labor_income_per_capita}
 \alias{labor_income_per_capita}
-\title{Labor income per capita}
+\title{labor_income_per_capita}
 \usage{
 labor_income_per_capita(
   data = ech::toy_ech_2018,
@@ -129,7 +129,7 @@ labor_income_per_capita(
 data.frame
 }
 \description{
-Labor income per capita
+labor_income_per_capita
 }
 \details{
 Disclaimer: El script no es un producto oficial de INE.

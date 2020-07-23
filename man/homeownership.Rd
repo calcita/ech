@@ -2,7 +2,7 @@
 % Please edit documentation in R/dwelling.R
 \name{homeownership}
 \alias{homeownership}
-\title{Title}
+\title{homeownership}
 \usage{
 homeownership(data = ech::toy_ech_2018, d8_1 = "d8_1")
 }
@@ -15,7 +15,7 @@ homeownership(data = ech::toy_ech_2018, d8_1 = "d8_1")
 data.frame
 }
 \description{
-Title
+homeownership
 }
 \examples{
 toy_ech_2018 <- homeownership(data = ech::toy_ech_2018)

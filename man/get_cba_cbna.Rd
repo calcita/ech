@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{get_cba_cbna}
 \alias{get_cba_cbna}
-\title{CBA-CBNA}
+\title{get_cba_cbna}
 \usage{
 get_cba_cbna(folder = tempdir(), sheet = NULL, region = NULL)
 }
@@ -17,7 +17,7 @@ get_cba_cbna(folder = tempdir(), sheet = NULL, region = NULL)
 data.frame
 }
 \description{
-CBA-CBNA
+get_cba_cbna
 }
 \examples{
 get_cba_cbna(folder = tempdir(), sheet = 1, region = "M")

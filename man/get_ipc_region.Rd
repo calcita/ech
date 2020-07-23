@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{get_ipc_region}
 \alias{get_ipc_region}
-\title{IPC by region}
+\title{get_ipc_region}
 \usage{
 get_ipc_region(folder = tempdir(), region = "M", sheet = NULL)
 }
@@ -17,7 +17,7 @@ get_ipc_region(folder = tempdir(), region = "M", sheet = NULL)
 data.frame
 }
 \description{
-IPC by region
+get_ipc_region
 }
 \examples{
 \donttest{

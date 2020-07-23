@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{get_ipab}
 \alias{get_ipab}
-\title{IPAB (Indice de precios de alimentos y bebidas)}
+\title{get_ipab}
 \usage{
 get_ipab(folder = tempdir(), sheet = NULL)
 }

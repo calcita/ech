@@ -2,7 +2,7 @@
 % Please edit documentation in R/dwelling.R
 \name{overcrowding}
 \alias{overcrowding}
-\title{Title}
+\title{overcrowding}
 \usage{
 overcrowding(data = ech::toy_ech_2018, ht19 = "ht19", d10 = "d10")
 }
@@ -17,7 +17,7 @@ overcrowding(data = ech::toy_ech_2018, ht19 = "ht19", d10 = "d10")
 data.frame
 }
 \description{
-Title
+overcrowding
 }
 \examples{
 toy_ech_2018 <- overcrowding(data = ech::toy_ech_2018)

@@ -2,7 +2,7 @@
 % Please edit documentation in R/dwelling.R
 \name{housing_deprivation}
 \alias{housing_deprivation}
-\title{A function to calculate housing status}
+\title{housing_deprivation}
 \usage{
 housing_deprivation(
   data = ech::toy_ech_2018,

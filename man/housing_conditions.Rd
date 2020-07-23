@@ -2,7 +2,7 @@
 % Please edit documentation in R/dwelling.R
 \name{housing_conditions}
 \alias{housing_conditions}
-\title{Title}
+\title{housing_conditions}
 \usage{
 housing_conditions(data = ech::toy_ech_2018, c2 = "c2", c3 = "c3", c4 = "c4")
 }
@@ -19,7 +19,7 @@ housing_conditions(data = ech::toy_ech_2018, c2 = "c2", c3 = "c3", c4 = "c4")
 data.frame
 }
 \description{
-Title
+housing_conditions
 }
 \examples{
 toy_ech_2018 <- housing_conditions(data = ech::toy_ech_2018)

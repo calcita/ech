@@ -1,4 +1,4 @@
-#' A function to calculate housing status
+#' housing_deprivation
 #'
 #' This function allows you to calculate the housing status
 #' @param data data frame con las variables necesarias de ech
@@ -84,7 +84,7 @@ housing_deprivation <- function(data = ech::toy_ech_2018,
 
 
 
-#' Housing situation
+#' housing_situation
 #'
 #' @param data data.frame
 #' @param c5_1 roof dampness
@@ -132,7 +132,7 @@ housing_situation <- function(data = ech::toy_ech_2018,
 
 
 
-#' Title
+#' housing_conditions
 #'
 #' @param data data.frame
 #' @param c2 material predominante en paredes externas
@@ -159,7 +159,7 @@ housing_conditions <- function(data = ech::toy_ech_2018,
         )))))
 }
 
-#' Title
+#' overcrowding
 #'
 #' @param data data.frame
 #' @param ht19 cantidad integrantes
@@ -185,7 +185,7 @@ overcrowding <- function(data = ech::toy_ech_2018,
 }
 
 
-#' Title
+#' homeownership
 #'
 #' @param data data.frame
 #' @param d8_1 tenencia de la vivienda

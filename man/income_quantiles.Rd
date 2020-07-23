@@ -8,7 +8,7 @@ income_quantiles(
   data = ech::toy_ech_2018,
   quantile = 5,
   weights = "pesoano",
-  income = "y_pc_d"
+  income = "ht11_per_capita_deflate"
 )
 }
 \arguments{
@@ -18,7 +18,7 @@ income_quantiles(
 
 \item{weights}{ponderation variable}
 
-\item{income}{Name of the income variables. Default: "y_pc_d"}
+\item{income}{Name of the income variables. Default: "ht11_per_capita_deflate"}
 }
 \value{
 data.frame
