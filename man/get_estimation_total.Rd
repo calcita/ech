@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_estimation.R
 \name{get_estimation_total}
 \alias{get_estimation_total}
-\title{A function to estimate total variables at universe level}
+\title{get_estimation_total}
 \usage{
 get_estimation_total(
   data = ech::toy_ech_2018,
@@ -33,7 +33,7 @@ get_estimation_total(
 table
 }
 \description{
-This function allows you to estimate total variable.
+This function allows you to estimate total variable at universe level.
 }
 \details{
 Disclaimer: El script no es un producto oficial de INE.

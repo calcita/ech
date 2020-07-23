@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_estimation.R
 \name{get_estimation_ratio}
 \alias{get_estimation_ratio}
-\title{A function to estimate ratio variables at universe level}
+\title{get_estimation_ratio}
 \usage{
 get_estimation_ratio(
   data = ech::toy_ech_2018,
@@ -36,7 +36,7 @@ get_estimation_ratio(
 table
 }
 \description{
-This function allows you to estimate ratio variable.
+This function allows you to estimate ratio variable at universe level.
 }
 \details{
 Disclaimer: El script no es un producto oficial de INE.

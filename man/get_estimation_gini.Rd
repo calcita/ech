@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_estimation.R
 \name{get_estimation_gini}
 \alias{get_estimation_gini}
-\title{Title}
+\title{get_estimation_gini}
 \usage{
 get_estimation_gini(
   data = ech::toy_ech_2018,
@@ -33,5 +33,11 @@ get_estimation_gini(
 table
 }
 \description{
-Title
+get_estimation_gini
+}
+\examples{
+\donttest{
+toy_ech_18 <- gini_income(data = ech::toy_ech_2018)
+get_estimation_gini(data = toy_ech_18, level = "h")
+}
 }

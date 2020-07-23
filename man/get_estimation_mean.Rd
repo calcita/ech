@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_estimation.R
 \name{get_estimation_mean}
 \alias{get_estimation_mean}
-\title{A function to estimate mean variables at universe level}
+\title{get_estimation_mean}
 \usage{
 get_estimation_mean(
   data = ech::toy_ech_2018,
@@ -33,7 +33,7 @@ get_estimation_mean(
 table
 }
 \description{
-This function allows you to estimate mean variable.
+This function allows you to estimate mean variable at universe level.
 }
 \details{
 Disclaimer: El script no es un producto oficial de INE.

@@ -1,6 +1,6 @@
-#' A function to estimate mean variables at universe level
+#' get_estimation_mean
 #'
-#' This function allows you to estimate mean variable.
+#' This function allows you to estimate mean variable at universe level.
 #' @param data data frame with ECH microdata
 #' @param variable data frame column to estimate
 #' @param by.x data frame column
@@ -79,9 +79,9 @@ get_estimation_mean <- function(data = ech::toy_ech_2018,
 
 }
 
-#' A function to estimate total variables at universe level
+#' get_estimation_total
 #'
-#' This function allows you to estimate total variable.
+#' This function allows you to estimate total variable at universe level.
 #' @param data data frame with ECH microdata
 #' @param variable data frame column to estimate
 #' @param by.x data frame column
@@ -160,9 +160,9 @@ get_estimation_total <- function(data = ech::toy_ech_2018,
 }
 
 
-#' A function to estimate ratio variables at universe level
+#' get_estimation_ratio
 #'
-#' This function allows you to estimate ratio variable.
+#' This function allows you to estimate ratio variable at universe level.
 #' @param data data frame with ECH microdata
 #' @param variable.x data frame column to estimate
 #' @param variable.y data frame column to estimate
@@ -245,7 +245,7 @@ get_estimation_ratio <- function(data = ech::toy_ech_2018,
 
 }
 
-#' Title
+#' get_estimation_gini
 #'
 #' @param data ech data frame
 #' @param variable income without rental value per capita deflated
@@ -257,6 +257,11 @@ get_estimation_ratio <- function(data = ech::toy_ech_2018,
 #'
 #' @return table
 #' @export
+#' @examples
+#' \donttest{
+#' toy_ech_18 <- gini_income(data = ech::toy_ech_2018)
+#' get_estimation_gini(data = toy_ech_18, level = "h")
+#' }
 
 get_estimation_gini <- function(data = ech::toy_ech_2018,
                                 variable = y_wrv_pc_d_r,

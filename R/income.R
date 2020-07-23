@@ -283,7 +283,7 @@ gini_income <- function(data = ech::toy_ech_2018,
     dplyr::rename(deflactor_gini_m = deflate)
 
   data <- data %>%  dplyr::mutate(deflactor_gini = ifelse(dpto == 1, deflactor_gini_m, deflactor_gini_i),
-                                  ht11_svl_per_capita_deflate_gini = ysvl / ht19 * deflactor_gini)
+                                 y_wrv_pc_d_r = ysvl / ht19 * deflactor_gini) # ht11_svl_per_capita_deflate_gini
 
 }
 
