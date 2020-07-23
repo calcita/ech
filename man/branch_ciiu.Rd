@@ -2,7 +2,7 @@
 % Please edit documentation in R/employment.R
 \name{branch_ciiu}
 \alias{branch_ciiu}
-\title{Title}
+\title{branch_ciuu}
 \usage{
 branch_ciiu(data = ech::toy_ech_2018, f72_2 = "f72_2", group = TRUE)
 }
@@ -17,7 +17,7 @@ branch_ciiu(data = ech::toy_ech_2018, f72_2 = "f72_2", group = TRUE)
 data.frame
 }
 \description{
-Title
+branch_ciuu
 }
 \examples{
 \donttest{
