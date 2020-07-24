@@ -50,5 +50,5 @@ test_that("get_estimation_gini works", {
   ech_2018 <- income_constant_prices(data = ech::toy_ech_2018, ipc = "R",
                                base_month = "01", base_year = "2005")
   a <- get_estimation_gini(data = ech_2018, variable = "y_wrv_pc_d_r", level = "h", name = "indice_gini")
-  expect_equal(nrow(a), 1)
+  expect_is(a, "cvystat")
 })

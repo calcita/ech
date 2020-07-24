@@ -33,6 +33,6 @@ get_estimation_gini
 \donttest{
 df <- income_constant_prices(data = ech::toy_ech_2018, ipc = "R",
  base_month = "01", base_year = "2005")
-get_estimation_gini(data = df, variable = "y_wrv_pc_d_r", level = "h")
+get_estimation_gini(data = df, level = "h")
 }
 }
