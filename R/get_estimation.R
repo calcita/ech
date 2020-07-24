@@ -245,38 +245,35 @@ get_estimation_ratio <- function(data = ech::toy_ech_2018,
 
 }
 
-# #' get_estimation_gini
-# #'
-# #' @param data ech data frame
-# #' @param variable income without rental value per capita deflated
-# #' @param by variable
-# #' @param level household or individual
-# #' @param name nombre
-# #'
-# #' @return table
-# #' @export
-# #' @examples
-# #' \donttest{
-# #' toy_ech_2018 <- income_constant_prices(data = ech::toy_ech_2018, ipc = "R", base_month = "01", base_year = "2005")
-# #' get_estimation_gini(data = toy_ech_18, by.x = "dpto", level = "h")
-# #' }
+#' get_estimation_gini
+#'
+#' @param data ech data frame
+#' @param variable income without rental value per capita deflated
+#' @param by variable
+#' @param level household or individual
+#' @param name nombre
+#'
+#' @return table
+#' @export
+#' @examples
+#' \donttest{
+#' df <- income_constant_prices(data = ech::toy_ech_2018, ipc = "R",
+#'  base_month = "01", base_year = "2005")
+#' get_estimation_gini(data = df, variable = "y_wrv_pc_d_r", level = "h")
+#' }
 #
-# get_estimation_gini <- function(data = ech::toy_ech_2018,
-#                                 variable = "y_wrv_pc_d_r",
-#                                 by = NULL,
-#                                 level = NULL,
-#                                 name = "estimacion"){
-#
-#
-#   # design ---
-#   design_ech <- ech::set_design(data = data, level = level)
-#
-#   # supressed warnings ---
-#   options(survey.lonely.psu = "adjust")
-#   options(dplyr.summarise.inform = FALSE)
-#
-#   # estimation ---
-#   design_ech <- convey::convey_prep(design_ech)
-#   estimation <- convey::svygini(~.data[[variable]], design_ech, na.rm = TRUE)
-#
-# }
+get_estimation_gini <- function(data = ech::toy_ech_2018,
+                                variable = NULL,
+                                by = NULL,
+                                level = NULL,
+                                name = "estimacion"){
+
+
+  # design ---
+  design_ech <- ech::set_design(data = data, level = level)
+
+  # estimation ---
+  design_ech <- convey::convey_prep(design_ech)
+  estimation <- convey::svygini(~y_wrv_pc_d_r, design_ech, na.rm = TRUE)
+  #estimation <- laeken::gini(variable, weights = weights, data = data)
+}
