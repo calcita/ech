@@ -46,18 +46,9 @@ test_that("get_estimation_ratio works", {
   expect_equal(nrow(a), 175)
 })
 
-# test_that("get_estimation_gini works", {
-#   ech_2018 <- gini_income(data = ech::toy_ech_2018)
-#   a <- get_estimation_gini(data = ech_2018, variable.x = "po", variable.y = "pea", level = "i", name = "tasa_ocupacion")
-#   expect_equal(nrow(a), 1)
-#   a <- get_estimation_gini(data = ech_2018, variable.x = "po", variable.y = "pea", domain = ech_2018$dpto == 1, level = "i")
-#   expect_equal(nrow(a), 1)
-#   a <- get_estimation_gini(data = ech_2018, variable.x = "po", variable.y = "pea", domain = ech_2018$dpto == 1, by.x = "mes", level = "i")
-#   expect_equal(nrow(a), 12)
-#   a <- get_estimation_gini(data = ech_2018, variable.x = "po", variable.y = "pea", by.x = "dpto", level = "i")
-#   expect_equal(nrow(a), 19)
-#   a <- get_estimation_gini(data = ech_2018, variable.x = "po", variable.y = "pea", by.x = "dpto", by.y = "mes",level = "i")
-#   expect_equal(nrow(a), 207)
-#   a <- get_estimation_gini(data = ech_2018, variable.x = "po", variable.y = "pea", by.x = "secc", by.y = "mes", domain = ech_2018$dpto == 1,level = "i")
-#   expect_equal(nrow(a), 175)
-# })
+test_that("get_estimation_gini works", {
+  ech_2018 <- income_constant_prices(data = ech::toy_ech_2018, ipc = "R",
+                               base_month = "01", base_year = "2005")
+  a <- get_estimation_gini(data = ech_2018, variable = "y_wrv_pc_d_r", level = "h", name = "indice_gini")
+  expect_equal(nrow(a), 1)
+})
