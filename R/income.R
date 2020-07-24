@@ -45,7 +45,7 @@ income_constant_prices <- function(data = ech::toy_ech_2018_income,
     data %<>% dplyr::mutate(y_pc_d = .data[[ht11]] / .data[[ht19]] * deflate, # income per capita deflated
                             rv_d = .data[[ht13]] * deflate, # rental value deflated
                             y_wrv_d = (.data[[ht11]] - .data[[ht13]]) * deflate, # income without rental value deflated
-                            y_wrv_pc_d = (.data[[ht11]] - .data[[ht13]]) / .data[[ht19]] * deflate, # income without rental value per capita deflated
+                            y_wrv_pc_d = (.data[[ht11]] - .data[[ht13]]) / .data[[ht19]] * deflate # income without rental value per capita deflated
     )
   }
 
@@ -66,6 +66,7 @@ income_constant_prices <- function(data = ech::toy_ech_2018_income,
 
   }
 
+ return(data)
 
   # message(glue::glue("Se ha creado la variable {colname} en la base"))
 }
