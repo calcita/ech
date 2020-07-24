@@ -249,9 +249,7 @@ get_estimation_ratio <- function(data = ech::toy_ech_2018,
 # #'
 # #' @param data ech data frame
 # #' @param variable income without rental value per capita deflated
-# #' @param by.x variable
-# #' @param by.y variable
-# #' @param domain subpoblacion
+# #' @param by variable
 # #' @param level household or individual
 # #' @param name nombre
 # #'
@@ -259,15 +257,13 @@ get_estimation_ratio <- function(data = ech::toy_ech_2018,
 # #' @export
 # #' @examples
 # #' \donttest{
-# #' toy_ech_18 <- gini_income(data = ech::toy_ech_2018)
+# #' toy_ech_2018 <- income_constant_prices(data = ech::toy_ech_2018, ipc = "R", base_month = "01", base_year = "2005")
 # #' get_estimation_gini(data = toy_ech_18, by.x = "dpto", level = "h")
 # #' }
 #
 # get_estimation_gini <- function(data = ech::toy_ech_2018,
 #                                 variable = "y_wrv_pc_d_r",
-#                                 by.x = NULL,
-#                                 by.y = NULL,
-#                                 domain = NULL,
+#                                 by = NULL,
 #                                 level = NULL,
 #                                 name = "estimacion"){
 #

@@ -8,9 +8,9 @@ income_constant_prices(
   data = ech::toy_ech_2018_income,
   base_month = 6,
   base_year = 2018,
+  ipc = "G",
   mes = "mes",
   ht11 = "ht11",
-  ysvl = "ysvl",
   ht13 = "ht13",
   ht19 = "ht19"
 )
@@ -22,11 +22,11 @@ income_constant_prices(
 
 \item{base_year}{anio base}
 
+\item{ipc}{General ("G") or Regional ("R")}
+
 \item{mes}{mes}
 
 \item{ht11}{ht11}
-
-\item{ysvl}{ysvl}
 
 \item{ht13}{ht13}
 
