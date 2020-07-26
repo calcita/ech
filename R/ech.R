@@ -53,5 +53,6 @@ if(getRversion() >= "2.15.1") utils::globalVariables(c(".",
                                                        'housing_situation',
                                                        'overcrowding',
                                                        "homeownership",
-                                                       "housing_conditions"
+                                                       "housing_conditions",
+                                                       "link"
                                                        ))

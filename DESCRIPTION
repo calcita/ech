@@ -37,7 +37,8 @@ Imports:
     tidyr,
     textclean,
     convey,
-    rstudioapi
+    rstudioapi,
+    geouy
 Suggests: 
     knitr,
     testthat (>= 2.1.0),
