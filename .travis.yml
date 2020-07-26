@@ -4,6 +4,10 @@ language: R
 cache: packages
 apt_packages:
   - unrar-free
+  - libudunits2-dev
+  - libgdal-dev
+  - libgeos-dev
+  - libproj-dev
 after_success:
   - Rscript -e 'covr::codecov()'
   - travis_wait 120 Rscript -e 'pkgdown::build_site()'
