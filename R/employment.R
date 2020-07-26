@@ -48,8 +48,11 @@ employment <- function(data = ech::toy_ech_2018,
 branch_ciiu <- function(data = ech::toy_ech_2018,
                         f72_2 = "f72_2",
                         group = TRUE){
-  if(is.character(data$f72_2)) data$f72_2 <- as.numeric(data$f72_2)
-  data <- data %>% dplyr::mutate(branch_ciiu = dplyr::case_when(f72_2 < 1000 ~ 1, #faltan evaluar los NA
+
+    if(is.character(data$f72_2)) data$f72_2 <- as.numeric(data$f72_2)
+
+    data <- data %>%
+      dplyr::mutate(branch_ciiu = dplyr::case_when(f72_2 < 1000 ~ 1, #faltan evaluar los NA
                                                                 f72_2 < 4000 ~ 2,
                                                                 f72_2 < 4500 ~ 3,
                                                                 f72_2 < 4900 ~ 4,

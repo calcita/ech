@@ -2,7 +2,7 @@
 % Please edit documentation in R/education.R
 \name{level_completion}
 \alias{level_completion}
-\title{level_campletion}
+\title{A function to calculate the level of school completion}
 \usage{
 level_completion(
   data = ech::toy_ech_2018,
@@ -27,13 +27,13 @@ level_completion(
 
 \item{e51_5}{years passed in upper secondary}
 
-\item{e51_6}{years passed in bachillerato tecnologico}
+\item{e51_6}{years passed in technical upper secondary}
 }
 \value{
 data.frame
 }
 \description{
-level_campletion
+A function to calculate the level of school completion
 }
 \details{
 Disclaimer: El script no es un producto oficial de INE.
@@ -42,4 +42,5 @@ Disclaimer: El script no es un producto oficial de INE.
 \donttest{
 toy_ech_2018 <- level_completion(data = ech::toy_ech_2018)
 }
+
 }

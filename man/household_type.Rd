@@ -15,11 +15,11 @@ household_type(
 \arguments{
 \item{data}{data frame with ECH microdata}
 
-\item{e26}{data frame column ('sex')}
+\item{e26}{sex}
 
-\item{e27}{data frame column ('age')}
+\item{e27}{age}
 
-\item{e30}{data frame column ('householder')}
+\item{e30}{householder}
 
 \item{colname}{custom name for the new variable}
 }

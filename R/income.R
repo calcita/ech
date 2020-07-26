@@ -1,13 +1,13 @@
 #' income_constant_prices
 #'
-#' @description Household income constant prices
+#' @description This function allows you to calculate the household income constant prices
 #' @param data data frame with ECH microdata
-#' @param base_month mes base
-#' @param base_year anio base
-#' @param mes mes
-#' @param ht11 ht11
-#' @param ht13 ht13
-#' @param ht19 ht19
+#' @param base_month baseline month
+#' @param base_year baseline year
+#' @param mes month
+#' @param ht11 ht11 income
+#' @param ht13 ht13 rental value
+#' @param ht19 ht19 number of individuals in the household
 #' @param ipc  General ("G") or Regional ("R")
 #' @importFrom dplyr mutate left_join
 #' @importFrom magrittr %<>% %>%
@@ -22,7 +22,7 @@
 #' toy_ech_2018 <- income_constant_prices(data = ech::toy_ech_2018)
 #' }
 
-income_constant_prices <- function(data = ech::toy_ech_2018_income,
+income_constant_prices <- function(data = ech::toy_ech_2018,
                                    base_month = 6,
                                    base_year = 2018,
                                    ipc = "G",
@@ -36,12 +36,10 @@ income_constant_prices <- function(data = ech::toy_ech_2018_income,
     deflate <- ech::deflate(base_month = base_month,
                             base_year = base_year,
                             df_year = max(data$anio))
-    # Asigna deflactor
+
     data <- data %>% dplyr::mutate(aux = as.integer(haven::zap_labels(.data[[mes]]))) %>%
       dplyr::left_join(deflate, by = c("aux" = "mes"), keep = F)
 
-
-    # Ingresos deflactados
     data %<>% dplyr::mutate(y_pc_d = .data[[ht11]] / .data[[ht19]] * deflate, # income per capita deflated
                             rv_d = .data[[ht13]] * deflate, # rental value deflated
                             y_wrv_d = (.data[[ht11]] - .data[[ht13]]) * deflate, # income without rental value deflated
@@ -73,12 +71,12 @@ income_constant_prices <- function(data = ech::toy_ech_2018_income,
 
 #' income_quantiles
 #'
-#' @description Household Income Quantiles
+#' @description This function allows you to calculate the Household Income Quantiles
 #'
 #' @param data data.frame
-#' @param quantile cuantiles: quintiles (5) o deciles (10)
+#' @param quantile quintil (5) or decil (10)
 #' @param weights ponderation variable
-#' @param income Name of the income variables. Default: "y_pc_d"
+#' @param income name of the income constant price variable. Default: "y_pc_d"
 #' @importFrom statar xtile
 #' @importFrom dplyr mutate pull
 #' @importFrom magrittr %<>%
@@ -120,7 +118,7 @@ income_quantiles <- function(data = ech::toy_ech_2018,
 #'
 #' @param data data frame
 #' @param numero household id
-#' @param pobpcoac Definition of population by activity status
+#' @param pobpcoac definition of population by activity status
 #' @param g126_1 sueldo o jornales liquidos
 #' @param g126_2 comisiones, incentivos, horas extras, habilitaciones
 #' @param g126_3 viaticos no sujetos a rendicion
@@ -210,14 +208,14 @@ labor_income_per_capita <- function(data = ech::toy_ech_2018,
   data <- data %>%
     dplyr::mutate(
       main_work = ifelse(pobpcoac %in% 2:5, g126_1 + g126_2 + g126_3 + g126_4 + g126_5 + g126_6 + g126_7 + g126_8 + g127_3 + g128_1 + g129_2 + g130_1 + g131_1 + g133_1 + g133_2/12, NA),
-     second_work = ifelse(pobpcoac %in% 2:5, g134_1 + g134_2 + g134_3 + g134_4 + g134_5 + g134_6 + g134_7 + g134_8 + g135_3 + g136_1 + g137_2 + g138_1 + g139_1 + g141_1 + g141_2/12, NA),
-     self_employment = ifelse(pobpcoac %in% 2:5, g142 + g144_1 + g144_2_1 + g144_2_3 + g144_2_4 + g144_2_5, 4),
-     labor_income = main_work + second_work + self_employment
+      second_work = ifelse(pobpcoac %in% 2:5, g134_1 + g134_2 + g134_3 + g134_4 + g134_5 + g134_6 + g134_7 + g134_8 + g135_3 + g136_1 + g137_2 + g138_1 + g139_1 + g141_1 + g141_2/12, NA),
+      self_employment = ifelse(pobpcoac %in% 2:5, g142 + g144_1 + g144_2_1 + g144_2_3 + g144_2_4 + g144_2_5, 4),
+      labor_income = main_work + second_work + self_employment
      ) %>%
     dplyr::group_by(numero) %>%
     dplyr::mutate(labor_income_h = sum(labor_income, na.rm = TRUE),
             labor_income_h_percapita = labor_income_h /sum(!is.na(labor_income_h))) %>%
-  dplyr::ungroup()
+   dplyr::ungroup()
 
 }
 
@@ -225,14 +223,16 @@ labor_income_per_capita <- function(data = ech::toy_ech_2018,
 #' labor_income_per_hour
 #'
 #' @param data data frame
-#' @param numero identificador de hogar
-#' @param f85 horas trabajadas por semana
-#' @param pobpcoac condicion de actividad economica
-#' @param pt4 total de ingresos por trabajo
-#' @param base_month mes base
-#' @param base_year anio base
-#' @param mes mes
+#' @param numero household id
+#' @param f85 hours worked per week
+#' @param pobpcoac definition of population by activity status
+#' @param pt4 total employment income
+#' @param base_month baseline month
+#' @param base_year baseline year
+#' @param mes month
+#'
 #' @return data.frame
+#'
 #' @details Disclaimer: El script no es un producto oficial de INE.
 #' @export
 #'

@@ -51,7 +51,7 @@ labor_income_per_capita(
 
 \item{numero}{household id}
 
-\item{pobpcoac}{Definition of population by activity status}
+\item{pobpcoac}{definition of population by activity status}
 
 \item{g126_1}{sueldo o jornales liquidos}
 

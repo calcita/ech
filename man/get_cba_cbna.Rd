@@ -9,7 +9,7 @@ get_cba_cbna(folder = tempdir(), sheet = NULL, region = NULL)
 \arguments{
 \item{folder}{temporal folder}
 
-\item{sheet}{number of sheet}
+\item{sheet}{sheet number}
 
 \item{region}{Montevideo ("M"), Interior Urbano ("I"), Interior Rural ("R")}
 }

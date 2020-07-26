@@ -2,10 +2,11 @@
 #'
 #' This function allows you to calculate the household type for each household in the survey. A household is composed of one or more people who occupy a housing unit.
 #' @param data data frame with ECH microdata
-#' @param e26 data frame column ('sex')
-#' @param e27 data frame column ('age')
-#' @param e30 data frame column ('householder')
+#' @param e26 sex
+#' @param e27 age
+#' @param e30 householder
 #' @param colname custom name for the new variable
+#'
 #' @importFrom dplyr mutate group_by select
 #' @importFrom glue glue
 #' @importFrom rlang .data

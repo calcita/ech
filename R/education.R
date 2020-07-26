@@ -1,11 +1,11 @@
-#' A function to estimate people enrolled in school
+#' A function to calculate people enrolled in school
 #'
-#' This function allows you to estimate people enrolled in school
+#' This function allows you to calculate people enrolled in school
 #' @param data data.frame with necessary variables Defaults to ech.
 #' @param e193 attendance school
 #' @param e197 attendance primary
 #' @param e201 attendance secondary
-#' @param e212 attendance technical education (non-university)
+#' @param e212 attendance technical school (non-university)
 #' @param e215 attendance magisterio
 #' @param e218 attendance university
 #' @param e221 attendance tertiary
@@ -47,7 +47,7 @@ enrolled_school <- function(data = ech::toy_ech_2018,
 
   if (exists("edu_asist", data)) warning('edu_asist pre-existing')
 
-  data %<>% dplyr::mutate(edu_asist = dplyr::case_when((.data$e193 == 1 |
+  data %<>% dplyr::mutate(enrollment = dplyr::case_when((.data$e193 == 1 |
                                                           .data$e197 ==  1|
                                                           .data$e201 == 1 |
                                                           .data$e212 == 1 |
@@ -117,13 +117,13 @@ years_of_schooling <- function(data = ech::toy_ech_2018,
   data %<>%
     dplyr::mutate_at(dplyr::vars({{e51_2}}, {{e51_3}}, {{e51_4}}, {{e51_5}}, {{e51_6}}, {{e51_7}}), list(~ ifelse( . == 9, 0, .))) %>%
 
-    dplyr::mutate(e51_71 = ifelse(e51_7_1 == 1, e51_7, 0), # Enseñanza secundaria completa
-                  e51_72 = ifelse(e51_7_1 == 2, e51_7, 0), # Ciclo Básico, liceo o UTU
-                  e51_73 = ifelse(e51_7_1 == 3, e51_7, 0), # Enseñanza primaria completa
-                  e51_74 = ifelse(e51_7_1 == 4, e51_7, 0)) # Ninguna
+    dplyr::mutate(e51_71 = ifelse(e51_7_1 == 1, e51_7, 0),
+                  e51_72 = ifelse(e51_7_1 == 2, e51_7, 0),
+                  e51_73 = ifelse(e51_7_1 == 3, e51_7, 0),
+                  e51_74 = ifelse(e51_7_1 == 4, e51_7, 0))
 
 
-  data %<>% dplyr::mutate(anios_edu = dplyr::case_when(e49 == 2 ~ 0, # nunca asistió
+  data %<>% dplyr::mutate(years_schooling = dplyr::case_when(e49 == 2 ~ 0, # nunca asistió
                                                        e51_11 %in% 1:6 ~ pmax(12 + e51_9 + e51_11, # sec + uni + pos
                                                                               12 + e51_8 + e51_11, # sec + mag + pos
                                                                               12 + e51_10 + e51_11), # sec + ter + pos
@@ -147,23 +147,23 @@ years_of_schooling <- function(data = ech::toy_ech_2018,
                                                        e193 %in% 1:2 ~ 0,
                                                        TRUE ~ 0))
 
-  data %<>% dplyr::mutate(anios_edu = dplyr::case_when(anios_edu < 12 & (e51_9 == 9 | e51_8 == 9 |
+  data %<>% dplyr::mutate(years_schooling = dplyr::case_when(years_schooling < 12 & (e51_9 == 9 | e51_8 == 9 |
                                                                            e51_10 == 9 | (e51_7 == 9 & e51_7_1 == 1)) ~ 12,
-                                                       TRUE ~ anios_edu))
+                                                       TRUE ~ years_schooling))
 }
 
 
 
-#' max_level_education
+#' A function to calculate the highest level of education achieved
 #'
 #' @param data data frame
 #' @param e51_2 years passed in primary
 #' @param e51_3 years passed in special primary
 #' @param e51_4 years passed in lower secondary
 #' @param e51_5 years passed in upper secondary
-#' @param e51_6 years passed in bachillerato tecnologico
-#' @param e51_7 years passed in technical education
-#' @param e51_7_1 technical education requirements
+#' @param e51_6 years passed in technical upper secondary
+#' @param e51_7 years passed in technical school
+#' @param e51_7_1 technical school requirements
 #' @param e51_8 years passed in magisterio/profesorado
 #' @param e51_9 years passed in university or similar
 #' @param e51_10 years passed in tertiary (non-university)
@@ -175,10 +175,10 @@ years_of_schooling <- function(data = ech::toy_ech_2018,
 #' Disclaimer: El script no es un producto oficial de INE.
 #' @examples
 #' \donttest{
-#' toy_ech_2018 <- max_level_education(data = ech::toy_ech_2018)
+#' toy_ech_2018 <- level_education(data = ech::toy_ech_2018)
 #' }
 
-max_level_education <- function(data = ech::toy_ech_2018,
+level_education <- function(data = ech::toy_ech_2018,
                                 e51_2 = "e51_2",
                                 e51_3 = "e51_3",
                                 e51_4 = "e51_4",
@@ -194,7 +194,7 @@ max_level_education <- function(data = ech::toy_ech_2018,
                                 e49 = "e49"){
 
   data <- data %>% dplyr::mutate(
-    nivel_educativo = dplyr::case_when(
+    level_education = dplyr::case_when(
       e49 == 2 & e51_2 == 0 & e51_3 == 0 & e51_4 == 0 & e51_5 == 0 & e51_6 == 0 & e51_7 == 0 & e51_8 == 0 & e51_9 == 0 & e51_10 == 0 & e51_11 == 0 ~ "Sin instruccion",
       e51_2 == 9 | e51_3 == 9 | e193 == 1 ~ "Sin instruccion",
       e51_2 == 0 & e51_3 == 0 ~ "Sin instruccion",
@@ -213,7 +213,7 @@ max_level_education <- function(data = ech::toy_ech_2018,
 
 
 
-#' level_campletion
+#' A function to calculate the level of school completion
 #'
 #' @param data ech
 #' @param e197 attends primary school
@@ -221,7 +221,7 @@ max_level_education <- function(data = ech::toy_ech_2018,
 #' @param e201 attends secondary
 #' @param e51_4 years passed in lower secondary
 #' @param e51_5 years passed in upper secondary
-#' @param e51_6 years passed in bachillerato tecnologico
+#' @param e51_6 years passed in technical upper secondary
 #'
 #' @importFrom dplyr mutate
 #' @return data.frame
@@ -233,6 +233,7 @@ max_level_education <- function(data = ech::toy_ech_2018,
 #' \donttest{
 #' toy_ech_2018 <- level_completion(data = ech::toy_ech_2018)
 #' }
+#'
 level_completion <- function(data = ech::toy_ech_2018,
                              e197 = "e197",
                              e197_1 = "e197_1",
@@ -241,10 +242,10 @@ level_completion <- function(data = ech::toy_ech_2018,
                              e51_5 = "e51_5",
                              e51_6 = "e51_6"){
 
- data <- data %>% dplyr::mutate(primaria_completa = ifelse(e197 == 2 & e197_1 == 1, 1, 0),
-                         media_baja_completa = ifelse(e201 %in% 1:2 & e51_4 == 3, 1, 0),
-                         media_alta_completa = ifelse(e201 %in% 1:2 & (e51_5 == 3 | e51_6 == 3), 1, 0)#,
-                         #terciaria_completa =
+ data <- data %>% dplyr::mutate(primary_completion = ifelse(e197 == 2 & e197_1 == 1, 1, 0),
+                         lower_secondary_completion = ifelse(e201 %in% 1:2 & e51_4 == 3, 1, 0),
+                         upper_secondary_completion = ifelse(e201 %in% 1:2 & (e51_5 == 3 | e51_6 == 3), 1, 0)#,
+                         #tertiary_completion =
 )
 
 }

@@ -17,11 +17,11 @@ set_design(
 
 \item{level}{is household ("h") or individual ("i")}
 
-\item{ids}{Variables specifying cluster ids from largest level to smallest level (leaving the argument empty, NULL, 1, or 0 indicate no clusters).}
+\item{ids}{variables specifying cluster ids from largest level to smallest level (leaving the argument empty, NULL, 1, or 0 indicate no clusters).}
 
-\item{strata}{Variables specifying strata.}
+\item{strata}{variable specifying strata.}
 
-\item{weights}{Variables specifying weights (inverse of probability).}
+\item{weights}{variable specifying weights (inverse of probability).}
 }
 \value{
 a list

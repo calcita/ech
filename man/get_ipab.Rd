@@ -9,7 +9,7 @@ get_ipab(folder = tempdir(), sheet = NULL)
 \arguments{
 \item{folder}{temporal folder}
 
-\item{sheet}{number of sheet}
+\item{sheet}{sheet number}
 }
 \value{
 data.frame

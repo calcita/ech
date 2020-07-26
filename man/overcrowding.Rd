@@ -2,22 +2,22 @@
 % Please edit documentation in R/dwelling.R
 \name{overcrowding}
 \alias{overcrowding}
-\title{overcrowding}
+\title{A function to calculate overcrowding in the household}
 \usage{
 overcrowding(data = ech::toy_ech_2018, ht19 = "ht19", d10 = "d10")
 }
 \arguments{
 \item{data}{data.frame}
 
-\item{ht19}{cantidad integrantes}
+\item{ht19}{Number of individuals in the household}
 
-\item{d10}{bedrooms}
+\item{d10}{Number of rooms to sleep}
 }
 \value{
 data.frame
 }
 \description{
-overcrowding
+A function to calculate overcrowding in the household
 }
 \examples{
 toy_ech_2018 <- overcrowding(data = ech::toy_ech_2018)

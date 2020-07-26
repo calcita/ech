@@ -2,7 +2,7 @@
 % Please edit documentation in R/dwelling.R
 \name{housing_situation}
 \alias{housing_situation}
-\title{housing_situation}
+\title{A function to calculate the housing situation}
 \usage{
 housing_situation(
   data = ech::toy_ech_2018,
@@ -23,35 +23,35 @@ housing_situation(
 \arguments{
 \item{data}{data.frame}
 
-\item{c5_1}{roof dampness}
+\item{c5_1}{roof condensation}
 
-\item{c5_2}{roof leaks}
+\item{c5_2}{roof drips}
 
-\item{c5_3}{cracked walls}
+\item{c5_3}{walls cracks}
 
 \item{c5_4}{broken doors or windows}
 
-\item{c5_5}{cracked floors}
+\item{c5_5}{floors cracks}
 
-\item{c5_6}{caida de revoque en paredes}
+\item{c5_6}{plaster drop on walls}
 
-\item{c5_7}{cielos rasos desprendidos}
+\item{c5_7}{detached ceilings}
 
-\item{c5_8}{poca luz solar}
+\item{c5_8}{poor sunlight}
 
-\item{c5_9}{escasa ventilacion}
+\item{c5_9}{poor ventilation}
 
-\item{c5_10}{se inunda cuando llueve}
+\item{c5_10}{floods when it rains}
 
-\item{c5_11}{peligro de derrumbe}
+\item{c5_11}{in danger of collapse}
 
-\item{c5_12}{humedades en los cimientos}
+\item{c5_12}{dampness in the foundations}
 }
 \value{
 data.frame
 }
 \description{
-housing_situation
+A function to calculate the housing situation
 }
 \examples{
 toy_ech_2018 <- housing_situation(data = ech::toy_ech_2018)

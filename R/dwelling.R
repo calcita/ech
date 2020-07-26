@@ -1,20 +1,20 @@
 #' housing_deprivation
 #'
 #' This function allows you to calculate the housing status
-#' @param data data frame con las variables necesarias de ech
-#' @param ht19 cantidad de personas sin servicio domestico
-#' @param d9 cantidad de habitaciones para dormir
-#' @param d10 cantidad de habitaciones para dormir
-#' @param d11 origen del agua
+#' @param data data frame
+#' @param ht19 number of individuals in the household
+#' @param d9 number of rooms
+#' @param d10 number of rooms to sleep
+#' @param d11 source of water
 #' @param d12 llegada del agua a la vivienda
 #' @param d13 servicio sanitario
 #' @param d16 evacuacion del servicio sanitario
-#' @param d18 fuente de energia para iluminar
-#' @param d19 lugar para cocinar
-#' @param c2 material predominante en paredes externas
-#' @param c3 material predominante en techo
-#' @param c4 material predominante en pisos
-#' @param quintil numero de quintil de ingresos
+#' @param d18 energy source for lighting
+#' @param d19 cooking space
+#' @param c2 predominant material on external walls
+#' @param c3 predominant roofing material
+#' @param c4 predominant flooring material
+#' @param quintil income quintil
 #' @param region_4 region
 #'
 #' @importFrom dplyr mutate
@@ -84,21 +84,21 @@ housing_deprivation <- function(data = ech::toy_ech_2018,
 
 
 
-#' housing_situation
+#' A function to calculate the housing situation
 #'
 #' @param data data.frame
-#' @param c5_1 roof dampness
-#' @param c5_2 roof leaks
-#' @param c5_3 cracked walls
+#' @param c5_1 roof condensation
+#' @param c5_2 roof drips
+#' @param c5_3 walls cracks
 #' @param c5_4 broken doors or windows
-#' @param c5_5 cracked floors
-#' @param c5_6 caida de revoque en paredes
-#' @param c5_7 cielos rasos desprendidos
-#' @param c5_8 poca luz solar
-#' @param c5_9 escasa ventilacion
-#' @param c5_10 se inunda cuando llueve
-#' @param c5_11 peligro de derrumbe
-#' @param c5_12 humedades en los cimientos
+#' @param c5_5 floors cracks
+#' @param c5_6 plaster drop on walls
+#' @param c5_7 detached ceilings
+#' @param c5_8 poor sunlight
+#' @param c5_9 poor ventilation
+#' @param c5_10 floods when it rains
+#' @param c5_11 in danger of collapse
+#' @param c5_12 dampness in the foundations
 #'
 #' @return data.frame
 #' @export
@@ -132,12 +132,12 @@ housing_situation <- function(data = ech::toy_ech_2018,
 
 
 
-#' housing_conditions
+#' A function to calculate the housing conditions
 #'
 #' @param data data.frame
-#' @param c2 material predominante en paredes externas
-#' @param c3 material predominante en techos
-#' @param c4 material predominante en pisos
+#' @param c2 predominant material on external walls
+#' @param c3 predominant roofing material
+#' @param c4 predominant flooring material
 #'
 #' @return data.frame
 #' @export
@@ -159,11 +159,11 @@ housing_conditions <- function(data = ech::toy_ech_2018,
         )))))
 }
 
-#' overcrowding
+#' A function to calculate overcrowding in the household
 #'
 #' @param data data.frame
-#' @param ht19 cantidad integrantes
-#' @param d10 bedrooms
+#' @param ht19 Number of individuals in the household
+#' @param d10  Number of rooms to sleep
 #'
 #' @return data.frame
 #' @export
@@ -185,23 +185,23 @@ overcrowding <- function(data = ech::toy_ech_2018,
 }
 
 
-#' homeownership
+#' A function to calculate the housing tenure
 #'
 #' @param data data.frame
-#' @param d8_1 tenencia de la vivienda
+#' @param d8_1 housing_tenure (owner, renter, rent-free occupancy, etc.)
 #'
 #' @return data.frame
 #' @export
 #'
 #' @examples
-#' toy_ech_2018 <- homeownership(data = ech::toy_ech_2018)
+#' toy_ech_2018 <- housing_tenure(data = ech::toy_ech_2018)
 #'
-homeownership <- function(data = ech::toy_ech_2018,
-                          d8_1 = "d8_1"){
+housing_tenure <- function(data = ech::toy_ech_2018,
+                           d8_1 = "d8_1"){
 
   data <- data %>%
     dplyr::mutate(
-      homeownership = ifelse(as.integer(d8_1) %in% c(1, 2, 10), "Propietaria-o",
+      housing_tenure = ifelse(as.integer(d8_1) %in% c(1, 2, 10), "Propietaria-o",
         ifelse(as.integer(d8_1) == 5, "Inquilina-o",
         ifelse(as.integer(d8_1) %in% 6:8, "Ocupante gratuito",
         ifelse(as.integer(d8_1) == 9, "Ocupante sin permiso",

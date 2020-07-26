@@ -5,7 +5,7 @@
 \title{income_constant_prices}
 \usage{
 income_constant_prices(
-  data = ech::toy_ech_2018_income,
+  data = ech::toy_ech_2018,
   base_month = 6,
   base_year = 2018,
   ipc = "G",
@@ -18,25 +18,25 @@ income_constant_prices(
 \arguments{
 \item{data}{data frame with ECH microdata}
 
-\item{base_month}{mes base}
+\item{base_month}{baseline month}
 
-\item{base_year}{anio base}
+\item{base_year}{baseline year}
 
 \item{ipc}{General ("G") or Regional ("R")}
 
-\item{mes}{mes}
+\item{mes}{month}
 
-\item{ht11}{ht11}
+\item{ht11}{ht11 income}
 
-\item{ht13}{ht13}
+\item{ht13}{ht13 rental value}
 
-\item{ht19}{ht19}
+\item{ht19}{ht19 number of individuals in the household}
 }
 \value{
 data.frame
 }
 \description{
-Household income constant prices
+This function allows you to calculate the household income constant prices
 }
 \details{
 Disclaimer: El script no es un producto oficial de INE.

@@ -23,15 +23,15 @@ housing_deprivation(
 )
 }
 \arguments{
-\item{data}{data frame con las variables necesarias de ech}
+\item{data}{data frame}
 
-\item{ht19}{cantidad de personas sin servicio domestico}
+\item{ht19}{number of individuals in the household}
 
-\item{d9}{cantidad de habitaciones para dormir}
+\item{d9}{number of rooms}
 
-\item{d10}{cantidad de habitaciones para dormir}
+\item{d10}{number of rooms to sleep}
 
-\item{d11}{origen del agua}
+\item{d11}{source of water}
 
 \item{d12}{llegada del agua a la vivienda}
 
@@ -39,17 +39,17 @@ housing_deprivation(
 
 \item{d16}{evacuacion del servicio sanitario}
 
-\item{d18}{fuente de energia para iluminar}
+\item{d18}{energy source for lighting}
 
-\item{d19}{lugar para cocinar}
+\item{d19}{cooking space}
 
-\item{c2}{material predominante en paredes externas}
+\item{c2}{predominant material on external walls}
 
-\item{c3}{material predominante en techo}
+\item{c3}{predominant roofing material}
 
-\item{c4}{material predominante en pisos}
+\item{c4}{predominant flooring material}
 
-\item{quintil}{numero de quintil de ingresos}
+\item{quintil}{income quintil}
 
 \item{region_4}{region}
 }

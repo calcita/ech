@@ -7,11 +7,11 @@
 get_ipc_region(folder = tempdir(), region = "M", sheet = NULL)
 }
 \arguments{
-\item{folder}{ruta temporal para descargar el archivo}
+\item{folder}{temporal folder}
 
-\item{region}{Montevideo ("M") o Interior ("I")}
+\item{region}{Montevideo ("M") or Interior ("I")}
 
-\item{sheet}{numero de hoja de la planilla}
+\item{sheet}{sheet number}
 }
 \value{
 data.frame

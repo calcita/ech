@@ -30,9 +30,9 @@ get_ipc <- function(folder = tempdir()){
 
 #' get_ipc_region
 #'
-#' @param folder ruta temporal para descargar el archivo
-#' @param region Montevideo ("M") o Interior ("I")
-#' @param sheet numero de hoja de la planilla
+#' @param folder temporal folder
+#' @param region Montevideo ("M") or Interior ("I")
+#' @param sheet sheet number
 #'
 #' @importFrom readxl read_xls
 #' @importFrom dplyr slice mutate select everything filter_all slice any_vars bind_rows
@@ -99,7 +99,7 @@ get_ipc_region <- function(folder = tempdir(), region = "M", sheet = NULL){
 #' get_cba_cbna
 #'
 #' @param folder temporal folder
-#' @param sheet number of sheet
+#' @param sheet sheet number
 #' @param region Montevideo ("M"), Interior Urbano ("I"), Interior Rural ("R")
 #' @importFrom readxl read_xls
 #' @importFrom dplyr slice mutate bind_cols
@@ -152,7 +152,7 @@ get_cba_cbna <- function(folder = tempdir(),
 #' IPAB (Indice de precios de alimentos y bebidas)
 #'
 #' @param folder temporal folder
-#' @param sheet number of sheet
+#' @param sheet sheet number
 #'
 #' @importFrom readxl read_xls
 #' @importFrom janitor remove_empty
@@ -184,10 +184,10 @@ get_ipab <- function(folder = tempdir(),
 
 #' deflate
 #'
-#' @param base_month mes base
-#' @param base_year anio base
-#' @param ipc IPC a nivel nacional ('G'), IPC para Montevideo ('M') e IPC para Interior ('I')
-#' @param df_year anio del data frame
+#' @param base_month baseline month
+#' @param base_year baseline year
+#' @param ipc General IPC ('G'), Montevideo IPC ('M') or Interior IPC ('I')
+#' @param df_year ECH year
 #'
 #' @importFrom dplyr select slice mutate
 #' @importFrom rlang .data
@@ -234,7 +234,9 @@ deflate <- function(base_month = NULL,
 #' @importFrom rstudioapi askForSecret
 #' @export
 
-get_ciiu <- function(folder = tempdir(), version = 4){
+get_ciiu <- function(folder = tempdir(),
+                     version = 4){
+
   u <- "http://www.ine.gub.uy/documents/10181/33330/CORRESPONDENCIA+CIUU4+A+CIUU3.pdf/623c43cb-009c-4da9-b48b-45282745063b"
   f <- fs::path(folder, "ciiu4.pdf")
   try(utils::download.file(u, f, mode = "wb", method = "libcurl"))

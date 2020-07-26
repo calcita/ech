@@ -7,13 +7,13 @@
 deflate(base_month = NULL, base_year = NULL, ipc = "G", df_year = NULL)
 }
 \arguments{
-\item{base_month}{mes base}
+\item{base_month}{baseline month}
 
-\item{base_year}{anio base}
+\item{base_year}{baseline year}
 
-\item{ipc}{IPC a nivel nacional ('G'), IPC para Montevideo ('M') e IPC para Interior ('I')}
+\item{ipc}{General IPC ('G'), Montevideo IPC ('M') or Interior IPC ('I')}
 
-\item{df_year}{anio del data frame}
+\item{df_year}{ECH year}
 }
 \description{
 deflate

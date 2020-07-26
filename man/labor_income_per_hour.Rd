@@ -18,19 +18,19 @@ labor_income_per_hour(
 \arguments{
 \item{data}{data frame}
 
-\item{numero}{identificador de hogar}
+\item{numero}{household id}
 
-\item{f85}{horas trabajadas por semana}
+\item{f85}{hours worked per week}
 
-\item{pobpcoac}{condicion de actividad economica}
+\item{pobpcoac}{definition of population by activity status}
 
-\item{pt4}{total de ingresos por trabajo}
+\item{pt4}{total employment income}
 
-\item{base_month}{mes base}
+\item{base_month}{baseline month}
 
-\item{base_year}{anio base}
+\item{base_year}{baseline year}
 
-\item{mes}{mes}
+\item{mes}{month}
 }
 \value{
 data.frame
