@@ -2,20 +2,20 @@
 #'
 #' This function allows you to calculate the housing status
 #' @param data data frame
-#' @param ht19 number of individuals in the household
-#' @param d9 number of rooms
-#' @param d10 number of rooms to sleep
-#' @param d11 source of water
-#' @param d12 llegada del agua a la vivienda
-#' @param d13 servicio sanitario
-#' @param d16 evacuacion del servicio sanitario
-#' @param d18 energy source for lighting
-#' @param d19 cooking space
-#' @param c2 predominant material on external walls
-#' @param c3 predominant roofing material
-#' @param c4 predominant flooring material
-#' @param quintil income quintil
-#' @param region_4 region
+#' @param ht19 Variable name of number of individuals in the household
+#' @param d9 Variable name of number of rooms
+#' @param d10 Variable name of number of rooms to sleep
+#' @param d11 Variable name of source of water
+#' @param d12 Variable name of water access
+#' @param d13 Variable name of sanitary facilities
+#' @param d16 Variable name of sanitary facilities evacuation
+#' @param d18 Variable name of energy source for lighting
+#' @param d19 Variable name of cooking space
+#' @param c2 Variable name of predominant material on external walls
+#' @param c3 Variable name of predominant roofing material
+#' @param c4 Variable name of predominant flooring material
+#' @param quintil Variable name of income quintil
+#' @param region_4 Variable name of region
 #'
 #' @importFrom dplyr mutate
 #' @importFrom rlang .data
@@ -87,18 +87,18 @@ housing_deprivation <- function(data = ech::toy_ech_2018,
 #' A function to calculate the housing situation
 #'
 #' @param data data.frame
-#' @param c5_1 roof condensation
-#' @param c5_2 roof drips
-#' @param c5_3 walls cracks
-#' @param c5_4 broken doors or windows
-#' @param c5_5 floors cracks
-#' @param c5_6 plaster drop on walls
-#' @param c5_7 detached ceilings
-#' @param c5_8 poor sunlight
-#' @param c5_9 poor ventilation
-#' @param c5_10 floods when it rains
-#' @param c5_11 in danger of collapse
-#' @param c5_12 dampness in the foundations
+#' @param c5_1 Variable name of roof condensation
+#' @param c5_2 Variable name of roof drips
+#' @param c5_3 Variable name of walls cracks
+#' @param c5_4 Variable name of broken doors or windows
+#' @param c5_5 Variable name of floors cracks
+#' @param c5_6 Variable name of plaster drop on walls
+#' @param c5_7 Variable name of detached ceilings
+#' @param c5_8 Variable name of poor sunlight
+#' @param c5_9 Variable name of poor ventilation
+#' @param c5_10 Variable name of floods when it rains
+#' @param c5_11 Variable name of in danger of collapse
+#' @param c5_12 Variable name of dampness in the foundations
 #'
 #' @return data.frame
 #' @export
@@ -135,9 +135,9 @@ housing_situation <- function(data = ech::toy_ech_2018,
 #' A function to calculate the housing conditions
 #'
 #' @param data data.frame
-#' @param c2 predominant material on external walls
-#' @param c3 predominant roofing material
-#' @param c4 predominant flooring material
+#' @param c2 Variable name of predominant material on external walls
+#' @param c3 Variable name of predominant roofing material
+#' @param c4 Variable name of predominant flooring material
 #'
 #' @return data.frame
 #' @export
@@ -162,8 +162,8 @@ housing_conditions <- function(data = ech::toy_ech_2018,
 #' A function to calculate overcrowding in the household
 #'
 #' @param data data.frame
-#' @param ht19 Number of individuals in the household
-#' @param d10  Number of rooms to sleep
+#' @param ht19 Variable name of umber of individuals in the household
+#' @param d10  Variable name of number of rooms to sleep
 #'
 #' @return data.frame
 #' @export
@@ -188,7 +188,7 @@ overcrowding <- function(data = ech::toy_ech_2018,
 #' A function to calculate the housing tenure
 #'
 #' @param data data.frame
-#' @param d8_1 housing_tenure (owner, renter, rent-free occupancy, etc.)
+#' @param d8_1 Variable name of housing_tenure (owner, renter, rent-free occupancy, etc.)
 #'
 #' @return data.frame
 #' @export

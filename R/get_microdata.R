@@ -305,3 +305,103 @@ read_microdata <- function(path = NULL){
   names(df) <- tolower(names(df))
 
 }
+
+
+
+
+#### get_marco ####
+
+#' get_marco
+#'
+#' Download and read ECH from INE website
+#' @param year allows download data of 2011, 2004, 1996 or 1985. Default 2011
+#' @param folder Folder where are the files or be download
+#' @param toR write data frame in R format and delete download file and unpack files
+#' @importFrom utils download.file
+#' @importFrom glue glue
+#' @importFrom fs file_exists path_ext
+#' @importFrom haven read_sav
+#' @importFrom janitor clean_names
+#' @importFrom dplyr filter
+#' @importFrom stringr str_detect
+#' @importFrom rlang .data
+#' @return unrar files from INE web and the respective data frame in tibble format
+#' @export
+
+get_marco <- function(year = NULL, folder = tempdir(), toR = TRUE){
+
+  # checks ----
+  stopifnot(is.numeric(year) | is.null(year) | length(year) <= 1)
+  if (!is.character(folder) | length(folder) != 1) {
+    message(glue::glue("Debe ingresar un directorio..."))
+  }
+  if (length(fs::dir_ls(folder, regexp = "\\.zip$")) != 0) {
+    message(glue::glue("Existen en la carpeta otros archivos .zip que se van a leer..."))
+  }
+
+  # download ----
+  try(dir.create(folder))
+
+  all_years <- c(2011, 2004, 1996, 1985)
+
+  if (!is.null(year) & any(year %in% all_years) == FALSE) {
+    stop("Por el momento solo existen marcos para 2011, 2004, 1996 o 1985")
+  }
+
+  if (is.null(year)) {
+    year <- max(all_years)
+  }
+
+  urls <- data.frame(yy = c(2011, 2004, 1996, 1985),
+                     marco = fs::path("www.ine.gub.uy/c/document_library",
+                                       c("get_file?uuid=cc26162b-0b18-4ab2-a8ce-a5cac1679a3b&groupId=10181",
+                                         "get_file?uuid=4861b0f3-4ed6-4a37-9f30-ac77fb9f66e5&groupId=10181",
+                                         "get_file?uuid=2d13324d-ffe0-4b32-9692-3147d03335bd&groupId=10181",
+                                         "get_file?uuid=13e2aa6e-c6fc-4f40-afe5-bcb9c60b1527&groupId=10181")),
+                                     file = paste0(folder, "/marco_", all_years, "_sav.zip"),
+                     stringsAsFactors = FALSE)
+  links <- urls %>% dplyr::filter(.data$yy %in% year)
+
+  u <- links$marco
+  f <- links$file
+  y <- links$yy
+
+  if (!file.exists(f)) {
+    message(glue::glue("Intentando descargar marco {y}..."))
+    try(utils::download.file(u, f, mode = "wb", method = "libcurl"))
+  } else {
+    message(glue::glue("marco {y} ya existe, se omite la descarga"))
+  }
+
+  # read----
+  archivo <- fs::dir_ls(folder, regexp = "\\.zip$")
+  archivo <- archivo[which.max(file.info(archivo)$mtime)]
+  try(archive_extract(archive.path = archivo, dest.path = folder))
+  descomprimido <- fs::dir_ls(folder, regexp = "\\.sav$")
+  d <- try(haven::read_sav(descomprimido))
+
+  if (any(class(d) %in% "data.frame")) {
+    message(glue::glue("{archivo} se pudo leer como tibble :-)"))
+    d <- janitor::clean_names(d)
+  } else {
+    stop(glue::glue("{archivo} no se pudo leer como tibble :-("))
+  }
+
+  # standarize names
+  names(d) <- tolower(names(d))
+
+  # save ----
+  if (isTRUE(toR)) {
+    saveRDS(d, file = fs::path(folder, paste0("marco_", year, ".Rds")))
+    message(glue::glue("Se ha guardado el archivo en formato R"))
+    sav <- fs::dir_ls(folder, regexp = "\\.sav$")
+    fs::file_delete(archivo)
+    fs::file_delete(sav)
+  }
+
+  return(d)
+  }
+
+#' @rdname get_marco
+#' @export
+get_sampling_frame <- get_marco

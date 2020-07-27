@@ -113,9 +113,7 @@ get_ipc_region <- function(folder = tempdir(), region = "M", sheet = NULL){
 #' @examples
 #' get_cba_cbna(folder = tempdir(), sheet = 1, region = "M")
 #'
-get_cba_cbna <- function(folder = tempdir(),
-                    sheet = NULL,
-                    region = NULL){
+get_cba_cbna <- function(folder = tempdir(), sheet = NULL, region = NULL){
 
   u <- "http://www.ine.gub.uy/c/document_library/get_file?uuid=1675e7d0-6fe0-49bd-bf3f-a46bd6334c0c&groupId=10181"
   f <- fs::path(folder, "CBA_LP_LI M.xls")
@@ -164,8 +162,7 @@ get_cba_cbna <- function(folder = tempdir(),
 #' @examples
 #' get_ipab(folder = tempdir(), sheet = 1)
 #'
-get_ipab <- function(folder = tempdir(),
-                     sheet = NULL){
+get_ipab <- function(folder = tempdir(), sheet = NULL){
 
   u <- "http://www.ine.gub.uy/c/document_library/get_file?uuid=c4b5efaa-cdd4-497a-ab78-e3138e4f08dc&groupId=10181"
   f <- fs::path(folder, "IPC Div M_B10.xls")
@@ -180,6 +177,31 @@ get_ipab <- function(folder = tempdir(),
   df <- df %>% dplyr::slice(-1) %>% janitor::remove_empty("rows")
   df <- df %>% tidyr::fill(yy)
 
+}
+
+#' get_ciiu
+#'
+#' @param folder temp folder
+#' @param version by default the last ciiu version
+#' @importFrom utils read.csv
+#' @importFrom pdftables convert_pdf
+#' @importFrom rstudioapi askForSecret
+#' @export
+
+get_ciiu <- function(folder = tempdir(),
+                     version = 4){
+
+  u <- "http://www.ine.gub.uy/documents/10181/33330/CORRESPONDENCIA+CIUU4+A+CIUU3.pdf/623c43cb-009c-4da9-b48b-45282745063b"
+  f <- fs::path(folder, "ciiu4.pdf")
+  try(utils::download.file(u, f, mode = "wb", method = "libcurl"))
+  key <- rstudioapi::askForSecret("api_key")
+  pdftables::convert_pdf(f, "ciiu4.csv",api_key = key)
+  df <- read.csv("ciiu4.csv")
+  df <- df[,-3]
+  names(df) <- c("ciiu_4","description", "ciiu_3")
+  df <- df[-1,]
+  df[] <- lapply(df, textclean::replace_non_ascii)
+  ciiu4 <- df
 }
 
 #' deflate
@@ -225,30 +247,6 @@ deflate <- function(base_month = NULL,
        dplyr::select(.data$deflate, .data$mes)
 }
 
-#' get_ciiu
-#'
-#' @param folder temp folder
-#' @param version by default the last ciiu version
-#' @importFrom utils read.csv
-#' @importFrom pdftables convert_pdf
-#' @importFrom rstudioapi askForSecret
-#' @export
-
-get_ciiu <- function(folder = tempdir(),
-                     version = 4){
-
-  u <- "http://www.ine.gub.uy/documents/10181/33330/CORRESPONDENCIA+CIUU4+A+CIUU3.pdf/623c43cb-009c-4da9-b48b-45282745063b"
-  f <- fs::path(folder, "ciiu4.pdf")
-  try(utils::download.file(u, f, mode = "wb", method = "libcurl"))
-  key <- rstudioapi::askForSecret("api_key")
-  pdftables::convert_pdf(f, "ciiu4.csv",api_key = key)
-  df <- read.csv("ciiu4.csv")
-  df <- df[,-3]
-  names(df) <- c("ciiu_4","description", "ciiu_3")
-  df <- df[-1,]
-  df[] <- lapply(df, textclean::replace_non_ascii)
-  ciiu4 <- df
-}
 
 #' Pipe operator
 #'

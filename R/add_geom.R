@@ -1,10 +1,10 @@
 #' add_geom
 #'
 #' This function allows you to add geom variable to a with a code varible of "zona", "barrio", "localidad", "segmentos", "secciones" or "departamentos".
-#' @param data data frame con las variables necesarias de ech.
-#' @param unit unidad espacial de la base "Departamentos", "Secciones", "Secc MVD 2004", "Segmentos", "Segm MVD 2004", "Segm URB INT 2004", "Zonas", "Zonas MVD 2004", "Zonas URB INT 2004", "Localidades pg", "Municipios" o "Barrios".
-#' @param variable nombre de la variable con el codigo correspondiente sin duplicados.
-#' @param crs sistema de coordenadas de referencia, los màs usados para la region 32721 and 4326 (default 32721)
+#' @param data data.frame
+#' @param unit spatial unit of data, may be: "Departamentos", "Secciones", "Secc MVD 2004", "Segmentos", "Segm MVD 2004", "Segm URB INT 2004", "Zonas", "Zonas MVD 2004", "Zonas URB INT 2004", "Localidades pg", "Municipios" o "Barrios".
+#' @param variable Variable name of unit code (without duplicates)
+#' @param crs Coordinates Refence Sistem, usually in region 32721 or 4326 (default 32721)
 #'
 #' @import geouy
 #' @importFrom glue glue
