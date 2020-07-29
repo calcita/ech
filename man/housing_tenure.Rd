@@ -2,20 +2,26 @@
 % Please edit documentation in R/dwelling.R
 \name{housing_tenure}
 \alias{housing_tenure}
-\title{A function to calculate the housing tenure}
+\title{housing_tenure
+A function to calculate the housing tenure}
 \usage{
 housing_tenure(data = ech::toy_ech_2018, d8_1 = "d8_1")
 }
 \arguments{
 \item{data}{data.frame}
 
-\item{d8_1}{housing_tenure (owner, renter, rent-free occupancy, etc.)}
+\item{d8_1}{Variable name of housing_tenure (owner, renter, rent-free occupancy, etc.)}
 }
 \value{
 data.frame
 }
 \description{
+housing_tenure
 A function to calculate the housing tenure
+}
+\details{
+Disclaimer: This script is not an official INE product.
+Aviso: El script no es un producto oficial de INE.
 }
 \examples{
 toy_ech_2018 <- housing_tenure(data = ech::toy_ech_2018)

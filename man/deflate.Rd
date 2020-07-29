@@ -18,6 +18,10 @@ deflate(base_month = NULL, base_year = NULL, ipc = "G", df_year = NULL)
 \description{
 deflate
 }
+\details{
+Disclaimer: This script is not an official INE product.
+Aviso: El script no es un producto oficial de INE.
+}
 \examples{
 \donttest{
 deflate(base_month = "06", base_year = "2016", df_year = "2018")

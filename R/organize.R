@@ -1,15 +1,17 @@
+#' organize_names
 #' A funtion to organize variables names of ECH with reference in 2017.
 #'
-#'@param data data frame contains the ECH microdata
-#'@param level (string) indicates whether the base to be labelled is of the type "household", "h", "individual", "i" or both, "hyp"
-#'@param year numeric reference year of the data. Available from 2006 to 2019
-#'@export
-#'@details
-#'Disclaimer: El script no es un producto oficial de INE.
-#'@examples
-#'\donttest{
-#'df <- organize_names(data = ech::toy_ech_2018, year = 2018, level = "h")
-#'}
+#' @param data data.frame contains the ECH microdata
+#' @param level (string) indicates whether the base to be labelled is of the type "household", "h", "individual", "i" or both, "hyp"
+#' @param year numeric reference year of the data. Available from 2006 to 2019
+#' @export
+#' @details
+#' Disclaimer: This script is not an official INE product.
+#' Aviso: El script no es un producto oficial de INE.
+#' @examples
+#' \donttest{
+#' df <- organize_names(data = ech::toy_ech_2018, year = 2018, level = "h")
+#' }
 
 
 

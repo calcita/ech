@@ -1,15 +1,16 @@
+#' enrolled_school
 #' A function to calculate people enrolled in school
 #'
 #' This function allows you to calculate people enrolled in school
 #' @param data data.frame with necessary variables Defaults to ech.
-#' @param e193 attendance school
-#' @param e197 attendance primary
-#' @param e201 attendance secondary
-#' @param e212 attendance technical school (non-university)
-#' @param e215 attendance magisterio
-#' @param e218 attendance university
-#' @param e221 attendance tertiary
-#' @param e224 attendance postgrade
+#' @param e193 Variable name of attendance school
+#' @param e197 Variable name of attendance primary
+#' @param e201 Variable name of attendance secondary
+#' @param e212 Variable name of attendance technical school (non-university)
+#' @param e215 Variable name of attendance magisterio
+#' @param e218 Variable name of attendance university
+#' @param e221 Variable name of attendance tertiary
+#' @param e224 Variable name of attendance postgrade
 #' @keywords education
 #' @return data.frame
 #' @export
@@ -17,8 +18,11 @@
 #' @importFrom magrittr %<>%
 #' @importFrom rlang .data
 #' @importFrom glue glue
+#'
 #' @details
-#' Disclaimer: El script no es un producto oficial de INE.
+#' Disclaimer: This script is not an official INE product.
+#' Aviso: El script no es un producto oficial de INE.
+#'
 #' @examples
 #' \donttest{
 #' toy_ech_2018 <- enrolled_school(data = ech::toy_ech_2018)
@@ -58,28 +62,31 @@ enrolled_school <- function(data = ech::toy_ech_2018,
                                                        TRUE ~ 0))
 }
 
+#' years_of_schooling
 #' A function to calculate the years of schooling
 #'
-#' @param data data frame
-#' @param e193  attendance school
-#' @param e51_2 years passed in primary
-#' @param e51_3 years passed in special primary
-#' @param e51_4 years passed in lower secondary
-#' @param e51_5 years passed in upper secondary
-#' @param e51_6 years passed in bachillerato tecnologico
-#' @param e51_7 years passed in technical education
-#' @param e51_7_1 technical education requirements
-#' @param e51_8 years passed in magisterio/profesorado
-#' @param e51_9 years passed in university or similar
-#' @param e51_10 years passed in tertiary (non-university)
-#' @param e51_11 years passed in postgrade
+#' @param data data.frame
+#' @param e193  Variable name of attendance school
+#' @param e51_2 Variable name of years passed in primary
+#' @param e51_3 Variable name of years passed in special primary
+#' @param e51_4 Variable name of years passed in lower secondary
+#' @param e51_5 Variable name of years passed in upper secondary
+#' @param e51_6 Variable name of years passed in bachillerato tecnologico
+#' @param e51_7 Variable name of years passed in technical education
+#' @param e51_7_1 Variable name of technical education requirements
+#' @param e51_8 Variable name of years passed in magisterio/profesorado
+#' @param e51_9 Variable name of years passed in university or similar
+#' @param e51_10 Variable name of years passed in tertiary (non-university)
+#' @param e51_11 Variable name of years passed in postgrade
 #' @export
 #' @importFrom dplyr mutate case_when
 #' @importFrom magrittr %<>%
 #' @importFrom rlang .data
 #' @importFrom glue glue
 #' @details
-#' Disclaimer: El script no es un producto oficial de INE.
+#' Disclaimer: This script is not an official INE product.
+#' Aviso: El script no es un producto oficial de INE.
+#'
 #' @examples
 #' \donttest{
 #' toy_ech_2018 <- years_of_schooling(data = ech::toy_ech_2018)
@@ -154,25 +161,28 @@ years_of_schooling <- function(data = ech::toy_ech_2018,
 
 
 
+#' level_education
 #' A function to calculate the highest level of education achieved
 #'
-#' @param data data frame
-#' @param e51_2 years passed in primary
-#' @param e51_3 years passed in special primary
-#' @param e51_4 years passed in lower secondary
-#' @param e51_5 years passed in upper secondary
-#' @param e51_6 years passed in technical upper secondary
-#' @param e51_7 years passed in technical school
-#' @param e51_7_1 technical school requirements
-#' @param e51_8 years passed in magisterio/profesorado
-#' @param e51_9 years passed in university or similar
-#' @param e51_10 years passed in tertiary (non-university)
-#' @param e51_11 years passed in postgrade
-#' @param e193  attendance school
-#' @param e49 attendance school ever
+#' @param data data.frame
+#' @param e51_2 Variable name of years passed in primary
+#' @param e51_3 Variable name of years passed in special primary
+#' @param e51_4 Variable name of years passed in lower secondary
+#' @param e51_5 Variable name of years passed in upper secondary
+#' @param e51_6 Variable name of years passed in technical upper secondary
+#' @param e51_7 Variable name of years passed in technical school
+#' @param e51_7_1 Variable name of technical school requirements
+#' @param e51_8 Variable name of years passed in magisterio/profesorado
+#' @param e51_9 Variable name of years passed in university or similar
+#' @param e51_10 Variable name of years passed in tertiary (non-university)
+#' @param e51_11 Variable name of years passed in postgrade
+#' @param e193  Variable name of attendance school
+#' @param e49 Variable name of attendance school ever
 #' @export
 #' @details
-#' Disclaimer: El script no es un producto oficial de INE.
+#' Disclaimer: This script is not an official INE product.
+#' Aviso: El script no es un producto oficial de INE.
+#'
 #' @examples
 #' \donttest{
 #' toy_ech_2018 <- level_education(data = ech::toy_ech_2018)
@@ -213,15 +223,16 @@ level_education <- function(data = ech::toy_ech_2018,
 
 
 
+#' level_completion
 #' A function to calculate the level of school completion
 #'
-#' @param data ech
-#' @param e197 attends primary school
-#' @param e197_1 completed primary
-#' @param e201 attends secondary
-#' @param e51_4 years passed in lower secondary
-#' @param e51_5 years passed in upper secondary
-#' @param e51_6 years passed in technical upper secondary
+#' @param data data.frame
+#' @param e197 Variable name of attends primary school
+#' @param e197_1 Variable name of completed primary
+#' @param e201 Variable name of attends secondary
+#' @param e51_4 Variable name of years passed in lower secondary
+#' @param e51_5 Variable name of years passed in upper secondary
+#' @param e51_6 Variable name of years passed in technical upper secondary
 #'
 #' @importFrom dplyr mutate
 #' @return data.frame
@@ -229,6 +240,8 @@ level_education <- function(data = ech::toy_ech_2018,
 #'
 #' @details
 #' Disclaimer: El script no es un producto oficial de INE.
+#' Aviso: El script no es un producto oficial de INE.
+#'
 #' @examples
 #' \donttest{
 #' toy_ech_2018 <- level_completion(data = ech::toy_ech_2018)

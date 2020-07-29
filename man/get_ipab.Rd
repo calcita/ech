@@ -17,6 +17,10 @@ data.frame
 \description{
 IPAB (Indice de precios de alimentos y bebidas)
 }
+\details{
+Disclaimer: This script is not an official INE product.
+Aviso: El script no es un producto oficial de INE.
+}
 \examples{
 get_ipab(folder = tempdir(), sheet = 1)
 

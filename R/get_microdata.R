@@ -95,6 +95,10 @@ knownArchiveExtensions <- c(knownInternalArchiveExtensions, knownSystemArchiveEx
 #' @param dest.path Ruta destino del archivo descomprimido
 #'
 #' @export
+#' @details
+#' Disclaimer: This script is not an official INE product.
+#' Aviso: El script no es un producto oficial de INE.
+#'
 #' @examples
 #' \donttest{
 #' archive_extract()
@@ -125,8 +129,8 @@ archive_extract <- function(archive.path = NULL, dest.path = NULL) {
 #### get_microdata ####
 
 #' get_microdata
-#'
 #' Download and read ECH from INE website
+#'
 #' @param year allows download data from 2011 to 2019. Default the last year
 #' @param folder Folder where are the files or be download
 #' @param toR write data frame in R format and delete download file and unpack files
@@ -139,6 +143,9 @@ archive_extract <- function(archive.path = NULL, dest.path = NULL) {
 #' @importFrom stringr str_detect
 #' @importFrom rlang .data
 #' @return unrar files from INE web and the respective data frame in tibble format
+#' @details
+#' Disclaimer: This script is not an official INE product.
+#' Aviso: El script no es un producto oficial de INE.
 #' @export
 
 get_microdata <- function(year = NULL,
@@ -263,7 +270,9 @@ get_microdata <- function(year = NULL,
 
 #### read_microdata ####
 
+#' read_microdata
 #' Read ECH from a local folder
+#'
 #' @param path Folder where are the files or be download
 #' @importFrom fs path
 #' @importFrom haven read_sav read_dta
@@ -271,6 +280,9 @@ get_microdata <- function(year = NULL,
 #' Disclaimer: El script no es un producto oficial de INE.
 #' @return an object called df
 #' @export
+#' @details
+#' Disclaimer: This script is not an official INE product.
+#' Aviso: El script no es un producto oficial de INE.
 # #' @examples
 # #' path <- system.file("data", "toy_ech_2018.rda", package = "ech")
 # #' read_microdata(path)
@@ -327,6 +339,9 @@ read_microdata <- function(path = NULL){
 #' @importFrom rlang .data
 #' @return unrar files from INE web and the respective data frame in tibble format
 #' @export
+#' @details
+#' Disclaimer: This script is not an official INE product.
+#' Aviso: El script no es un producto oficial de INE.
 
 get_marco <- function(year = NULL, folder = tempdir(), toR = TRUE){
 

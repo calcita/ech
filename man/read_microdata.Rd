@@ -2,7 +2,8 @@
 % Please edit documentation in R/get_microdata.R
 \name{read_microdata}
 \alias{read_microdata}
-\title{Read ECH from a local folder}
+\title{read_microdata
+Read ECH from a local folder}
 \usage{
 read_microdata(path = NULL)
 }
@@ -13,8 +14,12 @@ read_microdata(path = NULL)
 an object called df
 }
 \description{
+read_microdata
 Read ECH from a local folder
 }
 \details{
 Disclaimer: El script no es un producto oficial de INE.
+
+Disclaimer: This script is not an official INE product.
+Aviso: El script no es un producto oficial de INE.
 }

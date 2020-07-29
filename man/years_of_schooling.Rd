@@ -2,7 +2,8 @@
 % Please edit documentation in R/education.R
 \name{years_of_schooling}
 \alias{years_of_schooling}
-\title{A function to calculate the years of schooling}
+\title{years_of_schooling
+A function to calculate the years of schooling}
 \usage{
 years_of_schooling(
   data = ech::toy_ech_2018,
@@ -21,37 +22,39 @@ years_of_schooling(
 )
 }
 \arguments{
-\item{data}{data frame}
+\item{data}{data.frame}
 
-\item{e193}{attendance school}
+\item{e193}{Variable name of attendance school}
 
-\item{e51_2}{years passed in primary}
+\item{e51_2}{Variable name of years passed in primary}
 
-\item{e51_3}{years passed in special primary}
+\item{e51_3}{Variable name of years passed in special primary}
 
-\item{e51_4}{years passed in lower secondary}
+\item{e51_4}{Variable name of years passed in lower secondary}
 
-\item{e51_5}{years passed in upper secondary}
+\item{e51_5}{Variable name of years passed in upper secondary}
 
-\item{e51_6}{years passed in bachillerato tecnologico}
+\item{e51_6}{Variable name of years passed in bachillerato tecnologico}
 
-\item{e51_7}{years passed in technical education}
+\item{e51_7}{Variable name of years passed in technical education}
 
-\item{e51_7_1}{technical education requirements}
+\item{e51_7_1}{Variable name of technical education requirements}
 
-\item{e51_8}{years passed in magisterio/profesorado}
+\item{e51_8}{Variable name of years passed in magisterio/profesorado}
 
-\item{e51_9}{years passed in university or similar}
+\item{e51_9}{Variable name of years passed in university or similar}
 
-\item{e51_10}{years passed in tertiary (non-university)}
+\item{e51_10}{Variable name of years passed in tertiary (non-university)}
 
-\item{e51_11}{years passed in postgrade}
+\item{e51_11}{Variable name of years passed in postgrade}
 }
 \description{
+years_of_schooling
 A function to calculate the years of schooling
 }
 \details{
-Disclaimer: El script no es un producto oficial de INE.
+Disclaimer: This script is not an official INE product.
+Aviso: El script no es un producto oficial de INE.
 }
 \examples{
 \donttest{

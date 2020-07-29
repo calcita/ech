@@ -22,4 +22,8 @@ ciiu4
 \description{
 A dataset containing Clasificación Industrial Internacional Uniforme Rev. 4 and 3
 }
+\details{
+Disclaimer: This script is not an official INE product.
+Aviso: El script no es un producto oficial de INE.
+}
 \keyword{datasets}

@@ -30,4 +30,8 @@ toy_ech_2018_income
 \description{
 A dataset containing only 1000 raws of the ECH 2018 income variables
 }
+\details{
+Disclaimer: This script is not an official INE product.
+Aviso: El script no es un producto oficial de INE.
+}
 \keyword{datasets}

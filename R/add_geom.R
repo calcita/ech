@@ -1,6 +1,6 @@
 #' add_geom
-#'
 #' This function allows you to add geom variable to a with a code varible of "zona", "barrio", "localidad", "segmentos", "secciones" or "departamentos".
+#'
 #' @param data data.frame
 #' @param unit spatial unit of data, may be: "Departamentos", "Secciones", "Secc MVD 2004", "Segmentos", "Segm MVD 2004", "Segm URB INT 2004", "Zonas", "Zonas MVD 2004", "Zonas URB INT 2004", "Localidades pg", "Municipios" o "Barrios".
 #' @param variable Variable name of unit code (without duplicates)
@@ -11,7 +11,9 @@
 #' @importFrom rlang .data
 #' @importFrom dplyr left_join select rename mutate
 #' @return data.frame
-#' @details Disclaimer: El script no es un producto oficial de INE.
+#' @details
+#' Disclaimer: This script is not an official INE product.
+#' Aviso: El script no es un producto oficial de INE.
 #' @export
 #'
 # @examples

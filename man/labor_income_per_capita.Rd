@@ -49,81 +49,81 @@ labor_income_per_capita(
 \arguments{
 \item{data}{data frame}
 
-\item{numero}{household id}
+\item{numero}{Variable name of household id}
 
-\item{pobpcoac}{definition of population by activity status}
+\item{pobpcoac}{Variable name of definition of population by activity status}
 
-\item{g126_1}{sueldo o jornales liquidos}
+\item{g126_1}{Variable name of sueldo o jornales liquidos}
 
-\item{g126_2}{comisiones, incentivos, horas extras, habilitaciones}
+\item{g126_2}{Variable name of comisiones, incentivos, horas extras, habilitaciones}
 
-\item{g126_3}{viaticos no sujetos a rendicion}
+\item{g126_3}{Variable name of viaticos no sujetos a rendicion}
 
-\item{g126_4}{propinas}
+\item{g126_4}{Variable name of propinas}
 
-\item{g126_5}{aguinaldo}
+\item{g126_5}{Variable name of aguinaldo}
 
-\item{g126_6}{salario vacacional}
+\item{g126_6}{Variable name of salario vacacional}
 
-\item{g126_7}{pagos atrasados}
+\item{g126_7}{Variable name of pagos atrasados}
 
-\item{g126_8}{boletos de transporte}
+\item{g126_8}{Variable name of boletos de transporte}
 
-\item{g127_3}{recibio alimentos o bebidas}
+\item{g127_3}{Variable name of recibio alimentos o bebidas}
 
-\item{g128_1}{recibio tickets alimentacion}
+\item{g128_1}{Variable name of recibio tickets alimentacion}
 
-\item{g129_2}{recibio vivienda o alojamiento}
+\item{g129_2}{Variable name of recibio vivienda o alojamiento}
 
-\item{g130_1}{recibio otro tipo de retribucion}
+\item{g130_1}{Variable name of recibio otro tipo de retribucion}
 
-\item{g131_1}{recibio otro tipo de complemento pagado por el/la empleador/a}
+\item{g131_1}{Variable name of recibio otro tipo de complemento pagado por el/la empleador/a}
 
-\item{g133_1}{derecho a cultivo para consumo propio}
+\item{g133_1}{Variable name of derecho a cultivo para consumo propio}
 
-\item{g133_2}{derecho a cultivo para consumo propio (monto percibido por la venta)}
+\item{g133_2}{Variable name of derecho a cultivo para consumo propio (monto percibido por la venta)}
 
-\item{g134_1}{sueldo o jornales liquidos}
+\item{g134_1}{Variable name of sueldo o jornales liquidos}
 
-\item{g134_2}{comisiones, incentivos, horas extras, habilitaciones}
+\item{g134_2}{Variable name of comisiones, incentivos, horas extras, habilitaciones}
 
-\item{g134_3}{viaticos no sujetos a rendicion}
+\item{g134_3}{Variable name of viaticos no sujetos a rendicion}
 
-\item{g134_4}{propinas}
+\item{g134_4}{Variable name of propinas}
 
-\item{g134_5}{aguinaldo}
+\item{g134_5}{Variable name of aguinaldo}
 
-\item{g134_6}{salario vacacional}
+\item{g134_6}{Variable name of salario vacacional}
 
-\item{g134_7}{pagos atrasados}
+\item{g134_7}{Variable name of pagos atrasados}
 
-\item{g134_8}{boletos de transporte}
+\item{g134_8}{Variable name of boletos de transporte}
 
-\item{g135_3}{recibio alimentos o bebidas}
+\item{g135_3}{Variable name of recibio alimentos o bebidas}
 
-\item{g136_1}{recibio tickets alimentacion}
+\item{g136_1}{Variable name of recibio tickets alimentacion}
 
-\item{g137_2}{recibio vivienda o alojamiento}
+\item{g137_2}{Variable name of recibio vivienda o alojamiento}
 
-\item{g138_1}{recibio otro tipo de retribucion}
+\item{g138_1}{Variable name of recibio otro tipo de retribucion}
 
-\item{g139_1}{recibio otro tipo de complemento pagado por el/la empleador/a}
+\item{g139_1}{Variable name of recibio otro tipo de complemento pagado por el/la empleador/a}
 
-\item{g141_1}{derecho a cultivo para consumo propio}
+\item{g141_1}{Variable name of derecho a cultivo para consumo propio}
 
-\item{g141_2}{derecho a cultivo para consumo propio (monto percibido por la venta)}
+\item{g141_2}{Variable name of derecho a cultivo para consumo propio (monto percibido por la venta)}
 
-\item{g142}{retiros para gastos del hogar de negocios que tiene o tenia}
+\item{g142}{Variable name of retiros para gastos del hogar de negocios que tiene o tenia}
 
-\item{g144_1}{retiro de productos para consumo propio (trabajador/a no agropecuario/a)}
+\item{g144_1}{Variable name of retiro de productos para consumo propio (trabajador/a no agropecuario/a)}
 
-\item{g144_2_1}{retiro de productos para consumo propio (trabajador/a no agropecuario/a)}
+\item{g144_2_1}{Variable name of retiro de productos para consumo propio (trabajador/a no agropecuario/a)}
 
-\item{g144_2_3}{retiro de productos para consumo propio (trabajador/a no agropecuario/a)}
+\item{g144_2_3}{Variable name of retiro de productos para consumo propio (trabajador/a no agropecuario/a)}
 
-\item{g144_2_4}{retiro de productos para consumo propio (trabajador/a no agropecuario/a)}
+\item{g144_2_4}{Variable name of retiro de productos para consumo propio (trabajador/a no agropecuario/a)}
 
-\item{g144_2_5}{retiro de productos para consumo propio (trabajador/a no agropecuario/a)}
+\item{g144_2_5}{Variable name of retiro de productos para consumo propio (trabajador/a no agropecuario/a)}
 }
 \value{
 data.frame
@@ -132,7 +132,8 @@ data.frame
 labor_income_per_capita
 }
 \details{
-Disclaimer: El script no es un producto oficial de INE.
+Disclaimer: This script is not an official INE product.
+Aviso: El script no es un producto oficial de INE.
 }
 \examples{
 \donttest{

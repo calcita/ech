@@ -2,22 +2,25 @@
 % Please edit documentation in R/organize.R
 \name{organize_names}
 \alias{organize_names}
-\title{A funtion to organize variables names of ECH with reference in 2017.}
+\title{organize_names
+A funtion to organize variables names of ECH with reference in 2017.}
 \usage{
 organize_names(data, year, level = "individual")
 }
 \arguments{
-\item{data}{data frame contains the ECH microdata}
+\item{data}{data.frame contains the ECH microdata}
 
 \item{year}{numeric reference year of the data. Available from 2006 to 2019}
 
 \item{level}{(string) indicates whether the base to be labelled is of the type "household", "h", "individual", "i" or both, "hyp"}
 }
 \description{
+organize_names
 A funtion to organize variables names of ECH with reference in 2017.
 }
 \details{
-Disclaimer: El script no es un producto oficial de INE.
+Disclaimer: This script is not an official INE product.
+Aviso: El script no es un producto oficial de INE.
 }
 \examples{
 \donttest{

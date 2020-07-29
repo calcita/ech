@@ -14,3 +14,7 @@ get_ciiu(folder = tempdir(), version = 4)
 \description{
 get_ciiu
 }
+\details{
+Disclaimer: This script is not an official INE product.
+Aviso: El script no es un producto oficial de INE.
+}

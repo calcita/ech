@@ -32,4 +32,11 @@ A dataset containing the IPC base 2010 only for the Montevideo region
 
 A dataset containing the IPC base 2010 only for the Montevideo region
 }
+\details{
+Disclaimer: This script is not an official INE product.
+Aviso: El script no es un producto oficial de INE.
+
+Disclaimer: This script is not an official INE product.
+Aviso: El script no es un producto oficial de INE.
+}
 \keyword{datasets}

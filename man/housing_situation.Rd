@@ -2,7 +2,8 @@
 % Please edit documentation in R/dwelling.R
 \name{housing_situation}
 \alias{housing_situation}
-\title{A function to calculate the housing situation}
+\title{housing_situation
+A function to calculate the housing situation}
 \usage{
 housing_situation(
   data = ech::toy_ech_2018,
@@ -23,35 +24,40 @@ housing_situation(
 \arguments{
 \item{data}{data.frame}
 
-\item{c5_1}{roof condensation}
+\item{c5_1}{Variable name of roof condensation}
 
-\item{c5_2}{roof drips}
+\item{c5_2}{Variable name of roof drips}
 
-\item{c5_3}{walls cracks}
+\item{c5_3}{Variable name of walls cracks}
 
-\item{c5_4}{broken doors or windows}
+\item{c5_4}{Variable name of broken doors or windows}
 
-\item{c5_5}{floors cracks}
+\item{c5_5}{Variable name of floors cracks}
 
-\item{c5_6}{plaster drop on walls}
+\item{c5_6}{Variable name of plaster drop on walls}
 
-\item{c5_7}{detached ceilings}
+\item{c5_7}{Variable name of detached ceilings}
 
-\item{c5_8}{poor sunlight}
+\item{c5_8}{Variable name of poor sunlight}
 
-\item{c5_9}{poor ventilation}
+\item{c5_9}{Variable name of poor ventilation}
 
-\item{c5_10}{floods when it rains}
+\item{c5_10}{Variable name of floods when it rains}
 
-\item{c5_11}{in danger of collapse}
+\item{c5_11}{Variable name of in danger of collapse}
 
-\item{c5_12}{dampness in the foundations}
+\item{c5_12}{Variable name of dampness in the foundations}
 }
 \value{
 data.frame
 }
 \description{
+housing_situation
 A function to calculate the housing situation
+}
+\details{
+Disclaimer: This script is not an official INE product.
+Aviso: El script no es un producto oficial de INE.
 }
 \examples{
 toy_ech_2018 <- housing_situation(data = ech::toy_ech_2018)

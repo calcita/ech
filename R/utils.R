@@ -8,6 +8,10 @@
 #' @importFrom magrittr %>%
 #' @importFrom rlang .data
 #' @export
+#' @details
+#' Disclaimer: This script is not an official INE product.
+#' Aviso: El script no es un producto oficial de INE.
+#'
 #' @examples
 #' \donttest{
 #' get_ipc(folder = tempdir())
@@ -42,6 +46,9 @@ get_ipc <- function(folder = tempdir()){
 #' @importFrom magrittr %>%
 #' @return data.frame
 #' @export
+#' @details
+#' Disclaimer: This script is not an official INE product.
+#' Aviso: El script no es un producto oficial de INE.
 #'
 #' @examples
 #' \donttest{
@@ -101,6 +108,7 @@ get_ipc_region <- function(folder = tempdir(), region = "M", sheet = NULL){
 #' @param folder temporal folder
 #' @param sheet sheet number
 #' @param region Montevideo ("M"), Interior Urbano ("I"), Interior Rural ("R")
+#'
 #' @importFrom readxl read_xls
 #' @importFrom dplyr slice mutate bind_cols
 #' @importFrom janitor clean_names excel_numeric_to_date remove_empty
@@ -109,6 +117,9 @@ get_ipc_region <- function(folder = tempdir(), region = "M", sheet = NULL){
 #'
 #' @return data.frame
 #' @export
+#' @details
+#' Disclaimer: This script is not an official INE product.
+#' Aviso: El script no es un producto oficial de INE.
 #'
 #' @examples
 #' get_cba_cbna(folder = tempdir(), sheet = 1, region = "M")
@@ -158,6 +169,9 @@ get_cba_cbna <- function(folder = tempdir(), sheet = NULL, region = NULL){
 #' @importFrom tidyr fill
 #' @return data.frame
 #' @export
+#' @details
+#' Disclaimer: This script is not an official INE product.
+#' Aviso: El script no es un producto oficial de INE.
 #'
 #' @examples
 #' get_ipab(folder = tempdir(), sheet = 1)
@@ -187,6 +201,9 @@ get_ipab <- function(folder = tempdir(), sheet = NULL){
 #' @importFrom pdftables convert_pdf
 #' @importFrom rstudioapi askForSecret
 #' @export
+#' @details
+#' Disclaimer: This script is not an official INE product.
+#' Aviso: El script no es un producto oficial de INE.
 
 get_ciiu <- function(folder = tempdir(),
                      version = 4){
@@ -214,6 +231,10 @@ get_ciiu <- function(folder = tempdir(),
 #' @importFrom dplyr select slice mutate
 #' @importFrom rlang .data
 #' @export
+#' @details
+#' Disclaimer: This script is not an official INE product.
+#' Aviso: El script no es un producto oficial de INE.
+#'
 #' @examples
 #' \donttest{
 #' deflate(base_month = "06", base_year = "2016", df_year = "2018")

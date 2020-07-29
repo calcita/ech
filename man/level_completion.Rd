@@ -2,7 +2,8 @@
 % Please edit documentation in R/education.R
 \name{level_completion}
 \alias{level_completion}
-\title{A function to calculate the level of school completion}
+\title{level_completion
+A function to calculate the level of school completion}
 \usage{
 level_completion(
   data = ech::toy_ech_2018,
@@ -15,28 +16,30 @@ level_completion(
 )
 }
 \arguments{
-\item{data}{ech}
+\item{data}{data.frame}
 
-\item{e197}{attends primary school}
+\item{e197}{Variable name of attends primary school}
 
-\item{e197_1}{completed primary}
+\item{e197_1}{Variable name of completed primary}
 
-\item{e201}{attends secondary}
+\item{e201}{Variable name of attends secondary}
 
-\item{e51_4}{years passed in lower secondary}
+\item{e51_4}{Variable name of years passed in lower secondary}
 
-\item{e51_5}{years passed in upper secondary}
+\item{e51_5}{Variable name of years passed in upper secondary}
 
-\item{e51_6}{years passed in technical upper secondary}
+\item{e51_6}{Variable name of years passed in technical upper secondary}
 }
 \value{
 data.frame
 }
 \description{
+level_completion
 A function to calculate the level of school completion
 }
 \details{
 Disclaimer: El script no es un producto oficial de INE.
+Aviso: El script no es un producto oficial de INE.
 }
 \examples{
 \donttest{

@@ -14,11 +14,11 @@ income_quantiles(
 \arguments{
 \item{data}{data.frame}
 
-\item{quantile}{quintil (5) or decil (10)}
+\item{quantile}{Variable name of quintil (5) or decil (10). Default: 5}
 
-\item{weights}{ponderation variable}
+\item{weights}{Variable name of ponderation variable. Default: "pesoano"}
 
-\item{income}{name of the income constant price variable. Default: "y_pc_d"}
+\item{income}{Variable name of income constant price. Default: "y_pc_d"}
 }
 \value{
 data.frame
@@ -27,7 +27,8 @@ data.frame
 This function allows you to calculate the Household Income Quantiles
 }
 \details{
-Disclaimer: El script no es un producto oficial de INE.
+Disclaimer: This script is not an official INE product.
+Aviso: El script no es un producto oficial de INE.
 }
 \examples{
 \donttest{

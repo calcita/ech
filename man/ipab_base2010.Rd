@@ -21,4 +21,8 @@ ipab_base2010
 \description{
 A dataset containing the IPAB
 }
+\details{
+Disclaimer: This script is not an official INE product.
+Aviso: El script no es un producto oficial de INE.
+}
 \keyword{datasets}

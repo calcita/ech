@@ -1,15 +1,18 @@
-#' An employment function
-#'
+#' employment
 #' This function allows you to calculate the variables: PEA, PET, PO, PD
-#' @param data data frame with microdata
-#' @param pobpcoac Definition of population by activity status
+#'
+#' @param data data.frame with microdata
+#' @param pobpcoac Variable name of definition of population by activity status. Default: "pobpcoac"
+#'
 #' @keywords employment
 #' @export
 #' @importFrom magrittr %<>%
 #' @importFrom dplyr mutate
 #' @importFrom rlang .data
 #' @details
-#' Disclaimer: El script no es un producto oficial de INE.
+#' Disclaimer: This script is not an official INE product.
+#' Aviso: El script no es un producto oficial de INE.
+#'
 #' @examples
 #' \donttest{
 #' toy_ech_2018 <- employment(data = ech::toy_ech_2018, pobpcoac = "pobpcoac")
@@ -35,10 +38,13 @@ employment <- function(data = ech::toy_ech_2018,
 #'
 #' @param data data.frame
 #' @param f72_2 ciiu code rev.4
-#' @param group logical
+#' @param group logical to define 12 or 18 categories, if FALSE code 18. Default: TRUE
 #'
 #' @return data.frame
 #' @export
+#' @details
+#' Disclaimer: This script is not an official INE product.
+#' Aviso: El script no es un producto oficial de INE.
 #'
 #' @examples
 #' \donttest{

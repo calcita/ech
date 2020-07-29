@@ -2,24 +2,30 @@
 % Please edit documentation in R/dwelling.R
 \name{housing_conditions}
 \alias{housing_conditions}
-\title{A function to calculate the housing conditions}
+\title{housing_conditions
+A function to calculate the housing conditions}
 \usage{
 housing_conditions(data = ech::toy_ech_2018, c2 = "c2", c3 = "c3", c4 = "c4")
 }
 \arguments{
 \item{data}{data.frame}
 
-\item{c2}{predominant material on external walls}
+\item{c2}{Variable name of predominant material on external walls}
 
-\item{c3}{predominant roofing material}
+\item{c3}{Variable name of predominant roofing material}
 
-\item{c4}{predominant flooring material}
+\item{c4}{Variable name of predominant flooring material}
 }
 \value{
 data.frame
 }
 \description{
+housing_conditions
 A function to calculate the housing conditions
+}
+\details{
+Disclaimer: This script is not an official INE product.
+Aviso: El script no es un producto oficial de INE.
 }
 \examples{
 toy_ech_2018 <- housing_conditions(data = ech::toy_ech_2018)

@@ -18,13 +18,13 @@ labor_income_per_hour(
 \arguments{
 \item{data}{data frame}
 
-\item{numero}{household id}
+\item{numero}{Variable name of household id}
 
-\item{f85}{hours worked per week}
+\item{f85}{Variable name of hours worked per week}
 
-\item{pobpcoac}{definition of population by activity status}
+\item{pobpcoac}{Variable name of definition of population by activity status}
 
-\item{pt4}{total employment income}
+\item{pt4}{Variable name of total employment income}
 
 \item{base_month}{baseline month}
 
@@ -39,7 +39,8 @@ data.frame
 labor_income_per_hour
 }
 \details{
-Disclaimer: El script no es un producto oficial de INE.
+Disclaimer: This script is not an official INE product.
+Aviso: El script no es un producto oficial de INE.
 }
 \examples{
 \donttest{

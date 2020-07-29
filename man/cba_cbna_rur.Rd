@@ -22,4 +22,8 @@ cba_cbna_rur
 \description{
 A dataset containing the CBA and CBNA for the Interior Rural region
 }
+\details{
+Disclaimer: This script is not an official INE product.
+Aviso: El script no es un producto oficial de INE.
+}
 \keyword{datasets}

@@ -2,9 +2,12 @@
 % Please edit documentation in R/get_microdata.R
 \name{get_marco}
 \alias{get_marco}
+\alias{get_sampling_frame}
 \title{get_marco}
 \usage{
 get_marco(year = NULL, folder = tempdir(), toR = TRUE)
+
+get_sampling_frame(year = NULL, folder = tempdir(), toR = TRUE)
 }
 \arguments{
 \item{year}{allows download data of 2011, 2004, 1996 or 1985. Default 2011}
@@ -18,4 +21,8 @@ unrar files from INE web and the respective data frame in tibble format
 }
 \description{
 Download and read ECH from INE website
+}
+\details{
+Disclaimer: This script is not an official INE product.
+Aviso: El script no es un producto oficial de INE.
 }

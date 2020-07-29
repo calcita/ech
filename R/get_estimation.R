@@ -16,7 +16,9 @@
 #' @export
 #' @return table
 #' @details
-#' Disclaimer: El script no es un producto oficial de INE.
+#' Disclaimer: This script is not an official INE product.
+#' Aviso: El script no es un producto oficial de INE.
+#'
 #' @examples
 #' \donttest{
 #' get_estimation_mean(variable = "pobre06", by.x = "dpto", level = "h")
@@ -97,7 +99,9 @@ get_estimation_mean <- function(data = ech::toy_ech_2018,
 #' @export
 #' @return table
 #' @details
-#' Disclaimer: El script no es un producto oficial de INE.
+#' Disclaimer: This script is not an official INE product.
+#' Aviso: El script no es un producto oficial de INE.
+#'
 #' @examples
 #' \donttest{
 #' get_estimation_total(variable = "pobre06", by.x = "dpto", level = "h")
@@ -178,7 +182,9 @@ get_estimation_total <- function(data = ech::toy_ech_2018,
 #' @export
 #' @return table
 #' @details
-#' Disclaimer: El script no es un producto oficial de INE.
+#' Disclaimer: This script is not an official INE product.
+#' Aviso: El script no es un producto oficial de INE.
+#'
 #' @examples
 #' \donttest{
 #' toy_ech_2018 <- employment(data = ech::toy_ech_2018, pobpcoac = "pobpcoac")
@@ -255,6 +261,10 @@ get_estimation_ratio <- function(data = ech::toy_ech_2018,
 #'
 #' @return table
 #' @export
+#' @details
+#' Disclaimer: This script is not an official INE product.
+#' Aviso: El script no es un producto oficial de INE.
+#'
 #' @examples
 #' \donttest{
 #' df <- income_constant_prices(data = ech::toy_ech_2018, ipc = "R",

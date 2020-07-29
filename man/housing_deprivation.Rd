@@ -2,10 +2,12 @@
 % Please edit documentation in R/dwelling.R
 \name{housing_deprivation}
 \alias{housing_deprivation}
-\title{housing_deprivation}
+\title{housing_deprivation
+This function allows you to calculate the housing status}
 \usage{
 housing_deprivation(
   data = ech::toy_ech_2018,
+  n = 1,
   ht19 = "ht19",
   d9 = "d9",
   d10 = "d10",
@@ -23,44 +25,48 @@ housing_deprivation(
 )
 }
 \arguments{
-\item{data}{data frame}
+\item{data}{data.frame}
 
-\item{ht19}{number of individuals in the household}
+\item{n}{number of deprivations to consider. Default 1}
 
-\item{d9}{number of rooms}
+\item{ht19}{Variable name of number of individuals in the household}
 
-\item{d10}{number of rooms to sleep}
+\item{d9}{Variable name of number of rooms}
 
-\item{d11}{source of water}
+\item{d10}{Variable name of number of rooms to sleep}
 
-\item{d12}{llegada del agua a la vivienda}
+\item{d11}{Variable name of source of water}
 
-\item{d13}{servicio sanitario}
+\item{d12}{Variable name of water access}
 
-\item{d16}{evacuacion del servicio sanitario}
+\item{d13}{Variable name of sanitary facilities}
 
-\item{d18}{energy source for lighting}
+\item{d16}{Variable name of sanitary facilities evacuation}
 
-\item{d19}{cooking space}
+\item{d18}{Variable name of energy source for lighting}
 
-\item{c2}{predominant material on external walls}
+\item{d19}{Variable name of cooking space}
 
-\item{c3}{predominant roofing material}
+\item{c2}{Variable name of predominant material on external walls}
 
-\item{c4}{predominant flooring material}
+\item{c3}{Variable name of predominant roofing material}
 
-\item{quintil}{income quintil}
+\item{c4}{Variable name of predominant flooring material}
 
-\item{region_4}{region}
+\item{quintil}{Variable name of income quintil}
+
+\item{region_4}{Variable name of region}
 }
 \value{
 data.frame
 }
 \description{
+housing_deprivation
 This function allows you to calculate the housing status
 }
 \details{
-Disclaimer: El script no es un producto oficial de INE.
+Disclaimer: This script is not an official INE product.
+Aviso: El script no es un producto oficial de INE.
 }
 \examples{
 \donttest{

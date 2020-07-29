@@ -598,4 +598,8 @@ toy_ech_2018
 \description{
 A dataset containing only 1000 raws of the ECH 2018
 }
+\details{
+Disclaimer: This script is not an official INE product.
+Aviso: El script no es un producto oficial de INE.
+}
 \keyword{datasets}

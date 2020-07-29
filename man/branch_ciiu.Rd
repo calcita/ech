@@ -11,13 +11,17 @@ branch_ciiu(data = ech::toy_ech_2018, f72_2 = "f72_2", group = TRUE)
 
 \item{f72_2}{ciiu code rev.4}
 
-\item{group}{logical}
+\item{group}{logical to define 12 or 18 categories, if FALSE code 18. Default: TRUE}
 }
 \value{
 data.frame
 }
 \description{
 branch_ciuu
+}
+\details{
+Disclaimer: This script is not an official INE product.
+Aviso: El script no es un producto oficial de INE.
 }
 \examples{
 \donttest{

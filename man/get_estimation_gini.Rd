@@ -29,6 +29,10 @@ table
 \description{
 get_estimation_gini
 }
+\details{
+Disclaimer: This script is not an official INE product.
+Aviso: El script no es un producto oficial de INE.
+}
 \examples{
 \donttest{
 df <- income_constant_prices(data = ech::toy_ech_2018, ipc = "R",

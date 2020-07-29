@@ -19,6 +19,10 @@ data.frame
 \description{
 get_cba_cbna
 }
+\details{
+Disclaimer: This script is not an official INE product.
+Aviso: El script no es un producto oficial de INE.
+}
 \examples{
 get_cba_cbna(folder = tempdir(), sheet = 1, region = "M")
 

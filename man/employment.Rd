@@ -2,20 +2,23 @@
 % Please edit documentation in R/employment.R
 \name{employment}
 \alias{employment}
-\title{An employment function}
+\title{employment
+This function allows you to calculate the variables: PEA, PET, PO, PD}
 \usage{
 employment(data = ech::toy_ech_2018, pobpcoac = "pobpcoac")
 }
 \arguments{
-\item{data}{data frame with microdata}
+\item{data}{data.frame with microdata}
 
-\item{pobpcoac}{Definition of population by activity status}
+\item{pobpcoac}{Variable name of definition of population by activity status. Default: "pobpcoac"}
 }
 \description{
+employment
 This function allows you to calculate the variables: PEA, PET, PO, PD
 }
 \details{
-Disclaimer: El script no es un producto oficial de INE.
+Disclaimer: This script is not an official INE product.
+Aviso: El script no es un producto oficial de INE.
 }
 \examples{
 \donttest{

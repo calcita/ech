@@ -1,14 +1,15 @@
 #' income_constant_prices
 #'
 #' @description This function allows you to calculate the household income constant prices
-#' @param data data frame with ECH microdata
+#' @param data data.frame with ECH microdata
 #' @param base_month baseline month
 #' @param base_year baseline year
 #' @param mes month
-#' @param ht11 ht11 income
-#' @param ht13 ht13 rental value
-#' @param ht19 ht19 number of individuals in the household
+#' @param ht11 Variable name of income. Default: ht11
+#' @param ht13 Variable name of rental value. Default: ht13
+#' @param ht19 Variable name of number of individuals in the household. Default: ht19
 #' @param ipc  General ("G") or Regional ("R")
+#'
 #' @importFrom dplyr mutate left_join
 #' @importFrom magrittr %<>% %>%
 #' @importFrom haven zap_labels
@@ -16,7 +17,9 @@
 #' @export
 #' @return data.frame
 #' @details
-#' Disclaimer: El script no es un producto oficial de INE.
+#' Disclaimer: This script is not an official INE product.
+#' Aviso: El script no es un producto oficial de INE.
+#'
 #' @examples
 #' \donttest{
 #' toy_ech_2018 <- income_constant_prices(data = ech::toy_ech_2018)
@@ -74,16 +77,18 @@ income_constant_prices <- function(data = ech::toy_ech_2018,
 #' @description This function allows you to calculate the Household Income Quantiles
 #'
 #' @param data data.frame
-#' @param quantile quintil (5) or decil (10)
-#' @param weights ponderation variable
-#' @param income name of the income constant price variable. Default: "y_pc_d"
+#' @param quantile Variable name of quintil (5) or decil (10). Default: 5
+#' @param weights Variable name of ponderation variable. Default: "pesoano"
+#' @param income Variable name of income constant price. Default: "y_pc_d"
 #' @importFrom statar xtile
 #' @importFrom dplyr mutate pull
 #' @importFrom magrittr %<>%
 #' @export
 #' @return data.frame
 #' @details
-#' Disclaimer: El script no es un producto oficial de INE.
+#' Disclaimer: This script is not an official INE product.
+#' Aviso: El script no es un producto oficial de INE.
+#'
 #' @examples
 #' \donttest{
 #' toy_ech_2018 <- income_constant_prices(data = ech::toy_ech_2018)
@@ -117,49 +122,51 @@ income_quantiles <- function(data = ech::toy_ech_2018,
 #' labor_income_per_capita
 #'
 #' @param data data frame
-#' @param numero household id
-#' @param pobpcoac definition of population by activity status
-#' @param g126_1 sueldo o jornales liquidos
-#' @param g126_2 comisiones, incentivos, horas extras, habilitaciones
-#' @param g126_3 viaticos no sujetos a rendicion
-#' @param g126_4 propinas
-#' @param g126_5 aguinaldo
-#' @param g126_6 salario vacacional
-#' @param g126_7 pagos atrasados
-#' @param g126_8 boletos de transporte
-#' @param g127_3 recibio alimentos o bebidas
-#' @param g128_1 recibio tickets alimentacion
-#' @param g129_2 recibio vivienda o alojamiento
-#' @param g130_1 recibio otro tipo de retribucion
-#' @param g131_1 recibio otro tipo de complemento pagado por el/la empleador/a
-#' @param g133_1 derecho a cultivo para consumo propio
-#' @param g133_2 derecho a cultivo para consumo propio (monto percibido por la venta)
-#' @param g134_1 sueldo o jornales liquidos
-#' @param g134_2 comisiones, incentivos, horas extras, habilitaciones
-#' @param g134_3 viaticos no sujetos a rendicion
-#' @param g134_4 propinas
-#' @param g134_5 aguinaldo
-#' @param g134_6 salario vacacional
-#' @param g134_7 pagos atrasados
-#' @param g134_8 boletos de transporte
-#' @param g135_3 recibio alimentos o bebidas
-#' @param g136_1 recibio tickets alimentacion
-#' @param g137_2 recibio vivienda o alojamiento
-#' @param g138_1 recibio otro tipo de retribucion
-#' @param g139_1 recibio otro tipo de complemento pagado por el/la empleador/a
-#' @param g141_1 derecho a cultivo para consumo propio
-#' @param g141_2 derecho a cultivo para consumo propio (monto percibido por la venta)
-#' @param g142 retiros para gastos del hogar de negocios que tiene o tenia
-#' @param g144_1 retiro de productos para consumo propio (trabajador/a no agropecuario/a)
-#' @param g144_2_1 retiro de productos para consumo propio (trabajador/a no agropecuario/a)
-#' @param g144_2_3 retiro de productos para consumo propio (trabajador/a no agropecuario/a)
-#' @param g144_2_4 retiro de productos para consumo propio (trabajador/a no agropecuario/a)
-#' @param g144_2_5 retiro de productos para consumo propio (trabajador/a no agropecuario/a)
+#' @param numero Variable name of household id
+#' @param pobpcoac Variable name of definition of population by activity status
+#' @param g126_1 Variable name of sueldo o jornales liquidos
+#' @param g126_2 Variable name of comisiones, incentivos, horas extras, habilitaciones
+#' @param g126_3 Variable name of viaticos no sujetos a rendicion
+#' @param g126_4 Variable name of propinas
+#' @param g126_5 Variable name of aguinaldo
+#' @param g126_6 Variable name of salario vacacional
+#' @param g126_7 Variable name of pagos atrasados
+#' @param g126_8 Variable name of boletos de transporte
+#' @param g127_3 Variable name of recibio alimentos o bebidas
+#' @param g128_1 Variable name of recibio tickets alimentacion
+#' @param g129_2 Variable name of recibio vivienda o alojamiento
+#' @param g130_1 Variable name of recibio otro tipo de retribucion
+#' @param g131_1 Variable name of recibio otro tipo de complemento pagado por el/la empleador/a
+#' @param g133_1 Variable name of derecho a cultivo para consumo propio
+#' @param g133_2 Variable name of derecho a cultivo para consumo propio (monto percibido por la venta)
+#' @param g134_1 Variable name of sueldo o jornales liquidos
+#' @param g134_2 Variable name of comisiones, incentivos, horas extras, habilitaciones
+#' @param g134_3 Variable name of viaticos no sujetos a rendicion
+#' @param g134_4 Variable name of propinas
+#' @param g134_5 Variable name of aguinaldo
+#' @param g134_6 Variable name of salario vacacional
+#' @param g134_7 Variable name of pagos atrasados
+#' @param g134_8 Variable name of boletos de transporte
+#' @param g135_3 Variable name of recibio alimentos o bebidas
+#' @param g136_1 Variable name of recibio tickets alimentacion
+#' @param g137_2 Variable name of recibio vivienda o alojamiento
+#' @param g138_1 Variable name of recibio otro tipo de retribucion
+#' @param g139_1 Variable name of recibio otro tipo de complemento pagado por el/la empleador/a
+#' @param g141_1 Variable name of derecho a cultivo para consumo propio
+#' @param g141_2 Variable name of derecho a cultivo para consumo propio (monto percibido por la venta)
+#' @param g142 Variable name of retiros para gastos del hogar de negocios que tiene o tenia
+#' @param g144_1 Variable name of retiro de productos para consumo propio (trabajador/a no agropecuario/a)
+#' @param g144_2_1 Variable name of retiro de productos para consumo propio (trabajador/a no agropecuario/a)
+#' @param g144_2_3 Variable name of retiro de productos para consumo propio (trabajador/a no agropecuario/a)
+#' @param g144_2_4 Variable name of retiro de productos para consumo propio (trabajador/a no agropecuario/a)
+#' @param g144_2_5 Variable name of retiro de productos para consumo propio (trabajador/a no agropecuario/a)
 #' @export
 #' @return data.frame
 #' @importFrom dplyr mutate case_when
 #' @details
-#' Disclaimer: El script no es un producto oficial de INE.
+#' Disclaimer: This script is not an official INE product.
+#' Aviso: El script no es un producto oficial de INE.
+#'
 #' @examples
 #' \donttest{
 #' toy_ech_2018 <- labor_income_per_capita(data = ech::toy_ech_2018)
@@ -223,17 +230,20 @@ labor_income_per_capita <- function(data = ech::toy_ech_2018,
 #' labor_income_per_hour
 #'
 #' @param data data frame
-#' @param numero household id
-#' @param f85 hours worked per week
-#' @param pobpcoac definition of population by activity status
-#' @param pt4 total employment income
+#' @param numero Variable name of household id
+#' @param f85 Variable name of hours worked per week
+#' @param pobpcoac Variable name of definition of population by activity status
+#' @param pt4 Variable name of total employment income
 #' @param base_month baseline month
 #' @param base_year baseline year
 #' @param mes month
 #'
 #' @return data.frame
 #'
-#' @details Disclaimer: El script no es un producto oficial de INE.
+#' @details
+#' Disclaimer: This script is not an official INE product.
+#' Aviso: El script no es un producto oficial de INE.
+#'
 #' @export
 #'
 #' @examples

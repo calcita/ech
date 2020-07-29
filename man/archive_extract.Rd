@@ -14,6 +14,10 @@ archive_extract(archive.path = NULL, dest.path = NULL)
 \description{
 archive_extract
 }
+\details{
+Disclaimer: This script is not an official INE product.
+Aviso: El script no es un producto oficial de INE.
+}
 \examples{
 \donttest{
 archive_extract()

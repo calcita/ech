@@ -1,7 +1,8 @@
 #' housing_deprivation
-#'
 #' This function allows you to calculate the housing status
-#' @param data data frame
+#'
+#' @param data data.frame
+#' @param n number of deprivations to consider. Default 1
 #' @param ht19 Variable name of number of individuals in the household
 #' @param d9 Variable name of number of rooms
 #' @param d10 Variable name of number of rooms to sleep
@@ -17,11 +18,13 @@
 #' @param quintil Variable name of income quintil
 #' @param region_4 Variable name of region
 #'
-#' @importFrom dplyr mutate
+#' @importFrom dplyr mutate c_across
 #' @importFrom rlang .data
 #' @return data.frame
-#' @details Disclaimer: El script no es un producto oficial de INE.
 #' @export
+#' @details
+#' Disclaimer: This script is not an official INE product.
+#' Aviso: El script no es un producto oficial de INE.
 #'
 #' @examples
 #' \donttest{
@@ -30,21 +33,22 @@
 #' toy_ech_2018 <- housing_deprivation(data = toy_ech_2018)
 #' }
 housing_deprivation <- function(data = ech::toy_ech_2018,
-                         ht19 = "ht19",
-                         d9 = "d9",
-                         d10 = "d10",
-                         d11 = "d11",
-                         d12 = "d12",
-                         d13 = "d13",
-                         d16 = "d16",
-                         d18 = "d18",
-                         d19 = "d19",
-                         c2 = "c2",
-                         c3 = "c3",
-                         c4 = "c4",
-                         quintil = "quintil",
-                         region_4 = "region_4"
-                         ) {
+                                n = 1,
+                                ht19 = "ht19",
+                                d9 = "d9",
+                                d10 = "d10",
+                                d11 = "d11",
+                                d12 = "d12",
+                                d13 = "d13",
+                                d16 = "d16",
+                                d18 = "d18",
+                                d19 = "d19",
+                                c2 = "c2",
+                                c3 = "c3",
+                                c4 = "c4",
+                                quintil = "quintil",
+                                region_4 = "region_4"
+) {
 
   # checks ---
   assertthat::assert_that(is.data.frame(data))
@@ -76,14 +80,16 @@ housing_deprivation <- function(data = ech::toy_ech_2018,
       running_water = ifelse((region_4 < 4 & d11 > 1) | (region_4 == 4 & d11 %in% c(2, 5:6)), 1, 0), #Carencia: Red general para el agua o pozo
       drainage = ifelse((d14 == 0) | (d16 > 2), 1, 0), #Carencia: Desague
       electricity = ifelse((region_4 < 4 & d18 > 1) | (region_4 == 4 & d18 > 2), 1, 0), #Carencia: Red eléctrica
-      housing_deprivation_q = overcrowding + bathroom + rooms + roof_materials + wall_materials + floor_materials + water + running_water + drainage + electricity, #Cantidad de carencias de vivienda
-      housing_deprivation = ifelse(housing_deprivation_q > 0, 1, 0)
-  )
+      housing_deprivation_q = sum(c_across(overcrowding:electricity)),
+        # overcrowding + bathroom + rooms + roof_materials + wall_materials + floor_materials + water + running_water + drainage + electricity, #Cantidad de carencias de vivienda
+      housing_deprivation = ifelse(housing_deprivation_q > 0, n, 0)
+    )
 
 }
 
 
 
+#' housing_situation
 #' A function to calculate the housing situation
 #'
 #' @param data data.frame
@@ -102,6 +108,9 @@ housing_deprivation <- function(data = ech::toy_ech_2018,
 #'
 #' @return data.frame
 #' @export
+#' @details
+#' Disclaimer: This script is not an official INE product.
+#' Aviso: El script no es un producto oficial de INE.
 #'
 #' @examples
 #' toy_ech_2018 <- housing_situation(data = ech::toy_ech_2018)
@@ -132,6 +141,7 @@ housing_situation <- function(data = ech::toy_ech_2018,
 
 
 
+#' housing_conditions
 #' A function to calculate the housing conditions
 #'
 #' @param data data.frame
@@ -141,6 +151,9 @@ housing_situation <- function(data = ech::toy_ech_2018,
 #'
 #' @return data.frame
 #' @export
+#' @details
+#' Disclaimer: This script is not an official INE product.
+#' Aviso: El script no es un producto oficial de INE.
 #'
 #' @examples
 #' toy_ech_2018 <- housing_conditions(data = ech::toy_ech_2018)
@@ -159,6 +172,7 @@ housing_conditions <- function(data = ech::toy_ech_2018,
         )))))
 }
 
+#' overcrowding
 #' A function to calculate overcrowding in the household
 #'
 #' @param data data.frame
@@ -167,6 +181,9 @@ housing_conditions <- function(data = ech::toy_ech_2018,
 #'
 #' @return data.frame
 #' @export
+#' @details
+#' Disclaimer: This script is not an official INE product.
+#' Aviso: El script no es un producto oficial de INE.
 #'
 #' @examples
 #' toy_ech_2018 <- overcrowding(data = ech::toy_ech_2018)
@@ -185,6 +202,7 @@ overcrowding <- function(data = ech::toy_ech_2018,
 }
 
 
+#' housing_tenure
 #' A function to calculate the housing tenure
 #'
 #' @param data data.frame
@@ -192,6 +210,9 @@ overcrowding <- function(data = ech::toy_ech_2018,
 #'
 #' @return data.frame
 #' @export
+#' @details
+#' Disclaimer: This script is not an official INE product.
+#' Aviso: El script no es un producto oficial de INE.
 #'
 #' @examples
 #' toy_ech_2018 <- housing_tenure(data = ech::toy_ech_2018)

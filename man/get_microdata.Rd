@@ -2,7 +2,8 @@
 % Please edit documentation in R/get_microdata.R
 \name{get_microdata}
 \alias{get_microdata}
-\title{get_microdata}
+\title{get_microdata
+Download and read ECH from INE website}
 \usage{
 get_microdata(year = NULL, folder = tempdir(), toR = TRUE)
 }
@@ -17,5 +18,10 @@ get_microdata(year = NULL, folder = tempdir(), toR = TRUE)
 unrar files from INE web and the respective data frame in tibble format
 }
 \description{
+get_microdata
 Download and read ECH from INE website
+}
+\details{
+Disclaimer: This script is not an official INE product.
+Aviso: El script no es un producto oficial de INE.
 }

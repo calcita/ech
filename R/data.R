@@ -586,6 +586,9 @@
 #'   ...
 #' }
 #' @source \url{http://www.ine.gub.uy/}
+#' @details
+#' Disclaimer: This script is not an official INE product.
+#' Aviso: El script no es un producto oficial de INE.
 "toy_ech_2018"
 
 
@@ -609,6 +612,9 @@
 #'   ...
 #' }
 #' @source \url{http://www.ine.gub.uy/}
+#' @details
+#' Disclaimer: This script is not an official INE product.
+#' Aviso: El script no es un producto oficial de INE.
 "toy_ech_2018_income"
 
 
@@ -641,6 +647,9 @@
 #'   ...
 #'}
 #' @source \url{http://www.ine.gub.uy/}
+#' @details
+#' Disclaimer: This script is not an official INE product.
+#' Aviso: El script no es un producto oficial de INE.
 "dic"
 
 
@@ -656,6 +665,9 @@
 #'   ...
 #'  }
 #' @source \url{http://www.ine.gub.uy/}
+#' @details
+#' Disclaimer: This script is not an official INE product.
+#' Aviso: El script no es un producto oficial de INE.
 "ciiu4"
 
 
@@ -672,6 +684,9 @@
 #'   \item{acum_12_meses}{acumulated IPC last 12 month}
 #'  }
 #' @source \url{http://www.ine.gub.uy/}
+#' @details
+#' Disclaimer: This script is not an official INE product.
+#' Aviso: El script no es un producto oficial de INE.
 "ipc_base2010"
 
 #' Data IPC (Interior)
@@ -684,6 +699,9 @@
 #'   \item{indice}{IPC}
 #'  }
 #' @source \url{http://www.ine.gub.uy/}
+#' @details
+#' Disclaimer: This script is not an official INE product.
+#' Aviso: El script no es un producto oficial de INE.
 "ipc_base2010_int"
 
 #' Data IPC (Montevideo)
@@ -696,6 +714,9 @@
 #'   \item{indice}{IPC}
 #'  }
 #' @source \url{http://www.ine.gub.uy/}
+#' @details
+#' Disclaimer: This script is not an official INE product.
+#' Aviso: El script no es un producto oficial de INE.
 "ipc_base2010_mdeo"
 
 #' Data IPC (Montevideo)
@@ -708,6 +729,9 @@
 #'   \item{indice}{IPC}
 #'  }
 #' @source \url{http://www.ine.gub.uy/}
+#' @details
+#' Disclaimer: This script is not an official INE product.
+#' Aviso: El script no es un producto oficial de INE.
 "ipc_base2010_mdeo"
 
 #' Data CBA-CBNA (Montevideo)
@@ -722,6 +746,9 @@
 #'   \item{cbt_lp}{CBT}
 #'  }
 #' @source \url{http://www.ine.gub.uy/}
+#' @details
+#' Disclaimer: This script is not an official INE product.
+#' Aviso: El script no es un producto oficial de INE.
 "cba_cbna_mdeo"
 
 #' Data CBA-CBNA (Interior Urbano)
@@ -736,6 +763,9 @@
 #'   \item{cbt_lp}{CBT}
 #'  }
 #' @source \url{http://www.ine.gub.uy/}
+#' @details
+#' Disclaimer: This script is not an official INE product.
+#' Aviso: El script no es un producto oficial de INE.
 "cba_cbna_int"
 
 #' Data CBA-CBNA (Interior Rural)
@@ -750,6 +780,9 @@
 #'   \item{cbt_lp}{CBT}
 #'  }
 #' @source \url{http://www.ine.gub.uy/}
+#' @details
+#' Disclaimer: This script is not an official INE product.
+#' Aviso: El script no es un producto oficial de INE.
 "cba_cbna_rur"
 
 
@@ -765,4 +798,7 @@
 #'   \item{indice}{IPAB}
 #'  }
 #' @source \url{http://www.ine.gub.uy/}
+#' @details
+#' Disclaimer: This script is not an official INE product.
+#' Aviso: El script no es un producto oficial de INE.
 "ipab_base2010"

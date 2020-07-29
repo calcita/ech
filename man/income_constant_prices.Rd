@@ -16,7 +16,7 @@ income_constant_prices(
 )
 }
 \arguments{
-\item{data}{data frame with ECH microdata}
+\item{data}{data.frame with ECH microdata}
 
 \item{base_month}{baseline month}
 
@@ -26,11 +26,11 @@ income_constant_prices(
 
 \item{mes}{month}
 
-\item{ht11}{ht11 income}
+\item{ht11}{Variable name of income. Default: ht11}
 
-\item{ht13}{ht13 rental value}
+\item{ht13}{Variable name of rental value. Default: ht13}
 
-\item{ht19}{ht19 number of individuals in the household}
+\item{ht19}{Variable name of number of individuals in the household. Default: ht19}
 }
 \value{
 data.frame
@@ -39,7 +39,8 @@ data.frame
 This function allows you to calculate the household income constant prices
 }
 \details{
-Disclaimer: El script no es un producto oficial de INE.
+Disclaimer: This script is not an official INE product.
+Aviso: El script no es un producto oficial de INE.
 }
 \examples{
 \donttest{

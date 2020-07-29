@@ -2,25 +2,28 @@
 % Please edit documentation in R/add_geom.R
 \name{add_geom}
 \alias{add_geom}
-\title{add_geom}
+\title{add_geom
+This function allows you to add geom variable to a with a code varible of "zona", "barrio", "localidad", "segmentos", "secciones" or "departamentos".}
 \usage{
 add_geom(data, unit, variable, crs = 32721)
 }
 \arguments{
-\item{data}{data frame con las variables necesarias de ech.}
+\item{data}{data.frame}
 
-\item{unit}{unidad espacial de la base "Departamentos", "Secciones", "Secc MVD 2004", "Segmentos", "Segm MVD 2004", "Segm URB INT 2004", "Zonas", "Zonas MVD 2004", "Zonas URB INT 2004", "Localidades pg", "Municipios" o "Barrios".}
+\item{unit}{spatial unit of data, may be: "Departamentos", "Secciones", "Secc MVD 2004", "Segmentos", "Segm MVD 2004", "Segm URB INT 2004", "Zonas", "Zonas MVD 2004", "Zonas URB INT 2004", "Localidades pg", "Municipios" o "Barrios".}
 
-\item{variable}{nombre de la variable con el codigo correspondiente sin duplicados.}
+\item{variable}{Variable name of unit code (without duplicates)}
 
-\item{crs}{sistema de coordenadas de referencia, los màs usados para la region 32721 and 4326 (default 32721)}
+\item{crs}{Coordinates Refence Sistem, usually in region 32721 or 4326 (default 32721)}
 }
 \value{
 data.frame
 }
 \description{
+add_geom
 This function allows you to add geom variable to a with a code varible of "zona", "barrio", "localidad", "segmentos", "secciones" or "departamentos".
 }
 \details{
-Disclaimer: El script no es un producto oficial de INE.
+Disclaimer: This script is not an official INE product.
+Aviso: El script no es un producto oficial de INE.
 }

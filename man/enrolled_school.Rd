@@ -2,7 +2,8 @@
 % Please edit documentation in R/education.R
 \name{enrolled_school}
 \alias{enrolled_school}
-\title{A function to calculate people enrolled in school}
+\title{enrolled_school
+A function to calculate people enrolled in school}
 \usage{
 enrolled_school(
   data = ech::toy_ech_2018,
@@ -19,21 +20,21 @@ enrolled_school(
 \arguments{
 \item{data}{data.frame with necessary variables Defaults to ech.}
 
-\item{e193}{attendance school}
+\item{e193}{Variable name of attendance school}
 
-\item{e197}{attendance primary}
+\item{e197}{Variable name of attendance primary}
 
-\item{e201}{attendance secondary}
+\item{e201}{Variable name of attendance secondary}
 
-\item{e212}{attendance technical school (non-university)}
+\item{e212}{Variable name of attendance technical school (non-university)}
 
-\item{e215}{attendance magisterio}
+\item{e215}{Variable name of attendance magisterio}
 
-\item{e218}{attendance university}
+\item{e218}{Variable name of attendance university}
 
-\item{e221}{attendance tertiary}
+\item{e221}{Variable name of attendance tertiary}
 
-\item{e224}{attendance postgrade}
+\item{e224}{Variable name of attendance postgrade}
 }
 \value{
 data.frame
@@ -42,7 +43,8 @@ data.frame
 This function allows you to calculate people enrolled in school
 }
 \details{
-Disclaimer: El script no es un producto oficial de INE.
+Disclaimer: This script is not an official INE product.
+Aviso: El script no es un producto oficial de INE.
 }
 \examples{
 \donttest{
