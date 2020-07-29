@@ -1,5 +1,5 @@
 test_that("return structure", {
-  a <- income_constant_prices()
+  a <- income_constant_prices(data = ech::toy_ech_2018_income)
   testthat::expect_equal(names(a), c("numero", "mes", "ht11", "ysvl", "ht13", "ht19", "dpto", "pesoano", "estred13", "anio",
                                      "region_4", "aux", "deflate", "y_pc_d", "rv_d", "y_wrv_d", "y_wrv_pc_d"))
   toy_ech_2018 <- labor_income_per_capita(data = ech::toy_ech_2018)

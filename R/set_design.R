@@ -1,6 +1,6 @@
-#' A function to set survey design
-#'
+#' set_design
 #' This function allows you to set the survey desing
+#'
 #' @param data data frame with ECH microdata
 #' @param level is household ("h") or individual ("i")
 #' @param ids variables specifying cluster ids from largest level to smallest level (leaving the argument empty, NULL, 1, or 0 indicate no clusters).
@@ -11,11 +11,12 @@
 #' @importFrom srvyr as_survey_design
 #' @importFrom magrittr %>%
 #' @keywords design
-#'
+#' @return a list
 #' @export
 #' @details
-#' Disclaimer: El script no es un producto oficial de INE.
-#' @return a list
+#' Disclaimer: This script is not an official INE product.
+#' Aviso: El script no es un producto oficial de INE.
+#'
 #' @examples
 #' \donttest{
 #' set_design(data = ech::toy_ech_2018, level = "h")

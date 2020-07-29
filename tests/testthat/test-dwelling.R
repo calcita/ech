@@ -9,6 +9,6 @@ test_that("housing works", {
   a <- housing_situation(data = ech::toy_ech_2018)
   a <- housing_conditions(data = a)
   a <- overcrowding(data = a)
-  a <- homeownership(a)
+  a <- housing_tenure(a)
   expect_equal(ncol(a), 583)
 })

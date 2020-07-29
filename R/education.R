@@ -49,7 +49,7 @@ enrolled_school <- function(data = ech::toy_ech_2018,
   assertthat::assert_that(e221  %in% names(data), msg =  glue:glue("Sorry... :( \n {e221} is not in data"))
   assertthat::assert_that(e224  %in% names(data), msg =  glue:glue("Sorry... :( \n {e224} is not in data"))
 
-  if (exists("edu_asist", data)) warning('edu_asist pre-existing')
+  if (exists("enrollment", data)) warning('enrollment pre-existing')
 
   data %<>% dplyr::mutate(enrollment = dplyr::case_when((.data$e193 == 1 |
                                                           .data$e197 ==  1|
