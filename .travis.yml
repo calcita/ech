@@ -1,17 +1,26 @@
 # R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
 
-language: R
+# Use R
+language: r
+sudo: true
 cache: packages
+warnings_are_errors: false
+
 apt_packages:
   - unrar-free
   - libudunits2-dev
   - libgdal-dev
   - libgeos-dev
   - libproj-dev
+
+# for codecov
+r_packages:
+  - covr
+
 after_success:
   - Rscript -e 'covr::codecov()'
   - travis_wait 120 Rscript -e 'pkgdown::build_site()'
-warnings_are_errors: false
+
 os:
   - linux
 Comment:
