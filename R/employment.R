@@ -37,7 +37,7 @@ employment <- function(data = ech::toy_ech_2018,
 #' branch_ciuu
 #'
 #' @param data data.frame
-#' @param f72_2 ciiu code rev.4
+#' @param f72_2 Variable name of ciiu code rev.4
 #' @param group logical to define 12 or 18 categories, if FALSE code 18. Default: TRUE
 #' @param disaggregated logical to define disaggregated branches or not. Default: FALSE
 #'

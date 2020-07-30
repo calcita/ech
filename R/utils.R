@@ -281,27 +281,3 @@ deflate <- function(base_month = NULL,
 #' @usage lhs \%>\% rhs
 NULL
 
-# #' to_ascii
-# #'
-# #' @param x a column
-# #' @param upper logic
-# #'
-# #' @importFrom stringr str_replace_all
-# #' @return
-# #' @export
-# #' @examples
-# #' \donttest{
-# #' d <- lapply(dic, to_ascii)
-# #' }
-# to_ascii <- function(x, upper = T ){
-#   x <- x %>% as.character() %>%
-#     toupper() %>%
-#     stringr::str_replace_all("Ñ", "NI") %>%
-#     stringr::str_replace_all("Ó", "O") %>%
-#     stringr::str_replace_all("Á", "A") %>%
-#     stringr::str_replace_all("É", "E") %>%
-#     stringr::str_replace_all("Í", "I") %>%
-#     stringr::str_replace_all("Ú", "U")
-#   if (!upper == T) x <- tolower(x)
-#   x
-# }

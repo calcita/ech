@@ -5,14 +5,14 @@
 \title{organize_names
 A funtion to organize variables names of ECH with reference in 2017.}
 \usage{
-organize_names(data, year, level = "individual")
+organize_names(data, year, level = "hyp")
 }
 \arguments{
 \item{data}{data.frame contains the ECH microdata}
 
-\item{year}{numeric reference year of the data. Available from 2006 to 2019}
+\item{year}{numeric reference year of the data. Available from 2011 to 2019}
 
-\item{level}{(string) indicates whether the base to be labelled is of the type "household", "h", "individual", "i" or both, "hyp"}
+\item{level}{(string) indicates whether the base to be labelled is of the type "household", "h", "individual", "i" or both, "hyp". Default "hyp"}
 }
 \description{
 organize_names

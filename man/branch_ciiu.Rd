@@ -14,7 +14,7 @@ branch_ciiu(
 \arguments{
 \item{data}{data.frame}
 
-\item{f72_2}{ciiu code rev.4}
+\item{f72_2}{Variable name of ciiu code rev.4}
 
 \item{group}{logical to define 12 or 18 categories, if FALSE code 18. Default: TRUE}
 

@@ -623,7 +623,7 @@
 #'
 #' A dataset containing variables names change of the ECH 2006-2018
 #'
-#' @format A data frame with 973 rows and 19 variables:
+#' @format A data frame with 974 rows and 19 variables:
 #' \describe{
 #'   \item{codigos}{Code oh label}
 #'   \item{descripcion}{Description of label}

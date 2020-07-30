@@ -7,8 +7,7 @@ cache: packages
 warnings_are_errors: false
 
 apt_packages:
-  - p7zip-full
-  - p7zip-rar
+  - unrar-free
   - libudunits2-dev
   - libgdal-dev
   - libgeos-dev
