@@ -2,7 +2,8 @@
 % Please edit documentation in R/set_design.R
 \name{set_design}
 \alias{set_design}
-\title{A function to set survey design}
+\title{set_design
+This function allows you to set the survey desing}
 \usage{
 set_design(
   data = ech::toy_ech_2018,
@@ -27,10 +28,12 @@ set_design(
 a list
 }
 \description{
+set_design
 This function allows you to set the survey desing
 }
 \details{
-Disclaimer: El script no es un producto oficial de INE.
+Disclaimer: This script is not an official INE product.
+Aviso: El script no es un producto oficial de INE.
 }
 \examples{
 \donttest{

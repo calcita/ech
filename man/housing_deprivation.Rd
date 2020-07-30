@@ -35,13 +35,13 @@ housing_deprivation(
 
 \item{d10}{Variable name of number of rooms to sleep}
 
-\item{d11}{Variable name of source of water}
+\item{d11}{Variable name of principal source of potable water}
 
-\item{d12}{Variable name of water access}
+\item{d12}{Variable name of water supply network / water access}
 
 \item{d13}{Variable name of sanitary facilities}
 
-\item{d16}{Variable name of sanitary facilities evacuation}
+\item{d16}{Variable name of sewerage facilities}
 
 \item{d18}{Variable name of energy source for lighting}
 

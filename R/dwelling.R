@@ -6,10 +6,10 @@
 #' @param ht19 Variable name of number of individuals in the household
 #' @param d9 Variable name of number of rooms
 #' @param d10 Variable name of number of rooms to sleep
-#' @param d11 Variable name of source of water
-#' @param d12 Variable name of water access
+#' @param d11 Variable name of principal source of potable water
+#' @param d12 Variable name of water supply network / water access
 #' @param d13 Variable name of sanitary facilities
-#' @param d16 Variable name of sanitary facilities evacuation
+#' @param d16 Variable name of sewerage facilities
 #' @param d18 Variable name of energy source for lighting
 #' @param d19 Variable name of cooking space
 #' @param c2 Variable name of predominant material on external walls
@@ -78,7 +78,7 @@ housing_deprivation <- function(data = ech::toy_ech_2018,
       floor_materials = ifelse(c4 > 3, 1, 0), #Carencia: Pisos adecuados
       water = ifelse(d12 > 1, 1, 0), #Carencia: Agua
       running_water = ifelse((region_4 < 4 & d11 > 1) | (region_4 == 4 & d11 %in% c(2, 5:6)), 1, 0), #Carencia: Red general para el agua o pozo
-      drainage = ifelse((d14 == 0) | (d16 > 2), 1, 0), #Carencia: Desague
+      sewerage = ifelse((d14 == 0) | (d16 > 2), 1, 0), #Carencia: Desague
       electricity = ifelse((region_4 < 4 & d18 > 1) | (region_4 == 4 & d18 > 2), 1, 0), #Carencia: Red eléctrica
       housing_deprivation_q = sum(c_across(overcrowding:electricity)),
         # overcrowding + bathroom + rooms + roof_materials + wall_materials + floor_materials + water + running_water + drainage + electricity, #Cantidad de carencias de vivienda

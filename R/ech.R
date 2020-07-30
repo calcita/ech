@@ -63,5 +63,14 @@ if(getRversion() >= "2.15.1") utils::globalVariables(c(".",
                                                        "branch_ciiu",
                                                        "hours_per_month",
                                                        "total_income_per_hour",
-                                                       "link"
+                                                       "link",
+                                                       "integrated_poverty_measure",
+                                                       "UBN_q",
+                                                       "UBN",
+                                                       "UBN_education",
+                                                       "UBN_confort",
+                                                       "UBN_electricity",
+                                                       "UBN_sewerage",
+                                                       "UBN_water",
+                                                       "UBN_housing"
                                                        ))

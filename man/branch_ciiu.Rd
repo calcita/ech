@@ -4,7 +4,12 @@
 \alias{branch_ciiu}
 \title{branch_ciuu}
 \usage{
-branch_ciiu(data = ech::toy_ech_2018, f72_2 = "f72_2", group = TRUE)
+branch_ciiu(
+  data = ech::toy_ech_2018,
+  f72_2 = "f72_2",
+  group = TRUE,
+  disaggregated = FALSE
+)
 }
 \arguments{
 \item{data}{data.frame}
@@ -12,6 +17,8 @@ branch_ciiu(data = ech::toy_ech_2018, f72_2 = "f72_2", group = TRUE)
 \item{f72_2}{ciiu code rev.4}
 
 \item{group}{logical to define 12 or 18 categories, if FALSE code 18. Default: TRUE}
+
+\item{disaggregated}{logical to define disaggregated branches or not. Default: FALSE}
 }
 \value{
 data.frame

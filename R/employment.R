@@ -39,6 +39,7 @@ employment <- function(data = ech::toy_ech_2018,
 #' @param data data.frame
 #' @param f72_2 ciiu code rev.4
 #' @param group logical to define 12 or 18 categories, if FALSE code 18. Default: TRUE
+#' @param disaggregated logical to define disaggregated branches or not. Default: FALSE
 #'
 #' @return data.frame
 #' @export
@@ -53,7 +54,8 @@ employment <- function(data = ech::toy_ech_2018,
 
 branch_ciiu <- function(data = ech::toy_ech_2018,
                         f72_2 = "f72_2",
-                        group = TRUE){
+                        group = TRUE,
+                        disaggregated = FALSE){
 
     if(is.character(data$f72_2)) data$f72_2 <- as.numeric(data$f72_2)
 
@@ -80,24 +82,48 @@ branch_ciiu <- function(data = ech::toy_ech_2018,
   if (group == TRUE){
     data <- data %>%
       dplyr::mutate(branch_group_ciiu = dplyr::case_when( #faltan evaluar los NA
-        branch_ciiu == 1 ~ 1,
-        branch_ciiu == 2 ~ 2,
-        branch_ciiu == 3 ~ 3,
-        branch_ciiu == 4 ~ 4,
-        branch_ciiu == 5 ~ 5,
-        branch_ciiu == 6 ~ 4,
-        branch_ciiu == 7 ~ 6,
-        branch_ciiu == 8 ~ 6,
-        branch_ciiu == 9 ~ 6,
-        branch_ciiu == 10 ~ 6,
-        branch_ciiu == 11 ~ 7,
-        branch_ciiu == 12 ~ 8,
-        branch_ciiu == 18 ~ 8,
-        branch_ciiu == 13 ~ 9,
-        branch_ciiu == 14 ~ 10,
-        branch_ciiu == 15 ~ 11,
-        branch_ciiu == 16 ~ 11,
-        TRUE ~ 12))
+        branch_ciiu == 1 ~ "Agropecuaria, pesca, caza y explotacion de minas o conteras",
+        branch_ciiu == 2 ~ "Industria manufacturera, Suministro de electricidad, gas y agua",
+        branch_ciiu == 3 ~  "Construccion",
+        branch_ciiu == 4 ~ "Comercio por menor y por mayor; Alojamiento y servicio de comida",
+        branch_ciiu == 5 ~ "Transporte y almacenamiento",
+        branch_ciiu == 6 ~ "Comercio por menor y por mayor; Alojamiento y servicio de comida",
+        branch_ciiu == 7 ~ "Informatica y Comunicacion",
+        branch_ciiu == 8 ~ "Actividades financieras y de seguros",
+        branch_ciiu == 9 ~ "Actividades inmobiliarias",
+        branch_ciiu == 10 ~ "Actividades profesionales, cientificas y tecnicas",
+        branch_ciiu == 11 ~ "Actividades administrativas y servicio de apoyo",
+        branch_ciiu == 12 ~ "Administracion Publica; Defensa y Actividades de organizaciones y organos extraterritoriales",
+        branch_ciiu == 18 ~ "Administracion Publica; Defensa y Actividades de organizaciones y organos extraterritoriales",
+        branch_ciiu == 13 ~ "Ensenanza",
+        branch_ciiu == 14 ~ "Servicios sociales y Salud",
+        branch_ciiu == 15 ~ "Otras actividades de servicio; Arte, entretenimiento y recreacion",
+        branch_ciiu == 16 ~ "Otras actividades de servicio; Arte, entretenimiento y recreacion",
+        branch_ciiu == 17 ~ "Actividades de los hogares como empleadores",
+        TRUE ~ ""))
   }
+
+    if (disaggregated == TRUE){
+      data <- data %>%
+        dplyr::mutate(branch_ciiu_disaggregated = dplyr::case_when( #faltan evaluar los NA
+          f72_2 < 301 ~ "Agricultura, ganaderia, caza y silvicultura",
+          f72_2 < 500 ~ "Pesca",
+          f72_2 < 1000 ~ "Explotacion de minas y canteras",
+          f72_2 < 3500 ~ "Industrias manufactureras",
+          f72_2 < 4100 ~ "Suministro de electricidad, gas y agua",
+          f72_2 < 4500 ~ "Construccion",
+          f72_2 < 4900 ~ "Comercio",
+          f72_2 < 5800 ~ "Hoteles y restaurantes",
+          f72_2 < 5500 | (f72_2 >= 5800 & f72_2 <= 6400) ~ "Transporte, almacenamiento y comunicaciones",
+          f72_2 < 6800 ~ "Intermediacion financiera",
+          f72_2 < 8400 ~ "Actividades inmobiliarias, empresariales y de alquiler",
+          f72_2 < 8500 | f72_2 == 9900 ~ "Administracion publica y defensa, planes de seguridad social",
+          f72_2 < 8600 ~ "Ensenanza",
+          f72_2 < 9000 ~ "Servicios sociales y de salud",
+          f72_2 < 9700 ~ "Otros servicios sociales",
+          f72_2 < 9900 ~ "Hogares privados con servicio domestico",
+          TRUE ~ NA))
+    }
+
 
 }
