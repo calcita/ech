@@ -4,6 +4,7 @@
 ## ech v0.0.1.14
 * Add add_geom function
 * Add get_sampling_frame/get_marco function
+* Add unsatisfied_basic_needs function
 
 ## ech v0.0.1.13
 

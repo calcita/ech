@@ -124,6 +124,5 @@ branch_ciiu <- function(data = ech::toy_ech_2018,
           f72_2 < 9900 ~ "Hogares privados con servicio domestico",
           TRUE ~ NA))
     }
-
-
+    return(data)
 }
