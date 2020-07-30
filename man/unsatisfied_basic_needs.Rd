@@ -7,26 +7,26 @@
 unsatisfied_basic_needs(
   data = ech::toy_ech_2018,
   ipm = FALSE,
-  c2 = c2,
-  c3 = c3,
-  c4 = c4,
-  d9 = d9,
-  d11 = d11,
-  d12 = d12,
-  d13 = d13,
-  d14 = d14,
-  d15 = d15,
-  d16 = d16,
-  d18 = d18,
-  d19 = d19,
-  d21_1 = d21_1,
-  d21_2 = d21_2,
-  d21_3 = d21_3,
-  d260 = d260,
-  ht19 = ht19,
-  pobre06 = pobre06,
-  enrollment = enrollment,
-  years_schooling = years_schooling
+  c2 = "c2",
+  c3 = "c3",
+  c4 = "c4",
+  d9 = "d9",
+  d11 = "d11",
+  d12 = "d12",
+  d13 = "d13",
+  d14 = "d14",
+  d15 = "d15",
+  d16 = "d16",
+  d18 = "d18",
+  d19 = "d19",
+  d21_1 = "d21_1",
+  d21_2 = "d21_2",
+  d21_3 = "d21_3",
+  d260 = "d260",
+  ht19 = "ht19",
+  pobre06 = "pobre06",
+  enrollment = "enrollment",
+  years_schooling = "years_schooling"
 )
 }
 \arguments{
@@ -34,29 +34,29 @@ unsatisfied_basic_needs(
 
 \item{ipm}{Variable name of}
 
-\item{c2}{Variable name of}
+\item{c2}{Variable name of predominant material on external walls}
 
-\item{c3}{Variable name of}
+\item{c3}{Variable name of predominant roofing material}
 
-\item{c4}{Variable name of}
+\item{c4}{Variable name of predominant flooring material}
 
-\item{d9}{Variable name of}
+\item{d9}{Variable name of number of rooms}
 
-\item{d11}{Variable name of}
+\item{d11}{Variable name of principal source of potable water}
 
-\item{d12}{Variable name of}
+\item{d12}{Variable name of water supply network / water access}
 
-\item{d13}{Variable name of}
+\item{d13}{Variable name of sanitary facilities}
 
 \item{d14}{Variable name of}
 
 \item{d15}{Variable name of}
 
-\item{d16}{Variable name of}
+\item{d16}{Variable name of sewerage facilities}
 
-\item{d18}{Variable name of}
+\item{d18}{Variable name of energy source for lighting}
 
-\item{d19}{Variable name of}
+\item{d19}{Variable name of cooking space}
 
 \item{d21_1}{Variable name of}
 
@@ -66,13 +66,13 @@ unsatisfied_basic_needs(
 
 \item{d260}{Variable name of}
 
-\item{ht19}{Variable name of}
+\item{ht19}{Variable name of number of individuals in the household}
 
-\item{pobre06}{Variable name of}
+\item{pobre06}{Variable name of poverty}
 
-\item{enrollment}{Variable name of}
+\item{enrollment}{Variable name of enrollment}
 
-\item{years_schooling}{Variable name of}
+\item{years_schooling}{Variable name of years_schooling}
 }
 \value{
 data.frame
@@ -85,6 +85,8 @@ Disclaimer: This script is not an official INE product.
 Aviso: El script no es un producto oficial de INE.
 }
 \examples{
-toy_ech_2018 <- unsatisfied_basic_needs(data = ech::toy_ech_2018)
+toy_ech_18 <- enrolled_school(data = ech::toy_ech_2018)
+toy_ech_18 <- years_of_schooling(toy_ech_18)
+toy_ech_18 <- unsatisfied_basic_needs(toy_ech_18)
 
 }
