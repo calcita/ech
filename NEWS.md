@@ -1,7 +1,14 @@
 # log history of ech package development
 
 -------------------------------------------------------
+## ech v0.0.1.15
+* Variables used completed in dictionary 2011:2019
+* Variables used confirmed in dictionary 2013:2019
+* Improvemente of readme
+
+
 ## ech v0.0.1.14
+
 * Add add_geom function
 * Add get_sampling_frame/get_marco function
 * Add unsatisfied_basic_needs function
