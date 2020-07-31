@@ -6,7 +6,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>A function to calculate housing status — housing_deprivation • ech</title>
+<title>housing_deprivation
+This function allows you to calculate the housing status — housing_deprivation • ech</title>
 
 
 <!-- jquery -->
@@ -35,8 +36,10 @@
 
 
 
-<meta property="og:title" content="A function to calculate housing status — housing_deprivation" />
-<meta property="og:description" content="This function allows you to calculate the housing status" />
+<meta property="og:title" content="housing_deprivation
+This function allows you to calculate the housing status — housing_deprivation" />
+<meta property="og:description" content="housing_deprivation
+This function allows you to calculate the housing status" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -69,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ech</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.13</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.15</span>
       </span>
     </div>
 
@@ -106,17 +109,20 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>A function to calculate housing status</h1>
+    <h1>housing_deprivation
+This function allows you to calculate the housing status</h1>
     
     <div class="hidden name"><code>housing_deprivation.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This function allows you to calculate the housing status</p>
+    <p>housing_deprivation
+This function allows you to calculate the housing status</p>
     </div>
 
     <pre class="usage"><span class='fu'>housing_deprivation</span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ech</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/ech/man/toy_ech_2018.html'>toy_ech_2018</a></span>,
+  <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>1</span>,
   <span class='kw'>ht19</span> <span class='kw'>=</span> <span class='st'>"ht19"</span>,
   <span class='kw'>d9</span> <span class='kw'>=</span> <span class='st'>"d9"</span>,
   <span class='kw'>d10</span> <span class='kw'>=</span> <span class='st'>"d10"</span>,
@@ -138,63 +144,67 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>data</th>
-      <td><p>data frame con las variables necesarias de ech</p></td>
+      <td><p>data.frame</p></td>
+    </tr>
+    <tr>
+      <th>n</th>
+      <td><p>number of deprivations to consider. Default 1</p></td>
     </tr>
     <tr>
       <th>ht19</th>
-      <td><p>cantidad de personas sin servicio domestico</p></td>
+      <td><p>Variable name of number of individuals in the household</p></td>
     </tr>
     <tr>
       <th>d9</th>
-      <td><p>cantidad de habitaciones para dormir</p></td>
+      <td><p>Variable name of number of rooms</p></td>
     </tr>
     <tr>
       <th>d10</th>
-      <td><p>cantidad de habitaciones para dormir</p></td>
+      <td><p>Variable name of number of rooms to sleep</p></td>
     </tr>
     <tr>
       <th>d11</th>
-      <td><p>origen del agua</p></td>
+      <td><p>Variable name of principal source of potable water</p></td>
     </tr>
     <tr>
       <th>d12</th>
-      <td><p>llegada del agua a la vivienda</p></td>
+      <td><p>Variable name of water supply network / water access</p></td>
     </tr>
     <tr>
       <th>d13</th>
-      <td><p>servicio sanitario</p></td>
+      <td><p>Variable name of sanitary facilities</p></td>
     </tr>
     <tr>
       <th>d16</th>
-      <td><p>evacuacion del servicio sanitario</p></td>
+      <td><p>Variable name of sewerage facilities</p></td>
     </tr>
     <tr>
       <th>d18</th>
-      <td><p>fuente de energia para iluminar</p></td>
+      <td><p>Variable name of energy source for lighting</p></td>
     </tr>
     <tr>
       <th>d19</th>
-      <td><p>lugar para cocinar</p></td>
+      <td><p>Variable name of cooking space</p></td>
     </tr>
     <tr>
       <th>c2</th>
-      <td><p>material predominante en paredes externas</p></td>
+      <td><p>Variable name of predominant material on external walls</p></td>
     </tr>
     <tr>
       <th>c3</th>
-      <td><p>material predominante en techo</p></td>
+      <td><p>Variable name of predominant roofing material</p></td>
     </tr>
     <tr>
       <th>c4</th>
-      <td><p>material predominante en pisos</p></td>
+      <td><p>Variable name of predominant flooring material</p></td>
     </tr>
     <tr>
       <th>quintil</th>
-      <td><p>numero de quintil de ingresos</p></td>
+      <td><p>Variable name of income quintil</p></td>
     </tr>
     <tr>
       <th>region_4</th>
-      <td><p>region</p></td>
+      <td><p>Variable name of region</p></td>
     </tr>
     </table>
 
@@ -203,7 +213,8 @@
     <p>data.frame</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Disclaimer: El script no es un producto oficial de INE.</p>
+    <p>Disclaimer: This script is not an official INE product.
+Aviso: El script no es un producto oficial de INE.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>

@@ -36,7 +36,7 @@
 
 
 <meta property="og:title" content="income_quantiles — income_quantiles" />
-<meta property="og:description" content="Household Income Quantiles" />
+<meta property="og:description" content="This function allows you to calculate the Household Income Quantiles" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -69,7 +69,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ech</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.13</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.15</span>
       </span>
     </div>
 
@@ -112,14 +112,14 @@
     </div>
 
     <div class="ref-description">
-    <p>Household Income Quantiles</p>
+    <p>This function allows you to calculate the Household Income Quantiles</p>
     </div>
 
     <pre class="usage"><span class='fu'>income_quantiles</span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ech</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/ech/man/toy_ech_2018.html'>toy_ech_2018</a></span>,
   <span class='kw'>quantile</span> <span class='kw'>=</span> <span class='fl'>5</span>,
   <span class='kw'>weights</span> <span class='kw'>=</span> <span class='st'>"pesoano"</span>,
-  <span class='kw'>income</span> <span class='kw'>=</span> <span class='st'>"ht11_per_capita_deflate"</span>
+  <span class='kw'>income</span> <span class='kw'>=</span> <span class='st'>"y_pc_d"</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -131,15 +131,15 @@
     </tr>
     <tr>
       <th>quantile</th>
-      <td><p>cuantiles: quintiles (5) o deciles (10)</p></td>
+      <td><p>Variable name of quintil (5) or decil (10). Default: 5</p></td>
     </tr>
     <tr>
       <th>weights</th>
-      <td><p>ponderation variable</p></td>
+      <td><p>Variable name of ponderation variable. Default: "pesoano"</p></td>
     </tr>
     <tr>
       <th>income</th>
-      <td><p>Name of the income variables. Default: "ht11_per_capita_deflate"</p></td>
+      <td><p>Variable name of income constant price. Default: "y_pc_d"</p></td>
     </tr>
     </table>
 
@@ -148,7 +148,8 @@
     <p>data.frame</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Disclaimer: El script no es un producto oficial de INE.</p>
+    <p>Disclaimer: This script is not an official INE product.
+Aviso: El script no es un producto oficial de INE.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>

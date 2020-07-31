@@ -5,6 +5,6 @@ test_that("emploiment works", {
   testthat::expect_error(employment(pobpcoac = "aaa"))
   b <- branch_ciiu(data = ech::toy_ech_2018)
   testthat::expect_equal(ncol(b), 581)
-  c <- branch_ciiu(data = ech::toy_ech_2018, disaggregated = TRUE)
+  c <- branch_ciiu(data = ech::toy_ech_2018, group = FALSE, disaggregated = TRUE)
   testthat::expect_equal(ncol(c), 581)
 })

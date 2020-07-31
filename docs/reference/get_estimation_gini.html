@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Title — get_estimation_gini • ech</title>
+<title>get_estimation_gini — get_estimation_gini • ech</title>
 
 
 <!-- jquery -->
@@ -35,8 +35,8 @@
 
 
 
-<meta property="og:title" content="Title — get_estimation_gini" />
-<meta property="og:description" content="Title" />
+<meta property="og:title" content="get_estimation_gini — get_estimation_gini" />
+<meta property="og:description" content="get_estimation_gini" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -69,7 +69,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ech</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.13</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.15</span>
       </span>
     </div>
 
@@ -106,21 +106,19 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Title</h1>
+    <h1>get_estimation_gini</h1>
     
     <div class="hidden name"><code>get_estimation_gini.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Title</p>
+    <p>get_estimation_gini</p>
     </div>
 
     <pre class="usage"><span class='fu'>get_estimation_gini</span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ech</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/ech/man/toy_ech_2018.html'>toy_ech_2018</a></span>,
-  <span class='kw'>variable</span> <span class='kw'>=</span> <span class='no'>ht11_svl_per_capita_deflate_gini</span>,
-  <span class='kw'>by.x</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>by.y</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>domain</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>variable</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>by</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>level</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"estimacion"</span>
 )</pre>
@@ -134,23 +132,15 @@
     </tr>
     <tr>
       <th>variable</th>
-      <td><p>igreso sin valor locativo deflactado</p></td>
+      <td><p>income without rental value per capita deflated</p></td>
     </tr>
     <tr>
-      <th>by.x</th>
+      <th>by</th>
       <td><p>variable</p></td>
-    </tr>
-    <tr>
-      <th>by.y</th>
-      <td><p>variable</p></td>
-    </tr>
-    <tr>
-      <th>domain</th>
-      <td><p>subpoblacion</p></td>
     </tr>
     <tr>
       <th>level</th>
-      <td><p>nivel</p></td>
+      <td><p>household or individual</p></td>
     </tr>
     <tr>
       <th>name</th>
@@ -161,13 +151,25 @@
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>table</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
+    <p>Disclaimer: This script is not an official INE product.
+Aviso: El script no es un producto oficial de INE.</p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
+<span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='income_constant_prices.html'>income_constant_prices</a></span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ech</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/ech/man/toy_ech_2018.html'>toy_ech_2018</a></span>, <span class='kw'>ipc</span> <span class='kw'>=</span> <span class='st'>"R"</span>,
+ <span class='kw'>base_month</span> <span class='kw'>=</span> <span class='st'>"01"</span>, <span class='kw'>base_year</span> <span class='kw'>=</span> <span class='st'>"2005"</span>)
+<span class='fu'>get_estimation_gini</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>df</span>, <span class='kw'>level</span> <span class='kw'>=</span> <span class='st'>"h"</span>)
+<span class='co'># }</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       <li><a href="#value">Value</a></li>
+      <li><a href="#details">Details</a></li>
+      <li><a href="#examples">Examples</a></li>
     </ul>
 
   </div>

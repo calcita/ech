@@ -6,8 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>household_type
-This function allows you to calculate the household type for each household in the survey. A household is composed of one or more people who occupy a housing unit. — household_type • ech</title>
+<title>get_cba_cbna — get_cba_cbna • ech</title>
 
 
 <!-- jquery -->
@@ -36,10 +35,8 @@ This function allows you to calculate the household type for each household in t
 
 
 
-<meta property="og:title" content="household_type
-This function allows you to calculate the household type for each household in the survey. A household is composed of one or more people who occupy a housing unit. — household_type" />
-<meta property="og:description" content="household_type
-This function allows you to calculate the household type for each household in the survey. A household is composed of one or more people who occupy a housing unit." />
+<meta property="og:title" content="get_cba_cbna — get_cba_cbna" />
+<meta property="og:description" content="get_cba_cbna" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -109,47 +106,31 @@ This function allows you to calculate the household type for each household in t
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>household_type
-This function allows you to calculate the household type for each household in the survey. A household is composed of one or more people who occupy a housing unit.</h1>
+    <h1>get_cba_cbna</h1>
     
-    <div class="hidden name"><code>household_type.Rd</code></div>
+    <div class="hidden name"><code>get_cba_cbna.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>household_type
-This function allows you to calculate the household type for each household in the survey. A household is composed of one or more people who occupy a housing unit.</p>
+    <p>get_cba_cbna</p>
     </div>
 
-    <pre class="usage"><span class='fu'>household_type</span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ech</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/ech/man/toy_ech_2018.html'>toy_ech_2018</a></span>,
-  <span class='kw'>e26</span> <span class='kw'>=</span> <span class='st'>"e26"</span>,
-  <span class='kw'>e27</span> <span class='kw'>=</span> <span class='st'>"e27"</span>,
-  <span class='kw'>e30</span> <span class='kw'>=</span> <span class='st'>"e30"</span>,
-  <span class='kw'>colname</span> <span class='kw'>=</span> <span class='st'>"tipo_hogar"</span>
-)</pre>
+    <pre class="usage"><span class='fu'>get_cba_cbna</span>(<span class='kw'>folder</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='kw'>sheet</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>region</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>data</th>
-      <td><p>data frame with ECH microdata</p></td>
+      <th>folder</th>
+      <td><p>temporal folder</p></td>
     </tr>
     <tr>
-      <th>e26</th>
-      <td><p>sex</p></td>
+      <th>sheet</th>
+      <td><p>sheet number</p></td>
     </tr>
     <tr>
-      <th>e27</th>
-      <td><p>age</p></td>
-    </tr>
-    <tr>
-      <th>e30</th>
-      <td><p>householder</p></td>
-    </tr>
-    <tr>
-      <th>colname</th>
-      <td><p>custom name for the new variable</p></td>
+      <th>region</th>
+      <td><p>Montevideo ("M"), Interior Urbano ("I"), Interior Rural ("R")</p></td>
     </tr>
     </table>
 
@@ -162,8 +143,13 @@ This function allows you to calculate the household type for each household in t
 Aviso: El script no es un producto oficial de INE.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='no'>toy_ech_2018</span> <span class='kw'>&lt;-</span> <span class='fu'>household_type</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ech</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/ech/man/toy_ech_2018.html'>toy_ech_2018</a></span>)</div><div class='output co'>#&gt; <span class='message'>Se ha creado la variable tipo_hogar en la base</span></div><div class='input'># }
+    <pre class="examples"><div class='input'><span class='fu'>get_cba_cbna</span>(<span class='kw'>folder</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='kw'>sheet</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>region</span> <span class='kw'>=</span> <span class='st'>"M"</span>)</div><div class='output co'>#&gt; <span class='message'>New names:</span>
+#&gt; <span class='message'>* `` -&gt; ...2</span>
+#&gt; <span class='message'>* `` -&gt; ...3</span>
+#&gt; <span class='message'>* `` -&gt; ...4</span>
+#&gt; <span class='message'>* `` -&gt; ...5</span>
+#&gt; <span class='message'>* `` -&gt; ...6</span>
+#&gt; <span class='message'>* ...</span></div><div class='output co'>#&gt; <span class='warning'>Warning: NAs introducidos por coerción</span></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

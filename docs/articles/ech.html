@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ech</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.13</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.15</span>
       </span>
     </div>
 
@@ -70,7 +70,7 @@
 </h1>
                         <h4 class="author">Richard Detomasi</h4>
             
-            <h4 class="date">2020-07-22</h4>
+            <h4 class="date">2020-07-31</h4>
       
       
       <div class="hidden name"><code>ech.Rmd</code></div>
@@ -79,36 +79,45 @@
 
     
     
-<p>El paquete <code>ech</code> tiene como objetivo facilitar el trabajo de les usuaries que trabajen con los datos de la Encuesta Continua de Hogares (ECH) de Uruguay, y este tutorial busca ejemplificar el uso de las funciones del paquete.</p>
-<div id="instalación" class="section level2">
-<h2 class="hasAnchor">
-<a href="#instalaci%C3%B3n" class="anchor"></a>Instalación</h2>
-<p>Para instalar la versión estable del paquete usar:</p>
+<p>El paquete <code>ech</code> es una caja de herramientas para el procesamiento de la <a href="http://www.ine.gub.uy/encuesta-continua-de-hogares1">Encuesta Continua de Hogares de Uruguay</a> realizada por en Instituto Nacional de Estadística (INE). Pretendiendo contribuir a la comunidad de usuaries de R en Uruguay, facilitando el uso de una de las encuestas socioeconómicas más importantes del país. En este sentido, el paquete implementa una serie de funciones que permiten el cálculo de los principales indicadores socioeconómicos que permite la encuesta.</p>
+<div id="instalación" class="section level1">
+<h1 class="hasAnchor">
+<a href="#instalaci%C3%B3n" class="anchor"></a>Instalación</h1>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">'ech'</span>)</code></pre></div>
 <p>Para instalar la versión en desarrollo:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages('devtools') si no tiene instalado devtools</span>
 devtools<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/devtools/man/remote-reexports.html">install_github</a></span>(<span class="st">"calcita/ech"</span>)</code></pre></div>
-<p>Para activarla</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ech)</code></pre></div>
 </div>
-<div id="ejemplos-de-usos" class="section level2">
+<div id="modo-de-uso" class="section level1">
+<h1 class="hasAnchor">
+<a href="#modo-de-uso" class="anchor"></a>Modo de uso</h1>
+<p>El paquete ech permite descargar los microdatos oficiales desde la web del INE o bien utilizar microdatos ya procesados. En el primer caso los datos se obtiene a través de la función <code><a href="../reference/get_microdata.html">get_microdata()</a></code>. En el segundo caso, si la persona ha modificado los nombres originales de las variables deberá indicarlo en cada función que utilice.</p>
+<p>Ejemplo de descarga de microdatos:</p>
+<p>Como un segundo paso, recomendamos utilizar la función <code><a href="../reference/organize_names.html">organize_names()</a></code> que conserva las variables que se utilizan por las funciones de <code>ech</code>con referencia a 2017. Esto fuera de corregir nombres de variables que en diferentes años tienen diferentes nombres, ayuda a que mediante el aporte de los usuarios al proyecto la grilla de dicionarios <code><a href="../reference/dic.html">ech::dic</a></code> vaya completandose y mejoran esta función.</p>
+<p>Pasando ahora a lo importante, esta librería aporta variadas funciones para el cálculo de nuevas variables como por ejemplo <code>employment</code>, que calcula PEA, PET, PO y PD.</p>
+<p>O como <code><a href="../reference/income_constant_prices.html">income_constant_prices()</a></code> que no solo agrega las variables calculas sino que muestra a su vez la vinculación de la ech con otra fuente de información adicional como son las tablas de IPC.</p>
+<p>Por otro lado, esta librería tiene cuatro funciones que nos permiten hacer estimaciones:</p>
+<ul>
+<li>
+<code><a href="../reference/get_estimation_mean.html">get_estimation_mean()</a></code>:<br>
+</li>
+<li>
+<code><a href="../reference/get_estimation_total.html">get_estimation_total()</a></code>:<br>
+</li>
+<li>
+<code><a href="../reference/get_estimation_ratio.html">get_estimation_ratio()</a></code>:<br>
+</li>
+<li>
+<code><a href="../reference/get_estimation_gini.html">get_estimation_gini()</a></code>:</li>
+</ul>
+<p>Un ejemplo aplicando una de estas Ejemplo de estimación:</p>
+<p>El uso de este paquete se potencia al usarlo en conjunto con <a href="https://github.com/RichDeto/geouy">geouy</a> posibilitando mapear utilizando diferentes capas geográficas de Uruguay. Por ejemplo para agregarle geometrías a esta estimación para poder hacer un mapa con estos datos.</p>
+<p>Y con esto, podemos hacer un mapa con <code>ggplot2</code> muy facilmente de estas estimaciones.</p>
+<div id="aportes-de-la-comunidad" class="section level2">
 <h2 class="hasAnchor">
-<a href="#ejemplos-de-usos" class="anchor"></a>Ejemplos de usos</h2>
-<div id="cargar-bases" class="section level3">
-<h3 class="hasAnchor">
-<a href="#cargar-bases" class="anchor"></a>Cargar bases</h3>
-<div id="ech" class="section level4">
-<h4 class="hasAnchor">
-<a href="#ech" class="anchor"></a>ECH</h4>
-</div>
-<div id="ipc" class="section level4">
-<h4 class="hasAnchor">
-<a href="#ipc" class="anchor"></a>IPC</h4>
-</div>
-<div id="ciiu" class="section level4">
-<h4 class="hasAnchor">
-<a href="#ciiu" class="anchor"></a>CIIU</h4>
-</div>
+<a href="#aportes-de-la-comunidad" class="anchor"></a>Aportes de la comunidad</h2>
+<p>Este paquete se propone incorporar cualquier función de propósitos generales que utilice como base le Encuesta Continua de Hogares (ECH) de Uruguay. Todos los aportes en este sentido son bienvenidos.</p>
+<p>Si trabajas con la ECH de Uruguay y querés agregar tu función o tus datos, te recomendamos que leas los siguientes consejos de como colaborar <a href="https://github.com/calcita/ech/issues/2">aquí</a>.</p>
 </div>
 </div>
   </div>
@@ -120,7 +129,11 @@ devtools<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
 <li><a href="#instalaci%C3%B3n">Instalación</a></li>
-      <li><a href="#ejemplos-de-usos">Ejemplos de usos</a></li>
+      <li>
+<a href="#modo-de-uso">Modo de uso</a><ul class="nav nav-pills nav-stacked">
+<li><a href="#aportes-de-la-comunidad">Aportes de la comunidad</a></li>
+      </ul>
+</li>
       </ul>
 </div>
       </div>

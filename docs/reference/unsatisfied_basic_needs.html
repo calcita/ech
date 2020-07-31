@@ -6,8 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>household_type
-This function allows you to calculate the household type for each household in the survey. A household is composed of one or more people who occupy a housing unit. — household_type • ech</title>
+<title>unsatisfied_basic_needs — unsatisfied_basic_needs • ech</title>
 
 
 <!-- jquery -->
@@ -36,10 +35,8 @@ This function allows you to calculate the household type for each household in t
 
 
 
-<meta property="og:title" content="household_type
-This function allows you to calculate the household type for each household in the survey. A household is composed of one or more people who occupy a housing unit. — household_type" />
-<meta property="og:description" content="household_type
-This function allows you to calculate the household type for each household in the survey. A household is composed of one or more people who occupy a housing unit." />
+<meta property="og:title" content="unsatisfied_basic_needs — unsatisfied_basic_needs" />
+<meta property="og:description" content="unsatisfied_basic_needs" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -109,23 +106,38 @@ This function allows you to calculate the household type for each household in t
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>household_type
-This function allows you to calculate the household type for each household in the survey. A household is composed of one or more people who occupy a housing unit.</h1>
+    <h1>unsatisfied_basic_needs</h1>
     
-    <div class="hidden name"><code>household_type.Rd</code></div>
+    <div class="hidden name"><code>unsatisfied_basic_needs.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>household_type
-This function allows you to calculate the household type for each household in the survey. A household is composed of one or more people who occupy a housing unit.</p>
+    <p>unsatisfied_basic_needs</p>
     </div>
 
-    <pre class="usage"><span class='fu'>household_type</span>(
+    <pre class="usage"><span class='fu'>unsatisfied_basic_needs</span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ech</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/ech/man/toy_ech_2018.html'>toy_ech_2018</a></span>,
-  <span class='kw'>e26</span> <span class='kw'>=</span> <span class='st'>"e26"</span>,
-  <span class='kw'>e27</span> <span class='kw'>=</span> <span class='st'>"e27"</span>,
-  <span class='kw'>e30</span> <span class='kw'>=</span> <span class='st'>"e30"</span>,
-  <span class='kw'>colname</span> <span class='kw'>=</span> <span class='st'>"tipo_hogar"</span>
+  <span class='kw'>ipm</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>c2</span> <span class='kw'>=</span> <span class='st'>"c2"</span>,
+  <span class='kw'>c3</span> <span class='kw'>=</span> <span class='st'>"c3"</span>,
+  <span class='kw'>c4</span> <span class='kw'>=</span> <span class='st'>"c4"</span>,
+  <span class='kw'>d9</span> <span class='kw'>=</span> <span class='st'>"d9"</span>,
+  <span class='kw'>d11</span> <span class='kw'>=</span> <span class='st'>"d11"</span>,
+  <span class='kw'>d12</span> <span class='kw'>=</span> <span class='st'>"d12"</span>,
+  <span class='kw'>d13</span> <span class='kw'>=</span> <span class='st'>"d13"</span>,
+  <span class='kw'>d14</span> <span class='kw'>=</span> <span class='st'>"d14"</span>,
+  <span class='kw'>d15</span> <span class='kw'>=</span> <span class='st'>"d15"</span>,
+  <span class='kw'>d16</span> <span class='kw'>=</span> <span class='st'>"d16"</span>,
+  <span class='kw'>d18</span> <span class='kw'>=</span> <span class='st'>"d18"</span>,
+  <span class='kw'>d19</span> <span class='kw'>=</span> <span class='st'>"d19"</span>,
+  <span class='kw'>d21_1</span> <span class='kw'>=</span> <span class='st'>"d21_1"</span>,
+  <span class='kw'>d21_2</span> <span class='kw'>=</span> <span class='st'>"d21_2"</span>,
+  <span class='kw'>d21_3</span> <span class='kw'>=</span> <span class='st'>"d21_3"</span>,
+  <span class='kw'>d260</span> <span class='kw'>=</span> <span class='st'>"d260"</span>,
+  <span class='kw'>ht19</span> <span class='kw'>=</span> <span class='st'>"ht19"</span>,
+  <span class='kw'>pobre06</span> <span class='kw'>=</span> <span class='st'>"pobre06"</span>,
+  <span class='kw'>enrollment</span> <span class='kw'>=</span> <span class='st'>"enrollment"</span>,
+  <span class='kw'>years_schooling</span> <span class='kw'>=</span> <span class='st'>"years_schooling"</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -133,23 +145,91 @@ This function allows you to calculate the household type for each household in t
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>data</th>
-      <td><p>data frame with ECH microdata</p></td>
+      <td><p>data.frame</p></td>
     </tr>
     <tr>
-      <th>e26</th>
-      <td><p>sex</p></td>
+      <th>ipm</th>
+      <td><p>Variable name of</p></td>
     </tr>
     <tr>
-      <th>e27</th>
-      <td><p>age</p></td>
+      <th>c2</th>
+      <td><p>Variable name of predominant material on external walls</p></td>
     </tr>
     <tr>
-      <th>e30</th>
-      <td><p>householder</p></td>
+      <th>c3</th>
+      <td><p>Variable name of predominant roofing material</p></td>
     </tr>
     <tr>
-      <th>colname</th>
-      <td><p>custom name for the new variable</p></td>
+      <th>c4</th>
+      <td><p>Variable name of predominant flooring material</p></td>
+    </tr>
+    <tr>
+      <th>d9</th>
+      <td><p>Variable name of number of rooms</p></td>
+    </tr>
+    <tr>
+      <th>d11</th>
+      <td><p>Variable name of principal source of potable water</p></td>
+    </tr>
+    <tr>
+      <th>d12</th>
+      <td><p>Variable name of water supply network / water access</p></td>
+    </tr>
+    <tr>
+      <th>d13</th>
+      <td><p>Variable name of sanitary facilities</p></td>
+    </tr>
+    <tr>
+      <th>d14</th>
+      <td><p>Variable name of</p></td>
+    </tr>
+    <tr>
+      <th>d15</th>
+      <td><p>Variable name of</p></td>
+    </tr>
+    <tr>
+      <th>d16</th>
+      <td><p>Variable name of sewerage facilities</p></td>
+    </tr>
+    <tr>
+      <th>d18</th>
+      <td><p>Variable name of energy source for lighting</p></td>
+    </tr>
+    <tr>
+      <th>d19</th>
+      <td><p>Variable name of cooking space</p></td>
+    </tr>
+    <tr>
+      <th>d21_1</th>
+      <td><p>Variable name of</p></td>
+    </tr>
+    <tr>
+      <th>d21_2</th>
+      <td><p>Variable name of</p></td>
+    </tr>
+    <tr>
+      <th>d21_3</th>
+      <td><p>Variable name of</p></td>
+    </tr>
+    <tr>
+      <th>d260</th>
+      <td><p>Variable name of</p></td>
+    </tr>
+    <tr>
+      <th>ht19</th>
+      <td><p>Variable name of number of individuals in the household</p></td>
+    </tr>
+    <tr>
+      <th>pobre06</th>
+      <td><p>Variable name of poverty</p></td>
+    </tr>
+    <tr>
+      <th>enrollment</th>
+      <td><p>Variable name of enrollment</p></td>
+    </tr>
+    <tr>
+      <th>years_schooling</th>
+      <td><p>Variable name of years_schooling</p></td>
     </tr>
     </table>
 
@@ -162,9 +242,9 @@ This function allows you to calculate the household type for each household in t
 Aviso: El script no es un producto oficial de INE.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='no'>toy_ech_2018</span> <span class='kw'>&lt;-</span> <span class='fu'>household_type</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ech</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/ech/man/toy_ech_2018.html'>toy_ech_2018</a></span>)</div><div class='output co'>#&gt; <span class='message'>Se ha creado la variable tipo_hogar en la base</span></div><div class='input'># }
-</div></pre>
+    <pre class="examples"><div class='input'><span class='no'>toy_ech_18</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='enrolled_school.html'>enrolled_school</a></span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ech</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/ech/man/toy_ech_2018.html'>toy_ech_2018</a></span>)
+<span class='no'>toy_ech_18</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='years_of_schooling.html'>years_of_schooling</a></span>(<span class='no'>toy_ech_18</span>)
+<span class='no'>toy_ech_18</span> <span class='kw'>&lt;-</span> <span class='fu'>unsatisfied_basic_needs</span>(<span class='no'>toy_ech_18</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
