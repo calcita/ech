@@ -72,5 +72,17 @@ if(getRversion() >= "2.15.1") utils::globalVariables(c(".",
                                                        "UBN_electricity",
                                                        "UBN_sewerage",
                                                        "UBN_water",
-                                                       "UBN_housing"
+                                                       "UBN_housing",
+                                                       "cba",
+                                                       "cbna",
+                                                       "indigency_line",
+                                                       "poverty_line",
+                                                       "indigent",
+                                                       "poor",
+                                                       "cbt_lp",
+                                                       "cba_li",
+                                                       "cbna_r",
+                                                       "cba_li",
+                                                       "cbna_r",
+                                                       "cbt_lp"
                                                        ))

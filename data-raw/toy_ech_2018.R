@@ -4,7 +4,8 @@ usethis::use_data("toy_ech_2018")
 
 # random
 d <- ech::get_microdata(year = 2018)
-x <- sample(1:108608, 1000)
-toy_ech_2018 <- d %>% slice(x)
+i <- unique(d$numero)
+x <- sample(1:length(i), 300)
+toy_ech_2018 <- d %>% filter(numero %in% x)
 
 usethis::use_data(toy_ech_2018, overwrite = TRUE)

@@ -38,7 +38,8 @@ Imports:
     textclean,
     convey,
     rstudioapi,
-    geouy
+    geouy,
+    purrr
 Suggests: 
     knitr,
     testthat (>= 2.1.0),

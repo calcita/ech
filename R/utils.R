@@ -141,16 +141,28 @@ get_cba_cbna <- function(folder = tempdir(), sheet = NULL, region = NULL){
 
   if (region == "M"){
     cba_mdeo <- df[, 1:3]
-    names(cba_mdeo) <- df[2,]
-    cba_mdeo <- cba_mdeo %>% dplyr::slice(-1:-3) %>% janitor::clean_names() %>% dplyr::bind_cols(date,.)
+    names(cba_mdeo) <- df[2, 1:3]
+    cba_mdeo <- cba_mdeo %>%
+      dplyr::slice(-1:-3) %>%
+      janitor::clean_names() %>%
+      purrr::map_df(as.numeric) %>%
+      dplyr::bind_cols(date,.)
   } else if (region == "I"){
     cba_int_urb <- df[, 4:6]
-    names(cba_int_urb) <- df[2,]
-    cba_int_urb <- cba_int_urb %>% dplyr::slice(-1:-3) %>% janitor::clean_names() %>% dplyr::bind_cols(date,.)
+    names(cba_int_urb) <- df[2, 4:6]
+    cba_int_urb <- cba_int_urb %>%
+      dplyr::slice(-1:-3) %>%
+      janitor::clean_names() %>%
+      purrr::map_df(as.numeric) %>%
+      dplyr::bind_cols(date,.)
   } else {
    cba_int_rur <- df[, 7:9]
-   names(cba_int_rur) <- df[2,]
-   cba_int_rur <- cba_int_rur %>% dplyr::slice(-1:-3) %>% janitor::clean_names() %>% dplyr::bind_cols(date,.)
+   names(cba_int_rur) <- df[2, 7:9]
+   cba_int_rur <- cba_int_rur %>%
+     dplyr::slice(-1:-3) %>%
+     janitor::clean_names() %>%
+     purrr::map_df(as.numeric) %>%
+     dplyr::bind_cols(date,.)
   }
 
 }
@@ -268,6 +280,31 @@ deflate <- function(base_month = NULL,
        dplyr::select(.data$deflate, .data$mes)
 }
 
+#' poverty_line
+#'
+#' @param data data.frame with the price of the basket of goods from Montevideo, Interior or Rural region
+#' @param year the ECH year
+#'
+#' @return data.frame
+#' @export
+#' @details
+#' Disclaimer: This script is not an official INE product.
+#' Aviso: El script no es un producto oficial de INE.
+#'
+#' @examples
+#' df <- basket_goods(data = ech::cba_cbna_mdeo, year = 2018)
+#'
+basket_goods <- function(data = ech::cba_cbna_mdeo,
+                         year = NULL){
+
+  #ech::cba_cbna_int, ech::cba_cbna_rur
+    rows1 <- which(data$fecha == paste0(as.numeric(year) - 1, "-",12, "-01"))
+    rows2 <- which(data$fecha == paste0(year, "-",11, "-01"))
+
+    df <- data %>%
+      dplyr::slice(rows1:rows2)
+
+}
 
 #' Pipe operator
 #'

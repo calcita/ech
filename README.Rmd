@@ -126,13 +126,12 @@ pobre_x_dpto_geo <- add_geom(data = pobre_x_dpto, # Los datos en una unidad geog
 
 ```
 
-Y con esto, podemos hacer un mapa con `ggplot2` muy facilmente de estas estimaciones.
+Y con esto, podemos hacer un mapa con `ggplot2` muy fácilmente de estas estimaciones.
 
 ``` r 
 # Hago un mapa
 
-geouy::plot_geouy(pobre_x_dpto_geo, "Pobreza")
-
+geouy::plot_geouy(x = pobre_x_dpto_geo, col = "Pobreza", labels = "%")
 ```
 
 
