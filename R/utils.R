@@ -280,7 +280,7 @@ deflate <- function(base_month = NULL,
        dplyr::select(.data$deflate, .data$mes)
 }
 
-#' poverty_line
+#' basket_goods
 #'
 #' @param data data.frame with the price of the basket of goods from Montevideo, Interior or Rural region
 #' @param year the ECH year

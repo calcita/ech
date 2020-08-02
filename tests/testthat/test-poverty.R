@@ -6,5 +6,5 @@ test_that("ubn works", {
   toy_ech_18b <- unsatisfied_basic_needs(toy_ech_18, ipm = TRUE)
   expect_equal(ncol(toy_ech_18b), 594)
   toy_ech_2018 <- poverty(data = ech::toy_ech_2018)
-  expect_equal(ncol(toy_ech_18), 580)
+  expect_equal(ncol(toy_ech_18), 585)
 })

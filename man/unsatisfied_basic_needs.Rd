@@ -48,9 +48,9 @@ unsatisfied_basic_needs(
 
 \item{d13}{Variable name of sanitary facilities}
 
-\item{d14}{Variable name of}
+\item{d14}{Variable name of bathroom presence}
 
-\item{d15}{Variable name of}
+\item{d15}{Variable name of private bathroom use}
 
 \item{d16}{Variable name of sewerage facilities}
 
@@ -58,13 +58,13 @@ unsatisfied_basic_needs(
 
 \item{d19}{Variable name of cooking space}
 
-\item{d21_1}{Variable name of}
+\item{d21_1}{Variable name of heater or termophon presence}
 
-\item{d21_2}{Variable name of}
+\item{d21_2}{Variable name of instantaneous water heater presence}
 
-\item{d21_3}{Variable name of}
+\item{d21_3}{Variable name of fridge presence}
 
-\item{d260}{Variable name of}
+\item{d260}{Variable name of energy source for heating}
 
 \item{ht19}{Variable name of number of individuals in the household}
 

@@ -9,19 +9,19 @@
 #' @param d11 Variable name of principal source of potable water
 #' @param d12 Variable name of water supply network / water access
 #' @param d13 Variable name of sanitary facilities
+#' @param d14 Variable name of bathroom presence
+#' @param d15 Variable name of private bathroom use
 #' @param d16 Variable name of sewerage facilities
 #' @param d18 Variable name of energy source for lighting
 #' @param d19 Variable name of cooking space
+#' @param d21_1 Variable name of heater or termophon presence
+#' @param d21_2 Variable name of instantaneous water heater presence
+#' @param d21_3 Variable name of fridge presence
+#' @param d260 Variable name of energy source for heating
 #' @param ht19 Variable name of number of individuals in the household
 #' @param pobre06 Variable name of poverty
 #' @param enrollment Variable name of enrollment
 #' @param years_schooling Variable name of years_schooling
-#' @param d14 Variable name of
-#' @param d15 Variable name of
-#' @param d21_1 Variable name of
-#' @param d21_2 Variable name of
-#' @param d21_3 Variable name of
-#' @param d260 Variable name of
 #'
 #' @return data.frame
 #' @export
@@ -143,9 +143,3 @@ poverty <- function(data = ech::toy_ech_2018,
       poor = ifelse(ht11 <= poverty_line, 1, 0)) %>%
       select(-mm:-cbna_r)
   }
-
-
-
-
-
-

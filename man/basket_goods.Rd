@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{basket_goods}
 \alias{basket_goods}
-\title{poverty_line}
+\title{basket_goods}
 \usage{
 basket_goods(data = ech::cba_cbna_mdeo, year = NULL)
 }
@@ -15,7 +15,7 @@ basket_goods(data = ech::cba_cbna_mdeo, year = NULL)
 data.frame
 }
 \description{
-poverty_line
+basket_goods
 }
 \details{
 Disclaimer: This script is not an official INE product.
