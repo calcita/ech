@@ -53,77 +53,77 @@ labor_income_per_capita(
 
 \item{pobpcoac}{Variable name of definition of population by activity status}
 
-\item{g126_1}{Variable name of sueldo o jornales liquidos}
+\item{g126_1}{Variable name of net salary}
 
-\item{g126_2}{Variable name of comisiones, incentivos, horas extras, habilitaciones}
+\item{g126_2}{Variable name of commissions, incentives, overtime payment, fringe benefits}
 
-\item{g126_3}{Variable name of viaticos no sujetos a rendicion}
+\item{g126_3}{Variable name of non-surrendering expenses}
 
-\item{g126_4}{Variable name of propinas}
+\item{g126_4}{Variable name of tips}
 
-\item{g126_5}{Variable name of aguinaldo}
+\item{g126_5}{Variable name of annual complementary salary}
 
-\item{g126_6}{Variable name of salario vacacional}
+\item{g126_6}{Variable name of vacation pay}
 
-\item{g126_7}{Variable name of pagos atrasados}
+\item{g126_7}{Variable name of delayed payments}
 
-\item{g126_8}{Variable name of boletos de transporte}
+\item{g126_8}{Variable name of transportation tickets}
 
-\item{g127_3}{Variable name of recibio alimentos o bebidas}
+\item{g127_3}{Variable name of received food or drink}
 
-\item{g128_1}{Variable name of recibio tickets alimentacion}
+\item{g128_1}{Variable name of received food tickets}
 
-\item{g129_2}{Variable name of recibio vivienda o alojamiento}
+\item{g129_2}{Variable name of received housing or accommodation}
 
-\item{g130_1}{Variable name of recibio otro tipo de retribucion}
+\item{g130_1}{Variable name of another type of compensation}
 
-\item{g131_1}{Variable name of recibio otro tipo de complemento pagado por el/la empleador/a}
+\item{g131_1}{Variable name of received another type of supplement paid by the employer}
 
-\item{g133_1}{Variable name of derecho a cultivo para consumo propio}
+\item{g133_1}{Variable name of the right to cultivate goods for own-consumption}
 
-\item{g133_2}{Variable name of derecho a cultivo para consumo propio (monto percibido por la venta)}
+\item{g133_2}{Variable name of the right to cultivate goods for own-consumption (amount received from the sale)}
 
-\item{g134_1}{Variable name of sueldo o jornales liquidos}
+\item{g134_1}{Variable name of net salary}
 
-\item{g134_2}{Variable name of comisiones, incentivos, horas extras, habilitaciones}
+\item{g134_2}{Variable name of commissions, incentives, overtime payment, fringe benefits}
 
-\item{g134_3}{Variable name of viaticos no sujetos a rendicion}
+\item{g134_3}{Variable name of non-surrendering expenses}
 
-\item{g134_4}{Variable name of propinas}
+\item{g134_4}{Variable name of tips}
 
-\item{g134_5}{Variable name of aguinaldo}
+\item{g134_5}{Variable name of annual complementary salary}
 
-\item{g134_6}{Variable name of salario vacacional}
+\item{g134_6}{Variable name of vacation pay}
 
-\item{g134_7}{Variable name of pagos atrasados}
+\item{g134_7}{Variable name of delayed payments}
 
-\item{g134_8}{Variable name of boletos de transporte}
+\item{g134_8}{Variable name of transportation tickets}
 
-\item{g135_3}{Variable name of recibio alimentos o bebidas}
+\item{g135_3}{Variable name of received food or drink}
 
-\item{g136_1}{Variable name of recibio tickets alimentacion}
+\item{g136_1}{Variable name of received food tickets}
 
-\item{g137_2}{Variable name of recibio vivienda o alojamiento}
+\item{g137_2}{Variable name of received housing or accommodation}
 
-\item{g138_1}{Variable name of recibio otro tipo de retribucion}
+\item{g138_1}{Variable name of another type of compensation}
 
-\item{g139_1}{Variable name of recibio otro tipo de complemento pagado por el/la empleador/a}
+\item{g139_1}{Variable name of received another type of supplement paid by the employer}
 
-\item{g141_1}{Variable name of derecho a cultivo para consumo propio}
+\item{g141_1}{Variable name of the right to cultivate goods for own-consumption}
 
-\item{g141_2}{Variable name of derecho a cultivo para consumo propio (monto percibido por la venta)}
+\item{g141_2}{Variable name of the right to cultivate goods for own-consumption (amount received from the sale)}
 
-\item{g142}{Variable name of retiros para gastos del hogar de negocios que tiene o tenia}
+\item{g142}{Variable name of withdrawals for business household expenses you have or had}
 
-\item{g144_1}{Variable name of retiro de productos para consumo propio (trabajador/a no agropecuario/a)}
+\item{g144_1}{Variable name of collected products for own consumption (non-agricultural worker)}
 
-\item{g144_2_1}{Variable name of retiro de productos para consumo propio (trabajador/a no agropecuario/a)}
+\item{g144_2_1}{Variable name of collected products for own consumption (non-agricultural worker)}
 
-\item{g144_2_3}{Variable name of retiro de productos para consumo propio (trabajador/a no agropecuario/a)}
+\item{g144_2_3}{Variable name of collected products for own consumption (non-agricultural worker)}
 
-\item{g144_2_4}{Variable name of retiro de productos para consumo propio (trabajador/a no agropecuario/a)}
+\item{g144_2_4}{Variable name of collected products for own consumption (non-agricultural worker)}
 
-\item{g144_2_5}{Variable name of retiro de productos para consumo propio (trabajador/a no agropecuario/a)}
+\item{g144_2_5}{Variable name of collected products for own consumption (non-agricultural worker)}
 }
 \value{
 data.frame

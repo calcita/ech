@@ -124,42 +124,42 @@ income_quantiles <- function(data = ech::toy_ech_2018,
 #' @param data data frame
 #' @param numero Variable name of household id
 #' @param pobpcoac Variable name of definition of population by activity status
-#' @param g126_1 Variable name of sueldo o jornales liquidos
-#' @param g126_2 Variable name of comisiones, incentivos, horas extras, habilitaciones
-#' @param g126_3 Variable name of viaticos no sujetos a rendicion
-#' @param g126_4 Variable name of propinas
-#' @param g126_5 Variable name of aguinaldo
-#' @param g126_6 Variable name of salario vacacional
-#' @param g126_7 Variable name of pagos atrasados
-#' @param g126_8 Variable name of boletos de transporte
-#' @param g127_3 Variable name of recibio alimentos o bebidas
-#' @param g128_1 Variable name of recibio tickets alimentacion
-#' @param g129_2 Variable name of recibio vivienda o alojamiento
-#' @param g130_1 Variable name of recibio otro tipo de retribucion
-#' @param g131_1 Variable name of recibio otro tipo de complemento pagado por el/la empleador/a
-#' @param g133_1 Variable name of derecho a cultivo para consumo propio
-#' @param g133_2 Variable name of derecho a cultivo para consumo propio (monto percibido por la venta)
-#' @param g134_1 Variable name of sueldo o jornales liquidos
-#' @param g134_2 Variable name of comisiones, incentivos, horas extras, habilitaciones
-#' @param g134_3 Variable name of viaticos no sujetos a rendicion
-#' @param g134_4 Variable name of propinas
-#' @param g134_5 Variable name of aguinaldo
-#' @param g134_6 Variable name of salario vacacional
-#' @param g134_7 Variable name of pagos atrasados
-#' @param g134_8 Variable name of boletos de transporte
-#' @param g135_3 Variable name of recibio alimentos o bebidas
-#' @param g136_1 Variable name of recibio tickets alimentacion
-#' @param g137_2 Variable name of recibio vivienda o alojamiento
-#' @param g138_1 Variable name of recibio otro tipo de retribucion
-#' @param g139_1 Variable name of recibio otro tipo de complemento pagado por el/la empleador/a
-#' @param g141_1 Variable name of derecho a cultivo para consumo propio
-#' @param g141_2 Variable name of derecho a cultivo para consumo propio (monto percibido por la venta)
-#' @param g142 Variable name of retiros para gastos del hogar de negocios que tiene o tenia
-#' @param g144_1 Variable name of retiro de productos para consumo propio (trabajador/a no agropecuario/a)
-#' @param g144_2_1 Variable name of retiro de productos para consumo propio (trabajador/a no agropecuario/a)
-#' @param g144_2_3 Variable name of retiro de productos para consumo propio (trabajador/a no agropecuario/a)
-#' @param g144_2_4 Variable name of retiro de productos para consumo propio (trabajador/a no agropecuario/a)
-#' @param g144_2_5 Variable name of retiro de productos para consumo propio (trabajador/a no agropecuario/a)
+#' @param g126_1 Variable name of net salary
+#' @param g126_2 Variable name of commissions, incentives, overtime payment, fringe benefits
+#' @param g126_3 Variable name of non-surrendering expenses
+#' @param g126_4 Variable name of tips
+#' @param g126_5 Variable name of annual complementary salary
+#' @param g126_6 Variable name of vacation pay
+#' @param g126_7 Variable name of delayed payments
+#' @param g126_8 Variable name of transportation tickets
+#' @param g127_3 Variable name of received food or drink
+#' @param g128_1 Variable name of received food tickets
+#' @param g129_2 Variable name of received housing or accommodation
+#' @param g130_1 Variable name of another type of compensation
+#' @param g131_1 Variable name of received another type of supplement paid by the employer
+#' @param g133_1 Variable name of the right to cultivate goods for own-consumption
+#' @param g133_2 Variable name of the right to cultivate goods for own-consumption (amount received from the sale)
+#' @param g134_1 Variable name of net salary
+#' @param g134_2 Variable name of commissions, incentives, overtime payment, fringe benefits
+#' @param g134_3 Variable name of non-surrendering expenses
+#' @param g134_4 Variable name of tips
+#' @param g134_5 Variable name of annual complementary salary
+#' @param g134_6 Variable name of vacation pay
+#' @param g134_7 Variable name of delayed payments
+#' @param g134_8 Variable name of transportation tickets
+#' @param g135_3 Variable name of received food or drink
+#' @param g136_1 Variable name of received food tickets
+#' @param g137_2 Variable name of received housing or accommodation
+#' @param g138_1 Variable name of another type of compensation
+#' @param g139_1 Variable name of received another type of supplement paid by the employer
+#' @param g141_1 Variable name of the right to cultivate goods for own-consumption
+#' @param g141_2 Variable name of the right to cultivate goods for own-consumption (amount received from the sale)
+#' @param g142 Variable name of withdrawals for business household expenses you have or had
+#' @param g144_1 Variable name of collected products for own consumption (non-agricultural worker)
+#' @param g144_2_1 Variable name of collected products for own consumption (non-agricultural worker)
+#' @param g144_2_3 Variable name of collected products for own consumption (non-agricultural worker)
+#' @param g144_2_4 Variable name of collected products for own consumption (non-agricultural worker)
+#' @param g144_2_5 Variable name of collected products for own consumption (non-agricultural worker)
 #' @export
 #' @return data.frame
 #' @importFrom dplyr mutate case_when

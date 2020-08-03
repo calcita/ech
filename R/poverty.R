@@ -22,6 +22,7 @@
 #' @param pobre06 Variable name of poverty
 #' @param enrollment Variable name of enrollment
 #' @param years_schooling Variable name of years_schooling
+#' @param anio Variable name of survey year
 #'
 #' @return data.frame
 #' @export
@@ -56,26 +57,44 @@ unsatisfied_basic_needs <- function(data = ech::toy_ech_2018,
                                     ht19 = "ht19",
                                     pobre06 = "pobre06",
                                     enrollment = "enrollment",
-                                    years_schooling = "years_schooling"){
+                                    years_schooling = "years_schooling",
+                                    anio = "anio"){
 
   assertthat::assert_that(enrollment %in% names(data), msg = "Sorry... :( \n enrollment is not calculated, please run enrolled_school() to obtain the variable.")
   assertthat::assert_that(years_schooling %in% names(data), msg = "Sorry... :( \n years_schooling is not calculated, please run years_of_schooling() to obtain the variable.")
 
-  data <- data %>%
-    dplyr::mutate(
-      UBN_housing = ifelse((c2 == 6 | c3 == 6 | c4 == 5) | (ht19 / d9) >2 | d19 == 3, 1, 0),
-      UBN_water = ifelse(d12 %in% 2:4 | d11 %in% 2:6, 1, 0),
-      UBN_sewerage = ifelse(d13 == 3 | d14 == 0 | d15 == 2 | d16 %in% 3:4, 1, 0),
-      UBN_electricity = ifelse(d18 > 2, 1, 0),
-      UBN_confort = ifelse(d260 == 6 | d21_3 == 2 | (d21_1 == 2 & d21_2 == 2), 1, 0),
-      UBN_education = ifelse(.data$enrollment == 0 & .data$years_schooling < 12, 1, 0),
-      UBN_q = sum(dplyr::c_across(UBN_housing:UBN_education)),
-      UBN = dplyr::case_when(
-        UBN_q == 0 ~ "Sin NBI",
-        UBN_q == 1 ~ "Con 1 NBI",
-        UBN_q == 2 ~ "Con 2 NBI",
-        UBN_q >= 3 ~ "Con 3 o mas NBI")
-    )
+  if (anio < 2016) {
+    data <- data %>%
+      dplyr::mutate(
+        UBN_housing = ifelse((c2 == 6 | c3 == 6 | c4 == 5) | (ht19 / d9) >2 | d19 == 3, 1, 0),
+        UBN_water = ifelse(d12 %in% 2:4 | d11 %in% 2:6, 1, 0),
+        UBN_sewerage = ifelse(d13 == 3 | d14 == 0 | d15 == 2 | d16 %in% 3:4, 1, 0),
+        UBN_electricity = ifelse(d18 > 2, 1, 0),
+        UBN_education = ifelse(.data$enrollment == 0 & .data$years_schooling < 12, 1, 0),
+        UBN_q = sum(dplyr::c_across(UBN_housing:UBN_education)),
+        UBN = dplyr::case_when(
+          UBN_q == 0 ~ "Sin NBI",
+          UBN_q == 1 ~ "Con 1 NBI",
+          UBN_q == 2 ~ "Con 2 NBI",
+          UBN_q >= 3 ~ "Con 3 o mas NBI")
+      )
+  } else {
+    data <- data %>%
+      dplyr::mutate(
+        UBN_housing = ifelse((c2 == 6 | c3 == 6 | c4 == 5) | (ht19 / d9) >2 | d19 == 3, 1, 0),
+        UBN_water = ifelse(d12 %in% 2:4 | d11 %in% 2:6, 1, 0),
+        UBN_sewerage = ifelse(d13 == 3 | d14 == 0 | d15 == 2 | d16 %in% 3:4, 1, 0),
+        UBN_electricity = ifelse(d18 > 2, 1, 0),
+        UBN_confort = ifelse(d260 == 6 | d21_3 == 2 | (d21_1 == 2 & d21_2 == 2), 1, 0),
+        UBN_education = ifelse(.data$enrollment == 0 & .data$years_schooling < 12, 1, 0),
+        UBN_q = sum(dplyr::c_across(UBN_housing:UBN_education)),
+        UBN = dplyr::case_when(
+          UBN_q == 0 ~ "Sin NBI",
+          UBN_q == 1 ~ "Con 1 NBI",
+          UBN_q == 2 ~ "Con 2 NBI",
+          UBN_q >= 3 ~ "Con 3 o mas NBI")
+      )
+  }
 
   if (ipm == T){
     data <- data %>%
@@ -86,7 +105,6 @@ unsatisfied_basic_needs <- function(data = ech::toy_ech_2018,
         pobre06 == 1 & UBN_q >= 1 ~ "Pobreza cronica"
       ))
   }
-
     return(data)
 }
 

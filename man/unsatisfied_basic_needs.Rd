@@ -26,7 +26,8 @@ unsatisfied_basic_needs(
   ht19 = "ht19",
   pobre06 = "pobre06",
   enrollment = "enrollment",
-  years_schooling = "years_schooling"
+  years_schooling = "years_schooling",
+  anio = "anio"
 )
 }
 \arguments{
@@ -73,6 +74,8 @@ unsatisfied_basic_needs(
 \item{enrollment}{Variable name of enrollment}
 
 \item{years_schooling}{Variable name of years_schooling}
+
+\item{anio}{Variable name of survey year}
 }
 \value{
 data.frame
