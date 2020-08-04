@@ -1,0 +1,14 @@
+citHeader("To cite ech in publications use:")
+
+citEntry("ech20",
+  entry    = "Misc",
+  title    = "ech: Procesamiento de la Encuesta Continua de Hogares de Uruguay",
+  author   = "Gabriela Mathieu and Richard Detomasi",
+  note     = "R package version 0.0.2",
+  year     = 2020,
+  url      = "https://github.com/calcita/ech",
+  DOI      = "",
+  textVersion = paste(
+
+  )
+)

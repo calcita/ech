@@ -1,7 +1,7 @@
 #' unsatisfied_basic_needs
 #'
 #' @param data data.frame
-#' @param ipm Variable name of
+#' @param ipm Logical if want to include integrated_poverty_measure variable. Default FALSE
 #' @param c2 Variable name of predominant material on external walls
 #' @param c3 Variable name of predominant roofing material
 #' @param c4 Variable name of predominant flooring material
@@ -63,7 +63,8 @@ unsatisfied_basic_needs <- function(data = ech::toy_ech_2018,
   assertthat::assert_that(enrollment %in% names(data), msg = "Sorry... :( \n enrollment is not calculated, please run enrolled_school() to obtain the variable.")
   assertthat::assert_that(years_schooling %in% names(data), msg = "Sorry... :( \n years_schooling is not calculated, please run years_of_schooling() to obtain the variable.")
 
-  if (anio < 2016) {
+  yy <- max(as.numeric(data$anio))
+  if (yy < 2016) {
     data <- data %>%
       dplyr::mutate(
         UBN_housing = ifelse((c2 == 6 | c3 == 6 | c4 == 5) | (ht19 / d9) >2 | d19 == 3, 1, 0),
@@ -76,8 +77,8 @@ unsatisfied_basic_needs <- function(data = ech::toy_ech_2018,
           UBN_q == 0 ~ "Sin NBI",
           UBN_q == 1 ~ "Con 1 NBI",
           UBN_q == 2 ~ "Con 2 NBI",
-          UBN_q >= 3 ~ "Con 3 o mas NBI")
-      )
+          UBN_q >= 3 ~ "Con 3 o mas NBI"))
+    message(glue::glue("El objeto { data } es previo a 2016 y no se incluye UBN_confort"))
   } else {
     data <- data %>%
       dplyr::mutate(

@@ -104,7 +104,7 @@ Por otro lado, esta librería tiene cuatro funciones que nos permiten hacer esti
 Un ejemplo aplicando una de estas Ejemplo de estimación:
 
 ``` r
-# Genero una estimaciónfunciones sería:
+# Genero una estimación:
 
 pobre_x_dpto <- get_estimation_mean(data = ech::toy_ech_2018, # Indico el data.frame
                            variable = "pobre06", # La variable a estimar
