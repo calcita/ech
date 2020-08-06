@@ -10,7 +10,7 @@ unsatisfied_basic_needs(
   c2 = "c2",
   c3 = "c3",
   c4 = "c4",
-  d9 = "d9",
+  d10 = "d10",
   d11 = "d11",
   d12 = "d12",
   d13 = "d13",
@@ -41,7 +41,7 @@ unsatisfied_basic_needs(
 
 \item{c4}{Variable name of predominant flooring material}
 
-\item{d9}{Variable name of number of rooms}
+\item{d10}{Variable name of number of rooms to sleep}
 
 \item{d11}{Variable name of principal source of potable water}
 

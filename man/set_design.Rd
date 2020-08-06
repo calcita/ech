@@ -9,6 +9,7 @@ set_design(
   data = ech::toy_ech_2018,
   level = "i",
   ids = "numero",
+  e30 = "e30",
   strata = "estred13",
   weights = "pesoano"
 )
@@ -19,6 +20,8 @@ set_design(
 \item{level}{is household ("h") or individual ("i")}
 
 \item{ids}{variables specifying cluster ids from largest level to smallest level (leaving the argument empty, NULL, 1, or 0 indicate no clusters).}
+
+\item{e30}{housholder}
 
 \item{strata}{variable specifying strata.}
 
