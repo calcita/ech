@@ -33,7 +33,7 @@ unsatisfied_basic_needs(
 \arguments{
 \item{data}{data.frame}
 
-\item{ipm}{Variable name of}
+\item{ipm}{Logical if want to include integrated_poverty_measure variable. Default FALSE}
 
 \item{c2}{Variable name of predominant material on external walls}
 

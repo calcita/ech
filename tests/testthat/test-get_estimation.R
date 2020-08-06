@@ -16,7 +16,7 @@ test_that("get_estimation_mean works", {
 
 test_that("get_estimation_total works", {
   d = ech::toy_ech_2018
-  a <- get_estimation_total(variable = "pobre06", level = "h", name = "hogares_pobre_total")
+  a <- get_estimation_total(data = d, variable = "pobre06", level = "h", name = "hogares_pobre_total")
   expect_equal(nrow(a), 1)
   a <- get_estimation_total(data = d, variable = "pobre06", domain = d$dpto == 1, level = "h")
   expect_equal(nrow(a), 1)
@@ -28,6 +28,20 @@ test_that("get_estimation_total works", {
   expect_equal(nrow(a), 207)
   a <- get_estimation_total(variable = "pobre06", by.x = "secc", by.y = "mes", domain = d$dpto == 1, level = "i")
   expect_equal(nrow(a), 175)
+
+  # d <- housing_situation(data = ech::toy_ech_2018)
+  # b <- get_estimation_total(data = d, variable = "housing_situation", level = "h", name = "hogares_pobre_total")
+  # expect_equal(nrow(b), 1)
+  # b <- get_estimation_total(data = d, variable = "housing_situation", domain = d$dpto == 1, level = "h")
+  # expect_equal(nrow(b), 1)
+  # b <- get_estimation_total(data = d, variable = "housing_situation", by.x = "mes", domain = d$dpto == 1, level = "h")
+  # expect_equal(nrow(b), 12)
+  # b <- get_estimation_total(variable = "housing_situation", by.x = "dpto", level = "h")
+  # expect_equal(nrow(b), 19)
+  # b <- get_estimation_total(variable = "housing_situation", by.x = "dpto", by.y = "mes", level = "h")
+  # expect_equal(nrow(b), 207)
+  # b <- get_estimation_total(variable = "housing_situation", by.x = "secc", by.y = "mes", domain = d$dpto == 1, level = "i")
+  # expect_equal(nrow(b), 175)
 })
 
 test_that("get_estimation_ratio works", {

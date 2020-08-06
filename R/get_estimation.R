@@ -32,12 +32,13 @@ get_estimation_mean <- function(data = ech::toy_ech_2018,
                            level = NULL,
                            name = "estimacion"){
  # checks ----
-  assertthat::assert_that(!is.null(data) | !is.null(variable), msg = "Debe indicar la variable")
-  assertthat::assert_that(all(variable %in% names(data)), msg = glue::glue("La variable {variable} no esta en {data}"))
-  if(!is.null(by.x)) assertthat::assert_that(by.x %in% names(data), msg = glue::glue("La variable {by.x} no esta en {data}"))
-  if(!is.null(by.y)) assertthat::assert_that(by.y %in% names(data), msg = glue::glue("La variable {by.y} no esta en {data}"))
-  # if(!is.null(domain)) assertthat::assert_that(domain %in% names(data), msg = glue::glue("La variable {domain} no esta en {data}"))
-  if(!is.null(level)) assertthat::assert_that(level %in% c("household", "h", "individual", "i"), msg = "Verifica el nivel seleccionado")
+  assertthat::assert_that(!is.null(data) | !is.null(variable), msg = "You must indicate a variable")
+  assertthat::assert_that(all(variable %in% names(data)), msg = glue::glue("Sorry... :( \n  {variable} is not in {data}"))
+  if(!is.null(by.x)) assertthat::assert_that(by.x %in% names(data), msg = glue::glue("Sorry... :( \n  {by.x} is not in {data}"))
+  if(!is.null(by.y)) assertthat::assert_that(by.y %in% names(data), msg = glue::glue("Sorry... :( \n  {by.y} is not in {data}"))
+  # if(!is.null(domain)) assertthat::assert_that(domain %in% names(data), msg = glue::glue("Sorry... :( \n  {domain} is not in {data}"))
+  if(!is.null(level)) assertthat::assert_that(level %in% c("household", "h", "individual", "i"), msg = "Check the level selected")
+
 
 # design ----
   design_ech <- ech::set_design(data = data, level = level)
@@ -115,12 +116,12 @@ get_estimation_total <- function(data = ech::toy_ech_2018,
                                 level = NULL,
                                 name = "estimacion"){
   # checks ----
-  assertthat::assert_that(!is.null(data) | !is.null(variable), msg = "Debe indicar la variable")
-  assertthat::assert_that(all(variable %in% names(data)), msg = glue::glue("La variable {variable} no esta en {data}"))
-  if(!is.null(by.x)) assertthat::assert_that(by.x %in% names(data), msg = glue::glue("La variable {by.x} no esta en {data}"))
-  if(!is.null(by.y)) assertthat::assert_that(by.y %in% names(data), msg = glue::glue("La variable {by.y} no esta en {data}"))
-  if(!is.null(level)) assertthat::assert_that(level %in% c("household", "h", "individual", "i"), msg = "Verifica el nivel seleccionado")
-
+  assertthat::assert_that(!is.null(data) | !is.null(variable), msg = "You must indicate a variable")
+  assertthat::assert_that(all(variable %in% names(data)), msg = glue::glue("Sorry... :( \n  {variable} is not in {data}"))
+  if(!is.null(by.x)) assertthat::assert_that(by.x %in% names(data), msg = glue::glue("Sorry... :( \n  {by.x} is not in {data}"))
+  if(!is.null(by.y)) assertthat::assert_that(by.y %in% names(data), msg = glue::glue("Sorry... :( \n  {by.y} is not in {data}"))
+  # if(!is.null(domain)) assertthat::assert_that(domain %in% names(data), msg = glue::glue("Sorry... :( \n  {domain} is not in {data}"))
+  if(!is.null(level)) assertthat::assert_that(level %in% c("household", "h", "individual", "i"), msg = "Check the level selected")
   # design ----
   design_ech <- ech::set_design(data = data, level = level)
 
@@ -131,30 +132,71 @@ get_estimation_total <- function(data = ech::toy_ech_2018,
   # estimation ----
 
   if(is.null(by.x) & is.null(by.y) & is.null(domain)){
-    estimation <- design_ech %>%
-      srvyr::summarise(colname = srvyr::survey_total(.data[[variable]]))
+    if(is.character(.data[[variable]])){
+      estimation <- design_ech %>%
+        srvyr::group_by(.data[[variable]], add = T) %>%
+        srvyr::summarise(colname = srvyr::survey_total())
+    } else {
+      estimation <- design_ech %>%
+        srvyr::summarise(colname = srvyr::survey_total(.data[[variable]]))
+    }
   } else if(is.character(by.x) & is.null(by.y) & is.null(domain)){
-    estimation <- design_ech %>%
-      srvyr::group_by(.data[[by.x]], add = T) %>%
-      srvyr::summarise(colname = srvyr::survey_total(.data[[variable]]))
+    if(is.character(.data[[variable]])){
+      estimation <- design_ech %>%
+        srvyr::group_by(.data[[variable]], .data[[by.x]], add = T) %>%
+        srvyr::summarise(colname = srvyr::survey_total())
+      message(glue::glue("Sorry... :( \n {variable} and {by.x} are both categorical \n we do not recommend two groupings of categorical variables"))
+    } else {
+      estimation <- design_ech %>%
+        srvyr::group_by(.data[[by.x]], add = T) %>%
+        srvyr::summarise(colname = srvyr::survey_total(.data[[variable]]))
+    }
   } else if(is.character(by.x) & is.character(by.y) & is.null(domain)){
-    estimation <- design_ech %>%
-      srvyr::group_by(.data[[by.x]], .data[[by.y]]) %>%
-      srvyr::summarise(colname = srvyr::survey_total(.data[[variable]]))
+    if(is.character(.data[[variable]])){
+      estimation <- design_ech %>%
+        srvyr::group_by(.data[[variable]], .data[[by.x]], .data[[by.y]], add = T) %>%
+        srvyr::summarise(colname = srvyr::survey_total())
+      message(glue::glue("Sorry... :( \n {variable}, {by.x} and {by.y} are all categorical \n we do not recommend three groupings of categorical variables"))
+    } else {
+      estimation <- design_ech %>%
+        srvyr::group_by(.data[[by.x]], .data[[by.y]]) %>%
+        srvyr::summarise(colname = srvyr::survey_total(.data[[variable]]))
+    }
   } else if(is.null(by.x) & is.null(by.y) & is.logical(domain)){
-    estimation <- design_ech %>%
-      srvyr::filter(domain) %>%
-      srvyr::summarise(colname = srvyr::survey_total(.data[[variable]]))
+    if(is.character(.data[[variable]])){
+      estimation <- design_ech %>%
+        srvyr::filter(domain) %>%
+        srvyr::group_by(.data[[variable]], add = T) %>%
+        srvyr::summarise(colname = srvyr::survey_total())
+    } else {
+      estimation <- design_ech %>%
+        srvyr::filter(domain) %>%
+        srvyr::summarise(colname = srvyr::survey_total(.data[[variable]]))
+    }
   } else if(is.character(by.x) & is.null(by.y) & is.logical(domain)){
-    estimation <- design_ech %>%
-      srvyr::filter(domain) %>%
-      srvyr::group_by(.data[[by.x]]) %>%
-      srvyr::summarise(colname = srvyr::survey_total(.data[[variable]]))
+    if(is.character(.data[[variable]])){
+      estimation <- design_ech %>%
+        srvyr::filter(domain) %>%
+        srvyr::group_by(.data[[variable]], .data[[by.x]], add = T) %>%
+        srvyr::summarise(colname = srvyr::survey_total())
+    } else {
+      estimation <- design_ech %>%
+        srvyr::filter(domain) %>%
+        srvyr::group_by(.data[[by.x]]) %>%
+        srvyr::summarise(colname = srvyr::survey_total(.data[[variable]]))
+    }
   } else {
-    estimation <- design_ech %>%
-      srvyr::filter(domain) %>%
-      srvyr::group_by(.data[[by.x]], .data[[by.y]]) %>%
-      srvyr::summarise(colname = srvyr::survey_total(.data[[variable]]))
+    if(is.character(.data[[variable]])){
+      estimation <- design_ech %>%
+        srvyr::filter(domain) %>%
+        srvyr::group_by(.data[[variable]], .data[[by.x]], .data[[by.y]], add = T) %>%
+        srvyr::summarise(colname = srvyr::survey_total())
+    } else {
+      estimation <- design_ech %>%
+        srvyr::filter(domain) %>%
+        srvyr::group_by(.data[[by.x]], .data[[by.y]]) %>%
+        srvyr::summarise(colname = srvyr::survey_total(.data[[variable]]))
+    }
   }
   if (name != "estimacion"){
     names(estimation) <- stringr::str_replace_all(names(estimation), "colname", name)
@@ -202,12 +244,12 @@ get_estimation_ratio <- function(data = ech::toy_ech_2018,
                                 name = "estimacion"){
 
   # checks ----
-  assertthat::assert_that(!is.null(data) | !is.null(variable.x) | !is.null(variable.y), msg = "Debe indicar la variable")
-  assertthat::assert_that(all(variable.x %in% names(data)), msg = glue::glue("La variable {variable.x} no esta en {data}"))
-  assertthat::assert_that(all(variable.y %in% names(data)), msg = glue::glue("La variable {variable.y} no esta en {data}"))
-  if(!is.null(by.x)) assertthat::assert_that(by.x %in% names(data), msg = glue::glue("La variable {by.x} no esta en {data}"))
-  if(!is.null(by.y)) assertthat::assert_that(by.y %in% names(data), msg = glue::glue("La variable {by.y} no esta en {data}"))
-  if(!is.null(level)) assertthat::assert_that(level %in% c("household", "h", "individual", "i"), msg = "Verifica el nivel seleccionado")
+  assertthat::assert_that(!is.null(data) | !is.null(variable.x) | !is.null(variable.y), msg = "You must indicate a variable")
+  assertthat::assert_that(all(variable.x %in% names(data)), msg = glue::glue("Sorry... :( \n {variable.x} is not in {data}"))
+  assertthat::assert_that(all(variable.y %in% names(data)), msg = glue::glue("Sorry... :( \n {variable.y} is not in {data}"))
+  if(!is.null(by.x)) assertthat::assert_that(by.x %in% names(data), msg = glue::glue("Sorry... :( \n {by.x} is not in {data}"))
+  if(!is.null(by.y)) assertthat::assert_that(by.y %in% names(data), msg = glue::glue("Sorry... :( \n {by.y} is not in {data}"))
+  if(!is.null(level)) assertthat::assert_that(level %in% c("household", "h", "individual", "i"), msg = "Check the level selected")
 
   # design ---
   design_ech <- ech::set_design(data = data, level = level)
