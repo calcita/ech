@@ -116,6 +116,8 @@ unsatisfied_basic_needs <- function(data = ech::toy_ech_2018,
 #' @param dpto Variable name of departamento. Default: dpto
 #' @param ht11 Variable name of income. Default: ht11
 #' @param ht19 Variable name of number of individuals in the household. Default: ht19
+#' @param e30 householder
+#' @param numero household id
 #'
 #' @return data.frame
 #' @export
@@ -131,21 +133,25 @@ poverty <- function(data = ech::toy_ech_2018,
                     region_4 = "region_4",
                     dpto = "dpto",
                     ht11 = "ht11",
-                    ht19 = "ht19"){
+                    ht19 = "ht19",
+                    e30 = "e30",
+                    numero = "numero"){
 
   yy <- max(as.numeric(data$anio))
-  m <- basket_goods(data = ech::cba_cbna_mdeo, year = yy) %>% dplyr::mutate(mm = 1:12) %>% select(-fecha, -cbt_lp)
-  i <- basket_goods(data = ech::cba_cbna_int, year = yy) %>% dplyr::mutate(mm = 1:12) %>% select(-fecha, -cbt_lp)
-  r <- basket_goods(data = ech::cba_cbna_rur, year = yy) %>% dplyr::mutate(mm = 1:12) %>% select(-fecha, -cbt_lp)
+  m <- basket_goods(data = ech::cba_cbna_mdeo, year = yy) %>% dplyr::mutate(mm = 1:12) %>% dplyr::select(-fecha, -cbt_lp)
+  i <- basket_goods(data = ech::cba_cbna_int, year = yy) %>% dplyr::mutate(mm = 1:12) %>% dplyr::select(-fecha, -cbt_lp)
+  r <- basket_goods(data = ech::cba_cbna_rur, year = yy) %>% dplyr::mutate(mm = 1:12) %>% dplyr::select(-fecha, -cbt_lp)
 
-  data <- data %>%
-    dplyr::mutate(mm = as.integer(haven::zap_labels(data$mes))) %>%
+  h <- data %>%
+    dplyr::filter(e30 == 1) %>%
+    dplyr::select(numero, mes, dpto, region_4, e30, ht11, ht19,) %>%
+    dplyr::mutate(mm = as.integer(haven::zap_labels(mes))) %>%
     dplyr::left_join(., m, by = c("mm")) %>%
-    rename(cba_m = cba_li, cbna_m = cbna) %>%
+    dplyr::rename(cba_m = cba_li, cbna_m = cbna) %>%
     dplyr::left_join(., i, by = c("mm")) %>%
-    rename(cba_i = cba_li, cbna_i = cbna) %>%
-    dplyr::left_join(., m, by = c("mm")) %>%
-    rename(cba_r = cba_li, cbna_r = cbna) %>%
+    dplyr::rename(cba_i = cba_li, cbna_i = cbna) %>%
+    dplyr::left_join(., r, by = c("mm")) %>%
+    dplyr::rename(cba_r = cba_li, cbna_r = cbna) %>%
     dplyr::mutate(
       cba = dplyr::case_when(
         dpto == 1 ~ cba_m,
@@ -154,10 +160,15 @@ poverty <- function(data = ech::toy_ech_2018,
       cbna = dplyr::case_when(
         dpto == 1 ~ cbna_m,
         dpto != 1 & region_4 != 4 ~ cbna_i,
-        region_4 == 4 ~ cbna_r),
-      indigency_line = cba * ht19,
-      poverty_line =  indigency_line + cbna * (ht19 ^ scale),
-      indigent = ifelse(ht11 <= indigency_line, 1, 0),
-      poor = ifelse(ht11 <= poverty_line, 1, 0)) %>%
-      select(-mm:-cbna_r)
+        region_4 == 4 ~ cbna_r))  %>%
+    dplyr::select(-mm:-cbna_r)
+
+      h <- h %>% dplyr::mutate(
+        indigency_line = cba * ht19,
+        poverty_line =  indigency_line + cbna * (ht19 ^ scale),
+        indigent = ifelse(ht11 <= indigency_line, 1, 0),
+        poor = ifelse(ht11 <= poverty_line, 1, 0))
+
+      data <- h %>% dplyr::select(numero, poor, indigent) %>%
+        dplyr:: left_join(data, ., by = "numero")
   }
