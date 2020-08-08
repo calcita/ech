@@ -25,7 +25,7 @@ Imports:
     haven (>= 2.3.0),
     janitor,
     magrittr,
-    srvyr,
+    srvyr (>= 0.4.0),
     statar,
     survey (>= 1.2.0), 
     stringr,
