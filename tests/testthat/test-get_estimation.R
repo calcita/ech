@@ -1,12 +1,12 @@
 test_that("get_estimation_mean works", {
   d = ech::toy_ech_2018
   a <- get_estimation_mean(data = d, variable = "pobre06", level = "h", name = "hogares_pobre_mean")
-  expect_equal(nrow(a), 1)
+  expect_equal(nrow(a), 2)
   a <- get_estimation_mean(data = d, variable = "pobre06", domain = d$dpto == 1, level = "h")
-  expect_equal(nrow(a), 1)
+  expect_equal(nrow(a), 2)
   a <- get_estimation_mean(data = d, variable = "pobre06", by.x = "mes", domain = d$dpto == 1, level = "h")
   expect_equal(nrow(a), 12)
-  a <- get_estimation_mean(variable = "pobre06", by.x = "dpto", level = "h")
+  a <- get_estimation_mean(variable = "pobre06", by.x = "region_4", level = "h")
   expect_equal(nrow(a), 19)
   a <- get_estimation_mean(variable = "pobre06", by.x = "dpto", by.y = "mes", level = "h")
   expect_equal(nrow(a), 207)
@@ -17,9 +17,9 @@ test_that("get_estimation_mean works", {
 test_that("get_estimation_total works", {
   d = ech::toy_ech_2018
   a <- get_estimation_total(data = d, variable = "pobre06", level = "h", name = "hogares_pobre_total")
-  expect_equal(nrow(a), 1)
+  expect_equal(nrow(a), 2)
   a <- get_estimation_total(data = d, variable = "pobre06", domain = d$dpto == 1, level = "h")
-  expect_equal(nrow(a), 1)
+  expect_equal(nrow(a), 2)
   a <- get_estimation_total(data = d, variable = "pobre06", by.x = "mes", domain = d$dpto == 1, level = "h")
   expect_equal(nrow(a), 12)
   a <- get_estimation_total(variable = "pobre06", by.x = "dpto", level = "h")

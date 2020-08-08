@@ -39,8 +39,7 @@ Imports:
     convey,
     rstudioapi,
     geouy,
-    purrr,
-    methods
+    purrr
 Suggests: 
     knitr,
     testthat (>= 2.1.0),
