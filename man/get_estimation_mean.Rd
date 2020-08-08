@@ -11,6 +11,10 @@ get_estimation_mean(
   by.y = NULL,
   domain = NULL,
   level = NULL,
+  ids = "numero",
+  e30 = "e30",
+  strata = "estred13",
+  weights = "pesoano",
   name = "estimacion"
 )
 }
@@ -26,6 +30,14 @@ get_estimation_mean(
 \item{domain}{subpopulation reference setted as logical}
 
 \item{level}{is household ("h") or individual ("i").}
+
+\item{ids}{ids}
+
+\item{e30}{e30}
+
+\item{strata}{strata}
+
+\item{weights}{weights}
 
 \item{name}{name for the estimation new column}
 }

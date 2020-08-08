@@ -7,11 +7,17 @@
 #' @param by.y data frame column
 #' @param domain subpopulation reference setted as logical
 #' @param level is household ("h") or individual ("i").
+#' @param ids ids
+#' @param strata strata
+#' @param weights weights
+#' @param e30 e30
 #' @param name name for the estimation new column
+#'
 #' @import survey
 #' @import srvyr
 #' @importFrom assertthat assert_that
 #' @importFrom glue glue
+#'
 #' @keywords inference
 #' @export
 #' @return table
@@ -30,6 +36,10 @@ get_estimation_mean <- function(data = ech::toy_ech_2018,
                            by.y = NULL,
                            domain = NULL,
                            level = NULL,
+                           ids = "numero",
+                           e30 = "e30",
+                           strata = "estred13",
+                           weights = "pesoano",
                            name = "estimacion"){
  # checks ----
   assertthat::assert_that(!is.null(data) | !is.null(variable), msg = "You must indicate a variable")
@@ -39,8 +49,12 @@ get_estimation_mean <- function(data = ech::toy_ech_2018,
   # if(!is.null(domain)) assertthat::assert_that(domain %in% names(data), msg = glue::glue("Sorry... :( \n  {domain} is not in data"))
   if(!is.null(level)) assertthat::assert_that(level %in% c("household", "h", "individual", "i"), msg = "Check the level selected")
 
+# unlabelled
+
+  d <- unlabelled(data = data, variable = variable, by.x = by.x, by.y = by.y, ids = ids, e30 = e30, strata = strata, weights = weights)
+
 # design ----
-  design_ech <- ech::set_design(data = data, level = level)
+  design_ech <- ech::set_design(data = d, level = level)
 
 # supressed warnings ---
   options(survey.lonely.psu = "adjust")
@@ -48,62 +62,62 @@ get_estimation_mean <- function(data = ech::toy_ech_2018,
 
 # estimation ----
 
-  if (haven::is.labelled(dplyr::pull(data[,variable]))) {
+    if (is.factor(dplyr::pull(d[,variable]))) {
 
     if(is.null(by.x) & is.null(by.y) & is.null(domain)){
       estimation <- design_ech %>%
-        srvyr::group_by(.data[[variable]]) %>%
+        srvyr::group_by(d[[variable]]) %>%
         srvyr::summarise(colname = srvyr::survey_mean())
     } else if(is.character(by.x) & is.null(by.y) & is.null(domain)){
       estimation <- design_ech %>%
-        srvyr::group_by(.data[[variable]], .data[[by.x]], .add = T) %>%
+        srvyr::group_by(d[[variable]], d[[by.x]], .add = T) %>%
         srvyr::summarise(colname = srvyr::survey_mean())
     } else if(is.character(by.x) & is.character(by.y) & is.null(domain)){
       estimation <- design_ech %>%
-        srvyr::group_by(.data[[variable]], .data[[by.x]], .data[[by.y]], .add = T) %>%
+        srvyr::group_by(d[[variable]], d[[by.x]], d[[by.y]], .add = T) %>%
         srvyr::summarise(colname = srvyr::survey_mean())
     } else if(is.null(by.x) & is.null(by.y) & is.logical(domain)){
       estimation <- design_ech %>%
         srvyr::filter(domain) %>%
-        srvyr::group_by(.data[[variable]]) %>%
+        srvyr::group_by(d[[variable]]) %>%
         srvyr::summarise(colname = srvyr::survey_mean())
     } else if(is.character(by.x) & is.null(by.y) & is.logical(domain)){
       estimation <- design_ech %>%
         srvyr::filter(domain) %>%
-        srvyr::group_by(.data[[variable]], .data[[by.x]], .add = T) %>%
+        srvyr::group_by(d[[variable]], d[[by.x]], .add = T) %>%
         srvyr::summarise(colname = srvyr::survey_mean())
     } else {
       estimation <- design_ech %>%
         srvyr::filter(domain) %>%
-        srvyr::group_by(.data[[variable]], .data[[by.x]], .data[[by.y]], .add = T) %>%
+        srvyr::group_by(d[[variable]], d[[by.x]], d[[by.y]], .add = T) %>%
         srvyr::summarise(colname = srvyr::survey_mean())
     }
   } else {
     if(is.null(by.x) & is.null(by.y) & is.null(domain)){
       estimation <- design_ech %>%
-        srvyr::summarise(colname = srvyr::survey_mean(.data[[variable]]))
+        srvyr::summarise(colname = srvyr::survey_mean(d[[variable]]))
     } else if(is.character(by.x) & is.null(by.y) & is.null(domain)){
       estimation <- design_ech %>%
-        srvyr::group_by(.data[[by.x]], .add = T) %>%
+        srvyr::group_by(d[[by.x]], .add = T) %>%
         srvyr::summarise(colname = srvyr::survey_mean(variable))
     } else if(is.character(by.x) & is.character(by.y) & is.null(domain)){
       estimation <- design_ech %>%
-        srvyr::group_by(.data[[by.x]], .data[[by.y]], .add = T) %>%
-        srvyr::summarise(colname = srvyr::survey_mean(.data[[variable]]))
+        srvyr::group_by(d[[by.x]], d[[by.y]], .add = T) %>%
+        srvyr::summarise(colname = srvyr::survey_mean(d[[variable]]))
     } else if(is.null(by.x) & is.null(by.y) & is.logical(domain)){
       estimation <- design_ech %>%
         srvyr::filter(domain) %>%
-        srvyr::summarise(colname = srvyr::survey_mean(.data[[variable]]))
+        srvyr::summarise(colname = srvyr::survey_mean(d[[variable]]))
     } else if(is.character(by.x) & is.null(by.y) & is.logical(domain)){
       estimation <- design_ech %>%
         srvyr::filter(domain) %>%
-        srvyr::group_by(.data[[by.x]], .add = T) %>%
-        srvyr::summarise(colname = srvyr::survey_mean(.data[[variable]]))
+        srvyr::group_by(d[[by.x]], .add = T) %>%
+        srvyr::summarise(colname = srvyr::survey_mean(d[[variable]]))
     } else {
       estimation <- design_ech %>%
         srvyr::filter(domain) %>%
-        srvyr::group_by(.data[[by.x]], .data[[by.y]], .add = T) %>%
-        srvyr::summarise(colname = srvyr::survey_mean(.data[[variable]]))
+        srvyr::group_by(d[[by.x]], d[[by.y]], .add = T) %>%
+        srvyr::summarise(colname = srvyr::survey_mean(d[[variable]]))
     }
   }
 

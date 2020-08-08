@@ -306,6 +306,42 @@ basket_goods <- function(data = ech::cba_cbna_mdeo,
 
 }
 
+#' unlabelled
+#'
+#' @param data data frame
+#' @param variable data frame column
+#' @param by.x data frame column
+#' @param by.y data frame column
+#' @param ids ids
+#' @param strata strata
+#' @param weights weights
+#' @param e30 e30
+#'
+#' @importFrom dplyr select mutate
+#' @importFrom tidyselect all_of
+#' @importFrom haven is.labelled
+#' @importFrom labelled to_factor
+#'
+#' @return data.frame
+#' @export
+#'
+#' @examples
+#' df <- unlabelled(data = ech::toy_ech_2018, variable = "pobre06")
+#'
+unlabelled <- function(data = NULL,
+                      variable = NULL,
+                      by.x = NULL,
+                      by.y = NULL,
+                      ids = "numero",
+                      e30 = "e30",
+                      strata = "estred13",
+                      weights = "pesoano"){
+
+  d <- data %>% dplyr::select(tidyselect::all_of(variable), tidyselect::all_of(by.x), tidyselect::all_of(by.y), tidyselect::all_of(ids), tidyselect::all_of(e30),  tidyselect::all_of(strata), tidyselect::all_of(weights)) %>%
+    dplyr::mutate_if(haven::is.labelled, labelled::to_factor) %>%
+    dplyr::mutate_if(is.factor, as.character)
+}
+
 #' Pipe operator
 #'
 #' See \code{magrittr::\link[magrittr]{\%>\%}} for details.
