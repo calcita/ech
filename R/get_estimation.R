@@ -10,7 +10,6 @@
 #' @param ids ids
 #' @param strata strata
 #' @param weights weights
-#' @param e30 e30
 #' @param name name for the estimation new column
 #'
 #' @import survey
@@ -37,7 +36,6 @@ get_estimation_mean <- function(data = ech::toy_ech_2018,
                            domain = NULL,
                            level = NULL,
                            ids = "numero",
-                           e30 = "e30",
                            strata = "estred13",
                            weights = "pesoano",
                            name = "estimacion"){
@@ -51,7 +49,7 @@ get_estimation_mean <- function(data = ech::toy_ech_2018,
 
 # unlabelled
 
-  d <- unlabelled(data = data, variable = variable, by.x = by.x, by.y = by.y, ids = ids, e30 = e30, strata = strata, weights = weights)
+  d <- unlabelled(data = data, variable = variable, by.x = by.x, by.y = by.y, ids = ids, strata = strata, weights = weights)
 
 # design ----
   design_ech <- ech::set_design(data = d, level = level)
