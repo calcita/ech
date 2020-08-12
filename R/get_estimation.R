@@ -60,7 +60,7 @@ get_estimation_mean <- function(data = ech::toy_ech_2018,
 
 # estimation ----
 
-    if (is.factor(dplyr::pull(d[,variable]))) {
+    if (is.character(dplyr::pull(d[,variable]))) {
 
     if(is.null(by.x) & is.null(by.y) & is.null(domain)){
       estimation <- design_ech %>%
@@ -68,7 +68,7 @@ get_estimation_mean <- function(data = ech::toy_ech_2018,
         srvyr::summarise(colname = srvyr::survey_mean())
     } else if(is.character(by.x) & is.null(by.y) & is.null(domain)){
       estimation <- design_ech %>%
-        srvyr::group_by(d[[variable]], d[[by.x]], .add = T) %>%
+        srvyr::group_by(d[,1], d[,2], .add = T) %>%
         srvyr::summarise(colname = srvyr::survey_mean())
     } else if(is.character(by.x) & is.character(by.y) & is.null(domain)){
       estimation <- design_ech %>%

@@ -12,7 +12,6 @@ get_estimation_mean(
   domain = NULL,
   level = NULL,
   ids = "numero",
-  e30 = "e30",
   strata = "estred13",
   weights = "pesoano",
   name = "estimacion"
@@ -32,8 +31,6 @@ get_estimation_mean(
 \item{level}{is household ("h") or individual ("i").}
 
 \item{ids}{ids}
-
-\item{e30}{e30}
 
 \item{strata}{strata}
 
