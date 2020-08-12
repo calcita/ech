@@ -322,8 +322,8 @@ basket_goods <- function(data = ech::cba_cbna_mdeo,
 #'
 unlabelled <- function(data = NULL){
 
-  d <- data %>% dplyr::mutate_if(haven::is.labelled, labelled::to_factor) %>%
-    dplyr::mutate_if(is.factor, as.character)
+  d <- data %>% dplyr::mutate_if(haven::is.labelled, labelled::to_factor) #%>%
+    #dplyr::mutate_if(is.factor, as.character)
 
 }
 

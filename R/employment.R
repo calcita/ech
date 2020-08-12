@@ -22,10 +22,9 @@ employment <- function(data = ech::toy_ech_2018,
                        pobpcoac = "pobpcoac"){
 
 # checks ---
-   if (exists("pea", data)) warning('pea pre-existing')
-   if (!exists(pobpcoac, data)) stop("pobpcoac variable name not in data")
+  assertthat::assert_that(pobpcoac %in% names(data), msg = glue::glue("Sorry... :( \n  {popbcoac} is not in {data}"))
 
-# variables ---
+  # variables ---
     data %<>% dplyr::mutate(pea = ifelse({{pobpcoac}} %in% 2:5, 1, 0),
                             pet = ifelse({{pobpcoac}} != 1, 1, 0),
                             po  = ifelse({{pobpcoac}} == 2, 1, 0),

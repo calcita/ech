@@ -8,8 +8,9 @@
 #' @param domain subpopulation reference setted as logical
 #' @param level is household ("h") or individual ("i").
 #' @param ids ids
-#' @param strata strata
-#' @param weights weights
+#' @param numero household id
+#' @param estred13 strata
+#' @param pesoano weights
 #' @param name name for the estimation new column
 #'
 #' @import survey
@@ -30,15 +31,16 @@
 #' }
 
 get_estimation_mean <- function(data = ech::toy_ech_2018,
-                           variable = NULL,
-                           by.x = NULL,
-                           by.y = NULL,
-                           domain = NULL,
-                           level = NULL,
-                           ids = "numero",
-                           strata = "estred13",
-                           weights = "pesoano",
-                           name = "estimacion"){
+                                variable = NULL,
+                                by.x = NULL,
+                                by.y = NULL,
+                                domain = NULL,
+                                level = NULL,
+                                ids = NULL,
+                                numero = "numero",
+                                estred13 = "estred13",
+                                pesoano = "pesoano",
+                                name = "estimacion"){
  # checks ----
   assertthat::assert_that(!is.null(data) | !is.null(variable), msg = "You must indicate a variable")
   assertthat::assert_that(all(variable %in% names(data)), msg = glue::glue("Sorry... :( \n  {variable} is not in data"))
@@ -48,8 +50,7 @@ get_estimation_mean <- function(data = ech::toy_ech_2018,
   if(!is.null(level)) assertthat::assert_that(level %in% c("household", "h", "individual", "i"), msg = "Check the level selected")
 
 # unlabelled
-
-  d <- data %>% dplyr::select(!!!syms(c(variable, by.x, by.y, ids, strata, weights))) %>%
+  d <- data %>% dplyr::select(!!!syms(c(variable, by.x, by.y, ids, numero, estred13, pesoano))) %>%
     unlabelled()
 
 # design ----
@@ -61,67 +62,72 @@ get_estimation_mean <- function(data = ech::toy_ech_2018,
 
 # estimation ----
 
-    if (is.character(dplyr::pull(d[,variable]))) {
-
-    if(is.null(by.x) & is.null(by.y) & is.null(domain)){
-      estimation <- design_ech %>%
-        srvyr::group_by(!!!syms(variable)) %>%
-        srvyr::summarise(colname = srvyr::survey_mean())
-    } else if(is.character(by.x) & is.null(by.y) & is.null(domain)){
-      estimation <- design_ech %>%
-        srvyr::group_by(!!!syms(by.x), !!!syms(variable), .add = T) %>%
-        srvyr::summarise(colname = srvyr::survey_mean())
-    } else if(is.character(by.x) & is.character(by.y) & is.null(domain)){
-      estimation <- design_ech %>%
-        srvyr::group_by(!!!syms(by.x), !!!syms(by.y), !!!syms(variable), .add = T) %>%
-        srvyr::summarise(colname = srvyr::survey_mean())
-    } else if(is.null(by.x) & is.null(by.y) & is.logical(domain)){
-      estimation <- design_ech %>%
-        srvyr::filter(domain) %>%
-        srvyr::group_by(!!!syms(variable)) %>%
-        srvyr::summarise(colname = srvyr::survey_mean())
-    } else if(is.character(by.x) & is.null(by.y) & is.logical(domain)){
-      estimation <- design_ech %>%
-        srvyr::filter(domain) %>%
-        srvyr::group_by(!!!syms(by.x), !!!syms(variable), .add = T) %>%
-        srvyr::summarise(colname = srvyr::survey_mean())
-    } else {
-      estimation <- design_ech %>%
-        srvyr::filter(domain) %>%
-        srvyr::group_by(!!!syms(by.x), !!!syms(by.y), !!!syms(variable), .add = T) %>%
-        srvyr::summarise(colname = srvyr::survey_mean())
-    }
+    if (is.factor(dplyr::pull(d[,variable]))) {
+      if(is.null(by.x) & is.null(by.y) & is.null(domain)){
+        estimation <- design_ech %>%
+          srvyr::group_by(!!!syms(variable)) %>%
+          srvyr::summarise(colname = srvyr::survey_mean(vartype = "ci"))
+      } else if(is.character(by.x) & is.null(by.y) & is.null(domain)){
+        estimation <- design_ech %>%
+          srvyr::group_by(!!!syms(by.x), !!!syms(variable), .add = T) %>%
+          srvyr::summarise(colname = srvyr::survey_mean(vartype = "ci"))
+      } else if(is.character(by.x) & is.character(by.y) & is.null(domain)){
+        estimation <- design_ech %>%
+          srvyr::group_by(!!!syms(by.x), !!!syms(by.y), !!!syms(variable), .add = T) %>%
+          srvyr::summarise(colname = srvyr::survey_mean(vartype = "ci"))
+      } else if(is.null(by.x) & is.null(by.y) & is.logical(domain)){
+        estimation <- design_ech %>%
+          srvyr::filter(domain) %>%
+          srvyr::group_by(!!!syms(variable)) %>%
+          srvyr::summarise(colname = srvyr::survey_mean(vartype = "ci"))
+      } else if(is.character(by.x) & is.null(by.y) & is.logical(domain)){
+        estimation <- design_ech %>%
+          srvyr::filter(domain) %>%
+          srvyr::group_by(!!!syms(by.x), !!!syms(variable), .add = T) %>%
+          srvyr::summarise(colname = srvyr::survey_mean(vartype = "ci"))
+      } else {
+        estimation <- design_ech %>%
+          srvyr::filter(domain) %>%
+          srvyr::group_by(!!!syms(by.x), !!!syms(by.y), !!!syms(variable), .add = T) %>%
+          srvyr::summarise(colname = srvyr::survey_mean(vartype = "ci"))
+      }
   } else {
     if(is.null(by.x) & is.null(by.y) & is.null(domain)){
       estimation <- design_ech %>%
-        srvyr::summarise(colname = srvyr::survey_mean(d[[variable]]))
+        srvyr::summarise(colname = srvyr::survey_mean(!!!syms(variable), vartype = "ci"))
     } else if(is.character(by.x) & is.null(by.y) & is.null(domain)){
       estimation <- design_ech %>%
-        srvyr::group_by(d[[by.x]], .add = T) %>%
-        srvyr::summarise(colname = srvyr::survey_mean(variable))
+        srvyr::group_by(!!!syms(by.x), .add = T) %>%
+        srvyr::summarise(colname = srvyr::survey_mean(!!!syms(variable), vartype = "ci"))
     } else if(is.character(by.x) & is.character(by.y) & is.null(domain)){
       estimation <- design_ech %>%
-        srvyr::group_by(d[[by.x]], d[[by.y]], .add = T) %>%
-        srvyr::summarise(colname = srvyr::survey_mean(d[[variable]]))
+        srvyr::group_by(!!!syms(by.x), !!!syms(by.y), .add = T) %>%
+        srvyr::summarise(colname = srvyr::survey_mean(!!!syms(variable), vartype = "ci"))
     } else if(is.null(by.x) & is.null(by.y) & is.logical(domain)){
       estimation <- design_ech %>%
         srvyr::filter(domain) %>%
-        srvyr::summarise(colname = srvyr::survey_mean(d[[variable]]))
+        srvyr::summarise(colname = srvyr::survey_mean(!!!syms(variable), vartype = "ci"))
     } else if(is.character(by.x) & is.null(by.y) & is.logical(domain)){
       estimation <- design_ech %>%
         srvyr::filter(domain) %>%
-        srvyr::group_by(d[[by.x]], .add = T) %>%
-        srvyr::summarise(colname = srvyr::survey_mean(d[[variable]]))
+        srvyr::group_by(!!!syms(by.x), .add = T) %>%
+        srvyr::summarise(colname = srvyr::survey_mean(!!!syms(variable), vartype = "ci"))
     } else {
       estimation <- design_ech %>%
         srvyr::filter(domain) %>%
-        srvyr::group_by(d[[by.x]], d[[by.y]], .add = T) %>%
-        srvyr::summarise(colname = srvyr::survey_mean(d[[variable]]))
+        srvyr::group_by(!!!syms(by.x), !!!syms(by.y), .add = T) %>%
+        srvyr::summarise(colname = srvyr::survey_mean(!!!syms(variable), vartype = "ci"))
     }
   }
 
   if (name != "estimacion"){
-    names(estimation) <- stringr::str_replace_all(names(estimation), "colname", name)
+    names(estimation) <- stringr::str_replace_all(names(estimation), "estimacion", name)
+  }
+
+  if (is.null(ids)) {
+    message("No es posible calcular los intervalos de confianza correctos")
+    Sys.sleep(1)
+    return(estimation)
   }
   return(estimation)
 
@@ -136,6 +142,10 @@ get_estimation_mean <- function(data = ech::toy_ech_2018,
 #' @param by.y data frame column
 #' @param domain subpopulation reference setted as logical
 #' @param level is household ("h") or individual ("i").
+#' @param ids ids
+#' @param numero household id
+#' @param estred13 strata
+#' @param pesoano weights
 #' @param name name for the estimation new column
 #' @import survey
 #' @import srvyr
@@ -161,6 +171,10 @@ get_estimation_total <- function(data = ech::toy_ech_2018,
                                 by.y = NULL,
                                 domain = NULL,
                                 level = NULL,
+                                ids = NULL,
+                                numero = "numero",
+                                estred13 = "estred13",
+                                pesoano = "pesoano",
                                 name = "estimacion"){
   # checks ----
   assertthat::assert_that(!is.null(data) | !is.null(variable), msg = "You must indicate a variable")
@@ -169,6 +183,11 @@ get_estimation_total <- function(data = ech::toy_ech_2018,
   if(!is.null(by.y)) assertthat::assert_that(by.y %in% names(data), msg = glue::glue("Sorry... :( \n  {by.y} is not in {data}"))
   # if(!is.null(domain)) assertthat::assert_that(domain %in% names(data), msg = glue::glue("Sorry... :( \n  {domain} is not in {data}"))
   if(!is.null(level)) assertthat::assert_that(level %in% c("household", "h", "individual", "i"), msg = "Check the level selected")
+
+  # unlabelled
+  d <- data %>% dplyr::select(!!!syms(c(variable, by.x, by.y, ids, numero, estred13, pesoano))) %>%
+    unlabelled()
+
   # design ----
   design_ech <- ech::set_design(data = data, level = level)
 
@@ -178,108 +197,72 @@ get_estimation_total <- function(data = ech::toy_ech_2018,
 
   # estimation ----
 
-  if (haven::is.labelled(dplyr::pull(data[,variable]))) {
+  if (is.factor(dplyr::pull(data[,variable]))) {
     if(is.null(by.x) & is.null(by.y) & is.null(domain)){
       estimation <- design_ech %>%
-        srvyr::group_by(.data[[variable]]) %>%
-        srvyr::summarise(colname = srvyr::survey_total())
+        srvyr::group_by(!!!syms(variable)) %>%
+        srvyr::summarise(colname = srvyr::survey_total(vartype = "ci"))
     } else if(is.character(by.x) & is.null(by.y) & is.null(domain)){
       estimation <- design_ech %>%
-        srvyr::group_by(.data[[by.x]], .data[[variable]], .add = T) %>%
-        srvyr::summarise(colname = srvyr::survey_total())
+        srvyr::group_by(!!!syms(by.x), !!!syms(variable), .add = T) %>%
+        srvyr::summarise(colname = srvyr::survey_total(vartype = "ci"))
     } else if(is.character(by.x) & is.character(by.y) & is.null(domain)){
       estimation <- design_ech %>%
-        srvyr::group_by(.data[[by.x]], .data[[by.y]], .data[[variable]], .add = T) %>%
-        srvyr::summarise(colname = srvyr::survey_total())
+        srvyr::group_by(!!!syms(by.x), !!!syms(by.y), !!!syms(variable), .add = T) %>%
+        srvyr::summarise(colname = srvyr::survey_total(vartype = "ci"))
     } else if(is.null(by.x) & is.null(by.y) & is.logical(domain)){
       estimation <- design_ech %>%
         srvyr::filter(domain) %>%
-        srvyr::group_by(.data[[variable]]) %>%
-        srvyr::summarise(colname = srvyr::survey_total())
+        srvyr::group_by(!!!syms(variable)) %>%
+        srvyr::summarise(colname = srvyr::survey_total(vartype = "ci"))
     } else if(is.character(by.x) & is.null(by.y) & is.logical(domain)){
       estimation <- design_ech %>%
         srvyr::filter(domain) %>%
-        srvyr::group_by(.data[[by.x]], .data[[variable]], .add = T) %>%
-        srvyr::summarise(colname = srvyr::survey_mean())
+        srvyr::group_by(!!!syms(by.x), !!!syms(variable), .add = T) %>%
+        srvyr::summarise(colname = srvyr::survey_total(vartype = "ci"))
     } else {
       estimation <- design_ech %>%
         srvyr::filter(domain) %>%
-        srvyr::group_by(.data[[by.x]], .data[[by.y]], .data[[variable]], .add = T) %>%
-        srvyr::summarise(colname = srvyr::survey_mean())
+        srvyr::group_by(!!!syms(by.x), !!!syms(by.y), !!!syms(variable), .add = T) %>%
+        srvyr::summarise(colname = srvyr::survey_total(vartype = "ci"))
     }
+  } else {
+      if(is.null(by.x) & is.null(by.y) & is.null(domain)){
+        estimation <- design_ech %>%
+          srvyr::summarise(colname = srvyr::survey_total(!!!syms(variable), vartype = "ci"))
+      } else if(is.character(by.x) & is.null(by.y) & is.null(domain)){
+        estimation <- design_ech %>%
+          srvyr::group_by(!!!syms(by.x), .add = T) %>%
+          srvyr::summarise(colname = srvyr::survey_total(!!!syms(variable), vartype = "ci"))
+      } else if(is.character(by.x) & is.character(by.y) & is.null(domain)){
+        estimation <- design_ech %>%
+          srvyr::group_by(!!!syms(by.x), !!!syms(by.y), .add = T) %>%
+          srvyr::summarise(colname = srvyr::survey_total(!!!syms(variable), vartype = "ci"))
+      } else if(is.null(by.x) & is.null(by.y) & is.logical(domain)){
+        estimation <- design_ech %>%
+          srvyr::filter(domain) %>%
+          srvyr::summarise(colname = srvyr::survey_total(!!!syms(variable), vartype = "ci"))
+      } else if(is.character(by.x) & is.null(by.y) & is.logical(domain)){
+        estimation <- design_ech %>%
+          srvyr::filter(domain) %>%
+          srvyr::group_by(!!!syms(by.x), .add = T) %>%
+          srvyr::summarise(colname = srvyr::survey_total(!!!syms(variable), vartype = "ci"))
+      } else {
+        estimation <- design_ech %>%
+          srvyr::filter(domain) %>%
+          srvyr::group_by(!!!syms(by.x), !!!syms(by.y), .add = T) %>%
+          srvyr::summarise(colname = srvyr::survey_total(!!!syms(variable), vartype = "ci"))
+      }
   }
 
-  else{
-    if(is.null(by.x) & is.null(by.y) & is.null(domain)){
-      if(is.character(.data[[variable]])){
-        estimation <- design_ech %>%
-          srvyr::group_by(.data[[variable]], .add = T) %>%
-          srvyr::summarise(colname = srvyr::survey_total())
-      } else {
-        estimation <- design_ech %>%
-          srvyr::summarise(colname = srvyr::survey_total(.data[[variable]]))
-      }
-    } else if(is.character(by.x) & is.null(by.y) & is.null(domain)){
-      if(is.character(.data[[variable]])){
-        estimation <- design_ech %>%
-          srvyr::group_by(.data[[variable]], .data[[by.x]], .add = T) %>%
-          srvyr::summarise(colname = srvyr::survey_total())
-        message(glue::glue("Sorry... :( \n {variable} and {by.x} are both categorical \n we do not recommend two groupings of categorical variables"))
-      } else {
-        estimation <- design_ech %>%
-          srvyr::group_by(.data[[by.x]], .add = T) %>%
-          srvyr::summarise(colname = srvyr::survey_total(.data[[variable]]))
-      }
-    } else if(is.character(by.x) & is.character(by.y) & is.null(domain)){
-      if(is.character(.data[[variable]])){
-        estimation <- design_ech %>%
-          srvyr::group_by(.data[[variable]], .data[[by.x]], .data[[by.y]], .add = T) %>%
-          srvyr::summarise(colname = srvyr::survey_total())
-        message(glue::glue("Sorry... :( \n {variable}, {by.x} and {by.y} are all categorical \n we do not recommend three groupings of categorical variables"))
-      } else {
-        estimation <- design_ech %>%
-          srvyr::group_by(.data[[by.x]], .data[[by.y]]) %>%
-          srvyr::summarise(colname = srvyr::survey_total(.data[[variable]]))
-      }
-    } else if(is.null(by.x) & is.null(by.y) & is.logical(domain)){
-      if(is.character(.data[[variable]])){
-        estimation <- design_ech %>%
-          srvyr::filter(domain) %>%
-          srvyr::group_by(.data[[variable]], .add = T) %>%
-          srvyr::summarise(colname = srvyr::survey_total())
-      } else {
-        estimation <- design_ech %>%
-          srvyr::filter(domain) %>%
-          srvyr::summarise(colname = srvyr::survey_total(.data[[variable]]))
-      }
-    } else if(is.character(by.x) & is.null(by.y) & is.logical(domain)){
-      if(is.character(.data[[variable]])){
-        estimation <- design_ech %>%
-          srvyr::filter(domain) %>%
-          srvyr::group_by(.data[[variable]], .data[[by.x]], .add = T) %>%
-          srvyr::summarise(colname = srvyr::survey_total())
-      } else {
-        estimation <- design_ech %>%
-          srvyr::filter(domain) %>%
-          srvyr::group_by(.data[[by.x]]) %>%
-          srvyr::summarise(colname = srvyr::survey_total(.data[[variable]]))
-      }
-    } else {
-      if(is.character(.data[[variable]])){
-        estimation <- design_ech %>%
-          srvyr::filter(domain) %>%
-          srvyr::group_by(.data[[variable]], .data[[by.x]], .data[[by.y]], .add = T) %>%
-          srvyr::summarise(colname = srvyr::survey_total())
-      } else {
-        estimation <- design_ech %>%
-          srvyr::filter(domain) %>%
-          srvyr::group_by(.data[[by.x]], .data[[by.y]]) %>%
-          srvyr::summarise(colname = srvyr::survey_total(.data[[variable]]))
-      }
-    }
-  }
   if (name != "estimacion"){
-    names(estimation) <- stringr::str_replace_all(names(estimation), "colname", name)
+    names(estimation) <- stringr::str_replace_all(names(estimation), "estimacion", name)
+  }
+
+  if (is.null(ids)) {
+    message("No es posible calcular los intervalos de confianza correctos")
+    Sys.sleep(1)
+    return(estimation)
   }
   return(estimation)
 
@@ -296,6 +279,10 @@ get_estimation_total <- function(data = ech::toy_ech_2018,
 #' @param by.y data frame column
 #' @param domain subpopulation reference setted as logical
 #' @param level is household ("h") or individual ("i")
+#' @param ids ids
+#' @param numero household id
+#' @param estred13 strata
+#' @param pesoano weights
 #' @param name name for the estimation new column
 #' @importFrom dplyr mutate select filter group_by %>%
 #' @importFrom glue glue
@@ -321,6 +308,10 @@ get_estimation_ratio <- function(data = ech::toy_ech_2018,
                                 by.y = NULL,
                                 domain = NULL,
                                 level = NULL,
+                                ids = NULL,
+                                numero = "numero",
+                                estred13 = "estred13",
+                                pesoano = "pesoano",
                                 name = "estimacion"){
 
   # checks ----
@@ -330,6 +321,10 @@ get_estimation_ratio <- function(data = ech::toy_ech_2018,
   if(!is.null(by.x)) assertthat::assert_that(by.x %in% names(data), msg = glue::glue("Sorry... :( \n {by.x} is not in {data}"))
   if(!is.null(by.y)) assertthat::assert_that(by.y %in% names(data), msg = glue::glue("Sorry... :( \n {by.y} is not in {data}"))
   if(!is.null(level)) assertthat::assert_that(level %in% c("household", "h", "individual", "i"), msg = "Check the level selected")
+
+  # unlabelled
+  d <- data %>% dplyr::select(!!!syms(c(variable.x, variable.y, by.x, by.y, ids, numero, estred13, pesoano))) %>%
+    unlabelled()
 
   # design ---
   design_ech <- ech::set_design(data = data, level = level)
@@ -342,32 +337,39 @@ get_estimation_ratio <- function(data = ech::toy_ech_2018,
 
   if(is.null(by.x) & is.null(by.y) & is.null(domain)){
     estimation <- design_ech %>%
-      srvyr::summarise(colname = srvyr::survey_ratio(.data[[variable.x]], .data[[variable.y]]))
+      srvyr::summarise(colname = srvyr::survey_ratio(!!!syms(variable.x), !!!syms(variable.y), vartype = "ci"))
   } else if(is.character(by.x) & is.null(by.y) & is.null(domain)){
     estimation <- design_ech %>%
-      srvyr::group_by(.data[[by.x]]) %>%
-      srvyr::summarise(colname = srvyr::survey_ratio(.data[[variable.x]], .data[[variable.y]]))
+      srvyr::group_by(!!!syms(by.x)) %>%
+      srvyr::summarise(colname = srvyr::survey_ratio(!!!syms(variable.x), !!!syms(variable.y), vartype = "ci"))
   } else if(is.character(by.x) & is.character(by.y) & is.null(domain)){
     estimation <- design_ech %>%
-      srvyr::group_by(.data[[by.x]], .data[[by.y]]) %>%
-      srvyr::summarise(colname = srvyr::survey_ratio(.data[[variable.x]], .data[[variable.y]]))
+      srvyr::group_by(!!!syms(by.x), !!!syms(by.y)) %>%
+      srvyr::summarise(colname = srvyr::survey_ratio(!!!syms(variable.x), !!!syms(variable.y), vartype = "ci"))
   } else if(is.null(by.x) & is.null(by.y) & is.logical(domain)){
     estimation <- design_ech %>%
       srvyr::filter(domain) %>%
-      srvyr::summarise(colname = srvyr::survey_ratio(.data[[variable.x]], .data[[variable.y]]))
+      srvyr::summarise(colname = srvyr::survey_ratio(!!!syms(variable.x), !!!syms(variable.y), vartype = "ci"))
   } else if(is.character(by.x) & is.null(by.y) & is.logical(domain)){
     estimation <- design_ech %>%
       srvyr::filter(domain) %>%
-      srvyr::group_by(.data[[by.x]]) %>%
-      srvyr::summarise(colname = srvyr::survey_ratio(.data[[variable.x]], .data[[variable.y]]))
+      srvyr::group_by(!!!syms(by.x)) %>%
+      srvyr::summarise(colname = srvyr::survey_ratio(!!!syms(variable.x), !!!syms(variable.y), vartype = "ci"))
   } else {
     estimation <- design_ech %>%
       srvyr::filter(domain) %>%
-      srvyr::group_by(.data[[by.x]], .data[[by.y]]) %>%
-      srvyr::summarise(colname = srvyr::survey_ratio(.data[[variable.x]], .data[[variable.y]]))
+      srvyr::group_by(!!!syms(by.x), !!!syms(by.y)) %>%
+      srvyr::summarise(colname = srvyr::survey_ratio(!!!syms(variable.x), !!!syms(variable.y), vartype = "ci"))
   }
+
   if (name != "estimacion"){
-    names(estimation) <- stringr::str_replace_all(names(estimation), "colname", name)
+    names(estimation) <- stringr::str_replace_all(names(estimation), "estimacion", name)
+  }
+
+  if (is.null(ids)) {
+    message("No es posible calcular los intervalos de confianza correctos")
+    Sys.sleep(1)
+    return(estimation)
   }
   return(estimation)
 

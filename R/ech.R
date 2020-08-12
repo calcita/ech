@@ -85,5 +85,7 @@ if(getRversion() >= "2.15.1") utils::globalVariables(c(".",
                                                        "cbna_r",
                                                        "cba_li",
                                                        "cbna_r",
-                                                       "cbt_lp"
+                                                       "cbt_lp",
+                                                       "estred13",
+                                                       "pesoano"
                                                        ))

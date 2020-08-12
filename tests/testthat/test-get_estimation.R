@@ -24,8 +24,8 @@ test_that("get_estimation_total works", {
   expect_equal(nrow(a), 12)
   a <- get_estimation_total(variable = "pobre06", by.x = "dpto", level = "h")
   expect_equal(nrow(a), 19)
-  a <- get_estimation_total(variable = "pobre06", by.x = "dpto", by.y = "mes", level = "h")
-  expect_equal(nrow(a), 207)
+  a <- get_estimation_total(variable = "pobre06", by.x = "dpto", by.y = "e26", level = "h")
+  expect_equal(nrow(a), 37)
   a <- get_estimation_total(variable = "pobre06", by.x = "secc", by.y = "mes", domain = d$dpto == 1, level = "i")
   expect_equal(nrow(a), 175)
 

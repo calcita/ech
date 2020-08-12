@@ -12,6 +12,10 @@ get_estimation_ratio(
   by.y = NULL,
   domain = NULL,
   level = NULL,
+  ids = NULL,
+  numero = "numero",
+  estred13 = "estred13",
+  pesoano = "pesoano",
   name = "estimacion"
 )
 }
@@ -29,6 +33,14 @@ get_estimation_ratio(
 \item{domain}{subpopulation reference setted as logical}
 
 \item{level}{is household ("h") or individual ("i")}
+
+\item{ids}{ids}
+
+\item{numero}{household id}
+
+\item{estred13}{strata}
+
+\item{pesoano}{weights}
 
 \item{name}{name for the estimation new column}
 }

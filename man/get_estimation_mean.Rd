@@ -11,9 +11,10 @@ get_estimation_mean(
   by.y = NULL,
   domain = NULL,
   level = NULL,
-  ids = "numero",
-  strata = "estred13",
-  weights = "pesoano",
+  ids = NULL,
+  numero = "numero",
+  estred13 = "estred13",
+  pesoano = "pesoano",
   name = "estimacion"
 )
 }
@@ -32,9 +33,11 @@ get_estimation_mean(
 
 \item{ids}{ids}
 
-\item{strata}{strata}
+\item{numero}{household id}
 
-\item{weights}{weights}
+\item{estred13}{strata}
+
+\item{pesoano}{weights}
 
 \item{name}{name for the estimation new column}
 }
