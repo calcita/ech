@@ -4,33 +4,10 @@
 \alias{unlabelled}
 \title{unlabelled}
 \usage{
-unlabelled(
-  data = NULL,
-  variable = NULL,
-  by.x = NULL,
-  by.y = NULL,
-  ids = "numero",
-  e30 = "e30",
-  strata = "estred13",
-  weights = "pesoano"
-)
+unlabelled(data = NULL)
 }
 \arguments{
 \item{data}{data frame}
-
-\item{variable}{data frame column}
-
-\item{by.x}{data frame column}
-
-\item{by.y}{data frame column}
-
-\item{ids}{ids}
-
-\item{e30}{e30}
-
-\item{strata}{strata}
-
-\item{weights}{weights}
 }
 \value{
 data.frame
@@ -39,6 +16,6 @@ data.frame
 unlabelled
 }
 \examples{
-df <- unlabelled(data = ech::toy_ech_2018, variable = "pobre06")
+df <- unlabelled(data = ech::toy_ech_2018)
 
 }
