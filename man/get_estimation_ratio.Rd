@@ -30,7 +30,7 @@ get_estimation_ratio(
 
 \item{by.y}{data frame column}
 
-\item{domain}{subpopulation reference setted as logical}
+\item{domain}{subpopulation reference setted as character expresion of logical evaluation}
 
 \item{level}{is household ("h") or individual ("i")}
 

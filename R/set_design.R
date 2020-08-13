@@ -31,15 +31,28 @@ set_design <- function(data = ech::toy_ech_2018,
                        estred13 = "estred13",
                        pesoano = "pesoano"){
 
-   if (level == "h") {
-    d <- data %>%
-      dplyr::mutate(estred13 = as.character(estred13)) %>%
-      dplyr::filter(duplicated(numero) == FALSE) %>%
-      srvyr::as_survey_design(ids = 1, strata = estred13, weights = pesoano)
+  if(is.null(ids)){
+    if (level == "h") {
+      d <- data %>%
+        dplyr::mutate(estred13 = as.character(estred13)) %>%
+        dplyr::filter(duplicated(numero) == FALSE) %>%
+        srvyr::as_survey_design(ids = 1, strata = estred13, weights = pesoano)
+    } else {
+      d <- data %>%
+        dplyr::mutate(estred13 = as.character(estred13)) %>%
+        srvyr::as_survey_design(ids = numero, strata = estred13, weights = pesoano)
+    }
   } else {
-    d <- data %>%
-     dplyr::mutate(estred13 = as.character(estred13)) %>%
-     srvyr::as_survey_design(ids = numero, strata = estred13, weights = pesoano)
+    if (level == "h") {
+      d <- data %>%
+        dplyr::mutate(estred13 = as.character(estred13)) %>%
+        dplyr::filter(duplicated(numero) == FALSE) %>%
+        srvyr::as_survey_design(ids = ids, strata = estred13, weights = pesoano)
+    } else {
+      d <- data %>%
+        dplyr::mutate(estred13 = as.character(estred13)) %>%
+        srvyr::as_survey_design(ids = ids, strata = estred13, weights = pesoano)
+    }
   }
 
  return(d)
