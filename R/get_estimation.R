@@ -54,7 +54,7 @@ get_estimation_mean <- function(data = ech::toy_ech_2018,
 
 
 # unlabelled
-  d <- data %>% dplyr::select(!!!syms(c(variable, by.x, by.y, ids, numero, estred13, pesoano, dom))) %>%
+  d <- data %>% dplyr::select(!!!syms(c(variable, by.x, by.y, ids, numero, estred13, pesoano, if(!is.null(domain)){dom}))) %>%
     unlabelled()
 
 # design ----
@@ -192,7 +192,7 @@ get_estimation_total <- function(data = ech::toy_ech_2018,
   }
 
   # unlabelled
-  d <- data %>% dplyr::select(!!!syms(c(variable, by.x, by.y, ids, numero, estred13, pesoano, dom))) %>%
+  d <- data %>% dplyr::select(!!!syms(c(variable, by.x, by.y, ids, numero, estred13, pesoano, if(!is.null(domain)){dom}))) %>%
     unlabelled()
 
   # design ----
@@ -334,7 +334,7 @@ get_estimation_ratio <- function(data = ech::toy_ech_2018,
   }
 
   # unlabelled
-  d <- data %>% dplyr::select(!!!syms(c(variable.x, variable.y, by.x, by.y, ids, numero, estred13, pesoano, dom))) %>%
+  d <- data %>% dplyr::select(!!!syms(c(variable.x, variable.y, by.x, by.y, ids, numero, estred13, pesoano, if(!is.null(domain)){dom}))) %>%
     unlabelled()
 
   # design ---
