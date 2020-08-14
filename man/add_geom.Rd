@@ -27,3 +27,10 @@ This function allows you to add geom variable to a with a code varible of "zona"
 Disclaimer: This script is not an official INE product.
 Aviso: El script no es un producto oficial de INE.
 }
+\examples{
+\donttest{
+pobre_x_dpto <- get_estimation_mean(variable = "pobre06", by.x = "dpto", level = "h") \%>\%
+   dplyr::filter(pobre06 == "No pobre")
+pobre_x_dpto_geo <- add_geom(data = pobre_x_dpto, unit = "Departamentos", variable = "dpto")
+}
+}
