@@ -6,8 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>housing_conditions
-A function to calculate the housing conditions — housing_conditions • ech</title>
+<title>basket_goods — basket_goods • ech</title>
 
 
 <!-- jquery -->
@@ -36,10 +35,8 @@ A function to calculate the housing conditions — housing_conditions • ech</t
 
 
 
-<meta property="og:title" content="housing_conditions
-A function to calculate the housing conditions — housing_conditions" />
-<meta property="og:description" content="housing_conditions
-A function to calculate the housing conditions" />
+<meta property="og:title" content="basket_goods — basket_goods" />
+<meta property="og:description" content="basket_goods" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -109,37 +106,27 @@ A function to calculate the housing conditions" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>housing_conditions
-A function to calculate the housing conditions</h1>
+    <h1>basket_goods</h1>
     
-    <div class="hidden name"><code>housing_conditions.Rd</code></div>
+    <div class="hidden name"><code>basket_goods.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>housing_conditions
-A function to calculate the housing conditions</p>
+    <p>basket_goods</p>
     </div>
 
-    <pre class="usage"><span class='fu'>housing_conditions</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ech</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/ech/man/toy_ech_2018.html'>toy_ech_2018</a></span>, <span class='kw'>c2</span> <span class='kw'>=</span> <span class='st'>"c2"</span>, <span class='kw'>c3</span> <span class='kw'>=</span> <span class='st'>"c3"</span>, <span class='kw'>c4</span> <span class='kw'>=</span> <span class='st'>"c4"</span>)</pre>
+    <pre class="usage"><span class='fu'>basket_goods</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ech</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/ech/man/cba_cbna_mdeo.html'>cba_cbna_mdeo</a></span>, <span class='kw'>year</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>data</th>
-      <td><p>data.frame</p></td>
+      <td><p>data.frame with the price of the basket of goods from Montevideo, Interior or Rural region</p></td>
     </tr>
     <tr>
-      <th>c2</th>
-      <td><p>Variable name of predominant material on external walls</p></td>
-    </tr>
-    <tr>
-      <th>c3</th>
-      <td><p>Variable name of predominant roofing material</p></td>
-    </tr>
-    <tr>
-      <th>c4</th>
-      <td><p>Variable name of predominant flooring material</p></td>
+      <th>year</th>
+      <td><p>the ECH year</p></td>
     </tr>
     </table>
 
@@ -152,9 +139,7 @@ A function to calculate the housing conditions</p>
 Aviso: El script no es un producto oficial de INE.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>toy_ech_2018</span> <span class='kw'>&lt;-</span> <span class='fu'>housing_conditions</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ech</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/ech/man/toy_ech_2018.html'>toy_ech_2018</a></span>)</div><div class='output co'>#&gt; <span class='message'>A variable has been created in the base: </span>
-#&gt; <span class='message'> 	 housing_conditions (situacion coyuntural de la vivienda)</span></div><div class='input'>
-</div></pre>
+    <pre class="examples"><div class='input'><span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='fu'>basket_goods</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ech</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/ech/man/cba_cbna_mdeo.html'>cba_cbna_mdeo</a></span>, <span class='kw'>year</span> <span class='kw'>=</span> <span class='fl'>2018</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

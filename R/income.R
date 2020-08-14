@@ -244,7 +244,30 @@ labor_income_per_capita <- function(data = ech::toy_ech_2018,
   assertthat::assert_that(g127_3  %in% names(data), msg =  glue:glue("Sorry... :( \n {g127_3} is not in data"))
   assertthat::assert_that(g128_1  %in% names(data), msg =  glue:glue("Sorry... :( \n {g128_1} is not in data"))
   assertthat::assert_that(g129_2  %in% names(data), msg =  glue:glue("Sorry... :( \n {g129_2} is not in data"))
-
+  assertthat::assert_that(g130_1  %in% names(data), msg =  glue:glue("Sorry... :( \n {g130_1} is not in data"))
+  assertthat::assert_that(g131_1  %in% names(data), msg =  glue:glue("Sorry... :( \n {g131_1} is not in data"))
+  assertthat::assert_that(g133_1  %in% names(data), msg =  glue:glue("Sorry... :( \n {g133_1} is not in data"))
+  assertthat::assert_that(g134_1  %in% names(data), msg =  glue:glue("Sorry... :( \n {g134_1} is not in data"))
+  assertthat::assert_that(g134_2  %in% names(data), msg =  glue:glue("Sorry... :( \n {g134_2} is not in data"))
+  assertthat::assert_that(g134_3  %in% names(data), msg =  glue:glue("Sorry... :( \n {g134_3} is not in data"))
+  assertthat::assert_that(g134_4  %in% names(data), msg =  glue:glue("Sorry... :( \n {g134_4} is not in data"))
+  assertthat::assert_that(g134_5  %in% names(data), msg =  glue:glue("Sorry... :( \n {g134_5} is not in data"))
+  assertthat::assert_that(g134_6  %in% names(data), msg =  glue:glue("Sorry... :( \n {g134_6} is not in data"))
+  assertthat::assert_that(g134_7  %in% names(data), msg =  glue:glue("Sorry... :( \n {g134_7} is not in data"))
+  assertthat::assert_that(g134_8  %in% names(data), msg =  glue:glue("Sorry... :( \n {g134_8} is not in data"))
+  assertthat::assert_that(g135_3  %in% names(data), msg =  glue:glue("Sorry... :( \n {g135_3} is not in data"))
+  assertthat::assert_that(g136_1  %in% names(data), msg =  glue:glue("Sorry... :( \n {g136_1} is not in data"))
+  assertthat::assert_that(g137_2  %in% names(data), msg =  glue:glue("Sorry... :( \n {g137_2} is not in data"))
+  assertthat::assert_that(g138_1  %in% names(data), msg =  glue:glue("Sorry... :( \n {g138_1} is not in data"))
+  assertthat::assert_that(g139_1  %in% names(data), msg =  glue:glue("Sorry... :( \n {g139_1} is not in data"))
+  assertthat::assert_that(g141_1  %in% names(data), msg =  glue:glue("Sorry... :( \n {g141_1} is not in data"))
+  assertthat::assert_that(g141_2  %in% names(data), msg =  glue:glue("Sorry... :( \n {g141_2} is not in data"))
+  assertthat::assert_that(g142  %in% names(data), msg =  glue:glue("Sorry... :( \n {g142} is not in data"))
+  assertthat::assert_that(g144_1  %in% names(data), msg =  glue:glue("Sorry... :( \n {g144_1} is not in data"))
+  assertthat::assert_that(g144_2_1  %in% names(data), msg =  glue:glue("Sorry... :( \n {g144_2_1} is not in data"))
+  assertthat::assert_that(g144_2_3  %in% names(data), msg =  glue:glue("Sorry... :( \n {g144_2_3} is not in data"))
+  assertthat::assert_that(g144_2_4  %in% names(data), msg =  glue:glue("Sorry... :( \n {g144_2_4} is not in data"))
+  assertthat::assert_that(g144_2_5  %in% names(data), msg =  glue:glue("Sorry... :( \n {g144_2_5} is not in data"))
 
   data <- data %>%
     dplyr::mutate(
@@ -255,9 +278,12 @@ labor_income_per_capita <- function(data = ech::toy_ech_2018,
      ) %>%
     dplyr::group_by(numero) %>%
     dplyr::mutate(labor_income_h = sum(labor_income, na.rm = TRUE),
-            labor_income_h_percapita = labor_income_h /sum(!is.na(labor_income_h))) %>%
-   dplyr::ungroup()
+                  labor_income_h_percapita = labor_income_h /sum(!is.na(labor_income_h))) %>%
+    dplyr::ungroup()
 
+  message("Variables have been created in the base: \n \t labor_income_h (Ingresos laborales) &
+            labor_income_h_percapita (Ingresos laborales per capita)")
+  data
 }
 
 
@@ -295,6 +321,15 @@ labor_income_per_hour <- function(data = ech::toy_ech_2018,
                                   base_year = NULL,
                                   mes = "mes"){
 
+  # checks ---
+  assertthat::assert_that(is.data.frame(data))
+  assertthat::assert_that(dplyr::between(base_month,1,12), msg =  glue::glue("Sorry... :( \n base_month is not between 1 and 12"))
+  assertthat::assert_that(mes  %in% names(data), msg =  glue::glue("Sorry... :( \n {mes} is not in data"))
+  assertthat::assert_that(numero  %in% names(data), msg =  glue::glue("Sorry... :( \n {numero} is not in data"))
+  assertthat::assert_that(pobpcoac  %in% names(data), msg =  glue::glue("Sorry... :( \n {pobpcoac} is not in data"))
+  assertthat::assert_that(pt4  %in% names(data), msg =  glue::glue("Sorry... :( \n {pt4} is not in data"))
+  assertthat::assert_that(f85  %in% names(data), msg =  glue::glue("Sorry... :( \n {f85} is not in data"))
+
   deflate_mdeo <- ech::deflate(base_month = base_month, base_year = base_year, ipc = "M", df_year = max(data$anio))
   names(deflate_mdeo)[1] <- "deflate_mdeo"
 
@@ -310,6 +345,9 @@ labor_income_per_hour <- function(data = ech::toy_ech_2018,
   data <- data %>%
     dplyr::mutate(
       hours_per_month = f85 * 4.2, # Cantidad de horas trabajadas en un mes en ocupacion principal
-      total_income_per_hour = ifelse(pobpcoac == 2 & pt4 != 0, (pt4/deflate)*100/hours_per_month, NA)) # Total de ingresos por trabajo por hora
+      total_income_per_hour = ifelse(pobpcoac == 2 & pt4 != 0, (pt4 / deflate) * 100 / hours_per_month, NA)) # Total de ingresos por trabajo por hora
 
+  message("Variables have been created in the base: \n \t hours_per_month (Cantidad de horas trabajadas en un mes en ocupacion principal) &
+            total_income_per_hour (Total de ingresos por trabajo por hora)")
+  data
 }

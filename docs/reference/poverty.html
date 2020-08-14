@@ -6,8 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>housing_conditions
-A function to calculate the housing conditions — housing_conditions • ech</title>
+<title>poverty — poverty • ech</title>
 
 
 <!-- jquery -->
@@ -36,10 +35,8 @@ A function to calculate the housing conditions — housing_conditions • ech</t
 
 
 
-<meta property="og:title" content="housing_conditions
-A function to calculate the housing conditions — housing_conditions" />
-<meta property="og:description" content="housing_conditions
-A function to calculate the housing conditions" />
+<meta property="og:title" content="poverty — poverty" />
+<meta property="og:description" content="poverty" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -109,18 +106,25 @@ A function to calculate the housing conditions" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>housing_conditions
-A function to calculate the housing conditions</h1>
+    <h1>poverty</h1>
     
-    <div class="hidden name"><code>housing_conditions.Rd</code></div>
+    <div class="hidden name"><code>poverty.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>housing_conditions
-A function to calculate the housing conditions</p>
+    <p>poverty</p>
     </div>
 
-    <pre class="usage"><span class='fu'>housing_conditions</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ech</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/ech/man/toy_ech_2018.html'>toy_ech_2018</a></span>, <span class='kw'>c2</span> <span class='kw'>=</span> <span class='st'>"c2"</span>, <span class='kw'>c3</span> <span class='kw'>=</span> <span class='st'>"c3"</span>, <span class='kw'>c4</span> <span class='kw'>=</span> <span class='st'>"c4"</span>)</pre>
+    <pre class="usage"><span class='fu'>poverty</span>(
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ech</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/ech/man/toy_ech_2018.html'>toy_ech_2018</a></span>,
+  <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fl'>0.8</span>,
+  <span class='kw'>region_4</span> <span class='kw'>=</span> <span class='st'>"region_4"</span>,
+  <span class='kw'>dpto</span> <span class='kw'>=</span> <span class='st'>"dpto"</span>,
+  <span class='kw'>ht11</span> <span class='kw'>=</span> <span class='st'>"ht11"</span>,
+  <span class='kw'>ht19</span> <span class='kw'>=</span> <span class='st'>"ht19"</span>,
+  <span class='kw'>e30</span> <span class='kw'>=</span> <span class='st'>"e30"</span>,
+  <span class='kw'>numero</span> <span class='kw'>=</span> <span class='st'>"numero"</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -130,16 +134,32 @@ A function to calculate the housing conditions</p>
       <td><p>data.frame</p></td>
     </tr>
     <tr>
-      <th>c2</th>
-      <td><p>Variable name of predominant material on external walls</p></td>
+      <th>scale</th>
+      <td><p>equivalency scale</p></td>
     </tr>
     <tr>
-      <th>c3</th>
-      <td><p>Variable name of predominant roofing material</p></td>
+      <th>region_4</th>
+      <td><p>Variable name of region. Default: region_4</p></td>
     </tr>
     <tr>
-      <th>c4</th>
-      <td><p>Variable name of predominant flooring material</p></td>
+      <th>dpto</th>
+      <td><p>Variable name of departamento. Default: dpto</p></td>
+    </tr>
+    <tr>
+      <th>ht11</th>
+      <td><p>Variable name of income. Default: ht11</p></td>
+    </tr>
+    <tr>
+      <th>ht19</th>
+      <td><p>Variable name of number of individuals in the household. Default: ht19</p></td>
+    </tr>
+    <tr>
+      <th>e30</th>
+      <td><p>householder</p></td>
+    </tr>
+    <tr>
+      <th>numero</th>
+      <td><p>household id</p></td>
     </tr>
     </table>
 
@@ -152,8 +172,9 @@ A function to calculate the housing conditions</p>
 Aviso: El script no es un producto oficial de INE.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>toy_ech_2018</span> <span class='kw'>&lt;-</span> <span class='fu'>housing_conditions</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ech</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/ech/man/toy_ech_2018.html'>toy_ech_2018</a></span>)</div><div class='output co'>#&gt; <span class='message'>A variable has been created in the base: </span>
-#&gt; <span class='message'> 	 housing_conditions (situacion coyuntural de la vivienda)</span></div><div class='input'>
+    <pre class="examples"><div class='input'><span class='no'>toy_ech_2018</span> <span class='kw'>&lt;-</span> <span class='fu'>poverty</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ech</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/ech/man/toy_ech_2018.html'>toy_ech_2018</a></span>)</div><div class='output co'>#&gt; <span class='message'>Variables have been created in the base: </span>
+#&gt; <span class='message'> 	 poor (pobreza) &amp;</span>
+#&gt; <span class='message'>              indigent (indigencia)</span></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

@@ -5,4 +5,4 @@ test_that("years_of_schooling works", {
   testthat::expect_equal(ncol(toy_ech_2018), 580)
   toy_ech_2018 <- level_completion(data = ech::toy_ech_2018)
   testthat::expect_equal(ncol(toy_ech_2018), 582)
-  })
+})

@@ -69,7 +69,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ech</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.15</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.16</span>
       </span>
     </div>
 
@@ -121,7 +121,7 @@
   <span class='kw'>c2</span> <span class='kw'>=</span> <span class='st'>"c2"</span>,
   <span class='kw'>c3</span> <span class='kw'>=</span> <span class='st'>"c3"</span>,
   <span class='kw'>c4</span> <span class='kw'>=</span> <span class='st'>"c4"</span>,
-  <span class='kw'>d9</span> <span class='kw'>=</span> <span class='st'>"d9"</span>,
+  <span class='kw'>d10</span> <span class='kw'>=</span> <span class='st'>"d10"</span>,
   <span class='kw'>d11</span> <span class='kw'>=</span> <span class='st'>"d11"</span>,
   <span class='kw'>d12</span> <span class='kw'>=</span> <span class='st'>"d12"</span>,
   <span class='kw'>d13</span> <span class='kw'>=</span> <span class='st'>"d13"</span>,
@@ -136,8 +136,9 @@
   <span class='kw'>d260</span> <span class='kw'>=</span> <span class='st'>"d260"</span>,
   <span class='kw'>ht19</span> <span class='kw'>=</span> <span class='st'>"ht19"</span>,
   <span class='kw'>pobre06</span> <span class='kw'>=</span> <span class='st'>"pobre06"</span>,
-  <span class='kw'>enrollment</span> <span class='kw'>=</span> <span class='st'>"enrollment"</span>,
-  <span class='kw'>years_schooling</span> <span class='kw'>=</span> <span class='st'>"years_schooling"</span>
+  <span class='kw'>school_enrollment</span> <span class='kw'>=</span> <span class='st'>"school_enrollment"</span>,
+  <span class='kw'>years_schooling</span> <span class='kw'>=</span> <span class='st'>"years_schooling"</span>,
+  <span class='kw'>anio</span> <span class='kw'>=</span> <span class='st'>"anio"</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -149,7 +150,7 @@
     </tr>
     <tr>
       <th>ipm</th>
-      <td><p>Variable name of</p></td>
+      <td><p>Logical if want to include integrated_poverty_measure variable. Default FALSE</p></td>
     </tr>
     <tr>
       <th>c2</th>
@@ -164,8 +165,8 @@
       <td><p>Variable name of predominant flooring material</p></td>
     </tr>
     <tr>
-      <th>d9</th>
-      <td><p>Variable name of number of rooms</p></td>
+      <th>d10</th>
+      <td><p>Variable name of number of rooms to sleep</p></td>
     </tr>
     <tr>
       <th>d11</th>
@@ -181,11 +182,11 @@
     </tr>
     <tr>
       <th>d14</th>
-      <td><p>Variable name of</p></td>
+      <td><p>Variable name of bathroom presence</p></td>
     </tr>
     <tr>
       <th>d15</th>
-      <td><p>Variable name of</p></td>
+      <td><p>Variable name of private bathroom use</p></td>
     </tr>
     <tr>
       <th>d16</th>
@@ -201,19 +202,19 @@
     </tr>
     <tr>
       <th>d21_1</th>
-      <td><p>Variable name of</p></td>
+      <td><p>Variable name of heater or termophon presence</p></td>
     </tr>
     <tr>
       <th>d21_2</th>
-      <td><p>Variable name of</p></td>
+      <td><p>Variable name of instantaneous water heater presence</p></td>
     </tr>
     <tr>
       <th>d21_3</th>
-      <td><p>Variable name of</p></td>
+      <td><p>Variable name of fridge presence</p></td>
     </tr>
     <tr>
       <th>d260</th>
-      <td><p>Variable name of</p></td>
+      <td><p>Variable name of energy source for heating</p></td>
     </tr>
     <tr>
       <th>ht19</th>
@@ -224,12 +225,16 @@
       <td><p>Variable name of poverty</p></td>
     </tr>
     <tr>
-      <th>enrollment</th>
-      <td><p>Variable name of enrollment</p></td>
+      <th>school_enrollment</th>
+      <td><p>Variable name of school_enrollment</p></td>
     </tr>
     <tr>
       <th>years_schooling</th>
       <td><p>Variable name of years_schooling</p></td>
+    </tr>
+    <tr>
+      <th>anio</th>
+      <td><p>Variable name of survey year</p></td>
     </tr>
     </table>
 
@@ -242,9 +247,18 @@
 Aviso: El script no es un producto oficial de INE.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>toy_ech_18</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='enrolled_school.html'>enrolled_school</a></span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ech</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/ech/man/toy_ech_2018.html'>toy_ech_2018</a></span>)
-<span class='no'>toy_ech_18</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='years_of_schooling.html'>years_of_schooling</a></span>(<span class='no'>toy_ech_18</span>)
-<span class='no'>toy_ech_18</span> <span class='kw'>&lt;-</span> <span class='fu'>unsatisfied_basic_needs</span>(<span class='no'>toy_ech_18</span>)</div></pre>
+    <pre class="examples"><div class='input'><span class='no'>toy_ech_18</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='enrolled_school.html'>enrolled_school</a></span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ech</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/ech/man/toy_ech_2018.html'>toy_ech_2018</a></span>)</div><div class='output co'>#&gt; <span class='message'>A variable has been created in the base: </span>
+#&gt; <span class='message'> 	  school_enrollment (matriculacion escolar)</span></div><div class='input'><span class='no'>toy_ech_18</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='years_of_schooling.html'>years_of_schooling</a></span>(<span class='no'>toy_ech_18</span>)</div><div class='output co'>#&gt; <span class='message'>A variable has been created in the base: </span>
+#&gt; <span class='message'> 	  years_schooling (anios de escolaridad)</span></div><div class='input'><span class='no'>toy_ech_18</span> <span class='kw'>&lt;-</span> <span class='fu'>unsatisfied_basic_needs</span>(<span class='no'>toy_ech_18</span>)</div><div class='output co'>#&gt; <span class='message'>Variables have been created in the base: </span>
+#&gt; <span class='message'> 	 UBN_housing (NBI vivienda);</span>
+#&gt; <span class='message'>            UBN_water (NBI acceso al agua);</span>
+#&gt; <span class='message'>            UBN_sewerage (NBI saneamiento);</span>
+#&gt; <span class='message'>            UBN_electricity (NBI electricidad);</span>
+#&gt; <span class='message'>            UBN_confort (NBI confort);</span>
+#&gt; <span class='message'>            UBN_education (NBI educacion);</span>
+#&gt; <span class='message'>            UBN_q (suma de NBIs) &amp;</span>
+#&gt; <span class='message'>            UBN (Categoria NBI)</span></div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

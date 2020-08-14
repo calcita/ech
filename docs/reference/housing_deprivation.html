@@ -72,7 +72,7 @@ This function allows you to calculate the housing status" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ech</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.15</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.16</span>
       </span>
     </div>
 
@@ -218,10 +218,25 @@ Aviso: El script no es un producto oficial de INE.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='no'>toy_ech_2018</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='income_constant_prices.html'>income_constant_prices</a></span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ech</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/ech/man/toy_ech_2018.html'>toy_ech_2018</a></span>)
-<span class='no'>toy_ech_2018</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='income_quantiles.html'>income_quantiles</a></span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>toy_ech_2018</span>)
-<span class='no'>toy_ech_2018</span> <span class='kw'>&lt;-</span> <span class='fu'>housing_deprivation</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>toy_ech_2018</span>)
-<span class='co'># }</span></div></pre>
+<span class='no'>toy_ech_2018</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='income_constant_prices.html'>income_constant_prices</a></span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ech</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/ech/man/toy_ech_2018.html'>toy_ech_2018</a></span>)</div><div class='output co'>#&gt; <span class='message'>Variables have been created in the base: </span>
+#&gt; <span class='message'> 	 y_pc_d  (income per capita deflated);</span>
+#&gt; <span class='message'>         rv_d (rental value deflated);</span>
+#&gt; <span class='message'>         y_wrv_d (income without rental value deflated) &amp;</span>
+#&gt; <span class='message'>         y_wrv_pc_d (income without rental value per capita deflated)</span></div><div class='input'><span class='no'>toy_ech_2018</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='income_quantiles.html'>income_quantiles</a></span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>toy_ech_2018</span>)</div><div class='output co'>#&gt; <span class='message'>A variable has been created in the base: </span>
+#&gt; <span class='message'> 	 quintil (quintil de ingresos)</span></div><div class='input'><span class='no'>toy_ech_2018</span> <span class='kw'>&lt;-</span> <span class='fu'>housing_deprivation</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>toy_ech_2018</span>)</div><div class='output co'>#&gt; <span class='message'>Variables have been created in the base: </span>
+#&gt; <span class='message'> 	 overcrowding (Carencia: Hacinamiento);</span>
+#&gt; <span class='message'>         bathroom (Carencia: Banio (Minimo un banio));</span>
+#&gt; <span class='message'>         rooms (Carencia: Ambientes adecuados(cocina, comedor, estar diario));</span>
+#&gt; <span class='message'>         roof_materials (Carencia: Techo adecuado);</span>
+#&gt; <span class='message'>         wall_materials (Carencia: Paredes adecuadas);</span>
+#&gt; <span class='message'>         floor_materials (Carencia: Pisos adecuados);</span>
+#&gt; <span class='message'>         water (Carencia: Agua);</span>
+#&gt; <span class='message'>         running_water (Carencia: Red general para el agua o pozo);</span>
+#&gt; <span class='message'>         sewerage (Carencia: Desague);</span>
+#&gt; <span class='message'>         electricity (Carencia: Red electrica);</span>
+#&gt; <span class='message'>         housing_deprivation_q (Suma de carencias habitacionales) &amp;</span>
+#&gt; <span class='message'>         housing_deprivation (Carencia habitacional en relacion al parametro n)</span></div><div class='input'># }
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

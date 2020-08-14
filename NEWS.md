@@ -1,6 +1,10 @@
 # log history of ech package development
 
 -------------------------------------------------------
+## ech v0.0.1.16
+* Improvement of get_estimation...
+* 
+
 ## ech v0.0.1.15
 * Variables used completed in dictionary 2011:2019
 * Variables used confirmed in dictionary 2013:2019

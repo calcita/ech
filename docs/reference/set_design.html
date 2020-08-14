@@ -72,7 +72,7 @@ This function allows you to set the survey desing" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ech</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.15</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.16</span>
       </span>
     </div>
 
@@ -123,9 +123,10 @@ This function allows you to set the survey desing</p>
     <pre class="usage"><span class='fu'>set_design</span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ech</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/ech/man/toy_ech_2018.html'>toy_ech_2018</a></span>,
   <span class='kw'>level</span> <span class='kw'>=</span> <span class='st'>"i"</span>,
-  <span class='kw'>ids</span> <span class='kw'>=</span> <span class='st'>"numero"</span>,
-  <span class='kw'>strata</span> <span class='kw'>=</span> <span class='st'>"estred13"</span>,
-  <span class='kw'>weights</span> <span class='kw'>=</span> <span class='st'>"pesoano"</span>
+  <span class='kw'>ids</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>numero</span> <span class='kw'>=</span> <span class='st'>"numero"</span>,
+  <span class='kw'>estred13</span> <span class='kw'>=</span> <span class='st'>"estred13"</span>,
+  <span class='kw'>pesoano</span> <span class='kw'>=</span> <span class='st'>"pesoano"</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -141,15 +142,19 @@ This function allows you to set the survey desing</p>
     </tr>
     <tr>
       <th>ids</th>
-      <td><p>variables specifying cluster ids from largest level to smallest level (leaving the argument empty, NULL, 1, or 0 indicate no clusters).</p></td>
+      <td><p>variables specifying the unit primary sampling (it's not a public variable)</p></td>
     </tr>
     <tr>
-      <th>strata</th>
-      <td><p>variable specifying strata.</p></td>
+      <th>numero</th>
+      <td><p>variables specifying  the householder ids</p></td>
     </tr>
     <tr>
-      <th>weights</th>
-      <td><p>variable specifying weights (inverse of probability).</p></td>
+      <th>estred13</th>
+      <td><p>variable specifying strata</p></td>
+    </tr>
+    <tr>
+      <th>pesoano</th>
+      <td><p>variable specifying weights</p></td>
     </tr>
     </table>
 
@@ -163,23 +168,22 @@ Aviso: El script no es un producto oficial de INE.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'>set_design</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ech</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/ech/man/toy_ech_2018.html'>toy_ech_2018</a></span>, <span class='kw'>level</span> <span class='kw'>=</span> <span class='st'>"h"</span>)</div><div class='output co'>#&gt; Stratified 1 - level Cluster Sampling design (with replacement)
-#&gt; With (987) clusters.
+<span class='fu'>set_design</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ech</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/ech/man/toy_ech_2018.html'>toy_ech_2018</a></span>, <span class='kw'>level</span> <span class='kw'>=</span> <span class='st'>"h"</span>)</div><div class='output co'>#&gt; Stratified Independent Sampling design (with replacement)
 #&gt; Called via srvyr
 #&gt; Sampling variables:
-#&gt;  - ids: numero
-#&gt;  - probs: estred13
-#&gt;  - strata: pesoano
+#&gt;  - ids: `1`
+#&gt;  - strata: estred13
+#&gt;  - weights: pesoano
 #&gt; Data variables: numero (chr), nper (dbl), anio (chr), mes (dbl+lbl), dpto
 #&gt;   (dbl+lbl), nomdpto (chr), secc (chr), segm (chr), loc_agr_13 (chr),
 #&gt;   nom_loc_agr_13 (chr), ccz (dbl), barrio (dbl), nombarrio (chr), estred13
-#&gt;   (dbl+lbl), region_3 (dbl+lbl), region_4 (dbl+lbl), pesoano (dbl), pesotri
-#&gt;   (dbl), pesomen (dbl), c1 (dbl+lbl), c2 (dbl+lbl), c3 (dbl+lbl), c4 (dbl+lbl),
-#&gt;   c5_1 (dbl+lbl), c5_2 (dbl+lbl), c5_3 (dbl+lbl), c5_4 (dbl+lbl), c5_5
-#&gt;   (dbl+lbl), c5_6 (dbl+lbl), c5_7 (dbl+lbl), c5_8 (dbl+lbl), c5_9 (dbl+lbl),
-#&gt;   c5_10 (dbl+lbl), c5_11 (dbl+lbl), c5_12 (dbl+lbl), c6 (dbl), d8_1 (dbl+lbl),
-#&gt;   d8_2 (dbl), d8_3 (dbl), d8_4 (dbl+lbl), d9 (dbl), d10 (dbl), d11 (dbl+lbl),
-#&gt;   d12 (dbl+lbl), d13 (dbl+lbl), d14 (dbl), d15 (dbl+lbl), d16 (dbl+lbl), d18
+#&gt;   (chr), region_3 (dbl+lbl), region_4 (dbl+lbl), pesoano (dbl), pesotri (dbl),
+#&gt;   pesomen (dbl), c1 (dbl+lbl), c2 (dbl+lbl), c3 (dbl+lbl), c4 (dbl+lbl), c5_1
+#&gt;   (dbl+lbl), c5_2 (dbl+lbl), c5_3 (dbl+lbl), c5_4 (dbl+lbl), c5_5 (dbl+lbl),
+#&gt;   c5_6 (dbl+lbl), c5_7 (dbl+lbl), c5_8 (dbl+lbl), c5_9 (dbl+lbl), c5_10
+#&gt;   (dbl+lbl), c5_11 (dbl+lbl), c5_12 (dbl+lbl), c6 (dbl), d8_1 (dbl+lbl), d8_2
+#&gt;   (dbl), d8_3 (dbl), d8_4 (dbl+lbl), d9 (dbl), d10 (dbl), d11 (dbl+lbl), d12
+#&gt;   (dbl+lbl), d13 (dbl+lbl), d14 (dbl), d15 (dbl+lbl), d16 (dbl+lbl), d18
 #&gt;   (dbl+lbl), d260 (dbl+lbl), d19 (dbl+lbl), d20 (dbl+lbl), d21_1 (dbl+lbl),
 #&gt;   d21_2 (dbl+lbl), d21_3 (dbl+lbl), d21_4 (dbl+lbl), d21_4_1 (dbl), d21_5
 #&gt;   (dbl+lbl), d21_5_1 (dbl), d21_6 (dbl+lbl), d21_20 (dbl+lbl), d21_7 (dbl+lbl),

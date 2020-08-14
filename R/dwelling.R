@@ -86,7 +86,7 @@ housing_deprivation <- function(data = ech::toy_ech_2018,
     )
 
   message("Variables have been created in the base: \n \t overcrowding (Carencia: Hacinamiento);
-         bathroom (Carencia: Baño (Minimo un banio));
+         bathroom (Carencia: Banio (Minimo un banio));
          rooms (Carencia: Ambientes adecuados(cocina, comedor, estar diario));
          roof_materials (Carencia: Techo adecuado);
          wall_materials (Carencia: Paredes adecuadas);
@@ -95,7 +95,7 @@ housing_deprivation <- function(data = ech::toy_ech_2018,
          running_water (Carencia: Red general para el agua o pozo);
          sewerage (Carencia: Desague);
          electricity (Carencia: Red electrica);
-         housing_deprivation_q (Suma de carencias habitacionales ) &
+         housing_deprivation_q (Suma de carencias habitacionales) &
          housing_deprivation (Carencia habitacional en relacion al parametro n)")
   data
 }

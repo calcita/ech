@@ -60,6 +60,27 @@ unsatisfied_basic_needs <- function(data = ech::toy_ech_2018,
                                     years_schooling = "years_schooling",
                                     anio = "anio"){
 
+  # checks ---
+  assertthat::assert_that(is.data.frame(data))
+  assertthat::assert_that(c2  %in% names(data), msg =  glue::glue("Sorry... :( \n {c2} is not in data"))
+  assertthat::assert_that(c3  %in% names(data), msg =  glue::glue("Sorry... :( \n {c3} is not in data"))
+  assertthat::assert_that(c4  %in% names(data), msg =  glue::glue("Sorry... :( \n {c4} is not in data"))
+  assertthat::assert_that(d10  %in% names(data), msg =  glue::glue("Sorry... :( \n {d10} is not in data"))
+  assertthat::assert_that(d11  %in% names(data), msg =  glue::glue("Sorry... :( \n {d11} is not in data"))
+  assertthat::assert_that(d12  %in% names(data), msg =  glue::glue("Sorry... :( \n {d12} is not in data"))
+  assertthat::assert_that(d13  %in% names(data), msg =  glue::glue("Sorry... :( \n {d13} is not in data"))
+  assertthat::assert_that(d14  %in% names(data), msg =  glue::glue("Sorry... :( \n {d14} is not in data"))
+  assertthat::assert_that(d15  %in% names(data), msg =  glue::glue("Sorry... :( \n {d15} is not in data"))
+  assertthat::assert_that(d16  %in% names(data), msg =  glue::glue("Sorry... :( \n {d16} is not in data"))
+  assertthat::assert_that(d18  %in% names(data), msg =  glue::glue("Sorry... :( \n {d18} is not in data"))
+  assertthat::assert_that(d19  %in% names(data), msg =  glue::glue("Sorry... :( \n {d19} is not in data"))
+  assertthat::assert_that(d21_1  %in% names(data), msg =  glue::glue("Sorry... :( \n {d21_1} is not in data"))
+  assertthat::assert_that(d21_2  %in% names(data), msg =  glue::glue("Sorry... :( \n {d21_2} is not in data"))
+  assertthat::assert_that(d21_3  %in% names(data), msg =  glue::glue("Sorry... :( \n {d21_3} is not in data"))
+  assertthat::assert_that(d260  %in% names(data), msg =  glue::glue("Sorry... :( \n {d260} is not in data"))
+  assertthat::assert_that(ht19  %in% names(data), msg =  glue::glue("Sorry... :( \n {ht19} is not in data"))
+  assertthat::assert_that(pobre06  %in% names(data), msg =  glue::glue("Sorry... :( \n {pobre06} is not in data"))
+  assertthat::assert_that(anio  %in% names(data), msg =  glue::glue("Sorry... :( \n {anio} is not in data"))
   assertthat::assert_that(school_enrollment %in% names(data), msg = "Sorry... :( \n school_enrollment is not calculated, please run enrolled_school() to obtain the variable.")
   assertthat::assert_that(years_schooling %in% names(data), msg = "Sorry... :( \n years_schooling is not calculated, please run years_of_schooling() to obtain the variable.")
 
@@ -78,7 +99,15 @@ unsatisfied_basic_needs <- function(data = ech::toy_ech_2018,
           UBN_q == 1 ~ "Con 1 NBI",
           UBN_q == 2 ~ "Con 2 NBI",
           UBN_q >= 3 ~ "Con 3 o mas NBI"))
+
     message(glue::glue("El objeto { data } es previo a 2016 y no se incluye UBN_confort"))
+    message("Variables have been created in the base: \n \t UBN_housing (NBI vivienda);
+            UBN_water (NBI acceso al agua);
+            UBN_sewerage (NBI saneamiento);
+            UBN_electricity (NBI electricidad);
+            UBN_education (NBI educacion);
+            UBN_q (suma de NBIs) &
+            UBN (Categoria NBI)")
   } else {
     data <- data %>%
       dplyr::mutate(
@@ -95,6 +124,14 @@ unsatisfied_basic_needs <- function(data = ech::toy_ech_2018,
           UBN_q == 2 ~ "Con 2 NBI",
           UBN_q >= 3 ~ "Con 3 o mas NBI")
       )
+    message("Variables have been created in the base: \n \t UBN_housing (NBI vivienda);
+            UBN_water (NBI acceso al agua);
+            UBN_sewerage (NBI saneamiento);
+            UBN_electricity (NBI electricidad);
+            UBN_confort (NBI confort);
+            UBN_education (NBI educacion);
+            UBN_q (suma de NBIs) &
+            UBN (Categoria NBI)")
   }
 
   if (ipm == T){
@@ -105,6 +142,7 @@ unsatisfied_basic_needs <- function(data = ech::toy_ech_2018,
         pobre06 == 0 & UBN_q >= 1 ~ "Pobreza inercial",
         pobre06 == 1 & UBN_q >= 1 ~ "Pobreza cronica"
       ))
+    message(" \t integrated_poverty_measure (Pobreza integrada)")
   }
     return(data)
 }
@@ -138,6 +176,15 @@ poverty <- function(data = ech::toy_ech_2018,
                     e30 = "e30",
                     numero = "numero"){
 
+  # checks ---
+  assertthat::assert_that(is.data.frame(data))
+  assertthat::assert_that(region_4  %in% names(data), msg =  glue::glue("Sorry... :( \n {region_4} is not in data"))
+  assertthat::assert_that(dpto  %in% names(data), msg =  glue::glue("Sorry... :( \n {dpto} is not in data"))
+  assertthat::assert_that(ht11  %in% names(data), msg =  glue::glue("Sorry... :( \n {ht11} is not in data"))
+  assertthat::assert_that(ht19  %in% names(data), msg =  glue::glue("Sorry... :( \n {ht19} is not in data"))
+  assertthat::assert_that(e30  %in% names(data), msg =  glue::glue("Sorry... :( \n {e30} is not in data"))
+  assertthat::assert_that(numero  %in% names(data), msg =  glue::glue("Sorry... :( \n {numero} is not in data"))
+
   yy <- max(as.numeric(data$anio))
   m <- basket_goods(data = ech::cba_cbna_mdeo, year = yy) %>% dplyr::mutate(mm = 1:12) %>% dplyr::select(-fecha, -cbt_lp)
   i <- basket_goods(data = ech::cba_cbna_int, year = yy) %>% dplyr::mutate(mm = 1:12) %>% dplyr::select(-fecha, -cbt_lp)
@@ -145,7 +192,7 @@ poverty <- function(data = ech::toy_ech_2018,
 
   h <- data %>%
     dplyr::filter(e30 == 1) %>%
-    dplyr::select(numero, mes, dpto, region_4, e30, ht11, ht19,) %>%
+    dplyr::select(numero, mes, dpto, region_4, e30, ht11, ht19) %>%
     dplyr::mutate(mm = as.integer(haven::zap_labels(mes))) %>%
     dplyr::left_join(., m, by = c("mm")) %>%
     dplyr::rename(cba_m = cba_li, cbna_m = cbna) %>%
@@ -164,12 +211,16 @@ poverty <- function(data = ech::toy_ech_2018,
         region_4 == 4 ~ cbna_r))  %>%
     dplyr::select(-mm:-cbna_r)
 
-      h <- h %>% dplyr::mutate(
-        indigency_line = cba * ht19,
-        poverty_line =  indigency_line + cbna * (ht19 ^ scale),
-        indigent = ifelse(ht11 <= indigency_line, 1, 0),
-        poor = ifelse(ht11 <= poverty_line, 1, 0))
+  h <- h %>% dplyr::mutate(
+    indigency_line = cba * ht19,
+    poverty_line =  indigency_line + cbna * (ht19 ^ scale),
+    indigent = ifelse(ht11 <= indigency_line, 1, 0),
+    poor = ifelse(ht11 <= poverty_line, 1, 0))
 
-      data <- h %>% dplyr::select(numero, poor, indigent) %>%
-        dplyr:: left_join(data, ., by = "numero")
-  }
+  data <- h %>% dplyr::select(numero, poor, indigent) %>%
+    dplyr:: left_join(data, ., by = "numero")
+
+  message("Variables have been created in the base: \n \t poor (pobreza) &
+              indigent (indigencia)")
+  data
+}

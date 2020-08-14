@@ -69,7 +69,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ech</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.15</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.16</span>
       </span>
     </div>
 
@@ -122,6 +122,10 @@
   <span class='kw'>by.y</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>domain</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>level</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>ids</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>numero</span> <span class='kw'>=</span> <span class='st'>"numero"</span>,
+  <span class='kw'>estred13</span> <span class='kw'>=</span> <span class='st'>"estred13"</span>,
+  <span class='kw'>pesoano</span> <span class='kw'>=</span> <span class='st'>"pesoano"</span>,
   <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"estimacion"</span>
 )</pre>
 
@@ -146,11 +150,27 @@
     </tr>
     <tr>
       <th>domain</th>
-      <td><p>subpopulation reference setted as logical</p></td>
+      <td><p>subpopulation reference setted as character expresion of logical evaluation</p></td>
     </tr>
     <tr>
       <th>level</th>
       <td><p>is household ("h") or individual ("i").</p></td>
+    </tr>
+    <tr>
+      <th>ids</th>
+      <td><p>ids</p></td>
+    </tr>
+    <tr>
+      <th>numero</th>
+      <td><p>household id</p></td>
+    </tr>
+    <tr>
+      <th>estred13</th>
+      <td><p>strata</p></td>
+    </tr>
+    <tr>
+      <th>pesoano</th>
+      <td><p>weights</p></td>
     </tr>
     <tr>
       <th>name</th>
@@ -168,31 +188,22 @@ Aviso: El script no es un producto oficial de INE.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'>get_estimation_mean</span>(<span class='kw'>variable</span> <span class='kw'>=</span> <span class='st'>"pobre06"</span>, <span class='kw'>by.x</span> <span class='kw'>=</span> <span class='st'>"dpto"</span>, <span class='kw'>level</span> <span class='kw'>=</span> <span class='st'>"h"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: The `add` argument of `group_by()` is deprecated as of dplyr 1.0.0.</span>
-#&gt; <span class='warning'>Please use the `.add` argument instead.</span>
-#&gt; <span class='warning'><span style='color: #555555;'>This warning is displayed once every 8 hours.</span><span></span>
-#&gt; <span class='warning'></span><span style='color: #555555;'>Call `lifecycle::last_warnings()` to see where this warning was generated.</span><span></span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 19 x 3</span><span>
-#&gt;                   dpto colname colname_se
-#&gt;              </span><span style='color: #555555;font-style: italic;'>&lt;dbl+lbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span>  1</span><span style='color: #555555;'> [Montevideo]</span><span>      0.198      0.027</span><span style='text-decoration: underline;'>2</span><span>
-#&gt; </span><span style='color: #555555;'> 2</span><span>  2</span><span style='color: #555555;'> [Artigas]</span><span>         0.143      0.066</span><span style='text-decoration: underline;'>3</span><span>
-#&gt; </span><span style='color: #555555;'> 3</span><span>  3</span><span style='color: #555555;'> [Canelones]</span><span>       0.045</span><span style='text-decoration: underline;'>7</span><span>     0.018</span><span style='text-decoration: underline;'>2</span><span>
-#&gt; </span><span style='color: #555555;'> 4</span><span>  4</span><span style='color: #555555;'> [Cerro Largo]</span><span>     0          0     
-#&gt; </span><span style='color: #555555;'> 5</span><span>  5</span><span style='color: #555555;'> [Colonia]</span><span>         0          0     
-#&gt; </span><span style='color: #555555;'> 6</span><span>  6</span><span style='color: #555555;'> [Durazno]</span><span>         0          0     
-#&gt; </span><span style='color: #555555;'> 7</span><span>  7</span><span style='color: #555555;'> [Flores]</span><span>          0          0     
-#&gt; </span><span style='color: #555555;'> 8</span><span>  8</span><span style='color: #555555;'> [Florida]</span><span>         0.093</span><span style='text-decoration: underline;'>8</span><span>     0.051</span><span style='text-decoration: underline;'>9</span><span>
-#&gt; </span><span style='color: #555555;'> 9</span><span>  9</span><span style='color: #555555;'> [Lavalleja]</span><span>       0.045</span><span style='text-decoration: underline;'>5</span><span>     0.044</span><span style='text-decoration: underline;'>5</span><span>
-#&gt; </span><span style='color: #555555;'>10</span><span> 10</span><span style='color: #555555;'> [Maldonado]</span><span>       0.016</span><span style='text-decoration: underline;'>7</span><span>     0.016</span><span style='text-decoration: underline;'>7</span><span>
-#&gt; </span><span style='color: #555555;'>11</span><span> 11</span><span style='color: #555555;'> [Paysandú]</span><span>        0.064</span><span style='text-decoration: underline;'>5</span><span>     0.061</span><span style='text-decoration: underline;'>3</span><span>
-#&gt; </span><span style='color: #555555;'>12</span><span> 12</span><span style='color: #555555;'> [Río Negro]</span><span>       0.105      0.070</span><span style='text-decoration: underline;'>2</span><span>
-#&gt; </span><span style='color: #555555;'>13</span><span> 13</span><span style='color: #555555;'> [Rivera]</span><span>          0.179      0.061</span><span style='text-decoration: underline;'>9</span><span>
-#&gt; </span><span style='color: #555555;'>14</span><span> 14</span><span style='color: #555555;'> [Rocha]</span><span>           0.095</span><span style='text-decoration: underline;'>2</span><span>     0.064</span><span style='text-decoration: underline;'>1</span><span>
-#&gt; </span><span style='color: #555555;'>15</span><span> 15</span><span style='color: #555555;'> [Salto]</span><span>           0.081</span><span style='text-decoration: underline;'>6</span><span>     0.047</span><span style='text-decoration: underline;'>3</span><span>
-#&gt; </span><span style='color: #555555;'>16</span><span> 16</span><span style='color: #555555;'> [San José]</span><span>        0.023</span><span style='text-decoration: underline;'>3</span><span>     0.023</span><span style='text-decoration: underline;'>0</span><span>
-#&gt; </span><span style='color: #555555;'>17</span><span> 17</span><span style='color: #555555;'> [Soriano]</span><span>         0          0     
-#&gt; </span><span style='color: #555555;'>18</span><span> 18</span><span style='color: #555555;'> [Tacuarembó]</span><span>      0.037</span><span style='text-decoration: underline;'>0</span><span>     0.036</span><span style='text-decoration: underline;'>4</span><span>
-#&gt; </span><span style='color: #555555;'>19</span><span> 19</span><span style='color: #555555;'> [Treinta y Tres]</span><span>  0          0     </div><div class='input'># }
+<span class='fu'>get_estimation_mean</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ech</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/ech/man/toy_ech_2018.html'>toy_ech_2018</a></span>, <span class='kw'>variable</span> <span class='kw'>=</span> <span class='st'>"pobre06"</span>, <span class='kw'>by.x</span> <span class='kw'>=</span> <span class='st'>"dpto"</span>, <span class='kw'>level</span> <span class='kw'>=</span> <span class='st'>"h"</span>)</div><div class='output co'>#&gt; <span class='message'>These confidence intervals are only an approximation of the correct confidence intervals </span>
+#&gt; <span class='message'>  that arise from fully defining the sample design</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 26 x 5</span><span>
+#&gt; </span><span style='color: #555555;'># Groups:   dpto [19]</span><span>
+#&gt;    dpto        pobre06  colname colname_low colname_upp
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> Montevideo  No pobre  0.940      0.903        0.976 
+#&gt; </span><span style='color: #555555;'> 2</span><span> Montevideo  Pobre     0.060</span><span style='text-decoration: underline;'>4</span><span>     0.024</span><span style='text-decoration: underline;'>2</span><span>       0.096</span><span style='text-decoration: underline;'>7</span><span>
+#&gt; </span><span style='color: #555555;'> 3</span><span> Artigas     No pobre  0.739      0.484        0.994 
+#&gt; </span><span style='color: #555555;'> 4</span><span> Artigas     Pobre     0.261      0.005</span><span style='text-decoration: underline;'>68</span><span>      0.516 
+#&gt; </span><span style='color: #555555;'> 5</span><span> Canelones   No pobre  1          1            1     
+#&gt; </span><span style='color: #555555;'> 6</span><span> Cerro Largo No pobre  1          1            1     
+#&gt; </span><span style='color: #555555;'> 7</span><span> Colonia     No pobre  1          1            1     
+#&gt; </span><span style='color: #555555;'> 8</span><span> Durazno     No pobre  0.728      0.405        1.05  
+#&gt; </span><span style='color: #555555;'> 9</span><span> Durazno     Pobre     0.272     -</span><span style='color: #BB0000;'>0.050</span><span style='color: #BB0000;text-decoration: underline;'>4</span><span>       0.595 
+#&gt; </span><span style='color: #555555;'>10</span><span> Flores      No pobre  1          1            1     
+#&gt; </span><span style='color: #555555;'># ... with 16 more rows</span><span></div><div class='input'># }
 </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
