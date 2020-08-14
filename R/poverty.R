@@ -100,7 +100,7 @@ unsatisfied_basic_needs <- function(data = ech::toy_ech_2018,
           UBN_q == 2 ~ "Con 2 NBI",
           UBN_q >= 3 ~ "Con 3 o mas NBI"))
 
-    message(glue::glue("El objeto { data } es previo a 2016 y no se incluye UBN_confort"))
+    message(glue::glue("El objeto data es previo a 2016 y no se incluye UBN_confort"))
     message("Variables have been created in the base: \n \t UBN_housing (NBI vivienda);
             UBN_water (NBI acceso al agua);
             UBN_sewerage (NBI saneamiento);

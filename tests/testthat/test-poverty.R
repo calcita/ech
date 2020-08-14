@@ -7,6 +7,8 @@ test_that("ubn works", {
   expect_equal(ncol(toy_ech_18b), 594)
   toy_ech_2018 <- poverty(data = ech::toy_ech_2018)
   expect_equal(ncol(toy_ech_18), 585)
+  toy_2015 <- toy_ech_18 %>% dplyr::mutate(anio = 2015)
+  toy_15 <- unsatisfied_basic_needs(data = toy_2015)
   toy_ech_18 <- poverty(data = ech::toy_ech_2018)
   expect_equal(sum(toy_ech_18$pobre06), dput(sum(toy_ech_18$poor)))
 })
