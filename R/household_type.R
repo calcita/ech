@@ -5,7 +5,6 @@
 #' @param e26 sex
 #' @param e27 age
 #' @param e30 householder
-#' @param colname custom name for the new variable
 #'
 #' @importFrom dplyr mutate group_by select
 #' @importFrom glue glue
@@ -25,17 +24,18 @@
 household_type <- function(data = ech::toy_ech_2018,
                            e26 = "e26",
                            e27 = "e27",
-                           e30 = "e30",
-                           colname = "tipo_hogar") {
+                           e30 = "e30") {
 
+  # checks ---
   assertthat::assert_that(is.data.frame(data))
   assertthat::assert_that(e26  %in% names(data), msg =  glue::glue("Sorry... :( \n {e26} is not in data"))
   assertthat::assert_that(e27  %in% names(data), msg =  glue::glue("Sorry... :( \n {e27} is not in data"))
   assertthat::assert_that(e30  %in% names(data), msg =  glue::glue("Sorry... :( \n {e30} is not in data"))
 
-  if (colname %in% names(data)) {
-    message(glue::glue("El data frame ya contiene una variable con ese nombre, se va a sobreescribir"))
-  }
+  # if ("household_type" %in% names(data)) {
+  #   message(glue::glue("The data.frame already contains a variable with the name household_type, it will be overwritten"))
+  # }
+
   data <- data %>%
     dplyr::mutate(sex_householder = ifelse(.data[[e26]] == 1 & .data[[e30]] == 1,1, # 1 is man and householder
                                         ifelse(.data[[e26]] == 2 & .data[[e30]] == 1, 2, 0)), #0 is woman householder
@@ -68,8 +68,6 @@ household_type <- function(data = ech::toy_ech_2018,
            )
 
   data <- data %>% dplyr::select(everything(), -.data$sex_householder:-.data$no_rel)
-
-  names(data)[which(names(data) == "household_type")] <- colname
-  message(glue::glue("Se ha creado la variable {colname} en la base"))
+  message("A variable has been created in the base: \n \t household_type (Tipo de hogar)")
   data
  }

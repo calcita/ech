@@ -22,14 +22,21 @@ employment <- function(data = ech::toy_ech_2018,
                        pobpcoac = "pobpcoac"){
 
 # checks ---
+  assertthat::assert_that(is.data.frame(data))
   assertthat::assert_that(pobpcoac %in% names(data), msg = glue::glue("Sorry... :( \n  {popbcoac} is not in {data}"))
 
-  # variables ---
-    data %<>% dplyr::mutate(pea = ifelse({{pobpcoac}} %in% 2:5, 1, 0),
-                            pet = ifelse({{pobpcoac}} != 1, 1, 0),
-                            po  = ifelse({{pobpcoac}} == 2, 1, 0),
-                            pd  = ifelse({{pobpcoac}} %in% 3:5, 1, 0)
+# variables ---
+  data %<>% dplyr::mutate(pea = ifelse({{pobpcoac}} %in% 2:5, 1, 0),
+                          pet = ifelse({{pobpcoac}} != 1, 1, 0),
+                          po  = ifelse({{pobpcoac}} == 2, 1, 0),
+                          pd  = ifelse({{pobpcoac}} %in% 3:5, 1, 0)
   )
+
+  message("Variables have been created in the base: \n \t pea (Poblacion economicamente activa);
+         pet (Poblacion en edad de trabajar);
+         po (Poblacion ocupada) &
+         pd (Poblacion desocupada)")
+  data
 }
 
 
@@ -100,6 +107,8 @@ branch_ciiu <- function(data = ech::toy_ech_2018,
         branch_ciiu == 16 ~ "Otras actividades de servicio; Arte, entretenimiento y recreacion",
         branch_ciiu == 17 ~ "Actividades de los hogares como empleadores",
         TRUE ~ ""))
+    message("A variable has been created in the base: \n \t branch_ciiu (Rama de actividad CIIU)
+            branch_group_ciiu (Rama de actividad CIIU agrupadas)")
   }
 
     if (disaggregated == TRUE){
@@ -122,6 +131,8 @@ branch_ciiu <- function(data = ech::toy_ech_2018,
           f72_2 < 9700 ~ "Otros servicios sociales",
           f72_2 < 9900 ~ "Hogares privados con servicio domestico",
           TRUE ~ ""))
+      message("A variable has been created in the base: \n \t branch_ciiu (Rama de actividad CIIU)
+              branch_ciiu_disaggregated (Rama de actividad CIIU desagregada)")
     }
     return(data)
 }

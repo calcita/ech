@@ -85,6 +85,19 @@ housing_deprivation <- function(data = ech::toy_ech_2018,
       housing_deprivation = ifelse(housing_deprivation_q > 0, n, 0)
     )
 
+  message("Variables have been created in the base: \n \t overcrowding (Carencia: Hacinamiento);
+         bathroom (Carencia: Baño (Minimo un banio));
+         rooms (Carencia: Ambientes adecuados(cocina, comedor, estar diario));
+         roof_materials (Carencia: Techo adecuado);
+         wall_materials (Carencia: Paredes adecuadas);
+         floor_materials (Carencia: Pisos adecuados);
+         water (Carencia: Agua);
+         running_water (Carencia: Red general para el agua o pozo);
+         sewerage (Carencia: Desague);
+         electricity (Carencia: Red electrica);
+         housing_deprivation_q (Suma de carencias habitacionales ) &
+         housing_deprivation (Carencia habitacional en relacion al parametro n)")
+  data
 }
 
 
@@ -132,6 +145,21 @@ housing_situation <- function(data = ech::toy_ech_2018,
                               c5_11 = "c5_11",
                               c5_12 = "c5_12"){
 
+  # checks ---
+  assertthat::assert_that(is.data.frame(data))
+  assertthat::assert_that(c5_1  %in% names(data), msg =  glue:glue("Sorry... :( \n {c5_1} is not in data"))
+  assertthat::assert_that(c5_2  %in% names(data), msg =  glue:glue("Sorry... :( \n {c5_2} is not in data"))
+  assertthat::assert_that(c5_3  %in% names(data), msg =  glue:glue("Sorry... :( \n {c5_3} is not in data"))
+  assertthat::assert_that(c5_4  %in% names(data), msg =  glue:glue("Sorry... :( \n {c5_4} is not in data"))
+  assertthat::assert_that(c5_5  %in% names(data), msg =  glue:glue("Sorry... :( \n {c5_5} is not in data"))
+  assertthat::assert_that(c5_6  %in% names(data), msg =  glue:glue("Sorry... :( \n {c5_6} is not in data"))
+  assertthat::assert_that(c5_7  %in% names(data), msg =  glue:glue("Sorry... :( \n {c5_7} is not in data"))
+  assertthat::assert_that(c5_8  %in% names(data), msg =  glue:glue("Sorry... :( \n {c5_8} is not in data"))
+  assertthat::assert_that(c5_9  %in% names(data), msg =  glue:glue("Sorry... :( \n {c5_9} is not in data"))
+  assertthat::assert_that(c5_10  %in% names(data), msg =  glue:glue("Sorry... :( \n {c5_10} is not in data"))
+  assertthat::assert_that(c5_11  %in% names(data), msg =  glue:glue("Sorry... :( \n {c5_11} is not in data"))
+  assertthat::assert_that(c5_12  %in% names(data), msg =  glue:glue("Sorry... :( \n {c5_12} is not in data"))
+
   data <- data %>%
     dplyr::mutate(
       housing_situation = ifelse(c5_1 == 2 & c5_2 == 2 &  c5_3 == 2 & c5_4 == 2 & c5_5 == 2 & c5_6 == 2 & c5_7 == 2 & c5_8 == 2 & c5_9 == 2 & c5_10 == 2 & c5_11 == 2 & c5_12 == 2, 1,
@@ -140,7 +168,9 @@ housing_situation <- function(data = ech::toy_ech_2018,
                                                ifelse(c5_3 == 1 | c5_10 == 1  | c5_11 == 1, 4, NA)))),
       housing_situation = haven::labelled(housing_situation, labels = c("Sin problemas" = 1, "Problemas leves" = 2, "Problemas moderados" = 3, "Problemas graves" = 4), label = "Housing situation"))
 
-  }
+  message("A variable has been created in the base: \n \t housing_situation (situacion estructural de la vivienda)")
+  data
+}
 
 
 
@@ -169,13 +199,22 @@ housing_conditions <- function(data = ech::toy_ech_2018,
                                c3 = "c3",
                                c4 = "c4"){
 
+  # checks ---
+  assertthat::assert_that(is.data.frame(data))
+  assertthat::assert_that(c2  %in% names(data), msg =  glue:glue("Sorry... :( \n {c2} is not in data"))
+  assertthat::assert_that(c3  %in% names(data), msg =  glue:glue("Sorry... :( \n {c3} is not in data"))
+  assertthat::assert_that(c4  %in% names(data), msg =  glue:glue("Sorry... :( \n {c4} is not in data"))
+
   data <- data %>%
     dplyr::mutate(
       housing_conditions = ifelse(c2 == 6 | (c3 == 6 & c2 %in% c(2, 4, 5)) | (c3 == 6 & c4 %in% 4:5 & c2 %in% c(1,3)) | (c3 == 5 & c4 == 5 & c2 %in% c(2, 4, 5)) | (c3 == 4 & c4 == 5 & c2 %in% c(2, 4)), 4,
-        ifelse((c3== 6 & c4 %in% 1:3 & c2 %in% c(1, 3)) | (c3 == 4 & c4 %in% 1:4 & c2 %in% 1:5) | (c3 == 4 & c4 == 5 & c2 %in% c(1, 3, 5)) | (c3 == 5 & c4 %in% 1:4 & c2 == 4) | (c3 == 5 &  c4 == 5 & c2 %in% c(1, 3)) | (c3 == 5 & c4 == 4 & c2 == 2) | (c3 %in% 1:3 & c4 == 5 & c2 %in% 1:5) | (c3 %in% 1:3 & c4 == 4 & c2 %in% c(2, 4, 5)) | (c3 %in% 1:3  & c4 %in% 1:3 & c2 == 4) | (c3 %in% 2:3 & c4 == 3 & c2 == 2), 3,
-        ifelse((c3 == 5 & c4 == 4 & c2 %in% c(1, 3, 5)) | (c3 == 5 & c4 %in% 1:3 & c2 %in% c(2, 5)) | (c3 %in% 1:3 & c4 == 4  & c2 %in% 1:3) | (c3 %in% 1:3 & c4 %in% 2:3 & c2 == 5) | (c3 %in% 1:2 & c4 == 1 & c2 == 5) | (c3 == 3 & c4 %in% 1:2 & c2 == 2) | (c3 == 2 & c4 %in% 2:3 & c2 == 3) | (c3 %in% 1:2 & c4 %in% 1:2 & c2 == 2) | (c3 == 2 & c4 %in% 2:3 & c2 == 1) | (c3 == 1 & c4 == 3 & c2 == 2), 2,
-        ifelse((c3 %in% c(1, 3, 5) & c4 %in% 1:3 & c2 %in% c(1, 3)) | (c3 == 3 & c4 == 1 & c2 == 5) | (c3 == 2 & c4 == 1 & c2 %in% c(1, 3)), 1, NA)))),
+                                  ifelse((c3== 6 & c4 %in% 1:3 & c2 %in% c(1, 3)) | (c3 == 4 & c4 %in% 1:4 & c2 %in% 1:5) | (c3 == 4 & c4 == 5 & c2 %in% c(1, 3, 5)) | (c3 == 5 & c4 %in% 1:4 & c2 == 4) | (c3 == 5 &  c4 == 5 & c2 %in% c(1, 3)) | (c3 == 5 & c4 == 4 & c2 == 2) | (c3 %in% 1:3 & c4 == 5 & c2 %in% 1:5) | (c3 %in% 1:3 & c4 == 4 & c2 %in% c(2, 4, 5)) | (c3 %in% 1:3  & c4 %in% 1:3 & c2 == 4) | (c3 %in% 2:3 & c4 == 3 & c2 == 2), 3,
+                                         ifelse((c3 == 5 & c4 == 4 & c2 %in% c(1, 3, 5)) | (c3 == 5 & c4 %in% 1:3 & c2 %in% c(2, 5)) | (c3 %in% 1:3 & c4 == 4  & c2 %in% 1:3) | (c3 %in% 1:3 & c4 %in% 2:3 & c2 == 5) | (c3 %in% 1:2 & c4 == 1 & c2 == 5) | (c3 == 3 & c4 %in% 1:2 & c2 == 2) | (c3 == 2 & c4 %in% 2:3 & c2 == 3) | (c3 %in% 1:2 & c4 %in% 1:2 & c2 == 2) | (c3 == 2 & c4 %in% 2:3 & c2 == 1) | (c3 == 1 & c4 == 3 & c2 == 2), 2,
+                                                ifelse((c3 %in% c(1, 3, 5) & c4 %in% 1:3 & c2 %in% c(1, 3)) | (c3 == 3 & c4 == 1 & c2 == 5) | (c3 == 2 & c4 == 1 & c2 %in% c(1, 3)), 1, NA)))),
       housing_conditions = haven::labelled(housing_conditions, labels = c("Buena" = 1, "Mediana" = 2, "Modesta" = 3, "Precaria" = 4), label = "Housing conditions"))
+
+  message("A variable has been created in the base: \n \t housing_conditions (situacion coyuntural de la vivienda)")
+  data
 }
 
 #' overcrowding
@@ -200,11 +239,17 @@ housing_conditions <- function(data = ech::toy_ech_2018,
 overcrowding <- function(data = ech::toy_ech_2018,
                          ht19 = "ht19",
                          d10 = "d10"){
+  # checks ---
+  assertthat::assert_that(is.data.frame(data))
+  assertthat::assert_that(ht19  %in% names(data), msg =  glue:glue("Sorry... :( \n {ht19} is not in data"))
+  assertthat::assert_that(d10  %in% names(data), msg =  glue:glue("Sorry... :( \n {d10} is not in data"))
 
   data <- data %>%
     dplyr::mutate(overcrowding = dplyr::case_when(
                                           ht19 / d10 > 2 ~ 1,
                                           TRUE ~ 0))
+  message("A variable has been created in the base: \n \t overcrowding (hacinamiento)")
+  data
 }
 
 
@@ -226,6 +271,10 @@ overcrowding <- function(data = ech::toy_ech_2018,
 housing_tenure <- function(data = ech::toy_ech_2018,
                            d8_1 = "d8_1"){
 
+  # checks ---
+  assertthat::assert_that(is.data.frame(data))
+  assertthat::assert_that(d8_1 %in% names(data), msg =  glue:glue("Sorry... :( \n {d8_1} is not in data"))
+
   data <- data %>%
     dplyr::mutate(
       housing_tenure = ifelse(as.integer(d8_1) %in% c(1, 2, 10), "Propietaria-o",
@@ -234,4 +283,7 @@ housing_tenure <- function(data = ech::toy_ech_2018,
         ifelse(as.integer(d8_1) == 9, "Ocupante sin permiso",
         ifelse(as.integer(d8_1) %in% 3:4, "Propietaria-o solo de la vivienda", "")))))
     )
+
+  message("A variable has been created in the base: \n \t housing_tenure (tenencia de la vivienda)")
+  data
 }

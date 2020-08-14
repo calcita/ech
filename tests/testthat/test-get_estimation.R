@@ -5,9 +5,9 @@ test_that("get_estimation_mean works", {
   a <- get_estimation_mean(data = d, variable = "pobre06", domain = "dpto == 1", level = "h")
   expect_equal(nrow(a), 2)
   a <- get_estimation_mean(data = d, variable = "pobre06", by.x = "mes", domain = "dpto == 1", level = "h")
-  expect_equal(nrow(a), 12)
+  expect_equal(nrow(a), 18)
   a <- get_estimation_mean(variable = "pobre06", by.x = "region_4", level = "h")
-  expect_equal(nrow(a), 19)
+  expect_equal(nrow(a), 8)
   a <- get_estimation_mean(variable = "pobre06", by.x = "dpto", by.y = "e26", level = "h")
   expect_equal(nrow(a), 49)
   a <- get_estimation_mean(variable = "pobre06", by.x = "e26", by.y = "mes", domain = "dpto == 1", level = "i")
@@ -17,9 +17,9 @@ test_that("get_estimation_mean works", {
 test_that("get_estimation_total works", {
   d = ech::toy_ech_2018
   a <- get_estimation_total(data = d, variable = "pobre06", level = "h", name = "hogares_pobre_total")
-  expect_equal(nrow(a), 2)
+  expect_equal(nrow(a), 1)
   a <- get_estimation_total(data = d, variable = "pobre06", domain = "dpto == 1", level = "h")
-  expect_equal(nrow(a), 2)
+  expect_equal(nrow(a), 1)
   a <- get_estimation_total(data = d, variable = "pobre06", by.x = "mes", domain = "dpto == 1", level = "h")
   expect_equal(nrow(a), 12)
   a <- get_estimation_total(variable = "pobre06", by.x = "dpto", level = "h")
@@ -39,9 +39,9 @@ test_that("get_estimation_total works", {
   b <- get_estimation_total(data = d, variable = "housing_situation", by.x = "dpto", level = "h")
   expect_equal(nrow(b), 19)
   b <- get_estimation_total(data = d, variable = "housing_situation", by.x = "dpto", by.y = "mes", level = "h")
-  expect_equal(nrow(b), 207)
+  expect_equal(nrow(b), 149)
   b <- get_estimation_total(data = d, variable = "housing_situation", by.x = "secc", by.y = "mes", domain = "dpto == 1", level = "i")
-  expect_equal(nrow(b), 175)
+  expect_equal(nrow(b), 117)
 })
 
 test_that("get_estimation_ratio works", {
@@ -55,9 +55,9 @@ test_that("get_estimation_ratio works", {
   a <- get_estimation_ratio(data = ech_2018, variable.x = "po", variable.y = "pea", by.x = "dpto", level = "i")
   expect_equal(nrow(a), 19)
   a <- get_estimation_ratio(data = ech_2018, variable.x = "po", variable.y = "pea", by.x = "dpto", by.y = "mes",level = "i")
-  expect_equal(nrow(a), 207)
+  expect_equal(nrow(a), 149)
   a <- get_estimation_ratio(data = ech_2018, variable.x = "po", variable.y = "pea", by.x = "secc", by.y = "mes", domain = "dpto == 1", level = "i")
-  expect_equal(nrow(a), 175)
+  expect_equal(nrow(a), 117)
 })
 
 test_that("get_estimation_gini works", {

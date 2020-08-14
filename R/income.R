@@ -34,6 +34,15 @@ income_constant_prices <- function(data = ech::toy_ech_2018,
                                    ht13 = "ht13",
                                    ht19 = "ht19"){
 
+  # checks ---
+  assertthat::assert_that(is.data.frame(data))
+  assertthat::assert_that(dplyr::between(base_month,1,12), msg =  glue::glue("Sorry... :( \n base_month is not between 1 and 12"))
+  assertthat::assert_that(ipc  %in% c("G", "R"), msg =  glue::glue("Sorry... :( \n ipc is not G or R"))
+  assertthat::assert_that(mes  %in% names(data), msg =  glue::glue("Sorry... :( \n {mes} is not in data"))
+  assertthat::assert_that(ht11  %in% names(data), msg =  glue::glue("Sorry... :( \n {ht11} is not in data"))
+  assertthat::assert_that(ht13  %in% names(data), msg =  glue::glue("Sorry... :( \n {ht13} is not in data"))
+  assertthat::assert_that(ht19  %in% names(data), msg =  glue::glue("Sorry... :( \n {ht19} is not in data"))
+
   if (ipc == "G") {
 
     deflate <- ech::deflate(base_month = base_month,
@@ -48,6 +57,10 @@ income_constant_prices <- function(data = ech::toy_ech_2018,
                             y_wrv_d = (.data[[ht11]] - .data[[ht13]]) * deflate, # income without rental value deflated
                             y_wrv_pc_d = (.data[[ht11]] - .data[[ht13]]) / .data[[ht19]] * deflate # income without rental value per capita deflated
     )
+    message("Variables have been created in the base: \n \t y_pc_d  (income per capita deflated);
+         rv_d (rental value deflated);
+         y_wrv_d (income without rental value deflated) &
+         y_wrv_pc_d (income without rental value per capita deflated)")
   }
 
   if (ipc == "R") {
@@ -64,7 +77,8 @@ income_constant_prices <- function(data = ech::toy_ech_2018,
 
     data <- data %>%  dplyr::mutate(deflactor_r = ifelse(dpto == 1, deflactor_m, deflactor_i),
                                     y_wrv_pc_d_r = (ht11 - ht13) / ht19 * deflactor_r)  # income without rental value per capita deflated (regional)
-
+    message("Variables have been created in the base: \n \t deflactor_r (Deflactor regional) &
+            y_wrv_pc_d_r (income without rental value per capita deflated (regional))")
   }
 
  return(data)
@@ -103,18 +117,21 @@ income_quantiles <- function(data = ech::toy_ech_2018,
   assertthat::assert_that(is.data.frame(data))
   assertthat::assert_that(weights %in% names(data))
   assertthat::assert_that(quantile %in% c(5, 10))
-  assertthat::assert_that(income  %in% names(data), msg = "Sorry... :( \n Income parameter is not calculated, please use income_constant_prices() to obtain the variable.")
+  assertthat::assert_that(income %in% names(data), msg = "Sorry... :( \n Income parameter is not calculated, please use income_constant_prices() to obtain the variable.")
 
   weights = pull(data[,weights])
 
   if (quantile == 5) {
     ## quintiles
     data %<>% dplyr::mutate(quintil = statar::xtile(.data[[income]], n = 5, wt = weights))
+    message("A variable has been created in the base: \n \t quintil (quintil de ingresos)")
   }  else {
     ## deciles
     data %<>% dplyr::mutate(decil = statar::xtile(.data[[income]], n = 10, wt = weights))
+    message("A variable has been created in the base: \n \t decil (decil de ingresos)")
   }
-  # message(glue::glue("Se ha creado la variable {colname} en la base"))
+
+  data
 }
 
 
@@ -211,6 +228,23 @@ labor_income_per_capita <- function(data = ech::toy_ech_2018,
                                     g144_2_3 = "g144_2_3",
                                     g144_2_4 = "g144_2_4",
                                     g144_2_5 = "g144_2_5"){
+
+  # checks ---
+  assertthat::assert_that(is.data.frame(data))
+  assertthat::assert_that(numero  %in% names(data), msg =  glue:glue("Sorry... :( \n {numero} is not in data"))
+  assertthat::assert_that(pobpcoac  %in% names(data), msg =  glue:glue("Sorry... :( \n {pobpcoac} is not in data"))
+  assertthat::assert_that(g126_1  %in% names(data), msg =  glue:glue("Sorry... :( \n {g126_1} is not in data"))
+  assertthat::assert_that(g126_2  %in% names(data), msg =  glue:glue("Sorry... :( \n {g126_2} is not in data"))
+  assertthat::assert_that(g126_3  %in% names(data), msg =  glue:glue("Sorry... :( \n {g126_3} is not in data"))
+  assertthat::assert_that(g126_4  %in% names(data), msg =  glue:glue("Sorry... :( \n {g126_4} is not in data"))
+  assertthat::assert_that(g126_5  %in% names(data), msg =  glue:glue("Sorry... :( \n {g126_5} is not in data"))
+  assertthat::assert_that(g126_6  %in% names(data), msg =  glue:glue("Sorry... :( \n {g126_6} is not in data"))
+  assertthat::assert_that(g126_7  %in% names(data), msg =  glue:glue("Sorry... :( \n {g126_7} is not in data"))
+  assertthat::assert_that(g126_8  %in% names(data), msg =  glue:glue("Sorry... :( \n {g126_8} is not in data"))
+  assertthat::assert_that(g127_3  %in% names(data), msg =  glue:glue("Sorry... :( \n {g127_3} is not in data"))
+  assertthat::assert_that(g128_1  %in% names(data), msg =  glue:glue("Sorry... :( \n {g128_1} is not in data"))
+  assertthat::assert_that(g129_2  %in% names(data), msg =  glue:glue("Sorry... :( \n {g129_2} is not in data"))
+
 
   data <- data %>%
     dplyr::mutate(

@@ -5,13 +5,7 @@
 \title{household_type
 This function allows you to calculate the household type for each household in the survey. A household is composed of one or more people who occupy a housing unit.}
 \usage{
-household_type(
-  data = ech::toy_ech_2018,
-  e26 = "e26",
-  e27 = "e27",
-  e30 = "e30",
-  colname = "tipo_hogar"
-)
+household_type(data = ech::toy_ech_2018, e26 = "e26", e27 = "e27", e30 = "e30")
 }
 \arguments{
 \item{data}{data frame with ECH microdata}
@@ -21,8 +15,6 @@ household_type(
 \item{e27}{age}
 
 \item{e30}{householder}
-
-\item{colname}{custom name for the new variable}
 }
 \value{
 data.frame

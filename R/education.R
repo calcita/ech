@@ -49,9 +49,11 @@ enrolled_school <- function(data = ech::toy_ech_2018,
   assertthat::assert_that(e221  %in% names(data), msg =  glue:glue("Sorry... :( \n {e221} is not in data"))
   assertthat::assert_that(e224  %in% names(data), msg =  glue:glue("Sorry... :( \n {e224} is not in data"))
 
-  if (exists("enrollment", data)) warning('enrollment pre-existing')
+  # if ("school_enrollment" %in% names(data)) {
+  #   message("The data.frame already contains a variable with the name school_enrollment, it will be overwritten")
+  # }
 
-  data %<>% dplyr::mutate(enrollment = dplyr::case_when((.data$e193 == 1 |
+  data %<>% dplyr::mutate(school_enrollment = dplyr::case_when((.data$e193 == 1 |
                                                           .data$e197 ==  1|
                                                           .data$e201 == 1 |
                                                           .data$e212 == 1 |
@@ -60,6 +62,9 @@ enrolled_school <- function(data = ech::toy_ech_2018,
                                                           .data$e221 == 1 |
                                                           .data$e224 == 1) ~ 1,
                                                        TRUE ~ 0))
+
+  message("A variable has been created in the base: \n \t  school_enrollment (matriculacion escolar)")
+  data
 }
 
 #' years_of_schooling
@@ -121,6 +126,10 @@ years_of_schooling <- function(data = ech::toy_ech_2018,
   assertthat::assert_that(e51_10  %in% names(data), msg =  glue:glue("Sorry... :( \n {e51_10} is not in data"))
   assertthat::assert_that(e51_11  %in% names(data), msg =  glue:glue("Sorry... :( \n {e51_11} is not in data"))
 
+  # if ("years_schooling" %in% names(data)) {
+  #   message("The data.frame already contains a variable with the name years_schooling, it will be overwritten")
+  # }
+
   data %<>%
     dplyr::mutate_at(dplyr::vars({{e51_2}}, {{e51_3}}, {{e51_4}}, {{e51_5}}, {{e51_6}}, {{e51_7}}), list(~ ifelse( . == 9, 0, .))) %>%
 
@@ -157,6 +166,8 @@ years_of_schooling <- function(data = ech::toy_ech_2018,
   data %<>% dplyr::mutate(years_schooling = dplyr::case_when(years_schooling < 12 & (e51_9 == 9 | e51_8 == 9 |
                                                                            e51_10 == 9 | (e51_7 == 9 & e51_7_1 == 1)) ~ 12,
                                                        TRUE ~ years_schooling))
+  message("A variable has been created in the base: \n \t  years_schooling (anios de escolaridad)")
+  data
 }
 
 
@@ -203,6 +214,26 @@ level_education <- function(data = ech::toy_ech_2018,
                                 e193 = "e193",
                                 e49 = "e49"){
 
+  # checks ---
+  assertthat::assert_that(is.data.frame(data))
+  assertthat::assert_that(e51_2  %in% names(data), msg =  glue:glue("Sorry... :( \n {e51_2} is not in data"))
+  assertthat::assert_that(e51_3  %in% names(data), msg =  glue:glue("Sorry... :( \n {e51_3} is not in data"))
+  assertthat::assert_that(e51_4  %in% names(data), msg =  glue:glue("Sorry... :( \n {e51_4} is not in data"))
+  assertthat::assert_that(e51_5  %in% names(data), msg =  glue:glue("Sorry... :( \n {e51_5} is not in data"))
+  assertthat::assert_that(e51_6  %in% names(data), msg =  glue:glue("Sorry... :( \n {e51_6} is not in data"))
+  assertthat::assert_that(e51_7  %in% names(data), msg =  glue:glue("Sorry... :( \n {e51_7} is not in data"))
+  assertthat::assert_that(e51_7_1  %in% names(data), msg =  glue:glue("Sorry... :( \n {e51_7_1} is not in data"))
+  assertthat::assert_that(e51_8  %in% names(data), msg =  glue:glue("Sorry... :( \n {e51_8} is not in data"))
+  assertthat::assert_that(e51_9  %in% names(data), msg =  glue:glue("Sorry... :( \n {e51_9} is not in data"))
+  assertthat::assert_that(e51_10  %in% names(data), msg =  glue:glue("Sorry... :( \n {e51_10} is not in data"))
+  assertthat::assert_that(e51_11  %in% names(data), msg =  glue:glue("Sorry... :( \n {e51_11} is not in data"))
+  assertthat::assert_that(e193  %in% names(data), msg =  glue:glue("Sorry... :( \n {e193} is not in data"))
+  assertthat::assert_that(e49  %in% names(data), msg =  glue:glue("Sorry... :( \n {e49} is not in data"))
+
+  # if ("level_education" %in% names(data)) {
+  #   message("The data.frame already contains a variable with the name level_education, it will be overwritten")
+  # }
+
   data <- data %>% dplyr::mutate(
     level_education = dplyr::case_when(
       e49 == 2 & e51_2 == 0 & e51_3 == 0 & e51_4 == 0 & e51_5 == 0 & e51_6 == 0 & e51_7 == 0 & e51_8 == 0 & e51_9 == 0 & e51_10 == 0 & e51_11 == 0 ~ "Sin instruccion",
@@ -219,6 +250,8 @@ level_education <- function(data = ech::toy_ech_2018,
       e51_9 %in% 1:9 | e51_10 %in% 1:9 | e51_11 %in% 1:9 ~ "Universidad",
       TRUE ~ "Error")
     )
+  message("A variable has been created in the base: \n \t level_education (nivel educativo)")
+  data
 }
 
 
@@ -239,7 +272,7 @@ level_education <- function(data = ech::toy_ech_2018,
 #' @export
 #'
 #' @details
-#' Disclaimer: El script no es un producto oficial de INE.
+#' Disclaimer: This script is not an official INE product.
 #' Aviso: El script no es un producto oficial de INE.
 #'
 #' @examples
@@ -255,10 +288,32 @@ level_completion <- function(data = ech::toy_ech_2018,
                              e51_5 = "e51_5",
                              e51_6 = "e51_6"){
 
- data <- data %>% dplyr::mutate(primary_completion = ifelse(e197 == 2 & e197_1 == 1, 1, 0),
-                         lower_secondary_completion = ifelse(e201 %in% 1:2 & e51_4 == 3, 1, 0),
-                         upper_secondary_completion = ifelse(e201 %in% 1:2 & (e51_5 == 3 | e51_6 == 3), 1, 0)#,
-                         #tertiary_completion =
-)
+  # checks ---
+  assertthat::assert_that(is.data.frame(data))
+  assertthat::assert_that(e197  %in% names(data), msg =  glue:glue("Sorry... :( \n {e197} is not in data"))
+  assertthat::assert_that(e197_1  %in% names(data), msg =  glue:glue("Sorry... :( \n {e197_1} is not in data"))
+  assertthat::assert_that(e51_4  %in% names(data), msg =  glue:glue("Sorry... :( \n {e51_4} is not in data"))
+  assertthat::assert_that(e51_5  %in% names(data), msg =  glue:glue("Sorry... :( \n {e51_5} is not in data"))
+  assertthat::assert_that(e51_6  %in% names(data), msg =  glue:glue("Sorry... :( \n {e51_6} is not in data"))
+  assertthat::assert_that(e201  %in% names(data), msg =  glue:glue("Sorry... :( \n {e201} is not in data"))
 
+  # if ("primary_completion" %in% names(data)) {
+  #   message("The data.frame already contains a variable with the name primary_completion, it will be overwritten")
+  # }
+  # if ("lower_secondary_completion" %in% names(data)) {
+  #   message("The data.frame already contains a variable with the name lower_secondary_completion, it will be overwritten")
+  # }
+  # if ("upper_secondary_completion " %in% names(data)) {
+  #   message("The data.frame already contains a variable with the name upper_secondary_completion, it will be overwritten")
+  # }
+
+  data <- data %>% dplyr::mutate(primary_completion = ifelse(e197 == 2 & e197_1 == 1, 1, 0),
+                                 lower_secondary_completion = ifelse(e201 %in% 1:2 & e51_4 == 3, 1, 0),
+                                 upper_secondary_completion = ifelse(e201 %in% 1:2 & (e51_5 == 3 | e51_6 == 3), 1, 0)#,
+                                 #tertiary_completion =
+  )
+  message("Variables have been created in the base: \n \t primary_completion (primaria completa);
+         lower_secondary_completion (ciclo basico completo) &
+         upper_secondary_completion (bachillerato completo)")
+  data
 }

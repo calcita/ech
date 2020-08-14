@@ -25,7 +25,7 @@ unsatisfied_basic_needs(
   d260 = "d260",
   ht19 = "ht19",
   pobre06 = "pobre06",
-  enrollment = "enrollment",
+  school_enrollment = "school_enrollment",
   years_schooling = "years_schooling",
   anio = "anio"
 )
@@ -71,7 +71,7 @@ unsatisfied_basic_needs(
 
 \item{pobre06}{Variable name of poverty}
 
-\item{enrollment}{Variable name of enrollment}
+\item{school_enrollment}{Variable name of school_enrollment}
 
 \item{years_schooling}{Variable name of years_schooling}
 
