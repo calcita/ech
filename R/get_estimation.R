@@ -54,8 +54,10 @@ get_estimation_mean <- function(data = ech::toy_ech_2018,
 
 
 # unlabelled
-  d <- data %>% dplyr::select(!!!syms(c(variable, by.x, by.y, ids, numero, estred13, pesoano, if(!is.null(domain)){dom}))) %>%
+  d <- data %>% dplyr::select(!!!syms(c(variable, by.x, by.y, ids, numero, estred13, pesoano))) %>%
     unlabelled()
+
+  d <- data %>% dplyr::select(if(!is.null(domain)){dom}) %>% dplyr::bind_cols(d, .)
 
 # design ----
   design_ech <- ech::set_design(data = d, level = level)
@@ -81,17 +83,17 @@ get_estimation_mean <- function(data = ech::toy_ech_2018,
           srvyr::summarise(colname = srvyr::survey_mean(vartype = "ci"))
       } else if(is.null(by.x) & is.null(by.y) & !is.null(domain)){
         estimation <- design_ech %>%
-          srvyr::filter(eval(parse(text=domain))) %>%
+          srvyr::filter(!!rlang::parse_expr(domain)) %>%
           srvyr::group_by(!!!syms(variable)) %>%
           srvyr::summarise(colname = srvyr::survey_mean(vartype = "ci"))
       } else if(is.character(by.x) & is.null(by.y) & !is.null(domain)){
         estimation <- design_ech %>%
-          srvyr::filter(eval(parse(text=domain))) %>%
+          srvyr::filter(!!rlang::parse_expr(domain)) %>%
           srvyr::group_by(!!!syms(by.x), !!!syms(variable), .add = T) %>%
           srvyr::summarise(colname = srvyr::survey_mean(vartype = "ci"))
       } else {
         estimation <- design_ech %>%
-          srvyr::filter(eval(parse(text=domain))) %>%
+          srvyr::filter(!!rlang::parse_expr(domain)) %>%
           srvyr::group_by(!!!syms(by.x), !!!syms(by.y), !!!syms(variable), .add = T) %>%
           srvyr::summarise(colname = srvyr::survey_mean(vartype = "ci"))
       }
@@ -109,16 +111,16 @@ get_estimation_mean <- function(data = ech::toy_ech_2018,
         srvyr::summarise(colname = srvyr::survey_mean(!!!syms(variable), vartype = "ci"))
     } else if(is.null(by.x) & is.null(by.y) & !is.null(domain)){
       estimation <- design_ech %>%
-        srvyr::filter(eval(parse(text=domain))) %>%
+        srvyr::filter(!!rlang::parse_expr(domain)) %>%
         srvyr::summarise(colname = srvyr::survey_mean(!!!syms(variable), vartype = "ci"))
     } else if(is.character(by.x) & is.null(by.y) & !is.null(domain)){
       estimation <- design_ech %>%
-        srvyr::filter(eval(parse(text=domain))) %>%
+        srvyr::filter(!!rlang::parse_expr(domain)) %>%
         srvyr::group_by(!!!syms(by.x), .add = T) %>%
         srvyr::summarise(colname = srvyr::survey_mean(!!!syms(variable), vartype = "ci"))
     } else {
       estimation <- design_ech %>%
-        srvyr::filter(eval(parse(text=domain))) %>%
+        srvyr::filter(!!rlang::parse_expr(domain)) %>%
         srvyr::group_by(!!!syms(by.x), !!!syms(by.y), .add = T) %>%
         srvyr::summarise(colname = srvyr::survey_mean(!!!syms(variable), vartype = "ci"))
     }
@@ -192,8 +194,10 @@ get_estimation_total <- function(data = ech::toy_ech_2018,
   }
 
   # unlabelled
-  d <- data %>% dplyr::select(!!!syms(c(variable, by.x, by.y, ids, numero, estred13, pesoano, if(!is.null(domain)){dom}))) %>%
+  d <- data %>% dplyr::select(!!!syms(c(variable, by.x, by.y, ids, numero, estred13, pesoano))) %>%
     unlabelled()
+
+  d <- data %>% dplyr::select(if(!is.null(domain)){dom}) %>% dplyr::bind_cols(d, .)
 
   # design ----
   design_ech <- ech::set_design(data = data, level = level)
@@ -219,17 +223,17 @@ get_estimation_total <- function(data = ech::toy_ech_2018,
         srvyr::summarise(colname = srvyr::survey_total(vartype = "ci"))
     } else if(is.null(by.x) & is.null(by.y) & !is.null(domain)){
       estimation <- design_ech %>%
-        srvyr::filter(eval(parse(text=domain))) %>%
+        srvyr::filter(!!rlang::parse_expr(domain)) %>%
         srvyr::group_by(!!!syms(variable)) %>%
         srvyr::summarise(colname = srvyr::survey_total(vartype = "ci"))
     } else if(is.character(by.x) & is.null(by.y) & !is.null(domain)){
       estimation <- design_ech %>%
-        srvyr::filter(eval(parse(text=domain))) %>%
+        srvyr::filter(!!rlang::parse_expr(domain)) %>%
         srvyr::group_by(!!!syms(by.x), !!!syms(variable), .add = T) %>%
         srvyr::summarise(colname = srvyr::survey_total(vartype = "ci"))
     } else {
       estimation <- design_ech %>%
-        srvyr::filter(eval(parse(text=domain))) %>%
+        srvyr::filter(!!rlang::parse_expr(domain)) %>%
         srvyr::group_by(!!!syms(by.x), !!!syms(by.y), !!!syms(variable), .add = T) %>%
         srvyr::summarise(colname = srvyr::survey_total(vartype = "ci"))
     }
@@ -267,7 +271,7 @@ get_estimation_total <- function(data = ech::toy_ech_2018,
   }
 
   if (is.null(ids)) {
-    message("No es posible calcular los intervalos de confianza correctos")
+    message("These confidence intervals are only an approximation of the correct confidence intervals \n  that arise from fully defining the sample design")
     Sys.sleep(1)
     return(estimation)
   }
@@ -334,8 +338,10 @@ get_estimation_ratio <- function(data = ech::toy_ech_2018,
   }
 
   # unlabelled
-  d <- data %>% dplyr::select(!!!syms(c(variable.x, variable.y, by.x, by.y, ids, numero, estred13, pesoano, if(!is.null(domain)){dom}))) %>%
+  d <- data %>% dplyr::select(!!!syms(c(variable.x, variable.y, by.x, by.y, ids, numero, estred13, pesoano))) %>%
     unlabelled()
+
+  d <- data %>% dplyr::select(if(!is.null(domain)){dom}) %>% dplyr::bind_cols(d, .)
 
   # design ---
   design_ech <- ech::set_design(data = data, level = level)
@@ -359,16 +365,16 @@ get_estimation_ratio <- function(data = ech::toy_ech_2018,
       srvyr::summarise(colname = srvyr::survey_ratio(!!!syms(variable.x), !!!syms(variable.y), vartype = "ci"))
   } else if(is.null(by.x) & is.null(by.y) & is.character(domain)){
     estimation <- design_ech %>%
-      srvyr::filter(eval(parse(text=domain))) %>%
+      srvyr::filter(!!rlang::parse_expr(domain)) %>%
       srvyr::summarise(colname = srvyr::survey_ratio(!!!syms(variable.x), !!!syms(variable.y), vartype = "ci"))
   } else if(is.character(by.x) & is.null(by.y) & is.character(domain)){
     estimation <- design_ech %>%
-      srvyr::filter(eval(parse(text=domain))) %>%
+      srvyr::filter(!!rlang::parse_expr(domain)) %>%
       srvyr::group_by(!!!syms(by.x)) %>%
       srvyr::summarise(colname = srvyr::survey_ratio(!!!syms(variable.x), !!!syms(variable.y), vartype = "ci"))
   } else {
     estimation <- design_ech %>%
-      srvyr::filter(eval(parse(text=domain))) %>%
+      srvyr::filter(!!rlang::parse_expr(domain)) %>%
       srvyr::group_by(!!!syms(by.x), !!!syms(by.y)) %>%
       srvyr::summarise(colname = srvyr::survey_ratio(!!!syms(variable.x), !!!syms(variable.y), vartype = "ci"))
   }
@@ -378,7 +384,7 @@ get_estimation_ratio <- function(data = ech::toy_ech_2018,
   }
 
   if (is.null(ids)) {
-    message("No es posible calcular los intervalos de confianza correctos")
+    message("These confidence intervals are only an approximation of the correct confidence intervals \n  that arise from fully defining the sample design")
     Sys.sleep(1)
     return(estimation)
   }
