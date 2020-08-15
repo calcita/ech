@@ -32,7 +32,7 @@ employment <- function(data = ech::toy_ech_2018,
                           pd  = ifelse({{pobpcoac}} %in% 3:5, 1, 0)
   )
 
-  message("Variables have been created in the base: \n \t pea (Poblacion economicamente activa);
+  message("Variables have been created: \n \t pea (Poblacion economicamente activa);
          pet (Poblacion en edad de trabajar);
          po (Poblacion ocupada) &
          pd (Poblacion desocupada)")
@@ -107,7 +107,7 @@ branch_ciiu <- function(data = ech::toy_ech_2018,
         branch_ciiu == 16 ~ "Otras actividades de servicio; Arte, entretenimiento y recreacion",
         branch_ciiu == 17 ~ "Actividades de los hogares como empleadores",
         TRUE ~ ""))
-    message("A variable has been created in the base: \n \t branch_ciiu (Rama de actividad CIIU)
+    message("A variable has been created: \n \t branch_ciiu (Rama de actividad CIIU)
             branch_group_ciiu (Rama de actividad CIIU agrupadas)")
   }
 
@@ -131,7 +131,7 @@ branch_ciiu <- function(data = ech::toy_ech_2018,
           f72_2 < 9700 ~ "Otros servicios sociales",
           f72_2 < 9900 ~ "Hogares privados con servicio domestico",
           TRUE ~ ""))
-      message("A variable has been created in the base: \n \t branch_ciiu (Rama de actividad CIIU)
+      message("A variable has been created: \n \t branch_ciiu (Rama de actividad CIIU)
               branch_ciiu_disaggregated (Rama de actividad CIIU desagregada)")
     }
     return(data)

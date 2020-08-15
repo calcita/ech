@@ -208,7 +208,7 @@ get_estimation_total <- function(data = ech::toy_ech_2018,
 
   # estimation ----
 
-  if (is.factor(dplyr::pull(data[,variable]))) {
+  if (is.factor(dplyr::pull(d[,variable]))) {
     if(is.null(by.x) & is.null(by.y) & is.null(domain)){
       estimation <- design_ech %>%
         srvyr::group_by(!!!syms(variable)) %>%

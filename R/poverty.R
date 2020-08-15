@@ -101,7 +101,7 @@ unsatisfied_basic_needs <- function(data = ech::toy_ech_2018,
           UBN_q >= 3 ~ "Con 3 o mas NBI"))
 
     message(glue::glue("El objeto data es previo a 2016 y no se incluye UBN_confort"))
-    message("Variables have been created in the base: \n \t UBN_housing (NBI vivienda);
+    message("Variables have been created: \n \t UBN_housing (NBI vivienda);
             UBN_water (NBI acceso al agua);
             UBN_sewerage (NBI saneamiento);
             UBN_electricity (NBI electricidad);
@@ -124,7 +124,7 @@ unsatisfied_basic_needs <- function(data = ech::toy_ech_2018,
           UBN_q == 2 ~ "Con 2 NBI",
           UBN_q >= 3 ~ "Con 3 o mas NBI")
       )
-    message("Variables have been created in the base: \n \t UBN_housing (NBI vivienda);
+    message("Variables have been created: \n \t UBN_housing (NBI vivienda);
             UBN_water (NBI acceso al agua);
             UBN_sewerage (NBI saneamiento);
             UBN_electricity (NBI electricidad);
@@ -214,13 +214,13 @@ poverty <- function(data = ech::toy_ech_2018,
   h <- h %>% dplyr::mutate(
     indigency_line = cba * ht19,
     poverty_line =  indigency_line + cbna * (ht19 ^ scale),
-    indigent = ifelse(ht11 <= indigency_line, 1, 0),
-    poor = ifelse(ht11 <= poverty_line, 1, 0))
+    indigent = ifelse(ht11 <= indigency_line, "Indigente", "No indigente"),
+    poor = ifelse(ht11 <= poverty_line, "Pobre", "No pobre"))
 
   data <- h %>% dplyr::select(numero, poor, indigent) %>%
     dplyr:: left_join(data, ., by = "numero")
 
-  message("Variables have been created in the base: \n \t poor (pobreza) &
-              indigent (indigencia)")
+  message("Variables have been created: \n \t poor (pobre) &
+              indigent (indigente)")
   data
 }

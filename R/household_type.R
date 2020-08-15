@@ -2,9 +2,9 @@
 #' This function allows you to calculate the household type for each household in the survey. A household is composed of one or more people who occupy a housing unit.
 #'
 #' @param data data frame with ECH microdata
-#' @param e26 sex
-#' @param e27 age
-#' @param e30 householder
+#' @param e26 Variable name of sex
+#' @param e27 Variable name of age
+#' @param e30 Variable name of householder
 #'
 #' @importFrom dplyr mutate group_by select
 #' @importFrom glue glue
@@ -68,6 +68,6 @@ household_type <- function(data = ech::toy_ech_2018,
            )
 
   data <- data %>% dplyr::select(everything(), -.data$sex_householder:-.data$no_rel)
-  message("A variable has been created in the base: \n \t household_type (Tipo de hogar)")
+  message("A variable has been created: \n \t household_type (Tipo de hogar)")
   data
  }

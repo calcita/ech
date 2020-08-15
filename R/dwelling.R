@@ -70,22 +70,21 @@ housing_deprivation <- function(data = ech::toy_ech_2018,
 
   data <- data %>%
     dplyr::mutate(
-      overcrowding = ifelse((ht19 / d10) > 2, 1, 0), #Carencia: Hacinamiento
-      bathroom = ifelse(d13 != 1, 1, 0), #Carencia: Baño (Mínimo un baño)
-      rooms = ifelse((d19 == 3 | (d9 - d10) < 1 & ht19 > 1), 1, 0), #Carencia: Ambientes adecuados(cocina, comedor, estar diario)
-      roof_materials = ifelse(c3 %in% c(4, 6) | (quintil < 5 & c3 == 5), 1, 0), #Carencia: Techo adecuado
-      wall_materials = ifelse(c2 %in% c(4, 6) | (quintil < 5 & c2 == 5), 1, 0), #Carencia: Paredes adecuadas
-      floor_materials = ifelse(c4 > 3, 1, 0), #Carencia: Pisos adecuados
-      water = ifelse(d12 > 1, 1, 0), #Carencia: Agua
-      running_water = ifelse((region_4 < 4 & d11 > 1) | (region_4 == 4 & d11 %in% c(2, 5:6)), 1, 0), #Carencia: Red general para el agua o pozo
-      sewerage = ifelse((d14 == 0) | (d16 > 2), 1, 0), #Carencia: Desague
-      electricity = ifelse((region_4 < 4 & d18 > 1) | (region_4 == 4 & d18 > 2), 1, 0), #Carencia: Red eléctrica
+      overcrowding = ifelse((ht19 / d10) > 2, 1, 0),
+      bathroom = ifelse(d13 != 1, 1, 0),
+      rooms = ifelse((d19 == 3 | (d9 - d10) < 1 & ht19 > 1), 1, 0),
+      roof_materials = ifelse(c3 %in% c(4, 6) | (quintil < 5 & c3 == 5), 1, 0),
+      wall_materials = ifelse(c2 %in% c(4, 6) | (quintil < 5 & c2 == 5), 1, 0),
+      floor_materials = ifelse(c4 > 3, 1, 0),
+      water = ifelse(d12 > 1, 1, 0),
+      running_water = ifelse((region_4 < 4 & d11 > 1) | (region_4 == 4 & d11 %in% c(2, 5:6)), 1, 0),
+      sewerage = ifelse((d14 == 0) | (d16 > 2), 1, 0),
+      electricity = ifelse((region_4 < 4 & d18 > 1) | (region_4 == 4 & d18 > 2), 1, 0),
       housing_deprivation_q = sum(c_across(overcrowding:electricity)),
-        # overcrowding + bathroom + rooms + roof_materials + wall_materials + floor_materials + water + running_water + drainage + electricity, #Cantidad de carencias de vivienda
       housing_deprivation = ifelse(housing_deprivation_q > 0, n, 0)
     )
 
-  message("Variables have been created in the base: \n \t overcrowding (Carencia: Hacinamiento);
+  message("Variables have been created: \n \t overcrowding (Carencia: Hacinamiento);
          bathroom (Carencia: Banio (Minimo un banio));
          rooms (Carencia: Ambientes adecuados(cocina, comedor, estar diario));
          roof_materials (Carencia: Techo adecuado);
@@ -168,7 +167,7 @@ housing_situation <- function(data = ech::toy_ech_2018,
                                                ifelse(c5_3 == 1 | c5_10 == 1  | c5_11 == 1, 4, NA)))),
       housing_situation = haven::labelled(housing_situation, labels = c("Sin problemas" = 1, "Problemas leves" = 2, "Problemas moderados" = 3, "Problemas graves" = 4), label = "Housing situation"))
 
-  message("A variable has been created in the base: \n \t housing_situation (situacion estructural de la vivienda)")
+  message("A variable has been created: \n \t housing_situation (situacion estructural de la vivienda)")
   data
 }
 
@@ -213,7 +212,7 @@ housing_conditions <- function(data = ech::toy_ech_2018,
                                                 ifelse((c3 %in% c(1, 3, 5) & c4 %in% 1:3 & c2 %in% c(1, 3)) | (c3 == 3 & c4 == 1 & c2 == 5) | (c3 == 2 & c4 == 1 & c2 %in% c(1, 3)), 1, NA)))),
       housing_conditions = haven::labelled(housing_conditions, labels = c("Buena" = 1, "Mediana" = 2, "Modesta" = 3, "Precaria" = 4), label = "Housing conditions"))
 
-  message("A variable has been created in the base: \n \t housing_conditions (situacion coyuntural de la vivienda)")
+  message("A variable has been created: \n \t housing_conditions (situacion coyuntural de la vivienda)")
   data
 }
 
@@ -248,7 +247,7 @@ overcrowding <- function(data = ech::toy_ech_2018,
     dplyr::mutate(overcrowding = dplyr::case_when(
                                           ht19 / d10 > 2 ~ 1,
                                           TRUE ~ 0))
-  message("A variable has been created in the base: \n \t overcrowding (hacinamiento)")
+  message("A variable has been created: \n \t overcrowding (hacinamiento)")
   data
 }
 
@@ -284,6 +283,6 @@ housing_tenure <- function(data = ech::toy_ech_2018,
         ifelse(as.integer(d8_1) %in% 3:4, "Propietaria-o solo de la vivienda", "")))))
     )
 
-  message("A variable has been created in the base: \n \t housing_tenure (tenencia de la vivienda)")
+  message("A variable has been created: \n \t housing_tenure (tenencia de la vivienda)")
   data
 }

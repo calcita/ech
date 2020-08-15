@@ -57,7 +57,7 @@ income_constant_prices <- function(data = ech::toy_ech_2018,
                             y_wrv_d = (.data[[ht11]] - .data[[ht13]]) * deflate, # income without rental value deflated
                             y_wrv_pc_d = (.data[[ht11]] - .data[[ht13]]) / .data[[ht19]] * deflate # income without rental value per capita deflated
     )
-    message("Variables have been created in the base: \n \t y_pc_d  (income per capita deflated);
+    message("Variables have been created: \n \t y_pc_d  (income per capita deflated);
          rv_d (rental value deflated);
          y_wrv_d (income without rental value deflated) &
          y_wrv_pc_d (income without rental value per capita deflated)")
@@ -77,7 +77,7 @@ income_constant_prices <- function(data = ech::toy_ech_2018,
 
     data <- data %>%  dplyr::mutate(deflactor_r = ifelse(dpto == 1, deflactor_m, deflactor_i),
                                     y_wrv_pc_d_r = (ht11 - ht13) / ht19 * deflactor_r)  # income without rental value per capita deflated (regional)
-    message("Variables have been created in the base: \n \t deflactor_r (Deflactor regional) &
+    message("Variables have been created: \n \t deflactor_r (Deflactor regional) &
             y_wrv_pc_d_r (income without rental value per capita deflated (regional))")
   }
 
@@ -124,11 +124,11 @@ income_quantiles <- function(data = ech::toy_ech_2018,
   if (quantile == 5) {
     ## quintiles
     data %<>% dplyr::mutate(quintil = statar::xtile(.data[[income]], n = 5, wt = weights))
-    message("A variable has been created in the base: \n \t quintil (quintil de ingresos)")
+    message("A variable has been created: \n \t quintil (quintil de ingresos)")
   }  else {
     ## deciles
     data %<>% dplyr::mutate(decil = statar::xtile(.data[[income]], n = 10, wt = weights))
-    message("A variable has been created in the base: \n \t decil (decil de ingresos)")
+    message("A variable has been created: \n \t decil (decil de ingresos)")
   }
 
   data
@@ -281,7 +281,7 @@ labor_income_per_capita <- function(data = ech::toy_ech_2018,
                   labor_income_h_percapita = labor_income_h /sum(!is.na(labor_income_h))) %>%
     dplyr::ungroup()
 
-  message("Variables have been created in the base: \n \t labor_income_h (Ingresos laborales) &
+  message("Variables have been created: \n \t labor_income_h (Ingresos laborales) &
             labor_income_h_percapita (Ingresos laborales per capita)")
   data
 }
@@ -344,10 +344,10 @@ labor_income_per_hour <- function(data = ech::toy_ech_2018,
 
   data <- data %>%
     dplyr::mutate(
-      hours_per_month = f85 * 4.2, # Cantidad de horas trabajadas en un mes en ocupacion principal
-      total_income_per_hour = ifelse(pobpcoac == 2 & pt4 != 0, (pt4 / deflate) * 100 / hours_per_month, NA)) # Total de ingresos por trabajo por hora
+      hours_per_month = f85 * 4.2,
+      total_income_per_hour = ifelse(pobpcoac == 2 & pt4 != 0, (pt4 / deflate) * 100 / hours_per_month, NA))
 
-  message("Variables have been created in the base: \n \t hours_per_month (Cantidad de horas trabajadas en un mes en ocupacion principal) &
+  message("Variables have been created: \n \t hours_per_month (Cantidad de horas trabajadas al mes en ocupacion principal) &
             total_income_per_hour (Total de ingresos por trabajo por hora)")
   data
 }

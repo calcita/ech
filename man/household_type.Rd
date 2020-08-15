@@ -10,11 +10,11 @@ household_type(data = ech::toy_ech_2018, e26 = "e26", e27 = "e27", e30 = "e30")
 \arguments{
 \item{data}{data frame with ECH microdata}
 
-\item{e26}{sex}
+\item{e26}{Variable name of sex}
 
-\item{e27}{age}
+\item{e27}{Variable name of age}
 
-\item{e30}{householder}
+\item{e30}{Variable name of householder}
 }
 \value{
 data.frame

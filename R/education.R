@@ -63,7 +63,7 @@ enrolled_school <- function(data = ech::toy_ech_2018,
                                                           .data$e224 == 1) ~ 1,
                                                        TRUE ~ 0))
 
-  message("A variable has been created in the base: \n \t  school_enrollment (matriculacion escolar)")
+  message("A variable has been created: \n \t  school_enrollment (matriculacion escolar)")
   data
 }
 
@@ -166,7 +166,7 @@ years_of_schooling <- function(data = ech::toy_ech_2018,
   data %<>% dplyr::mutate(years_schooling = dplyr::case_when(years_schooling < 12 & (e51_9 == 9 | e51_8 == 9 |
                                                                            e51_10 == 9 | (e51_7 == 9 & e51_7_1 == 1)) ~ 12,
                                                        TRUE ~ years_schooling))
-  message("A variable has been created in the base: \n \t  years_schooling (anios de escolaridad)")
+  message("A variable has been created: \n \t  years_schooling (anios de escolaridad)")
   data
 }
 
@@ -250,7 +250,7 @@ level_education <- function(data = ech::toy_ech_2018,
       e51_9 %in% 1:9 | e51_10 %in% 1:9 | e51_11 %in% 1:9 ~ "Universidad",
       TRUE ~ "Error")
     )
-  message("A variable has been created in the base: \n \t level_education (nivel educativo)")
+  message("A variable has been created: \n \t level_education (nivel educativo)")
   data
 }
 
@@ -312,7 +312,7 @@ level_completion <- function(data = ech::toy_ech_2018,
                                  upper_secondary_completion = ifelse(e201 %in% 1:2 & (e51_5 == 3 | e51_6 == 3), 1, 0)#,
                                  #tertiary_completion =
   )
-  message("Variables have been created in the base: \n \t primary_completion (primaria completa);
+  message("Variables have been created: \n \t primary_completion (primaria completa);
          lower_secondary_completion (ciclo basico completo) &
          upper_secondary_completion (bachillerato completo)")
   data
