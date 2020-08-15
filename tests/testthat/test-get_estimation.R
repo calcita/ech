@@ -54,6 +54,20 @@ test_that("get_estimation_total works", {
   expect_equal(nrow(b), 149)
   b <- get_estimation_total(data = d, variable = "ht11", by.x = "secc", by.y = "mes", domain = "dpto == 1", level = "i")
   expect_equal(nrow(b), 117)
+
+  d <- housing_situation(data = ech::toy_ech_2018)
+  b <- get_estimation_total(data = d, variable = "housing_situation", level = "h", name = "hogares_pobre_total")
+  expect_equal(nrow(b), 1)
+  b <- get_estimation_total(data = d, variable = "housing_situation", domain = "dpto == 1", level = "h")
+  expect_equal(nrow(b), 1)
+  b <- get_estimation_total(data = d, variable = "housing_situation", by.x = "mes", domain = "dpto == 1", level = "h")
+  expect_equal(nrow(b), 12)
+  b <- get_estimation_total(data = d, variable = "housing_situation", by.x = "dpto", level = "h")
+  expect_equal(nrow(b), 19)
+  b <- get_estimation_total(data = d, variable = "housing_situation", by.x = "dpto", by.y = "mes", level = "h")
+  expect_equal(nrow(b), 149)
+  b <- get_estimation_total(data = d, variable = "housing_situation", by.x = "secc", by.y = "mes", domain = "dpto == 1", level = "i")
+  expect_equal(nrow(b), 117)
 })
 
 test_that("get_estimation_ratio works", {
