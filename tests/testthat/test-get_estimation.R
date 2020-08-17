@@ -67,7 +67,7 @@ test_that("get_estimation_total works", {
   b <- get_estimation_total(data = df, variable = "housing_situation", by.x = "dpto", by.y = "mes", level = "h")
   expect_equal(nrow(b), 248)
   b <- get_estimation_total(data = df, variable = "housing_situation", by.x = "secc", by.y = "mes", domain = "dpto == 1", level = "i")
-  expect_equal(nrow(b), 123)
+  expect_equal(nrow(b), 155)
 })
 
 test_that("get_estimation_ratio works", {
