@@ -6,7 +6,6 @@
 #'
 #' @keywords employment
 #' @export
-#' @importFrom magrittr %<>%
 #' @importFrom dplyr mutate
 #' @importFrom rlang .data
 #' @details
@@ -19,14 +18,14 @@
 #' }
 
 employment <- function(data = ech::toy_ech_2018,
-                       pobpcoac = "pobpcoac"){
+                       pobpcoac = "pobpcoac") {
 
 # checks ---
-  assertthat::assert_that(is.data.frame(data))
-  assertthat::assert_that(pobpcoac %in% names(data), msg = glue::glue("Sorry... :( \n  {popbcoac} is not in {data}"))
+  assertthat::assert_that(is.data.frame(data), msg = glue::glue("Sorry... :( \n  is not a data.frame"))
+  assertthat::assert_that(pobpcoac %in% names(data), msg = glue::glue("Sorry... :( \n  {popbcoac} is not in data"))
 
 # variables ---
-  data %<>% dplyr::mutate(pea = ifelse({{pobpcoac}} %in% 2:5, 1, 0),
+  data <- data %>% dplyr::mutate(pea = ifelse({{pobpcoac}} %in% 2:5, 1, 0),
                           pet = ifelse({{pobpcoac}} != 1, 1, 0),
                           po  = ifelse({{pobpcoac}} == 2, 1, 0),
                           pd  = ifelse({{pobpcoac}} %in% 3:5, 1, 0)
@@ -36,7 +35,7 @@ employment <- function(data = ech::toy_ech_2018,
          pet (Poblacion en edad de trabajar);
          po (Poblacion ocupada) &
          pd (Poblacion desocupada)")
-  data
+  return(data)
 }
 
 

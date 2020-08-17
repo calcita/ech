@@ -200,7 +200,7 @@ get_estimation_total <- function(data = ech::toy_ech_2018,
   d <- data %>% dplyr::select(if(!is.null(domain)){dom}) %>% dplyr::bind_cols(d, .)
 
   # design ----
-  design_ech <- ech::set_design(data = data, level = level)
+  design_ech <- ech::set_design(data = d, level = level)
 
   # supressed warnings ---
   options(survey.lonely.psu = "adjust")
