@@ -81,7 +81,28 @@ housing_deprivation <- function(data = ech::toy_ech_2018,
       sewerage = ifelse((d14 == 0) | (d16 > 2), 1, 0),
       electricity = ifelse((region_4 < 4 & d18 > 1) | (region_4 == 4 & d18 > 2), 1, 0),
       housing_deprivation_q = sum(c_across(overcrowding:electricity)),
-      housing_deprivation = ifelse(housing_deprivation_q > 0, n, 0)
+      housing_deprivation = ifelse(housing_deprivation_q > 0, n, 0),
+
+      overcrowding = haven::labelled(overcrowding, labels = c("Hacinado" = 1, "No hacinado" = 0),
+                                     label = "Hacinamiento"),
+      bathroom = haven::labelled(bathroom, labels = c("No tiene" = 1, "Tiene" = 0),
+                                 label = "Banio"),
+      rooms = haven::labelled(rooms, labels = c("No tiene" = 1, "Tiene" = 0),
+                              label = "Ambientes adecuados"),
+      roof_materials = haven::labelled(roof_materials, labels = c("No tiene" = 1, "Tiene" = 0),
+                                       label = "Techo adecuado"),
+      wall_materials = haven::labelled(wall_materials, labels = c("No tiene" = 1, "Tiene" = 0),
+                                       label = "Paredes adecuadas"),
+      floor_materials = haven::labelled(floor_materials, labels = c("No tiene" = 1, "Tiene" = 0),
+                                        label = "Pisos adecuados"),
+      water = haven::labelled(water, labels = c("No tiene" = 1, "Tiene" = 0),
+                              label = "Agua"),
+      running_water = haven::labelled(running_water, labels = c("No tiene" = 1, "Tiene" = 0),
+                                      label = "Red general para el agua o pozo"),
+      sewerage = haven::labelled(sewerage, labels = c("No tiene" = 1, "Tiene" = 0),
+                                 label = "Desague"),
+      electricity = haven::labelled(electricity, labels = c("No tiene" = 1, "Tiene" = 0),
+                                    label = "Red electrica")
     )
 
   message("Variables have been created: \n \t overcrowding (Carencia: Hacinamiento);
@@ -165,7 +186,9 @@ housing_situation <- function(data = ech::toy_ech_2018,
                                  ifelse(c5_1 == 2 & c5_2 == 2 & c5_3 == 2 & c5_6 == 2  & c5_7 == 2  & c5_10 == 2 & c5_11 == 2 & c5_12 == 2  & (c5_4 == 1 | c5_5 == 1 | c5_8 == 1  | c5_9 == 1), 2,
                                         ifelse(c5_3 == 2 & c5_10 == 2 & c5_11 == 2 & (c5_1 == 1 | c5_2 == 1 | c5_6 == 1 | c5_7 == 1 | c5_12 == 1), 3,
                                                ifelse(c5_3 == 1 | c5_10 == 1  | c5_11 == 1, 4, NA)))),
-      housing_situation = haven::labelled(housing_situation, labels = c("Sin problemas" = 1, "Problemas leves" = 2, "Problemas moderados" = 3, "Problemas graves" = 4), label = "Housing situation"))
+      housing_situation = haven::labelled(housing_situation,
+                                          labels = c("Sin problemas" = 1, "Problemas leves" = 2, "Problemas moderados" = 3, "Problemas graves" = 4),
+                                          label = "Situacion estructural de la vivienda"))
 
   message("A variable has been created: \n \t housing_situation (situacion estructural de la vivienda)")
   data
@@ -210,7 +233,9 @@ housing_conditions <- function(data = ech::toy_ech_2018,
                                   ifelse((c3== 6 & c4 %in% 1:3 & c2 %in% c(1, 3)) | (c3 == 4 & c4 %in% 1:4 & c2 %in% 1:5) | (c3 == 4 & c4 == 5 & c2 %in% c(1, 3, 5)) | (c3 == 5 & c4 %in% 1:4 & c2 == 4) | (c3 == 5 &  c4 == 5 & c2 %in% c(1, 3)) | (c3 == 5 & c4 == 4 & c2 == 2) | (c3 %in% 1:3 & c4 == 5 & c2 %in% 1:5) | (c3 %in% 1:3 & c4 == 4 & c2 %in% c(2, 4, 5)) | (c3 %in% 1:3  & c4 %in% 1:3 & c2 == 4) | (c3 %in% 2:3 & c4 == 3 & c2 == 2), 3,
                                          ifelse((c3 == 5 & c4 == 4 & c2 %in% c(1, 3, 5)) | (c3 == 5 & c4 %in% 1:3 & c2 %in% c(2, 5)) | (c3 %in% 1:3 & c4 == 4  & c2 %in% 1:3) | (c3 %in% 1:3 & c4 %in% 2:3 & c2 == 5) | (c3 %in% 1:2 & c4 == 1 & c2 == 5) | (c3 == 3 & c4 %in% 1:2 & c2 == 2) | (c3 == 2 & c4 %in% 2:3 & c2 == 3) | (c3 %in% 1:2 & c4 %in% 1:2 & c2 == 2) | (c3 == 2 & c4 %in% 2:3 & c2 == 1) | (c3 == 1 & c4 == 3 & c2 == 2), 2,
                                                 ifelse((c3 %in% c(1, 3, 5) & c4 %in% 1:3 & c2 %in% c(1, 3)) | (c3 == 3 & c4 == 1 & c2 == 5) | (c3 == 2 & c4 == 1 & c2 %in% c(1, 3)), 1, NA)))),
-      housing_conditions = haven::labelled(housing_conditions, labels = c("Buena" = 1, "Mediana" = 2, "Modesta" = 3, "Precaria" = 4), label = "Housing conditions"))
+      housing_conditions = haven::labelled(housing_conditions,
+                                           labels = c("Buena" = 1, "Mediana" = 2, "Modesta" = 3, "Precaria" = 4),
+                                           label = "Situacion coyuntural de la vivienda"))
 
   message("A variable has been created: \n \t housing_conditions (situacion coyuntural de la vivienda)")
   data
@@ -246,7 +271,9 @@ overcrowding <- function(data = ech::toy_ech_2018,
   data <- data %>%
     dplyr::mutate(overcrowding = dplyr::case_when(
                                           ht19 / d10 > 2 ~ 1,
-                                          TRUE ~ 0))
+                                          TRUE ~ 0),
+                  overcrowding = haven::labelled(overcrowding, labels = c("Hacinado" = 1, "No hacinado" = 0),
+                                         label = "Hacinamiento"))
   message("A variable has been created: \n \t overcrowding (hacinamiento)")
   data
 }
@@ -276,12 +303,16 @@ housing_tenure <- function(data = ech::toy_ech_2018,
 
   data <- data %>%
     dplyr::mutate(
-      housing_tenure = ifelse(as.integer(d8_1) %in% c(1, 2, 10), "Propietaria-o",
-        ifelse(as.integer(d8_1) == 5, "Inquilina-o",
-        ifelse(as.integer(d8_1) %in% 6:8, "Ocupante gratuito",
-        ifelse(as.integer(d8_1) == 9, "Ocupante sin permiso",
-        ifelse(as.integer(d8_1) %in% 3:4, "Propietaria-o solo de la vivienda", "")))))
-    )
+      housing_tenure = ifelse(as.integer(d8_1) %in% c(1, 2, 10), 1,
+        ifelse(as.integer(d8_1) == 5, 2,
+        ifelse(as.integer(d8_1) %in% 6:8, 3,
+        ifelse(as.integer(d8_1) == 9, 4,
+        ifelse(as.integer(d8_1) %in% 3:4, 5, 6))))),
+      housing_tenure = haven::labelled(housing_tenure,
+                                       labels = c("Propietaria-o" = 1, "Inquilina-o" = 2, "Ocupante gratuito" = 3,
+                                                  "Ocupante sin permiso" = 4, "Propietaria-o solo de la vivienda" = 5, " " = 6),
+                                       label = "Tenencia de la vivienda"))
+
 
   message("A variable has been created: \n \t housing_tenure (tenencia de la vivienda)")
   data

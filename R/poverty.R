@@ -95,10 +95,12 @@ unsatisfied_basic_needs <- function(data = ech::toy_ech_2018,
         UBN_education = ifelse(.data$school_enrollment == 0 & .data$years_schooling < 12, 1, 0),
         UBN_q = sum(dplyr::c_across(UBN_housing:UBN_education)),
         UBN = dplyr::case_when(
-          UBN_q == 0 ~ "Sin NBI",
-          UBN_q == 1 ~ "Con 1 NBI",
-          UBN_q == 2 ~ "Con 2 NBI",
-          UBN_q >= 3 ~ "Con 3 o mas NBI"))
+          UBN_q == 0 ~ 0,
+          UBN_q == 1 ~ 1,
+          UBN_q == 2 ~ 2,
+          UBN_q >= 3 ~ 3),
+        UBN = haven::labelled(UBN, labels = c("Sin NBI" = 0, "Con 1 NBI" = 1, "Con 2 NBI" = 2, "Con 3 o mas NBI" = 3), label = "NBI")
+        )
 
     message(glue::glue("El objeto data es previo a 2016 y no se incluye UBN_confort"))
     message("Variables have been created: \n \t UBN_housing (NBI vivienda);
@@ -119,10 +121,11 @@ unsatisfied_basic_needs <- function(data = ech::toy_ech_2018,
         UBN_education = ifelse(.data$school_enrollment == 0 & .data$years_schooling < 12, 1, 0),
         UBN_q = sum(dplyr::c_across(UBN_housing:UBN_education)),
         UBN = dplyr::case_when(
-          UBN_q == 0 ~ "Sin NBI",
-          UBN_q == 1 ~ "Con 1 NBI",
-          UBN_q == 2 ~ "Con 2 NBI",
-          UBN_q >= 3 ~ "Con 3 o mas NBI")
+          UBN_q == 0 ~ 0,
+          UBN_q == 1 ~ 1,
+          UBN_q == 2 ~ 2,
+          UBN_q >= 3 ~ 3),
+        UBN = haven::labelled(UBN, labels = c("Sin NBI" = 0, "Con 1 NBI" = 1, "Con 2 NBI" = 2, "Con 3 o mas NBI" = 3), label = "NBI")
       )
     message("Variables have been created: \n \t UBN_housing (NBI vivienda);
             UBN_water (NBI acceso al agua);
@@ -137,11 +140,15 @@ unsatisfied_basic_needs <- function(data = ech::toy_ech_2018,
   if (ipm == T){
     data <- data %>%
       dplyr::mutate(integrated_poverty_measure = dplyr::case_when(
-        pobre06 == 0 & UBN_q == 0 ~ "No pobreza",
-        pobre06 == 1 & UBN_q == 0 ~ "Pobreza reciente",
-        pobre06 == 0 & UBN_q >= 1 ~ "Pobreza inercial",
-        pobre06 == 1 & UBN_q >= 1 ~ "Pobreza cronica"
-      ))
+        pobre06 == 0 & UBN_q == 0 ~ 0,
+        pobre06 == 1 & UBN_q == 0 ~ 1,
+        pobre06 == 0 & UBN_q >= 1 ~ 2,
+        pobre06 == 1 & UBN_q >= 1 ~ 3),
+        integrated_poverty_measure = haven::labelled(integrated_poverty_measure,
+                                          labels = c("No pobreza" = 0, "Pobreza reciente" = 1,
+                                                     "Pobreza inercial" = 2, "Pobreza cronica" = 3),
+                                          label = "Pobreza integrada")
+      )
     message(" \t integrated_poverty_measure (Pobreza integrada)")
   }
     return(data)
@@ -214,8 +221,13 @@ poverty <- function(data = ech::toy_ech_2018,
   h <- h %>% dplyr::mutate(
     indigency_line = cba * ht19,
     poverty_line =  indigency_line + cbna * (ht19 ^ scale),
-    indigent = ifelse(ht11 <= indigency_line, "Indigente", "No indigente"),
-    poor = ifelse(ht11 <= poverty_line, "Pobre", "No pobre"))
+    indigent = ifelse(ht11 <= indigency_line, 1, 0),
+    indigent = haven::labelled(indigent, labels = c("Indigente" = 1, "No indigente" = 0),
+                                        label = "Indigente"),
+    poor = ifelse(ht11 <= poverty_line, 1, 0),
+    poor = haven::labelled(poor, labels = c("Pobre" = 1, "No pobre" = 0),
+                               label = "Pobre")
+    )
 
   data <- h %>% dplyr::select(numero, poor, indigent) %>%
     dplyr:: left_join(data, ., by = "numero")
