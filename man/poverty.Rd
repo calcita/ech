@@ -11,7 +11,6 @@ poverty(
   dpto = "dpto",
   ht11 = "ht11",
   ht19 = "ht19",
-  e30 = "e30",
   numero = "numero"
 )
 }
@@ -27,8 +26,6 @@ poverty(
 \item{ht11}{Variable name of income. Default: ht11}
 
 \item{ht19}{Variable name of number of individuals in the household. Default: ht19}
-
-\item{e30}{householder}
 
 \item{numero}{household id}
 }

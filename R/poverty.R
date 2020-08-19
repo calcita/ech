@@ -162,7 +162,6 @@ unsatisfied_basic_needs <- function(data = ech::toy_ech_2018,
 #' @param dpto Variable name of departamento. Default: dpto
 #' @param ht11 Variable name of income. Default: ht11
 #' @param ht19 Variable name of number of individuals in the household. Default: ht19
-#' @param e30 householder
 #' @param numero household id
 #'
 #' @return data.frame
@@ -180,7 +179,6 @@ poverty <- function(data = ech::toy_ech_2018,
                     dpto = "dpto",
                     ht11 = "ht11",
                     ht19 = "ht19",
-                    e30 = "e30",
                     numero = "numero"){
 
   # checks ---
@@ -189,7 +187,6 @@ poverty <- function(data = ech::toy_ech_2018,
   assertthat::assert_that(dpto  %in% names(data), msg =  glue::glue("Sorry... :( \n {dpto} is not in data"))
   assertthat::assert_that(ht11  %in% names(data), msg =  glue::glue("Sorry... :( \n {ht11} is not in data"))
   assertthat::assert_that(ht19  %in% names(data), msg =  glue::glue("Sorry... :( \n {ht19} is not in data"))
-  assertthat::assert_that(e30  %in% names(data), msg =  glue::glue("Sorry... :( \n {e30} is not in data"))
   assertthat::assert_that(numero  %in% names(data), msg =  glue::glue("Sorry... :( \n {numero} is not in data"))
 
   yy <- max(as.numeric(data$anio))
@@ -198,8 +195,8 @@ poverty <- function(data = ech::toy_ech_2018,
   r <- basket_goods(data = ech::cba_cbna_rur, year = yy) %>% dplyr::mutate(mm = 1:12) %>% dplyr::select(-fecha, -cbt_lp)
 
   h <- data %>%
-    dplyr::filter(e30 == 1) %>%
-    dplyr::select(numero, mes, dpto, region_4, e30, ht11, ht19) %>%
+    dplyr::filter(duplicated(numero) == FALSE) %>%
+    dplyr::select(numero, mes, dpto, region_4, ht11, ht19) %>%
     dplyr::mutate(mm = as.integer(haven::zap_labels(mes))) %>%
     dplyr::left_join(., m, by = c("mm")) %>%
     dplyr::rename(cba_m = cba_li, cbna_m = cbna) %>%
@@ -216,7 +213,9 @@ poverty <- function(data = ech::toy_ech_2018,
         dpto == 1 ~ cbna_m,
         dpto != 1 & region_4 != 4 ~ cbna_i,
         region_4 == 4 ~ cbna_r))  %>%
-    dplyr::select(-mm:-cbna_r)
+    dplyr::select(-mm:-cbna_r) %>%
+    dplyr::mutate(cba = round(cba),
+                  cbna = round(cbna))
 
   h <- h %>% dplyr::mutate(
     indigency_line = cba * ht19,
@@ -229,7 +228,7 @@ poverty <- function(data = ech::toy_ech_2018,
                                label = "Pobre")
     )
 
-  data <- h %>% dplyr::select(numero, poor, indigent) %>%
+  data <- h %>% dplyr::select(numero, indigency_line, poverty_line, poor, indigent) %>%
     dplyr:: left_join(data, ., by = "numero")
 
   message("Variables have been created: \n \t poor (pobre) &
