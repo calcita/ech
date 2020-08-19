@@ -88,5 +88,9 @@ if(getRversion() >= "2.15.1") utils::globalVariables(c(".",
                                                        "cbt_lp",
                                                        "estred13",
                                                        "pesoano",
-                                                       "school_enrollment"
+                                                       "school_enrollment",
+                                                       "pd",
+                                                       "pea",
+                                                       "pet",
+                                                       "po"
                                                        ))

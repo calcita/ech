@@ -802,3 +802,21 @@
 #' Disclaimer: This script is not an official INE product.
 #' Aviso: El script no es un producto oficial de INE.
 "ipab_base2010"
+
+
+#' Data urls_ine
+#'
+#' A dataset containing the urls of INE datasets and diccionaries
+#'
+#' @format A data frame with 9 rows and 4 variables:
+#' \describe{
+#'   \item{yy}{date from 2011 to 2019}
+#'   \item{md_sav}{url for microdata download}
+#'   \item{upm_sav}{url for upm download}
+#'   \item{dic}{url for dictionary download}
+#'  }
+#' @source \url{http://www.ine.gub.uy/}
+#' @details
+#' Disclaimer: This script is not an official INE product.
+#' Aviso: El script no es un producto oficial de INE.
+"urls_ine"

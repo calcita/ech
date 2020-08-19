@@ -57,14 +57,16 @@ household_type <- function(data = ech::toy_ech_2018,
            grandchild = max(.data$grandchild),
            other_rel = max(.data$other_rel),
            no_rel = max(.data$no_rel),
-           household_type = ifelse(sum(.data$partner, .data$child, .data$parents_brosis, .data$grandchild, .data$child_law, .data$other_rel, .data$no_rel) == 0, "unipersonal", #Single person
-                            ifelse(.data$partner > 0 & sum(.data$child, .data$parents_brosis, .data$grandchild, .data$child_law, .data$other_rel, .data$no_rel) == 0, "pareja",#Couple without children
-                            ifelse(.data$partner == 0 & .data$child > 0  & .data$sex_householder == 1 & sum(.data$parents_brosis, .data$grandchild, .data$child_law, .data$other_rel, .data$no_rel) == 0,"monoparental", #Single parent or Single father
-                            ifelse(.data$partner == 0 & .data$child > 0 & .data$sex_householder == 2 & sum(.data$parents_brosis, .data$grandchild, .data$child_law, .data$other_rel, .data$no_rel) == 0, "monomarental", #Single parent or Single mother
-                            ifelse(.data$partner > 0 & .data$child > 0 & sum(.data$parents_brosis, .data$grandchild, .data$child_law, .data$other_rel, .data$no_rel) == 0, "biparental", #Couple with children
-                            ifelse(.data$under_18 == 0 & (.data$parents_brosis > 0 | .data$grandchild > 0 | .data$child_law > 0 | .data$other_rel > 0) & .data$no_rel == 0, "extendido sin menores", #Extended without children
-                            ifelse(.data$under_18 == 1 & (.data$parents_brosis > 0 | .data$grandchild > 0 | .data$child_law > 0 | .data$other_rel > 0) & .data$no_rel == 0, "extendido con menores", #Extended with children
-                            ifelse(.data$no_rel > 0, "compuesto","error")))))))) # composite) %>%
+           household_type = ifelse(sum(.data$partner, .data$child, .data$parents_brosis, .data$grandchild, .data$child_law, .data$other_rel, .data$no_rel) == 0, 1, #Single person
+                            ifelse(.data$partner > 0 & sum(.data$child, .data$parents_brosis, .data$grandchild, .data$child_law, .data$other_rel, .data$no_rel) == 0, 2,#Couple without children
+                            ifelse(.data$partner == 0 & .data$child > 0  & .data$sex_householder == 1 & sum(.data$parents_brosis, .data$grandchild, .data$child_law, .data$other_rel, .data$no_rel) == 0, 3, #Single parent or Single father
+                            ifelse(.data$partner == 0 & .data$child > 0 & .data$sex_householder == 2 & sum(.data$parents_brosis, .data$grandchild, .data$child_law, .data$other_rel, .data$no_rel) == 0, 3, #Single parent or Single mother
+                            ifelse(.data$partner > 0 & .data$child > 0 & sum(.data$parents_brosis, .data$grandchild, .data$child_law, .data$other_rel, .data$no_rel) == 0, 4, #Couple with children
+                            ifelse(.data$under_18 == 0 & (.data$parents_brosis > 0 | .data$grandchild > 0 | .data$child_law > 0 | .data$other_rel > 0) & .data$no_rel == 0, 5, #Extended without children
+                            ifelse(.data$under_18 == 1 & (.data$parents_brosis > 0 | .data$grandchild > 0 | .data$child_law > 0 | .data$other_rel > 0) & .data$no_rel == 0, 6, #Extended with children
+                            ifelse(.data$no_rel > 0, "compuesto","error")))))))), # composite) %>%
+           household_type = haven::labelled(household_type, labels = c("Unipersonal" = 1, "Pareja" = 2, "monoparental" = 3,"biparental" = 4, "extendido sin menores" = 5, "extendido con menores" = 6),
+                                label = "Tipo de hogar")
            )
 
   data <- data %>% dplyr::select(everything(), -.data$sex_householder:-.data$no_rel)

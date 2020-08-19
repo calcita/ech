@@ -28,7 +28,15 @@ employment <- function(data = ech::toy_ech_2018,
   data <- data %>% dplyr::mutate(pea = ifelse({{pobpcoac}} %in% 2:5, 1, 0),
                           pet = ifelse({{pobpcoac}} != 1, 1, 0),
                           po  = ifelse({{pobpcoac}} == 2, 1, 0),
-                          pd  = ifelse({{pobpcoac}} %in% 3:5, 1, 0)
+                          pd  = ifelse({{pobpcoac}} %in% 3:5, 1, 0),
+                          pea = haven::labelled(pea, labels = c("Si" = 1, "No" = 0),
+                                                label = "Poblacion economicamente activa"),
+                          pet = haven::labelled(pet, labels = c("Si" = 1, "No" = 0),
+                                                label = "Poblacion en edad de trabajar"),
+                          po = haven::labelled(po, labels = c("Si" = 1, "No" = 0),
+                                               label = "Poblacion ocupada"),
+                          pd = haven::labelled(pd, labels = c("Si" = 1, "No" = 0),
+                                               label = "Poblacion desocupada")
   )
 
   message("Variables have been created: \n \t pea (Poblacion economicamente activa);
@@ -62,27 +70,27 @@ branch_ciiu <- function(data = ech::toy_ech_2018,
                         group = TRUE,
                         disaggregated = FALSE){
 
-    if(is.character(data$f72_2)) data$f72_2 <- as.numeric(data$f72_2)
+  if(is.character(data$f72_2)) data$f72_2 <- as.numeric(data$f72_2)
 
-    data <- data %>%
-      dplyr::mutate(branch_ciiu = dplyr::case_when(f72_2 < 1000 ~ 1, #faltan evaluar los NA
-                                                                f72_2 < 4000 ~ 2,
-                                                                f72_2 < 4500 ~ 3,
-                                                                f72_2 < 4900 ~ 4,
-                                                                f72_2 < 5500 ~ 5,
-                                                                f72_2 < 5800 ~ 6,
-                                                                f72_2 < 6400 ~ 7,
-                                                                f72_2 < 6800 ~ 8,
-                                                                f72_2 < 6900 ~ 9,
-                                                                f72_2 < 7500 ~ 10,
-                                                                f72_2 < 8400 ~ 11,
-                                                                f72_2 < 8500 ~ 12,
-                                                                f72_2 < 8600 ~ 13,
-                                                                f72_2 < 9000 ~ 14,
-                                                                f72_2 < 9400 ~ 15,
-                                                                f72_2 < 9700 ~ 16,
-                                                                f72_2 < 9900 ~ 17,
-                                                                TRUE ~ 18))
+  data <- data %>%
+    dplyr::mutate(branch_ciiu = dplyr::case_when(f72_2 < 1000 ~ 1, #faltan evaluar los NA
+                                                 f72_2 < 4000 ~ 2,
+                                                 f72_2 < 4500 ~ 3,
+                                                 f72_2 < 4900 ~ 4,
+                                                 f72_2 < 5500 ~ 5,
+                                                 f72_2 < 5800 ~ 6,
+                                                 f72_2 < 6400 ~ 7,
+                                                 f72_2 < 6800 ~ 8,
+                                                 f72_2 < 6900 ~ 9,
+                                                 f72_2 < 7500 ~ 10,
+                                                 f72_2 < 8400 ~ 11,
+                                                 f72_2 < 8500 ~ 12,
+                                                 f72_2 < 8600 ~ 13,
+                                                 f72_2 < 9000 ~ 14,
+                                                 f72_2 < 9400 ~ 15,
+                                                 f72_2 < 9700 ~ 16,
+                                                 f72_2 < 9900 ~ 17,
+                                                 TRUE ~ 18))
 
   if (group == TRUE){
     data <- data %>%
