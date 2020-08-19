@@ -186,6 +186,17 @@ get_microdata <- function(year = NULL,
                                          "get_file?uuid=b63b566f-8d11-443d-bcd8-944f137c5aaf&groupId=10181",
                                          "get_file?uuid=8c934d2a-ad67-4208-8f21-96989696510e&groupId=10181"  #2019
                      )),
+                     upm_sav = fs::path("http://www.ine.gub.uy/c/document_library/",
+                                        c("",
+                                          "",
+                                          "",
+                                          "",
+                                          "",
+                                          "",
+                                          "",
+                                          "get_file?uuid=1fd19a7a-5520-4c27-b648-b72053421f5b&groupId=10181",
+                                          "get_file?uuid=c9d8b233-734a-4de6-890f-1cdbd48c063f&groupId=10181"
+                                          )),
                      dic = fs::path("www.ine.gub.uy/c/document_library",
                                     c("get_file?uuid=54523778-5f53-4df1-a265-3ff520941bca&groupId=10181",
                                       "get_file?uuid=8e8963a6-b9f2-47f3-abf5-119f988ad868&groupId=10181",
@@ -197,16 +208,19 @@ get_microdata <- function(year = NULL,
                                       "get_file?uuid=73b6cc21-1bb0-483b-a463-819315b5fff3&groupId=10181",
                                       "get_file?uuid=800e3c63-5cbc-4842-ad00-745f801f9220&groupId=10181")),
                      file = paste0(folder, "/ech_", all_years, "_sav.rar"),
+                     file_extra = paste0(folder, "/upm_", all_years, "_sav.rar"),
                      stringsAsFactors = FALSE)
   links <- urls %>% dplyr::filter(.data$yy %in% year)
 
-  u <- links$md_sav
-  f <- links$file
+  u1 <- links$md_sav
+  f1 <- links$file
   y <- links$yy
+  u2 <- links$upm_sav
+  f2 <- links$file_extra
 
   if (!file.exists(f)) {
     message(glue::glue("Intentando descargar ECH {y}..."))
-    try(utils::download.file(u, f, mode = "wb", method = "libcurl"))
+    try(utils::download.file(u1, f1, mode = "wb", method = "libcurl"))
   } else {
     message(glue::glue("ECH {y} ya existe, se omite la descarga"))
   }
@@ -263,7 +277,12 @@ get_microdata <- function(year = NULL,
     fs::file_delete(sav)
   }
 
+  if(yy %in% 2018:2019){
+    try(utils::download.file(u2, f2, mode = "wb", method = "libcurl"))
+  }
+
   return(d)
+
 }
 
 
