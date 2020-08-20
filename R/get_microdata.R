@@ -155,10 +155,7 @@ get_microdata <- function(year = NULL,
   # checks ----
   stopifnot(is.numeric(year) | is.null(year) | length(year) <= 1)
   if (!is.character(folder) | length(folder) != 1) {
-    message(glue::glue("Debe ingresar un directorio..."))
-  }
-  if (length(fs::dir_ls(folder, regexp = "\\.rar$")) != 0) {
-    message(glue::glue("Existen en la carpeta otros archivos .rar que se van a leer..."))
+    message(glue::glue("Sorry... ;( \n \t You must enter a directory..."))
   }
 
   # download ----
@@ -167,7 +164,7 @@ get_microdata <- function(year = NULL,
   all_years <- 2011:2019
 
   if (!is.null(year) & any(year %in% all_years) == FALSE) {
-    stop("Por el momento ech solo funciona con microdatos de 2011 a 2019")
+    stop("Sorry... ;( \n \t At the moment ech only works for the period 2011 to 2019")
   }
 
   if (is.null(year)) {
@@ -185,10 +182,10 @@ get_microdata <- function(year = NULL,
   f2 <- links$file_extra
 
   if (!file.exists(f1)) {
-    message(glue::glue("Intentando descargar ECH {y}..."))
+    message(glue::glue("Trying to download ECH {y}..."))
     try(utils::download.file(u1, f1, mode = "wb", method = "libcurl"))
   } else {
-    message(glue::glue("ECH {y} ya existe, se omite la descarga"))
+    message(glue::glue("ECH {y} already exists, the download is omitted"))
   }
 
   # read----
@@ -203,13 +200,11 @@ get_microdata <- function(year = NULL,
                             collapse = ", ")
     formats_string <- paste(c(formats_string, uncompressed_formats[length(uncompressed_formats)]),
                             collapse = " o ")
-    stop(glue::glue("Los metadatos de {archivo} indica que este archivo no sirve.
-                    Asegurate de que el formato es {formats_string}."))
+    stop(glue::glue("The metadata in {archivo} indicates that this file is not useful. \n \t Make sure the format is {formats_string}."))
   }
 
   if (ext %in% compressed_formats) {
-    message(glue::glue("Los metadatos de {archivo} indican que el formato comprimido es adecuado,
-                       intentando leer..."))
+    message(glue::glue("The metadata in {archivo} indicates that this file is useful. \n \t Trying to read..."))
     try(archive_extract(archive.path = archivo, dest.path = folder))
     descomprimido <- fs::dir_ls(folder, regexp = "\\.sav$")
     descomprimido <- descomprimido[(stringr::str_detect(descomprimido, "HyP") == T |
@@ -219,16 +214,15 @@ get_microdata <- function(year = NULL,
   }
 
   if (ext %in% uncompressed_formats) {
-    message(glue::glue("Los metadatos de {archivo} indican que el formato no comprimido es adecuado,
-                       intentando leer..."))
+    message(glue::glue("The metadata in {archivo} indicates that the uncompressed format is suitable,  \n \t Trying to read..."))
     d <- haven::read_sav(archivo)
   }
 
   if (any(class(d) %in% "data.frame")) {
-    message(glue::glue("{archivo} se pudo leer como tibble :-)"))
+    message(glue::glue("{archivo} could be read as tibble :-)"))
     d <- janitor::clean_names(d)
   } else {
-    stop(glue::glue("{archivo} no se pudo leer como tibble :-("))
+    stop(glue::glue("{archivo} could not be read as tibble :-("))
   }
 
   # standarize names
@@ -247,8 +241,7 @@ get_microdata <- function(year = NULL,
                               collapse = ", ")
       formats_string <- paste(c(formats_string, uncompressed_formats[length(uncompressed_formats)]),
                               collapse = " o ")
-      stop(glue::glue("Los metadatos de {archivo} indica que este archivo no sirve.
-                      Asegurate de que el formato es {formats_string}."))
+      stop(glue::glue("The metadata in {archivo} indicates that this file is not useful. \n \t Make sure the format is {formats_string}."))
     }
 
     if (ext %in% compressed_formats) {
@@ -259,15 +252,14 @@ get_microdata <- function(year = NULL,
     }
 
     if (ext %in% uncompressed_formats) {
-      message(glue::glue("Los metadatos de {archivo} indican que el formato no comprimido es adecuado,
-                         intentando leer..."))
+      message(glue::glue("The metadata in {archivo} indicates that the uncompressed format is suitable,  \n \t Trying to read..."))
       upm <- haven::read_sav(archivo)
     }
 
     if (any(class(upm) %in% "data.frame")) {
       upm <- janitor::clean_names(upm)
     } else {
-      stop(glue::glue("{archivo} no se pudo leer como tibble :-("))
+      stop(glue::glue("{archivo} could not be read as tibble :-("))
     }
 
     # standarize names
@@ -278,7 +270,7 @@ get_microdata <- function(year = NULL,
   # save ----
   if (isTRUE(toR)) {
     saveRDS(d, file = fs::path(folder, paste0("ECH_", year, ".Rds")))
-    message(glue::glue("Se ha guardado el archivo en formato R"))
+    message(glue::glue("The ech {year} has been saved in R format"))
     sav <- fs::dir_ls(folder, regexp = "\\.sav$")
     fs::file_delete(archivo)
     fs::file_delete(sav)
@@ -317,9 +309,9 @@ read_microdata <- function(path = NULL){
   if (!is.null(path)) {
     format = tolower(fs::path_ext(path))
     if (!format %in% c("sav", "dta", "rds", "rda", "rdata"))
-      stop(glue::glue("No es posible abrir un archivo con formato {format}"))
+      stop(glue::glue("It is not possible to open a file with the format {format}"))
   } else {
-    stop(glue::glue("No es posible abrir {path}"))
+    stop(glue::glue("It is not possible to open {path}"))
   }
 
   # read file
@@ -370,10 +362,7 @@ get_marco <- function(year = NULL, folder = tempdir(), toR = TRUE){
   # checks ----
   stopifnot(is.numeric(year) | is.null(year) | length(year) <= 1)
   if (!is.character(folder) | length(folder) != 1) {
-    message(glue::glue("Debe ingresar un directorio..."))
-  }
-  if (length(fs::dir_ls(folder, regexp = "\\.zip$")) != 0) {
-    message(glue::glue("Existen en la carpeta otros archivos .zip que se van a leer..."))
+    message(glue::glue("Sorry... ;( \n \t You must enter a directory..."))
   }
 
   # download ----
@@ -382,7 +371,7 @@ get_marco <- function(year = NULL, folder = tempdir(), toR = TRUE){
   all_years <- c(2011, 2004, 1996, 1985)
 
   if (!is.null(year) & any(year %in% all_years) == FALSE) {
-    stop("Por el momento solo existen marcos para 2011, 2004, 1996 o 1985")
+    stop("At the moment there are only census data for 2011, 2004, 1996 or 1985")
   }
 
   if (is.null(year)) {
@@ -404,10 +393,10 @@ get_marco <- function(year = NULL, folder = tempdir(), toR = TRUE){
   y <- links$yy
 
   if (!file.exists(f)) {
-    message(glue::glue("Intentando descargar marco {y}..."))
+    message(glue::glue("Trying to download Census data for year {y}..."))
     try(utils::download.file(u, f, mode = "wb", method = "libcurl"))
   } else {
-    message(glue::glue("marco {y} ya existe, se omite la descarga"))
+    message(glue::glue("Census data for year {y} already exists, the download is omitted"))
   }
 
   # read----
@@ -418,10 +407,10 @@ get_marco <- function(year = NULL, folder = tempdir(), toR = TRUE){
   d <- try(haven::read_sav(descomprimido))
 
   if (any(class(d) %in% "data.frame")) {
-    message(glue::glue("{archivo} se pudo leer como tibble :-)"))
+    message(glue::glue("{archivo} could be read as tibble :-)"))
     d <- janitor::clean_names(d)
   } else {
-    stop(glue::glue("{archivo} no se pudo leer como tibble :-("))
+    stop(glue::glue("{archivo} could not be read as tibble :-("))
   }
 
   # standarize names
@@ -430,7 +419,7 @@ get_marco <- function(year = NULL, folder = tempdir(), toR = TRUE){
   # save ----
   if (isTRUE(toR)) {
     saveRDS(d, file = fs::path(folder, paste0("marco_", year, ".Rds")))
-    message(glue::glue("Se ha guardado el archivo en formato R"))
+    message(glue::glue("The file has been saved in R format"))
     sav <- fs::dir_ls(folder, regexp = "\\.sav$")
     fs::file_delete(archivo)
     fs::file_delete(sav)
