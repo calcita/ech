@@ -327,6 +327,32 @@ unlabelled <- function(data = NULL){
 
 }
 
+#' age_groups
+#'
+#' @param data data.frame
+#' @param cut breaks points to cut a numeric variable
+#' @param e27 Variable name of age
+#' @param labels Labels for the new variable
+#' @return data.frame
+#' @export
+#'
+#' @examples
+#' df <- age_groups(data = ech::toy_ech_2018, cut = c(0, 4, 11, 17, 24))
+#'
+age_groups <- function(data = ech::toy_ech_2018,
+                       cut = c(0, 4, 11, 17, 24),
+                       e27 = "e27",
+                       labels = c("0-4", "5-11", "12-17", "18-24", "+24")) {
+
+  if (max(dplyr::pull(data[, e27])) > max(cut)){
+    cut <- c(cut, max(dplyr::pull(data[, e27])))
+  }
+  data <- data %>% mutate(age_groups = cut(e27, breaks = cut, include.lowest = FALSE, labels = FALSE))
+
+  labels <- strsplit(labels, '[[:punct:]]') %>% stringr::str_trim()
+
+}
+
 #' Pipe operator
 #'
 #' See \code{magrittr::\link[magrittr]{\%>\%}} for details.

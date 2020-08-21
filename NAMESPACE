@@ -2,6 +2,7 @@
 
 export("%>%")
 export(add_geom)
+export(age_groups)
 export(archive_extract)
 export(basket_goods)
 export(branch_ciiu)

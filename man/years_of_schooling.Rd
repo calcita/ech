@@ -18,7 +18,8 @@ years_of_schooling(
   e51_8 = "e51_8",
   e51_9 = "e51_9",
   e51_10 = "e51_10",
-  e51_11 = "e51_11"
+  e51_11 = "e51_11",
+  max_years = 22
 )
 }
 \arguments{
@@ -47,6 +48,8 @@ years_of_schooling(
 \item{e51_10}{Variable name of years passed in tertiary (non-university)}
 
 \item{e51_11}{Variable name of years passed in postgrade}
+
+\item{max_years}{Maximum years of schooling}
 }
 \description{
 years_of_schooling

@@ -25,6 +25,7 @@ unsatisfied_basic_needs(
   d260 = "d260",
   ht19 = "ht19",
   pobre06 = "pobre06",
+  e27 = "e27",
   school_enrollment = "school_enrollment",
   years_schooling = "years_schooling",
   anio = "anio"
@@ -70,6 +71,8 @@ unsatisfied_basic_needs(
 \item{ht19}{Variable name of number of individuals in the household}
 
 \item{pobre06}{Variable name of poverty}
+
+\item{e27}{Variable name of age}
 
 \item{school_enrollment}{Variable name of school_enrollment}
 

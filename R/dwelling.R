@@ -188,9 +188,9 @@ housing_situation <- function(data = ech::toy_ech_2018,
                                                ifelse(c5_3 == 1 | c5_10 == 1  | c5_11 == 1, 4, NA)))),
       housing_situation = haven::labelled(housing_situation,
                                           labels = c("Sin problemas" = 1, "Problemas leves" = 2, "Problemas moderados" = 3, "Problemas graves" = 4),
-                                          label = "Situacion estructural de la vivienda"))
+                                          label = "Situacion coyuntural de la vivienda"))
 
-  message("A variable has been created: \n \t housing_situation (situacion estructural de la vivienda)")
+  message("A variable has been created: \n \t housing_situation (situacion coyuntural de la vivienda)")
   data
 }
 
@@ -235,9 +235,9 @@ housing_conditions <- function(data = ech::toy_ech_2018,
                                                 ifelse((c3 %in% c(1, 3, 5) & c4 %in% 1:3 & c2 %in% c(1, 3)) | (c3 == 3 & c4 == 1 & c2 == 5) | (c3 == 2 & c4 == 1 & c2 %in% c(1, 3)), 1, NA)))),
       housing_conditions = haven::labelled(housing_conditions,
                                            labels = c("Buena" = 1, "Mediana" = 2, "Modesta" = 3, "Precaria" = 4),
-                                           label = "Situacion coyuntural de la vivienda"))
+                                           label = "Situacion estructural de la vivienda"))
 
-  message("A variable has been created: \n \t housing_conditions (situacion coyuntural de la vivienda)")
+  message("A variable has been created: \n \t housing_conditions (situacion estructural de la vivienda)")
   data
 }
 

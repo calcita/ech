@@ -48,7 +48,7 @@ get_estimation_mean <- function(data = ech::toy_ech_2018,
   if(!is.null(by.y)) assertthat::assert_that(by.y %in% names(data), msg = glue::glue("Sorry... :( \n  {by.y} is not in data"))
   if(!is.null(level)) assertthat::assert_that(level %in% c("household", "h", "individual", "i"), msg = "Check the level selected")
   if(!is.null(domain)) {
-    dom <- strsplit(domain, '[[:punct:]]')[[1]][1] %>% stringr::str_trim()
+    dom <- strsplit(domain, '[==><!]')[[1]][1] %>% stringr::str_trim()
     assertthat::assert_that(dom %in% names(data), msg = glue::glue("Sorry... :( \n  {dom} is not in data"))
   }
 
@@ -189,7 +189,7 @@ get_estimation_total <- function(data = ech::toy_ech_2018,
   if(!is.null(by.y)) assertthat::assert_that(by.y %in% names(data), msg = glue::glue("Sorry... :( \n  {by.y} is not in {data}"))
   if(!is.null(level)) assertthat::assert_that(level %in% c("household", "h", "individual", "i"), msg = "Check the level selected")
   if(!is.null(domain)) {
-    dom <- strsplit(domain, '[[:punct:]]')[[1]][1] %>% stringr::str_trim()
+    dom <- strsplit(domain, '[==><!]')[[1]][1] %>% stringr::str_trim()
     assertthat::assert_that(dom %in% names(data), msg = glue::glue("Sorry... :( \n  {dom} is not in data"))
   }
 
@@ -333,7 +333,7 @@ get_estimation_ratio <- function(data = ech::toy_ech_2018,
   if(!is.null(by.y)) assertthat::assert_that(by.y %in% names(data), msg = glue::glue("Sorry... :( \n {by.y} is not in {data}"))
   if(!is.null(level)) assertthat::assert_that(level %in% c("household", "h", "individual", "i"), msg = "Check the level selected")
   if(!is.null(domain)) {
-    dom <- strsplit(domain, '[[:punct:]]')[[1]][1] %>% stringr::str_trim()
+    dom <- strsplit(domain, '[==><!]')[[1]][1] %>% stringr::str_trim()
     assertthat::assert_that(dom %in% names(data), msg = glue::glue("Sorry... :( \n  {dom} is not in data"))
   }
 

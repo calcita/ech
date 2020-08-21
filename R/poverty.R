@@ -20,6 +20,7 @@
 #' @param d260 Variable name of energy source for heating
 #' @param ht19 Variable name of number of individuals in the household
 #' @param pobre06 Variable name of poverty
+#' @param e27 Variable name of age
 #' @param school_enrollment Variable name of school_enrollment
 #' @param years_schooling Variable name of years_schooling
 #' @param anio Variable name of survey year
@@ -56,6 +57,7 @@ unsatisfied_basic_needs <- function(data = ech::toy_ech_2018,
                                     d260 = "d260",
                                     ht19 = "ht19",
                                     pobre06 = "pobre06",
+                                    e27 = "e27",
                                     school_enrollment = "school_enrollment",
                                     years_schooling = "years_schooling",
                                     anio = "anio"){
@@ -114,11 +116,11 @@ unsatisfied_basic_needs <- function(data = ech::toy_ech_2018,
     data <- data %>%
       dplyr::mutate(
         UBN_housing = ifelse((c2 == 6 | c3 == 6 | c4 == 5) | (ht19 / d10) >2 | d19 == 3, 1, 0),
-        UBN_water = ifelse(d12 %in% 2:4 | d11 %in% 2:6, 1, 0),
+        UBN_water = ifelse(d12 %in% 2:4 | d11 %in% c(2, 4:6), 1, 0),
         UBN_sewerage = ifelse(d13 == 3 | d14 == 0 | d15 == 2 | d16 %in% 3:4, 1, 0),
         UBN_electricity = ifelse(d18 > 2, 1, 0),
         UBN_confort = ifelse(d260 == 6 | d21_3 == 2 | (d21_1 == 2 & d21_2 == 2), 1, 0),
-        UBN_education = ifelse(.data$school_enrollment == 0 & .data$years_schooling < 12, 1, 0),
+        UBN_education = ifelse(e27 %in% 4:17 & .data$school_enrollment == 0 & .data$years_schooling < 12, 1, 0),
         UBN_q = sum(dplyr::c_across(UBN_housing:UBN_education)),
         UBN = dplyr::case_when(
           UBN_q == 0 ~ 0,
