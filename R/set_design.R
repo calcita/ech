@@ -5,7 +5,7 @@
 #' @param level is household ("h") or individual ("i")
 #' @param ids variables specifying the unit primary sampling (it's not a public variable)
 #' @param numero variables specifying  the householder ids
-#' @param estred13 variable specifying strata
+#' @param estrato variable specifying strata
 #' @param pesoano variable specifying weights
 #'
 #' @importFrom glue glue
@@ -26,32 +26,30 @@
 
 set_design <- function(data = ech::toy_ech_2018,
                        level = "i",
-                       ids = NULL,
                        numero = "numero",
-                       estred13 = "estred13",
+                       ids = NULL,
+                       estrato = NULL,
                        pesoano = "pesoano"){
 
   if(is.null(ids)){
     if (level == "h") {
       d <- data %>%
-        dplyr::mutate(estred13 = as.character(estred13)) %>%
         dplyr::filter(duplicated(numero) == FALSE) %>%
-        srvyr::as_survey_design(ids = 1, strata = estred13, weights = pesoano)
+        srvyr::as_survey_design(ids = 1, weights = pesoano)
     } else {
       d <- data %>%
-        dplyr::mutate(estred13 = as.character(estred13)) %>%
-        srvyr::as_survey_design(ids = numero, strata = estred13, weights = pesoano)
+        srvyr::as_survey_design(ids = numero, weights = pesoano)
     }
   } else {
     if (level == "h") {
       d <- data %>%
-        dplyr::mutate(estred13 = as.character(estred13)) %>%
+        dplyr::mutate(estrato = as.character(estrato)) %>%
         dplyr::filter(duplicated(numero) == FALSE) %>%
-        srvyr::as_survey_design(ids = ids, strata = estred13, weights = pesoano)
+        srvyr::as_survey_design(ids = ids, strata = estrato, weights = pesoano)
     } else {
       d <- data %>%
-        dplyr::mutate(estred13 = as.character(estred13)) %>%
-        srvyr::as_survey_design(ids = ids, strata = estred13, weights = pesoano)
+        dplyr::mutate(estrato = as.character(estrato)) %>%
+        srvyr::as_survey_design(ids = ids, strata = estrato, weights = pesoano)
     }
   }
 

@@ -13,7 +13,7 @@ get_estimation_mean(
   level = NULL,
   ids = NULL,
   numero = "numero",
-  estred13 = "estred13",
+  estrato = NULL,
   pesoano = "pesoano",
   name = "estimacion"
 )
@@ -35,7 +35,7 @@ get_estimation_mean(
 
 \item{numero}{household id}
 
-\item{estred13}{strata}
+\item{estrato}{strata}
 
 \item{pesoano}{weights}
 

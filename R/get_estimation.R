@@ -9,7 +9,7 @@
 #' @param level is household ("h") or individual ("i").
 #' @param ids ids
 #' @param numero household id
-#' @param estred13 strata
+#' @param estrato strata
 #' @param pesoano weights
 #' @param name name for the estimation new column
 #'
@@ -38,7 +38,7 @@ get_estimation_mean <- function(data = ech::toy_ech_2018,
                                 level = NULL,
                                 ids = NULL,
                                 numero = "numero",
-                                estred13 = "estred13",
+                                estrato = NULL,
                                 pesoano = "pesoano",
                                 name = "estimacion"){
  # checks ----
@@ -54,7 +54,7 @@ get_estimation_mean <- function(data = ech::toy_ech_2018,
 
 
 # unlabelled
-  d <- data %>% dplyr::select(!!!syms(c(variable, by.x, by.y, ids, numero, estred13, pesoano))) %>%
+  d <- data %>% dplyr::select(!!!syms(c(variable, by.x, by.y, ids, numero, estrato, pesoano))) %>%
     unlabelled()
 
   d <- data %>% dplyr::select(if(!is.null(domain)){dom}) %>% dplyr::bind_cols(d, .)
@@ -150,7 +150,7 @@ get_estimation_mean <- function(data = ech::toy_ech_2018,
 #' @param level is household ("h") or individual ("i").
 #' @param ids ids
 #' @param numero household id
-#' @param estred13 strata
+#' @param estrato strata
 #' @param pesoano weights
 #' @param name name for the estimation new column
 #' @import survey
@@ -179,7 +179,7 @@ get_estimation_total <- function(data = ech::toy_ech_2018,
                                 level = NULL,
                                 ids = NULL,
                                 numero = "numero",
-                                estred13 = "estred13",
+                                estrato = NULL,
                                 pesoano = "pesoano",
                                 name = "estimacion"){
   # checks ----
@@ -194,7 +194,7 @@ get_estimation_total <- function(data = ech::toy_ech_2018,
   }
 
   # unlabelled
-  d <- data %>% dplyr::select(!!!syms(c(variable, by.x, by.y, ids, numero, estred13, pesoano))) %>%
+  d <- data %>% dplyr::select(!!!syms(c(variable, by.x, by.y, ids, numero, estrato, pesoano))) %>%
     unlabelled()
 
   d <- data %>% dplyr::select(if(!is.null(domain)){dom}) %>% dplyr::bind_cols(d, .)
@@ -292,7 +292,7 @@ get_estimation_total <- function(data = ech::toy_ech_2018,
 #' @param level is household ("h") or individual ("i")
 #' @param ids ids
 #' @param numero household id
-#' @param estred13 strata
+#' @param estrato strata
 #' @param pesoano weights
 #' @param name name for the estimation new column
 #' @importFrom dplyr mutate select filter group_by %>%
@@ -321,7 +321,7 @@ get_estimation_ratio <- function(data = ech::toy_ech_2018,
                                 level = NULL,
                                 ids = NULL,
                                 numero = "numero",
-                                estred13 = "estred13",
+                                estrato = NULL,
                                 pesoano = "pesoano",
                                 name = "estimacion"){
 
@@ -338,7 +338,7 @@ get_estimation_ratio <- function(data = ech::toy_ech_2018,
   }
 
   # unlabelled
-  d <- data %>% dplyr::select(!!!syms(c(variable.x, variable.y, by.x, by.y, ids, numero, estred13, pesoano))) %>%
+  d <- data %>% dplyr::select(!!!syms(c(variable.x, variable.y, by.x, by.y, ids, numero, estrato, pesoano))) %>%
     unlabelled()
 
   d <- data %>% dplyr::select(if(!is.null(domain)){dom}) %>% dplyr::bind_cols(d, .)

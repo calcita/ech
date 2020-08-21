@@ -8,9 +8,9 @@ This function allows you to set the survey desing}
 set_design(
   data = ech::toy_ech_2018,
   level = "i",
-  ids = NULL,
   numero = "numero",
-  estred13 = "estred13",
+  ids = NULL,
+  estrato = NULL,
   pesoano = "pesoano"
 )
 }
@@ -19,11 +19,11 @@ set_design(
 
 \item{level}{is household ("h") or individual ("i")}
 
-\item{ids}{variables specifying the unit primary sampling (it's not a public variable)}
-
 \item{numero}{variables specifying  the householder ids}
 
-\item{estred13}{variable specifying strata}
+\item{ids}{variables specifying the unit primary sampling (it's not a public variable)}
+
+\item{estrato}{variable specifying strata}
 
 \item{pesoano}{variable specifying weights}
 }

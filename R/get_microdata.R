@@ -265,7 +265,8 @@ get_microdata <- function(year = NULL,
     # standarize names
     names(upm) <- tolower(names(upm))
 
-    d <- dplyr::left_join(d, upm, by = "numero")
+    d <- upm %>% dplyr::select(numero, dplyr::starts_with("upm"), dplyr::starts_with("estrato")) %>%
+      dplyr::left_join(d, ., by = "numero")
   }
   # save ----
   if (isTRUE(toR)) {
