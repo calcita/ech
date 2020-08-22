@@ -38,6 +38,32 @@ employment <- function(data = ech::toy_ech_2018,
   return(data)
 }
 
+#' employment_restrictions
+#'
+#' @param data data.frame
+#' @param f82 Variable name of
+#' @param underemployment Variable name of
+#'
+#' @return data.frame
+#' @export
+#'
+#'
+employment_restrictions  <- function(data = ech::toy_ech_2018,
+                                     f82 = "f82",
+                                     underemployment = "underemployment"){
+
+  data <- data %>% mutate(employment_restrictions = dplyr::case_when(
+    f82 == 1 & underemployment == 0 ~ 1,
+    f82 == 2 & underemployment == 0 ~ 2,
+    f82 == 1 & underemployment == 1 ~ 3,
+    f82 == 2 & underemployment == 0 ~ 4),
+    employment_restrictions =  haven::labelled(employment_restrictions,
+                                               labels = c("Sin restricciones" = 1,  "Restriccion por no aporte" = 2, "Restriccion por subempleo" = 3, "Restriccion por subempleo y no aporte " = 4),
+                                               label = "Restricciones al empleo"))
+
+  message("A variable has been created: \n \t  employment_restrictions (restricciones al empleo)")
+  return(data)
+}
 
 #' branch_ciuu
 #'

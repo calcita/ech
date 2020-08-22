@@ -66,7 +66,7 @@ enrolled_school <- function(data = ech::toy_ech_2018,
                                                  label = "Matriculacion escolar"))
 
   message("A variable has been created: \n \t  school_enrollment (matriculacion escolar)")
-  data
+  return(data)
 }
 
 #' years_of_schooling

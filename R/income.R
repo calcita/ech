@@ -281,8 +281,9 @@ labor_income_per_capita <- function(data = ech::toy_ech_2018,
                   labor_income_h_percapita = labor_income_h /sum(!is.na(labor_income_h))) %>%
     dplyr::ungroup()
 
-  message("Variables have been created: \n \t labor_income_h (Ingresos laborales) &
-            labor_income_h_percapita (Ingresos laborales per capita)")
+  message("Variables have been created: \n \t labor_income (Ingresos laborales) &
+            labor_income_h (Ingresos laborales del hogar) &
+            labor_income_h_percapita (Ingresos laborales del hogar per capita)")
   data
 }
 
