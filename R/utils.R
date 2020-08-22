@@ -249,13 +249,17 @@ get_ciiu <- function(folder = tempdir(),
 #'
 #' @examples
 #' \donttest{
-#' deflate(base_month = "06", base_year = "2016", df_year = "2018")
+#' deflate(base_month = 6, base_year = 2016, df_year = 2018)
 #' }
 
 deflate <- function(base_month = NULL,
                     base_year = NULL,
                     ipc = "G",
                     df_year = NULL) {
+
+  if (nchar(as.character(base_month)) == 1){
+    base_month <- paste0("0", base_month)
+  }
 
   if (ipc == "G") {
      df <- ech::ipc_base2010
@@ -266,18 +270,26 @@ deflate <- function(base_month = NULL,
   }
 
      mes_base <- df %>%
-       dplyr::filter(.data$fecha == paste0(base_year, "-", base_month, "-01")) %>%
-       dplyr::select(.data$indice) %>% as.numeric
+       dplyr::filter(fecha == paste0(base_year, "-", base_month, "-01")) %>%
+       dplyr::select(indice) %>%
+       as.numeric()
 
      rows1 <- which(df$fecha == paste0(as.numeric(df_year) - 1, "-",12, "-01"))
      rows2 <- which(df$fecha == paste0(df_year, "-",11, "-01"))
 
-     deflate <- df %>%
+     indice <- df %>%
        dplyr::slice(rows1:rows2) %>%
-       dplyr::mutate(deflate = mes_base/as.numeric(.data$indice),
-              mes = 1:12
-       ) %>%
-       dplyr::select(.data$deflate, .data$mes)
+       dplyr::select(indice)
+
+     indice <- as.numeric(indice$indice)
+
+     deflate_forward <- mes_base/indice
+     deflate_backward <- indice/mes_base
+
+     deflate <- dplyr::bind_cols(deflate_backward = deflate_backward, deflate_forward = deflate_forward, mes = 1:12) %>%
+       dplyr::mutate(deflate = dplyr::case_when(base_year >= as.numeric(df_year) ~ deflate_forward,
+                                                base_year < as.numeric(df_year) ~ deflate_backward)) %>%
+       dplyr::select(deflate, mes)
 }
 
 #' basket_goods

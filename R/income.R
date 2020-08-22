@@ -52,15 +52,17 @@ income_constant_prices <- function(data = ech::toy_ech_2018,
     data <- data %>% dplyr::mutate(aux = as.integer(haven::zap_labels(.data[[mes]]))) %>%
       dplyr::left_join(deflate, by = c("aux" = "mes"), keep = F)
 
-    data %<>% dplyr::mutate(y_pc_d = .data[[ht11]] / .data[[ht19]] * deflate, # income per capita deflated
+    data %<>% dplyr::mutate(y_pc = .data[[ht11]] / .data[[ht19]], # income per capita
+                            y_pc_d = y_pc * deflate, # income per capita deflated
                             rv_d = .data[[ht13]] * deflate, # rental value deflated
                             y_wrv_d = (.data[[ht11]] - .data[[ht13]]) * deflate, # income without rental value deflated
                             y_wrv_pc_d = (.data[[ht11]] - .data[[ht13]]) / .data[[ht19]] * deflate # income without rental value per capita deflated
     )
-    message("Variables have been created: \n \t y_pc_d  (income per capita deflated);
-         rv_d (rental value deflated);
-         y_wrv_d (income without rental value deflated) &
-         y_wrv_pc_d (income without rental value per capita deflated)")
+    message("Variables have been created: \n \t y_pc (income per capita current prices / ingreso per capita a precios corrientes)
+    y_pc_d  (income per capita deflated / ingreso per capita deflactado);
+         rv_d (rental value deflated / valor locativo deflactado);
+         y_wrv_d (income without rental value deflated / ingreso sin valor locativo deflactado) &
+         y_wrv_pc_d (income without rental value per capita deflated / ingreso sin valor locativo per capita deflactado)")
   }
 
   if (ipc == "R") {
@@ -75,15 +77,23 @@ income_constant_prices <- function(data = ech::toy_ech_2018,
       dplyr::left_join(deflactor_m, by = c("aux" = "mes"), keep = F) %>%
       dplyr::rename(deflactor_m = deflate)
 
-    data <- data %>%  dplyr::mutate(deflactor_r = ifelse(dpto == 1, deflactor_m, deflactor_i),
-                                    y_wrv_pc_d_r = (ht11 - ht13) / ht19 * deflactor_r)  # income without rental value per capita deflated (regional)
-    message("Variables have been created: \n \t deflactor_r (Deflactor regional) &
-            y_wrv_pc_d_r (income without rental value per capita deflated (regional))")
+    data <- data %>%  dplyr::mutate(deflate_r = ifelse(dpto == 1, deflactor_m, deflactor_i),
+                                    y_pc = .data[[ht11]] / .data[[ht19]], # income per capita
+                                    y_pc_d_r = y_pc * deflate_r, # income per capita deflated
+                                    rv_d_r = .data[[ht13]] * deflate_r, # rental value deflated
+                                    y_wrv_d_r = (.data[[ht11]] - .data[[ht13]]) * deflate_r, # income without rental value deflated
+                                    y_wrv_pc_d_r = (.data[[ht11]] - .data[[ht13]]) / .data[[ht19]] * deflate_r) # income without rental value per capita deflated
+
+    message("Variables have been created: \n \t deflate_r (Deflactor regional) &
+                y_pc (income per capita current prices / ingreso per capita a precios corrientes)
+                y_pc_d_r (income per capita deflated / ingreso per capita deflactado);
+                rv_d_r (rental value deflated / valor locativo deflactado);
+                y_wrv_d_r (income without rental value deflated / ingreso sin valor locativo deflactado) &
+                y_wrv_pc_d_r (income without rental value per capita deflated / ingreso sin valor locativo per capita deflactado)")
   }
 
  return(data)
 
-  # message(glue::glue("Se ha creado la variable {colname} en la base"))
 }
 
 #' income_quantiles
@@ -131,7 +141,7 @@ income_quantiles <- function(data = ech::toy_ech_2018,
     message("A variable has been created: \n \t decil (decil de ingresos)")
   }
 
-  data
+  return(data)
 }
 
 
@@ -284,7 +294,7 @@ labor_income_per_capita <- function(data = ech::toy_ech_2018,
   message("Variables have been created: \n \t labor_income (Ingresos laborales) &
             labor_income_h (Ingresos laborales del hogar) &
             labor_income_h_percapita (Ingresos laborales del hogar per capita)")
-  data
+  return(data)
 }
 
 
@@ -350,5 +360,5 @@ labor_income_per_hour <- function(data = ech::toy_ech_2018,
 
   message("Variables have been created: \n \t hours_per_month (Cantidad de horas trabajadas al mes en ocupacion principal) &
             total_income_per_hour (Total de ingresos por trabajo por hora)")
-  data
+  return(data)
 }

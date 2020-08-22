@@ -9,6 +9,10 @@ get_estimation_gini(
   variable = NULL,
   by = NULL,
   level = NULL,
+  ids = NULL,
+  numero = "numero",
+  estrato = NULL,
+  pesoano = "pesoano",
   name = "estimacion"
 )
 }
@@ -20,6 +24,14 @@ get_estimation_gini(
 \item{by}{variable}
 
 \item{level}{household or individual}
+
+\item{ids}{upm}
+
+\item{numero}{Variable name of household id}
+
+\item{estrato}{Variable name of strata}
+
+\item{pesoano}{Variable name of weights}
 
 \item{name}{nombre}
 }

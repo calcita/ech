@@ -6,8 +6,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>level_education
-A function to calculate the highest level of education achieved — level_education • ech</title>
+<title>get_dictionary
+Download ECH dictionaries from INE website — get_dictionary • ech</title>
 
 
 <!-- jquery -->
@@ -40,10 +40,10 @@ A function to calculate the highest level of education achieved — level_educat
 
 
 
-<meta property="og:title" content="level_education
-A function to calculate the highest level of education achieved — level_education" />
-<meta property="og:description" content="level_education
-A function to calculate the highest level of education achieved" />
+<meta property="og:title" content="get_dictionary
+Download ECH dictionaries from INE website — get_dictionary" />
+<meta property="og:description" content="get_dictionary
+Download ECH dictionaries from INE website" />
 
 
 
@@ -112,105 +112,40 @@ A function to calculate the highest level of education achieved" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>level_education
-A function to calculate the highest level of education achieved</h1>
+    <h1>get_dictionary
+Download ECH dictionaries from INE website</h1>
     
-    <div class="hidden name"><code>level_education.Rd</code></div>
+    <div class="hidden name"><code>get_dictionary.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>level_education
-A function to calculate the highest level of education achieved</p>
+    <p>get_dictionary
+Download ECH dictionaries from INE website</p>
     </div>
 
-    <pre class="usage"><span class='fu'>level_education</span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ech</span><span class='kw ns'>::</span><span class='no'><a href='toy_ech_2018.html'>toy_ech_2018</a></span>,
-  <span class='kw'>e51_2</span> <span class='kw'>=</span> <span class='st'>"e51_2"</span>,
-  <span class='kw'>e51_3</span> <span class='kw'>=</span> <span class='st'>"e51_3"</span>,
-  <span class='kw'>e51_4</span> <span class='kw'>=</span> <span class='st'>"e51_4"</span>,
-  <span class='kw'>e51_5</span> <span class='kw'>=</span> <span class='st'>"e51_5"</span>,
-  <span class='kw'>e51_6</span> <span class='kw'>=</span> <span class='st'>"e51_6"</span>,
-  <span class='kw'>e51_7</span> <span class='kw'>=</span> <span class='st'>"e51_7"</span>,
-  <span class='kw'>e51_7_1</span> <span class='kw'>=</span> <span class='st'>"e51_7_1"</span>,
-  <span class='kw'>e51_8</span> <span class='kw'>=</span> <span class='st'>"e51_8"</span>,
-  <span class='kw'>e51_9</span> <span class='kw'>=</span> <span class='st'>"e51_9"</span>,
-  <span class='kw'>e51_10</span> <span class='kw'>=</span> <span class='st'>"e51_10"</span>,
-  <span class='kw'>e51_11</span> <span class='kw'>=</span> <span class='st'>"e51_11"</span>,
-  <span class='kw'>e193</span> <span class='kw'>=</span> <span class='st'>"e193"</span>,
-  <span class='kw'>e49</span> <span class='kw'>=</span> <span class='st'>"e49"</span>
-)</pre>
+    <pre class="usage"><span class='fu'>get_dictionary</span>(<span class='kw'>year</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>folder</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>())</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>data</th>
-      <td><p>data.frame</p></td>
+      <th>year</th>
+      <td><p>allows download data from 2011 to 2019. Default the last year</p></td>
     </tr>
     <tr>
-      <th>e51_2</th>
-      <td><p>Variable name of years passed in primary</p></td>
-    </tr>
-    <tr>
-      <th>e51_3</th>
-      <td><p>Variable name of years passed in special primary</p></td>
-    </tr>
-    <tr>
-      <th>e51_4</th>
-      <td><p>Variable name of years passed in lower secondary</p></td>
-    </tr>
-    <tr>
-      <th>e51_5</th>
-      <td><p>Variable name of years passed in upper secondary</p></td>
-    </tr>
-    <tr>
-      <th>e51_6</th>
-      <td><p>Variable name of years passed in technical upper secondary</p></td>
-    </tr>
-    <tr>
-      <th>e51_7</th>
-      <td><p>Variable name of years passed in technical school</p></td>
-    </tr>
-    <tr>
-      <th>e51_7_1</th>
-      <td><p>Variable name of technical school requirements</p></td>
-    </tr>
-    <tr>
-      <th>e51_8</th>
-      <td><p>Variable name of years passed in magisterio/profesorado</p></td>
-    </tr>
-    <tr>
-      <th>e51_9</th>
-      <td><p>Variable name of years passed in university or similar</p></td>
-    </tr>
-    <tr>
-      <th>e51_10</th>
-      <td><p>Variable name of years passed in tertiary (non-university)</p></td>
-    </tr>
-    <tr>
-      <th>e51_11</th>
-      <td><p>Variable name of years passed in postgrade</p></td>
-    </tr>
-    <tr>
-      <th>e193</th>
-      <td><p>Variable name of attendance school</p></td>
-    </tr>
-    <tr>
-      <th>e49</th>
-      <td><p>Variable name of attendance school ever</p></td>
+      <th>folder</th>
+      <td><p>Folder where are the files or be download</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>unrar files from INE web and the respective data frame in tibble format</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Disclaimer: This script is not an official INE product.
 Aviso: El script no es un producto oficial de INE.</p>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='no'>toy_ech_2018</span> <span class='kw'>&lt;-</span> <span class='fu'>level_education</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ech</span><span class='kw ns'>::</span><span class='no'><a href='toy_ech_2018.html'>toy_ech_2018</a></span>)</div><div class='output co'>#&gt; <span class='message'>A variable has been created: </span>
-#&gt; <span class='message'> 	 level_education (nivel educativo)</span></div><div class='input'># }
-</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

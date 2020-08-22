@@ -24,6 +24,6 @@ Aviso: El script no es un producto oficial de INE.
 }
 \examples{
 \donttest{
-deflate(base_month = "06", base_year = "2016", df_year = "2018")
+deflate(base_month = 6, base_year = 2016, df_year = 2018)
 }
 }

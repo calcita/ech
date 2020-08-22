@@ -398,6 +398,10 @@ get_estimation_ratio <- function(data = ech::toy_ech_2018,
 #' @param variable income without rental value per capita deflated
 #' @param by variable
 #' @param level household or individual
+#' @param ids upm
+#' @param numero Variable name of household id
+#' @param estrato Variable name of strata
+#' @param pesoano Variable name of weights
 #' @param name nombre
 #'
 #' @return table
@@ -417,6 +421,10 @@ get_estimation_gini <- function(data = ech::toy_ech_2018,
                                 variable = NULL,
                                 by = NULL,
                                 level = NULL,
+                                ids = NULL,
+                                numero = "numero",
+                                estrato = NULL,
+                                pesoano = "pesoano",
                                 name = "estimacion"){
 
 
@@ -429,5 +437,7 @@ get_estimation_gini <- function(data = ech::toy_ech_2018,
   # estimation ---
   design_ech <- convey::convey_prep(design_ech)
   estimation <- convey::svygini(~y_wrv_pc_d_r, design_ech, na.rm = TRUE)
-  #estimation <- laeken::gini(variable, weights = weights, data = data)
+  #estimation <- laeken::gini(variable, weights = pesoano, data = data)
+
+  return(estimation)
 }

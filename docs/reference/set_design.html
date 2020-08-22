@@ -11,23 +11,27 @@ This function allows you to set the survey desing — set_design • ech</title>
 
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -40,7 +44,6 @@ This function allows you to set the survey desing — set_design • ech</title>
 This function allows you to set the survey desing — set_design" />
 <meta property="og:description" content="set_design
 This function allows you to set the survey desing" />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -58,7 +61,7 @@ This function allows you to set the survey desing" />
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -72,7 +75,7 @@ This function allows you to set the survey desing" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ech</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.16</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.17</span>
       </span>
     </div>
 
@@ -121,11 +124,11 @@ This function allows you to set the survey desing</p>
     </div>
 
     <pre class="usage"><span class='fu'>set_design</span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ech</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/ech/man/toy_ech_2018.html'>toy_ech_2018</a></span>,
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ech</span><span class='kw ns'>::</span><span class='no'><a href='toy_ech_2018.html'>toy_ech_2018</a></span>,
   <span class='kw'>level</span> <span class='kw'>=</span> <span class='st'>"i"</span>,
-  <span class='kw'>ids</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>numero</span> <span class='kw'>=</span> <span class='st'>"numero"</span>,
-  <span class='kw'>estred13</span> <span class='kw'>=</span> <span class='st'>"estred13"</span>,
+  <span class='kw'>ids</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>estrato</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>pesoano</span> <span class='kw'>=</span> <span class='st'>"pesoano"</span>
 )</pre>
 
@@ -141,15 +144,15 @@ This function allows you to set the survey desing</p>
       <td><p>is household ("h") or individual ("i")</p></td>
     </tr>
     <tr>
-      <th>ids</th>
-      <td><p>variables specifying the unit primary sampling (it's not a public variable)</p></td>
-    </tr>
-    <tr>
       <th>numero</th>
       <td><p>variables specifying  the householder ids</p></td>
     </tr>
     <tr>
-      <th>estred13</th>
+      <th>ids</th>
+      <td><p>variables specifying the unit primary sampling (it's not a public variable)</p></td>
+    </tr>
+    <tr>
+      <th>estrato</th>
       <td><p>variable specifying strata</p></td>
     </tr>
     <tr>
@@ -168,22 +171,21 @@ Aviso: El script no es un producto oficial de INE.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'>set_design</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ech</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/ech/man/toy_ech_2018.html'>toy_ech_2018</a></span>, <span class='kw'>level</span> <span class='kw'>=</span> <span class='st'>"h"</span>)</div><div class='output co'>#&gt; Stratified Independent Sampling design (with replacement)
+<span class='fu'>set_design</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ech</span><span class='kw ns'>::</span><span class='no'><a href='toy_ech_2018.html'>toy_ech_2018</a></span>, <span class='kw'>level</span> <span class='kw'>=</span> <span class='st'>"h"</span>)</div><div class='output co'>#&gt; Independent Sampling design (with replacement)
 #&gt; Called via srvyr
 #&gt; Sampling variables:
 #&gt;  - ids: `1`
-#&gt;  - strata: estred13
 #&gt;  - weights: pesoano
 #&gt; Data variables: numero (chr), nper (dbl), anio (chr), mes (dbl+lbl), dpto
 #&gt;   (dbl+lbl), nomdpto (chr), secc (chr), segm (chr), loc_agr_13 (chr),
 #&gt;   nom_loc_agr_13 (chr), ccz (dbl), barrio (dbl), nombarrio (chr), estred13
-#&gt;   (chr), region_3 (dbl+lbl), region_4 (dbl+lbl), pesoano (dbl), pesotri (dbl),
-#&gt;   pesomen (dbl), c1 (dbl+lbl), c2 (dbl+lbl), c3 (dbl+lbl), c4 (dbl+lbl), c5_1
-#&gt;   (dbl+lbl), c5_2 (dbl+lbl), c5_3 (dbl+lbl), c5_4 (dbl+lbl), c5_5 (dbl+lbl),
-#&gt;   c5_6 (dbl+lbl), c5_7 (dbl+lbl), c5_8 (dbl+lbl), c5_9 (dbl+lbl), c5_10
-#&gt;   (dbl+lbl), c5_11 (dbl+lbl), c5_12 (dbl+lbl), c6 (dbl), d8_1 (dbl+lbl), d8_2
-#&gt;   (dbl), d8_3 (dbl), d8_4 (dbl+lbl), d9 (dbl), d10 (dbl), d11 (dbl+lbl), d12
-#&gt;   (dbl+lbl), d13 (dbl+lbl), d14 (dbl), d15 (dbl+lbl), d16 (dbl+lbl), d18
+#&gt;   (dbl+lbl), region_3 (dbl+lbl), region_4 (dbl+lbl), pesoano (dbl), pesotri
+#&gt;   (dbl), pesomen (dbl), c1 (dbl+lbl), c2 (dbl+lbl), c3 (dbl+lbl), c4 (dbl+lbl),
+#&gt;   c5_1 (dbl+lbl), c5_2 (dbl+lbl), c5_3 (dbl+lbl), c5_4 (dbl+lbl), c5_5
+#&gt;   (dbl+lbl), c5_6 (dbl+lbl), c5_7 (dbl+lbl), c5_8 (dbl+lbl), c5_9 (dbl+lbl),
+#&gt;   c5_10 (dbl+lbl), c5_11 (dbl+lbl), c5_12 (dbl+lbl), c6 (dbl), d8_1 (dbl+lbl),
+#&gt;   d8_2 (dbl), d8_3 (dbl), d8_4 (dbl+lbl), d9 (dbl), d10 (dbl), d11 (dbl+lbl),
+#&gt;   d12 (dbl+lbl), d13 (dbl+lbl), d14 (dbl), d15 (dbl+lbl), d16 (dbl+lbl), d18
 #&gt;   (dbl+lbl), d260 (dbl+lbl), d19 (dbl+lbl), d20 (dbl+lbl), d21_1 (dbl+lbl),
 #&gt;   d21_2 (dbl+lbl), d21_3 (dbl+lbl), d21_4 (dbl+lbl), d21_4_1 (dbl), d21_5
 #&gt;   (dbl+lbl), d21_5_1 (dbl), d21_6 (dbl+lbl), d21_20 (dbl+lbl), d21_7 (dbl+lbl),
@@ -297,15 +299,10 @@ Aviso: El script no es un producto oficial de INE.</p>
 #&gt;   (dbl+lbl), indigente06 (dbl+lbl)</div><div class='input'># }
 </div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#details">Details</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -316,7 +313,7 @@ Aviso: El script no es un producto oficial de INE.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>
