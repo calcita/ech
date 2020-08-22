@@ -25,18 +25,10 @@ employment <- function(data = ech::toy_ech_2018,
   assertthat::assert_that(pobpcoac %in% names(data), msg = glue::glue("Sorry... :( \n  {popbcoac} is not in data"))
 
 # variables ---
-  data <- data %>% dplyr::mutate(pea = ifelse({{pobpcoac}} %in% 2:5, 1, 0),
-                          pet = ifelse({{pobpcoac}} != 1, 1, 0),
-                          po  = ifelse({{pobpcoac}} == 2, 1, 0),
-                          pd  = ifelse({{pobpcoac}} %in% 3:5, 1, 0),
-                          pea = haven::labelled(pea, labels = c("Si" = 1, "No" = 0),
-                                                label = "Poblacion economicamente activa"),
-                          pet = haven::labelled(pet, labels = c("Si" = 1, "No" = 0),
-                                                label = "Poblacion en edad de trabajar"),
-                          po = haven::labelled(po, labels = c("Si" = 1, "No" = 0),
-                                               label = "Poblacion ocupada"),
-                          pd = haven::labelled(pd, labels = c("Si" = 1, "No" = 0),
-                                               label = "Poblacion desocupada")
+  data <- data %>% dplyr::mutate(pea = ifelse(pobpcoac %in% 2:5, 1, 0),
+                          pet = ifelse(pobpcoac != 1, 1, 0),
+                          po  = ifelse(pobpcoac == 2, 1, 0),
+                          pd  = ifelse(pobpcoac %in% 3:5, 1, 0)
   )
 
   message("Variables have been created: \n \t pea (Poblacion economicamente activa);

@@ -54,13 +54,13 @@ enrolled_school <- function(data = ech::toy_ech_2018,
   # }
 
   data %<>% dplyr::mutate(school_enrollment = dplyr::case_when((.data$e193 == 1 |
-                                                                  .data$e197 ==  1|
-                                                                  .data$e201 == 1 |
-                                                                  .data$e212 == 1 |
-                                                                  .data$e215 == 1 |
-                                                                  .data$e218 == 1 |
-                                                                  .data$e221 == 1 |
-                                                                  .data$e224 == 1) ~ 1,
+                                                                .data$e197 ==  1|
+                                                                .data$e201 == 1 |
+                                                                .data$e212 == 1 |
+                                                                .data$e215 == 1 |
+                                                                .data$e218 == 1 |
+                                                                .data$e221 == 1 |
+                                                                .data$e224 == 1) ~ 1,
                                                                TRUE ~ 0),
                           school_enrollment = haven::labelled(school_enrollment, labels = c("Si" = 1, "No" = 0),
                                                  label = "Matriculacion escolar"))

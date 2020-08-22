@@ -338,7 +338,7 @@ get_estimation_ratio <- function(data = ech::toy_ech_2018,
   }
 
   # unlabelled
-  d <- data %>% dplyr::select(!!!syms(c(variable.x, variable.y, by.x, by.y, ids, numero, estrato, pesoano))) %>%
+  d <- data %>% dplyr::select(!!!syms(c(by.x, by.y, ids, numero, estrato, pesoano))) %>%
     unlabelled()
 
   d <- data %>% dplyr::select(if(!is.null(domain)){dom}) %>% dplyr::bind_cols(d, .)

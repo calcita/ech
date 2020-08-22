@@ -72,17 +72,17 @@ test_that("get_estimation_total works", {
 
 test_that("get_estimation_ratio works", {
   ech_2018 <- employment(data = ech::toy_ech_2018, pobpcoac = "pobpcoac")
-  a <- get_estimation_ratio(data = ech_2018, variable.x = "po", variable.y = "pea", level = "i", name = "tasa_ocupacion")
+  a <- get_estimation_ratio(data = ech_2018, variable.x = "pd", variable.y = "pea", level = "i", name = "tasa_ocupacion")
   expect_equal(nrow(a), 1)
-  a <- get_estimation_ratio(data = ech_2018, variable.x = "po", variable.y = "pea", domain = "dpto == 1", level = "i")
+  a <- get_estimation_ratio(data = ech_2018, variable.x = "pd", variable.y = "pea", domain = "dpto == 1", level = "i")
   expect_equal(nrow(a), 1)
-  a <- get_estimation_ratio(data = ech_2018, variable.x = "po", variable.y = "pea", domain = "dpto == 1", by.x = "mes", level = "i")
+  a <- get_estimation_ratio(data = ech_2018, variable.x = "pd", variable.y = "pea", domain = "dpto == 1", by.x = "mes", level = "i")
   expect_equal(nrow(a), 12)
-  a <- get_estimation_ratio(data = ech_2018, variable.x = "po", variable.y = "pea", by.x = "dpto", level = "i")
+  a <- get_estimation_ratio(data = ech_2018, variable.x = "pd", variable.y = "pea", by.x = "dpto", level = "i")
   expect_equal(nrow(a), 19)
-  a <- get_estimation_ratio(data = ech_2018, variable.x = "po", variable.y = "pea", by.x = "dpto", by.y = "mes",level = "i")
+  a <- get_estimation_ratio(data = ech_2018, variable.x = "pd", variable.y = "pea", by.x = "dpto", by.y = "mes",level = "i")
   expect_equal(nrow(a), 149)
-  a <- get_estimation_ratio(data = ech_2018, variable.x = "po", variable.y = "pea", by.x = "secc", by.y = "mes", domain = "dpto == 1", level = "i")
+  a <- get_estimation_ratio(data = ech_2018, variable.x = "pd", variable.y = "pea", by.x = "secc", by.y = "mes", domain = "dpto == 1", level = "i")
   expect_equal(nrow(a), 117)
 })
 
