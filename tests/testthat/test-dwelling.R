@@ -1,9 +1,11 @@
+library(dplyr)
 test_that("dwelling works", {
-  toy_ech_2018 <- income_constant_prices(data = ech::toy_ech_2018)
-  toy_ech_2018 <- income_quantiles(data = toy_ech_2018)
-  toy_ech_2018 <- housing_deprivation(data = toy_ech_2018)
+  ech18 <- ech::toy_ech_2018 %>% rename("c4_ech"= "c4", "ht11_ech" = "ht11")
+  ech18 <- income_constant_prices(data = ech18, ht11 = "ht11_ech")
+  ech18 <- income_quantiles(data = ech18)
+  toy_ech_2018 <- housing_deprivation(data = ech18, c4 = "c4_ech")
   expect_equal(ncol(toy_ech_2018), 598)
-  })
+})
 
 test_that("housing works", {
   a <- housing_situation(data = ech::toy_ech_2018)

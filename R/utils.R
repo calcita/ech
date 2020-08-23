@@ -346,6 +346,9 @@ unlabelled <- function(data = NULL){
 #' @param e27 Variable name of age
 #' @param labels Labels for the new variable
 #' @return data.frame
+#' @importFrom dplyr mutate
+#' @importFrom haven labelled
+#' @importFrom labelled var_label
 #' @export
 #'
 #' @examples
@@ -356,13 +359,18 @@ age_groups <- function(data = ech::toy_ech_2018,
                        e27 = "e27",
                        labels = c("0-4", "5-11", "12-17", "18-24", "+24")) {
 
+  if (min(dplyr::pull(data[, e27])) < min(cut)){
+    cut <- c(min(dplyr::pull(data[, e27])), cut)
+  }
   if (max(dplyr::pull(data[, e27])) > max(cut)){
     cut <- c(cut, max(dplyr::pull(data[, e27])))
   }
-  data <- data %>% mutate(age_groups = cut(e27, breaks = cut, include.lowest = FALSE, labels = FALSE))
 
-  labels <- strsplit(labels, '[[:punct:]]') %>% stringr::str_trim()
-
+  data <- data %>% mutate(age_groups = cut(e27, breaks = cut, include.lowest = TRUE, ordered_result = TRUE) %>%
+                            haven::labelled())
+  labelled::var_label(data$age_groups) <- "Grupos de edad"
+  attr(data$age_groups, "labels") <- labels
+  return(data)
 }
 
 #' Pipe operator

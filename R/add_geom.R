@@ -35,9 +35,9 @@ add_geom <- function (data, unit, variable, crs = 32721){
 
   g <- geouy::load_geouy(unit, crs)
   md <- geouy::metadata
-  cod <- as.character(md[md$capa == unit, "cod"])
-  g2 <- g %>% dplyr::select(cod) %>%
-    rename("link" = cod) #%>% mutate(link = as.numeric(link))
-  data <- left_join(g2, data, by = c("link" = variable))
+  name <- as.character(md[md$capa == unit, "name"])
+  g2 <- g %>% dplyr::select(name) %>%
+    rename("link" = name) %>% mutate(link = as.numeric(link))
+  data <- left_join(g2, data %>% mutate(link = as.numeric(!!!rlang::syms(variable))), by = "link")
 }
 

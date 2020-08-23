@@ -126,9 +126,7 @@ get_estimation_mean <- function(data = ech::toy_ech_2018,
     }
   }
 
-  if (name != "estimacion"){
-    names(estimation) <- stringr::str_replace_all(names(estimation), "estimacion", name)
-  }
+  names(estimation) <- stringr::str_replace_all(names(estimation), "colname", name)
 
   if (is.null(ids)) {
     message("These confidence intervals are only an approximation of the correct confidence intervals \n  that arise from fully defining the sample design")
@@ -266,9 +264,7 @@ get_estimation_total <- function(data = ech::toy_ech_2018,
       }
   }
 
-  if (name != "estimacion"){
-    names(estimation) <- stringr::str_replace_all(names(estimation), "estimacion", name)
-  }
+  names(estimation) <- stringr::str_replace_all(names(estimation), "colname", name)
 
   if (is.null(ids)) {
     message("These confidence intervals are only an approximation of the correct confidence intervals \n  that arise from fully defining the sample design")
@@ -379,9 +375,7 @@ get_estimation_ratio <- function(data = ech::toy_ech_2018,
       srvyr::summarise(colname = srvyr::survey_ratio(!!!syms(variable.x), !!!syms(variable.y), vartype = "ci"))
   }
 
-  if (name != "estimacion"){
-    names(estimation) <- stringr::str_replace_all(names(estimation), "estimacion", name)
-  }
+  names(estimation) <- stringr::str_replace_all(names(estimation), "colname", name)
 
   if (is.null(ids)) {
     message("These confidence intervals are only an approximation of the correct confidence intervals \n  that arise from fully defining the sample design")
