@@ -90,6 +90,18 @@
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/estimacion_ingresos.html">Estimación de ingresos</a>
+    </li>
+  </ul>
+</li>
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
@@ -194,18 +206,18 @@ Aviso: El script no es un producto oficial de INE.</p>
 <span class='fu'>get_estimation_mean</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ech</span><span class='kw ns'>::</span><span class='no'><a href='toy_ech_2018.html'>toy_ech_2018</a></span>, <span class='kw'>variable</span> <span class='kw'>=</span> <span class='st'>"pobre06"</span>, <span class='kw'>by.x</span> <span class='kw'>=</span> <span class='st'>"dpto"</span>, <span class='kw'>level</span> <span class='kw'>=</span> <span class='st'>"h"</span>)</div><div class='output co'>#&gt; <span class='message'>These confidence intervals are only an approximation of the correct confidence intervals </span>
 #&gt; <span class='message'>  that arise from fully defining the sample design</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 26 x 5</span><span>
 #&gt; </span><span style='color: #949494;'># Groups:   dpto [19]</span><span>
-#&gt;    dpto        pobre06  colname colname_low colname_upp
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> Montevideo  No pobre  0.940      0.903        0.976 
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> Montevideo  Pobre     0.060</span><span style='text-decoration: underline;'>4</span><span>     0.024</span><span style='text-decoration: underline;'>1</span><span>       0.096</span><span style='text-decoration: underline;'>8</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> Artigas     No pobre  0.739      0.488        0.991 
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> Artigas     Pobre     0.261      0.008</span><span style='text-decoration: underline;'>73</span><span>      0.512 
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> Canelones   No pobre  1          1            1     
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> Cerro Largo No pobre  1          1            1     
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> Colonia     No pobre  1          1            1     
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> Durazno     No pobre  0.728      0.412        1.04  
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> Durazno     Pobre     0.272     -</span><span style='color: #BB0000;'>0.042</span><span style='color: #BB0000;text-decoration: underline;'>9</span><span>       0.588 
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span> Flores      No pobre  1          1            1     
+#&gt;    dpto        pobre06  estimacion estimacion_low estimacion_upp
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>         </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>          </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>          </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> Montevideo  No pobre     0.940         0.903           0.976 
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> Montevideo  Pobre        0.060</span><span style='text-decoration: underline;'>4</span><span>        0.024</span><span style='text-decoration: underline;'>1</span><span>          0.096</span><span style='text-decoration: underline;'>8</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> Artigas     No pobre     0.739         0.488           0.991 
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> Artigas     Pobre        0.261         0.008</span><span style='text-decoration: underline;'>73</span><span>         0.512 
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> Canelones   No pobre     1             1               1     
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> Cerro Largo No pobre     1             1               1     
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> Colonia     No pobre     1             1               1     
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> Durazno     No pobre     0.728         0.412           1.04  
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> Durazno     Pobre        0.272        -</span><span style='color: #BB0000;'>0.042</span><span style='color: #BB0000;text-decoration: underline;'>9</span><span>          0.588 
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> Flores      No pobre     1             1               1     
 #&gt; </span><span style='color: #949494;'># … with 16 more rows</span><span></div><div class='input'># }
 </div></span></pre>
   </div>

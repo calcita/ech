@@ -40,7 +40,7 @@
 
 
 <meta property="og:title" content="age_groups — age_groups" />
-<meta property="og:description" content="age_groups" />
+<meta property="og:description" content="This function allows you to calculate age groups" />
 
 
 
@@ -90,6 +90,18 @@
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/estimacion_ingresos.html">Estimación de ingresos</a>
+    </li>
+  </ul>
+</li>
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
@@ -115,15 +127,10 @@
     </div>
 
     <div class="ref-description">
-    <p>age_groups</p>
+    <p>This function allows you to calculate age groups</p>
     </div>
 
-    <pre class="usage"><span class='fu'>age_groups</span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ech</span><span class='kw ns'>::</span><span class='no'><a href='toy_ech_2018.html'>toy_ech_2018</a></span>,
-  <span class='kw'>cut</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>4</span>, <span class='fl'>11</span>, <span class='fl'>17</span>, <span class='fl'>24</span>),
-  <span class='kw'>e27</span> <span class='kw'>=</span> <span class='st'>"e27"</span>,
-  <span class='kw'>labels</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"0-4"</span>, <span class='st'>"5-11"</span>, <span class='st'>"12-17"</span>, <span class='st'>"18-24"</span>, <span class='st'>"+24"</span>)
-)</pre>
+    <pre class="usage"><span class='fu'>age_groups</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ech</span><span class='kw ns'>::</span><span class='no'><a href='toy_ech_2018.html'>toy_ech_2018</a></span>, <span class='kw'>cut</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>4</span>, <span class='fl'>11</span>, <span class='fl'>17</span>, <span class='fl'>24</span>), <span class='kw'>e27</span> <span class='kw'>=</span> <span class='st'>"e27"</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -140,10 +147,6 @@
       <th>e27</th>
       <td><p>Variable name of age</p></td>
     </tr>
-    <tr>
-      <th>labels</th>
-      <td><p>Labels for the new variable</p></td>
-    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -151,8 +154,7 @@
     <p>data.frame</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='fu'>age_groups</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ech</span><span class='kw ns'>::</span><span class='no'><a href='toy_ech_2018.html'>toy_ech_2018</a></span>, <span class='kw'>cut</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>4</span>, <span class='fl'>11</span>, <span class='fl'>17</span>, <span class='fl'>24</span>))</div><div class='output co'>#&gt; <span class='warning'>Warning: argument is not an atomic vector; coercing</span></div><div class='input'>
-</div></pre>
+    <pre class="examples"><div class='input'><span class='no'>toy_ech_2018</span> <span class='kw'>&lt;-</span> <span class='fu'>age_groups</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ech</span><span class='kw ns'>::</span><span class='no'><a href='toy_ech_2018.html'>toy_ech_2018</a></span>, <span class='kw'>cut</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>4</span>, <span class='fl'>11</span>, <span class='fl'>17</span>, <span class='fl'>24</span>))</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

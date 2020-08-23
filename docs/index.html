@@ -51,6 +51,18 @@
 <li>
   <a href="reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="articles/estimacion_ingresos.html">Estimación de ingresos</a>
+    </li>
+  </ul>
+</li>
 <li>
   <a href="news/index.html">Changelog</a>
 </li>
@@ -68,9 +80,9 @@
       </header><div class="row">
   <div class="contents col-md-9">
 
-<div id="ech-" class="section level1">
+<div id="ech" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#ech-" class="anchor"></a>ech <img align="right" src="reference/figures/ech_logo.png" alt="logo" width="160">
+<a href="#ech" class="anchor"></a>ech <img align="right" src="reference/figures/ech_logo.png" alt="logo" width="160">
 </h1></div>
 <!-- badges: start -->
 <!-- [![CRAN/METACRAN Version](https://www.r-pkg.org/badges/version/ech)](https://CRAN.R-project.org/package=ech) -->
@@ -79,22 +91,22 @@
 
 <p>Caja de herramientas para el procesamiento de la <a href="http://www.ine.gub.uy/encuesta-continua-de-hogares1">Encuesta Continua de Hogares de Uruguay</a> del Instituto Nacional de Estadística (INE). Pretendemos contribuir a la comunidad de usuaries de R en Uruguay, facilitando el uso de una de las encuestas socioeconómicas más importantes del país. En este sentido, el paquete implementa una serie de funciones que permiten el cálculo de los principales indicadores socioeconómicos que permite la encuesta.</p>
 </div>
-<div id="instalación" class="section level1">
+<div id="instalacion" class="section level1">
 <h1 class="hasAnchor">
-<a href="#instalaci%C3%B3n" class="anchor"></a>Instalación</h1>
+<a href="#instalacion" class="anchor"></a>Instalación</h1>
 <!-- Para la versión estable -->
 <p>Para la versión en desarrollo</p>
 <div class="sourceCode" id="cb1"><pre class="r">
 <span class="co"># install.packages('devtools') </span>
 <span class="co"># si no tiene instalado devtools</span>
 
-<span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/devtools/man/remote-reexports.html">install_github</a></span>(<span class="st">"calcita/ech"</span>)
+<span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">"calcita/ech"</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ech</span>)</pre></div>
 </div>
 <div id="funciones-para-leer-datos" class="section level1">
 <h1 class="hasAnchor">
 <a href="#funciones-para-leer-datos" class="anchor"></a>Funciones para leer datos</h1>
-<p>Una serie de funciones del paquete que se usan internamente permiten descargar de la página del INE y convertir a un formato tidy los datos de: Índice de Precios al Consumo (IPC con base 2010), el Índice de Precios de Alimentos y Bebidas (IPAB con base 2010), Canasta Básica de Alimentos (CBA y CBNA), la codigue de CIIU4, los microdatos de cada ECH y sus respectivos diccionarios para los años 2011 a 2019.</p>
+<p>Una serie de funciones del paquete que se usan internamente permiten descargar de la página del INE y convertir a un formato tidy los datos de: Índice de Precios al Consumo (IPC con base 2010), el Índice de Precios de Alimentos y Bebidas (IPAB con base 2010), Canasta Básica Alimentaria y No Alimentaria (CBA y CBNA), la codigue de CIIU4, los microdatos de cada ECH y sus respectivos diccionarios para los años 2011 a 2019.</p>
 <ul>
 <li><h1 id="funciones-para-crear-variables">Funciones para crear variables</h1></li>
 </ul>
@@ -159,15 +171,15 @@
 
 <span class="no">pobre_x_dpto</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/get_estimation_mean.html">get_estimation_mean</a></span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">ech19</span>, <span class="co"># Indico el data.frame</span>
                            <span class="kw">variable</span> <span class="kw">=</span> <span class="st">"pobre06"</span>, <span class="co"># La variable a estimar</span>
-                           <span class="kw">by.x</span> <span class="kw">=</span> <span class="st">"dpto"</span>, <span class="co"># La variable de agrupación</span>
+                           <span class="kw">by.x</span> <span class="kw">=</span> <span class="st">"nomdpto"</span>, <span class="co"># La variable de agrupación</span>
                            <span class="kw">by.y</span> <span class="kw">=</span> <span class="kw">NULL</span>, <span class="co"># Se permite otra variable de agrupación</span>
                            <span class="kw">domain</span> <span class="kw">=</span> <span class="kw">NULL</span>, <span class="co"># Se podría indicar un dominio</span>
                            <span class="kw">level</span> <span class="kw">=</span> <span class="st">"h"</span>, <span class="co"># Defino que lo haga a nivel de hogar</span>
                            <span class="kw">name</span> <span class="kw">=</span> <span class="st">"Pobreza"</span>)</pre></div>
 </div>
-<div id="ech--geouy" class="section level1">
+<div id="ech-geouy" class="section level1">
 <h1 class="hasAnchor">
-<a href="#ech--geouy" class="anchor"></a>ech &amp; geouy</h1>
+<a href="#ech-geouy" class="anchor"></a>ech &amp; geouy</h1>
 <p>El uso de este paquete se potencia al usarlo en conjunto con <a href="https://github.com/RichDeto/geouy">geouy</a> ya que permite acceder a diferentes capas geográficas de Uruguay y construir mapas temáticos. Por ejemplo, a la estimación anterior de hogares pobres por departamento se le pueden agregar las geometrías de los polígonos de cada departamento para construir un mapa de coropletas.</p>
 <div class="sourceCode" id="cb7"><pre class="r">
 <span class="co"># Solo me quedo con la estimación de pobre </span>
@@ -178,7 +190,7 @@
 
 <span class="no">pobre_x_dpto_geo</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/add_geom.html">add_geom</a></span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">pobre_x_dpto</span>, <span class="co"># Los datos en una unidad geográfica de entre las opciones</span>
                             <span class="kw">unit</span> <span class="kw">=</span> <span class="st">"Departamentos"</span>, <span class="co"># Unidad de agregación de los datos</span>
-                            <span class="kw">variable</span> <span class="kw">=</span> <span class="st">"dpto"</span>) <span class="co"># Variable correspondiente a los códigos a la unidad</span></pre></div>
+                            <span class="kw">variable</span> <span class="kw">=</span> <span class="st">"nomdpto"</span>) <span class="co"># Variable correspondiente a los códigos a la unidad</span></pre></div>
 <p>Y con esto, podemos hacer un mapa con <code>ggplot2</code> muy fácilmente de estas estimaciones.</p>
 <div class="sourceCode" id="cb8"><pre class="r"><span class="co"># Hago un mapa</span>
 

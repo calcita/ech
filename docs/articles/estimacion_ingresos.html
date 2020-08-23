@@ -100,7 +100,14 @@
 <span class="co">#&gt; 4 2019-10-01 202.2299999999… 0.75               8.359999999999… 8.3399999999999…</span>
 <span class="co">#&gt; 5 2019-11-01 203.0800000000… 0.419999999999999… 8.820000000000… 8.4000000000000…</span>
 <span class="co">#&gt; 6 2019-12-01 203.0200000000… -0.02999999999999… 8.789999999999… 8.7899999999999…</span></pre></body></html></div>
-<p>Previamente tenemos que tener cargado el objeto con los microdatos de la ECH.</p>
+<p>Previamente tenemos que tener cargado el objeto con los microdatos de la ECH. Las variables a tener en cuenta en esta parte son</p>
+<ul>
+<li>ht11: Ingreso total del hogar con valor locativo sin servicio doméstico ht11<br>
+</li>
+<li>ht13: Valor locativo ht13<br>
+</li>
+<li>ht19: Cantidad de personas sin servicio doméstico</li>
+</ul>
 <div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ech</span>)
 <span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/get_microdata.html">get_microdata</a></span>(<span class="kw">year</span> <span class="kw">=</span> <span class="fl">2019</span>)</pre></body></html></div>
 <p>Para convertir los ingresos del hogar, que están medidos en la variable ht11, de precios corrientes a precios constantes, usamos la función <code><a href="../reference/income_constant_prices.html">income_constant_prices()</a></code> y definimos sus parámetros: mes base, año base y el tipo de ipc que puede ser “G” para todo el país sin distinción de regiones o “R” que usa el IPC de Montevideo y el del Interior.</p>
@@ -122,8 +129,9 @@
 </ul>
 <p>Es necesario definir ids y estrato que vienen con valor por defecto NULL, las demás no es necesario definir porque ya vienen con el nombre de la variable por defecto, salvo que se usen registros de un mes o semestre en ese caso se debe cambiar el ponderador de los casos según corresponda.</p>
 <div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="fu"><a href="../reference/get_estimation_mean.html">get_estimation_mean</a></span>(<span class="no">df</span>, <span class="kw">variable</span> <span class="kw">=</span> <span class="st">"y_pc_d"</span>, <span class="kw">level</span> <span class="kw">=</span> <span class="st">"i"</span>, <span class="kw">ids</span> <span class="kw">=</span> <span class="st">"upm_fic"</span>)</pre></body></html></div>
-<p>Para estimar el ingreso medio de los hogares a precios constantes según decil, se debe definir en el argumento by.x la variable decil, previamente calculada con <code>income_quantile()</code>.</p>
+<p>Para estimar el ingreso medio de los hogares a precios constantes de junio 2019 según decil, se debe definir en el argumento by.x la variable decil, previamente calculada con <code>income_quantile()</code>.</p>
 <div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/income_quantiles.html">income_quantiles</a></span>(<span class="no">df</span>, <span class="kw">income</span> <span class="kw">=</span> <span class="st">"y_pc_d"</span>, <span class="kw">quantile</span> <span class="kw">=</span> <span class="fl">10</span>)
+<span class="co"># Estimación de ingresos promedio per cápita a pesos constantes de jun/19 según decil</span>
 <span class="fu"><a href="../reference/get_estimation_mean.html">get_estimation_mean</a></span>(<span class="no">df</span>, <span class="kw">variable</span> <span class="kw">=</span> <span class="st">"y_pc_d"</span>, <span class="kw">by.x</span> <span class="kw">=</span> <span class="st">"decil"</span>, <span class="kw">level</span> <span class="kw">=</span> <span class="st">"i"</span>)</pre></body></html></div>
 <p>Una forma de mostrar estos resultados es mediante un gráfico como el siguiente:</p>
   </div>

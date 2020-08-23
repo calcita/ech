@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Data of variables names in time — dic • ech</title>
+<title>underemployment — underemployment • ech</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Data of variables names in time — dic" />
-<meta property="og:description" content="A dataset containing variables names change of the ECH 2006-2018" />
+<meta property="og:title" content="underemployment — underemployment" />
+<meta property="og:description" content="This function allows you to identify underemployed people" />
 
 
 
@@ -121,52 +121,75 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Data of variables names in time</h1>
+    <h1>underemployment</h1>
     
-    <div class="hidden name"><code>dic.Rd</code></div>
+    <div class="hidden name"><code>underemployment.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>A dataset containing variables names change of the ECH 2006-2018</p>
+    <p>This function allows you to identify underemployed people</p>
     </div>
 
-    <pre class="usage"><span class='no'>dic</span></pre>
+    <pre class="usage"><span class='fu'>underemployment</span>(
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ech</span><span class='kw ns'>::</span><span class='no'><a href='toy_ech_2018.html'>toy_ech_2018</a></span>,
+  <span class='kw'>pobpcoac</span> <span class='kw'>=</span> <span class='st'>"pobpcoac"</span>,
+  <span class='kw'>f85</span> <span class='kw'>=</span> <span class='st'>"f85"</span>,
+  <span class='kw'>f98</span> <span class='kw'>=</span> <span class='st'>"f98"</span>,
+  <span class='kw'>f101</span> <span class='kw'>=</span> <span class='st'>"f101"</span>,
+  <span class='kw'>f102</span> <span class='kw'>=</span> <span class='st'>"f102"</span>,
+  <span class='kw'>f103</span> <span class='kw'>=</span> <span class='st'>"f103"</span>,
+  <span class='kw'>f104</span> <span class='kw'>=</span> <span class='st'>"f104"</span>
+)</pre>
 
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>data</th>
+      <td><p>data.frame</p></td>
+    </tr>
+    <tr>
+      <th>pobpcoac</th>
+      <td><p>Variable name of definition of population by activity status. Default: "pobpcoac"</p></td>
+    </tr>
+    <tr>
+      <th>f85</th>
+      <td><p>Variable name of number of hours worked in the main job</p></td>
+    </tr>
+    <tr>
+      <th>f98</th>
+      <td><p>Variable name of Number of hours worked at the secondary job</p></td>
+    </tr>
+    <tr>
+      <th>f101</th>
+      <td><p>Variable name of reasons why you want another job</p></td>
+    </tr>
+    <tr>
+      <th>f102</th>
+      <td><p>Variable name of want to work more hours</p></td>
+    </tr>
+    <tr>
+      <th>f103</th>
+      <td><p>Variable name of are available to work more hours at this time</p></td>
+    </tr>
+    <tr>
+      <th>f104</th>
+      <td><p>Variable name of reasons why you dont work more hours</p></td>
+    </tr>
+    </table>
 
-    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A data frame with 974 rows and 19 variables:</p><dl'>
-  <dt>codigos</dt><dd><p>Code oh label</p></dd>
-  <dt>descripcion</dt><dd><p>Description of label</p></dd>
-  <dt>modulo</dt><dd><p>Module in the form 2017</p></dd>
-  <dt>obs</dt><dd><p>Observations</p></dd>
-  <dt>unidad</dt><dd><p>Level of variable household (H) individual (P) or general (G)</p></dd>
-  <dt>var06</dt><dd><p>ECH variables names 2006</p></dd>
-  <dt>var07</dt><dd><p>ECH variables names 2007</p></dd>
-  <dt>var08</dt><dd><p>ECH variables names 2008</p></dd>
-  <dt>var09</dt><dd><p>ECH variables names 2009</p></dd>
-  <dt>var10</dt><dd><p>ECH variables names 2010</p></dd>
-  <dt>var11</dt><dd><p>ECH variables names 2011</p></dd>
-  <dt>var12</dt><dd><p>ECH variables names 2012</p></dd>
-  <dt>var13</dt><dd><p>ECH variables names 2013</p></dd>
-  <dt>var14</dt><dd><p>ECH variables names 2014</p></dd>
-  <dt>var15</dt><dd><p>ECH variables names 2015</p></dd>
-  <dt>var16</dt><dd><p>ECH variables names 2016</p></dd>
-  <dt>var17</dt><dd><p>ECH variables names 2017</p></dd>
-  <dt>var18</dt><dd><p>ECH variables names 2018</p></dd>
-  <dt>var19</dt><dd><p>ECH variables names 2019</p></dd>
-  ...
-
-</dl>
-
-    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
-
-    <p><a href='http://www.ine.gub.uy/'>http://www.ine.gub.uy/</a></p>
+    <p>data.frame</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Disclaimer: This script is not an official INE product.
 Aviso: El script no es un producto oficial de INE.</p>
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='no'>toy_ech_2018</span> <span class='kw'>&lt;-</span> <span class='fu'>underemployment</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ech</span><span class='kw ns'>::</span><span class='no'><a href='toy_ech_2018.html'>toy_ech_2018</a></span>)</div><div class='output co'>#&gt; <span class='message'>A variable has been created: </span>
+#&gt; <span class='message'> 	 underemployment (Poblacion subempleada)</span></div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
