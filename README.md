@@ -47,9 +47,10 @@ library(ech)
 Una serie de funciones del paquete que se usan internamente permiten
 descargar de la página del INE y convertir a un formato tidy los datos
 de: Índice de Precios al Consumo (IPC con base 2010), el Índice de
-Precios de Alimentos y Bebidas (IPAB con base 2010), Canasta Básica de
-Alimentos (CBA y CBNA), la codigue de CIIU4, los microdatos de cada ECH
-y sus respectivos diccionarios para los años 2011 a 2019.
+Precios de Alimentos y Bebidas (IPAB con base 2010), Canasta Básica
+Alimentaria y No Alimentaria (CBA y CBNA), la codigue de CIIU4, los
+microdatos de cada ECH y sus respectivos diccionarios para los años 2011
+a 2019.
 
   - 
 # Funciones para crear variables
@@ -173,7 +174,7 @@ urbano) y a nivel de hogares o personas.
 
 pobre_x_dpto <- get_estimation_mean(data = ech19, # Indico el data.frame
                            variable = "pobre06", # La variable a estimar
-                           by.x = "dpto", # La variable de agrupación
+                           by.x = "nomdpto", # La variable de agrupación
                            by.y = NULL, # Se permite otra variable de agrupación
                            domain = NULL, # Se podría indicar un dominio
                            level = "h", # Defino que lo haga a nivel de hogar
@@ -199,7 +200,7 @@ pobre_x_dpto <- pobre_x_dpto %>% filter(pobre06 == "Pobre")
 
 pobre_x_dpto_geo <- add_geom(data = pobre_x_dpto, # Los datos en una unidad geográfica de entre las opciones
                             unit = "Departamentos", # Unidad de agregación de los datos
-                            variable = "dpto") # Variable correspondiente a los códigos a la unidad
+                            variable = "nomdpto") # Variable correspondiente a los códigos a la unidad
 ```
 
 Y con esto, podemos hacer un mapa con `ggplot2` muy fácilmente de estas

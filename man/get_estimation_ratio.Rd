@@ -48,7 +48,7 @@ get_estimation_ratio(
 table
 }
 \description{
-This function allows you to estimate ratio variable at universe level.
+This function allows you to estimate ratio variables at universe level.
 }
 \details{
 Disclaimer: This script is not an official INE product.

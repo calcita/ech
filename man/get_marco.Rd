@@ -20,7 +20,7 @@ get_sampling_frame(year = NULL, folder = tempdir(), toR = TRUE)
 unrar files from INE web and the respective data frame in tibble format
 }
 \description{
-Download and read ECH from INE website
+This unction allows you to download and read the sampling frame from INE website
 }
 \details{
 Disclaimer: This script is not an official INE product.

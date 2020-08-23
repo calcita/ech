@@ -36,7 +36,7 @@ labor_income_per_hour(
 data.frame
 }
 \description{
-labor_income_per_hour
+This function allows you to calculate the labor income per hour
 }
 \details{
 Disclaimer: This script is not an official INE product.
@@ -44,8 +44,8 @@ Aviso: El script no es un producto oficial de INE.
 }
 \examples{
 \donttest{
-df <- ech::toy_ech_2018
-toy_ech_2018 <- labor_income_per_hour(data = df, base_month = "06", base_year = "2018")
+toy_ech_2018 <- ech::toy_ech_2018
+toy_ech_2018 <- labor_income_per_hour(data = toy_ech_2018, base_month = "06", base_year = "2018")
 }
 
 }

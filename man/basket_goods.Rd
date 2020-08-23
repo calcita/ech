@@ -15,7 +15,7 @@ basket_goods(data = ech::cba_cbna_mdeo, year = NULL)
 data.frame
 }
 \description{
-basket_goods
+This function allows you to get the Basket goods
 }
 \details{
 Disclaimer: This script is not an official INE product.

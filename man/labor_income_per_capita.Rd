@@ -129,7 +129,7 @@ labor_income_per_capita(
 data.frame
 }
 \description{
-labor_income_per_capita
+This function allows you to calculate the labor income per capita
 }
 \details{
 Disclaimer: This script is not an official INE product.

@@ -1,5 +1,6 @@
 #' get_ipc
 #'
+#' @description This function allows you to get the IPC data
 #' @param folder ruta temporal para descargar el archivo
 #' @importFrom readxl read_xls
 #' @importFrom dplyr slice mutate select everything
@@ -34,6 +35,7 @@ get_ipc <- function(folder = tempdir()){
 
 #' get_ipc_region
 #'
+#' @description This function allows you to get the IPC data
 #' @param folder temporal folder
 #' @param region Montevideo ("M") or Interior ("I")
 #' @param sheet sheet number
@@ -105,6 +107,7 @@ get_ipc_region <- function(folder = tempdir(), region = "M", sheet = NULL){
 
 #' get_cba_cbna
 #'
+#' @description This function allows you to get the CBA and CBNA data
 #' @param folder temporal folder
 #' @param sheet sheet number
 #' @param region Montevideo ("M"), Interior Urbano ("I"), Interior Rural ("R")
@@ -170,7 +173,7 @@ get_cba_cbna <- function(folder = tempdir(), sheet = NULL, region = NULL){
 
 #' get_ipab
 #'
-#' IPAB (Indice de precios de alimentos y bebidas)
+#' @description This function allows you to get the IPAB (Indice de precios de alimentos y bebidas) data
 #'
 #' @param folder temporal folder
 #' @param sheet sheet number
@@ -206,7 +209,7 @@ get_ipab <- function(folder = tempdir(), sheet = NULL){
 }
 
 #' get_ciiu
-#'
+#' @description This function allows you to get the CIIU data
 #' @param folder temp folder
 #' @param version by default the last ciiu version
 #' @importFrom utils read.csv
@@ -234,7 +237,7 @@ get_ciiu <- function(folder = tempdir(),
 }
 
 #' deflate
-#'
+#' @description This function allows you to calculate a deflate variable
 #' @param base_month baseline month
 #' @param base_year baseline year
 #' @param ipc General IPC ('G'), Montevideo IPC ('M') or Interior IPC ('I')
@@ -293,7 +296,7 @@ deflate <- function(base_month = NULL,
 }
 
 #' basket_goods
-#'
+#' @description This function allows you to get the Basket goods
 #' @param data data.frame with the price of the basket of goods from Montevideo, Interior or Rural region
 #' @param year the ECH year
 #'
@@ -319,7 +322,7 @@ basket_goods <- function(data = ech::cba_cbna_mdeo,
 }
 
 #' unlabelled
-#'
+#' @description This function allows you to labelled variables
 #' @param data data frame
 #'
 #' @importFrom dplyr select mutate
@@ -340,11 +343,10 @@ unlabelled <- function(data = NULL){
 }
 
 #' age_groups
-#'
+#' @description This function allows you to calculate age groups
 #' @param data data.frame
 #' @param cut breaks points to cut a numeric variable
 #' @param e27 Variable name of age
-#' @param labels Labels for the new variable
 #' @return data.frame
 #' @importFrom dplyr mutate
 #' @importFrom haven labelled
@@ -352,12 +354,11 @@ unlabelled <- function(data = NULL){
 #' @export
 #'
 #' @examples
-#' df <- age_groups(data = ech::toy_ech_2018, cut = c(0, 4, 11, 17, 24))
+#' toy_ech_2018 <- age_groups(data = ech::toy_ech_2018, cut = c(0, 4, 11, 17, 24))
 #'
 age_groups <- function(data = ech::toy_ech_2018,
                        cut = c(0, 4, 11, 17, 24),
-                       e27 = "e27",
-                       labels = c("0-4", "5-11", "12-17", "18-24", "+24")) {
+                       e27 = "e27") {
 
   if (min(dplyr::pull(data[, e27])) < min(cut)){
     cut <- c(min(dplyr::pull(data[, e27])), cut)
@@ -366,10 +367,9 @@ age_groups <- function(data = ech::toy_ech_2018,
     cut <- c(cut, max(dplyr::pull(data[, e27])))
   }
 
-  data <- data %>% mutate(age_groups = cut(e27, breaks = cut, include.lowest = TRUE, ordered_result = TRUE) %>%
-                            haven::labelled())
-  labelled::var_label(data$age_groups) <- "Grupos de edad"
-  attr(data$age_groups, "labels") <- labels
+  data <- data %>% dplyr::mutate(age_groups = cut(e27, breaks = cut, include.lowest = TRUE, ordered_result = TRUE, labels =FALSE),
+                                 age_groups = haven::labelled(age_groups, label = "Grupos de edad"))
+
   return(data)
 }
 

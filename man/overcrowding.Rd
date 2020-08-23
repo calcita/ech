@@ -2,8 +2,7 @@
 % Please edit documentation in R/dwelling.R
 \name{overcrowding}
 \alias{overcrowding}
-\title{overcrowding
-A function to calculate overcrowding in the household}
+\title{overcrowding}
 \usage{
 overcrowding(data = ech::toy_ech_2018, ht19 = "ht19", d10 = "d10")
 }
@@ -18,8 +17,7 @@ overcrowding(data = ech::toy_ech_2018, ht19 = "ht19", d10 = "d10")
 data.frame
 }
 \description{
-overcrowding
-A function to calculate overcrowding in the household
+This function allows you to calculate overcrowding in the household
 }
 \details{
 Disclaimer: This script is not an official INE product.

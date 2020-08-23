@@ -148,6 +148,7 @@ income_quantiles <- function(data = ech::toy_ech_2018,
 
 #' labor_income_per_capita
 #'
+#' @description This function allows you to calculate the labor income per capita
 #' @param data data frame
 #' @param numero Variable name of household id
 #' @param pobpcoac Variable name of definition of population by activity status
@@ -293,13 +294,14 @@ labor_income_per_capita <- function(data = ech::toy_ech_2018,
 
   message("Variables have been created: \n \t labor_income (Ingresos laborales) &
             labor_income_h (Ingresos laborales del hogar) &
-            labor_income_h_percapita (Ingresos laborales del hogar per capita)")
+            labor_income_h_percapita (Ingresos laborales per capita)")
   return(data)
 }
 
 
 #' labor_income_per_hour
 #'
+#' @description This function allows you to calculate the labor income per hour
 #' @param data data frame
 #' @param numero Variable name of household id
 #' @param f85 Variable name of hours worked per week
@@ -319,8 +321,8 @@ labor_income_per_capita <- function(data = ech::toy_ech_2018,
 #'
 #' @examples
 #' \donttest{
-#' df <- ech::toy_ech_2018
-#' toy_ech_2018 <- labor_income_per_hour(data = df, base_month = "06", base_year = "2018")
+#' toy_ech_2018 <- ech::toy_ech_2018
+#' toy_ech_2018 <- labor_income_per_hour(data = toy_ech_2018, base_month = "06", base_year = "2018")
 #' }
 #'
 labor_income_per_hour <- function(data = ech::toy_ech_2018,

@@ -12,7 +12,7 @@ get_ciiu(folder = tempdir(), version = 4)
 \item{version}{by default the last ciiu version}
 }
 \description{
-get_ciiu
+This function allows you to get the CIIU data
 }
 \details{
 Disclaimer: This script is not an official INE product.

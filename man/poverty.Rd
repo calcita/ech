@@ -33,7 +33,7 @@ poverty(
 data.frame
 }
 \description{
-poverty
+This function allows you to calculate poor and indigent people or household
 }
 \details{
 Disclaimer: This script is not an official INE product.

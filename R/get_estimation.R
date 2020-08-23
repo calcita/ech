@@ -1,6 +1,7 @@
 #' get_estimation_mean
 #'
-#' This function allows you to estimate mean variable at universe level.
+#' @description This function allows you to estimate mean variable at universe level.
+#'
 #' @param data data frame with ECH microdata
 #' @param variable data frame column to estimate
 #' @param by.x data frame column
@@ -139,7 +140,7 @@ get_estimation_mean <- function(data = ech::toy_ech_2018,
 
 #' get_estimation_total
 #'
-#' This function allows you to estimate total variable at universe level.
+#' @description This function allows you to estimate total variable at universe level.
 #' @param data data frame with ECH microdata
 #' @param variable data frame column to estimate
 #' @param by.x data frame column
@@ -278,7 +279,7 @@ get_estimation_total <- function(data = ech::toy_ech_2018,
 
 #' get_estimation_ratio
 #'
-#' This function allows you to estimate ratio variable at universe level.
+#' @description This function allows you to estimate ratio variables at universe level.
 #' @param data data frame with ECH microdata
 #' @param variable.x data frame column to estimate
 #' @param variable.y data frame column to estimate
@@ -388,6 +389,7 @@ get_estimation_ratio <- function(data = ech::toy_ech_2018,
 
 #' get_estimation_gini
 #'
+#' @description  This function allows you to estimate the Gini coeficient
 #' @param data ech data frame
 #' @param variable income without rental value per capita deflated
 #' @param by variable
@@ -406,9 +408,9 @@ get_estimation_ratio <- function(data = ech::toy_ech_2018,
 #'
 #' @examples
 #' \donttest{
-#' df <- income_constant_prices(data = ech::toy_ech_2018, ipc = "R",
+#' toy_ech_2018 <- income_constant_prices(data = ech::toy_ech_2018, ipc = "R",
 #'  base_month = "01", base_year = "2005")
-#' get_estimation_gini(data = df, level = "h")
+#' get_estimation_gini(data = toy_ech_2018, level = "h")
 #' }
 #
 get_estimation_gini <- function(data = ech::toy_ech_2018,
@@ -420,7 +422,6 @@ get_estimation_gini <- function(data = ech::toy_ech_2018,
                                 estrato = NULL,
                                 pesoano = "pesoano",
                                 name = "estimacion"){
-
 
   # design ---
   design_ech <- ech::set_design(data = data, level = level)

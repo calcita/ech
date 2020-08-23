@@ -15,7 +15,7 @@ get_ipab(folder = tempdir(), sheet = NULL)
 data.frame
 }
 \description{
-IPAB (Indice de precios de alimentos y bebidas)
+This function allows you to get the IPAB (Indice de precios de alimentos y bebidas) data
 }
 \details{
 Disclaimer: This script is not an official INE product.

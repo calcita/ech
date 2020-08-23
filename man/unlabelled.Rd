@@ -13,7 +13,7 @@ unlabelled(data = NULL)
 data.frame
 }
 \description{
-unlabelled
+This function allows you to labelled variables
 }
 \examples{
 df <- unlabelled(data = ech::toy_ech_2018)

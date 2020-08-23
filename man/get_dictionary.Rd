@@ -2,8 +2,7 @@
 % Please edit documentation in R/get_dictionary.R
 \name{get_dictionary}
 \alias{get_dictionary}
-\title{get_dictionary
-Download ECH dictionaries from INE website}
+\title{get_dictionary}
 \usage{
 get_dictionary(year = NULL, folder = tempdir())
 }
@@ -16,8 +15,7 @@ get_dictionary(year = NULL, folder = tempdir())
 unrar files from INE web and the respective data frame in tibble format
 }
 \description{
-get_dictionary
-Download ECH dictionaries from INE website
+This function allows you to download ECH dictionaries from INE website
 }
 \details{
 Disclaimer: This script is not an official INE product.

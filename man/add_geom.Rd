@@ -2,8 +2,7 @@
 % Please edit documentation in R/add_geom.R
 \name{add_geom}
 \alias{add_geom}
-\title{add_geom
-This function allows you to add geom variable to a with a code varible of "zona", "barrio", "localidad", "segmentos", "secciones" or "departamentos".}
+\title{add_geom}
 \usage{
 add_geom(data, unit, variable, crs = 32721)
 }
@@ -20,8 +19,7 @@ add_geom(data, unit, variable, crs = 32721)
 data.frame
 }
 \description{
-add_geom
-This function allows you to add geom variable to a with a code varible of "zona", "barrio", "localidad", "segmentos", "secciones" or "departamentos".
+This function allows you to add a geom variable with a code variable of "zona", "barrio", "localidad", "segmentos", "secciones" or "departamentos".
 }
 \details{
 Disclaimer: This script is not an official INE product.

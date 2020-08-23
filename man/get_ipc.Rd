@@ -10,7 +10,7 @@ get_ipc(folder = tempdir())
 \item{folder}{ruta temporal para descargar el archivo}
 }
 \description{
-get_ipc
+This function allows you to get the IPC data
 }
 \details{
 Disclaimer: This script is not an official INE product.

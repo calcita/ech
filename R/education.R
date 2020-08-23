@@ -1,7 +1,6 @@
 #' enrolled_school
-#' A function to calculate people enrolled in school
+#' @description This function allows you to calculate the people enrolled in school
 #'
-#' This function allows you to calculate people enrolled in school
 #' @param data data.frame with necessary variables Defaults to ech.
 #' @param e193 Variable name of attendance school
 #' @param e197 Variable name of attendance primary
@@ -70,7 +69,7 @@ enrolled_school <- function(data = ech::toy_ech_2018,
 }
 
 #' years_of_schooling
-#' A function to calculate the years of schooling
+#' @description This function allows you to calculate the years of schooling
 #'
 #' @param data data.frame
 #' @param e193  Variable name of attendance school
@@ -177,13 +176,13 @@ years_of_schooling <- function(data = ech::toy_ech_2018,
   }
 
   message("A variable has been created: \n \t  years_schooling (anios de escolaridad)")
-  data
+  return(data)
 }
 
 
 
 #' level_education
-#' A function to calculate the highest level of education achieved
+#' @description This function allows you to calculate the highest level of education achieved
 #'
 #' @param data data.frame
 #' @param e51_2 Variable name of years passed in primary
@@ -262,14 +261,14 @@ level_education <- function(data = ech::toy_ech_2018,
                                         labels = c("Sin instruccion" = 0, "Primaria" = 1, "Secundaria" = 2, "UTU" = 3, "Magisterio o profesorado" = 4, "Universidad o similar" = 5),
                                         label = "Nivel educativo")
     )
-  message("A variable has been created: \n \t level_education (nivel educativo)")
-  data
+  message("A variable has been created: \n \t highest level_education achieved (maximo nivel educativo alcanzado)")
+  return(data)
 }
 
 
 
 #' level_completion
-#' A function to calculate the level of school completion
+#' @description This function allows you to calculate the level of school completion
 #'
 #' @param data data.frame
 #' @param e197 Variable name of attends primary school
@@ -333,5 +332,5 @@ level_completion <- function(data = ech::toy_ech_2018,
   message("Variables have been created: \n \t primary_completion (primaria completa);
          lower_secondary_completion (ciclo basico completo) &
          upper_secondary_completion (bachillerato completo)")
-  data
+  return(data)
 }

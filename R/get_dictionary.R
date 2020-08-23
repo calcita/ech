@@ -1,5 +1,5 @@
 #' get_dictionary
-#' Download ECH dictionaries from INE website
+#' @description This function allows you to download ECH dictionaries from INE website
 #'
 #' @param year allows download data from 2011 to 2019. Default the last year
 #' @param folder Folder where are the files or be download

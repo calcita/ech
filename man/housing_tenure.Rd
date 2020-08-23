@@ -2,8 +2,7 @@
 % Please edit documentation in R/dwelling.R
 \name{housing_tenure}
 \alias{housing_tenure}
-\title{housing_tenure
-A function to calculate the housing tenure}
+\title{housing_tenure}
 \usage{
 housing_tenure(data = ech::toy_ech_2018, d8_1 = "d8_1")
 }
@@ -16,8 +15,7 @@ housing_tenure(data = ech::toy_ech_2018, d8_1 = "d8_1")
 data.frame
 }
 \description{
-housing_tenure
-A function to calculate the housing tenure
+This function allows you to calculate the housing tenure
 }
 \details{
 Disclaimer: This script is not an official INE product.

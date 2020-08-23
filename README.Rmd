@@ -46,7 +46,7 @@ library(ech)
 Funciones para leer datos
 ===========
 
-Una serie de funciones del paquete que se usan internamente permiten descargar de la página del INE y convertir a un formato tidy los datos de: Índice de Precios al Consumo (IPC con base 2010), el Índice de Precios de Alimentos y Bebidas (IPAB con base 2010), Canasta Básica de Alimentos (CBA y CBNA), la codigue de CIIU4, los microdatos de cada ECH y sus respectivos diccionarios para los años 2011 a 2019.
+Una serie de funciones del paquete que se usan internamente permiten descargar de la página del INE y convertir a un formato tidy los datos de: Índice de Precios al Consumo (IPC con base 2010), el Índice de Precios de Alimentos y Bebidas (IPAB con base 2010), Canasta Básica Alimentaria y No Alimentaria (CBA y CBNA), la codigue de CIIU4, los microdatos de cada ECH y sus respectivos diccionarios para los años 2011 a 2019.
 
 - 
 

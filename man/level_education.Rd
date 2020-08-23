@@ -2,8 +2,7 @@
 % Please edit documentation in R/education.R
 \name{level_education}
 \alias{level_education}
-\title{level_education
-A function to calculate the highest level of education achieved}
+\title{level_education}
 \usage{
 level_education(
   data = ech::toy_ech_2018,
@@ -52,8 +51,7 @@ level_education(
 \item{e49}{Variable name of attendance school ever}
 }
 \description{
-level_education
-A function to calculate the highest level of education achieved
+This function allows you to calculate the highest level of education achieved
 }
 \details{
 Disclaimer: This script is not an official INE product.

@@ -4,12 +4,7 @@
 \alias{age_groups}
 \title{age_groups}
 \usage{
-age_groups(
-  data = ech::toy_ech_2018,
-  cut = c(0, 4, 11, 17, 24),
-  e27 = "e27",
-  labels = c("0-4", "5-11", "12-17", "18-24", "+24")
-)
+age_groups(data = ech::toy_ech_2018, cut = c(0, 4, 11, 17, 24), e27 = "e27")
 }
 \arguments{
 \item{data}{data.frame}
@@ -17,16 +12,14 @@ age_groups(
 \item{cut}{breaks points to cut a numeric variable}
 
 \item{e27}{Variable name of age}
-
-\item{labels}{Labels for the new variable}
 }
 \value{
 data.frame
 }
 \description{
-age_groups
+This function allows you to calculate age groups
 }
 \examples{
-df <- age_groups(data = ech::toy_ech_2018, cut = c(0, 4, 11, 17, 24))
+toy_ech_2018 <- age_groups(data = ech::toy_ech_2018, cut = c(0, 4, 11, 17, 24))
 
 }

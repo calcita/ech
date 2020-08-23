@@ -24,7 +24,7 @@ branch_ciiu(
 data.frame
 }
 \description{
-branch_ciuu
+This function allows you to identify activity branches
 }
 \details{
 Disclaimer: This script is not an official INE product.

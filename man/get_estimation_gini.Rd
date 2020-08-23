@@ -39,7 +39,7 @@ get_estimation_gini(
 table
 }
 \description{
-get_estimation_gini
+This function allows you to estimate the Gini coeficient
 }
 \details{
 Disclaimer: This script is not an official INE product.
@@ -47,8 +47,8 @@ Aviso: El script no es un producto oficial de INE.
 }
 \examples{
 \donttest{
-df <- income_constant_prices(data = ech::toy_ech_2018, ipc = "R",
+toy_ech_2018 <- income_constant_prices(data = ech::toy_ech_2018, ipc = "R",
  base_month = "01", base_year = "2005")
-get_estimation_gini(data = df, level = "h")
+get_estimation_gini(data = toy_ech_2018, level = "h")
 }
 }

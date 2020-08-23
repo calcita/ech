@@ -1,5 +1,5 @@
 #' housing_deprivation
-#' This function allows you to calculate the housing status
+#' @description This function allows you to calculate the housing status
 #'
 #' @param data data.frame
 #' @param n number of deprivations to consider. Default 1
@@ -117,13 +117,15 @@ housing_deprivation <- function(data = ech::toy_ech_2018,
          electricity (Carencia: Red electrica);
          housing_deprivation_q (Suma de carencias habitacionales) &
          housing_deprivation (Carencia habitacional en relacion al parametro n)")
-  data
+
+  return(data)
+
 }
 
 
 
 #' housing_situation
-#' A function to calculate the housing situation
+#' @description This function allows you to calculate the housing situation
 #'
 #' @param data data.frame
 #' @param c5_1 Variable name of roof condensation
@@ -197,7 +199,7 @@ housing_situation <- function(data = ech::toy_ech_2018,
 
 
 #' housing_conditions
-#' A function to calculate the housing conditions
+#' @description This function allows you to calculate the housing conditions
 #'
 #' @param data data.frame
 #' @param c2 Variable name of predominant material on external walls
@@ -242,7 +244,7 @@ housing_conditions <- function(data = ech::toy_ech_2018,
 }
 
 #' overcrowding
-#' A function to calculate overcrowding in the household
+#' @description This function allows you to calculate overcrowding in the household
 #'
 #' @param data data.frame
 #' @param ht19 Variable name of umber of individuals in the household
@@ -275,12 +277,14 @@ overcrowding <- function(data = ech::toy_ech_2018,
                   overcrowding = haven::labelled(overcrowding, labels = c("Hacinado" = 1, "No hacinado" = 0),
                                          label = "Hacinamiento"))
   message("A variable has been created: \n \t overcrowding (hacinamiento)")
-  data
+
+  return(data)
+
 }
 
 
 #' housing_tenure
-#' A function to calculate the housing tenure
+#' @description This function allows you to calculate the housing tenure
 #'
 #' @param data data.frame
 #' @param d8_1 Variable name of housing_tenure (owner, renter, rent-free occupancy, etc.)
@@ -315,5 +319,7 @@ housing_tenure <- function(data = ech::toy_ech_2018,
 
 
   message("A variable has been created: \n \t housing_tenure (tenencia de la vivienda)")
-  data
+
+  return(data)
+
 }

@@ -1,5 +1,5 @@
 #' set_design
-#' This function allows you to set the survey desing
+#' @description This function allows you to set the survey desing
 #'
 #' @param data data frame with ECH microdata
 #' @param level is household ("h") or individual ("i")

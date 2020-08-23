@@ -1,5 +1,5 @@
 #' add_geom
-#' This function allows you to add geom variable to a with a code varible of "zona", "barrio", "localidad", "segmentos", "secciones" or "departamentos".
+#' @description This function allows you to add a geom variable with a code variable of "zona", "barrio", "localidad", "segmentos", "secciones" or "departamentos".
 #'
 #' @param data data.frame
 #' @param unit spatial unit of data, may be: "Departamentos", "Secciones", "Secc MVD 2004", "Segmentos", "Segm MVD 2004", "Segm URB INT 2004", "Zonas", "Zonas MVD 2004", "Zonas URB INT 2004", "Localidades pg", "Municipios" o "Barrios".

@@ -17,7 +17,7 @@ get_ipc_region(folder = tempdir(), region = "M", sheet = NULL)
 data.frame
 }
 \description{
-get_ipc_region
+This function allows you to get the IPC data
 }
 \details{
 Disclaimer: This script is not an official INE product.

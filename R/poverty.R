@@ -1,5 +1,6 @@
 #' unsatisfied_basic_needs
 #'
+#' @description This function allows you to calculate de Unsatisfied Basic Needs
 #' @param data data.frame
 #' @param ipm Logical if want to include integrated_poverty_measure variable. Default FALSE
 #' @param c2 Variable name of predominant material on external walls
@@ -158,6 +159,7 @@ unsatisfied_basic_needs <- function(data = ech::toy_ech_2018,
 
 #' poverty
 #'
+#' @description This function allows you to calculate poor and indigent people or household
 #' @param data data.frame
 #' @param scale equivalency scale
 #' @param region_4 Variable name of region. Default: region_4
@@ -235,5 +237,5 @@ poverty <- function(data = ech::toy_ech_2018,
 
   message("Variables have been created: \n \t poor (pobre) &
               indigent (indigente)")
-  data
+  return(data)
 }

@@ -2,8 +2,7 @@
 % Please edit documentation in R/education.R
 \name{enrolled_school}
 \alias{enrolled_school}
-\title{enrolled_school
-A function to calculate people enrolled in school}
+\title{enrolled_school}
 \usage{
 enrolled_school(
   data = ech::toy_ech_2018,
@@ -40,7 +39,7 @@ enrolled_school(
 data.frame
 }
 \description{
-This function allows you to calculate people enrolled in school
+This function allows you to calculate the people enrolled in school
 }
 \details{
 Disclaimer: This script is not an official INE product.

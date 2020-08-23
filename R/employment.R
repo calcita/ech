@@ -1,5 +1,5 @@
 #' employment
-#' This function allows you to calculate the variables: PEA, PET, PO, PD
+#' @description This function allows you to calculate the variables: PEA, PET, PO, PD
 #'
 #' @param data data.frame with microdata
 #' @param pobpcoac Variable name of definition of population by activity status. Default: "pobpcoac"
@@ -28,7 +28,15 @@ employment <- function(data = ech::toy_ech_2018,
   data <- data %>% dplyr::mutate(pea = ifelse(pobpcoac %in% 2:5, 1, 0),
                           pet = ifelse(pobpcoac != 1, 1, 0),
                           po  = ifelse(pobpcoac == 2, 1, 0),
-                          pd  = ifelse(pobpcoac %in% 3:5, 1, 0)
+                          pd  = ifelse(pobpcoac %in% 3:5, 1, 0),
+                          pea = haven::labelled(pea, labels = c("Si" = 1, "No" = 0),
+                                                label = "Poblacion economicamente activa"),
+                          pet = haven::labelled(pet, labels = c("Si" = 1, "No" = 0),
+                                                label = "Poblacion en edad de trabajar"),
+                          po = haven::labelled(po, labels = c("Si" = 1, "No" = 0),
+                                               label = "Poblacion ocupada"),
+                          pd = haven::labelled(pd, labels = c("Si" = 1, "No" = 0),
+                                               label = "Poblacion desocupada")
   )
 
   message("Variables have been created: \n \t pea (Poblacion economicamente activa);
@@ -38,15 +46,63 @@ employment <- function(data = ech::toy_ech_2018,
   return(data)
 }
 
-#' employment_restrictions
+#' underemployment
+#' @description This function allows you to identify underemployed people
 #'
 #' @param data data.frame
-#' @param f82 Variable name of
-#' @param underemployment Variable name of
+#' @param pobpcoac Variable name of definition of population by activity status. Default: "pobpcoac"
+#' @param f85 Variable name of number of hours worked in the main job
+#' @param f98 Variable name of Number of hours worked at the secondary job
+#' @param f101 Variable name of reasons why you want another job
+#' @param f102 Variable name of want to work more hours
+#' @param f103 Variable name of are available to work more hours at this time
+#' @param f104 Variable name of reasons why you dont work more hours
+#'
+#' @importFrom dplyr mutate case_when
+#' @importFrom haven labelled
+#' @return data.frame
+#' @export
+#' @details
+#' Disclaimer: This script is not an official INE product.
+#' Aviso: El script no es un producto oficial de INE.
+#'
+#' @examples
+#' toy_ech_2018 <- underemployment(data = ech::toy_ech_2018)
+#'
+underemployment <- function(data = ech::toy_ech_2018,
+                         pobpcoac = "pobpcoac",
+                         f85 = "f85",
+                         f98 = "f98",
+                         f101 = "f101",
+                         f102 = "f102",
+                         f103 = "f103",
+                         f104 = "f104"){
+
+    data <- data %>% dplyr::mutate(underemployment = dplyr::case_when(pobpcoac == 2 & (f85 +  f98 < 40) & (f101 == 1 | f102 == 1) & (f103 == 1) & (f104 == 5) ~ 1,
+                                                                   TRUE ~ 0),
+                                   underemployment = haven::labelled(underemployment, labels = c("Si" = 1, "No" = 0), label = "Poblacion subempleada")
+      )
+
+    message("A variable has been created: \n \t underemployment (Poblacion subempleada)")
+    return(data)
+
+}
+#' employment_restrictions
+#'
+#' @description This function allows you to identify workers with employment restrictions
+#' @param data data.frame
+#' @param f82 Variable name of contribution to the pension fund
+#' @param underemployment Variable name of underemployment
 #'
 #' @return data.frame
 #' @export
+#' @details
+#' Disclaimer: This script is not an official INE product.
+#' Aviso: El script no es un producto oficial de INE.
 #'
+#' @examples
+#' toy_ech_2018 <- underemployment(data = ech::toy_ech_2018)
+#' toy_ech_2018 <- employment_restrictions(data = toy_ech_2018)
 #'
 employment_restrictions  <- function(data = ech::toy_ech_2018,
                                      f82 = "f82",
@@ -67,6 +123,7 @@ employment_restrictions  <- function(data = ech::toy_ech_2018,
 
 #' branch_ciuu
 #'
+#' @description This function allows you to identify activity branches
 #' @param data data.frame
 #' @param f72_2 Variable name of ciiu code rev.4
 #' @param group logical to define 12 or 18 categories, if FALSE code 18. Default: TRUE

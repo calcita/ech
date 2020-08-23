@@ -16,7 +16,7 @@ deflate(base_month = NULL, base_year = NULL, ipc = "G", df_year = NULL)
 \item{df_year}{ECH year}
 }
 \description{
-deflate
+This function allows you to calculate a deflate variable
 }
 \details{
 Disclaimer: This script is not an official INE product.

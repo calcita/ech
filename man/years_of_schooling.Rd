@@ -2,8 +2,7 @@
 % Please edit documentation in R/education.R
 \name{years_of_schooling}
 \alias{years_of_schooling}
-\title{years_of_schooling
-A function to calculate the years of schooling}
+\title{years_of_schooling}
 \usage{
 years_of_schooling(
   data = ech::toy_ech_2018,
@@ -52,8 +51,7 @@ years_of_schooling(
 \item{max_years}{Maximum years of schooling}
 }
 \description{
-years_of_schooling
-A function to calculate the years of schooling
+This function allows you to calculate the years of schooling
 }
 \details{
 Disclaimer: This script is not an official INE product.

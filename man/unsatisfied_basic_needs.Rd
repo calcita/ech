@@ -84,7 +84,7 @@ unsatisfied_basic_needs(
 data.frame
 }
 \description{
-unsatisfied_basic_needs
+This function allows you to calculate de Unsatisfied Basic Needs
 }
 \details{
 Disclaimer: This script is not an official INE product.

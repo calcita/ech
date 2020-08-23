@@ -2,8 +2,7 @@
 % Please edit documentation in R/organize.R
 \name{organize_names}
 \alias{organize_names}
-\title{organize_names
-A funtion to organize variables names of ECH with reference in 2017.}
+\title{organize_names}
 \usage{
 organize_names(data, year, level = "hyp")
 }
@@ -15,8 +14,7 @@ organize_names(data, year, level = "hyp")
 \item{level}{(string) indicates whether the base to be labelled is of the type "household", "h", "individual", "i" or both, "hyp". Default "hyp"}
 }
 \description{
-organize_names
-A funtion to organize variables names of ECH with reference in 2017.
+This function allows you to organize the variables names of ECH with reference in 2017.
 }
 \details{
 Disclaimer: This script is not an official INE product.
@@ -24,6 +22,6 @@ Aviso: El script no es un producto oficial de INE.
 }
 \examples{
 \donttest{
-df <- organize_names(data = ech::toy_ech_2018, year = 2018, level = "h")
+toy_ech_2018 <- organize_names(data = ech::toy_ech_2018, year = 2018, level = "h")
 }
 }

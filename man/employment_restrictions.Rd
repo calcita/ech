@@ -13,13 +13,22 @@ employment_restrictions(
 \arguments{
 \item{data}{data.frame}
 
-\item{f82}{Variable name of}
+\item{f82}{Variable name of contribution to the pension fund}
 
-\item{underemployment}{Variable name of}
+\item{underemployment}{Variable name of underemployment}
 }
 \value{
 data.frame
 }
 \description{
-employment_restrictions
+This function allows you to identify workers with employment restrictions
+}
+\details{
+Disclaimer: This script is not an official INE product.
+Aviso: El script no es un producto oficial de INE.
+}
+\examples{
+toy_ech_2018 <- underemployment(data = ech::toy_ech_2018)
+toy_ech_2018 <- employment_restrictions(data = toy_ech_2018)
+
 }

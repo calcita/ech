@@ -2,8 +2,7 @@
 % Please edit documentation in R/employment.R
 \name{employment}
 \alias{employment}
-\title{employment
-This function allows you to calculate the variables: PEA, PET, PO, PD}
+\title{employment}
 \usage{
 employment(data = ech::toy_ech_2018, pobpcoac = "pobpcoac")
 }
@@ -13,7 +12,6 @@ employment(data = ech::toy_ech_2018, pobpcoac = "pobpcoac")
 \item{pobpcoac}{Variable name of definition of population by activity status. Default: "pobpcoac"}
 }
 \description{
-employment
 This function allows you to calculate the variables: PEA, PET, PO, PD
 }
 \details{

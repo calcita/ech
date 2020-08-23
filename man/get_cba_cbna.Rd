@@ -17,7 +17,7 @@ get_cba_cbna(folder = tempdir(), sheet = NULL, region = NULL)
 data.frame
 }
 \description{
-get_cba_cbna
+This function allows you to get the CBA and CBNA data
 }
 \details{
 Disclaimer: This script is not an official INE product.

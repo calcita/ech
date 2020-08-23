@@ -2,8 +2,7 @@
 % Please edit documentation in R/dwelling.R
 \name{housing_conditions}
 \alias{housing_conditions}
-\title{housing_conditions
-A function to calculate the housing conditions}
+\title{housing_conditions}
 \usage{
 housing_conditions(data = ech::toy_ech_2018, c2 = "c2", c3 = "c3", c4 = "c4")
 }
@@ -20,8 +19,7 @@ housing_conditions(data = ech::toy_ech_2018, c2 = "c2", c3 = "c3", c4 = "c4")
 data.frame
 }
 \description{
-housing_conditions
-A function to calculate the housing conditions
+This function allows you to calculate the housing conditions
 }
 \details{
 Disclaimer: This script is not an official INE product.
