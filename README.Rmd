@@ -138,7 +138,7 @@ Para estimar una variable, por ejemplo, pobre06 que ya viene en la ECH calculada
 
 pobre_x_dpto <- get_estimation_mean(data = ech19, # Indico el data.frame
                            variable = "pobre06", # La variable a estimar
-                           by.x = "dpto", # La variable de agrupación
+                           by.x = "nomdpto", # La variable de agrupación
                            by.y = NULL, # Se permite otra variable de agrupación
                            domain = NULL, # Se podría indicar un dominio
                            level = "h", # Defino que lo haga a nivel de hogar
@@ -160,7 +160,7 @@ pobre_x_dpto <- pobre_x_dpto %>% filter(pobre06 == "Pobre")
 
 pobre_x_dpto_geo <- add_geom(data = pobre_x_dpto, # Los datos en una unidad geográfica de entre las opciones
                             unit = "Departamentos", # Unidad de agregación de los datos
-                            variable = "dpto") # Variable correspondiente a los códigos a la unidad
+                            variable = "nomdpto") # Variable correspondiente a los códigos a la unidad
 
 ```
 

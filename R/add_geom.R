@@ -18,9 +18,9 @@
 #'
 #' @examples
 #' \donttest{
-#' pobre_x_dpto <- get_estimation_mean(variable = "pobre06", by.x = "dpto", level = "h") %>%
+#' pobre_x_dpto <- get_estimation_mean(variable = "pobre06", by.x = "nomdpto", level = "h") %>%
 #'    dplyr::filter(pobre06 == "No pobre")
-#' pobre_x_dpto_geo <- add_geom(data = pobre_x_dpto, unit = "Departamentos", variable = "dpto")
+#' pobre_x_dpto_geo <- add_geom(data = pobre_x_dpto, unit = "Departamentos", variable = "nomdpto")
 #' }
 
 add_geom <- function (data, unit, variable, crs = 32721){
@@ -35,9 +35,18 @@ add_geom <- function (data, unit, variable, crs = 32721){
 
   g <- geouy::load_geouy(unit, crs)
   md <- geouy::metadata
-  name <- as.character(md[md$capa == unit, "name"])
-  g2 <- g %>% dplyr::select(name) %>%
-    rename("link" = name) %>% mutate(link = as.numeric(link))
+
+  if(is.character(data[[variable]])){
+    name <- as.character(md[md$capa == unit, "name"])
+    g2 <- g %>% dplyr::select(name) %>%
+      rename("link" = name) %>% mutate(link = as.character(link))
+    data <- left_join(g2, data, by = c("link" = variable))
+  } else {
+    cod <- as.character(md[md$capa == unit, "cod"])
+    g2 <- g %>% dplyr::select(cod) %>%
+    rename("link" = cod) %>% mutate(link = as.numeric(link))
   data <- left_join(g2, data %>% mutate(link = as.numeric(!!!rlang::syms(variable))), by = "link")
+  }
+  return(data)
 }
 
