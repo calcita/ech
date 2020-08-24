@@ -1,0 +1,27 @@
+---
+title: "Educación"
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(ech)
+```
+
+En este breve artículo, presentaremos las funciones de la librería `ech` vinculadas a la educación, empezando por `enrolled_school()` con lo que tener un panorama sobre la matriculación escolar, variable dicotómica ideal para hacer filtros en la población joven de la muestra. Mientras que por su parte,  `years_of_schooling()` calcula el acumulado de años de escolaridad de cada uno de los encuestados. 
+
+Por otra parte, tenemos la función `level_education()` que permite categorizar a la población muestral según su nivel alcanzado en:
+
+* Sin instruccion
+* Primaria
+* Secundaria
+* UTU
+* Magisterio o profesorado 
+* Universidad o similar
+
+Finalmente `level_completion()`, que cierra por el momento este modulo, presenta un grupo de variables dicotómicas que establecen la completitud de primaria, ciclo basico, bachillerato y nivel terciario. Esta última incluye un parametro `n` para definir los años promedios de educación terciaria dada lo variable de las distintas carreras, 
