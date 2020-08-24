@@ -277,7 +277,16 @@ level_education <- function(data = ech::toy_ech_2018,
 #' @param e51_4 Variable name of years passed in lower secondary
 #' @param e51_5 Variable name of years passed in upper secondary
 #' @param e51_6 Variable name of years passed in technical upper secondary
-#'
+#' @param e51_7 Variable name of years passed in technical education
+#' @param e51_7_1 Variable name of technical education requirements
+#' @param e51_8 Variable name of years passed in magisterio/profesorado
+#' @param e51_9 Variable name of years passed in university or similar
+#' @param e51_10 Variable name of years passed in tertiary (non-university)
+#' @param e212 Variable name of attendance technical school (non-university)
+#' @param e215 Variable name of attendance magisterio
+#' @param e218 Variable name of attendance university
+#' @param e221 Variable name of attendance tertiary
+#' @param n years of tertiary
 #' @importFrom dplyr mutate
 #' @return data.frame
 #' @export
@@ -297,7 +306,17 @@ level_completion <- function(data = ech::toy_ech_2018,
                              e201 = "e201",
                              e51_4 = "e51_4",
                              e51_5 = "e51_5",
-                             e51_6 = "e51_6"){
+                             e51_6 = "e51_6",
+                             e51_7_1 = "e51_7_1",
+                             e51_7 = "e51_7",
+                             e51_8 = "e51_8",
+                             e51_9 = "e51_9",
+                             e51_10 = "e51_10",
+                             e212 = "e212",
+                             e215 = "e215",
+                             e218 = "e218",
+                             e221 = "e221",
+                             n = 4){
 
   # checks ---
   assertthat::assert_that(is.data.frame(data))
@@ -321,16 +340,19 @@ level_completion <- function(data = ech::toy_ech_2018,
   data <- data %>% dplyr::mutate(primary_completion = ifelse(e197 == 2 & e197_1 == 1, 1, 0),
                                  lower_secondary_completion = ifelse(e201 %in% 1:2 & e51_4 == 3, 1, 0),
                                  upper_secondary_completion = ifelse(e201 %in% 1:2 & (e51_5 == 3 | e51_6 == 3), 1, 0),
-                                 #tertiary_completion =
+                                 tertiary_completion = ifelse((e212 %in% 1:2 & e51_7_1 == 1 & e51_7 >= n) | (e215 %in% 1:2 & e51_8 >= n) | (e218 %in% 1:2 & e51_9 >= n) | (e221 %in% 1:2 & e51_10 >= n), 1, 0),
                                  primary_completion = haven::labelled(primary_completion, labels = c("Si" = 1, "No" = 0),
                                                                      label = "Primaria completa"),
                                  lower_secondary_completion = haven::labelled(lower_secondary_completion, labels = c("Si" = 1, "No" = 0),
                                                                      label = "Ciclo basico completo"),
                                  upper_secondary_completion = haven::labelled(upper_secondary_completion, labels = c("Si" = 1, "No" = 0),
-                                                                     label = "bachillerato completo")
+                                                                     label = "bachillerato completo"),
+                                 tertiary_completion = haven::labelled(tertiary_completion, labels = c("Si" = 1, "No" = 0),
+                                                                              label = "terciaria completa")
                                  )
   message("Variables have been created: \n \t primary_completion (primaria completa);
          lower_secondary_completion (ciclo basico completo) &
-         upper_secondary_completion (bachillerato completo)")
+         upper_secondary_completion (bachillerato completo) &
+          tertiary_completion (terciaria completa)")
   return(data)
 }
