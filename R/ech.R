@@ -94,5 +94,6 @@ if(getRversion() >= "2.15.1") utils::globalVariables(c(".",
                                                        "pd",
                                                        "pea",
                                                        "pet",
-                                                       "po"
+                                                       "po",
+                                                       "label"
                                                        ))
