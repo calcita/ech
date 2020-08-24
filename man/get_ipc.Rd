@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{get_ipc}
 \alias{get_ipc}
-\title{get_ipc}
+\title{This function allows you to get the IPC data}
 \usage{
 get_ipc(folder = tempdir())
 }
@@ -21,3 +21,15 @@ Aviso: El script no es un producto oficial de INE.
 get_ipc(folder = tempdir())
 }
 }
+\seealso{
+Other dwnld_read: 
+\code{\link{get_cba_cbna}()},
+\code{\link{get_ciiu}()},
+\code{\link{get_dictionary}()},
+\code{\link{get_ipab}()},
+\code{\link{get_ipc_region}()},
+\code{\link{get_marco}()},
+\code{\link{get_microdata}()},
+\code{\link{read_microdata}()}
+}
+\concept{dwnld_read}

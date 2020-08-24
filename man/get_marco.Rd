@@ -3,7 +3,7 @@
 \name{get_marco}
 \alias{get_marco}
 \alias{get_sampling_frame}
-\title{get_marco}
+\title{This unction allows you to download and read the sampling frame from INE website}
 \usage{
 get_marco(year = NULL, folder = tempdir(), toR = TRUE)
 
@@ -26,3 +26,15 @@ This unction allows you to download and read the sampling frame from INE website
 Disclaimer: This script is not an official INE product.
 Aviso: El script no es un producto oficial de INE.
 }
+\seealso{
+Other dwnld_read: 
+\code{\link{get_cba_cbna}()},
+\code{\link{get_ciiu}()},
+\code{\link{get_dictionary}()},
+\code{\link{get_ipab}()},
+\code{\link{get_ipc_region}()},
+\code{\link{get_ipc}()},
+\code{\link{get_microdata}()},
+\code{\link{read_microdata}()}
+}
+\concept{dwnld_read}

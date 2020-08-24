@@ -2,7 +2,7 @@
 % Please edit documentation in R/employment.R
 \name{branch_ciiu}
 \alias{branch_ciiu}
-\title{branch_ciuu}
+\title{This function allows you to identify activity branches}
 \usage{
 branch_ciiu(
   data = ech::toy_ech_2018,
@@ -35,3 +35,10 @@ Aviso: El script no es un producto oficial de INE.
 toy_ech_2018 <- branch_ciiu(data = ech::toy_ech_2018)
 }
 }
+\seealso{
+Other employment: 
+\code{\link{employment_restrictions}()},
+\code{\link{employment}()},
+\code{\link{underemployment}()}
+}
+\concept{employment}

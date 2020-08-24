@@ -1,11 +1,9 @@
-#' add_geom
-#' @description This function allows you to add a geom variable with a code variable of "zona", "barrio", "localidad", "segmentos", "secciones" or "departamentos".
-#'
+#' This function allows you to add a geom variable with a code variable of "zona", "barrio", "localidad", "segmentos", "secciones" or "departamentos".
+#' @family geo
 #' @param data data.frame
 #' @param unit spatial unit of data, may be: "Departamentos", "Secciones", "Secc MVD 2004", "Segmentos", "Segm MVD 2004", "Segm URB INT 2004", "Zonas", "Zonas MVD 2004", "Zonas URB INT 2004", "Localidades pg", "Municipios" o "Barrios".
 #' @param variable Variable name of unit code (without duplicates)
 #' @param crs Coordinates Refence Sistem, usually in region 32721 or 4326 (default 32721)
-#'
 #' @import geouy
 #' @importFrom glue glue
 #' @importFrom rlang .data
@@ -15,7 +13,6 @@
 #' Disclaimer: This script is not an official INE product.
 #' Aviso: El script no es un producto oficial de INE.
 #' @export
-#'
 #' @examples
 #' \donttest{
 #' pobre_x_dpto <- get_estimation_mean(variable = "pobre06", by.x = "nomdpto", level = "h") %>%

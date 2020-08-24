@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_estimation.R
 \name{get_estimation_total}
 \alias{get_estimation_total}
-\title{get_estimation_total}
+\title{This function allows you to estimate total variable at universe level.}
 \usage{
 get_estimation_total(
   data = ech::toy_ech_2018,
@@ -56,4 +56,12 @@ Aviso: El script no es un producto oficial de INE.
 get_estimation_total(variable = "pobre06", by.x = "dpto", level = "h")
 }
 }
+\seealso{
+Other estimation: 
+\code{\link{get_estimation_gini}()},
+\code{\link{get_estimation_mean}()},
+\code{\link{get_estimation_ratio}()},
+\code{\link{set_design}()}
+}
+\concept{estimation}
 \keyword{inference}

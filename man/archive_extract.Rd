@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_microdata.R
 \name{archive_extract}
 \alias{archive_extract}
-\title{archive_extract}
+\title{Extract compressed archives}
 \usage{
 archive_extract(archive.path = NULL, dest.path = NULL)
 }
@@ -12,7 +12,7 @@ archive_extract(archive.path = NULL, dest.path = NULL)
 \item{dest.path}{Ruta destino del archivo descomprimido}
 }
 \description{
-archive_extract
+Extract compressed archives
 }
 \details{
 Disclaimer: This script is not an official INE product.
@@ -23,3 +23,9 @@ Aviso: El script no es un producto oficial de INE.
 archive_extract()
 }
 }
+\seealso{
+Other utils: 
+\code{\link{deflate}()},
+\code{\link{unlabelled}()}
+}
+\concept{utils}

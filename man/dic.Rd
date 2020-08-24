@@ -3,7 +3,7 @@
 \docType{data}
 \name{dic}
 \alias{dic}
-\title{Data of variables names in time}
+\title{A dataset containing variables names change of the ECH 2006-2018}
 \format{
 A data frame with 974 rows and 19 variables:
 \describe{
@@ -42,4 +42,19 @@ A dataset containing variables names change of the ECH 2006-2018
 Disclaimer: This script is not an official INE product.
 Aviso: El script no es un producto oficial de INE.
 }
+\seealso{
+Other dataset: 
+\code{\link{cba_cbna_int}},
+\code{\link{cba_cbna_mdeo}},
+\code{\link{cba_cbna_rur}},
+\code{\link{ciiu4}},
+\code{\link{ipab_base2010}},
+\code{\link{ipc_base2010_int}},
+\code{\link{ipc_base2010_mdeo}},
+\code{\link{ipc_base2010}},
+\code{\link{toy_ech_2018_income}},
+\code{\link{toy_ech_2018}},
+\code{\link{urls_ine}}
+}
+\concept{dataset}
 \keyword{datasets}

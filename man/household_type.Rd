@@ -2,7 +2,7 @@
 % Please edit documentation in R/household_type.R
 \name{household_type}
 \alias{household_type}
-\title{household_type}
+\title{This function allows you to calculate the household type for each household in the survey. A household is composed of one or more people who occupy a housing unit.}
 \usage{
 household_type(
   data = ech::toy_ech_2018,
@@ -38,4 +38,11 @@ Aviso: El script no es un producto oficial de INE.
 toy_ech_2018 <- household_type(data = ech::toy_ech_2018)
 }
 }
+\seealso{
+Other demographic: 
+\code{\link{age_groups}()},
+\code{\link{poverty}()},
+\code{\link{unsatisfied_basic_needs}()}
+}
+\concept{demographic}
 \keyword{household_type}

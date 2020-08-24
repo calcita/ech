@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{unlabelled}
 \alias{unlabelled}
-\title{unlabelled}
+\title{This function allows you to labelled variables}
 \usage{
 unlabelled(data = NULL)
 }
@@ -17,5 +17,10 @@ This function allows you to labelled variables
 }
 \examples{
 df <- unlabelled(data = ech::toy_ech_2018)
-
 }
+\seealso{
+Other utils: 
+\code{\link{archive_extract}()},
+\code{\link{deflate}()}
+}
+\concept{utils}

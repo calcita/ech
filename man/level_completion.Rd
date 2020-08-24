@@ -2,7 +2,7 @@
 % Please edit documentation in R/education.R
 \name{level_completion}
 \alias{level_completion}
-\title{level_completion}
+\title{This function allows you to calculate the level of school completion}
 \usage{
 level_completion(
   data = ech::toy_ech_2018,
@@ -75,3 +75,10 @@ toy_ech_2018 <- level_completion(data = ech::toy_ech_2018)
 }
 
 }
+\seealso{
+Other education: 
+\code{\link{enrolled_school}()},
+\code{\link{level_education}()},
+\code{\link{years_of_schooling}()}
+}
+\concept{education}

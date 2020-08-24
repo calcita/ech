@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_estimation.R
 \name{get_estimation_gini}
 \alias{get_estimation_gini}
-\title{get_estimation_gini}
+\title{This function allows you to estimate the Gini coeficient}
 \usage{
 get_estimation_gini(
   data = ech::toy_ech_2018,
@@ -52,3 +52,11 @@ toy_ech_2018 <- income_constant_prices(data = ech::toy_ech_2018, ipc = "R",
 get_estimation_gini(data = toy_ech_2018, level = "h")
 }
 }
+\seealso{
+Other estimation: 
+\code{\link{get_estimation_mean}()},
+\code{\link{get_estimation_ratio}()},
+\code{\link{get_estimation_total}()},
+\code{\link{set_design}()}
+}
+\concept{estimation}

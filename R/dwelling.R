@@ -1,6 +1,5 @@
-#' housing_deprivation
-#' @description This function allows you to calculate the housing status
-#'
+#' This function allows you to calculate the housing status
+#' @family dwelling
 #' @param data data.frame
 #' @param n number of deprivations to consider. Default 1
 #' @param ht19 Variable name of number of individuals in the household
@@ -32,6 +31,7 @@
 #' toy_ech_2018 <- income_quantiles(data = toy_ech_2018)
 #' toy_ech_2018 <- housing_deprivation(data = toy_ech_2018)
 #' }
+
 housing_deprivation <- function(data = ech::toy_ech_2018,
                                 n = 1,
                                 ht19 = "ht19",
@@ -47,8 +47,7 @@ housing_deprivation <- function(data = ech::toy_ech_2018,
                                 c3 = "c3",
                                 c4 = "c4",
                                 quintil = "quintil",
-                                region_4 = "region_4"
-) {
+                                region_4 = "region_4") {
 
   # checks ---
   assertthat::assert_that(is.data.frame(data))
@@ -124,9 +123,8 @@ housing_deprivation <- function(data = ech::toy_ech_2018,
 
 
 
-#' housing_situation
-#' @description This function allows you to calculate the housing situation
-#'
+#' This function allows you to calculate the housing situation
+#' @family dwelling
 #' @param data data.frame
 #' @param c5_1 Variable name of roof condensation
 #' @param c5_2 Variable name of roof drips
@@ -140,19 +138,16 @@ housing_deprivation <- function(data = ech::toy_ech_2018,
 #' @param c5_10 Variable name of floods when it rains
 #' @param c5_11 Variable name of in danger of collapse
 #' @param c5_12 Variable name of dampness in the foundations
-#'
 #' @importFrom dplyr mutate
 #' @importFrom haven labelled
-#'
 #' @return data.frame
 #' @export
 #' @details
 #' Disclaimer: This script is not an official INE product.
 #' Aviso: El script no es un producto oficial de INE.
-#'
 #' @examples
 #' toy_ech_2018 <- housing_situation(data = ech::toy_ech_2018)
-#'
+
 housing_situation <- function(data = ech::toy_ech_2018,
                               c5_1 = "c5_1",
                               c5_2 = "c5_2",
@@ -197,27 +192,22 @@ housing_situation <- function(data = ech::toy_ech_2018,
 }
 
 
-
-#' housing_conditions
-#' @description This function allows you to calculate the housing conditions
-#'
+#' This function allows you to calculate the housing conditions
+#' @family dwelling
 #' @param data data.frame
 #' @param c2 Variable name of predominant material on external walls
 #' @param c3 Variable name of predominant roofing material
 #' @param c4 Variable name of predominant flooring material
-#'
 #' @importFrom dplyr mutate
 #' @importFrom haven labelled
-#'
 #' @return data.frame
 #' @export
 #' @details
 #' Disclaimer: This script is not an official INE product.
 #' Aviso: El script no es un producto oficial de INE.
-#'
 #' @examples
 #' toy_ech_2018 <- housing_conditions(data = ech::toy_ech_2018)
-#'
+
 housing_conditions <- function(data = ech::toy_ech_2018,
                                c2 = "c2",
                                c3 = "c3",
@@ -243,25 +233,21 @@ housing_conditions <- function(data = ech::toy_ech_2018,
   data
 }
 
-#' overcrowding
-#' @description This function allows you to calculate overcrowding in the household
-#'
+#' This function allows you to calculate overcrowding in the household
+#' @family dwelling
 #' @param data data.frame
 #' @param ht19 Variable name of umber of individuals in the household
 #' @param d10  Variable name of number of rooms to sleep
-#'
 #' @importFrom dplyr mutate
 #' @importFrom haven labelled
-#'
 #' @return data.frame
 #' @export
 #' @details
 #' Disclaimer: This script is not an official INE product.
 #' Aviso: El script no es un producto oficial de INE.
-#'
 #' @examples
 #' toy_ech_2018 <- overcrowding(data = ech::toy_ech_2018)
-#'
+
 overcrowding <- function(data = ech::toy_ech_2018,
                          ht19 = "ht19",
                          d10 = "d10"){
@@ -283,21 +269,18 @@ overcrowding <- function(data = ech::toy_ech_2018,
 }
 
 
-#' housing_tenure
-#' @description This function allows you to calculate the housing tenure
-#'
+#' This function allows you to calculate the housing tenure
+#' @family dwelling
 #' @param data data.frame
 #' @param d8_1 Variable name of housing_tenure (owner, renter, rent-free occupancy, etc.)
-#'
 #' @return data.frame
 #' @export
 #' @details
 #' Disclaimer: This script is not an official INE product.
 #' Aviso: El script no es un producto oficial de INE.
-#'
 #' @examples
 #' toy_ech_2018 <- housing_tenure(data = ech::toy_ech_2018)
-#'
+
 housing_tenure <- function(data = ech::toy_ech_2018,
                            d8_1 = "d8_1"){
 
@@ -317,9 +300,6 @@ housing_tenure <- function(data = ech::toy_ech_2018,
                                                   "Ocupante sin permiso" = 4, "Propietaria-o solo de la vivienda" = 5, " " = 6),
                                        label = "Tenencia de la vivienda"))
 
-
   message("A variable has been created: \n \t housing_tenure (tenencia de la vivienda)")
-
   return(data)
-
 }

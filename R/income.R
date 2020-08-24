@@ -1,6 +1,5 @@
-#' income_constant_prices
-#'
-#' @description This function allows you to calculate the household income constant prices
+#' This function allows you to calculate the household income constant prices
+#' @family income
 #' @param data data.frame with ECH microdata
 #' @param base_month baseline month
 #' @param base_year baseline year
@@ -96,10 +95,8 @@ income_constant_prices <- function(data = ech::toy_ech_2018,
 
 }
 
-#' income_quantiles
-#'
-#' @description This function allows you to calculate the Household Income Quantiles
-#'
+#' This function allows you to calculate the Household Income Quantiles
+#' @family income
 #' @param data data.frame
 #' @param quantile Variable name of quintil (5) or decil (10). Default: 5
 #' @param weights Variable name of ponderation variable. Default: "pesoano"
@@ -112,7 +109,6 @@ income_constant_prices <- function(data = ech::toy_ech_2018,
 #' @details
 #' Disclaimer: This script is not an official INE product.
 #' Aviso: El script no es un producto oficial de INE.
-#'
 #' @examples
 #' \donttest{
 #' toy_ech_2018 <- income_constant_prices(data = ech::toy_ech_2018)
@@ -146,9 +142,8 @@ income_quantiles <- function(data = ech::toy_ech_2018,
 
 
 
-#' labor_income_per_capita
-#'
-#' @description This function allows you to calculate the labor income per capita
+#' This function allows you to calculate the labor income per capita
+#' @family income
 #' @param data data frame
 #' @param numero Variable name of household id
 #' @param pobpcoac Variable name of definition of population by activity status
@@ -199,7 +194,7 @@ income_quantiles <- function(data = ech::toy_ech_2018,
 #' \donttest{
 #' toy_ech_2018 <- labor_income_per_capita(data = ech::toy_ech_2018)
 #' }
-#'
+
 labor_income_per_capita <- function(data = ech::toy_ech_2018,
                                     numero = "numero",
                                     pobpcoac = "pobpcoac",
@@ -299,9 +294,8 @@ labor_income_per_capita <- function(data = ech::toy_ech_2018,
 }
 
 
-#' labor_income_per_hour
-#'
-#' @description This function allows you to calculate the labor income per hour
+#' This function allows you to calculate the labor income per hour
+#' @family income
 #' @param data data frame
 #' @param numero Variable name of household id
 #' @param f85 Variable name of hours worked per week
@@ -310,21 +304,17 @@ labor_income_per_capita <- function(data = ech::toy_ech_2018,
 #' @param base_month baseline month
 #' @param base_year baseline year
 #' @param mes month
-#'
 #' @return data.frame
-#'
 #' @details
 #' Disclaimer: This script is not an official INE product.
 #' Aviso: El script no es un producto oficial de INE.
-#'
 #' @export
-#'
 #' @examples
 #' \donttest{
 #' toy_ech_2018 <- ech::toy_ech_2018
 #' toy_ech_2018 <- labor_income_per_hour(data = toy_ech_2018, base_month = "06", base_year = "2018")
 #' }
-#'
+
 labor_income_per_hour <- function(data = ech::toy_ech_2018,
                                   numero = "numero",
                                   f85 = "f85",

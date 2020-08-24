@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{get_cba_cbna}
 \alias{get_cba_cbna}
-\title{get_cba_cbna}
+\title{This function allows you to get the CBA and CBNA data}
 \usage{
 get_cba_cbna(folder = tempdir(), sheet = NULL, region = NULL)
 }
@@ -27,3 +27,15 @@ Aviso: El script no es un producto oficial de INE.
 get_cba_cbna(folder = tempdir(), sheet = 1, region = "M")
 
 }
+\seealso{
+Other dwnld_read: 
+\code{\link{get_ciiu}()},
+\code{\link{get_dictionary}()},
+\code{\link{get_ipab}()},
+\code{\link{get_ipc_region}()},
+\code{\link{get_ipc}()},
+\code{\link{get_marco}()},
+\code{\link{get_microdata}()},
+\code{\link{read_microdata}()}
+}
+\concept{dwnld_read}

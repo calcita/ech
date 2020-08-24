@@ -1,7 +1,5 @@
-#' get_estimation_mean
-#'
-#' @description This function allows you to estimate mean variable at universe level.
-#'
+#' This function allows you to estimate mean variable at universe level.
+#' @family estimation
 #' @param data data frame with ECH microdata
 #' @param variable data frame column to estimate
 #' @param by.x data frame column
@@ -13,12 +11,10 @@
 #' @param estrato strata
 #' @param pesoano weights
 #' @param name name for the estimation new column
-#'
 #' @import survey
 #' @import srvyr
 #' @importFrom assertthat assert_that
 #' @importFrom glue glue
-#'
 #' @keywords inference
 #' @export
 #' @return table
@@ -138,9 +134,9 @@ get_estimation_mean <- function(data = ech::toy_ech_2018,
 
 }
 
-#' get_estimation_total
-#'
-#' @description This function allows you to estimate total variable at universe level.
+
+#' This function allows you to estimate total variable at universe level.
+#' @family estimation
 #' @param data data frame with ECH microdata
 #' @param variable data frame column to estimate
 #' @param by.x data frame column
@@ -164,7 +160,6 @@ get_estimation_mean <- function(data = ech::toy_ech_2018,
 #' @details
 #' Disclaimer: This script is not an official INE product.
 #' Aviso: El script no es un producto oficial de INE.
-#'
 #' @examples
 #' \donttest{
 #' get_estimation_total(variable = "pobre06", by.x = "dpto", level = "h")
@@ -277,9 +272,8 @@ get_estimation_total <- function(data = ech::toy_ech_2018,
 }
 
 
-#' get_estimation_ratio
-#'
-#' @description This function allows you to estimate ratio variables at universe level.
+#' This function allows you to estimate ratio variables at universe level.
+#' @family estimation
 #' @param data data frame with ECH microdata
 #' @param variable.x data frame column to estimate
 #' @param variable.y data frame column to estimate
@@ -387,9 +381,8 @@ get_estimation_ratio <- function(data = ech::toy_ech_2018,
 
 }
 
-#' get_estimation_gini
-#'
-#' @description  This function allows you to estimate the Gini coeficient
+#' This function allows you to estimate the Gini coeficient
+#' @family estimation
 #' @param data ech data frame
 #' @param variable income without rental value per capita deflated
 #' @param by variable

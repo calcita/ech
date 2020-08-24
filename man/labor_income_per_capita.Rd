@@ -2,7 +2,7 @@
 % Please edit documentation in R/income.R
 \name{labor_income_per_capita}
 \alias{labor_income_per_capita}
-\title{labor_income_per_capita}
+\title{This function allows you to calculate the labor income per capita}
 \usage{
 labor_income_per_capita(
   data = ech::toy_ech_2018,
@@ -139,5 +139,12 @@ Aviso: El script no es un producto oficial de INE.
 \donttest{
 toy_ech_2018 <- labor_income_per_capita(data = ech::toy_ech_2018)
 }
-
 }
+\seealso{
+Other income: 
+\code{\link{basket_goods}()},
+\code{\link{income_constant_prices}()},
+\code{\link{income_quantiles}()},
+\code{\link{labor_income_per_hour}()}
+}
+\concept{income}

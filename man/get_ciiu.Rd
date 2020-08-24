@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{get_ciiu}
 \alias{get_ciiu}
-\title{get_ciiu}
+\title{This function allows you to get the CIIU data}
 \usage{
 get_ciiu(folder = tempdir(), version = 4)
 }
@@ -18,3 +18,15 @@ This function allows you to get the CIIU data
 Disclaimer: This script is not an official INE product.
 Aviso: El script no es un producto oficial de INE.
 }
+\seealso{
+Other dwnld_read: 
+\code{\link{get_cba_cbna}()},
+\code{\link{get_dictionary}()},
+\code{\link{get_ipab}()},
+\code{\link{get_ipc_region}()},
+\code{\link{get_ipc}()},
+\code{\link{get_marco}()},
+\code{\link{get_microdata}()},
+\code{\link{read_microdata}()}
+}
+\concept{dwnld_read}

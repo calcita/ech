@@ -5,15 +5,13 @@
 isWindows <- function() identical(.Platform$OS.type, "windows")
 
 #' Tests if unrar or 7zip exist
-#'
 #' @return
 #' unrar or 7zip path if exist, or NULL
-#'
 #' @author Tati Micheletti
-#'
 #' @keywords internal
 #' @rdname archiveExtractBinary
 #' @name archiveExtractBinary
+
 .archiveExtractBinary <- function() {
   possPrograms <- c("7z", "unrar")
   possPrograms <- unique(unlist(lapply(possPrograms, Sys.which)))
@@ -89,16 +87,14 @@ knownInternalArchiveExtensions <- c("zip", "tar", "tar.gz", "gz")
 knownSystemArchiveExtensions <- c("rar", "7z")
 knownArchiveExtensions <- c(knownInternalArchiveExtensions, knownSystemArchiveExtensions)
 
-#' archive_extract
-#'
+#' Extract compressed archives
+#' @family utils
 #' @param archive.path Ruta de origen del archivo comprimido
 #' @param dest.path Ruta destino del archivo descomprimido
-#'
 #' @export
 #' @details
 #' Disclaimer: This script is not an official INE product.
 #' Aviso: El script no es un producto oficial de INE.
-#'
 #' @examples
 #' \donttest{
 #' archive_extract()
@@ -128,9 +124,8 @@ archive_extract <- function(archive.path = NULL, dest.path = NULL) {
 
 #### get_microdata ####
 
-#' get_microdata
-#' @description This function allows you to download and read ECH from INE website
-#'
+#' This function allows you to download and read ECH from INE website
+#' @family dwnld_read
 #' @param year allows download data from 2011 to 2019. Default the last year
 #' @param folder Folder where are the files or be download
 #' @param toR write data frame in R format and delete download file and unpack files
@@ -285,9 +280,8 @@ get_microdata <- function(year = NULL,
 
 #### read_microdata ####
 
-#' read_microdata
-#' @description This function allows you to read ECH from a local folder
-#'
+#' This function allows you to read ECH from a local folder
+#' @family dwnld_read
 #' @param path Folder where are the files or be download
 #' @importFrom fs path
 #' @importFrom haven read_sav read_dta
@@ -338,9 +332,8 @@ read_microdata <- function(path = NULL){
 
 #### get_marco ####
 
-#' get_marco
-#'
-#' @description This unction allows you to download and read the sampling frame from INE website
+#' This unction allows you to download and read the sampling frame from INE website
+#' @family dwnld_read
 #' @param year allows download data of 2011, 2004, 1996 or 1985. Default 2011
 #' @param folder Folder where are the files or be download
 #' @param toR write data frame in R format and delete download file and unpack files

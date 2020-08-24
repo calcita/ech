@@ -1,6 +1,5 @@
-#' get_ipc
-#'
-#' @description This function allows you to get the IPC data
+#' This function allows you to get the IPC data
+#' @family dwnld_read
 #' @param folder ruta temporal para descargar el archivo
 #' @importFrom readxl read_xls
 #' @importFrom dplyr slice mutate select everything
@@ -33,9 +32,8 @@ get_ipc <- function(folder = tempdir()){
   ipc_base2010 <- df
 }
 
-#' get_ipc_region
-#'
-#' @description This function allows you to get the IPC data
+#' This function allows you to get the IPC data
+#' @family dwnld_read
 #' @param folder temporal folder
 #' @param region Montevideo ("M") or Interior ("I")
 #' @param sheet sheet number
@@ -105,9 +103,8 @@ get_ipc_region <- function(folder = tempdir(), region = "M", sheet = NULL){
   }
 }
 
-#' get_cba_cbna
-#'
-#' @description This function allows you to get the CBA and CBNA data
+#' This function allows you to get the CBA and CBNA data
+#' @family dwnld_read
 #' @param folder temporal folder
 #' @param sheet sheet number
 #' @param region Montevideo ("M"), Interior Urbano ("I"), Interior Rural ("R")
@@ -171,13 +168,10 @@ get_cba_cbna <- function(folder = tempdir(), sheet = NULL, region = NULL){
 }
 
 
-#' get_ipab
-#'
-#' @description This function allows you to get the IPAB (Indice de precios de alimentos y bebidas) data
-#'
+#' This function allows you to get the IPAB (Indice de precios de alimentos y bebidas) data
+#' @family dwnld_read
 #' @param folder temporal folder
 #' @param sheet sheet number
-#'
 #' @importFrom readxl read_xls
 #' @importFrom janitor remove_empty
 #' @importFrom dplyr bind_rows slice filter_all bind_cols any_vars
@@ -190,7 +184,7 @@ get_cba_cbna <- function(folder = tempdir(), sheet = NULL, region = NULL){
 #'
 #' @examples
 #' get_ipab(folder = tempdir(), sheet = 1)
-#'
+
 get_ipab <- function(folder = tempdir(), sheet = NULL){
 
   u <- "http://www.ine.gub.uy/c/document_library/get_file?uuid=c4b5efaa-cdd4-497a-ab78-e3138e4f08dc&groupId=10181"
@@ -208,8 +202,8 @@ get_ipab <- function(folder = tempdir(), sheet = NULL){
 
 }
 
-#' get_ciiu
-#' @description This function allows you to get the CIIU data
+#' This function allows you to get the CIIU data
+#' @family dwnld_read
 #' @param folder temp folder
 #' @param version by default the last ciiu version
 #' @importFrom utils read.csv
@@ -236,20 +230,18 @@ get_ciiu <- function(folder = tempdir(),
   ciiu4 <- df
 }
 
-#' deflate
-#' @description This function allows you to calculate a deflate variable
+#' This function allows you to calculate a deflate variable
+#' @family utils
 #' @param base_month baseline month
 #' @param base_year baseline year
 #' @param ipc General IPC ('G'), Montevideo IPC ('M') or Interior IPC ('I')
 #' @param df_year ECH year
-#'
 #' @importFrom dplyr select slice mutate
 #' @importFrom rlang .data
 #' @export
 #' @details
 #' Disclaimer: This script is not an official INE product.
 #' Aviso: El script no es un producto oficial de INE.
-#'
 #' @examples
 #' \donttest{
 #' deflate(base_month = 6, base_year = 2016, df_year = 2018)
@@ -295,11 +287,10 @@ deflate <- function(base_month = NULL,
        dplyr::select(deflate, mes)
 }
 
-#' basket_goods
-#' @description This function allows you to get the Basket goods
+#' This function allows you to get the Basket goods
+#' @family income
 #' @param data data.frame with the price of the basket of goods from Montevideo, Interior or Rural region
 #' @param year the ECH year
-#'
 #' @return data.frame
 #' @export
 #' @details
@@ -308,7 +299,7 @@ deflate <- function(base_month = NULL,
 #'
 #' @examples
 #' df <- basket_goods(data = ech::cba_cbna_mdeo, year = 2018)
-#'
+
 basket_goods <- function(data = ech::cba_cbna_mdeo,
                          year = NULL){
 
@@ -321,20 +312,17 @@ basket_goods <- function(data = ech::cba_cbna_mdeo,
 
 }
 
-#' unlabelled
-#' @description This function allows you to labelled variables
+#' This function allows you to labelled variables
+#' @family utils
 #' @param data data frame
-#'
 #' @importFrom dplyr select mutate
 #' @importFrom haven is.labelled
 #' @importFrom labelled to_factor
-#'
 #' @return data.frame
 #' @export
-#'
 #' @examples
 #' df <- unlabelled(data = ech::toy_ech_2018)
-#'
+
 unlabelled <- function(data = NULL){
 
   d <- data %>% dplyr::mutate_if(haven::is.labelled, labelled::to_factor) #%>%
@@ -342,8 +330,8 @@ unlabelled <- function(data = NULL){
 
 }
 
-#' age_groups
-#' @description This function allows you to calculate age groups
+#' This function allows you to calculate age groups
+#' @family demographic
 #' @param data data.frame
 #' @param cut breaks points to cut a numeric variable
 #' @param e27 Variable name of age
@@ -355,7 +343,7 @@ unlabelled <- function(data = NULL){
 #'
 #' @examples
 #' toy_ech_2018 <- age_groups(data = ech::toy_ech_2018, cut = c(0, 4, 11, 17, 24))
-#'
+
 age_groups <- function(data = ech::toy_ech_2018,
                        cut = c(0, 4, 11, 17, 24),
                        e27 = "e27") {
@@ -374,9 +362,7 @@ age_groups <- function(data = ech::toy_ech_2018,
 }
 
 #' Pipe operator
-#'
 #' See \code{magrittr::\link[magrittr]{\%>\%}} for details.
-#'
 #' @name %>%
 #' @rdname pipe
 #' @keywords internal

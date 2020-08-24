@@ -2,7 +2,7 @@
 % Please edit documentation in R/dwelling.R
 \name{housing_conditions}
 \alias{housing_conditions}
-\title{housing_conditions}
+\title{This function allows you to calculate the housing conditions}
 \usage{
 housing_conditions(data = ech::toy_ech_2018, c2 = "c2", c3 = "c3", c4 = "c4")
 }
@@ -27,5 +27,12 @@ Aviso: El script no es un producto oficial de INE.
 }
 \examples{
 toy_ech_2018 <- housing_conditions(data = ech::toy_ech_2018)
-
 }
+\seealso{
+Other dwelling: 
+\code{\link{housing_deprivation}()},
+\code{\link{housing_situation}()},
+\code{\link{housing_tenure}()},
+\code{\link{overcrowding}()}
+}
+\concept{dwelling}

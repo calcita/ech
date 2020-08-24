@@ -2,7 +2,7 @@
 % Please edit documentation in R/employment.R
 \name{employment}
 \alias{employment}
-\title{employment}
+\title{This function allows you to calculate the variables: PEA, PET, PO, PD}
 \usage{
 employment(data = ech::toy_ech_2018, pobpcoac = "pobpcoac")
 }
@@ -23,4 +23,11 @@ Aviso: El script no es un producto oficial de INE.
 toy_ech_2018 <- employment(data = ech::toy_ech_2018, pobpcoac = "pobpcoac")
 }
 }
+\seealso{
+Other employment: 
+\code{\link{branch_ciiu}()},
+\code{\link{employment_restrictions}()},
+\code{\link{underemployment}()}
+}
+\concept{employment}
 \keyword{employment}

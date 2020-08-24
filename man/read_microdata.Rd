@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_microdata.R
 \name{read_microdata}
 \alias{read_microdata}
-\title{read_microdata}
+\title{This function allows you to read ECH from a local folder}
 \usage{
 read_microdata(path = NULL)
 }
@@ -21,3 +21,15 @@ Disclaimer: El script no es un producto oficial de INE.
 Disclaimer: This script is not an official INE product.
 Aviso: El script no es un producto oficial de INE.
 }
+\seealso{
+Other dwnld_read: 
+\code{\link{get_cba_cbna}()},
+\code{\link{get_ciiu}()},
+\code{\link{get_dictionary}()},
+\code{\link{get_ipab}()},
+\code{\link{get_ipc_region}()},
+\code{\link{get_ipc}()},
+\code{\link{get_marco}()},
+\code{\link{get_microdata}()}
+}
+\concept{dwnld_read}

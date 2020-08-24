@@ -2,7 +2,7 @@
 % Please edit documentation in R/set_design.R
 \name{set_design}
 \alias{set_design}
-\title{set_design}
+\title{This function allows you to set the survey desing}
 \usage{
 set_design(
   data = ech::toy_ech_2018,
@@ -41,4 +41,12 @@ Aviso: El script no es un producto oficial de INE.
 set_design(data = ech::toy_ech_2018, level = "h")
 }
 }
+\seealso{
+Other estimation: 
+\code{\link{get_estimation_gini}()},
+\code{\link{get_estimation_mean}()},
+\code{\link{get_estimation_ratio}()},
+\code{\link{get_estimation_total}()}
+}
+\concept{estimation}
 \keyword{design}

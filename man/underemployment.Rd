@@ -2,7 +2,7 @@
 % Please edit documentation in R/employment.R
 \name{underemployment}
 \alias{underemployment}
-\title{underemployment}
+\title{This function allows you to identify underemployed people}
 \usage{
 underemployment(
   data = ech::toy_ech_2018,
@@ -44,5 +44,11 @@ Aviso: El script no es un producto oficial de INE.
 }
 \examples{
 toy_ech_2018 <- underemployment(data = ech::toy_ech_2018)
-
 }
+\seealso{
+Other employment: 
+\code{\link{branch_ciiu}()},
+\code{\link{employment_restrictions}()},
+\code{\link{employment}()}
+}
+\concept{employment}

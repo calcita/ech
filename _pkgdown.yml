@@ -1,1 +1,35 @@
 destination: docs
+reference:
+- title: Download and read
+  contents:
+  - has_concept("dwnld_read")
+- title: Organize
+  contents:
+  - has_concept("organize")
+- title: Estimations
+  contents:
+  - has_concept("estimation")
+- title: Education
+  contents:
+  - has_concept("education")
+- title: Demographic
+  contents:
+  - has_concept("demographic")
+- title: Dwelling
+  contents:
+  - has_concept("dwelling")
+- title: Employment
+  contents:
+  - has_concept("employment")
+- title: Income
+  contents:
+  - has_concept("income")
+- title: Datasets
+  contents:
+  - has_concept("dataset")
+- title: Utils
+  contents:
+  - has_concept("utils")
+- title: Geo
+  contents:
+  - has_concept("geo")

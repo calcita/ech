@@ -1,6 +1,5 @@
-#' unsatisfied_basic_needs
-#'
-#' @description This function allows you to calculate de Unsatisfied Basic Needs
+#' This function allows you to calculate de Unsatisfied Basic Needs
+#' @family demographic
 #' @param data data.frame
 #' @param ipm Logical if want to include integrated_poverty_measure variable. Default FALSE
 #' @param c2 Variable name of predominant material on external walls
@@ -25,19 +24,17 @@
 #' @param school_enrollment Variable name of school_enrollment
 #' @param years_schooling Variable name of years_schooling
 #' @param anio Variable name of survey year
-#'
 #' @return data.frame
 #' @export
 #' @importFrom dplyr mutate case_when
 #' @details
 #' Disclaimer: This script is not an official INE product.
 #' Aviso: El script no es un producto oficial de INE.
-#'
 #' @examples
 #' toy_ech_18 <- enrolled_school(data = ech::toy_ech_2018)
 #' toy_ech_18 <- years_of_schooling(toy_ech_18)
 #' toy_ech_18 <- unsatisfied_basic_needs(toy_ech_18)
-#'
+
 unsatisfied_basic_needs <- function(data = ech::toy_ech_2018,
                                     ipm = FALSE,
                                     c2 = "c2",
@@ -103,7 +100,7 @@ unsatisfied_basic_needs <- function(data = ech::toy_ech_2018,
           UBN_q == 2 ~ 2,
           UBN_q >= 3 ~ 3),
         UBN = haven::labelled(UBN, labels = c("Sin NBI" = 0, "Con 1 NBI" = 1, "Con 2 NBI" = 2, "Con 3 o mas NBI" = 3), label = "NBI")
-        )
+      )
 
     message(glue::glue("El objeto data es previo a 2016 y no se incluye UBN_confort"))
     message("Variables have been created: \n \t UBN_housing (NBI vivienda);
@@ -148,18 +145,17 @@ unsatisfied_basic_needs <- function(data = ech::toy_ech_2018,
         pobre06 == 0 & UBN_q >= 1 ~ 2,
         pobre06 == 1 & UBN_q >= 1 ~ 3),
         integrated_poverty_measure = haven::labelled(integrated_poverty_measure,
-                                          labels = c("No pobreza" = 0, "Pobreza reciente" = 1,
-                                                     "Pobreza inercial" = 2, "Pobreza cronica" = 3),
-                                          label = "Pobreza integrada")
+                                                     labels = c("No pobreza" = 0, "Pobreza reciente" = 1,
+                                                                "Pobreza inercial" = 2, "Pobreza cronica" = 3),
+                                                     label = "Pobreza integrada")
       )
     message(" \t integrated_poverty_measure (Pobreza integrada)")
   }
-    return(data)
+  return(data)
 }
 
-#' poverty
-#'
-#' @description This function allows you to calculate poor and indigent people or household
+#' This function allows you to calculate poor and indigent people or household
+#' @family demographic
 #' @param data data.frame
 #' @param scale equivalency scale
 #' @param region_4 Variable name of region. Default: region_4
@@ -167,16 +163,14 @@ unsatisfied_basic_needs <- function(data = ech::toy_ech_2018,
 #' @param ht11 Variable name of income. Default: ht11
 #' @param ht19 Variable name of number of individuals in the household. Default: ht19
 #' @param numero household id
-#'
 #' @return data.frame
 #' @export
 #' @details
 #' Disclaimer: This script is not an official INE product.
 #' Aviso: El script no es un producto oficial de INE.
-#'
 #' @examples
 #' toy_ech_2018 <- poverty(data = ech::toy_ech_2018)
-#'
+
 poverty <- function(data = ech::toy_ech_2018,
                     scale = 0.8,
                     region_4 = "region_4",
@@ -226,11 +220,11 @@ poverty <- function(data = ech::toy_ech_2018,
     poverty_line =  indigency_line + cbna * (ht19 ^ scale),
     indigent = ifelse(ht11 <= indigency_line, 1, 0),
     indigent = haven::labelled(indigent, labels = c("Indigente" = 1, "No indigente" = 0),
-                                        label = "Indigente"),
+                               label = "Indigente"),
     poor = ifelse(ht11 <= poverty_line, 1, 0),
     poor = haven::labelled(poor, labels = c("Pobre" = 1, "No pobre" = 0),
-                               label = "Pobre")
-    )
+                           label = "Pobre")
+  )
 
   data <- h %>% dplyr::select(numero, indigency_line, poverty_line, poor, indigent) %>%
     dplyr:: left_join(data, ., by = "numero")

@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_estimation.R
 \name{get_estimation_ratio}
 \alias{get_estimation_ratio}
-\title{get_estimation_ratio}
+\title{This function allows you to estimate ratio variables at universe level.}
 \usage{
 get_estimation_ratio(
   data = ech::toy_ech_2018,
@@ -60,4 +60,12 @@ toy_ech_2018 <- employment(data = ech::toy_ech_2018, pobpcoac = "pobpcoac")
 get_estimation_ratio(data = toy_ech_2018, variable.x = "po", variable.y = "pea", level = "i")
 }
 }
+\seealso{
+Other estimation: 
+\code{\link{get_estimation_gini}()},
+\code{\link{get_estimation_mean}()},
+\code{\link{get_estimation_total}()},
+\code{\link{set_design}()}
+}
+\concept{estimation}
 \keyword{inference}

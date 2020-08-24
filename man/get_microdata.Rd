@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_microdata.R
 \name{get_microdata}
 \alias{get_microdata}
-\title{get_microdata}
+\title{This function allows you to download and read ECH from INE website}
 \usage{
 get_microdata(year = NULL, folder = tempdir(), toR = TRUE)
 }
@@ -23,3 +23,15 @@ This function allows you to download and read ECH from INE website
 Disclaimer: This script is not an official INE product.
 Aviso: El script no es un producto oficial de INE.
 }
+\seealso{
+Other dwnld_read: 
+\code{\link{get_cba_cbna}()},
+\code{\link{get_ciiu}()},
+\code{\link{get_dictionary}()},
+\code{\link{get_ipab}()},
+\code{\link{get_ipc_region}()},
+\code{\link{get_ipc}()},
+\code{\link{get_marco}()},
+\code{\link{read_microdata}()}
+}
+\concept{dwnld_read}

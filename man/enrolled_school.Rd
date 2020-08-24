@@ -2,7 +2,7 @@
 % Please edit documentation in R/education.R
 \name{enrolled_school}
 \alias{enrolled_school}
-\title{enrolled_school}
+\title{This function allows you to calculate the people enrolled in school}
 \usage{
 enrolled_school(
   data = ech::toy_ech_2018,
@@ -50,4 +50,11 @@ Aviso: El script no es un producto oficial de INE.
 toy_ech_2018 <- enrolled_school(data = ech::toy_ech_2018)
 }
 }
+\seealso{
+Other education: 
+\code{\link{level_completion}()},
+\code{\link{level_education}()},
+\code{\link{years_of_schooling}()}
+}
+\concept{education}
 \keyword{education}

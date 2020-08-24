@@ -2,7 +2,7 @@
 % Please edit documentation in R/education.R
 \name{level_education}
 \alias{level_education}
-\title{level_education}
+\title{This function allows you to calculate the highest level of education achieved}
 \usage{
 level_education(
   data = ech::toy_ech_2018,
@@ -62,3 +62,10 @@ Aviso: El script no es un producto oficial de INE.
 toy_ech_2018 <- level_education(data = ech::toy_ech_2018)
 }
 }
+\seealso{
+Other education: 
+\code{\link{enrolled_school}()},
+\code{\link{level_completion}()},
+\code{\link{years_of_schooling}()}
+}
+\concept{education}

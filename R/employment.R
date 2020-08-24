@@ -1,9 +1,7 @@
-#' employment
-#' @description This function allows you to calculate the variables: PEA, PET, PO, PD
-#'
+#' This function allows you to calculate the variables: PEA, PET, PO, PD
+#' @family employment
 #' @param data data.frame with microdata
 #' @param pobpcoac Variable name of definition of population by activity status. Default: "pobpcoac"
-#'
 #' @keywords employment
 #' @export
 #' @importFrom dplyr mutate
@@ -46,9 +44,8 @@ employment <- function(data = ech::toy_ech_2018,
   return(data)
 }
 
-#' underemployment
-#' @description This function allows you to identify underemployed people
-#'
+#' This function allows you to identify underemployed people
+#' @family employment
 #' @param data data.frame
 #' @param pobpcoac Variable name of definition of population by activity status. Default: "pobpcoac"
 #' @param f85 Variable name of number of hours worked in the main job
@@ -68,7 +65,7 @@ employment <- function(data = ech::toy_ech_2018,
 #'
 #' @examples
 #' toy_ech_2018 <- underemployment(data = ech::toy_ech_2018)
-#'
+
 underemployment <- function(data = ech::toy_ech_2018,
                          pobpcoac = "pobpcoac",
                          f85 = "f85",
@@ -87,23 +84,21 @@ underemployment <- function(data = ech::toy_ech_2018,
     return(data)
 
 }
-#' employment_restrictions
-#'
-#' @description This function allows you to identify workers with employment restrictions
+
+#' This function allows you to identify workers with employment restrictions
+#' @family employment
 #' @param data data.frame
 #' @param f82 Variable name of contribution to the pension fund
 #' @param underemployment Variable name of underemployment
-#'
 #' @return data.frame
 #' @export
 #' @details
 #' Disclaimer: This script is not an official INE product.
 #' Aviso: El script no es un producto oficial de INE.
-#'
 #' @examples
 #' toy_ech_2018 <- underemployment(data = ech::toy_ech_2018)
 #' toy_ech_2018 <- employment_restrictions(data = toy_ech_2018)
-#'
+
 employment_restrictions  <- function(data = ech::toy_ech_2018,
                                      f82 = "f82",
                                      underemployment = "underemployment"){
@@ -121,20 +116,17 @@ employment_restrictions  <- function(data = ech::toy_ech_2018,
   return(data)
 }
 
-#' branch_ciuu
-#'
-#' @description This function allows you to identify activity branches
+#' This function allows you to identify activity branches
+#' @family employment
 #' @param data data.frame
 #' @param f72_2 Variable name of ciiu code rev.4
 #' @param group logical to define 12 or 18 categories, if FALSE code 18. Default: TRUE
 #' @param disaggregated logical to define disaggregated branches or not. Default: FALSE
-#'
 #' @return data.frame
 #' @export
 #' @details
 #' Disclaimer: This script is not an official INE product.
 #' Aviso: El script no es un producto oficial de INE.
-#'
 #' @examples
 #' \donttest{
 #' toy_ech_2018 <- branch_ciiu(data = ech::toy_ech_2018)
@@ -216,5 +208,5 @@ branch_ciiu <- function(data = ech::toy_ech_2018,
       message("A variable has been created: \n \t branch_ciiu (Rama de actividad CIIU)
               branch_ciiu_disaggregated (Rama de actividad CIIU desagregada)")
     }
-    return(data)
+  return(data)
 }

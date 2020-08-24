@@ -2,7 +2,7 @@
 % Please edit documentation in R/organize.R
 \name{organize_names}
 \alias{organize_names}
-\title{organize_names}
+\title{This function allows you to organize the variables names of ECH with reference in 2017.}
 \usage{
 organize_names(data, year, level = "hyp")
 }
@@ -25,3 +25,4 @@ Aviso: El script no es un producto oficial de INE.
 toy_ech_2018 <- organize_names(data = ech::toy_ech_2018, year = 2018, level = "h")
 }
 }
+\concept{organize}

@@ -2,7 +2,7 @@
 % Please edit documentation in R/add_geom.R
 \name{add_geom}
 \alias{add_geom}
-\title{add_geom}
+\title{This function allows you to add a geom variable with a code variable of "zona", "barrio", "localidad", "segmentos", "secciones" or "departamentos".}
 \usage{
 add_geom(data, unit, variable, crs = 32721)
 }
@@ -32,3 +32,4 @@ pobre_x_dpto <- get_estimation_mean(variable = "pobre06", by.x = "nomdpto", leve
 pobre_x_dpto_geo <- add_geom(data = pobre_x_dpto, unit = "Departamentos", variable = "nomdpto")
 }
 }
+\concept{geo}

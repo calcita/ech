@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{deflate}
 \alias{deflate}
-\title{deflate}
+\title{This function allows you to calculate a deflate variable}
 \usage{
 deflate(base_month = NULL, base_year = NULL, ipc = "G", df_year = NULL)
 }
@@ -27,3 +27,9 @@ Aviso: El script no es un producto oficial de INE.
 deflate(base_month = 6, base_year = 2016, df_year = 2018)
 }
 }
+\seealso{
+Other utils: 
+\code{\link{archive_extract}()},
+\code{\link{unlabelled}()}
+}
+\concept{utils}

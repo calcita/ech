@@ -1,7 +1,5 @@
-#' Data of size 1000
-#'
 #' A dataset containing only 1000 raws of the ECH 2018
-#'
+#' @family dataset
 #' @format A data frame with 1000 rows and 579 variables:
 #' \describe{
 #'   \item{numero}{household id}
@@ -592,10 +590,8 @@
 "toy_ech_2018"
 
 
-#' Data of 2018 incomes
-#'
 #' A dataset containing only 1000 raws of the ECH 2018 income variables
-#'
+#' @family dataset
 #' @format A data frame with 1000 rows and 9 variables:
 #' \describe{
 #'   \item{numero}{household id}
@@ -619,10 +615,8 @@
 
 
 
-#' Data of variables names in time
-#'
 #' A dataset containing variables names change of the ECH 2006-2018
-#'
+#' @family dataset
 #' @format A data frame with 974 rows and 19 variables:
 #' \describe{
 #'   \item{codigos}{Code oh label}
@@ -653,10 +647,8 @@
 "dic"
 
 
-#' Data CIIU4 and 3
-#'
 #' A dataset containing Clasificación Industrial Internacional Uniforme Rev. 4 and 3
-#'
+#' @family dataset
 #' @format A data frame with 738 rows and 3 variables:
 #' \describe{
 #'   \item{ciiu_4}{Code of Clasificación Industrial Internacional Uniforme Rev. 4}
@@ -671,10 +663,8 @@
 "ciiu4"
 
 
-#' Data IPC
-#'
 #' A dataset containing the IPC base 2010
-#'
+#' @family dataset
 #' @format A data frame with 990 rows and 5 variables:
 #' \describe{
 #'   \item{fecha}{date from 1937 to 2019}
@@ -689,10 +679,9 @@
 #' Aviso: El script no es un producto oficial de INE.
 "ipc_base2010"
 
-#' Data IPC (Interior)
-#'
+
 #' A dataset containing the IPC base 2010 only for the Interior region
-#'
+#' @family dataset
 #' @format A data frame with 120 rows and 2 variables:
 #' \describe{
 #'   \item{fecha}{date from 2011 to 2019}
@@ -704,10 +693,8 @@
 #' Aviso: El script no es un producto oficial de INE.
 "ipc_base2010_int"
 
-#' Data IPC (Montevideo)
-#'
 #' A dataset containing the IPC base 2010 only for the Montevideo region
-#'
+#' @family dataset
 #' @format A data frame with 120 rows and 2 variables:
 #' \describe{
 #'   \item{fecha}{date from 2011 to 2019}
@@ -719,10 +706,9 @@
 #' Aviso: El script no es un producto oficial de INE.
 "ipc_base2010_mdeo"
 
-#' Data IPC (Montevideo)
-#'
+
 #' A dataset containing the IPC base 2010 only for the Montevideo region
-#'
+#' @family dataset
 #' @format A data frame with 120 rows and 2 variables:
 #' \describe{
 #'   \item{fecha}{date from 2011 to 2019}
@@ -734,10 +720,9 @@
 #' Aviso: El script no es un producto oficial de INE.
 "ipc_base2010_mdeo"
 
-#' Data CBA-CBNA (Montevideo)
-#'
+
 #' A dataset containing the CBA and CBNA for the Montevideo region
-#'
+#' @family dataset
 #' @format A data frame with 234 rows and 4 variables:
 #' \describe{
 #'   \item{fecha}{date from 2001 to 2020}
@@ -751,10 +736,8 @@
 #' Aviso: El script no es un producto oficial de INE.
 "cba_cbna_mdeo"
 
-#' Data CBA-CBNA (Interior Urbano)
-#'
 #' A dataset containing the CBA and CBNA for the Interior Urbano region
-#'
+#' @family dataset
 #' @format A data frame with 234 rows and 4 variables:
 #' \describe{
 #'   \item{fecha}{date from 2001 to 2020}
@@ -768,10 +751,9 @@
 #' Aviso: El script no es un producto oficial de INE.
 "cba_cbna_int"
 
-#' Data CBA-CBNA (Interior Rural)
-#'
+
 #' A dataset containing the CBA and CBNA for the Interior Rural region
-#'
+#' @family dataset
 #' @format A data frame with 234 rows and 4 variables:
 #' \describe{
 #'   \item{fecha}{date from 2001 to 2020}
@@ -786,11 +768,8 @@
 "cba_cbna_rur"
 
 
-
-#' Data IPAB
-#'
 #' A dataset containing the IPAB
-#'
+#' @family dataset
 #' @format A data frame with 286 rows and 3 variables:
 #' \describe{
 #'   \item{yy}{date from 1997 to 2020}
@@ -804,10 +783,8 @@
 "ipab_base2010"
 
 
-#' Data urls_ine
-#'
 #' A dataset containing the urls of INE datasets and diccionaries
-#'
+#' @family dataset
 #' @format A data frame with 9 rows and 4 variables:
 #' \describe{
 #'   \item{yy}{date from 2011 to 2019}

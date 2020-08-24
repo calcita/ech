@@ -2,7 +2,7 @@
 % Please edit documentation in R/dwelling.R
 \name{housing_deprivation}
 \alias{housing_deprivation}
-\title{housing_deprivation}
+\title{This function allows you to calculate the housing status}
 \usage{
 housing_deprivation(
   data = ech::toy_ech_2018,
@@ -73,3 +73,11 @@ toy_ech_2018 <- income_quantiles(data = toy_ech_2018)
 toy_ech_2018 <- housing_deprivation(data = toy_ech_2018)
 }
 }
+\seealso{
+Other dwelling: 
+\code{\link{housing_conditions}()},
+\code{\link{housing_situation}()},
+\code{\link{housing_tenure}()},
+\code{\link{overcrowding}()}
+}
+\concept{dwelling}

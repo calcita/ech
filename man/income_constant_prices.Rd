@@ -2,7 +2,7 @@
 % Please edit documentation in R/income.R
 \name{income_constant_prices}
 \alias{income_constant_prices}
-\title{income_constant_prices}
+\title{This function allows you to calculate the household income constant prices}
 \usage{
 income_constant_prices(
   data = ech::toy_ech_2018,
@@ -47,3 +47,11 @@ Aviso: El script no es un producto oficial de INE.
 toy_ech_2018 <- income_constant_prices(data = ech::toy_ech_2018)
 }
 }
+\seealso{
+Other income: 
+\code{\link{basket_goods}()},
+\code{\link{income_quantiles}()},
+\code{\link{labor_income_per_capita}()},
+\code{\link{labor_income_per_hour}()}
+}
+\concept{income}

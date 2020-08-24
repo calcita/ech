@@ -2,7 +2,7 @@
 % Please edit documentation in R/poverty.R
 \name{unsatisfied_basic_needs}
 \alias{unsatisfied_basic_needs}
-\title{unsatisfied_basic_needs}
+\title{This function allows you to calculate de Unsatisfied Basic Needs}
 \usage{
 unsatisfied_basic_needs(
   data = ech::toy_ech_2018,
@@ -94,5 +94,11 @@ Aviso: El script no es un producto oficial de INE.
 toy_ech_18 <- enrolled_school(data = ech::toy_ech_2018)
 toy_ech_18 <- years_of_schooling(toy_ech_18)
 toy_ech_18 <- unsatisfied_basic_needs(toy_ech_18)
-
 }
+\seealso{
+Other demographic: 
+\code{\link{age_groups}()},
+\code{\link{household_type}()},
+\code{\link{poverty}()}
+}
+\concept{demographic}

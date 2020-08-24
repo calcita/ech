@@ -2,7 +2,7 @@
 % Please edit documentation in R/poverty.R
 \name{poverty}
 \alias{poverty}
-\title{poverty}
+\title{This function allows you to calculate poor and indigent people or household}
 \usage{
 poverty(
   data = ech::toy_ech_2018,
@@ -41,5 +41,11 @@ Aviso: El script no es un producto oficial de INE.
 }
 \examples{
 toy_ech_2018 <- poverty(data = ech::toy_ech_2018)
-
 }
+\seealso{
+Other demographic: 
+\code{\link{age_groups}()},
+\code{\link{household_type}()},
+\code{\link{unsatisfied_basic_needs}()}
+}
+\concept{demographic}

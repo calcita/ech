@@ -3,7 +3,7 @@
 \docType{data}
 \name{toy_ech_2018}
 \alias{toy_ech_2018}
-\title{Data of size 1000}
+\title{A dataset containing only 1000 raws of the ECH 2018}
 \format{
 A data frame with 1000 rows and 579 variables:
 \describe{
@@ -602,4 +602,19 @@ A dataset containing only 1000 raws of the ECH 2018
 Disclaimer: This script is not an official INE product.
 Aviso: El script no es un producto oficial de INE.
 }
+\seealso{
+Other dataset: 
+\code{\link{cba_cbna_int}},
+\code{\link{cba_cbna_mdeo}},
+\code{\link{cba_cbna_rur}},
+\code{\link{ciiu4}},
+\code{\link{dic}},
+\code{\link{ipab_base2010}},
+\code{\link{ipc_base2010_int}},
+\code{\link{ipc_base2010_mdeo}},
+\code{\link{ipc_base2010}},
+\code{\link{toy_ech_2018_income}},
+\code{\link{urls_ine}}
+}
+\concept{dataset}
 \keyword{datasets}

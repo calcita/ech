@@ -2,7 +2,7 @@
 % Please edit documentation in R/income.R
 \name{labor_income_per_hour}
 \alias{labor_income_per_hour}
-\title{labor_income_per_hour}
+\title{This function allows you to calculate the labor income per hour}
 \usage{
 labor_income_per_hour(
   data = ech::toy_ech_2018,
@@ -47,5 +47,12 @@ Aviso: El script no es un producto oficial de INE.
 toy_ech_2018 <- ech::toy_ech_2018
 toy_ech_2018 <- labor_income_per_hour(data = toy_ech_2018, base_month = "06", base_year = "2018")
 }
-
 }
+\seealso{
+Other income: 
+\code{\link{basket_goods}()},
+\code{\link{income_constant_prices}()},
+\code{\link{income_quantiles}()},
+\code{\link{labor_income_per_capita}()}
+}
+\concept{income}

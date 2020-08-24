@@ -2,7 +2,7 @@
 % Please edit documentation in R/employment.R
 \name{employment_restrictions}
 \alias{employment_restrictions}
-\title{employment_restrictions}
+\title{This function allows you to identify workers with employment restrictions}
 \usage{
 employment_restrictions(
   data = ech::toy_ech_2018,
@@ -30,5 +30,11 @@ Aviso: El script no es un producto oficial de INE.
 \examples{
 toy_ech_2018 <- underemployment(data = ech::toy_ech_2018)
 toy_ech_2018 <- employment_restrictions(data = toy_ech_2018)
-
 }
+\seealso{
+Other employment: 
+\code{\link{branch_ciiu}()},
+\code{\link{employment}()},
+\code{\link{underemployment}()}
+}
+\concept{employment}

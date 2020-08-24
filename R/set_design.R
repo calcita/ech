@@ -1,13 +1,11 @@
-#' set_design
-#' @description This function allows you to set the survey desing
-#'
+#' This function allows you to set the survey desing
+#' @family estimation
 #' @param data data frame with ECH microdata
 #' @param level is household ("h") or individual ("i")
 #' @param ids variables specifying the unit primary sampling (it's not a public variable)
 #' @param numero variables specifying  the householder ids
 #' @param estrato variable specifying strata
 #' @param pesoano variable specifying weights
-#'
 #' @importFrom glue glue
 #' @importFrom srvyr as_survey_design
 #' @importFrom magrittr %>%
@@ -17,12 +15,10 @@
 #' @details
 #' Disclaimer: This script is not an official INE product.
 #' Aviso: El script no es un producto oficial de INE.
-#'
 #' @examples
 #' \donttest{
 #' set_design(data = ech::toy_ech_2018, level = "h")
 #' }
-#
 
 set_design <- function(data = ech::toy_ech_2018,
                        level = "i",
@@ -52,7 +48,5 @@ set_design <- function(data = ech::toy_ech_2018,
         srvyr::as_survey_design(ids = ids, strata = estrato, weights = pesoano)
     }
   }
-
- return(d)
-
+  return(d)
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{get_ipc_region}
 \alias{get_ipc_region}
-\title{get_ipc_region}
+\title{This function allows you to get the IPC data}
 \usage{
 get_ipc_region(folder = tempdir(), region = "M", sheet = NULL)
 }
@@ -29,3 +29,15 @@ get_ipc_region(folder = tempdir(), region = "M")
 }
 
 }
+\seealso{
+Other dwnld_read: 
+\code{\link{get_cba_cbna}()},
+\code{\link{get_ciiu}()},
+\code{\link{get_dictionary}()},
+\code{\link{get_ipab}()},
+\code{\link{get_ipc}()},
+\code{\link{get_marco}()},
+\code{\link{get_microdata}()},
+\code{\link{read_microdata}()}
+}
+\concept{dwnld_read}

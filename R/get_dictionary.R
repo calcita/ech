@@ -1,9 +1,7 @@
-#' get_dictionary
-#' @description This function allows you to download ECH dictionaries from INE website
-#'
+#' This function allows you to download ECH dictionaries from INE website
+#' @family dwnld_read
 #' @param year allows download data from 2011 to 2019. Default the last year
 #' @param folder Folder where are the files or be download
-#'
 #' @importFrom utils download.file
 #' @importFrom glue glue
 #' @importFrom fs file_exists path_ext

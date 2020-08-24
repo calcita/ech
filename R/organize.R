@@ -1,6 +1,5 @@
-#' organize_names
-#' @description This function allows you to organize the variables names of ECH with reference in 2017.
-#'
+#' This function allows you to organize the variables names of ECH with reference in 2017.
+#' @family organize
 #' @param data data.frame contains the ECH microdata
 #' @param level (string) indicates whether the base to be labelled is of the type "household", "h", "individual", "i" or both, "hyp". Default "hyp"
 #' @param year numeric reference year of the data. Available from 2011 to 2019
@@ -12,8 +11,6 @@
 #' \donttest{
 #' toy_ech_2018 <- organize_names(data = ech::toy_ech_2018, year = 2018, level = "h")
 #' }
-
-
 
 organize_names <- function(data, year, level = "hyp"){
   assertthat::assert_that(is.data.frame(data))

@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{basket_goods}
 \alias{basket_goods}
-\title{basket_goods}
+\title{This function allows you to get the Basket goods}
 \usage{
 basket_goods(data = ech::cba_cbna_mdeo, year = NULL)
 }
@@ -23,5 +23,12 @@ Aviso: El script no es un producto oficial de INE.
 }
 \examples{
 df <- basket_goods(data = ech::cba_cbna_mdeo, year = 2018)
-
 }
+\seealso{
+Other income: 
+\code{\link{income_constant_prices}()},
+\code{\link{income_quantiles}()},
+\code{\link{labor_income_per_capita}()},
+\code{\link{labor_income_per_hour}()}
+}
+\concept{income}

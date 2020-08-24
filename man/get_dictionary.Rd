@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_dictionary.R
 \name{get_dictionary}
 \alias{get_dictionary}
-\title{get_dictionary}
+\title{This function allows you to download ECH dictionaries from INE website}
 \usage{
 get_dictionary(year = NULL, folder = tempdir())
 }
@@ -21,3 +21,15 @@ This function allows you to download ECH dictionaries from INE website
 Disclaimer: This script is not an official INE product.
 Aviso: El script no es un producto oficial de INE.
 }
+\seealso{
+Other dwnld_read: 
+\code{\link{get_cba_cbna}()},
+\code{\link{get_ciiu}()},
+\code{\link{get_ipab}()},
+\code{\link{get_ipc_region}()},
+\code{\link{get_ipc}()},
+\code{\link{get_marco}()},
+\code{\link{get_microdata}()},
+\code{\link{read_microdata}()}
+}
+\concept{dwnld_read}

@@ -2,7 +2,7 @@
 % Please edit documentation in R/education.R
 \name{years_of_schooling}
 \alias{years_of_schooling}
-\title{years_of_schooling}
+\title{This function allows you to calculate the years of schooling}
 \usage{
 years_of_schooling(
   data = ech::toy_ech_2018,
@@ -62,3 +62,10 @@ Aviso: El script no es un producto oficial de INE.
 toy_ech_2018 <- years_of_schooling(data = ech::toy_ech_2018)
 }
 }
+\seealso{
+Other education: 
+\code{\link{enrolled_school}()},
+\code{\link{level_completion}()},
+\code{\link{level_education}()}
+}
+\concept{education}

@@ -2,7 +2,7 @@
 % Please edit documentation in R/income.R
 \name{income_quantiles}
 \alias{income_quantiles}
-\title{income_quantiles}
+\title{This function allows you to calculate the Household Income Quantiles}
 \usage{
 income_quantiles(
   data = ech::toy_ech_2018,
@@ -36,3 +36,11 @@ toy_ech_2018 <- income_constant_prices(data = ech::toy_ech_2018)
 toy_ech_2018 <- income_quantiles(data = toy_ech_2018)
 }
 }
+\seealso{
+Other income: 
+\code{\link{basket_goods}()},
+\code{\link{income_constant_prices}()},
+\code{\link{labor_income_per_capita}()},
+\code{\link{labor_income_per_hour}()}
+}
+\concept{income}

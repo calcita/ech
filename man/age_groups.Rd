@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{age_groups}
 \alias{age_groups}
-\title{age_groups}
+\title{This function allows you to calculate age groups}
 \usage{
 age_groups(data = ech::toy_ech_2018, cut = c(0, 4, 11, 17, 24), e27 = "e27")
 }
@@ -21,5 +21,11 @@ This function allows you to calculate age groups
 }
 \examples{
 toy_ech_2018 <- age_groups(data = ech::toy_ech_2018, cut = c(0, 4, 11, 17, 24))
-
 }
+\seealso{
+Other demographic: 
+\code{\link{household_type}()},
+\code{\link{poverty}()},
+\code{\link{unsatisfied_basic_needs}()}
+}
+\concept{demographic}

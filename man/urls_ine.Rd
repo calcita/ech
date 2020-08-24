@@ -3,7 +3,7 @@
 \docType{data}
 \name{urls_ine}
 \alias{urls_ine}
-\title{Data urls_ine}
+\title{A dataset containing the urls of INE datasets and diccionaries}
 \format{
 A data frame with 9 rows and 4 variables:
 \describe{
@@ -26,4 +26,19 @@ A dataset containing the urls of INE datasets and diccionaries
 Disclaimer: This script is not an official INE product.
 Aviso: El script no es un producto oficial de INE.
 }
+\seealso{
+Other dataset: 
+\code{\link{cba_cbna_int}},
+\code{\link{cba_cbna_mdeo}},
+\code{\link{cba_cbna_rur}},
+\code{\link{ciiu4}},
+\code{\link{dic}},
+\code{\link{ipab_base2010}},
+\code{\link{ipc_base2010_int}},
+\code{\link{ipc_base2010_mdeo}},
+\code{\link{ipc_base2010}},
+\code{\link{toy_ech_2018_income}},
+\code{\link{toy_ech_2018}}
+}
+\concept{dataset}
 \keyword{datasets}

@@ -1,6 +1,4 @@
-#' enrolled_school
-#' @description This function allows you to calculate the people enrolled in school
-#'
+#' This function allows you to calculate the people enrolled in school
 #' @param data data.frame with necessary variables Defaults to ech.
 #' @param e193 Variable name of attendance school
 #' @param e197 Variable name of attendance primary
@@ -17,7 +15,7 @@
 #' @importFrom magrittr %<>%
 #' @importFrom rlang .data
 #' @importFrom glue glue
-#'
+#' @family  education
 #' @details
 #' Disclaimer: This script is not an official INE product.
 #' Aviso: El script no es un producto oficial de INE.
@@ -68,9 +66,7 @@ enrolled_school <- function(data = ech::toy_ech_2018,
   return(data)
 }
 
-#' years_of_schooling
-#' @description This function allows you to calculate the years of schooling
-#'
+#' This function allows you to calculate the years of schooling
 #' @param data data.frame
 #' @param e193  Variable name of attendance school
 #' @param e51_2 Variable name of years passed in primary
@@ -93,7 +89,7 @@ enrolled_school <- function(data = ech::toy_ech_2018,
 #' @details
 #' Disclaimer: This script is not an official INE product.
 #' Aviso: El script no es un producto oficial de INE.
-#'
+#' @family  education
 #' @examples
 #' \donttest{
 #' toy_ech_2018 <- years_of_schooling(data = ech::toy_ech_2018)
@@ -181,9 +177,7 @@ years_of_schooling <- function(data = ech::toy_ech_2018,
 
 
 
-#' level_education
-#' @description This function allows you to calculate the highest level of education achieved
-#'
+#' This function allows you to calculate the highest level of education achieved
 #' @param data data.frame
 #' @param e51_2 Variable name of years passed in primary
 #' @param e51_3 Variable name of years passed in special primary
@@ -202,7 +196,7 @@ years_of_schooling <- function(data = ech::toy_ech_2018,
 #' @details
 #' Disclaimer: This script is not an official INE product.
 #' Aviso: El script no es un producto oficial de INE.
-#'
+#' @family  education
 #' @examples
 #' \donttest{
 #' toy_ech_2018 <- level_education(data = ech::toy_ech_2018)
@@ -267,9 +261,7 @@ level_education <- function(data = ech::toy_ech_2018,
 
 
 
-#' level_completion
-#' @description This function allows you to calculate the level of school completion
-#'
+#' This function allows you to calculate the level of school completion
 #' @param data data.frame
 #' @param e197 Variable name of attends primary school
 #' @param e197_1 Variable name of completed primary
@@ -290,11 +282,10 @@ level_education <- function(data = ech::toy_ech_2018,
 #' @importFrom dplyr mutate
 #' @return data.frame
 #' @export
-#'
+#' @family  education
 #' @details
 #' Disclaimer: This script is not an official INE product.
 #' Aviso: El script no es un producto oficial de INE.
-#'
 #' @examples
 #' \donttest{
 #' toy_ech_2018 <- level_completion(data = ech::toy_ech_2018)

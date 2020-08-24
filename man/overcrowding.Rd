@@ -2,7 +2,7 @@
 % Please edit documentation in R/dwelling.R
 \name{overcrowding}
 \alias{overcrowding}
-\title{overcrowding}
+\title{This function allows you to calculate overcrowding in the household}
 \usage{
 overcrowding(data = ech::toy_ech_2018, ht19 = "ht19", d10 = "d10")
 }
@@ -25,5 +25,12 @@ Aviso: El script no es un producto oficial de INE.
 }
 \examples{
 toy_ech_2018 <- overcrowding(data = ech::toy_ech_2018)
-
 }
+\seealso{
+Other dwelling: 
+\code{\link{housing_conditions}()},
+\code{\link{housing_deprivation}()},
+\code{\link{housing_situation}()},
+\code{\link{housing_tenure}()}
+}
+\concept{dwelling}

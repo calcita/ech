@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{get_ipab}
 \alias{get_ipab}
-\title{get_ipab}
+\title{This function allows you to get the IPAB (Indice de precios de alimentos y bebidas) data}
 \usage{
 get_ipab(folder = tempdir(), sheet = NULL)
 }
@@ -23,5 +23,16 @@ Aviso: El script no es un producto oficial de INE.
 }
 \examples{
 get_ipab(folder = tempdir(), sheet = 1)
-
 }
+\seealso{
+Other dwnld_read: 
+\code{\link{get_cba_cbna}()},
+\code{\link{get_ciiu}()},
+\code{\link{get_dictionary}()},
+\code{\link{get_ipc_region}()},
+\code{\link{get_ipc}()},
+\code{\link{get_marco}()},
+\code{\link{get_microdata}()},
+\code{\link{read_microdata}()}
+}
+\concept{dwnld_read}
