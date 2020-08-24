@@ -41,7 +41,13 @@ Imports:
     geouy,
     purrr,
     labelled,
-    tidyselect
+    tidyselect,
+    ggplot2,
+    ggthemes, 
+    ggspatial,
+    methods,
+    sf,
+    viridis
 Suggests: 
     knitr,
     testthat (>= 2.1.0),

@@ -169,7 +169,11 @@ Y con esto, podemos hacer un mapa con `ggplot2` muy fácilmente de estas estimac
 ``` r 
 # Hago un mapa
 
-geouy::plot_geouy(x = pobre_x_dpto_geo, col = "Pobreza", labels = "%")
+plot_geouy(x = pobre_x_dpto_geo, col = "Pobreza", l = "%")
+```
+
+```{r echo=FALSE, fig.align="center", message=FALSE, warning=FALSE}
+knitr::include_graphics("man/figures/pobre_readme.png")
 ```
 
 
