@@ -63,7 +63,7 @@ household_type <- function(data = ech::toy_ech_2018,
                                                                ifelse(.data$partner > 0 & .data$child > 0 & .data$parents_brosis ==0 &  .data$grandchild == 0 & .data$child_law == 0 &  .data$other_rel == 0 & .data$no_rel == 0, 5, #Couple with children
                                                                       ifelse(.data$under_18 == 0 & (.data$parents_brosis > 0 | .data$grandchild > 0 | .data$child_law > 0 | .data$other_rel > 0) & .data$no_rel == 0, 6, #Extended without children
                                                                              ifelse(.data$under_18 == 1 & (.data$parents_brosis > 0 | .data$grandchild > 0 | .data$child_law > 0 | .data$other_rel > 0) & .data$no_rel == 0, 7, #Extended with children
-                                                                                    ifelse(.data$no_rel > 0, 7, 8)))))))), # composite) %>%
+                                                                                    ifelse((.data$parents_brosis > 0 | .data$grandchild > 0 | .data$child_law > 0 | .data$other_rel > 0) & .data$no_rel > 0, 7, 8)))))))), # composite) %>%
                   household_type = haven::labelled(household_type, labels = c("Unipersonal" = 1, "Pareja" = 2, "Monoparental" = 3, "Monomarental" = 4, "Biparental" = 5, "Extendido sin menores" = 6, "Extendido con menores" = 7,
                                                                               "Compuesto" = 8),
                                                    label = "Tipo de hogar")

@@ -6,7 +6,6 @@
 \usage{
 unsatisfied_basic_needs(
   data = ech::toy_ech_2018,
-  ipm = FALSE,
   c2 = "c2",
   c3 = "c3",
   c4 = "c4",
@@ -28,13 +27,14 @@ unsatisfied_basic_needs(
   e27 = "e27",
   school_enrollment = "school_enrollment",
   years_schooling = "years_schooling",
+  e201_1 = "e201_1",
+  e212_1 = "e212_1",
+  e238 = "e238",
   anio = "anio"
 )
 }
 \arguments{
 \item{data}{data.frame}
-
-\item{ipm}{Logical if want to include integrated_poverty_measure variable. Default FALSE}
 
 \item{c2}{Variable name of predominant material on external walls}
 
@@ -78,6 +78,12 @@ unsatisfied_basic_needs(
 
 \item{years_schooling}{Variable name of years_schooling}
 
+\item{e201_1}{Variable name of}
+
+\item{e212_1}{Variable name of}
+
+\item{e238}{Variable name of}
+
 \item{anio}{Variable name of survey year}
 }
 \value{
@@ -99,6 +105,7 @@ toy_ech_18 <- unsatisfied_basic_needs(toy_ech_18)
 Other demographic: 
 \code{\link{age_groups}()},
 \code{\link{household_type}()},
+\code{\link{integrated_poverty_measure}()},
 \code{\link{poverty}()}
 }
 \concept{demographic}

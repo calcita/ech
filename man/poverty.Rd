@@ -46,6 +46,7 @@ toy_ech_2018 <- poverty(data = ech::toy_ech_2018)
 Other demographic: 
 \code{\link{age_groups}()},
 \code{\link{household_type}()},
+\code{\link{integrated_poverty_measure}()},
 \code{\link{unsatisfied_basic_needs}()}
 }
 \concept{demographic}

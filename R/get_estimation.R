@@ -134,6 +134,141 @@ get_estimation_mean <- function(data = ech::toy_ech_2018,
 
 }
 
+#' This function allows you to estimate median variable at universe level.
+#' @family estimation
+#' @param data data frame with ECH microdata
+#' @param variable data frame column to estimate
+#' @param by.x data frame column
+#' @param by.y data frame column
+#' @param domain subpopulation reference setted as character expresion of logical evaluation
+#' @param level is household ("h") or individual ("i").
+#' @param ids ids
+#' @param numero household id
+#' @param estrato strata
+#' @param pesoano weights
+#' @param name name for the estimation new column
+#' @import survey
+#' @import srvyr
+#' @importFrom assertthat assert_that
+#' @importFrom glue glue
+#' @keywords inference
+#' @export
+#' @return table
+#' @details
+#' Disclaimer: This script is not an official INE product.
+#' Aviso: El script no es un producto oficial de INE.
+#'
+#' @examples
+#' \donttest{
+#' get_estimation_median(data = ech::toy_ech_2018, variable = "pobre06", by.x = "dpto", level = "h")
+#' }
+
+get_estimation_median <- function(data = ech::toy_ech_2018,
+                                  variable = NULL,
+                                  by.x = NULL,
+                                  by.y = NULL,
+                                  domain = NULL,
+                                  level = NULL,
+                                  ids = NULL,
+                                  numero = "numero",
+                                  estrato = NULL,
+                                  pesoano = "pesoano",
+                                  name = "estimacion"){
+  # checks ----
+  assertthat::assert_that(!is.null(data) | !is.null(variable), msg = "You must indicate a variable")
+  assertthat::assert_that(all(variable %in% names(data)), msg = glue::glue("Sorry... :( \n  {variable} is not in data"))
+  if(!is.null(by.x)) assertthat::assert_that(by.x %in% names(data), msg = glue::glue("Sorry... :( \n  {by.x} is not in data"))
+  if(!is.null(by.y)) assertthat::assert_that(by.y %in% names(data), msg = glue::glue("Sorry... :( \n  {by.y} is not in data"))
+  if(!is.null(level)) assertthat::assert_that(level %in% c("household", "h", "individual", "i"), msg = "Check the level selected")
+  if(!is.null(domain)) {
+    dom <- strsplit(domain, '[==><!]')[[1]][1] %>% stringr::str_trim()
+    assertthat::assert_that(dom %in% names(data), msg = glue::glue("Sorry... :( \n  {dom} is not in data"))
+  }
+
+
+  # unlabelled
+  d <- data %>% dplyr::select(!!!syms(c(variable, by.x, by.y, ids, numero, estrato, pesoano))) %>%
+    unlabelled()
+
+  d <- data %>% dplyr::select(if(!is.null(domain)){dom}) %>% dplyr::bind_cols(d, .)
+
+  # design ----
+  design_ech <- ech::set_design(data = d, level = level)
+
+  # supressed warnings ---
+  options(survey.lonely.psu = "adjust")
+  options(dplyr.summarise.inform = FALSE)
+
+  # estimation ----
+
+  if (is.factor(dplyr::pull(d[,variable]))) {
+    if(is.null(by.x) & is.null(by.y) & is.null(domain)){
+      estimation <- design_ech %>%
+        srvyr::group_by(!!!syms(variable)) %>%
+        srvyr::summarise(colname = srvyr::survey_median(vartype = "ci"))
+    } else if(is.character(by.x) & is.null(by.y) & is.null(domain)){
+      estimation <- design_ech %>%
+        srvyr::group_by(!!!syms(by.x), !!!syms(variable), .add = T) %>%
+        srvyr::summarise(colname = srvyr::survey_median(vartype = "ci"))
+    } else if(is.character(by.x) & is.character(by.y) & is.null(domain)){
+      estimation <- design_ech %>%
+        srvyr::group_by(!!!syms(by.x), !!!syms(by.y), !!!syms(variable), .add = T) %>%
+        srvyr::summarise(colname = srvyr::survey_median(vartype = "ci"))
+    } else if(is.null(by.x) & is.null(by.y) & !is.null(domain)){
+      estimation <- design_ech %>%
+        srvyr::filter(!!rlang::parse_expr(domain)) %>%
+        srvyr::group_by(!!!syms(variable)) %>%
+        srvyr::summarise(colname = srvyr::survey_median(vartype = "ci"))
+    } else if(is.character(by.x) & is.null(by.y) & !is.null(domain)){
+      estimation <- design_ech %>%
+        srvyr::filter(!!rlang::parse_expr(domain)) %>%
+        srvyr::group_by(!!!syms(by.x), !!!syms(variable), .add = T) %>%
+        srvyr::summarise(colname = srvyr::survey_median(vartype = "ci"))
+    } else {
+      estimation <- design_ech %>%
+        srvyr::filter(!!rlang::parse_expr(domain)) %>%
+        srvyr::group_by(!!!syms(by.x), !!!syms(by.y), !!!syms(variable), .add = T) %>%
+        srvyr::summarise(colname = srvyr::survey_median(vartype = "ci"))
+    }
+  } else {
+    if(is.null(by.x) & is.null(by.y) & is.null(domain)){
+      estimation <- design_ech %>%
+        srvyr::summarise(colname = srvyr::survey_median(!!!syms(variable), vartype = "ci"))
+    } else if(is.character(by.x) & is.null(by.y) & is.null(domain)){
+      estimation <- design_ech %>%
+        srvyr::group_by(!!!syms(by.x), .add = T) %>%
+        srvyr::summarise(colname = srvyr::survey_median(!!!syms(variable), vartype = "ci"))
+    } else if(is.character(by.x) & is.character(by.y) & is.null(domain)){
+      estimation <- design_ech %>%
+        srvyr::group_by(!!!syms(by.x), !!!syms(by.y), .add = T) %>%
+        srvyr::summarise(colname = srvyr::survey_median(!!!syms(variable), vartype = "ci"))
+    } else if(is.null(by.x) & is.null(by.y) & !is.null(domain)){
+      estimation <- design_ech %>%
+        srvyr::filter(!!rlang::parse_expr(domain)) %>%
+        srvyr::summarise(colname = srvyr::survey_median(!!!syms(variable), vartype = "ci"))
+    } else if(is.character(by.x) & is.null(by.y) & !is.null(domain)){
+      estimation <- design_ech %>%
+        srvyr::filter(!!rlang::parse_expr(domain)) %>%
+        srvyr::group_by(!!!syms(by.x), .add = T) %>%
+        srvyr::summarise(colname = srvyr::survey_median(!!!syms(variable), vartype = "ci"))
+    } else {
+      estimation <- design_ech %>%
+        srvyr::filter(!!rlang::parse_expr(domain)) %>%
+        srvyr::group_by(!!!syms(by.x), !!!syms(by.y), .add = T) %>%
+        srvyr::summarise(colname = srvyr::survey_median(!!!syms(variable), vartype = "ci"))
+    }
+  }
+
+  names(estimation) <- stringr::str_replace_all(names(estimation), "colname", name)
+
+  if (is.null(ids)) {
+    message("These confidence intervals are only an approximation of the correct confidence intervals \n  that arise from fully defining the sample design")
+    Sys.sleep(1)
+    return(estimation)
+  }
+  return(estimation)
+
+}
 
 #' This function allows you to estimate total variable at universe level.
 #' @family estimation

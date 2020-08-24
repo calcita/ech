@@ -64,6 +64,7 @@ get_estimation_ratio(data = toy_ech_2018, variable.x = "po", variable.y = "pea",
 Other estimation: 
 \code{\link{get_estimation_gini}()},
 \code{\link{get_estimation_mean}()},
+\code{\link{get_estimation_median}()},
 \code{\link{get_estimation_total}()},
 \code{\link{set_design}()}
 }

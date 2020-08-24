@@ -55,6 +55,7 @@ get_estimation_gini(data = toy_ech_2018, level = "h")
 \seealso{
 Other estimation: 
 \code{\link{get_estimation_mean}()},
+\code{\link{get_estimation_median}()},
 \code{\link{get_estimation_ratio}()},
 \code{\link{get_estimation_total}()},
 \code{\link{set_design}()}

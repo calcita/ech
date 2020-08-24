@@ -706,21 +706,6 @@
 #' Aviso: El script no es un producto oficial de INE.
 "ipc_base2010_mdeo"
 
-
-#' A dataset containing the IPC base 2010 only for the Montevideo region
-#' @family dataset
-#' @format A data frame with 120 rows and 2 variables:
-#' \describe{
-#'   \item{fecha}{date from 2011 to 2019}
-#'   \item{indice}{IPC}
-#'  }
-#' @source \url{http://www.ine.gub.uy/}
-#' @details
-#' Disclaimer: This script is not an official INE product.
-#' Aviso: El script no es un producto oficial de INE.
-"ipc_base2010_mdeo"
-
-
 #' A dataset containing the CBA and CBNA for the Montevideo region
 #' @family dataset
 #' @format A data frame with 234 rows and 4 variables:
