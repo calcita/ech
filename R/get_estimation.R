@@ -612,6 +612,9 @@ get_estimation_gini <- function(data = ech::toy_ech_2018,
 #' @export
 #'
 #' @examples
+#' toy_ech_2018 <- labor_income_per_hour(data = ech::toy_ech_2018, base_month = 6, base_year = 2018)
+#' get_estimation_gpg(data = toy_ech_2018, variable = "total_income_per_hour", e26 = "e26")
+
 get_estimation_gpg <- function(data = ech::toy_ech_2018,
                                variable = "total_income_per_hour",
                                e26 = "e26",

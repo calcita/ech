@@ -581,6 +581,8 @@
 #'   \item{pt4}{ }
 #'   \item{pobre06}{ }
 #'   \item{indigente06}{ }
+#'   \item{upm}{ }
+#'   \item{estrato}{ }
 #'   ...
 #' }
 #' @source \url{http://www.ine.gub.uy/}
