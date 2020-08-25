@@ -134,8 +134,8 @@ unsatisfied_basic_needs <- function(data = ech::toy_ech_2018,
         UBN_confort = ifelse(d260 == 6 | d21_3 == 2 | (d21_1 == 2 & d21_2 == 2), 1, 0)) %>%
         dplyr::ungroup()
     data <- data %>%
-        dplyr::mutate(UBN_education = ifelse(e27 %in% 4:17 && (school_enrollment == 0 | e238 == 2) &&
-                                               years_schooling < 12 && (e201_1 == 2 | e212_1 == 2), 1, 0)) %>%
+        dplyr::mutate(UBN_education = ifelse(e27 %in% 4:17 & (school_enrollment == 0 | e238 == 2) &
+                                               years_schooling < 12 & (e201_1 == 2 | e212_1 == 2), 1, 0)) %>%
         dplyr::group_by(numero) %>%
         dplyr::mutate(UBN_education = max(UBN_education),
                       UBN_q = UBN_housing + UBN_water + UBN_sewerage + UBN_electricity + UBN_confort + UBN_education,
