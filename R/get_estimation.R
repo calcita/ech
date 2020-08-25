@@ -494,6 +494,7 @@ get_estimation_ratio <- function(data = ech::toy_ech_2018,
 #' @param data ech data frame
 #' @param variable Variable name of income without rental value per capita deflated
 #' @param by data frame column
+#' @param level is household ("h") or individual ("i").
 #' @param ids Variable name of cluster
 #' @param numero Variable name of household id
 #' @param estrato Variable name of strata
@@ -515,11 +516,12 @@ get_estimation_ratio <- function(data = ech::toy_ech_2018,
 #'  ipc = "R",
 #'  base_month = "01", base_year = "2005")
 #' get_estimation_gini(data = toy_ech_2018,
-#'  variable = "y_wrv_pc_d_r")
+#'  variable = "y_wrv_pc_d_r", level = "i")
 #'  }
 get_estimation_gini <- function(data = ech::toy_ech_2018,
                                 variable = NULL,
                                 by = NULL,
+                                level = NULL,
                                 ids = NULL,
                                 numero = "numero",
                                 estrato = NULL,
@@ -528,12 +530,17 @@ get_estimation_gini <- function(data = ech::toy_ech_2018,
                                 r = NULL){
 
 
-  assertthat::assert_that(!is.null(data) | !is.null(variable) | !is.null(numero) | !is.null(pesoano), msg = "You must indicate a variable")
+  assertthat::assert_that(!is.null(data) | !is.null(variable) | !is.null(numero) | !is.null(pesoano) | !is.null(level), msg = "You must indicate a variable")
   assertthat::assert_that(all(variable %in% names(data)), msg = glue::glue("Sorry... :( \n {variable} is not in {data}"))
   assertthat::assert_that(all(pesoano %in% names(data)), msg = glue::glue("Sorry... :( \n {pesoano} is not in {data}"))
   assertthat::assert_that(all(numero %in% names(data)), msg = glue::glue("Sorry... :( \n {numero} is not in {data}"))
 
-  d <- as.data.frame(data)
+  if (level == "h"){
+    d <- data %>% dplyr::filter(duplicated(numero) == FALSE) %>% as.data.frame()
+  } else{
+    d <- as.data.frame(data)
+  }
+
   income <- d[,variable]
   pesoano <- d[, pesoano]
   if(is.null(r))r <- 100
