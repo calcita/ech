@@ -494,13 +494,15 @@ get_estimation_ratio <- function(data = ech::toy_ech_2018,
 #' @param data ech data frame
 #' @param variable income without rental value per capita deflated
 #' @param by variable
-#' @param level household or individual
 #' @param ids upm
 #' @param numero Variable name of household id
 #' @param estrato Variable name of strata
 #' @param pesoano Variable name of weights
-#' @param name nombre
+#' @param bootstrap Logical value
+#' @param r A number of replicas
 #'
+#' @importFrom dplyr bind_cols %>%
+#' @importFrom laeken gini
 #' @return table
 #' @export
 #' @details
@@ -511,29 +513,79 @@ get_estimation_ratio <- function(data = ech::toy_ech_2018,
 #' \donttest{
 #' toy_ech_2018 <- income_constant_prices(data = ech::toy_ech_2018, ipc = "R",
 #'  base_month = "01", base_year = "2005")
-#' get_estimation_gini(data = toy_ech_2018, level = "h")
-#' }
-#
+#' get_estimation_gini(data = toy_ech_2018, variable = "y_wrv_pc_d_r")
+#  }
 get_estimation_gini <- function(data = ech::toy_ech_2018,
                                 variable = NULL,
                                 by = NULL,
-                                level = NULL,
                                 ids = NULL,
                                 numero = "numero",
                                 estrato = NULL,
                                 pesoano = "pesoano",
-                                name = "estimacion"){
+                                bootstrap = FALSE,
+                                r = NULL){
 
-  # design ---
-  design_ech <- ech::set_design(data = data, level = level)
 
-  # supressed warnings ---
-  options(survey.lonely.psu = "adjust")
+  assertthat::assert_that(!is.null(data) | !is.null(variable) | !is.null(numero) | !is.null(pesoano), msg = "You must indicate a variable")
+  assertthat::assert_that(all(variable %in% names(data)), msg = glue::glue("Sorry... :( \n {variable} is not in {data}"))
+  assertthat::assert_that(all(pesoano %in% names(data)), msg = glue::glue("Sorry... :( \n {pesoano} is not in {data}"))
+  assertthat::assert_that(all(numero %in% names(data)), msg = glue::glue("Sorry... :( \n {numero} is not in {data}"))
 
-  # estimation ---
-  design_ech <- convey::convey_prep(design_ech)
-  estimation <- convey::svygini(~y_wrv_pc_d_r, design_ech, na.rm = TRUE)
-  #estimation <- laeken::gini(variable, weights = pesoano, data = data)
+  d <- as.data.frame(data)
+  income <- d[,variable]
+  pesoano <- d[, pesoano]
+  if(is.null(r))r <- 100
+
+  if(is.null(by) & isFALSE(bootstrap) & is.null(ids)){
+     estimation <- laeken::gini(inc = income, weights = pesoano)
+  } else if (is.character(by) & is.null(bootstrap) & is.null(ids)){
+    by <-  as.factor((d[, by]))
+    estimation <- laeken::gini(inc = income, weights = pesoano, breakdown = by)
+  } else if (is.null(by) & isFALSE(bootstrap) & is.character(ids)){
+     estrato <- as.integer(d[, estrato])
+     ids <-  as.integer(d[, ids])
+     estimation <- laeken::gini(inc = income, weights = pesoano, design = estrato, cluster = ids)
+  } else if (is.null(by) & isTRUE(bootstrap) & is.null(ids)){
+    estimation <- laeken::gini(inc = income, weights = pesoano,var = "bootstrap", bootType = "naive",
+                               seed = 1234, R = r)
+  } else if (is.character(by) & isFALSE(bootstrap) & is.character(ids)){
+    by <-  as.factor((d[, by]))
+    estrato <- as.integer(d[, estrato])
+    ids <-  as.integer(d[, ids])
+    estimation <- laeken::gini(inc = income, weights = pesoano, breakdown = by, design = estrato, cluster = ids)
+  } else if (is.character(by) & isTRUE(bootstrap) & is.null(ids)){
+    by <-  as.factor((d[, by]))
+    estimation <- laeken::gini(inc = income, weights = pesoano, breakdown = by, var = "bootstrap", bootType = "naive",
+                               seed = 1234, R = r)
+  } else if (is.null(by) & isTRUE(bootstrap) & is.character(ids)){
+    estrato <- as.integer(d[, estrato])
+    ids <-  as.integer(d[, ids])
+    estimation <- laeken::gini(inc = income, weights = pesoano, design = estrato, cluster = ids,
+                               var = "bootstrap", bootType = "naive", seed = 1234, R = r)
+  } else{
+    by <-  as.factor((d[, by]))
+    estrato <- as.integer(d[, estrato])
+    ids <-  as.integer(d[, ids])
+    estimation <- laeken::gini(inc = income, weights = pesoano, design = estrato, cluster = ids,
+                               var = "bootstrap", bootType = "naive", breakdown = by, seed = 1234, R = r)
+  }
+
+    value <- estimation[[2]]
+    value_total <- data.frame(dplyr::bind_cols("Total",estimation[[1]]))
+    names(value_total) <- names(value)
+    value <- dplyr::bind_rows(value, value_total)
+
+    var <- estimation[[5]]
+    var_total <- data.frame(dplyr::bind_cols("Total",estimation[[4]]))
+    names(var_total) <- names(var)
+    var <- dplyr::bind_rows(var, var_total)
+
+    ci <- estimation[[7]]
+    ci_total <- data.frame(dplyr::bind_cols("Total",estimation[[6]][1], estimation[[6]][2]))
+    names(ci_total) <- names(ci)
+    ci <- dplyr::bind_rows(ci, ci_total)
+
+    estimation <- dplyr::bind_cols(value, var[2], ci[, 2:3])
 
   return(estimation)
 }

@@ -8,12 +8,12 @@ get_estimation_gini(
   data = ech::toy_ech_2018,
   variable = NULL,
   by = NULL,
-  level = NULL,
   ids = NULL,
   numero = "numero",
   estrato = NULL,
   pesoano = "pesoano",
-  name = "estimacion"
+  bootstrap = FALSE,
+  r = NULL
 )
 }
 \arguments{
@@ -23,8 +23,6 @@ get_estimation_gini(
 
 \item{by}{variable}
 
-\item{level}{household or individual}
-
 \item{ids}{upm}
 
 \item{numero}{Variable name of household id}
@@ -33,7 +31,9 @@ get_estimation_gini(
 
 \item{pesoano}{Variable name of weights}
 
-\item{name}{nombre}
+\item{bootstrap}{Logical value}
+
+\item{r}{A number of replicas}
 }
 \value{
 table
@@ -44,13 +44,6 @@ This function allows you to estimate the Gini coeficient
 \details{
 Disclaimer: This script is not an official INE product.
 Aviso: El script no es un producto oficial de INE.
-}
-\examples{
-\donttest{
-toy_ech_2018 <- income_constant_prices(data = ech::toy_ech_2018, ipc = "R",
- base_month = "01", base_year = "2005")
-get_estimation_gini(data = toy_ech_2018, level = "h")
-}
 }
 \seealso{
 Other estimation: 
