@@ -203,6 +203,8 @@ get_microdata <- function(year = NULL,
     try(archive_extract(archive.path = archivo, dest.path = folder))
     descomprimido <- fs::dir_ls(folder, regexp = "\\.sav$")
     descomprimido <- descomprimido[(stringr::str_detect(descomprimido, "HyP") == T |
+                                    stringr::str_detect(descomprimido, "HYP") == T |
+                                    stringr::str_detect(descomprimido, "FUSIONADO") == T |
                                     stringr::str_detect(descomprimido, "Fusionado") == T) &
                                     stringr::str_detect(descomprimido, as.character(year)) == T]
     d <- try(haven::read_sav(descomprimido))
