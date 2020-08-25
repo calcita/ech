@@ -4,7 +4,7 @@
 #' @param c2 Variable name of predominant material on external walls
 #' @param c3 Variable name of predominant roofing material
 #' @param c4 Variable name of predominant flooring material
-#' @param d10 Variable name of number of rooms to sleep
+#' @param d9 Variable name of number of rooms
 #' @param d11 Variable name of principal source of potable water
 #' @param d12 Variable name of water supply network / water access
 #' @param d13 Variable name of sanitary facilities
@@ -42,7 +42,7 @@ unsatisfied_basic_needs <- function(data = ech::toy_ech_2018,
                                     c2 = "c2",
                                     c3 = "c3",
                                     c4 = "c4",
-                                    d10 = "d10",
+                                    d9 = "d9",
                                     d11 = "d11",
                                     d12 = "d12",
                                     d13 = "d13",
@@ -70,7 +70,7 @@ unsatisfied_basic_needs <- function(data = ech::toy_ech_2018,
   assertthat::assert_that(c2  %in% names(data), msg =  glue::glue("Sorry... :( \n {c2} is not in data"))
   assertthat::assert_that(c3  %in% names(data), msg =  glue::glue("Sorry... :( \n {c3} is not in data"))
   assertthat::assert_that(c4  %in% names(data), msg =  glue::glue("Sorry... :( \n {c4} is not in data"))
-  assertthat::assert_that(d10  %in% names(data), msg =  glue::glue("Sorry... :( \n {d10} is not in data"))
+  assertthat::assert_that(d9  %in% names(data), msg =  glue::glue("Sorry... :( \n {d9} is not in data"))
   assertthat::assert_that(d11  %in% names(data), msg =  glue::glue("Sorry... :( \n {d11} is not in data"))
   assertthat::assert_that(d12  %in% names(data), msg =  glue::glue("Sorry... :( \n {d12} is not in data"))
   assertthat::assert_that(d13  %in% names(data), msg =  glue::glue("Sorry... :( \n {d13} is not in data"))
@@ -127,7 +127,7 @@ unsatisfied_basic_needs <- function(data = ech::toy_ech_2018,
     data <- data %>%
       dplyr::group_by(numero) %>%
       dplyr::mutate(
-        UBN_housing = ifelse((c2 == 6 | c3 == 6 | c4 == 5) | (ht19 / d10) >2 | d19 == 3, 1, 0),
+        UBN_housing = ifelse((c2 == 6 | c3 == 6 | c4 == 5) | (ht19 / d9) > 2 | d19 == 3, 1, 0),
         UBN_water = ifelse(d12 %in% 2:4 | d11 %in% c(2, 4:6), 1, 0),
         UBN_sewerage = ifelse(d13 == 3 | d14 == 0 | d15 == 2 | d16 %in% 3:4, 1, 0),
         UBN_electricity = ifelse(d18 > 2, 1, 0),

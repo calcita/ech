@@ -59,7 +59,9 @@ get_estimation_median(data = ech::toy_ech_2018, variable = "ht11", by.x = "dpto"
 \seealso{
 Other estimation: 
 \code{\link{get_estimation_gini}()},
+\code{\link{get_estimation_gpg}()},
 \code{\link{get_estimation_mean}()},
+\code{\link{get_estimation_qsr}()},
 \code{\link{get_estimation_ratio}()},
 \code{\link{get_estimation_total}()},
 \code{\link{set_design}()}

@@ -389,10 +389,10 @@ get_estimation_total <- function(data = ech::toy_ech_2018,
 #' @param by.y data frame column
 #' @param domain subpopulation reference setted as character expresion of logical evaluation
 #' @param level is household ("h") or individual ("i")
-#' @param ids ids
-#' @param numero household id
-#' @param estrato strata
-#' @param pesoano weights
+#' @param ids Variable name of cluster
+#' @param numero Variable name of household id
+#' @param estrato Variable name of strata
+#' @param pesoano Variable name of weights
 #' @param name name for the estimation new column
 #' @importFrom dplyr mutate select filter group_by %>%
 #' @importFrom glue glue
@@ -492,9 +492,9 @@ get_estimation_ratio <- function(data = ech::toy_ech_2018,
 #' This function allows you to estimate the Gini coeficient
 #' @family estimation
 #' @param data ech data frame
-#' @param variable income without rental value per capita deflated
-#' @param by variable
-#' @param ids upm
+#' @param variable Variable name of income without rental value per capita deflated
+#' @param by data frame column
+#' @param ids Variable name of cluster
 #' @param numero Variable name of household id
 #' @param estrato Variable name of strata
 #' @param pesoano Variable name of weights
@@ -511,10 +511,12 @@ get_estimation_ratio <- function(data = ech::toy_ech_2018,
 #'
 #' @examples
 #' \donttest{
-#' toy_ech_2018 <- income_constant_prices(data = ech::toy_ech_2018, ipc = "R",
+#' toy_ech_2018 <- income_constant_prices(data = ech::toy_ech_2018,
+#'  ipc = "R",
 #'  base_month = "01", base_year = "2005")
-#' get_estimation_gini(data = toy_ech_2018, variable = "y_wrv_pc_d_r")
-#  }
+#' get_estimation_gini(data = toy_ech_2018,
+#'  variable = "y_wrv_pc_d_r")
+#'  }
 get_estimation_gini <- function(data = ech::toy_ech_2018,
                                 variable = NULL,
                                 by = NULL,
@@ -569,23 +571,113 @@ get_estimation_gini <- function(data = ech::toy_ech_2018,
     estimation <- laeken::gini(inc = income, weights = pesoano, design = estrato, cluster = ids,
                                var = "bootstrap", bootType = "naive", breakdown = by, seed = 1234, R = r)
   }
+  if(!is.null(by)){
+    suppressMessages({
+      value <- estimation[[2]]
+      value_total <- data.frame(dplyr::bind_cols("Total",estimation[[1]]))
+      names(value_total) <- names(value)
+      value <- dplyr::bind_rows(value, value_total)
 
-    value <- estimation[[2]]
-    value_total <- data.frame(dplyr::bind_cols("Total",estimation[[1]]))
-    names(value_total) <- names(value)
-    value <- dplyr::bind_rows(value, value_total)
+      var <- estimation[[5]]
+      var_total <- data.frame(dplyr::bind_cols("Total",estimation[[4]]))
+      names(var_total) <- names(var)
+      var <- dplyr::bind_rows(var, var_total)
 
-    var <- estimation[[5]]
-    var_total <- data.frame(dplyr::bind_cols("Total",estimation[[4]]))
-    names(var_total) <- names(var)
-    var <- dplyr::bind_rows(var, var_total)
+      ci <- estimation[[7]]
+      ci_total <- data.frame(dplyr::bind_cols("Total",estimation[[6]][1], estimation[[6]][2]))
+      names(ci_total) <- names(ci)
+      ci <- dplyr::bind_rows(ci, ci_total)
 
-    ci <- estimation[[7]]
-    ci_total <- data.frame(dplyr::bind_cols("Total",estimation[[6]][1], estimation[[6]][2]))
-    names(ci_total) <- names(ci)
-    ci <- dplyr::bind_rows(ci, ci_total)
-
-    estimation <- dplyr::bind_cols(value, var[2], ci[, 2:3])
+      estimation <- dplyr::bind_cols(value, var[2], ci[, 2:3])
+    })
+  } else {
+    estimation <- estimation[[1]]
+  }
 
   return(estimation)
+}
+
+
+#' This function allows you to estimate the Gender Pay Gap (GPG)
+#' @family estimation
+#' @param data data.frame
+#' @param variable Variable name of total income per hour
+#' @param e26 Variable name of sex
+#' @param by data frame column
+#' @param ids Variable name of cluster
+#' @param estrato Variable name of strata
+#' @param pesoano Variable name of weights
+#'
+#' @return table
+#' @export
+#'
+#' @examples
+get_estimation_gpg <- function(data = ech::toy_ech_2018,
+                               variable = "total_income_per_hour",
+                               e26 = "e26",
+                               by = NULL,
+                               ids = NULL,
+                               estrato = NULL,
+                               pesoano = "pesoano"){
+
+  d <- data %>% dplyr::select(!!!syms(c(variable, e26, by, ids, estrato, pesoano))) %>%
+    unlabelled()
+
+  d <- d %>%  tidyr::drop_na()
+  d <- as.data.frame(d)
+
+  if(is.null(by) & is.null(ids)){
+    estimation <- laeken::gpg(inc = variable, gender = e26, weights = pesoano, data = d)
+  } else if (is.character(by) & is.null(ids)){
+    estimation <- laeken::gpg(inc = variable, gender = e26, weights = pesoano, breakdown = by, data = d)
+  } else if (is.null(by) & is.character(ids)){
+    estimation <- laeken::gpg(inc = variable, gender = e26, weights = pesoano, design = estrato, cluster = ids, data = d)
+  } else{
+    estimation <- laeken::gpg(inc = variable, gender = e26, weights = pesoano, breakdown = by, design = estrato, cluster = ids, data = d)
+  }
+  return(estimation)
+
+}
+
+
+#' This function allows you to estimate de Income Quintile Share Ratio
+#' @family estimation
+#' @param data data.frame
+#' @param variable Variable name of total income per hour
+#' @param by data frame column
+#' @param ids Variable name of cluster
+#' @param estrato Variable name of strata
+#' @param pesoano Variable name of weights
+#'
+#' @return table
+#' @export
+#'
+#' @examples
+#' toy_ech_2018 <- income_constant_prices(data = ech::toy_ech_2018, ipc = "R", base_month = "01", base_year = "2005")
+#' get_estimation_qsr(data = toy_ech_2018, variable = "y_wrv_pc_d_r", pesoano = "pesoano")
+
+get_estimation_qsr <- function(data = ech::toy_ech_2018,
+                               variable = "y_wrv_pc_d_r",
+                               by = NULL,
+                               ids = NULL,
+                               estrato = NULL,
+                               pesoano = "pesoano"){
+
+  d <- data %>% dplyr::select(!!!syms(c(variable, by, ids, estrato, pesoano))) %>%
+    unlabelled()
+
+  d <- d %>%  tidyr::drop_na()
+  d <- as.data.frame(d)
+
+  if(is.null(by) & is.null(ids)){
+    estimation <- laeken::qsr(inc = variable, weights = pesoano, data = d)
+  } else if (is.character(by) & is.null(ids)){
+    estimation <- laeken::qsr(inc = variable, weights = pesoano, breakdown = by, data = d)
+  } else if (is.null(by) & is.character(ids)){
+    estimation <- laeken::qsr(inc = variable, weights = pesoano, design = estrato, cluster = ids, data = d)
+  } else{
+    estimation <- laeken::qsr(inc = variable, weights = pesoano, breakdown = by, design = estrato, cluster = ids, data = d)
+  }
+  return(estimation)
+
 }

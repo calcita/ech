@@ -34,13 +34,13 @@ get_estimation_ratio(
 
 \item{level}{is household ("h") or individual ("i")}
 
-\item{ids}{ids}
+\item{ids}{Variable name of cluster}
 
-\item{numero}{household id}
+\item{numero}{Variable name of household id}
 
-\item{estrato}{strata}
+\item{estrato}{Variable name of strata}
 
-\item{pesoano}{weights}
+\item{pesoano}{Variable name of weights}
 
 \item{name}{name for the estimation new column}
 }
@@ -63,8 +63,10 @@ get_estimation_ratio(data = toy_ech_2018, variable.x = "po", variable.y = "pea",
 \seealso{
 Other estimation: 
 \code{\link{get_estimation_gini}()},
+\code{\link{get_estimation_gpg}()},
 \code{\link{get_estimation_mean}()},
 \code{\link{get_estimation_median}()},
+\code{\link{get_estimation_qsr}()},
 \code{\link{get_estimation_total}()},
 \code{\link{set_design}()}
 }
