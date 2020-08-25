@@ -52,10 +52,11 @@ plot_geouy <- function(x, col, viri_opt = "plasma", l = NULL, other_lab = NULL, 
                                       style = ggspatial::north_arrow_fancy_orienteering)
 
   if(!is.null(l) && l %in% "%"){
-    if(is.numeric(x[[col]]) & sum(x[[col]] > 1) == 0) {
+    if(is.numeric(x[[col]]) & sum(x[[col]] > 1, na.rm = T) == 0) {
       x[[col]] <- x[[col]] * 100
       }
-    ll <- x %>% dplyr::mutate(label = .data[[col]] %>% as.numeric(.) %>% round(1) %>% paste0("%"))
+    ll <- x %>% dplyr::mutate(label = .data[[col]] %>% as.numeric(.) %>% round(1) %>% paste0("%")) %>%
+      dplyr::filter(!is.na(.data[[col]]))
     mapa <- mapa + geom_sf_text(data = ll, aes(label = label),
                                 colour = "white", size = 3, hjust = 0.5)
   }
