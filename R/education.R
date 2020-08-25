@@ -240,17 +240,31 @@ level_education <- function(data = ech::toy_ech_2018,
   data <- data %>% dplyr::mutate(
     level_education = dplyr::case_when(
       e49 == 2 & e51_2 == 0 & e51_3 == 0 & e51_4 == 0 & e51_5 == 0 & e51_6 == 0 & e51_7 == 0 & e51_8 == 0 & e51_9 == 0 & e51_10 == 0 & e51_11 == 0 ~ 0,
-      (e51_2 == 0 & e51_3 == 0) | e193 == 1 ~ 0,
-      e51_2 == 9 | e51_3 == 9 ~ 0,
+      e51_2 == 9 | e51_3 == 9 | e193 == 1 ~ 0,
+      e51_2 == 0 & e51_3 == 0 ~ 0))
+
+  data <- data %>% dplyr::mutate(
+    level_education = dplyr::case_when(
       e51_2 %in% 1:6 & e51_4 %in% c(0, 9) ~ 1,
       e51_3 %in% 1:6 & e51_4 %in% c(0, 9) ~ 1,
       e51_7 > 0 & e51_7_1 == 4 & e51_4 %in% c(0, 9) ~ 1,
-      (e51_4 %in% 1:3 | e51_5 %in% 1:3 | (e51_6 > 0 & e51_4 <= 6)) & (e51_8 == 0 & e51_9 == 0 & e51_10 == 0 & e51_11 == 0) ~ 2,
-      ((e51_4 == 3 & e51_8 == 9) | (e51_5 == 3 & e51_8 == 9) | (e51_6 == 3 & e51_8 == 9)) ~ 2,
-      e51_7 != 0 & e51_7_1 == 3 ~ 2,
-      ((e51_7 %in% 1:9 & e51_7_1 < 3) | (e51_7 != 0 & e51_7_1 == 3 & e51_4 == 0 & e51_5 == 0 & e51_6 == 0)) & e51_8 == 0 & e51_9 == 0 & e51_10 == 0 ~ 3,
-      e51_8 %in% 1:5 & e51_9 == 0 & e51_10 == 0 & e51_11 == 0 ~ 4,
-      e51_9 %in% 1:9 | e51_10 %in% 1:9 | e51_11 %in% 1:9 ~ 5),
+      TRUE ~ level_education))
+
+  data <- data %>% dplyr::mutate(
+    level_education = dplyr::case_when(
+      (e51_4 %in% 1:3 | e51_5 %in% 1:3 | e51_6 %in% 1:3) & (e51_8 == 0 & e51_9 == 0 & e51_10 == 0 & e51_11 == 0) ~ 2,
+      ((e51_4 == 3 & e51_8 %in% c(0,9)) | (e51_5 == 3 & e51_8 %in% c(0,9)) | (e51_6 == 3 & e51_8 %in% c(0,9))) ~ 2,
+      (e51_7 > 0 & e51_7_1 == 3) & (e51_8 %in% c(0,9) & e51_9 %in% c(0,9) & e51_10 %in% c(0, 9)) ~ 2,
+      (e51_7 >0 & e51_7_1 < 3) & (e51_8 %in% c(0,9) & e51_9 %in% c(0,9) & e51_10 %in% c(0, 9)) ~ 2,
+      TRUE ~ level_education))
+
+  data <- data %>% dplyr::mutate(
+    level_education = dplyr::case_when(
+      e51_8 %in% 1:4 & e51_9 %in% c(0,9) & e51_10 %in% c(0,9) & e51_11 %in% c(0,9) ~ 4,
+      e51_9 %in% 1:8 | e51_10 %in% 1:4 | e51_11 %in% 1:4 ~ 5,
+      TRUE ~ level_education))
+
+  data <- data %>% dplyr::mutate(
     level_education = haven::labelled(level_education,
                                         labels = c("Sin instruccion" = 0, "Primaria" = 1, "Secundaria" = 2, "UTU" = 3, "Magisterio o profesorado" = 4, "Universidad o similar" = 5),
                                         label = "Nivel educativo")
