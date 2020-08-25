@@ -30,6 +30,7 @@
 #' @export
 #' @importFrom dplyr mutate case_when
 #' @details
+#' Based on http://www.ine.gub.uy/documents/10181/34017/Atlas_fasciculo_1_NBI_versionrevisada.pdf/57ea17f9-3fd9-4306-b9ca-948abc7fab73
 #' Disclaimer: This script is not an official INE product.
 #' Aviso: El script no es un producto oficial de INE.
 #' @examples
@@ -93,7 +94,7 @@ unsatisfied_basic_needs <- function(data = ech::toy_ech_2018,
     data <- data %>%
       dplyr::group_by(numero) %>%
       dplyr::mutate(
-        UBN_housing = ifelse((c2 == 6 | c3 == 6 | c4 == 5) | (ht19 / d10) > 2 | d19 == 3, 1, 0),
+        UBN_housing = ifelse((c2 == 6 | c3 == 6 | c4 == 5) | (ht19 / d9) > 2 | d19 == 3, 1, 0),
         UBN_water = ifelse(d12 %in% 2:4 | d11 %in% 2:6, 1, 0),
         UBN_sewerage = ifelse(d13 == 3 | d14 == 0 | d15 == 2 | d16 %in% 3:4, 1, 0),
         UBN_electricity = ifelse(d18 > 2, 1, 0),
@@ -133,7 +134,8 @@ unsatisfied_basic_needs <- function(data = ech::toy_ech_2018,
         UBN_confort = ifelse(d260 == 6 | d21_3 == 2 | (d21_1 == 2 & d21_2 == 2), 1, 0)) %>%
         dplyr::ungroup()
     data <- data %>%
-        dplyr::mutate(UBN_education = ifelse(e27 %in% 4:17 & (school_enrollment == 0 | e238 == 2) & years_schooling < 12 & (e201_1 == 2 | e212_1 == 2), 1, 0)) %>%
+        dplyr::mutate(UBN_education = ifelse(e27 %in% 4:17 && (school_enrollment == 0 | e238 == 2) &&
+                                               years_schooling < 12 && (e201_1 == 2 | e212_1 == 2), 1, 0)) %>%
         dplyr::group_by(numero) %>%
         dplyr::mutate(UBN_education = max(UBN_education),
                       UBN_q = UBN_housing + UBN_water + UBN_sewerage + UBN_electricity + UBN_confort + UBN_education,

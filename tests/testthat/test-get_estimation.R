@@ -86,6 +86,21 @@ test_that("get_estimation_ratio works", {
   expect_equal(nrow(a), 117)
 })
 
+test_that("get_estimation_median works", {
+  a <- get_estimation_ratio(data = ech_2018, variable.x = "ht11", variable.y = "pea", level = "i", name = "tasa_ocupacion")
+  expect_equal(nrow(a), 1)
+  a <- get_estimation_ratio(data = ech_2018, variable.x = "ht11", variable.y = "pea", domain = "dpto == 1", level = "i")
+  expect_equal(nrow(a), 1)
+  a <- get_estimation_ratio(data = ech_2018, variable.x = "ht11", variable.y = "pea", domain = "dpto == 1", by.x = "mes", level = "i")
+  expect_equal(nrow(a), 12)
+  a <- get_estimation_ratio(data = ech_2018, variable.x = "ht11", variable.y = "pea", by.x = "dpto", level = "i")
+  expect_equal(nrow(a), 19)
+  a <- get_estimation_ratio(data = ech_2018, variable.x = "ht11", variable.y = "pea", by.x = "dpto", by.y = "mes",level = "i")
+  expect_equal(nrow(a), 149)
+  a <- get_estimation_ratio(data = ech_2018, variable.x = "ht11", variable.y = "pea", by.x = "secc", by.y = "mes", domain = "dpto == 1", level = "i")
+  expect_equal(nrow(a), 117)
+})
+
 test_that("get_estimation_gini works", {
   ech_2018 <- income_constant_prices(data = ech::toy_ech_2018, ipc = "R",
                                base_month = "01", base_year = "2005")

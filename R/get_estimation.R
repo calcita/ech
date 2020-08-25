@@ -160,7 +160,7 @@ get_estimation_mean <- function(data = ech::toy_ech_2018,
 #'
 #' @examples
 #' \donttest{
-#' get_estimation_median(data = ech::toy_ech_2018, variable = "pobre06", by.x = "dpto", level = "h")
+#' get_estimation_median(data = ech::toy_ech_2018, variable = "ht11", by.x = "dpto", level = "h")
 #' }
 
 get_estimation_median <- function(data = ech::toy_ech_2018,
@@ -201,62 +201,35 @@ get_estimation_median <- function(data = ech::toy_ech_2018,
 
   # estimation ----
 
-  if (is.factor(dplyr::pull(d[,variable]))) {
+  if (is.numeric(dplyr::pull(d[,variable]))) {
     if(is.null(by.x) & is.null(by.y) & is.null(domain)){
       estimation <- design_ech %>%
-        srvyr::group_by(!!!syms(variable)) %>%
-        srvyr::summarise(colname = srvyr::survey_median(vartype = "ci"))
+        srvyr::summarise(colname = srvyr::survey_median(!!!syms(variable), vartype = "ci"))
     } else if(is.character(by.x) & is.null(by.y) & is.null(domain)){
       estimation <- design_ech %>%
-        srvyr::group_by(!!!syms(by.x), !!!syms(variable), .add = T) %>%
-        srvyr::summarise(colname = srvyr::survey_median(vartype = "ci"))
+        srvyr::group_by(!!!syms(by.x), .add = T) %>%
+        srvyr::summarise(colname = srvyr::survey_median(!!!syms(variable), vartype = "ci"))
     } else if(is.character(by.x) & is.character(by.y) & is.null(domain)){
       estimation <- design_ech %>%
-        srvyr::group_by(!!!syms(by.x), !!!syms(by.y), !!!syms(variable), .add = T) %>%
-        srvyr::summarise(colname = srvyr::survey_median(vartype = "ci"))
+        srvyr::group_by(!!!syms(by.x), !!!syms(by.y), .add = T) %>%
+        srvyr::summarise(colname = srvyr::survey_median(!!!syms(variable), vartype = "ci"))
     } else if(is.null(by.x) & is.null(by.y) & !is.null(domain)){
       estimation <- design_ech %>%
         srvyr::filter(!!rlang::parse_expr(domain)) %>%
-        srvyr::group_by(!!!syms(variable)) %>%
-        srvyr::summarise(colname = srvyr::survey_median(vartype = "ci"))
+        srvyr::summarise(colname = srvyr::survey_median(!!!syms(variable), vartype = "ci"))
     } else if(is.character(by.x) & is.null(by.y) & !is.null(domain)){
       estimation <- design_ech %>%
         srvyr::filter(!!rlang::parse_expr(domain)) %>%
-        srvyr::group_by(!!!syms(by.x), !!!syms(variable), .add = T) %>%
-        srvyr::summarise(colname = srvyr::survey_median(vartype = "ci"))
+        srvyr::group_by(!!!syms(by.x), .add = T) %>%
+        srvyr::summarise(colname = srvyr::survey_median(!!!syms(variable), vartype = "ci"))
     } else {
       estimation <- design_ech %>%
         srvyr::filter(!!rlang::parse_expr(domain)) %>%
-        srvyr::group_by(!!!syms(by.x), !!!syms(by.y), !!!syms(variable), .add = T) %>%
-        srvyr::summarise(colname = srvyr::survey_median(vartype = "ci"))
+        srvyr::group_by(!!!syms(by.x), !!!syms(by.y), .add = T) %>%
+        srvyr::summarise(colname = srvyr::survey_median(!!!syms(variable), vartype = "ci"))
     }
   } else {
-    if(is.null(by.x) & is.null(by.y) & is.null(domain)){
-      estimation <- design_ech %>%
-        srvyr::summarise(colname = srvyr::survey_median(!!!syms(variable), vartype = "ci"))
-    } else if(is.character(by.x) & is.null(by.y) & is.null(domain)){
-      estimation <- design_ech %>%
-        srvyr::group_by(!!!syms(by.x), .add = T) %>%
-        srvyr::summarise(colname = srvyr::survey_median(!!!syms(variable), vartype = "ci"))
-    } else if(is.character(by.x) & is.character(by.y) & is.null(domain)){
-      estimation <- design_ech %>%
-        srvyr::group_by(!!!syms(by.x), !!!syms(by.y), .add = T) %>%
-        srvyr::summarise(colname = srvyr::survey_median(!!!syms(variable), vartype = "ci"))
-    } else if(is.null(by.x) & is.null(by.y) & !is.null(domain)){
-      estimation <- design_ech %>%
-        srvyr::filter(!!rlang::parse_expr(domain)) %>%
-        srvyr::summarise(colname = srvyr::survey_median(!!!syms(variable), vartype = "ci"))
-    } else if(is.character(by.x) & is.null(by.y) & !is.null(domain)){
-      estimation <- design_ech %>%
-        srvyr::filter(!!rlang::parse_expr(domain)) %>%
-        srvyr::group_by(!!!syms(by.x), .add = T) %>%
-        srvyr::summarise(colname = srvyr::survey_median(!!!syms(variable), vartype = "ci"))
-    } else {
-      estimation <- design_ech %>%
-        srvyr::filter(!!rlang::parse_expr(domain)) %>%
-        srvyr::group_by(!!!syms(by.x), !!!syms(by.y), .add = T) %>%
-        srvyr::summarise(colname = srvyr::survey_median(!!!syms(variable), vartype = "ci"))
-    }
+    stop(glue::glue("Sorry... :( \n  {variable} is not numeric"))
   }
 
   names(estimation) <- stringr::str_replace_all(names(estimation), "colname", name)

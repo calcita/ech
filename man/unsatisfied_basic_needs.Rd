@@ -93,6 +93,7 @@ data.frame
 This function allows you to calculate de Unsatisfied Basic Needs
 }
 \details{
+Based on http://www.ine.gub.uy/documents/10181/34017/Atlas_fasciculo_1_NBI_versionrevisada.pdf/57ea17f9-3fd9-4306-b9ca-948abc7fab73
 Disclaimer: This script is not an official INE product.
 Aviso: El script no es un producto oficial de INE.
 }

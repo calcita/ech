@@ -29,7 +29,7 @@ This function allows you to set ggplot2 theme in our suggested format.
 \donttest{
 pobre_x_dpto <- get_estimation_mean(data = ech::toy_ech_2018, variable = "pobre06",
                                     by.x = "nomdpto", level = "h", name = "Pobreza")
-pobre_x_dpto <- pobre_x_dpto \%>\% filter(pobre06 == "Pobre")
+pobre_x_dpto <- pobre_x_dpto \%>\% dplyr::filter(pobre06 == "Pobre")
 pobre_x_dpto_geo <- add_geom(data = pobre_x_dpto, unit = "Departamentos", variable = "nomdpto")
 plot_geouy(x = pobre_x_dpto_geo, col = "Pobreza", l = "\%")
 }
