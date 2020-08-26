@@ -10,5 +10,5 @@ test_that("ubn works", {
   toy_ech_18 <- poverty(data = ech::toy_ech_2018)
   expect_equal(sum(toy_ech_18$pobre06), dput(sum(toy_ech_18$poor)))
   toy_ech_18b <- integrated_poverty_measure(data = toy_ech_18a)
-  expect_equal(ncol(toy_ech_18a), 596)
+  expect_equal(ncol(toy_ech_18b), 596)
 })
