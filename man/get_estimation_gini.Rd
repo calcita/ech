@@ -8,6 +8,7 @@ get_estimation_gini(
   data = ech::toy_ech_2018,
   variable = NULL,
   by = NULL,
+  level = NULL,
   ids = NULL,
   numero = "numero",
   estrato = NULL,
@@ -22,6 +23,8 @@ get_estimation_gini(
 \item{variable}{Variable name of income without rental value per capita deflated}
 
 \item{by}{data frame column}
+
+\item{level}{is household ("h") or individual ("i").}
 
 \item{ids}{Variable name of cluster}
 
@@ -47,12 +50,10 @@ Aviso: El script no es un producto oficial de INE.
 }
 \examples{
 \donttest{
-toy_ech_2018 <- income_constant_prices(data = ech::toy_ech_2018,
- ipc = "R",
- base_month = "01", base_year = "2005")
-get_estimation_gini(data = toy_ech_2018,
- variable = "y_wrv_pc_d_r")
- }
+toy_ech_2018 <- income_constant_prices(data = ech::toy_ech_2018, ipc = "R",
+                                       base_month = "01", base_year = "2005")
+get_estimation_gini(data = toy_ech_2018, variable = "y_wrv_pc_d_r", level = "i")
+}
 }
 \seealso{
 Other estimation: 

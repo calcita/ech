@@ -581,7 +581,7 @@
 #'   \item{pt4}{ }
 #'   \item{pobre06}{ }
 #'   \item{indigente06}{ }
-#'   \item{upm}{ }
+#'   \item{upm_id}{ }
 #'   \item{estrato}{ }
 #'   ...
 #' }

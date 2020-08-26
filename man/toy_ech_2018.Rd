@@ -586,6 +586,8 @@ A data frame with 1000 rows and 579 variables:
   \item{pt4}{ }
   \item{pobre06}{ }
   \item{indigente06}{ }
+  \item{upm_id}{ }
+  \item{estrato}{ }
   ...
 }
 }
