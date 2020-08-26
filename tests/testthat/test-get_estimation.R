@@ -87,6 +87,7 @@ test_that("get_estimation_ratio works", {
 })
 
 test_that("get_estimation_median works", {
+  ech_2018 <- employment(data = ech::toy_ech_2018, pobpcoac = "pobpcoac")
   a <- get_estimation_ratio(data = ech_2018, variable.x = "ht11", variable.y = "pea", level = "i", name = "tasa_ocupacion")
   expect_equal(nrow(a), 1)
   a <- get_estimation_ratio(data = ech_2018, variable.x = "ht11", variable.y = "pea", domain = "dpto == 1", level = "i")
@@ -104,6 +105,21 @@ test_that("get_estimation_median works", {
 test_that("get_estimation_gini works", {
   ech_2018 <- income_constant_prices(data = ech::toy_ech_2018, ipc = "R",
                                base_month = "01", base_year = "2005")
-  a <- get_estimation_gini(data = ech_2018, variable = "y_wrv_pc_d_r", level = "h", name = "indice_gini")
-  expect_is(a, "cvystat")
+  a <- get_estimation_gini(data = ech_2018, variable = "y_wrv_pc_d_r", level = "h")
+  expect_is(a, "numeric")
+  # b <- get_estimation_gini(data = ech_2018, variable = "y_wrv_pc_d_r", level = "i", by = "nomdpto")
+})
+
+test_that("get_estimation_gpg works", {
+  toy_ech_2018 <- labor_income_per_hour(data = ech::toy_ech_2018, base_month = 6, base_year = 2018)
+  a <- get_estimation_gpg(data = toy_ech_2018, variable = "total_income_per_hour", e26 = "e26")
+  expect_is(a, "gpg")
+})
+
+
+test_that("get_estimation_qsr works", {
+  toy_ech_2018 <- income_constant_prices(data = ech::toy_ech_2018, ipc = "R",
+                                         base_month = "01", base_year = "2005")
+  a <- get_estimation_qsr(data = toy_ech_2018, variable = "y_wrv_pc_d_r", pesoano = "pesoano")
+  expect_is(a, "qsr")
 })
