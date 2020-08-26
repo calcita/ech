@@ -399,8 +399,18 @@ get_marco <- function(year = NULL, folder = tempdir(), toR = TRUE){
   archivo <- fs::dir_ls(folder, regexp = "\\.zip$")
   archivo <- archivo[which.max(file.info(archivo)$mtime)]
   try(archive_extract(archive.path = archivo, dest.path = folder))
-  descomprimido <- fs::dir_ls(folder, regexp = "\\.sav$")
-  d <- try(haven::read_sav(descomprimido))
+  if(y %in% c(2004, 1996, 1985)){
+    descomprimido <- fs::dir_ls(folder, regexp = "\\.xls$")
+    d <- try(readxl::read_xls(descomprimido))
+  } else {
+    archivo <- fs::dir_ls(folder, regexp = "\\.zip$")
+    archivo <- archivo[which.max(file.info(archivo)$mtime)]
+    try(archive_extract(archive.path = archivo, dest.path = folder))
+    descomprimido <- fs::dir_ls(folder, regexp = "\\.sav$")
+    d <- try(haven::read_sav(descomprimido))
+  }
+
+
 
   if (any(class(d) %in% "data.frame")) {
     message(glue::glue("{archivo} could be read as tibble :-)"))

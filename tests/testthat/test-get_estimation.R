@@ -106,7 +106,7 @@ test_that("get_estimation_gini works", {
   ech_2018 <- income_constant_prices(data = ech::toy_ech_2018, level = "R",
                                index = "IPC", base_month = "01", base_year = "2005")
   a <- get_estimation_gini(data = ech_2018, variable = "y_wrv_pc_d_r", level = "h")
-  expect_is(a, "numeric")
+  expect_is(a, "data.frame")
   # b <- get_estimation_gini(data = ech_2018, variable = "y_wrv_pc_d_r", level = "i", by = "nomdpto")
 })
 

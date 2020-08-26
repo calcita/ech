@@ -512,10 +512,10 @@ get_estimation_ratio <- function(data = ech::toy_ech_2018,
 #'
 #' @examples
 #' \donttest{
-#' toy_ech_2018 <- income_constant_prices(data = ech::toy_ech_2018, index = "IPC, level = "R",
+#' toy_ech_2018 <- income_constant_prices(data = ech::toy_ech_2018, index = "IPC", level = "R",
 #'                                        base_month = "01", base_year = "2005")
 #' get_estimation_gini(data = toy_ech_2018, variable = "y_wrv_pc_d_r", level = "i")
-#'}
+#' }
 
 get_estimation_gini <- function(data = ech::toy_ech_2018,
                                 variable = NULL,
