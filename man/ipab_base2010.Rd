@@ -5,10 +5,9 @@
 \alias{ipab_base2010}
 \title{A dataset containing the IPAB}
 \format{
-A data frame with 286 rows and 3 variables:
+A data frame with 286 rows and 2 variables:
 \describe{
-  \item{yy}{date from 1997 to 2020}
-  \item{mm}{month}
+  \item{fecha}{date from 1997 to 2020}
   \item{indice}{IPAB}
  }
 }
@@ -32,6 +31,8 @@ Other dataset:
 \code{\link{cba_cbna_rur}},
 \code{\link{ciiu4}},
 \code{\link{dic}},
+\code{\link{ipab_base2010_int}},
+\code{\link{ipab_base2010_mdeo}},
 \code{\link{ipc_base2010_int}},
 \code{\link{ipc_base2010_mdeo}},
 \code{\link{ipc_base2010}},

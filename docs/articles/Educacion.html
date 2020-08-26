@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ech</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.18</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.19</span>
       </span>
     </div>
 
@@ -61,6 +61,9 @@
     </li>
     <li>
       <a href="../articles/estimacion_ingresos.html">Estimación de ingresos</a>
+    </li>
+    <li>
+      <a href="../articles/medicion_pobreza.html">Medición de la pobreza</a>
     </li>
   </ul>
 </li>
@@ -110,16 +113,14 @@
 <span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/years_of_schooling.html">years_of_schooling</a></span>(<span class="no">df</span>)
 
 <span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/level_education.html">level_education</a></span>(<span class="no">df</span>)</pre></body></html></div>
-<p>Estimamos la proporción de personas que asisten actualmente a un centro educativo formal entre personas de …….:</p>
-<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="no">a</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/get_estimation_mean.html">get_estimation_mean</a></span>(<span class="no">df</span>, <span class="kw">variable</span> <span class="kw">=</span> <span class="st">"school_enrollment"</span>, <span class="kw">by.x</span> <span class="kw">=</span> <span class="st">"dpto"</span>, <span class="kw">domain</span> <span class="kw">=</span> <span class="st">"age_groups == 3"</span>, <span class="kw">level</span> <span class="kw">=</span> <span class="st">"i"</span>)
-<span class="fu"><a href="../reference/get_estimation_mean.html">get_estimation_mean</a></span>(<span class="no">df</span>, <span class="kw">variable</span> <span class="kw">=</span> <span class="st">"school_enrollment"</span>, <span class="kw">domain</span> <span class="kw">=</span> <span class="st">"age_groups == 3"</span>, <span class="kw">level</span> <span class="kw">=</span> <span class="st">"i"</span>)</pre></body></html></div>
-<p>Estimamos los años de educación según sexo</p>
-<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="fu"><a href="../reference/get_estimation_mean.html">get_estimation_mean</a></span>(<span class="no">df</span>, <span class="kw">variable</span> <span class="kw">=</span> <span class="st">"years_schooling"</span>, <span class="kw">by.x</span> <span class="kw">=</span> <span class="st">"e26"</span>, <span class="kw">domain</span> <span class="kw">=</span> <span class="st">"age_groups == 5"</span>, <span class="kw">level</span> <span class="kw">=</span> <span class="st">"i"</span>)</pre></body></html></div>
+<p>Estimamos la proporción de personas que asisten actualmente a un centro educativo formal entre personas entre 12 y 17 años:</p>
+<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="fu"><a href="../reference/get_estimation_mean.html">get_estimation_mean</a></span>(<span class="no">df</span>, <span class="kw">variable</span> <span class="kw">=</span> <span class="st">"school_enrollment"</span>, <span class="kw">domain</span> <span class="kw">=</span> <span class="st">"age_groups == 3"</span>, <span class="kw">level</span> <span class="kw">=</span> <span class="st">"i"</span>, <span class="kw">ids</span> <span class="kw">=</span> <span class="st">"upm"</span>, <span class="kw">estrato</span> <span class="kw">=</span> <span class="st">"estrato"</span>)</pre></body></html></div>
+<p>Estimamos los años de educación según sexo para personas mayores de 24 años:</p>
+<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="fu"><a href="../reference/get_estimation_mean.html">get_estimation_mean</a></span>(<span class="no">df</span>, <span class="kw">variable</span> <span class="kw">=</span> <span class="st">"years_schooling"</span>, <span class="kw">by.x</span> <span class="kw">=</span> <span class="st">"e26"</span>, <span class="kw">domain</span> <span class="kw">=</span> <span class="st">"e27 &gt; 24"</span>, <span class="kw">level</span> <span class="kw">=</span> <span class="st">"i"</span>, <span class="kw">ids</span> <span class="kw">=</span> <span class="st">"upm"</span>, <span class="kw">estrato</span> <span class="kw">=</span> <span class="st">"estrato"</span>)</pre></body></html></div>
 <p>Estimamos el máximo nivel educativo alcanzado para una subpoblación, personas mayores de 24 años.</p>
 <div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="fu"><a href="../reference/get_estimation_mean.html">get_estimation_mean</a></span>(<span class="no">df</span>, <span class="kw">variable</span> <span class="kw">=</span> <span class="st">"level_education"</span>, <span class="kw">domain</span> <span class="kw">=</span> <span class="st">"e27 &gt; 24"</span>, <span class="kw">level</span> <span class="kw">=</span> <span class="st">"i"</span>)</pre></body></html></div>
-<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="fu"><a href="../reference/get_estimation_mean.html">get_estimation_mean</a></span>(<span class="no">df</span>, <span class="kw">variable</span> <span class="kw">=</span> <span class="st">"level_education"</span>, <span class="kw">by.x</span> <span class="kw">=</span> <span class="st">"dpto"</span>, <span class="kw">level</span> <span class="kw">=</span> <span class="st">"i"</span>)</pre></body></html></div>
 <p>Calculamos las variables de completitud de cada nivel de enseñanza. Para calcular la completitud en el nivel terciario debemos definir la cantidad de años aprobados que consideramos completan el nivel. En este caso vamos a calcular la variable considerando n = 2 y luego, n = 4. Estimamos la completitud en primaria y ciclo báscio para personas mayores de 15 años y la completitud en bachillerato para las personas mayores de 17 años. Para estimar la completitud en el nivel terciario consideramos las personas mayores de 24 años:</p>
-<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/level_completion.html">level_completion</a></span>(<span class="no">df</span>, <span class="kw">n</span> <span class="kw">=</span> <span class="fl">2</span>)
+<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/level_completion.html">level_completion</a></span>(<span class="no">df</span>, <span class="kw">n</span> <span class="kw">=</span> <span class="fl">2</span>)
 <span class="fu"><a href="../reference/get_estimation_mean.html">get_estimation_mean</a></span>(<span class="no">df</span>, <span class="kw">variable</span> <span class="kw">=</span> <span class="st">"primary_completion"</span>, <span class="kw">domain</span> <span class="kw">=</span> <span class="st">"e27 &gt; 15"</span>, <span class="kw">level</span> <span class="kw">=</span> <span class="st">"i"</span>)
 <span class="fu"><a href="../reference/get_estimation_mean.html">get_estimation_mean</a></span>(<span class="no">df</span>, <span class="kw">variable</span> <span class="kw">=</span> <span class="st">"lower_secondary_completion"</span>, <span class="kw">domain</span> <span class="kw">=</span> <span class="st">"e27 &gt; 15"</span>, <span class="kw">level</span> <span class="kw">=</span> <span class="st">"i"</span>)
 <span class="fu"><a href="../reference/get_estimation_mean.html">get_estimation_mean</a></span>(<span class="no">df</span>, <span class="kw">variable</span> <span class="kw">=</span> <span class="st">"upper_secondary_completion"</span>, <span class="kw">domain</span> <span class="kw">=</span> <span class="st">"e27 &gt; 17"</span>, <span class="kw">level</span> <span class="kw">=</span> <span class="st">"i"</span>)

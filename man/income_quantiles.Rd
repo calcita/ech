@@ -39,6 +39,7 @@ toy_ech_2018 <- income_quantiles(data = toy_ech_2018)
 \seealso{
 Other income: 
 \code{\link{basket_goods}()},
+\code{\link{deflate}()},
 \code{\link{income_constant_prices}()},
 \code{\link{labor_income_per_capita}()},
 \code{\link{labor_income_per_hour}()}

@@ -48,6 +48,8 @@ Other dataset:
 \code{\link{cba_cbna_mdeo}},
 \code{\link{cba_cbna_rur}},
 \code{\link{ciiu4}},
+\code{\link{ipab_base2010_int}},
+\code{\link{ipab_base2010_mdeo}},
 \code{\link{ipab_base2010}},
 \code{\link{ipc_base2010_int}},
 \code{\link{ipc_base2010_mdeo}},

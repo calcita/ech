@@ -31,10 +31,8 @@ toy_ech_18 <- integrated_poverty_measure(data = toy_ech_18)
 
 }
 \seealso{
-Other demographic: 
-\code{\link{age_groups}()},
-\code{\link{household_type}()},
+Other poverty: 
 \code{\link{poverty}()},
 \code{\link{unsatisfied_basic_needs}()}
 }
-\concept{demographic}
+\concept{poverty}

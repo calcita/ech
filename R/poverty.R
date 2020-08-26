@@ -1,5 +1,5 @@
 #' This function allows you to calculate de Unsatisfied Basic Needs
-#' @family demographic
+#' @family poverty
 #' @param data data.frame
 #' @param c2 Variable name of predominant material on external walls
 #' @param c3 Variable name of predominant roofing material
@@ -162,7 +162,7 @@ unsatisfied_basic_needs <- function(data = ech::toy_ech_2018,
 }
 
 #' This function allows you to calculate poor and indigent people or household
-#' @family demographic
+#' @family poverty
 #' @param data data.frame
 #' @param scale equivalency scale
 #' @param region_4 Variable name of region. Default: region_4
@@ -242,7 +242,7 @@ poverty <- function(data = ech::toy_ech_2018,
 }
 
 #' This function allows you to calculate an integrated poverty measure
-#' @family demographic
+#' @family poverty
 #' @param data data.frame
 #' @param pobre06 Variable name of poverty
 #' @param UBN_q Variable name of UBN

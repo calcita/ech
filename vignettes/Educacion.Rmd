@@ -43,17 +43,16 @@ df <- years_of_schooling(df)
 df <- level_education(df)
 ```
 
-Estimamos la proporción de personas que asisten actualmente a un centro educativo formal entre personas de .......:
+Estimamos la proporción de personas que asisten actualmente a un centro educativo formal entre personas entre 12 y 17 años:
 
 ```{r eval = FALSE}
-a <- get_estimation_mean(df, variable = "school_enrollment", by.x = "dpto", domain = "age_groups == 3", level = "i")
-get_estimation_mean(df, variable = "school_enrollment", domain = "age_groups == 3", level = "i")
+get_estimation_mean(df, variable = "school_enrollment", domain = "age_groups == 3", level = "i", ids = "upm", estrato = "estrato")
 ```
 
-Estimamos los años de educación según sexo
+Estimamos los años de educación según sexo para personas mayores de 24 años:
 
 ```{r eval = FALSE}
-get_estimation_mean(df, variable = "years_schooling", by.x = "e26", domain = "age_groups == 5", level = "i")
+get_estimation_mean(df, variable = "years_schooling", by.x = "e26", domain = "e27 > 24", level = "i", ids = "upm", estrato = "estrato")
 
 ```
 
@@ -61,10 +60,6 @@ Estimamos el máximo nivel educativo alcanzado para una subpoblación, personas 
 
 ```{r eval = FALSE}
 get_estimation_mean(df, variable = "level_education", domain = "e27 > 24", level = "i")
-```
-
-```{r eval = FALSE}
-get_estimation_mean(df, variable = "level_education", by.x = "dpto", level = "i")
 ```
 
 Calculamos las variables de completitud de cada nivel de enseñanza. Para calcular la completitud en el nivel terciario debemos definir la cantidad de años aprobados que consideramos completan el nivel. En este caso vamos a calcular la variable considerando n = 2 y luego, n = 4. Estimamos la completitud en primaria y ciclo báscio para personas mayores de 15 años y la completitud en bachillerato para las personas mayores de 17 años. Para estimar la completitud en el nivel terciario consideramos las personas mayores de 24 años:

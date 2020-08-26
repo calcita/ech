@@ -70,17 +70,20 @@ Las funciones para crear variables se organizan según la dimensión a la cual c
 Funciones para estimar indicadores
 ===========
 
-Se pueden estimar medias y proporciones, totales y ratios. Para los años 2018 y 2019 se cuenta con la información de las UPM (Unidades Primarias de Muestreo) y estratos por lo cual es posible definir correctamente el diseño de muestra y obtener intervalos de confianza correctos. 
+Se pueden estimar medias y proporciones, totales y ratios, el Índice de Gini, el Brecha salarial de género (GPG, por sus siglas en inglés Gender Pay Gap) y la relación quintil5/quintil1 (QSR, Quintil Share Ratio). Para los años 2018 y 2019 se cuenta con la información de las UPM (Unidades Primarias de Muestreo) y estratos por lo cual es posible definir correctamente el diseño de muestra y obtener intervalos de confianza correctos. 
 
-* `get_estimation_mean()`:    
+* `get_estimation_mean()`:
+* `get_estimation_median()`:
 * `get_estimation_total()`:   
 * `get_estimation_ratio()`:   
 * `get_estimation_gini()`: 
+* `get_estimation_gpg()`:
+* `get_estimation_qsr()`:
 
 Modo de uso
 ===========
 
-El paquete ech permite descargar los microdatos oficiales desde la web del INE o bien utilizar microdatos ya procesados. En el primer caso los datos se obtiene a través de la función `get_microdata()`. En el segundo caso, puede usar la función read_microdata() para leerlos. El paquete tiene tres grandes conjuntos de funciones:
+El paquete ech permite descargar los microdatos oficiales desde la web del INE o bien utilizar microdatos ya procesados. En el primer caso los datos se obtiene a través de la función `get_microdata()`. En el segundo caso, puede usar la función `read_microdata()` para leerlos. El paquete tiene tres grandes conjuntos de funciones:
 - las que leen datos desde la web del INE, se llaman get_*().
 - las que calculan variables tanto a nivel hogares como personas, estas tienen nombres descriptivos en inglés que se detallan más adelante.
 - las que estiman indicadores y calculan los intervalos de confianza asociados, se llaman get_estimation_*(). 
@@ -109,7 +112,7 @@ ech19 <- organize_names(ech19, 2019)
 
 ```
 
-Para calcular las variables PEA, PET, PO y PD usamos la función `employment`, especificando el nombre del objeto que contiene los microdatos y la variable que contiene la información de la condición de actividad (por defecto pobpcoac).
+Para calcular las variables PEA, PET, PO y PD usamos la función `employment()`, especificando el nombre del objeto que contiene los microdatos y la variable que contiene la información de la condición de actividad (por defecto pobpcoac).
 
 ``` r
 # Calculamos variables de empleo
@@ -118,7 +121,7 @@ ech19 <- employment(data = ech19)
 
 ```
 
-Otra función muy útil que combina además otra fuente de datos es `income_constant_prices()` que permite calcular el ingreso a precios constantes, usando como deflactor el IPC o el IPAB. Es necesario definir, el data frame, el año base y el mes base, y el tipo de IPC que puede ser "G" (general) o "R" (regional). Este último solo está disponible a partir de 2010.
+Otra función muy útil que combina además otra fuente de datos es `income_constant_prices()` que permite calcular el ingreso a precios constantes, usando como deflactor el IPC o el IPAB. Es necesario definir, el data frame, el año base y el mes base, y el tipo de IPC o IPAB que puede ser "G" (general) o "R" (regional). Este último solo está disponible a partir de 2010.
 
 ``` r
 # Organizamos nombres de variables
@@ -126,11 +129,12 @@ Otra función muy útil que combina además otra fuente de datos es `income_cons
 ech19 <- income_constant_prices(data = ech19, # Data.frame de una ech
                                 base_month = 6, # Mes base 
                                 base_year = 2019, # Año base
-                                ipc = "G") # Puede ser General ("G") o Regional ("R")
+                                index = "IPC", # Indice
+                                level = "G") # Puede ser General ("G") o Regional ("R")
 
 ```
 
-Para estimar una variable, por ejemplo, pobre06 que ya viene en la ECH calculada, elegimos la función de estimación adecuada, por ejemplo, get_estimation_mean() y definimos si queremos cruzarlo con alguna otra variable o hacer una estimación en un dominio (por ejemplo, solo el país urbano) y a nivel de hogares o personas. 
+Para estimar una variable, por ejemplo, `pobre06` que ya viene en la ECH calculada, elegimos la función de estimación adecuada, por ejemplo, `get_estimation_mean()` y definimos si queremos cruzarlo con alguna otra variable o hacer una estimación en un dominio (por ejemplo, solo el país urbano) y a nivel de hogares o personas. 
 
 
 ``` r

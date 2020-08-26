@@ -40,10 +40,7 @@ toy_ech_2018 <- household_type(data = ech::toy_ech_2018)
 }
 \seealso{
 Other demographic: 
-\code{\link{age_groups}()},
-\code{\link{integrated_poverty_measure}()},
-\code{\link{poverty}()},
-\code{\link{unsatisfied_basic_needs}()}
+\code{\link{age_groups}()}
 }
 \concept{demographic}
 \keyword{household_type}

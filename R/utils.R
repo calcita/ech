@@ -174,7 +174,7 @@ get_cba_cbna <- function(folder = tempdir(), sheet = NULL, region = NULL){
 #' @param sheet sheet number
 #' @importFrom readxl read_xls
 #' @importFrom janitor remove_empty
-#' @importFrom dplyr bind_rows slice filter_all bind_cols any_vars
+#' @importFrom dplyr bind_rows slice filter_all bind_cols any_vars mutate_all
 #' @importFrom tidyr fill
 #' @return data.frame
 #' @export
@@ -199,6 +199,88 @@ get_ipab <- function(folder = tempdir(), sheet = NULL){
   names(df) <- df[1,]
   df <- df %>% dplyr::slice(-1) %>% janitor::remove_empty("rows")
   df <- df %>% tidyr::fill(yy)
+  df <- df %>% dplyr::mutate_all(tolower) %>%
+    dplyr::mutate(
+      mm = dplyr::case_when(mm == "ene" ~ "01",
+                            mm == "feb" ~ "02",
+                            mm == "mar" ~ "03",
+                            mm == "abr" ~ "04",
+                            mm == "may" ~ "05",
+                            mm == "jun" ~ "06",
+                            mm == "jul" ~ "07",
+                            mm == "ago" ~ "08",
+                            mm == "set" ~ "09",
+                            mm == "oct" ~ "10",
+                            mm == "nov" ~ "11",
+                            TRUE ~ "12"),
+      dd = "01",
+      fecha = as.Date(paste(yy, mm, dd, sep ="-"))
+    ) %>% dplyr::select(fecha, indice)
+
+}
+
+#' This function allows you to get the IPAB (Indice de precios de alimentos y bebidas) data
+#'
+#' @param folder temporal folder
+#' @param sheet sheet number
+#' @param region Montevideo ("M"), Interior Urbano ("I")
+#'
+#' @importFrom readxl read_xls
+#' @importFrom janitor remove_empty
+#' @importFrom dplyr bind_rows slice filter_all bind_cols any_vars mutate
+#' @importFrom tidyr drop_na separate
+#' @return data.frame
+#' @export
+#'
+#' @examples
+#' get_ipab_region(folder = tempdir(), sheet = 1, region = "M")
+#'
+get_ipab_region <- function(folder = tempdir(), sheet = NULL, region = "M"){
+
+  if (region == "M") {
+    u <- "http://ine.gub.uy/c/document_library/get_file?uuid=c7628833-9b64-44a4-ac97-d13353ee79ac&groupId=10181"
+    f <- fs::path(folder, "IPC 3.1 indvarinc_ div M_B10_Mon.xls")
+  } else {
+    u <- "http://ine.gub.uy/c/document_library/get_file?uuid=61f9e884-781d-44be-9760-6d69f214b5b3&groupId=10181"
+    f <- fs::path(folder, "IPC 3.2 indvarinc_ div M_B10_Int.xls")
+  }
+
+  try(utils::download.file(u, f, mode = "wb", method = "libcurl"))
+  df <- readxl::read_xls(f, sheet = sheet)
+  df <- df[,-1] %>% janitor::remove_empty("rows")
+  df <- dplyr::bind_rows(dplyr::slice(df, 1), dplyr::filter_all(df, dplyr::any_vars(grepl(c('Alimentos y Bebidas No Alcoh'), .))))
+  names(df) <- df[1,]
+  df <- df %>% janitor::remove_empty("cols")
+  df <- df[,-1]
+  df <- t(df)
+  df <- data.frame(df)
+  df <- df %>% tidyr::drop_na()
+  df <- df %>% tidyr::separate(X1, sep = " ", into = c("mm", "yy"))
+  names(df) <- c("mm", "yy", "indice")
+  df <- df %>% dplyr::mutate_all(tolower) %>%
+    dplyr::mutate(
+      mm = dplyr::case_when(mm == "enero" ~ "01",
+                            mm == "febrero" ~ "02",
+                            mm == "marzo" ~ "03",
+                            mm == "abril" ~ "04",
+                            mm == "mayo" ~ "05",
+                            mm == "junio" ~ "06",
+                            mm == "julio" ~ "07",
+                            mm == "agosto" ~ "08",
+                            mm == "setiembre" ~ "09",
+                            mm == "octubre" ~ "10",
+                            mm == "noviembre" ~ "11",
+                            TRUE ~ "12"),
+      dd = "01",
+      fecha = as.Date(paste(yy, mm, dd, sep ="-"))
+    ) %>% dplyr::select(fecha, indice)
+
+  if (region == "M") {
+    ipab_base2010_mdeo <- df
+  }
+  else{
+    ipab_base2010_int <- df
+  }
 
 }
 
@@ -231,10 +313,11 @@ get_ciiu <- function(folder = tempdir(),
 }
 
 #' This function allows you to calculate a deflate variable
-#' @family utils
+#' @family income
 #' @param base_month baseline month
 #' @param base_year baseline year
-#' @param ipc General IPC ('G'), Montevideo IPC ('M') or Interior IPC ('I')
+#' @param index IPC or IPAB
+#' @param level General index ('G'), Montevideo index ('M') or Interior index ('I')
 #' @param df_year ECH year
 #' @importFrom dplyr select slice mutate
 #' @importFrom rlang .data
@@ -244,25 +327,32 @@ get_ciiu <- function(folder = tempdir(),
 #' Aviso: El script no es un producto oficial de INE.
 #' @examples
 #' \donttest{
-#' deflate(base_month = 6, base_year = 2016, df_year = 2018)
+#' deflate(base_month = 6, base_year = 2016, index = "IPC", level = "G", df_year = 2018)
 #' }
 
 deflate <- function(base_month = NULL,
                     base_year = NULL,
-                    ipc = "G",
+                    index = "IPC",
+                    level = "G",
                     df_year = NULL) {
 
   if (nchar(as.character(base_month)) == 1){
     base_month <- paste0("0", base_month)
   }
 
-  if (ipc == "G") {
+  if (index == "IPC" & level == "G") {
      df <- ech::ipc_base2010
-   }  else if (ipc == "M"){
+   }  else if (index == "IPC" & level == "M"){
     df <- ech::ipc_base2010_mdeo
-   } else {
+   } else if (index == "IPC" & level == "I"){
      df <- ech::ipc_base2010_int
-  }
+   } else if (index == "IPAB" & level == "G"){
+     df <- ech::ipab_base2010
+   }  else if (index == "IPAB" & level == "M"){
+     df <- ech::ipab_base2010_mdeo
+   } else {
+     df <- ech::ipab_base2010_int
+   }
 
      mes_base <- df %>%
        dplyr::filter(fecha == paste0(base_year, "-", base_month, "-01")) %>%

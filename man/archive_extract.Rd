@@ -25,7 +25,6 @@ archive_extract()
 }
 \seealso{
 Other utils: 
-\code{\link{deflate}()},
 \code{\link{unlabelled}()}
 }
 \concept{utils}

@@ -4,14 +4,22 @@
 \alias{deflate}
 \title{This function allows you to calculate a deflate variable}
 \usage{
-deflate(base_month = NULL, base_year = NULL, ipc = "G", df_year = NULL)
+deflate(
+  base_month = NULL,
+  base_year = NULL,
+  index = "IPC",
+  level = "G",
+  df_year = NULL
+)
 }
 \arguments{
 \item{base_month}{baseline month}
 
 \item{base_year}{baseline year}
 
-\item{ipc}{General IPC ('G'), Montevideo IPC ('M') or Interior IPC ('I')}
+\item{index}{IPC or IPAB}
+
+\item{level}{General index ('G'), Montevideo index ('M') or Interior index ('I')}
 
 \item{df_year}{ECH year}
 }
@@ -24,12 +32,15 @@ Aviso: El script no es un producto oficial de INE.
 }
 \examples{
 \donttest{
-deflate(base_month = 6, base_year = 2016, df_year = 2018)
+deflate(base_month = 6, base_year = 2016, index = "IPC", level = "G", df_year = 2018)
 }
 }
 \seealso{
-Other utils: 
-\code{\link{archive_extract}()},
-\code{\link{unlabelled}()}
+Other income: 
+\code{\link{basket_goods}()},
+\code{\link{income_constant_prices}()},
+\code{\link{income_quantiles}()},
+\code{\link{labor_income_per_capita}()},
+\code{\link{labor_income_per_hour}()}
 }
-\concept{utils}
+\concept{income}

@@ -103,10 +103,8 @@ toy_ech_18 <- years_of_schooling(toy_ech_18)
 toy_ech_18 <- unsatisfied_basic_needs(toy_ech_18)
 }
 \seealso{
-Other demographic: 
-\code{\link{age_groups}()},
-\code{\link{household_type}()},
+Other poverty: 
 \code{\link{integrated_poverty_measure}()},
 \code{\link{poverty}()}
 }
-\concept{demographic}
+\concept{poverty}

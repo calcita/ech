@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">ech</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.18</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.19</span>
       </span>
     </div>
 
@@ -63,6 +63,9 @@
     </li>
     <li>
       <a href="articles/estimacion_ingresos.html">Estimación de ingresos</a>
+    </li>
+    <li>
+      <a href="articles/medicion_pobreza.html">Medición de la pobreza</a>
     </li>
   </ul>
 </li>
@@ -110,9 +113,12 @@
 <h1 class="hasAnchor">
 <a href="#funciones-para-leer-datos" class="anchor"></a>Funciones para leer datos</h1>
 <p>Una serie de funciones del paquete que se usan internamente permiten descargar de la página del INE y convertir a un formato tidy los datos de: Índice de Precios al Consumo (IPC con base 2010), el Índice de Precios de Alimentos y Bebidas (IPAB con base 2010), Canasta Básica Alimentaria y No Alimentaria (CBA y CBNA), la codigue de CIIU4, los microdatos de cada ECH y sus respectivos diccionarios para los años 2011 a 2019.</p>
-<ul>
-<li><h1 id="funciones-para-crear-variables">Funciones para crear variables</h1></li>
-</ul>
+<ul><li>
+</li></ul>
+</div>
+<div id="funciones-para-crear-variables" class="section level1">
+<h1 class="hasAnchor">
+<a href="#funciones-para-crear-variables" class="anchor"></a>Funciones para crear variables</h1>
 <p>Las funciones para crear variables se organizan según la dimensión a la cual corresponden, así tenemos:</p>
 <ul>
 <li><p>Vivienda (Dwelling): permite calcular la situación estructural y coyuntural de la vivienda, las privaciones de la vivienda, hacinamiento y la tenencia de la vivienda.</p></li>
@@ -129,14 +135,11 @@
 <p>Se pueden estimar medias y proporciones, totales y ratios. Para los años 2018 y 2019 se cuenta con la información de las UPM (Unidades Primarias de Muestreo) y estratos por lo cual es posible definir correctamente el diseño de muestra y obtener intervalos de confianza correctos.</p>
 <ul>
 <li>
-<code><a href="reference/get_estimation_mean.html">get_estimation_mean()</a></code>:<br>
-</li>
+<code><a href="reference/get_estimation_mean.html">get_estimation_mean()</a></code>:</li>
 <li>
-<code><a href="reference/get_estimation_total.html">get_estimation_total()</a></code>:<br>
-</li>
+<code><a href="reference/get_estimation_total.html">get_estimation_total()</a></code>:</li>
 <li>
-<code><a href="reference/get_estimation_ratio.html">get_estimation_ratio()</a></code>:<br>
-</li>
+<code><a href="reference/get_estimation_ratio.html">get_estimation_ratio()</a></code>:</li>
 <li>
 <code><a href="reference/get_estimation_gini.html">get_estimation_gini()</a></code>:</li>
 </ul>
@@ -197,7 +200,8 @@
 <p>Y con esto, podemos hacer un mapa con <code>ggplot2</code> muy fácilmente de estas estimaciones.</p>
 <div class="sourceCode" id="cb8"><pre class="r"><span class="co"># Hago un mapa</span>
 
-<span class="kw pkg">geouy</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/geouy/man/plot_geouy.html">plot_geouy</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">pobre_x_dpto_geo</span>, <span class="kw">col</span> <span class="kw">=</span> <span class="st">"Pobreza"</span>, <span class="kw">labels</span> <span class="kw">=</span> <span class="st">"%"</span>)</pre></div>
+<span class="fu"><a href="reference/plot_geouy.html">plot_geouy</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">pobre_x_dpto_geo</span>, <span class="kw">col</span> <span class="kw">=</span> <span class="st">"Pobreza"</span>, <span class="kw">l</span> <span class="kw">=</span> <span class="st">"%"</span>)</pre></div>
+<p><img src="reference/figures/pobre_readme.png" width="100%" style="display: block; margin: auto;"></p>
 <div id="aportes-de-la-comunidad" class="section level2">
 <h2 class="hasAnchor">
 <a href="#aportes-de-la-comunidad" class="anchor"></a>Aportes de la comunidad</h2>

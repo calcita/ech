@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ech</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.18</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.19</span>
       </span>
     </div>
 
@@ -61,6 +61,9 @@
     </li>
     <li>
       <a href="../articles/estimacion_ingresos.html">Estimación de ingresos</a>
+    </li>
+    <li>
+      <a href="../articles/medicion_pobreza.html">Medición de la pobreza</a>
     </li>
   </ul>
 </li>
@@ -105,23 +108,30 @@
 <span class="co">#&gt; 6 2019-12-01 203.0200000000… -0.02999999999999… 8.789999999999… 8.7899999999999…</span></pre></body></html></div>
 <p>Previamente tenemos que tener cargado el objeto con los microdatos de la ECH. Las variables a tener en cuenta en esta parte son</p>
 <ul>
-<li>ht11: Ingreso total del hogar con valor locativo sin servicio doméstico ht11<br>
-</li>
-<li>ht13: Valor locativo ht13<br>
-</li>
-<li>ht19: Cantidad de personas sin servicio doméstico</li>
+<li>
+<code>ht11</code>: Ingreso total del hogar con valor locativo sin servicio doméstico</li>
+<li>
+<code>ht13</code>: Valor locativo</li>
+<li>
+<code>ht19</code>: Cantidad de personas sin servicio doméstico</li>
 </ul>
 <div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ech</span>)
-<span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/get_microdata.html">get_microdata</a></span>(<span class="kw">year</span> <span class="kw">=</span> <span class="fl">2019</span>)</pre></body></html></div>
+<span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/get_microdata.html">get_microdata</a></span>(<span class="kw">year</span> <span class="kw">=</span> <span class="fl">2019</span>)
+<span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/organize_names.html">organize_names</a></span>(<span class="no">df</span>)</pre></body></html></div>
 <p>Para convertir los ingresos del hogar, que están medidos en la variable ht11, de precios corrientes a precios constantes, usamos la función <code><a href="../reference/income_constant_prices.html">income_constant_prices()</a></code> y definimos sus parámetros: mes base, año base y el tipo de ipc que puede ser “G” para todo el país sin distinción de regiones o “R” que usa el IPC de Montevideo y el del Interior.</p>
-<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/income_constant_prices.html">income_constant_prices</a></span>(<span class="no">df</span>, <span class="kw">base_month</span> <span class="kw">=</span> , <span class="kw">base_year</span> <span class="kw">=</span> , <span class="kw">ipc</span> <span class="kw">=</span> <span class="st">"G"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/income_constant_prices.html">income_constant_prices</a></span>(<span class="no">df</span>, <span class="kw">base_month</span> <span class="kw">=</span> , <span class="kw">base_year</span> <span class="kw">=</span> , <span class="kw">index</span> <span class="kw">=</span> <span class="st">"IPC"</span>, <span class="kw">level</span> <span class="kw">=</span> <span class="st">"G"</span>)</pre></body></html></div>
 <p>Esto crea una serie de variables:</p>
 <ul>
-<li>y_pc: ingreso per cápita a precios corrientes</li>
-<li>y_pc_d: ingreso per cápita a precios constantes</li>
-<li>rv_d: valor locativo a precios constantes</li>
-<li>y_wrv_d: ingreso sin valor locativo a precios constantes</li>
-<li>y_wrv_pc_d: ingreso sin valor locativo per cápita a precios constantes</li>
+<li>
+<code>y_pc</code>: ingreso per cápita a precios corrientes</li>
+<li>
+<code>y_pc_d</code>: ingreso per cápita a precios constantes</li>
+<li>
+<code>rv_d</code>: valor locativo a precios constantes</li>
+<li>
+<code>y_wrv_d</code>: ingreso sin valor locativo a precios constantes</li>
+<li>
+<code>y_wrv_pc_d</code>: ingreso sin valor locativo per cápita a precios constantes</li>
 </ul>
 <p>Para obtener la estimación de alguna de estas variables usamos la función <code><a href="../reference/get_estimation_mean.html">get_estimation_mean()</a></code>, para estimar la media, o <code><a href="../reference/get_estimation_total.html">get_estimation_total()</a></code>, para estimar el total. Estas funciones tienen algunos argumentos que refieren al diseño de muestreo como:</p>
 <ul>
@@ -131,11 +141,12 @@
 <li>pesoano: se debe indicar la variable uqe identifica los pesos asociados a cada hogar.</li>
 </ul>
 <p>Es necesario definir ids y estrato que vienen con valor por defecto NULL, las demás no es necesario definir porque ya vienen con el nombre de la variable por defecto, salvo que se usen registros de un mes o semestre en ese caso se debe cambiar el ponderador de los casos según corresponda.</p>
-<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="fu"><a href="../reference/get_estimation_mean.html">get_estimation_mean</a></span>(<span class="no">df</span>, <span class="kw">variable</span> <span class="kw">=</span> <span class="st">"y_pc_d"</span>, <span class="kw">level</span> <span class="kw">=</span> <span class="st">"i"</span>, <span class="kw">ids</span> <span class="kw">=</span> <span class="st">"upm_fic"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="fu"><a href="../reference/get_estimation_mean.html">get_estimation_mean</a></span>(<span class="no">df</span>, <span class="kw">variable</span> <span class="kw">=</span> <span class="st">"y_pc_d"</span>, <span class="kw">level</span> <span class="kw">=</span> <span class="st">"i"</span>, <span class="kw">ids</span> <span class="kw">=</span> <span class="st">"upm"</span>, <span class="kw">estrato</span> <span class="kw">=</span> <span class="st">"estrato"</span>)</pre></body></html></div>
 <p>Para estimar el ingreso medio de los hogares a precios constantes de junio 2019 según decil, se debe definir en el argumento by.x la variable decil, previamente calculada con <code>income_quantile()</code>.</p>
 <div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/income_quantiles.html">income_quantiles</a></span>(<span class="no">df</span>, <span class="kw">income</span> <span class="kw">=</span> <span class="st">"y_pc_d"</span>, <span class="kw">quantile</span> <span class="kw">=</span> <span class="fl">10</span>)
+
 <span class="co"># Estimación de ingresos promedio per cápita a pesos constantes de jun/19 según decil</span>
-<span class="fu"><a href="../reference/get_estimation_mean.html">get_estimation_mean</a></span>(<span class="no">df</span>, <span class="kw">variable</span> <span class="kw">=</span> <span class="st">"y_pc_d"</span>, <span class="kw">by.x</span> <span class="kw">=</span> <span class="st">"decil"</span>, <span class="kw">level</span> <span class="kw">=</span> <span class="st">"i"</span>)</pre></body></html></div>
+<span class="fu"><a href="../reference/get_estimation_mean.html">get_estimation_mean</a></span>(<span class="no">df</span>, <span class="kw">variable</span> <span class="kw">=</span> <span class="st">"y_pc_d"</span>, <span class="kw">by.x</span> <span class="kw">=</span> <span class="st">"decil"</span>, <span class="kw">level</span> <span class="kw">=</span> <span class="st">"i"</span>, <span class="kw">ids</span> <span class="kw">=</span> <span class="st">"upm"</span>, <span class="kw">estrato</span> <span class="kw">=</span> <span class="st">"estrato"</span>)</pre></body></html></div>
 <p>Una forma de mostrar estos resultados es mediante un gráfico como el siguiente:</p>
   </div>
 

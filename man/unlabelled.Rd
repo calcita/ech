@@ -20,7 +20,6 @@ df <- unlabelled(data = ech::toy_ech_2018)
 }
 \seealso{
 Other utils: 
-\code{\link{archive_extract}()},
-\code{\link{deflate}()}
+\code{\link{archive_extract}()}
 }
 \concept{utils}

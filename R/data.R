@@ -757,10 +757,9 @@
 
 #' A dataset containing the IPAB
 #' @family dataset
-#' @format A data frame with 286 rows and 3 variables:
+#' @format A data frame with 286 rows and 2 variables:
 #' \describe{
-#'   \item{yy}{date from 1997 to 2020}
-#'   \item{mm}{month}
+#'   \item{fecha}{date from 1997 to 2020}
 #'   \item{indice}{IPAB}
 #'  }
 #' @source \url{http://www.ine.gub.uy/}
@@ -768,6 +767,32 @@
 #' Disclaimer: This script is not an official INE product.
 #' Aviso: El script no es un producto oficial de INE.
 "ipab_base2010"
+
+#' A dataset containing the IPAB for the Interior region
+#' @family dataset
+#' @format A data frame with 108 rows and 2 variables:
+#' \describe{
+#'   \item{fecha}{date from 2011 to 2019}
+#'   \item{indice}{IPAB}
+#'  }
+#' @source \url{http://www.ine.gub.uy/}
+#' @details
+#' Disclaimer: This script is not an official INE product.
+#' Aviso: El script no es un producto oficial de INE.
+"ipab_base2010_int"
+
+#' A dataset containing the IPAB for the Montevideo region
+#' @family dataset
+#' @format A data frame with 108 rows and 2 variables:
+#' \describe{
+#'   \item{fecha}{date from 2011 to 2019}
+#'   \item{indice}{IPAB}
+#'  }
+#' @source \url{http://www.ine.gub.uy/}
+#' @details
+#' Disclaimer: This script is not an official INE product.
+#' Aviso: El script no es un producto oficial de INE.
+"ipab_base2010_mdeo"
 
 
 #' A dataset containing the urls of INE datasets and diccionaries

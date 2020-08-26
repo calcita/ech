@@ -512,7 +512,7 @@ get_estimation_ratio <- function(data = ech::toy_ech_2018,
 #'
 #' @examples
 #' \donttest{
-#' toy_ech_2018 <- income_constant_prices(data = ech::toy_ech_2018, ipc = "R",
+#' toy_ech_2018 <- income_constant_prices(data = ech::toy_ech_2018, index = "IPC, level = "R",
 #'                                        base_month = "01", base_year = "2005")
 #' get_estimation_gini(data = toy_ech_2018, variable = "y_wrv_pc_d_r", level = "i")
 #'}
@@ -535,49 +535,55 @@ get_estimation_gini <- function(data = ech::toy_ech_2018,
   assertthat::assert_that(all(numero %in% names(data)), msg = glue::glue("Sorry... :( \n {numero} is not in {data}"))
 
   if (level == "h"){
-    d <- data %>% dplyr::filter(duplicated(numero) == FALSE) %>% as.data.frame()
+    d <- data %>% dplyr::filter(duplicated(numero) == FALSE) %>%
+      tidyr::drop_na(variable)
   } else{
-    d <- as.data.frame(data)
+    d <- data %>%
+      tidyr::drop_na(variable)
   }
 
-  income <- d[,variable]
-  pesoano <- d[, pesoano]
-  if(is.null(r))r <- 100
+  d <- d %>% dplyr::select(!!!syms(c(variable, by, ids, estrato, pesoano))) %>%
+    unlabelled()
+
+ d <- as.data.frame(d)
+ v <- as.numeric(d[, variable])
+ p <- as.integer(d[, pesoano])
+
+  if(is.null(r)) r <- 200
 
   if(is.null(by) & isFALSE(bootstrap) & is.null(ids)){
-     estimation <- laeken::gini(inc = income, weights = pesoano)
+     estimation <- laeken::gini(inc = v, weights = p)
+     estimation <- data.frame(estimation[[1]])
+     names(estimation) <- "Value"
   } else if (is.character(by) & is.null(bootstrap) & is.null(ids)){
-    by <-  as.factor((d[, by]))
-    estimation <- laeken::gini(inc = income, weights = pesoano, breakdown = by)
+    b <- as.factor(d[, by])
+    estimation <- laeken::gini(inc = v, weights = p, breakdown = b)
+    value <- estimation[[2]]
+    value_total <- data.frame(dplyr::bind_cols("Total", estimation[[1]]))
+    names(value_total) <- names(value)
+    estimation <- dplyr::bind_rows(value, value_total)
   } else if (is.null(by) & isFALSE(bootstrap) & is.character(ids)){
-     estrato <- as.integer(d[, estrato])
-     ids <-  as.integer(d[, ids])
-     estimation <- laeken::gini(inc = income, weights = pesoano, design = estrato, cluster = ids)
+     e <- as.integer(d[, estrato])
+     i <-  as.integer(d[, ids])
+     estimation <- laeken::gini(inc = v, weights = p, design = e, cluster = i)
+     estimation <- data.frame(estimation[[1]])
+     names(estimation) <- "Value"
   } else if (is.null(by) & isTRUE(bootstrap) & is.null(ids)){
-    estimation <- laeken::gini(inc = income, weights = pesoano,var = "bootstrap", bootType = "naive",
-                               seed = 1234, R = r)
+    estimation <- laeken::gini(inc = v, weights = p, var = "bootstrap", bootType = "naive", seed = 1234, R = r)
+    value <- estimation[[1]]
+    var <- estimation[[4]]
+    ci <- estimation[[6]]
+    #estimation <- dplyr::bind_cols(value, var, ci)
   } else if (is.character(by) & isFALSE(bootstrap) & is.character(ids)){
-    by <-  as.factor((d[, by]))
-    estrato <- as.integer(d[, estrato])
-    ids <-  as.integer(d[, ids])
-    estimation <- laeken::gini(inc = income, weights = pesoano, breakdown = by, design = estrato, cluster = ids)
+    b <- as.factor(d[, by])
+    e <- as.integer(d[, estrato])
+    i <-  as.integer(d[, ids])
+    estimation <- laeken::gini(inc = v, weights = p, breakdown = b, design = e, cluster = i)
+    value <- estimation[[2]]
+    value_total <- data.frame(dplyr::bind_cols("Total", estimation[[1]]))
+    names(value_total) <- names(value)
   } else if (is.character(by) & isTRUE(bootstrap) & is.null(ids)){
-    by <-  as.factor((d[, by]))
-    estimation <- laeken::gini(inc = income, weights = pesoano, breakdown = by, var = "bootstrap", bootType = "naive",
-                               seed = 1234, R = r)
-  } else if (is.null(by) & isTRUE(bootstrap) & is.character(ids)){
-    estrato <- as.integer(d[, estrato])
-    ids <-  as.integer(d[, ids])
-    estimation <- laeken::gini(inc = income, weights = pesoano, design = estrato, cluster = ids,
-                               var = "bootstrap", bootType = "naive", seed = 1234, R = r)
-  } else{
-    by <-  as.factor((d[, by]))
-    estrato <- as.integer(d[, estrato])
-    ids <-  as.integer(d[, ids])
-    estimation <- laeken::gini(inc = income, weights = pesoano, design = estrato, cluster = ids,
-                               var = "bootstrap", bootType = "naive", breakdown = by, seed = 1234, R = r)
-  }
-  if(!is.null(by)){
+    estimation <- laeken::gini(inc = v, weights = p, breakdown = b, var = "bootstrap", bootType = "naive", seed = 1234, R = r)
     suppressMessages({
       value <- estimation[[2]]
       value_total <- data.frame(dplyr::bind_cols("Total",estimation[[1]]))
@@ -593,11 +599,18 @@ get_estimation_gini <- function(data = ech::toy_ech_2018,
       ci_total <- data.frame(dplyr::bind_cols("Total",estimation[[6]][1], estimation[[6]][2]))
       names(ci_total) <- names(ci)
       ci <- dplyr::bind_rows(ci, ci_total)
-
       estimation <- dplyr::bind_cols(value, var[2], ci[, 2:3])
     })
-  } else {
-    estimation <- estimation[[1]]
+
+  } else if (is.null(by) & isTRUE(bootstrap) & is.character(ids)){
+    e <- as.integer(d[, estrato])
+    i <-  as.integer(d[, ids])
+    estimation <- laeken::gini(inc = v, weights = p, design = e, cluster = i, var = "bootstrap", bootType = "naive", seed = 1234, R = r)
+  } else{
+    by <-  as.factor((d[, by]))
+    estrato <- as.integer(d[, estrato])
+    ids <-  as.integer(d[, ids])
+    estimation <- laeken::gini(inc = v, weights = p, design = e, cluster = ids, var = "bootstrap", bootType = "naive", breakdown = by, seed = 1234, R = r)
   }
 
   return(estimation)
@@ -662,32 +675,32 @@ get_estimation_gpg <- function(data = ech::toy_ech_2018,
 #' @export
 #'
 #' @examples
-#' toy_ech_2018 <- income_constant_prices(data = ech::toy_ech_2018, ipc = "R",
+#' toy_ech_2018 <- income_constant_prices(data = ech::toy_ech_2018, index = "IPC", level = "R",
 #'                                        base_month = "01", base_year = "2005")
 #' get_estimation_qsr(data = toy_ech_2018, variable = "y_wrv_pc_d_r", pesoano = "pesoano")
-
-get_estimation_qsr <- function(data = ech::toy_ech_2018,
-                               variable = "y_wrv_pc_d_r",
-                               by = NULL,
-                               ids = NULL,
-                               estrato = NULL,
-                               pesoano = "pesoano"){
-
-  d <- data %>% dplyr::select(!!!syms(c(variable, by, ids, estrato, pesoano))) %>%
-    unlabelled()
-
-  d <- d %>%  tidyr::drop_na()
-  d <- as.data.frame(d)
-
-  if(is.null(by) & is.null(ids)){
-    estimation <- laeken::qsr(inc = variable, weights = pesoano, data = d)
-  } else if (is.character(by) & is.null(ids)){
-    estimation <- laeken::qsr(inc = variable, weights = pesoano, breakdown = by, data = d)
-  } else if (is.null(by) & is.character(ids)){
-    estimation <- laeken::qsr(inc = variable, weights = pesoano, design = estrato, cluster = ids, data = d)
-  } else{
-    estimation <- laeken::qsr(inc = variable, weights = pesoano, breakdown = by, design = estrato, cluster = ids, data = d)
-  }
-  return(estimation)
-
-}
+#
+# get_estimation_qsr <- function(data = ech::toy_ech_2018,
+#                                variable = "y_wrv_pc_d_r",
+#                                by = NULL,
+#                                ids = NULL,
+#                                estrato = NULL,
+#                                pesoano = "pesoano"){
+#
+#   d <- data %>% dplyr::select(!!!syms(c(variable, by, ids, estrato, pesoano))) %>%
+#     unlabelled()
+#
+#   d <- d %>%  tidyr::drop_na()
+#   d <- as.data.frame(d)
+#
+#   if(is.null(by) & is.null(ids)){
+#     estimation <- laeken::qsr(inc = variable, weights = pesoano, data = d)
+#   } else if (is.character(by) & is.null(ids)){
+#     estimation <- laeken::qsr(inc = variable, weights = pesoano, breakdown = by, data = d)
+#   } else if (is.null(by) & is.character(ids)){
+#     estimation <- laeken::qsr(inc = variable, weights = pesoano, design = estrato, cluster = ids, data = d)
+#   } else{
+#     estimation <- laeken::qsr(inc = variable, weights = pesoano, breakdown = by, design = estrato, cluster = ids, data = d)
+#   }
+#   return(estimation)
+#
+# }

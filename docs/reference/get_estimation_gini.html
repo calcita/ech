@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ech</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.18</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.19</span>
       </span>
     </div>
 
@@ -102,6 +102,9 @@
     </li>
     <li>
       <a href="../articles/estimacion_ingresos.html">Estimación de ingresos</a>
+    </li>
+    <li>
+      <a href="../articles/medicion_pobreza.html">Medición de la pobreza</a>
     </li>
   </ul>
 </li>
@@ -142,7 +145,8 @@
   <span class='kw'>numero</span> <span class='kw'>=</span> <span class='st'>"numero"</span>,
   <span class='kw'>estrato</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>pesoano</span> <span class='kw'>=</span> <span class='st'>"pesoano"</span>,
-  <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"estimacion"</span>
+  <span class='kw'>bootstrap</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>r</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -154,19 +158,19 @@
     </tr>
     <tr>
       <th>variable</th>
-      <td><p>income without rental value per capita deflated</p></td>
+      <td><p>Variable name of income without rental value per capita deflated</p></td>
     </tr>
     <tr>
       <th>by</th>
-      <td><p>variable</p></td>
+      <td><p>data frame column</p></td>
     </tr>
     <tr>
       <th>level</th>
-      <td><p>household or individual</p></td>
+      <td><p>is household ("h") or individual ("i").</p></td>
     </tr>
     <tr>
       <th>ids</th>
-      <td><p>upm</p></td>
+      <td><p>Variable name of cluster</p></td>
     </tr>
     <tr>
       <th>numero</th>
@@ -181,8 +185,12 @@
       <td><p>Variable name of weights</p></td>
     </tr>
     <tr>
-      <th>name</th>
-      <td><p>nombre</p></td>
+      <th>bootstrap</th>
+      <td><p>Logical value</p></td>
+    </tr>
+    <tr>
+      <th>r</th>
+      <td><p>A number of replicas</p></td>
     </tr>
     </table>
 
@@ -196,7 +204,10 @@ Aviso: El script no es un producto oficial de INE.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other estimation: 
+<code><a href='get_estimation_gpg.html'>get_estimation_gpg</a>()</code>,
 <code><a href='get_estimation_mean.html'>get_estimation_mean</a>()</code>,
+<code><a href='get_estimation_median.html'>get_estimation_median</a>()</code>,
+<code><a href='get_estimation_qsr.html'>get_estimation_qsr</a>()</code>,
 <code><a href='get_estimation_ratio.html'>get_estimation_ratio</a>()</code>,
 <code><a href='get_estimation_total.html'>get_estimation_total</a>()</code>,
 <code><a href='set_design.html'>set_design</a>()</code></p></div>
@@ -204,14 +215,13 @@ Aviso: El script no es un producto oficial de INE.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
 <span class='no'>toy_ech_2018</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='income_constant_prices.html'>income_constant_prices</a></span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ech</span><span class='kw ns'>::</span><span class='no'><a href='toy_ech_2018.html'>toy_ech_2018</a></span>, <span class='kw'>ipc</span> <span class='kw'>=</span> <span class='st'>"R"</span>,
- <span class='kw'>base_month</span> <span class='kw'>=</span> <span class='st'>"01"</span>, <span class='kw'>base_year</span> <span class='kw'>=</span> <span class='st'>"2005"</span>)</div><div class='output co'>#&gt; <span class='message'>Variables have been created: </span>
+                                       <span class='kw'>base_month</span> <span class='kw'>=</span> <span class='st'>"01"</span>, <span class='kw'>base_year</span> <span class='kw'>=</span> <span class='st'>"2005"</span>)</div><div class='output co'>#&gt; <span class='message'>Variables have been created: </span>
 #&gt; <span class='message'> 	 deflate_r (Deflactor regional) &amp;</span>
 #&gt; <span class='message'>                y_pc (income per capita current prices / ingreso per capita a precios corrientes)</span>
 #&gt; <span class='message'>                y_pc_d_r (income per capita deflated / ingreso per capita deflactado);</span>
 #&gt; <span class='message'>                rv_d_r (rental value deflated / valor locativo deflactado);</span>
 #&gt; <span class='message'>                y_wrv_d_r (income without rental value deflated / ingreso sin valor locativo deflactado) &amp;</span>
-#&gt; <span class='message'>                y_wrv_pc_d_r (income without rental value per capita deflated / ingreso sin valor locativo per capita deflactado)</span></div><div class='input'><span class='fu'>get_estimation_gini</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>toy_ech_2018</span>, <span class='kw'>level</span> <span class='kw'>=</span> <span class='st'>"h"</span>)</div><div class='output co'>#&gt;                 gini     SE
-#&gt; y_wrv_pc_d_r 0.36685 0.0155</div><div class='input'># }
+#&gt; <span class='message'>                y_wrv_pc_d_r (income without rental value per capita deflated / ingreso sin valor locativo per capita deflactado)</span></div><div class='input'><span class='fu'>get_estimation_gini</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>toy_ech_2018</span>, <span class='kw'>variable</span> <span class='kw'>=</span> <span class='st'>"y_wrv_pc_d_r"</span>, <span class='kw'>level</span> <span class='kw'>=</span> <span class='st'>"i"</span>)</div><div class='output co'>#&gt; [1] 37.6809</div><div class='input'># }
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

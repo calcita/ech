@@ -8,7 +8,8 @@ income_constant_prices(
   data = ech::toy_ech_2018,
   base_month = 6,
   base_year = 2018,
-  ipc = "G",
+  index = "IPC",
+  level = "G",
   mes = "mes",
   ht11 = "ht11",
   ht13 = "ht13",
@@ -22,7 +23,9 @@ income_constant_prices(
 
 \item{base_year}{baseline year}
 
-\item{ipc}{General ("G") or Regional ("R")}
+\item{index}{IPC or IPAB}
+
+\item{level}{General ("G") or Regional ("R")}
 
 \item{mes}{month}
 
@@ -50,6 +53,7 @@ toy_ech_2018 <- income_constant_prices(data = ech::toy_ech_2018)
 \seealso{
 Other income: 
 \code{\link{basket_goods}()},
+\code{\link{deflate}()},
 \code{\link{income_quantiles}()},
 \code{\link{labor_income_per_capita}()},
 \code{\link{labor_income_per_hour}()}

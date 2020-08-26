@@ -11,4 +11,6 @@ ipc_base2010_mdeo <- ech::ipc_base2010 %>%
   dplyr::select(fecha, indice) %>%
   dplyr::bind_rows(., ipc_base2010_mdeo)
 
+ipc_base2010_mdeo[117, "fecha"] = as.Date("2014-09-01")
+
 usethis::use_data(ipc_base2010_mdeo, overwrite = TRUE)

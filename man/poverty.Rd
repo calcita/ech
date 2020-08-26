@@ -43,10 +43,8 @@ Aviso: El script no es un producto oficial de INE.
 toy_ech_2018 <- poverty(data = ech::toy_ech_2018)
 }
 \seealso{
-Other demographic: 
-\code{\link{age_groups}()},
-\code{\link{household_type}()},
+Other poverty: 
 \code{\link{integrated_poverty_measure}()},
 \code{\link{unsatisfied_basic_needs}()}
 }
-\concept{demographic}
+\concept{poverty}

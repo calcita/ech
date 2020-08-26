@@ -29,28 +29,29 @@ tail(ech::ipc_base2010)
 
 Previamente tenemos que tener cargado el objeto con los microdatos de la ECH. Las variables a tener en cuenta en esta parte son 
 
-- ht11: Ingreso total del hogar con valor locativo sin servicio doméstico 	ht11 	
-- ht13: Valor locativo 	ht13 	
-- ht19: Cantidad de personas sin servicio doméstico 
+- `ht11`: Ingreso total del hogar con valor locativo sin servicio doméstico 
+- `ht13`: Valor locativo 
+- `ht19`: Cantidad de personas sin servicio doméstico 
 
 ```{r eval = FALSE}
 library(ech)
 df <- get_microdata(year = 2019)
+df <- organize_names(df)
 ```
 
 Para convertir los ingresos del hogar, que están medidos en la variable ht11, de precios corrientes a precios constantes, usamos la función `income_constant_prices()` y definimos sus parámetros: mes base, año base y el tipo de ipc que puede ser "G" para todo el país sin distinción de regiones o "R" que usa el IPC de Montevideo y el del Interior.
 
 ```{r eval = FALSE}
-df <- income_constant_prices(df, base_month = , base_year = , ipc = "G")
+df <- income_constant_prices(df, base_month = , base_year = , index = "IPC", level = "G")
 ```
 
 Esto crea una serie de variables:
 
-- y_pc: ingreso per cápita a precios corrientes
-- y_pc_d: ingreso per cápita a precios constantes
-- rv_d: valor locativo a precios constantes
-- y_wrv_d: ingreso sin valor locativo a precios constantes
-- y_wrv_pc_d: ingreso sin valor locativo per cápita a precios constantes
+- `y_pc`: ingreso per cápita a precios corrientes
+- `y_pc_d`: ingreso per cápita a precios constantes
+- `rv_d`: valor locativo a precios constantes
+- `y_wrv_d`: ingreso sin valor locativo a precios constantes
+- `y_wrv_pc_d`: ingreso sin valor locativo per cápita a precios constantes
 
 Para obtener la estimación de alguna de estas variables usamos la función `get_estimation_mean()`, para estimar la media, o `get_estimation_total()`, para estimar el total. Estas funciones tienen algunos argumentos que refieren al diseño de muestreo como: 
 
@@ -62,16 +63,16 @@ Para obtener la estimación de alguna de estas variables usamos la función `get
 Es necesario definir ids y estrato que vienen con valor por defecto NULL, las demás no es necesario definir porque ya vienen con el nombre de la variable por defecto, salvo que se usen registros de un mes o semestre en ese caso se debe cambiar el ponderador de los casos según corresponda.
 
 ```{r eval = FALSE}
-get_estimation_mean(df, variable = "y_pc_d", level = "i", ids = "upm_fic")
+get_estimation_mean(df, variable = "y_pc_d", level = "i", ids = "upm", estrato = "estrato")
 ```
-
 
 Para estimar el ingreso medio de los hogares a precios constantes de junio 2019 según decil, se debe definir en el argumento by.x la variable decil, previamente calculada con `income_quantile()`.
 
 ```{r eval = FALSE}
 df <- income_quantiles(df, income = "y_pc_d", quantile = 10)
+
 # Estimación de ingresos promedio per cápita a pesos constantes de jun/19 según decil
-get_estimation_mean(df, variable = "y_pc_d", by.x = "decil", level = "i")
+get_estimation_mean(df, variable = "y_pc_d", by.x = "decil", level = "i", ids = "upm", estrato = "estrato")
 ```
 
 Una forma de mostrar estos resultados es mediante un gráfico como el siguiente:

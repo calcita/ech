@@ -7,7 +7,8 @@
 #' @param ht11 Variable name of income. Default: ht11
 #' @param ht13 Variable name of rental value. Default: ht13
 #' @param ht19 Variable name of number of individuals in the household. Default: ht19
-#' @param ipc  General ("G") or Regional ("R")
+#' @param index IPC or IPAB
+#' @param level  General ("G") or Regional ("R")
 #'
 #' @importFrom dplyr mutate left_join
 #' @importFrom magrittr %<>% %>%
@@ -27,7 +28,8 @@
 income_constant_prices <- function(data = ech::toy_ech_2018,
                                    base_month = 6,
                                    base_year = 2018,
-                                   ipc = "G",
+                                   index = "IPC",
+                                   level = "G",
                                    mes = "mes",
                                    ht11 = "ht11",
                                    ht13 = "ht13",
@@ -36,17 +38,27 @@ income_constant_prices <- function(data = ech::toy_ech_2018,
   # checks ---
   assertthat::assert_that(is.data.frame(data))
   assertthat::assert_that(dplyr::between(base_month,1,12), msg =  glue::glue("Sorry... :( \n base_month is not between 1 and 12"))
-  assertthat::assert_that(ipc  %in% c("G", "R"), msg =  glue::glue("Sorry... :( \n ipc is not G or R"))
+  assertthat::assert_that(index  %in% c("IPC", "IPAB"), msg =  glue::glue("Sorry... :( \n index is not IPC or IPAB"))
+  assertthat::assert_that(level  %in% c("G", "R"), msg =  glue::glue("Sorry... :( \n level is not G or R"))
   assertthat::assert_that(mes  %in% names(data), msg =  glue::glue("Sorry... :( \n {mes} is not in data"))
   assertthat::assert_that(ht11  %in% names(data), msg =  glue::glue("Sorry... :( \n {ht11} is not in data"))
   assertthat::assert_that(ht13  %in% names(data), msg =  glue::glue("Sorry... :( \n {ht13} is not in data"))
   assertthat::assert_that(ht19  %in% names(data), msg =  glue::glue("Sorry... :( \n {ht19} is not in data"))
 
-  if (ipc == "G") {
-
-    deflate <- ech::deflate(base_month = base_month,
-                            base_year = base_year,
-                            df_year = max(data$anio))
+  if (level == "G") {
+    if(index == "IPC"){
+      deflate <- deflate(base_month = base_month,
+                              base_year = base_year,
+                              index = "IPC",
+                              level = "G",
+                              df_year = max(data$anio))
+    } else{
+      deflate <- deflate(base_month = base_month,
+                              base_year = base_year,
+                              index = "IPAB",
+                              level = "G",
+                              df_year = max(data$anio))
+    }
 
     data <- data %>% dplyr::mutate(aux = as.integer(haven::zap_labels(.data[[mes]]))) %>%
       dplyr::left_join(deflate, by = c("aux" = "mes"), keep = F)
@@ -64,10 +76,14 @@ income_constant_prices <- function(data = ech::toy_ech_2018,
          y_wrv_pc_d (income without rental value per capita deflated / ingreso sin valor locativo per capita deflactado)")
   }
 
-  if (ipc == "R") {
-
-    deflactor_i <-  deflate(base_month = base_month, base_year = base_year, ipc = "I", df_year = max(data$anio))
-    deflactor_m <-  deflate(base_month = base_month, base_year = base_year, ipc = "M", df_year = max(data$anio))
+  if (level == "R") {
+    if(index == "IPC"){
+      deflactor_i <-  deflate(base_month = base_month, base_year = base_year, index = "IPC", level = "I", df_year = max(data$anio))
+      deflactor_m <-  deflate(base_month = base_month, base_year = base_year, index = "IPC", level = "M", df_year = max(data$anio))
+    } else{
+      deflactor_i <-  deflate(base_month = base_month, base_year = base_year, index = "IPAB", level = "I", df_year = max(data$anio))
+      deflactor_m <-  deflate(base_month = base_month, base_year = base_year, index = "IPAB", level = "M", df_year = max(data$anio))
+    }
 
     data <- data %>%
       dplyr::mutate(aux = as.integer(haven::zap_labels(data$mes))) %>%
@@ -333,10 +349,10 @@ labor_income_per_hour <- function(data = ech::toy_ech_2018,
   assertthat::assert_that(pt4  %in% names(data), msg =  glue::glue("Sorry... :( \n {pt4} is not in data"))
   assertthat::assert_that(f85  %in% names(data), msg =  glue::glue("Sorry... :( \n {f85} is not in data"))
 
-  deflate_mdeo <- ech::deflate(base_month = base_month, base_year = base_year, ipc = "M", df_year = max(data$anio))
+  deflate_mdeo <- ech::deflate(base_month = base_month, base_year = base_year, index = "IPC", level = "M", df_year = max(data$anio))
   names(deflate_mdeo)[1] <- "deflate_mdeo"
 
-  deflate_int <- ech::deflate(base_month = base_month, base_year = base_year, ipc = "I", df_year = max(data$anio))
+  deflate_int <- ech::deflate(base_month = base_month, base_year = base_year, index = "IPC", level = "I", df_year = max(data$anio))
   names(deflate_int)[1] <- "deflate_int"
 
   data <- data %>% dplyr::mutate(aux = as.integer(haven::zap_labels(mes))) %>%

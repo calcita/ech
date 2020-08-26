@@ -48,19 +48,11 @@ This function allows you to estimate the Gini coeficient
 Disclaimer: This script is not an official INE product.
 Aviso: El script no es un producto oficial de INE.
 }
-\examples{
-\donttest{
-toy_ech_2018 <- income_constant_prices(data = ech::toy_ech_2018, ipc = "R",
-                                       base_month = "01", base_year = "2005")
-get_estimation_gini(data = toy_ech_2018, variable = "y_wrv_pc_d_r", level = "i")
-}
-}
 \seealso{
 Other estimation: 
 \code{\link{get_estimation_gpg}()},
 \code{\link{get_estimation_mean}()},
 \code{\link{get_estimation_median}()},
-\code{\link{get_estimation_qsr}()},
 \code{\link{get_estimation_ratio}()},
 \code{\link{get_estimation_total}()},
 \code{\link{set_design}()}

@@ -26,6 +26,7 @@ df <- basket_goods(data = ech::cba_cbna_mdeo, year = 2018)
 }
 \seealso{
 Other income: 
+\code{\link{deflate}()},
 \code{\link{income_constant_prices}()},
 \code{\link{income_quantiles}()},
 \code{\link{labor_income_per_capita}()},
