@@ -113,8 +113,6 @@
 <h1 class="hasAnchor">
 <a href="#funciones-para-leer-datos" class="anchor"></a>Funciones para leer datos</h1>
 <p>Una serie de funciones del paquete que se usan internamente permiten descargar de la página del INE y convertir a un formato tidy los datos de: Índice de Precios al Consumo (IPC con base 2010), el Índice de Precios de Alimentos y Bebidas (IPAB con base 2010), Canasta Básica Alimentaria y No Alimentaria (CBA y CBNA), la codigue de CIIU4, los microdatos de cada ECH y sus respectivos diccionarios para los años 2011 a 2019.</p>
-<ul><li>
-</li></ul>
 </div>
 <div id="funciones-para-crear-variables" class="section level1">
 <h1 class="hasAnchor">
@@ -132,22 +130,12 @@
 <div id="funciones-para-estimar-indicadores" class="section level1">
 <h1 class="hasAnchor">
 <a href="#funciones-para-estimar-indicadores" class="anchor"></a>Funciones para estimar indicadores</h1>
-<p>Se pueden estimar medias y proporciones, totales y ratios. Para los años 2018 y 2019 se cuenta con la información de las UPM (Unidades Primarias de Muestreo) y estratos por lo cual es posible definir correctamente el diseño de muestra y obtener intervalos de confianza correctos.</p>
-<ul>
-<li>
-<code><a href="reference/get_estimation_mean.html">get_estimation_mean()</a></code>:</li>
-<li>
-<code><a href="reference/get_estimation_total.html">get_estimation_total()</a></code>:</li>
-<li>
-<code><a href="reference/get_estimation_ratio.html">get_estimation_ratio()</a></code>:</li>
-<li>
-<code><a href="reference/get_estimation_gini.html">get_estimation_gini()</a></code>:</li>
-</ul>
+<p>Se pueden estimar medias, medianas y proporciones, totales y ratios, el Índice de Gini, el Brecha salarial de género (GPG, por sus siglas en inglés Gender Pay Gap) y la relación quintil5/quintil1 (QSR, Quintil Share Ratio). Para los años 2018 y 2019 se cuenta con la información de las UPM (Unidades Primarias de Muestreo) y estratos por lo cual es posible definir correctamente el diseño de muestra y obtener intervalos de confianza correctos.</p>
 </div>
 <div id="modo-de-uso" class="section level1">
 <h1 class="hasAnchor">
 <a href="#modo-de-uso" class="anchor"></a>Modo de uso</h1>
-<p>El paquete ech permite descargar los microdatos oficiales desde la web del INE o bien utilizar microdatos ya procesados. En el primer caso los datos se obtiene a través de la función <code><a href="reference/get_microdata.html">get_microdata()</a></code>. En el segundo caso, puede usar la función read_microdata() para leerlos. El paquete tiene tres grandes conjuntos de funciones: - las que leen datos desde la web del INE, se llaman get_<em>(). - las que calculan variables tanto a nivel hogares como personas, estas tienen nombres descriptivos en inglés que se detallan más adelante. - las que estiman indicadores y calculan los intervalos de confianza asociados, se llaman get_estimation_</em>().</p>
+<p>El paquete ech permite descargar los microdatos oficiales desde la web del INE o bien utilizar microdatos ya procesados. En el primer caso los datos se obtiene a través de la función <code><a href="reference/get_microdata.html">get_microdata()</a></code>. En el segundo caso, puede usar la función <code><a href="reference/read_microdata.html">read_microdata()</a></code> para leerlos. El paquete tiene tres grandes conjuntos de funciones: - las que leen datos desde la web del INE, se llaman get_<em>(). - las que calculan variables tanto a nivel hogares como personas, estas tienen nombres descriptivos en inglés que se detallan más adelante. - las que estiman indicadores y calculan los intervalos de confianza asociados, se llaman get_estimation_</em>().</p>
 <p>Ejemplo de descarga de microdatos:</p>
 <div class="sourceCode" id="cb2"><pre class="r">
 <span class="co"># Cargo la libreria</span>
@@ -161,19 +149,8 @@
 <div class="sourceCode" id="cb3"><pre class="r"><span class="co"># Organizamos nombres de variables</span>
 
 <span class="no">ech19</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/organize_names.html">organize_names</a></span>(<span class="no">ech19</span>, <span class="fl">2019</span>)</pre></div>
-<p>Para calcular las variables PEA, PET, PO y PD usamos la función <code>employment</code>, especificando el nombre del objeto que contiene los microdatos y la variable que contiene la información de la condición de actividad (por defecto pobpcoac).</p>
-<div class="sourceCode" id="cb4"><pre class="r"><span class="co"># Calculamos variables de empleo</span>
-
-<span class="no">ech19</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/employment.html">employment</a></span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">ech19</span>)</pre></div>
-<p>Otra función muy útil que combina además otra fuente de datos es <code><a href="reference/income_constant_prices.html">income_constant_prices()</a></code> que permite calcular el ingreso a precios constantes, usando como deflactor el IPC o el IPAB. Es necesario definir, el data frame, el año base y el mes base, y el tipo de IPC que puede ser “G” (general) o “R” (regional). Este último solo está disponible a partir de 2010.</p>
-<div class="sourceCode" id="cb5"><pre class="r"><span class="co"># Organizamos nombres de variables</span>
-
-<span class="no">ech19</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/income_constant_prices.html">income_constant_prices</a></span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">ech19</span>, <span class="co"># Data.frame de una ech</span>
-                                <span class="kw">base_month</span> <span class="kw">=</span> <span class="fl">6</span>, <span class="co"># Mes base </span>
-                                <span class="kw">base_year</span> <span class="kw">=</span> <span class="fl">2019</span>, <span class="co"># Año base</span>
-                                <span class="kw">ipc</span> <span class="kw">=</span> <span class="st">"G"</span>) <span class="co"># Puede ser General ("G") o Regional ("R")</span></pre></div>
-<p>Para estimar una variable, por ejemplo, pobre06 que ya viene en la ECH calculada, elegimos la función de estimación adecuada, por ejemplo, get_estimation_mean() y definimos si queremos cruzarlo con alguna otra variable o hacer una estimación en un dominio (por ejemplo, solo el país urbano) y a nivel de hogares o personas.</p>
-<div class="sourceCode" id="cb6"><pre class="r"><span class="co"># Genero una estimación:</span>
+<p>Para estimar la proporción de hogares pobres por departamento, usamos la variable <code>pobre06</code> que ya viene en la ECH calculada y elegimos la función de estimación <code><a href="reference/get_estimation_mean.html">get_estimation_mean()</a></code>. Para estimar por departamento definimos como variable de cruce <code>nomdpto</code>. Elegimos el nivel de la estimación, hogares o personas, en el argumento <code>level</code>, en este caso, lo definimos como “h”.</p>
+<div class="sourceCode" id="cb4"><pre class="r"><span class="co"># Genero una estimación:</span>
 
 <span class="no">pobre_x_dpto</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/get_estimation_mean.html">get_estimation_mean</a></span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">ech19</span>, <span class="co"># Indico el data.frame</span>
                            <span class="kw">variable</span> <span class="kw">=</span> <span class="st">"pobre06"</span>, <span class="co"># La variable a estimar</span>
@@ -187,18 +164,18 @@
 <h1 class="hasAnchor">
 <a href="#ech--geouy" class="anchor"></a>ech &amp; geouy</h1>
 <p>El uso de este paquete se potencia al usarlo en conjunto con <a href="https://github.com/RichDeto/geouy">geouy</a> ya que permite acceder a diferentes capas geográficas de Uruguay y construir mapas temáticos. Por ejemplo, a la estimación anterior de hogares pobres por departamento se le pueden agregar las geometrías de los polígonos de cada departamento para construir un mapa de coropletas.</p>
-<div class="sourceCode" id="cb7"><pre class="r">
+<div class="sourceCode" id="cb5"><pre class="r">
 <span class="co"># Solo me quedo con la estimación de pobre </span>
 
 <span class="no">pobre_x_dpto</span> <span class="kw">&lt;-</span> <span class="no">pobre_x_dpto</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span>(<span class="no">pobre06</span> <span class="kw">==</span> <span class="st">"Pobre"</span>)
 
 <span class="co"># Agrego geometrías</span>
 
-<span class="no">pobre_x_dpto_geo</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/add_geom.html">add_geom</a></span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">pobre_x_dpto</span>, <span class="co"># Los datos en una unidad geográfica de entre las opciones</span>
+<span class="no">pobre_x_dpto_geo</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/add_geom.html">add_geom</a></span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">pobre_x_dpto</span>, <span class="co"># Los datos en una unidad geográfica</span>
                             <span class="kw">unit</span> <span class="kw">=</span> <span class="st">"Departamentos"</span>, <span class="co"># Unidad de agregación de los datos</span>
                             <span class="kw">variable</span> <span class="kw">=</span> <span class="st">"nomdpto"</span>) <span class="co"># Variable correspondiente a los códigos a la unidad</span></pre></div>
 <p>Y con esto, podemos hacer un mapa con <code>ggplot2</code> muy fácilmente de estas estimaciones.</p>
-<div class="sourceCode" id="cb8"><pre class="r"><span class="co"># Hago un mapa</span>
+<div class="sourceCode" id="cb6"><pre class="r"><span class="co"># Hago un mapa</span>
 
 <span class="fu"><a href="reference/plot_geouy.html">plot_geouy</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">pobre_x_dpto_geo</span>, <span class="kw">col</span> <span class="kw">=</span> <span class="st">"Pobreza"</span>, <span class="kw">l</span> <span class="kw">=</span> <span class="st">"%"</span>)</pre></div>
 <p><img src="reference/figures/pobre_readme.png" width="100%" style="display: block; margin: auto;"></p>
@@ -208,6 +185,20 @@
 <p>Este paquete se propone incorporar cualquier función de propósitos generales que utilice como base le Encuesta Continua de Hogares (ECH) de Uruguay. Todos los aportes en este sentido son bienvenidos.</p>
 <p>Si trabajas con la ECH de Uruguay y querés agregar tu función o tus datos, te recomendamos que leas los siguientes consejos de como colaborar <a href="https://github.com/calcita/ech/issues/2">aquí</a>. También podés generar un issue si encontrás algún error.</p>
 <p>Si este paquete te parece útil también hacenoslo saber que es nuestro motor para seguir desarrollándolo.</p>
+</div>
+<div id="citar-el-paquete" class="section level2">
+<h2 class="hasAnchor">
+<a href="#citar-el-paquete" class="anchor"></a>Citar el paquete</h2>
+<p>Para citar ech en publicaciones, por favor usa:</p>
+<p>Mathieu, Gabriela &amp; Detomasi, Richard (2020) “ech: Caja de herramientas para procesar la Encuesta Continua de Hogares”. R package version 0.0.1.20. URL: <a href="https://github.com/calcita/ech" class="uri">https://github.com/calcita/ech</a>.</p>
+<p>A BibTeX entry for LaTeX users is:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="op">@</span>Misc{ech20,</a>
+<a class="sourceLine" id="cb7-2" title="2">  title =<span class="st"> </span>{ech<span class="op">:</span><span class="st"> </span>Caja de herramientas para procesar la Encuesta Continua de Hogares},</a>
+<a class="sourceLine" id="cb7-3" title="3">  author =<span class="st"> </span>{Gabriela Mathieu <span class="op">&amp;</span><span class="st"> </span>Richard Detomasi},</a>
+<a class="sourceLine" id="cb7-4" title="4">  note =<span class="st"> </span>{R package version <span class="dv">0</span>.<span class="fl">2.1</span>},</a>
+<a class="sourceLine" id="cb7-5" title="5">  year =<span class="st"> </span>{<span class="dv">2020</span>},</a>
+<a class="sourceLine" id="cb7-6" title="6">  url  =<span class="st"> </span>{https<span class="op">:</span><span class="er">//</span>github.com<span class="op">/</span>calcita<span class="op">/</span>ech},</a>
+<a class="sourceLine" id="cb7-7" title="7">}</a></code></pre></div>
 </div>
 </div>
 
@@ -243,6 +234,7 @@
 <li><a href="https://travis-ci.org/calcita/ech"><img src="https://travis-ci.org/calcita/ech.svg?branch=master" alt="Travis build status"></a></li>
 <li><a href="https://ci.appveyor.com/project/calcita/ech"><img src="https://ci.appveyor.com/api/projects/status/github/calcita/ech?branch=master&amp;svg=true" alt="AppVeyor build status"></a></li>
 <li><a href="https://codecov.io/gh/calcita/ech?branch=master"><img src="https://codecov.io/gh/calcita/ech/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></li>
+<li><a href="https://zenodo.org/badge/latestdoi/224897952"><img src="https://zenodo.org/badge/224897952.svg" alt="DOI"></a></li>
 </ul>
 </div>
 </div>

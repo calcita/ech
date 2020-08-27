@@ -7,7 +7,7 @@ citEntry("ech20",
   note     = "R package version 0.0.2",
   year     = 2020,
   url      = "https://github.com/calcita/ech",
-  DOI      = "",
+  DOI      = "10.5281/zenodo.3996744",
   textVersion = paste(
 
   )
