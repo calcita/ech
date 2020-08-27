@@ -23,3 +23,15 @@ This function allows you to get the IPAB (Indice de precios de alimentos y bebid
 get_ipab_region(folder = tempdir(), sheet = 1, region = "M")
 
 }
+\seealso{
+Other dwnld_read: 
+\code{\link{get_cba_cbna}()},
+\code{\link{get_ciiu}()},
+\code{\link{get_dictionary}()},
+\code{\link{get_ipab}()},
+\code{\link{get_ipc_region}()},
+\code{\link{get_ipc}()},
+\code{\link{get_microdata}()},
+\code{\link{read_microdata}()}
+}
+\concept{dwnld_read}

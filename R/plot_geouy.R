@@ -1,6 +1,7 @@
 #' @name plot_geouy
 #' @title plot_geouy
 #' @description This function allows you to set ggplot2 theme in our suggested format.
+#' @family geo
 #' @param x An sf object like load_geouy() results
 #' @param col Variable of "x" to plot (character)
 #' @param viri_opt A character string indicating the colormap option to use. Four options are available: "magma" (or "A"), "inferno" (or "B"), "plasma" (or "C"), "viridis" (or "D", the default option) and "cividis" (or "E")

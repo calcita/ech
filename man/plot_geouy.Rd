@@ -35,6 +35,11 @@ plot_geouy(x = pobre_x_dpto_geo, col = "Pobreza", l = "\%")
 }
 
 }
+\seealso{
+Other geo: 
+\code{\link{add_geom}()}
+}
+\concept{geo}
 \keyword{ggplot2}
 \keyword{maps}
 \keyword{sf}

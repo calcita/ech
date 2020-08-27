@@ -227,7 +227,7 @@ get_ipab <- function(folder = tempdir(), sheet = NULL){
 }
 
 #' This function allows you to get the IPAB (Indice de precios de alimentos y bebidas) data
-#'
+#' @family dwnld_read
 #' @param folder temporal folder
 #' @param sheet sheet number
 #' @param region Montevideo ("M"), Interior Urbano ("I")

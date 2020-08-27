@@ -32,4 +32,8 @@ pobre_x_dpto <- get_estimation_mean(variable = "pobre06", by.x = "nomdpto", leve
 pobre_x_dpto_geo <- add_geom(data = pobre_x_dpto, unit = "Departamentos", variable = "nomdpto")
 }
 }
+\seealso{
+Other geo: 
+\code{\link{plot_geouy}()}
+}
 \concept{geo}
