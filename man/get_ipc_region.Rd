@@ -36,7 +36,6 @@ Other dwnld_read:
 \code{\link{get_dictionary}()},
 \code{\link{get_ipab}()},
 \code{\link{get_ipc}()},
-\code{\link{get_marco}()},
 \code{\link{get_microdata}()},
 \code{\link{read_microdata}()}
 }

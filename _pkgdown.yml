@@ -6,9 +6,6 @@ reference:
 - title: Organize
   contents:
   - has_concept("organize")
-- title: Estimations
-  contents:
-  - has_concept("estimation")
 - title: Education
   contents:
   - has_concept("education")
@@ -24,6 +21,12 @@ reference:
 - title: Income
   contents:
   - has_concept("income")
+- title: Poverty
+  contents:
+  - has_concept("poverty")
+- title: Estimations
+  contents:
+  - has_concept("estimation")
 - title: Datasets
   contents:
   - has_concept("dataset")

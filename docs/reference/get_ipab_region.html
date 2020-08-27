@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title><code>ech</code> package — ech • ech</title>
+<title>This function allows you to get the IPAB (Indice de precios de alimentos y bebidas) data — get_ipab_region • ech</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="<code>ech</code> package — ech" />
-<meta property="og:description" content="Caja de Herramientas para el procesamiento de la Encuesta Continua de Hogares de Uruguay" />
+<meta property="og:title" content="This function allows you to get the IPAB (Indice de precios de alimentos y bebidas) data — get_ipab_region" />
+<meta property="og:description" content="This function allows you to get the IPAB (Indice de precios de alimentos y bebidas) data" />
 
 
 
@@ -127,22 +127,40 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1><code>ech</code> package</h1>
+    <h1>This function allows you to get the IPAB (Indice de precios de alimentos y bebidas) data</h1>
     
-    <div class="hidden name"><code>ech.Rd</code></div>
+    <div class="hidden name"><code>get_ipab_region.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Caja de Herramientas para el procesamiento de la Encuesta Continua de Hogares de Uruguay</p>
+    <p>This function allows you to get the IPAB (Indice de precios de alimentos y bebidas) data</p>
     </div>
 
+    <pre class="usage"><span class='fu'>get_ipab_region</span>(<span class='kw'>folder</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='kw'>sheet</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>region</span> <span class='kw'>=</span> <span class='st'>"M"</span>)</pre>
 
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>folder</th>
+      <td><p>temporal folder</p></td>
+    </tr>
+    <tr>
+      <th>sheet</th>
+      <td><p>sheet number</p></td>
+    </tr>
+    <tr>
+      <th>region</th>
+      <td><p>Montevideo ("M"), Interior Urbano ("I")</p></td>
+    </tr>
+    </table>
 
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>See the README on
-<a href='https://github.com/calcita/ech/blob/master/README.md'>Github</a></p>
+    <p>data.frame</p>
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'>get_ipab_region</span>(<span class='kw'>folder</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='kw'>sheet</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>region</span> <span class='kw'>=</span> <span class='st'>"M"</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

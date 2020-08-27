@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>This function allows you to estimate the Gini coeficient — get_estimation_gini • ech</title>
+<title>This function allows you to estimate the Gini coefficient — get_estimation_gini • ech</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="This function allows you to estimate the Gini coeficient — get_estimation_gini" />
-<meta property="og:description" content="This function allows you to estimate the Gini coeficient" />
+<meta property="og:title" content="This function allows you to estimate the Gini coefficient — get_estimation_gini" />
+<meta property="og:description" content="This function allows you to estimate the Gini coefficient" />
 
 
 
@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ech</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.19</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.20</span>
       </span>
     </div>
 
@@ -127,13 +127,13 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>This function allows you to estimate the Gini coeficient</h1>
+    <h1>This function allows you to estimate the Gini coefficient</h1>
     
     <div class="hidden name"><code>get_estimation_gini.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This function allows you to estimate the Gini coeficient</p>
+    <p>This function allows you to estimate the Gini coefficient</p>
     </div>
 
     <pre class="usage"><span class='fu'>get_estimation_gini</span>(
@@ -214,14 +214,15 @@ Aviso: El script no es un producto oficial de INE.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='no'>toy_ech_2018</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='income_constant_prices.html'>income_constant_prices</a></span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ech</span><span class='kw ns'>::</span><span class='no'><a href='toy_ech_2018.html'>toy_ech_2018</a></span>, <span class='kw'>ipc</span> <span class='kw'>=</span> <span class='st'>"R"</span>,
+<span class='no'>toy_ech_2018</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='income_constant_prices.html'>income_constant_prices</a></span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ech</span><span class='kw ns'>::</span><span class='no'><a href='toy_ech_2018.html'>toy_ech_2018</a></span>, <span class='kw'>index</span> <span class='kw'>=</span> <span class='st'>"IPC"</span>, <span class='kw'>level</span> <span class='kw'>=</span> <span class='st'>"R"</span>,
                                        <span class='kw'>base_month</span> <span class='kw'>=</span> <span class='st'>"01"</span>, <span class='kw'>base_year</span> <span class='kw'>=</span> <span class='st'>"2005"</span>)</div><div class='output co'>#&gt; <span class='message'>Variables have been created: </span>
 #&gt; <span class='message'> 	 deflate_r (Deflactor regional) &amp;</span>
 #&gt; <span class='message'>                y_pc (income per capita current prices / ingreso per capita a precios corrientes)</span>
 #&gt; <span class='message'>                y_pc_d_r (income per capita deflated / ingreso per capita deflactado);</span>
 #&gt; <span class='message'>                rv_d_r (rental value deflated / valor locativo deflactado);</span>
 #&gt; <span class='message'>                y_wrv_d_r (income without rental value deflated / ingreso sin valor locativo deflactado) &amp;</span>
-#&gt; <span class='message'>                y_wrv_pc_d_r (income without rental value per capita deflated / ingreso sin valor locativo per capita deflactado)</span></div><div class='input'><span class='fu'>get_estimation_gini</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>toy_ech_2018</span>, <span class='kw'>variable</span> <span class='kw'>=</span> <span class='st'>"y_wrv_pc_d_r"</span>, <span class='kw'>level</span> <span class='kw'>=</span> <span class='st'>"i"</span>)</div><div class='output co'>#&gt; [1] 37.6809</div><div class='input'># }
+#&gt; <span class='message'>                y_wrv_pc_d_r (income without rental value per capita deflated / ingreso sin valor locativo per capita deflactado)</span></div><div class='input'><span class='fu'>get_estimation_gini</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>toy_ech_2018</span>, <span class='kw'>variable</span> <span class='kw'>=</span> <span class='st'>"y_wrv_pc_d_r"</span>, <span class='kw'>level</span> <span class='kw'>=</span> <span class='st'>"i"</span>)</div><div class='output co'>#&gt;     value
+#&gt; 1 37.6809</div><div class='input'># }
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

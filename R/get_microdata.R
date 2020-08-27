@@ -353,87 +353,87 @@ read_microdata <- function(path = NULL){
 #' Disclaimer: This script is not an official INE product.
 #' Aviso: El script no es un producto oficial de INE.
 
-get_marco <- function(year = NULL, folder = tempdir(), toR = TRUE){
-
-  # checks ----
-  stopifnot(is.numeric(year) | is.null(year) | length(year) <= 1)
-  if (!is.character(folder) | length(folder) != 1) {
-    message(glue::glue("Sorry... ;( \n \t You must enter a directory..."))
-  }
-
-  # download ----
-  try(dir.create(folder))
-
-  all_years <- c(2011, 2004, 1996, 1985)
-
-  if (!is.null(year) & any(year %in% all_years) == FALSE) {
-    stop("At the moment there are only census data for 2011, 2004, 1996 or 1985")
-  }
-
-  if (is.null(year)) {
-    year <- max(all_years)
-  }
-
-  urls <- data.frame(yy = c(2011, 2004, 1996, 1985),
-                     marco = fs::path("www.ine.gub.uy/c/document_library",
-                                       c("get_file?uuid=cc26162b-0b18-4ab2-a8ce-a5cac1679a3b&groupId=10181",
-                                         "get_file?uuid=4861b0f3-4ed6-4a37-9f30-ac77fb9f66e5&groupId=10181",
-                                         "get_file?uuid=2d13324d-ffe0-4b32-9692-3147d03335bd&groupId=10181",
-                                         "get_file?uuid=13e2aa6e-c6fc-4f40-afe5-bcb9c60b1527&groupId=10181")),
-                                     file = paste0(folder, "/marco_", all_years, "_sav.zip"),
-                     stringsAsFactors = FALSE)
-  links <- urls %>% dplyr::filter(.data$yy %in% year)
-
-  u <- links$marco
-  f <- links$file
-  y <- links$yy
-
-  if (!file.exists(f)) {
-    message(glue::glue("Trying to download Census data for year {y}..."))
-    try(utils::download.file(u, f, mode = "wb", method = "libcurl"))
-  } else {
-    message(glue::glue("Census data for year {y} already exists, the download is omitted"))
-  }
-
-  # read----
-  archivo <- fs::dir_ls(folder, regexp = "\\.zip$")
-  archivo <- archivo[which.max(file.info(archivo)$mtime)]
-  try(archive_extract(archive.path = archivo, dest.path = folder))
-  if(y %in% c(2004, 1996, 1985)){
-    descomprimido <- fs::dir_ls(folder, regexp = "\\.xls$")
-    d <- try(readxl::read_xls(descomprimido))
-  } else {
-    archivo <- fs::dir_ls(folder, regexp = "\\.zip$")
-    archivo <- archivo[which.max(file.info(archivo)$mtime)]
-    try(archive_extract(archive.path = archivo, dest.path = folder))
-    descomprimido <- fs::dir_ls(folder, regexp = "\\.sav$")
-    d <- try(haven::read_sav(descomprimido))
-  }
-
-
-
-  if (any(class(d) %in% "data.frame")) {
-    message(glue::glue("{archivo} could be read as tibble :-)"))
-    d <- janitor::clean_names(d)
-  } else {
-    stop(glue::glue("{archivo} could not be read as tibble :-("))
-  }
-
-  # standarize names
-  names(d) <- tolower(names(d))
-
-  # save ----
-  if (isTRUE(toR)) {
-    saveRDS(d, file = fs::path(folder, paste0("marco_", year, ".Rds")))
-    message(glue::glue("The file has been saved in R format"))
-    sav <- fs::dir_ls(folder, regexp = "\\.sav$")
-    fs::file_delete(archivo)
-    fs::file_delete(sav)
-  }
-
-  return(d)
-  }
+# get_marco <- function(year = NULL, folder = tempdir(), toR = TRUE){
+#
+#   # checks ----
+#   stopifnot(is.numeric(year) | is.null(year) | length(year) <= 1)
+#   if (!is.character(folder) | length(folder) != 1) {
+#     message(glue::glue("Sorry... ;( \n \t You must enter a directory..."))
+#   }
+#
+#   # download ----
+#   try(dir.create(folder))
+#
+#   all_years <- c(2011, 2004, 1996, 1985)
+#
+#   if (!is.null(year) & any(year %in% all_years) == FALSE) {
+#     stop("At the moment there are only census data for 2011, 2004, 1996 or 1985")
+#   }
+#
+#   if (is.null(year)) {
+#     year <- max(all_years)
+#   }
+#
+#   urls <- data.frame(yy = c(2011, 2004, 1996, 1985),
+#                      marco = fs::path("www.ine.gub.uy/c/document_library",
+#                                        c("get_file?uuid=cc26162b-0b18-4ab2-a8ce-a5cac1679a3b&groupId=10181",
+#                                          "get_file?uuid=4861b0f3-4ed6-4a37-9f30-ac77fb9f66e5&groupId=10181",
+#                                          "get_file?uuid=2d13324d-ffe0-4b32-9692-3147d03335bd&groupId=10181",
+#                                          "get_file?uuid=13e2aa6e-c6fc-4f40-afe5-bcb9c60b1527&groupId=10181")),
+#                                      file = paste0(folder, "/marco_", all_years, "_sav.zip"),
+#                      stringsAsFactors = FALSE)
+#   links <- urls %>% dplyr::filter(.data$yy %in% year)
+#
+#   u <- links$marco
+#   f <- links$file
+#   y <- links$yy
+#
+#   if (!file.exists(f)) {
+#     message(glue::glue("Trying to download Census data for year {y}..."))
+#     try(utils::download.file(u, f, mode = "wb", method = "libcurl"))
+#   } else {
+#     message(glue::glue("Census data for year {y} already exists, the download is omitted"))
+#   }
+#
+#   # read----
+#   archivo <- fs::dir_ls(folder, regexp = "\\.zip$")
+#   archivo <- archivo[which.max(file.info(archivo)$mtime)]
+#   try(archive_extract(archive.path = archivo, dest.path = folder))
+#   if(y %in% c(2004, 1996, 1985)){
+#     descomprimido <- fs::dir_ls(folder, regexp = "\\.xls$")
+#     d <- try(readxl::read_xls(descomprimido))
+#   } else {
+#     archivo <- fs::dir_ls(folder, regexp = "\\.zip$")
+#     archivo <- archivo[which.max(file.info(archivo)$mtime)]
+#     try(archive_extract(archive.path = archivo, dest.path = folder))
+#     descomprimido <- fs::dir_ls(folder, regexp = "\\.sav$")
+#     d <- try(haven::read_sav(descomprimido))
+#   }
+#
+#
+#
+#   if (any(class(d) %in% "data.frame")) {
+#     message(glue::glue("{archivo} could be read as tibble :-)"))
+#     d <- janitor::clean_names(d)
+#   } else {
+#     stop(glue::glue("{archivo} could not be read as tibble :-("))
+#   }
+#
+#   # standarize names
+#   names(d) <- tolower(names(d))
+#
+#   # save ----
+#   if (isTRUE(toR)) {
+#     saveRDS(d, file = fs::path(folder, paste0("marco_", year, ".Rds")))
+#     message(glue::glue("The file has been saved in R format"))
+#     sav <- fs::dir_ls(folder, regexp = "\\.sav$")
+#     fs::file_delete(archivo)
+#     fs::file_delete(sav)
+#   }
+#
+#   return(d)
+#   }
 
 #' @rdname get_marco
 #' @export
-get_sampling_frame <- get_marco
+# get_sampling_frame <- get_marco

@@ -31,7 +31,6 @@ Other dwnld_read:
 \code{\link{get_ipab}()},
 \code{\link{get_ipc_region}()},
 \code{\link{get_ipc}()},
-\code{\link{get_marco}()},
 \code{\link{read_microdata}()}
 }
 \concept{dwnld_read}

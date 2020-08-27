@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ech</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.19</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.20</span>
       </span>
     </div>
 
@@ -136,7 +136,13 @@
     <p>This function allows you to calculate a deflate variable</p>
     </div>
 
-    <pre class="usage"><span class='fu'>deflate</span>(<span class='kw'>base_month</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>base_year</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ipc</span> <span class='kw'>=</span> <span class='st'>"G"</span>, <span class='kw'>df_year</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>deflate</span>(
+  <span class='kw'>base_month</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>base_year</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>index</span> <span class='kw'>=</span> <span class='st'>"IPC"</span>,
+  <span class='kw'>level</span> <span class='kw'>=</span> <span class='st'>"G"</span>,
+  <span class='kw'>df_year</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -150,8 +156,12 @@
       <td><p>baseline year</p></td>
     </tr>
     <tr>
-      <th>ipc</th>
-      <td><p>General IPC ('G'), Montevideo IPC ('M') or Interior IPC ('I')</p></td>
+      <th>index</th>
+      <td><p>IPC or IPAB</p></td>
+    </tr>
+    <tr>
+      <th>level</th>
+      <td><p>General index ('G'), Montevideo index ('M') or Interior index ('I')</p></td>
     </tr>
     <tr>
       <th>df_year</th>
@@ -165,13 +175,16 @@
 Aviso: El script no es un producto oficial de INE.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>Other utils: 
-<code><a href='archive_extract.html'>archive_extract</a>()</code>,
-<code><a href='unlabelled.html'>unlabelled</a>()</code></p></div>
+    <div class='dont-index'><p>Other income: 
+<code><a href='basket_goods.html'>basket_goods</a>()</code>,
+<code><a href='income_constant_prices.html'>income_constant_prices</a>()</code>,
+<code><a href='income_quantiles.html'>income_quantiles</a>()</code>,
+<code><a href='labor_income_per_capita.html'>labor_income_per_capita</a>()</code>,
+<code><a href='labor_income_per_hour.html'>labor_income_per_hour</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'>deflate</span>(<span class='kw'>base_month</span> <span class='kw'>=</span> <span class='fl'>6</span>, <span class='kw'>base_year</span> <span class='kw'>=</span> <span class='fl'>2016</span>, <span class='kw'>df_year</span> <span class='kw'>=</span> <span class='fl'>2018</span>)
+<span class='fu'>deflate</span>(<span class='kw'>base_month</span> <span class='kw'>=</span> <span class='fl'>6</span>, <span class='kw'>base_year</span> <span class='kw'>=</span> <span class='fl'>2016</span>, <span class='kw'>index</span> <span class='kw'>=</span> <span class='st'>"IPC"</span>, <span class='kw'>level</span> <span class='kw'>=</span> <span class='st'>"G"</span>, <span class='kw'>df_year</span> <span class='kw'>=</span> <span class='fl'>2018</span>)
 <span class='co'># }</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
