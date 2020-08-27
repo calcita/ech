@@ -57,7 +57,7 @@ get_estimation_mean <- function(data = ech::toy_ech_2018,
   d <- data %>% dplyr::select(if(!is.null(domain)){dom}) %>% dplyr::bind_cols(d, .)
 
 # design ----
-  design_ech <- ech::set_design(data = d, level = level)
+  design_ech <- ech::set_design(data = d, level = level, numero = numero, ids = ids, estrato = estrato, pesoano = pesoano)
 
 # supressed warnings ---
   options(survey.lonely.psu = "adjust")
@@ -193,7 +193,7 @@ get_estimation_median <- function(data = ech::toy_ech_2018,
   d <- data %>% dplyr::select(if(!is.null(domain)){dom}) %>% dplyr::bind_cols(d, .)
 
   # design ----
-  design_ech <- ech::set_design(data = d, level = level)
+  design_ech <- ech::set_design(data = d, level = level, numero = numero, ids = ids, estrato = estrato, pesoano = pesoano)
 
   # supressed warnings ---
   options(survey.lonely.psu = "adjust")
@@ -302,7 +302,7 @@ get_estimation_total <- function(data = ech::toy_ech_2018,
   d <- data %>% dplyr::select(if(!is.null(domain)){dom}) %>% dplyr::bind_cols(d, .)
 
   # design ----
-  design_ech <- ech::set_design(data = d, level = level)
+  design_ech <- ech::set_design(data = d, level = level, numero = numero, ids = ids, estrato = estrato, pesoano = pesoano)
 
   # supressed warnings ---
   options(survey.lonely.psu = "adjust")
@@ -439,11 +439,15 @@ get_estimation_ratio <- function(data = ech::toy_ech_2018,
   # unlabelled
   d <- data %>% dplyr::select(!!!syms(c(by.x, by.y, ids, numero, estrato, pesoano))) %>%
     unlabelled()
-
+  d <- data %>% dplyr::select(!!!syms(c(variable.x, variable.y))) %>%
+    haven::zap_labels() %>%
+    haven::zap_formats() %>%
+    haven::zap_label() %>%
+    dplyr::bind_cols(d, .)
   d <- data %>% dplyr::select(if(!is.null(domain)){dom}) %>% dplyr::bind_cols(d, .)
 
-  # design ---
-  design_ech <- ech::set_design(data = data, level = level)
+  # design ----
+  design_ech <- ech::set_design(data = d, level = level, numero = numero, ids = ids, estrato = estrato, pesoano = pesoano)
 
   # supressed warnings ---
   options(survey.lonely.psu="adjust")

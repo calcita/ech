@@ -87,8 +87,8 @@ test_that("get_estimation_ratio works", {
 })
 
 test_that("get_estimation_median works", {
-  ech_2018 <- employment(data = ech::toy_ech_2018, pobpcoac = "pobpcoac")
-  a <- get_estimation_median(data = ech_2018, variable = "ht11", level = "i", name = "tasa_ocupacion")
+  ech_2018 <- ech::toy_ech_2018
+  a <- get_estimation_median(data = ech_2018, variable = "ht11", level = "i")
   expect_equal(nrow(a), 1)
   a <- get_estimation_median(data = ech_2018, variable = "ht11", domain = "dpto == 1", level = "i")
   expect_equal(nrow(a), 1)
@@ -96,10 +96,10 @@ test_that("get_estimation_median works", {
   expect_equal(nrow(a), 2)
   a <- get_estimation_median(data = ech_2018, variable = "ht11", by.x = "dpto", level = "i")
   expect_equal(nrow(a), 19)
-  # a <- get_estimation_median(data = ech_2018, variable = "ht11", by.x = "dpto", by.y = "e26", level = "i")
-  # expect_equal(nrow(a), 149)
-  # a <- get_estimation_median(data = ech_2018, variable = "ht11", by.x = "dpto", by.y = "e26", domain = "dpto == 1", level = "i")
-  # expect_equal(nrow(a), 117)
+  a <- get_estimation_median(data = ech_2018, variable = "ht11", by.x = "region_4", by.y = "e26", level = "h")
+  expect_equal(nrow(a), 8)
+  a <- get_estimation_median(data = ech_2018, variable = "ht11", by.x = "region_4", by.y = "e26", domain = "dpto == 1", level = "i")
+  expect_equal(nrow(a), 2)
 })
 
 test_that("get_estimation_gini works", {
@@ -109,18 +109,44 @@ test_that("get_estimation_gini works", {
   expect_is(a, "data.frame")
   b <- get_estimation_gini(data = ech_2018, variable = "y_wrv_pc_d_r", level = "h", by = "nomdpto")
   expect_is(b, "data.frame")
+  a <- get_estimation_gini(data = ech_2018, variable = "y_wrv_pc_d_r", level = "i")
+  expect_is(a, "data.frame")
+  b <- get_estimation_gini(data = ech_2018, variable = "y_wrv_pc_d_r", level = "i", by = "nomdpto")
+  expect_is(b, "data.frame")
+  a <- get_estimation_gini(data = ech_2018, variable = "y_wrv_pc_d_r", level = "i", ids = "upm_id", estrato = "estrato")
+  expect_is(a, "data.frame")
+  b <- get_estimation_gini(data = ech_2018, variable = "y_wrv_pc_d_r", level = "i", by = "nomdpto", ids = "upm_id", estrato = "estrato")
+  expect_is(b, "data.frame")
+  a <- get_estimation_gini(data = ech_2018, variable = "y_wrv_pc_d_r", level = "i", ids = "upm_id", estrato = "estrato", bootstrap = T, r = 5)
+  expect_is(a, "data.frame")
+  b <- get_estimation_gini(data = ech_2018, variable = "y_wrv_pc_d_r", level = "i", by = "nomdpto", ids = "upm_id", estrato = "estrato", bootstrap = T, r = 5)
+  expect_is(b, "data.frame")
 })
 
 test_that("get_estimation_gpg works", {
   toy_ech_2018 <- labor_income_per_hour(data = ech::toy_ech_2018, base_month = 6, base_year = 2018)
   a <- get_estimation_gpg(data = toy_ech_2018, variable = "total_income_per_hour", e26 = "e26")
   expect_is(a, "data.frame")
+  b <- get_estimation_gpg(data = toy_ech_2018, variable = "total_income_per_hour", e26 = "e26", by = "nomdpto")
+  expect_is(b, "data.frame")
+  c <- get_estimation_gpg(data = toy_ech_2018, variable = "total_income_per_hour", e26 = "e26", by = "nomdpto", ids = "upm_id", estrato = "estrato")
+  expect_is(c, "data.frame")
+  d <- get_estimation_gpg(data = toy_ech_2018, variable = "total_income_per_hour", e26 = "e26", ids = "upm_id", estrato = "estrato")
+  expect_is(d, "data.frame")
 })
 
 
 test_that("get_estimation_qsr works", {
-  toy_ech_2018 <- income_constant_prices(data = ech::toy_ech_2018, level = "R",
+  ech_2018 <- income_constant_prices(data = ech::toy_ech_2018, level = "R",
                                          index = "IPC", base_month = "01", base_year = "2005")
-  a <- get_estimation_qsr(data = toy_ech_2018, variable = "y_wrv_pc_d_r", pesoano = "pesoano")
+  a <- get_estimation_qsr(data = ech_2018, variable = "y_wrv_pc_d_r", pesoano = "pesoano")
   expect_is(a, "data.frame")
+  b <- get_estimation_qsr(ech_2018, variable = "y_wrv_pc_d_r", pesoano = "pesoano")
+  expect_is(b, "data.frame")
+  c <- get_estimation_qsr(ech_2018, variable = "y_wrv_pc_d_r", pesoano = "pesoano", by ="region_4")
+  expect_is(c, "data.frame")
+  d <- get_estimation_qsr(ech_2018, variable = "y_wrv_pc_d_r", pesoano = "pesoano", ids = "upm_id", estrato = "estrato")
+  expect_is(d, "data.frame")
+  e <- get_estimation_qsr(ech_2018, variable = "y_wrv_pc_d_r", pesoano = "pesoano", by ="region_4", ids = "upm_id", estrato = "estrato")
+  expect_is(e, "data.frame")
 })
