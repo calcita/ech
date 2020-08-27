@@ -114,13 +114,13 @@ test_that("get_estimation_gini works", {
 test_that("get_estimation_gpg works", {
   toy_ech_2018 <- labor_income_per_hour(data = ech::toy_ech_2018, base_month = 6, base_year = 2018)
   a <- get_estimation_gpg(data = toy_ech_2018, variable = "total_income_per_hour", e26 = "e26")
-  expect_is(a, "gpg")
+  expect_is(a, "data.frame")
 })
 
 
-# test_that("get_estimation_qsr works", {
-#   toy_ech_2018 <- income_constant_prices(data = ech::toy_ech_2018, ipc = "R",
-#                                          base_month = "01", base_year = "2005")
-#   a <- get_estimation_qsr(data = toy_ech_2018, variable = "y_wrv_pc_d_r", pesoano = "pesoano")
-#   expect_is(a, "qsr")
-# })
+test_that("get_estimation_qsr works", {
+  toy_ech_2018 <- income_constant_prices(data = ech::toy_ech_2018, ipc = "R",
+                                         base_month = "01", base_year = "2005")
+  a <- get_estimation_qsr(data = toy_ech_2018, variable = "y_wrv_pc_d_r", pesoano = "pesoano")
+  expect_is(a, "data.frame")
+})
