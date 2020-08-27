@@ -530,7 +530,6 @@ get_estimation_gini <- function(data = ech::toy_ech_2018,
 
 
   assertthat::assert_that(!is.null(data) | !is.null(variable) | !is.null(numero) | !is.null(pesoano) | !is.null(level), msg = "You must indicate a variable")
-  assertthat::assert_that(is.null(ids) & !is.null(estrato), msg = "You must indicate the ids")
   assertthat::assert_that(all(variable %in% names(data)), msg = glue::glue("Sorry... :( \n {variable} is not in {data}"))
   assertthat::assert_that(all(pesoano %in% names(data)), msg = glue::glue("Sorry... :( \n {pesoano} is not in {data}"))
   assertthat::assert_that(all(numero %in% names(data)), msg = glue::glue("Sorry... :( \n {numero} is not in {data}"))

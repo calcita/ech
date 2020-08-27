@@ -119,8 +119,8 @@ test_that("get_estimation_gpg works", {
 
 
 test_that("get_estimation_qsr works", {
-  toy_ech_2018 <- income_constant_prices(data = ech::toy_ech_2018, ipc = "R",
-                                         base_month = "01", base_year = "2005")
+  toy_ech_2018 <- income_constant_prices(data = ech::toy_ech_2018, level = "R",
+                                         index = "IPC", base_month = "01", base_year = "2005")
   a <- get_estimation_qsr(data = toy_ech_2018, variable = "y_wrv_pc_d_r", pesoano = "pesoano")
   expect_is(a, "data.frame")
 })
