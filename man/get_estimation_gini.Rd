@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_estimation.R
 \name{get_estimation_gini}
 \alias{get_estimation_gini}
-\title{This function allows you to estimate the Gini coeficient}
+\title{This function allows you to estimate the Gini coefficient}
 \usage{
 get_estimation_gini(
   data = ech::toy_ech_2018,
@@ -42,7 +42,7 @@ get_estimation_gini(
 table
 }
 \description{
-This function allows you to estimate the Gini coeficient
+This function allows you to estimate the Gini coefficient
 }
 \details{
 Disclaimer: This script is not an official INE product.

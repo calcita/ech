@@ -489,7 +489,7 @@ get_estimation_ratio <- function(data = ech::toy_ech_2018,
 
 }
 
-#' This function allows you to estimate the Gini coeficient
+#' This function allows you to estimate the Gini coefficient
 #' @family estimation
 #' @param data ech data frame
 #' @param variable Variable name of income without rental value per capita deflated
@@ -536,10 +536,10 @@ get_estimation_gini <- function(data = ech::toy_ech_2018,
 
   if (level == "h"){
     d <- data %>% dplyr::filter(duplicated(numero) == FALSE) %>%
-      tidyr::drop_na(variable)
+      tidyr::drop_na(dplyr::all_of(variable))
   } else{
     d <- data %>%
-      tidyr::drop_na(variable)
+      tidyr::drop_na(dplyr::all_of(variable))
   }
 
   d <- d %>% dplyr::select(!!!syms(c(variable, by, ids, estrato, pesoano))) %>%
@@ -554,7 +554,7 @@ get_estimation_gini <- function(data = ech::toy_ech_2018,
   if(is.null(by) & isFALSE(bootstrap) & is.null(ids)){
      estimation <- laeken::gini(inc = v, weights = p)
      estimation <- data.frame(estimation[[1]])
-     names(estimation) <- "Value"
+     names(estimation) <- "value"
   } else if (is.character(by) & is.null(bootstrap) & is.null(ids)){
     b <- as.factor(d[, by])
     estimation <- laeken::gini(inc = v, weights = p, breakdown = b)
@@ -567,50 +567,84 @@ get_estimation_gini <- function(data = ech::toy_ech_2018,
      i <-  as.integer(d[, ids])
      estimation <- laeken::gini(inc = v, weights = p, design = e, cluster = i)
      estimation <- data.frame(estimation[[1]])
-     names(estimation) <- "Value"
+     names(estimation) <- "value"
   } else if (is.null(by) & isTRUE(bootstrap) & is.null(ids)){
     estimation <- laeken::gini(inc = v, weights = p, var = "bootstrap", bootType = "naive", seed = 1234, R = r)
-    value <- estimation[[1]]
-    var <- estimation[[4]]
-    ci <- estimation[[6]]
-    #estimation <- dplyr::bind_cols(value, var, ci)
+    suppressMessages({
+    value <- data.frame(estimation[[1]])
+    names(value) <- "value"
+    var <- data.frame(estimation[[4]])
+    names(var) <- "variance"
+    ci <- dplyr::bind_cols(estimation[[6]][1], estimation[[6]][2])
+    names(ci) <- c("lower", "upper")
+    estimation <- dplyr::bind_cols(value, var, ci)
+    })
   } else if (is.character(by) & isFALSE(bootstrap) & is.character(ids)){
     b <- as.factor(d[, by])
     e <- as.integer(d[, estrato])
     i <-  as.integer(d[, ids])
     estimation <- laeken::gini(inc = v, weights = p, breakdown = b, design = e, cluster = i)
+    suppressMessages({
     value <- estimation[[2]]
     value_total <- data.frame(dplyr::bind_cols("Total", estimation[[1]]))
     names(value_total) <- names(value)
+    estimation <- dplyr::bind_rows(value, value_total)
+    })
   } else if (is.character(by) & isTRUE(bootstrap) & is.null(ids)){
+    b <- as.factor(d[, by])
     estimation <- laeken::gini(inc = v, weights = p, breakdown = b, var = "bootstrap", bootType = "naive", seed = 1234, R = r)
     suppressMessages({
       value <- estimation[[2]]
       value_total <- data.frame(dplyr::bind_cols("Total",estimation[[1]]))
       names(value_total) <- names(value)
       value <- dplyr::bind_rows(value, value_total)
-
+      ###
       var <- estimation[[5]]
       var_total <- data.frame(dplyr::bind_cols("Total",estimation[[4]]))
       names(var_total) <- names(var)
       var <- dplyr::bind_rows(var, var_total)
-
+      ###
       ci <- estimation[[7]]
       ci_total <- data.frame(dplyr::bind_cols("Total",estimation[[6]][1], estimation[[6]][2]))
       names(ci_total) <- names(ci)
       ci <- dplyr::bind_rows(ci, ci_total)
       estimation <- dplyr::bind_cols(value, var[2], ci[, 2:3])
     })
-
   } else if (is.null(by) & isTRUE(bootstrap) & is.character(ids)){
     e <- as.integer(d[, estrato])
     i <-  as.integer(d[, ids])
     estimation <- laeken::gini(inc = v, weights = p, design = e, cluster = i, var = "bootstrap", bootType = "naive", seed = 1234, R = r)
+    suppressMessages({
+    value <- data.frame(estimation[[1]])
+    names(value) <- "value"
+    var <- data.frame(estimation[[4]])
+    names(var) <- "variance"
+    ci <- dplyr::bind_cols(estimation[[6]][1], estimation[[6]][2])
+    names(ci) <- c("lower", "upper")
+    estimation <- dplyr::bind_cols(value, var, ci)
+    })
   } else{
-    by <-  as.factor((d[, by]))
-    estrato <- as.integer(d[, estrato])
-    ids <-  as.integer(d[, ids])
-    estimation <- laeken::gini(inc = v, weights = p, design = e, cluster = ids, var = "bootstrap", bootType = "naive", breakdown = by, seed = 1234, R = r)
+    b <-  as.factor((d[, by]))
+    e <- as.integer(d[, estrato])
+    i <-  as.integer(d[, ids])
+    estimation <- laeken::gini(inc = v, weights = p, design = e, cluster = i, var = "bootstrap", bootType = "naive", breakdown = b, seed = 1234, R = r)
+    suppressMessages({
+      value <- estimation[[2]]
+      value_total <- data.frame(dplyr::bind_cols("Total",estimation[[1]]))
+      names(value_total) <- names(value)
+      value <- dplyr::bind_rows(value, value_total)
+      ###
+      var <- estimation[[5]]
+      var_total <- data.frame(dplyr::bind_cols("Total",estimation[[4]]))
+      names(var_total) <- names(var)
+      var <- dplyr::bind_rows(var, var_total)
+      ###
+      ci <- estimation[[7]]
+      ci_total <- data.frame(dplyr::bind_cols("Total",estimation[[6]][1], estimation[[6]][2]))
+      names(ci_total) <- names(ci)
+      ci <- dplyr::bind_rows(ci, ci_total)
+      estimation <- dplyr::bind_cols(value, var[2], ci[, 2:3])
+    })
   }
 
   return(estimation)
