@@ -5,4 +5,10 @@ test_that("multiplication works", {
   pobre_x_dpto_geo <- add_geom(data = pobre_x_dpto, unit = "Departamentos", variable = "nomdpto")
   aaa <- plot_geouy(x = pobre_x_dpto_geo, col = "Pobreza", l = "%")
   testthat::expect_is(aaa, "ggplot")
+  aaa <- plot_geouy(x = pobre_x_dpto_geo, col = "Pobreza", l = "n")
+  testthat::expect_is(aaa, "ggplot")
+  aaa <- plot_geouy(x = pobre_x_dpto_geo, col = "Pobreza", l = "c", other_lab = "link")
+  testthat::expect_is(aaa, "ggplot")
+  expect_error(plot_geouy(x = pobre_x_dpto_geo, col = "Pobreza", l = "c", other_lab = "zapallitos"))
+
 })

@@ -88,18 +88,18 @@ test_that("get_estimation_ratio works", {
 
 test_that("get_estimation_median works", {
   ech_2018 <- employment(data = ech::toy_ech_2018, pobpcoac = "pobpcoac")
-  a <- get_estimation_ratio(data = ech_2018, variable.x = "ht11", variable.y = "pea", level = "i", name = "tasa_ocupacion")
+  a <- get_estimation_median(data = ech_2018, variable = "ht11", level = "i", name = "tasa_ocupacion")
   expect_equal(nrow(a), 1)
-  a <- get_estimation_ratio(data = ech_2018, variable.x = "ht11", variable.y = "pea", domain = "dpto == 1", level = "i")
+  a <- get_estimation_median(data = ech_2018, variable = "ht11", domain = "dpto == 1", level = "i")
   expect_equal(nrow(a), 1)
-  a <- get_estimation_ratio(data = ech_2018, variable.x = "ht11", variable.y = "pea", domain = "dpto == 1", by.x = "mes", level = "i")
-  expect_equal(nrow(a), 12)
-  a <- get_estimation_ratio(data = ech_2018, variable.x = "ht11", variable.y = "pea", by.x = "dpto", level = "i")
+  a <- get_estimation_median(data = ech_2018, variable = "ht11", domain = "dpto == 1", by.x = "e26", level = "i")
+  expect_equal(nrow(a), 2)
+  a <- get_estimation_median(data = ech_2018, variable = "ht11", by.x = "dpto", level = "i")
   expect_equal(nrow(a), 19)
-  a <- get_estimation_ratio(data = ech_2018, variable.x = "ht11", variable.y = "pea", by.x = "dpto", by.y = "mes",level = "i")
-  expect_equal(nrow(a), 149)
-  a <- get_estimation_ratio(data = ech_2018, variable.x = "ht11", variable.y = "pea", by.x = "secc", by.y = "mes", domain = "dpto == 1", level = "i")
-  expect_equal(nrow(a), 117)
+  # a <- get_estimation_median(data = ech_2018, variable = "ht11", by.x = "dpto", by.y = "e26", level = "i")
+  # expect_equal(nrow(a), 149)
+  # a <- get_estimation_median(data = ech_2018, variable = "ht11", by.x = "dpto", by.y = "e26", domain = "dpto == 1", level = "i")
+  # expect_equal(nrow(a), 117)
 })
 
 test_that("get_estimation_gini works", {
@@ -107,7 +107,8 @@ test_that("get_estimation_gini works", {
                                index = "IPC", base_month = "01", base_year = "2005")
   a <- get_estimation_gini(data = ech_2018, variable = "y_wrv_pc_d_r", level = "h")
   expect_is(a, "data.frame")
-  # b <- get_estimation_gini(data = ech_2018, variable = "y_wrv_pc_d_r", level = "i", by = "nomdpto")
+  b <- get_estimation_gini(data = ech_2018, variable = "y_wrv_pc_d_r", level = "h", by = "nomdpto")
+  expect_is(b, "data.frame")
 })
 
 test_that("get_estimation_gpg works", {

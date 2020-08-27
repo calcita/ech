@@ -6,4 +6,8 @@ test_that("emploiment works", {
   testthat::expect_equal(ncol(b), 583)
   c <- branch_ciiu(data = ech::toy_ech_2018, group = FALSE, disaggregated = TRUE)
   testthat::expect_equal(ncol(c), 583)
+  d <- underemployment(data = ech::toy_ech_2018)
+  testthat::expect_equal(ncol(d), 582)
+  e <- employment_restrictions(data = d)
+  testthat::expect_equal(ncol(e), 583)
 })
