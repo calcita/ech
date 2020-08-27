@@ -530,6 +530,7 @@ get_estimation_gini <- function(data = ech::toy_ech_2018,
 
 
   assertthat::assert_that(!is.null(data) | !is.null(variable) | !is.null(numero) | !is.null(pesoano) | !is.null(level), msg = "You must indicate a variable")
+  assertthat::assert_that(is.null(ids) & !is.null(estrato), msg = "You must indicate the ids")
   assertthat::assert_that(all(variable %in% names(data)), msg = glue::glue("Sorry... :( \n {variable} is not in {data}"))
   assertthat::assert_that(all(pesoano %in% names(data)), msg = glue::glue("Sorry... :( \n {pesoano} is not in {data}"))
   assertthat::assert_that(all(numero %in% names(data)), msg = glue::glue("Sorry... :( \n {numero} is not in {data}"))
@@ -555,13 +556,15 @@ get_estimation_gini <- function(data = ech::toy_ech_2018,
      estimation <- laeken::gini(inc = v, weights = p)
      estimation <- data.frame(estimation[[1]])
      names(estimation) <- "value"
-  } else if (is.character(by) & is.null(bootstrap) & is.null(ids)){
+  } else if (is.character(by) & isFALSE(bootstrap) & is.null(ids)){
+    suppressMessages({
     b <- as.factor(d[, by])
     estimation <- laeken::gini(inc = v, weights = p, breakdown = b)
     value <- estimation[[2]]
     value_total <- data.frame(dplyr::bind_cols("Total", estimation[[1]]))
     names(value_total) <- names(value)
     estimation <- dplyr::bind_rows(value, value_total)
+    })
   } else if (is.null(by) & isFALSE(bootstrap) & is.character(ids)){
      e <- as.integer(d[, estrato])
      i <-  as.integer(d[, ids])
@@ -660,6 +663,7 @@ get_estimation_gini <- function(data = ech::toy_ech_2018,
 #' @param ids Variable name of cluster
 #' @param estrato Variable name of strata
 #' @param pesoano Variable name of weights
+#' @param stat Media or Median
 #'
 #' @return table
 #' @export
@@ -674,22 +678,62 @@ get_estimation_gpg <- function(data = ech::toy_ech_2018,
                                by = NULL,
                                ids = NULL,
                                estrato = NULL,
-                               pesoano = "pesoano"){
+                               pesoano = "pesoano",
+                               stat = "media"){
+
+  assertthat::assert_that(!is.null(data) | !is.null(variable) | !is.null(pesoano) | !is.null(e26), msg = "You must indicate a variable")
+  #assertthat::assert_that(!is.null(ids) & is.null(estrato), msg = "You must indicate the ids")
+  assertthat::assert_that(all(variable %in% names(data)), msg = glue::glue("Sorry... :( \n {variable} is not in {data}"))
+  assertthat::assert_that(all(pesoano %in% names(data)), msg = glue::glue("Sorry... :( \n {pesoano} is not in {data}"))
+   assertthat::assert_that(all(e26 %in% names(data)), msg = glue::glue("Sorry... :( \n {e26} is not in {data}"))
+  assertthat::assert_that(all(stat %in% c("media", "median")), msg = glue::glue("Sorry... :( \n {stat} can be median or media"))
 
   d <- data %>% dplyr::select(!!!syms(c(variable, e26, by, ids, estrato, pesoano))) %>%
-    unlabelled()
+    unlabelled() %>%
+    tidyr::drop_na(dplyr::all_of(variable))
 
-  d <- d %>%  tidyr::drop_na()
+  d <- d %>%  dplyr::mutate(e26 = ifelse(e26 == "Mujer", "female", "male"),
+                  e26 = factor(e26, levels = c("female", "male"), labels = c("female", "male")))
+
   d <- as.data.frame(d)
+  v <- as.numeric(d[, variable])
+  p <- as.integer(d[, pesoano])
+  g <- as.factor(d[, e26])
 
   if(is.null(by) & is.null(ids)){
-    estimation <- laeken::gpg(inc = variable, gender = e26, weights = pesoano, data = d)
+    estimation <- laeken::gpg(inc = v, gender = g, weights = p, method = stat)
+    suppressMessages({
+      estimation <- data.frame(estimation[[1]])
+      names(estimation) <- "value"
+    })
   } else if (is.character(by) & is.null(ids)){
-    estimation <- laeken::gpg(inc = variable, gender = e26, weights = pesoano, breakdown = by, data = d)
+    b <- as.factor(d[, by])
+    estimation <- laeken::gpg(inc = v, gender = g, weights = p, breakdown = b, method = stat)
+    suppressMessages({
+      value <- estimation[[2]]
+      value_total <- data.frame(dplyr::bind_cols("Total",estimation[[1]]))
+      names(value_total) <- names(value)
+      estimation <- dplyr::bind_rows(value, value_total)
+    })
   } else if (is.null(by) & is.character(ids)){
-    estimation <- laeken::gpg(inc = variable, gender = e26, weights = pesoano, design = estrato, cluster = ids, data = d)
+    e <- as.integer(d[, estrato])
+    i <-  as.integer(d[, ids])
+    estimation <- laeken::gpg(inc = v, gender = g, weights = p, design = e, cluster = i, method = stat)
+    suppressMessages({
+      estimation <- data.frame(estimation[[1]])
+      names(estimation) <- "value"
+    })
   } else{
-    estimation <- laeken::gpg(inc = variable, gender = e26, weights = pesoano, breakdown = by, design = estrato, cluster = ids, data = d)
+    b <-  as.factor((d[, by]))
+    e <- as.integer(d[, estrato])
+    i <-  as.integer(d[, ids])
+    estimation <- laeken::gpg(inc = v, gender = g, weights = p, breakdown = b, design = e, cluster = i, method = stat)
+    suppressMessages({
+      value <- estimation[[2]]
+      value_total <- data.frame(dplyr::bind_cols("Total",estimation[[1]]))
+      names(value_total) <- names(value)
+      estimation <- dplyr::bind_rows(value, value_total)
+    })
   }
   return(estimation)
 
@@ -713,28 +757,47 @@ get_estimation_gpg <- function(data = ech::toy_ech_2018,
 #'                                        base_month = "01", base_year = "2005")
 #' get_estimation_qsr(data = toy_ech_2018, variable = "y_wrv_pc_d_r", pesoano = "pesoano")
 #
-# get_estimation_qsr <- function(data = ech::toy_ech_2018,
-#                                variable = "y_wrv_pc_d_r",
-#                                by = NULL,
-#                                ids = NULL,
-#                                estrato = NULL,
-#                                pesoano = "pesoano"){
-#
-#   d <- data %>% dplyr::select(!!!syms(c(variable, by, ids, estrato, pesoano))) %>%
-#     unlabelled()
-#
-#   d <- d %>%  tidyr::drop_na()
-#   d <- as.data.frame(d)
-#
-#   if(is.null(by) & is.null(ids)){
-#     estimation <- laeken::qsr(inc = variable, weights = pesoano, data = d)
-#   } else if (is.character(by) & is.null(ids)){
-#     estimation <- laeken::qsr(inc = variable, weights = pesoano, breakdown = by, data = d)
-#   } else if (is.null(by) & is.character(ids)){
-#     estimation <- laeken::qsr(inc = variable, weights = pesoano, design = estrato, cluster = ids, data = d)
-#   } else{
-#     estimation <- laeken::qsr(inc = variable, weights = pesoano, breakdown = by, design = estrato, cluster = ids, data = d)
-#   }
-#   return(estimation)
-#
-# }
+get_estimation_qsr <- function(data = ech::toy_ech_2018,
+                               variable = "y_wrv_pc_d_r",
+                               by = NULL,
+                               ids = NULL,
+                               estrato = NULL,
+                               pesoano = "pesoano"){
+
+  d <- data %>% dplyr::select(!!!syms(c(variable, by, ids, estrato, pesoano))) %>%
+    unlabelled()%>%
+    tidyr::drop_na(dplyr::all_of(variable))
+  d <- as.data.frame(d)
+
+  if(is.null(by) & is.null(ids)){
+    estimation <- laeken::qsr(inc = variable, weights = pesoano, data = d)
+    suppressMessages({
+    estimation <- data.frame(estimation[[1]])
+    names(estimation) <- "value"
+    })
+  } else if (is.character(by) & is.null(ids)){
+     estimation <- laeken::qsr(inc = variable, weights = pesoano, breakdown = by, data = d)
+     suppressMessages({
+     value <- estimation[[2]]
+     value_total <- data.frame(dplyr::bind_cols("Total",estimation[[1]]))
+     names(value_total) <- names(value)
+     estimation <- dplyr::bind_rows(value, value_total)
+    })
+  } else if (is.null(by) & is.character(ids)){
+    estimation <- laeken::qsr(inc = variable, weights = pesoano, design = estrato, cluster = ids, data = d)
+    suppressMessages({
+    estimation <- data.frame(estimation[[1]])
+    names(estimation) <- "value"
+    })
+  } else{
+    estimation <- laeken::qsr(inc = variable, weights = pesoano, breakdown = by, design = estrato, cluster = ids, data = d)
+    suppressMessages({
+    value <- estimation[[2]]
+    value_total <- data.frame(dplyr::bind_cols("Total",estimation[[1]]))
+    names(value_total) <- names(value)
+    estimation <- dplyr::bind_rows(value, value_total)
+    })
+  }
+  return(estimation)
+
+}
