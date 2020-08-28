@@ -9,7 +9,8 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
   fig.path = "man/figures/README-",
-  out.width = "100%"
+  out.width = "100%",
+  dpi = 400
 )
 ```
 
@@ -127,7 +128,7 @@ El uso de este paquete se potencia al usarlo en conjunto con [geouy](https://git
 
 # Solo me quedo con la estimación de pobre 
 
-pobre_x_dpto <- pobre_x_dpto %>% filter(pobre06 == "Pobre")
+pobre_x_dpto <- pobre_x_dpto %>% dplyr::filter(pobre06 == "Pobre")
 
 # Agrego geometrías
 
@@ -145,8 +146,9 @@ Y con esto, podemos hacer un mapa con `ggplot2` muy fácilmente de estas estimac
 plot_geouy(x = pobre_x_dpto_geo, col = "Pobreza", l = "%")
 ```
 
-```{r echo=FALSE, fig.align="center", message=FALSE, warning=FALSE}
-knitr::include_graphics("man/figures/pobre_readme.png")
+```{r echo=FALSE, fig.align="center", message=FALSE, warning=FALSE, fig.height=5, fig.width=7}
+load("man/figures/pobre_readme.Rds")
+pobre_readme
 ```
 
 
