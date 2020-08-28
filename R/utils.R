@@ -320,7 +320,7 @@ get_ciiu <- function(folder = tempdir(),
   ciiu4 <- df
 }
 
-#' This function allows you to calculate a deflate variable
+#' This function allows you to calculate a deflator coefficient
 #' @family income
 #' @param base_month baseline month
 #' @param base_year baseline year
@@ -380,9 +380,10 @@ deflate <- function(base_month = NULL,
      deflate_backward <- indice/mes_base
 
      deflate <- dplyr::bind_cols(deflate_backward = deflate_backward, deflate_forward = deflate_forward, mes = 1:12) %>%
-       dplyr::mutate(deflate = dplyr::case_when(base_year >= as.numeric(df_year) ~ deflate_forward,
-                                                base_year < as.numeric(df_year) ~ deflate_backward)) %>%
+       dplyr::mutate(deflate = dplyr::case_when(as.numeric(df_year) < base_year  ~ deflate_forward,
+                                                as.numeric(df_year) >= base_year ~ deflate_backward)) %>%
        dplyr::select(deflate, mes)
+
 }
 
 #' This function allows you to get the Basket goods
