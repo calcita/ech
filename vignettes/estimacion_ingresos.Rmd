@@ -73,15 +73,13 @@ Es necesario definir `ids` y `estrato` que vienen con valor por defecto NULL, la
 get_estimation_mean(df, variable = "y_pc_d", level = "i", ids = "upm", estrato = "estrato")
 ```
 
-Para estimar el ingreso medio de los hogares a precios constantes de junio 2019 según decil, se debe definir en el argumento by.x la variable decil, previamente calculada con `income_quantile()`.
+Para estimar el ingreso medio de los hogares a precios constantes de enero 2005 según departamento, se debe definir en el argumento by.x la variable "nomdpto"
 
 ```{r eval = FALSE}
-df <- income_quantiles(df, income = "y_pc_d", quantile = 10)
-
-# Estimación de ingresos promedio per cápita a pesos constantes de jun/19 según decil
-get_estimation_mean(df, variable = "y_pc_d", by.x = "decil", level = "i", ids = "upm", estrato = "estrato")
+# Estimación de ingresos promedio per cápita a pesos constantes de ene/05 según dpto
+get_estimation_mean(df, variable = "y_pc_d", by.x = "nomdpto", level = "i", ids = "upm", estrato = "estrato")
 ```
 
 <!-- Una forma de mostrar estos resultados es mediante un gráfico como el siguiente: -->
 
-
+Podemos comparar estos resultados con los publicados por el Observatorio Territorio Uruguay de OPP que se encuentran [aquí](https://otu.opp.gub.uy/?q=listados/listados_datos_formato&id=2727&cant=0&fecha=2019-01-01). 
