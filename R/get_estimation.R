@@ -56,6 +56,8 @@ get_estimation_mean <- function(data = ech::toy_ech_2018,
 
   d <- data %>% dplyr::select(if(!is.null(domain)){dom}) %>% dplyr::bind_cols(d, .)
 
+  d <- d %>% tidyr::drop_na(dplyr::all_of(variable))
+
 # design ----
   design_ech <- ech::set_design(data = d, level = level, numero = numero, ids = ids, estrato = estrato, pesoano = pesoano)
 
@@ -192,6 +194,8 @@ get_estimation_median <- function(data = ech::toy_ech_2018,
 
   d <- data %>% dplyr::select(if(!is.null(domain)){dom}) %>% dplyr::bind_cols(d, .)
 
+  d <- d %>% tidyr::drop_na(dplyr::all_of(variable))
+
   # design ----
   design_ech <- ech::set_design(data = d, level = level, numero = numero, ids = ids, estrato = estrato, pesoano = pesoano)
 
@@ -300,6 +304,8 @@ get_estimation_total <- function(data = ech::toy_ech_2018,
     unlabelled()
 
   d <- data %>% dplyr::select(if(!is.null(domain)){dom}) %>% dplyr::bind_cols(d, .)
+
+  d <- d %>% tidyr::drop_na(dplyr::all_of(variable))
 
   # design ----
   design_ech <- ech::set_design(data = d, level = level, numero = numero, ids = ids, estrato = estrato, pesoano = pesoano)
@@ -657,7 +663,7 @@ get_estimation_gini <- function(data = ech::toy_ech_2018,
 }
 
 
-#' This function allows you to estimate the Gender Pay Gap (GPG)
+#' This function allows you to estimate the Gender Pay Wage Gap (GPG)
 #' @family estimation
 #' @param data data.frame
 #' @param variable Variable name of total income per hour

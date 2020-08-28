@@ -6,6 +6,7 @@
 \usage{
 enrolled_school(
   data = ech::toy_ech_2018,
+  e27 = "e27",
   e193 = "e193",
   e197 = "e197",
   e201 = "e201",
@@ -18,6 +19,8 @@ enrolled_school(
 }
 \arguments{
 \item{data}{data.frame with necessary variables Defaults to ech.}
+
+\item{e27}{Variable name of age}
 
 \item{e193}{Variable name of attendance school}
 

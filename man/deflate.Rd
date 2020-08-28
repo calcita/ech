@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{deflate}
 \alias{deflate}
-\title{This function allows you to calculate a deflate variable}
+\title{This function allows you to calculate a deflator coefficient}
 \usage{
 deflate(
   base_month = NULL,
@@ -24,7 +24,7 @@ deflate(
 \item{df_year}{ECH year}
 }
 \description{
-This function allows you to calculate a deflate variable
+This function allows you to calculate a deflator coefficient
 }
 \details{
 Disclaimer: This script is not an official INE product.

@@ -75,9 +75,19 @@ underemployment <- function(data = ech::toy_ech_2018,
                          f103 = "f103",
                          f104 = "f104"){
 
-    data <- data %>% dplyr::mutate(underemployment = dplyr::case_when(pobpcoac == 2 & (f85 +  f98 < 40) & (f101 == 1 | f102 == 1) & (f103 == 1) & (f104 == 5) ~ 1,
+  # checks ---
+  assertthat::assert_that(is.data.frame(data), msg = glue::glue("Sorry... :( \n  is not a data.frame"))
+  assertthat::assert_that(pobpcoac %in% names(data), msg = glue::glue("Sorry... :( \n  {popbcoac} is not in data"))
+  assertthat::assert_that(f85 %in% names(data), msg = glue::glue("Sorry... :( \n  {f85} is not in data"))
+  assertthat::assert_that(f98 %in% names(data), msg = glue::glue("Sorry... :( \n  {f98} is not in data"))
+  assertthat::assert_that(f101 %in% names(data), msg = glue::glue("Sorry... :( \n  {f101} is not in data"))
+  assertthat::assert_that(f102 %in% names(data), msg = glue::glue("Sorry... :( \n  {f102} is not in data"))
+  assertthat::assert_that(f103 %in% names(data), msg = glue::glue("Sorry... :( \n  {f103} is not in data"))
+  assertthat::assert_that(f104 %in% names(data), msg = glue::glue("Sorry... :( \n  {f104} is not in data"))
+
+  data <- data %>% dplyr::mutate(underemployment = dplyr::case_when(pobpcoac == 2 & (f85 +  f98 < 40) & (f101 == 1 | f102 == 1) & (f103 == 1) & (f104 == 5) ~ 1,
                                                                    TRUE ~ 0),
-                                   underemployment = haven::labelled(underemployment, labels = c("Si" = 1, "No" = 0), label = "Poblacion subempleada")
+                                 underemployment = haven::labelled(underemployment, labels = c("Si" = 1, "No" = 0), label = "Poblacion subempleada")
       )
 
     message("A variable has been created: \n \t underemployment (Poblacion subempleada)")
@@ -103,11 +113,16 @@ employment_restrictions  <- function(data = ech::toy_ech_2018,
                                      f82 = "f82",
                                      underemployment = "underemployment"){
 
-  data <- data %>% mutate(employment_restrictions = dplyr::case_when(
+  # checks ---
+  assertthat::assert_that(is.data.frame(data), msg = glue::glue("Sorry... :( \n  is not a data.frame"))
+  assertthat::assert_that(f82 %in% names(data), msg = glue::glue("Sorry... :( \n  {f82} is not in data"))
+  assertthat::assert_that(underemployment %in% names(data), msg = glue::glue("Sorry... :( \n  {underemployment} is not in data"))
+
+  data <- data %>% dplyr::mutate(employment_restrictions = dplyr::case_when(
     f82 == 1 & underemployment == 0 ~ 1,
     f82 == 2 & underemployment == 0 ~ 2,
     f82 == 1 & underemployment == 1 ~ 3,
-    f82 == 2 & underemployment == 0 ~ 4),
+    f82 == 2 & underemployment == 1 ~ 4),
     employment_restrictions =  haven::labelled(employment_restrictions,
                                                labels = c("Sin restricciones" = 1,  "Restriccion por no aporte" = 2, "Restriccion por subempleo" = 3, "Restriccion por subempleo y no aporte " = 4),
                                                label = "Restricciones al empleo"))
@@ -136,6 +151,10 @@ branch_ciiu <- function(data = ech::toy_ech_2018,
                         f72_2 = "f72_2",
                         group = TRUE,
                         disaggregated = FALSE){
+
+  # checks ---
+  assertthat::assert_that(is.data.frame(data), msg = glue::glue("Sorry... :( \n  is not a data.frame"))
+  assertthat::assert_that(f72_2 %in% names(data), msg = glue::glue("Sorry... :( \n  {f72_2} is not in data"))
 
   if(is.character(data$f72_2)) data$f72_2 <- as.numeric(data$f72_2)
 

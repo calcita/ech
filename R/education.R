@@ -1,5 +1,6 @@
 #' This function allows you to calculate the people enrolled in school
 #' @param data data.frame with necessary variables Defaults to ech.
+#' @param e27 Variable name of age
 #' @param e193 Variable name of attendance school
 #' @param e197 Variable name of attendance primary
 #' @param e201 Variable name of attendance secondary
@@ -26,6 +27,7 @@
 #' }
 
 enrolled_school <- function(data = ech::toy_ech_2018,
+                            e27 = "e27",
                             e193 = "e193",
                             e197 = "e197",
                             e201 = "e201",
@@ -37,6 +39,7 @@ enrolled_school <- function(data = ech::toy_ech_2018,
 
   # checks ---
   assertthat::assert_that(is.data.frame(data))
+  assertthat::assert_that(e27  %in% names(data), msg =  glue:glue("Sorry... :( \n {e27} is not in data"))
   assertthat::assert_that(e193  %in% names(data), msg =  glue:glue("Sorry... :( \n {e193} is not in data"))
   assertthat::assert_that(e197  %in% names(data), msg =  glue:glue("Sorry... :( \n {e197} is not in data"))
   assertthat::assert_that(e201  %in% names(data), msg =  glue:glue("Sorry... :( \n {e201} is not in data"))
@@ -51,13 +54,13 @@ enrolled_school <- function(data = ech::toy_ech_2018,
   # }
 
   data %<>% dplyr::mutate(school_enrollment = dplyr::case_when((.data$e193 == 1 |
-                                                                .data$e197 ==  1|
-                                                                .data$e201 == 1 |
+                                                                .data$e197 == 1 |
+                                                                (.data$e201 == 1 & .data$e27 > 10) |
                                                                 .data$e212 == 1 |
-                                                                .data$e215 == 1 |
-                                                                .data$e218 == 1 |
-                                                                .data$e221 == 1 |
-                                                                .data$e224 == 1) ~ 1,
+                                                                (.data$e215 == 1 & .data$e27 > 17) |
+                                                                (.data$e218 == 1 & .data$e27 > 17) |
+                                                                (.data$e221 == 1 & .data$e27 > 17) |
+                                                                (.data$e224 == 1 & .data$e27 > 17)) ~ 1,
                                                                TRUE ~ 0),
                           school_enrollment = haven::labelled(school_enrollment, labels = c("Si" = 1, "No" = 0),
                                                  label = "Matriculacion escolar"))
@@ -130,7 +133,7 @@ years_of_schooling <- function(data = ech::toy_ech_2018,
   # }
 
   data %<>%
-    dplyr::mutate_at(dplyr::vars({{e51_2}}, {{e51_3}}, {{e51_4}}, {{e51_5}}, {{e51_6}}, {{e51_7}}), list(~ ifelse( . == 9, 0, .))) %>%
+    dplyr::mutate_at(dplyr::vars({{e51_2}}, {{e51_3}}, {{e51_4}}, {{e51_5}}, {{e51_6}}, {{e51_7}}, {{e51_8}}, {{e51_9}}, {{e51_10}}, {{e51_11}}), list(~ ifelse( . == 9, 0, .))) %>%
 
     dplyr::mutate(e51_71 = ifelse(e51_7_1 == 1, e51_7, 0),
                   e51_72 = ifelse(e51_7_1 == 2, e51_7, 0),
@@ -260,13 +263,13 @@ level_education <- function(data = ech::toy_ech_2018,
 
   data <- data %>% dplyr::mutate(
     level_education = dplyr::case_when(
-      e51_8 %in% 1:4 & e51_9 %in% c(0,9) & e51_10 %in% c(0,9) & e51_11 %in% c(0,9) ~ 4,
-      e51_9 %in% 1:8 | e51_10 %in% 1:4 | e51_11 %in% 1:4 ~ 5,
+      e51_8 %in% 1:4 & e51_9 %in% c(0,9) & e51_10 %in% c(0,9) & e51_11 %in% c(0,9) ~ 3,
+      e51_9 %in% 1:8 | e51_10 %in% 1:4 | e51_11 %in% 1:4 ~ 4,
       TRUE ~ level_education))
 
   data <- data %>% dplyr::mutate(
     level_education = haven::labelled(level_education,
-                                        labels = c("Sin instruccion" = 0, "Primaria" = 1, "Secundaria" = 2, "UTU" = 3, "Magisterio o profesorado" = 4, "Universidad o similar" = 5),
+                                        labels = c("Sin instruccion" = 0, "Primaria" = 1, "Secundaria o UTU" = 2, "Magisterio o profesorado" = 3, "Universidad o similar" = 4),
                                         label = "Nivel educativo")
     )
   message("A variable has been created: \n \t highest level_education achieved (maximo nivel educativo alcanzado)")

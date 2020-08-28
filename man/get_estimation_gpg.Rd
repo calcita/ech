@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_estimation.R
 \name{get_estimation_gpg}
 \alias{get_estimation_gpg}
-\title{This function allows you to estimate the Gender Pay Gap (GPG)}
+\title{This function allows you to estimate the Gender Pay Wage Gap (GPG)}
 \usage{
 get_estimation_gpg(
   data = ech::toy_ech_2018,
@@ -36,7 +36,7 @@ get_estimation_gpg(
 table
 }
 \description{
-This function allows you to estimate the Gender Pay Gap (GPG)
+This function allows you to estimate the Gender Pay Wage Gap (GPG)
 }
 \examples{
 toy_ech_2018 <- labor_income_per_hour(data = ech::toy_ech_2018, base_month = 6, base_year = 2018)
