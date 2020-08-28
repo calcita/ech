@@ -27,6 +27,17 @@ set_design <- function(data = ech::toy_ech_2018,
                        estrato = NULL,
                        pesoano = "pesoano"){
 
+  # checks ---
+  assertthat::assert_that(is.data.frame(data))
+  assertthat::assert_that(numero %in% names(data), msg = glue:glue("Sorry... :( \n {numero} is not in data"))
+  assertthat::assert_that(pesoano %in% names(data), msg = glue:glue("Sorry... :( \n {pesoano} is not in data"))
+  if(!is.null(ids)){
+    assertthat::assert_that(ids %in% names(data), msg = glue:glue("Sorry... :( \n {ids} is not in data"))
+  }
+  if(!is.null(estrato)){
+    assertthat::assert_that(estrato %in% names(data), msg = glue:glue("Sorry... :( \n {estrato} is not in data"))
+  }
+
   if(is.null(ids)){
     if (level == "h") {
       d <- data %>%

@@ -28,7 +28,6 @@ toy_ech_18 <- enrolled_school(data = ech::toy_ech_2018)
 toy_ech_18 <- years_of_schooling(toy_ech_18)
 toy_ech_18 <- unsatisfied_basic_needs(toy_ech_18)
 toy_ech_18 <- integrated_poverty_measure(data = toy_ech_18)
-
 }
 \seealso{
 Other poverty: 
