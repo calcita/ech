@@ -255,10 +255,16 @@ poverty <- function(data = ech::toy_ech_2018,
 #' toy_ech_18 <- years_of_schooling(toy_ech_18)
 #' toy_ech_18 <- unsatisfied_basic_needs(toy_ech_18)
 #' toy_ech_18 <- integrated_poverty_measure(data = toy_ech_18)
-#'
+
 integrated_poverty_measure <- function(data = ech::toy_ech_2018,
                                        pobre06 = "pobre06",
                                        UBN_q = "UBN_q"){
+
+  # checks ---
+  assertthat::assert_that(is.data.frame(data))
+  assertthat::assert_that(pobre06 %in% names(data), msg = glue:glue("Sorry... :( \n {pobre06} is not in data"))
+  assertthat::assert_that(UBN_q %in% names(data), msg = glue:glue("Sorry... :( \n {UBN_q} is not calculated, please run unsatisfied_basic_needs() to obtain the variable."))
+
   data <- data %>%
     dplyr::mutate(integrated_poverty_measure = dplyr::case_when(
       pobre06 == 0 & UBN_q == 0 ~ 0,

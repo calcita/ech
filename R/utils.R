@@ -19,6 +19,7 @@
 
 get_ipc <- function(folder = tempdir()){
 
+  assertthat::assert_that(is.character(folder), msg = "Sorry... :( \n \t folder parameter must be character")
   suppressMessages({
     u <- "http://www.ine.gub.uy/c/document_library/get_file?uuid=2e92084a-94ec-4fec-b5ca-42b40d5d2826&groupId=10181"
     f <- fs::path(folder, "IPC gral var M_B10.xls")
@@ -60,6 +61,8 @@ get_ipc <- function(folder = tempdir()){
 #'
 get_ipc_region <- function(folder = tempdir(), region = "M", sheet = NULL){
 
+  assertthat::assert_that(is.character(folder), msg = "Sorry... :( \n \t folder parameter must be character")
+  assertthat::assert_that(region %in% c("M", "I"), msg = "Sorry... :( \n \t region parameter must be 'M' for Montevideo or 'I' for Interior")
   suppressMessages({
     if (region == "M") {
       u <- "http://www.ine.gub.uy/c/document_library/get_file?uuid=c7628833-9b64-44a4-ac97-d13353ee79ac&groupId=10181"
@@ -131,6 +134,8 @@ get_ipc_region <- function(folder = tempdir(), region = "M", sheet = NULL){
 #'
 get_cba_cbna <- function(folder = tempdir(), sheet = NULL, region = NULL){
 
+  assertthat::assert_that(is.character(folder), msg =  "Sorry... :( \n \t folder parameter must be character")
+  assertthat::assert_that(region %in% c("M", "I", "R"), msg =  "Sorry... :( \n \t region parameter must be 'M' for Montevideo, 'I' for Interior urbano or 'R' for Interior rural")
   suppressMessages({
     u <- "http://www.ine.gub.uy/c/document_library/get_file?uuid=1675e7d0-6fe0-49bd-bf3f-a46bd6334c0c&groupId=10181"
     f <- fs::path(folder, "CBA_LP_LI M.xls")
@@ -193,6 +198,7 @@ get_cba_cbna <- function(folder = tempdir(), sheet = NULL, region = NULL){
 
 get_ipab <- function(folder = tempdir(), sheet = NULL){
 
+  assertthat::assert_that(is.character(folder), msg =  "Sorry... :( \n \t folder parameter must be character")
   suppressMessages({
     u <- "http://www.ine.gub.uy/c/document_library/get_file?uuid=c4b5efaa-cdd4-497a-ab78-e3138e4f08dc&groupId=10181"
     f <- fs::path(folder, "IPC Div M_B10.xls")
@@ -231,7 +237,6 @@ get_ipab <- function(folder = tempdir(), sheet = NULL){
 #' @param folder temporal folder
 #' @param sheet sheet number
 #' @param region Montevideo ("M"), Interior Urbano ("I")
-#'
 #' @importFrom readxl read_xls
 #' @importFrom janitor remove_empty
 #' @importFrom dplyr bind_rows slice filter_all bind_cols any_vars mutate
@@ -244,6 +249,8 @@ get_ipab <- function(folder = tempdir(), sheet = NULL){
 #'
 get_ipab_region <- function(folder = tempdir(), sheet = NULL, region = "M"){
 
+  assertthat::assert_that(is.character(folder), msg = "Sorry... :( \n \t folder parameter must be character")
+  assertthat::assert_that(region %in% c("M", "I"), msg = "Sorry... :( \n \t region parameter must be 'M' for Montevideo or 'I' for Interior")
   suppressMessages({
     if (region == "M") {
       u <- "http://ine.gub.uy/c/document_library/get_file?uuid=c7628833-9b64-44a4-ac97-d13353ee79ac&groupId=10181"
@@ -306,6 +313,8 @@ get_ipab_region <- function(folder = tempdir(), sheet = NULL, region = "M"){
 
 get_ciiu <- function(folder = tempdir(),
                      version = 4){
+  assertthat::assert_that(is.character(folder), msg = "Sorry... :( \n \t folder parameter must be character")
+  assertthat::assert_that(is.numeric(version), msg = "Sorry... :( \n \t version parameter must be numeric")
 
   u <- "http://www.ine.gub.uy/documents/10181/33330/CORRESPONDENCIA+CIUU4+A+CIUU3.pdf/623c43cb-009c-4da9-b48b-45282745063b"
   f <- fs::path(folder, "ciiu4.pdf")
@@ -344,45 +353,48 @@ deflate <- function(base_month = NULL,
                     level = "G",
                     df_year = NULL) {
 
+  assertthat::assert_that(level %in% c("G", "M", "I"), msg = "Sorry... :( \n \t level parameter must be 'G' for General, 'M' for Montevideo or 'I' for Interior")
+  assertthat::assert_that(index %in% c("IPC", "IPAB"), msg = "Sorry... :( \n \t index parameter must be 'IPC' or 'IPAB'")
+
   if (nchar(as.character(base_month)) == 1){
     base_month <- paste0("0", base_month)
   }
 
   if (index == "IPC" & level == "G") {
-     df <- ech::ipc_base2010
-   }  else if (index == "IPC" & level == "M"){
+    df <- ech::ipc_base2010
+  }  else if (index == "IPC" & level == "M"){
     df <- ech::ipc_base2010_mdeo
-   } else if (index == "IPC" & level == "I"){
-     df <- ech::ipc_base2010_int
-   } else if (index == "IPAB" & level == "G"){
-     df <- ech::ipab_base2010
-   }  else if (index == "IPAB" & level == "M"){
-     df <- ech::ipab_base2010_mdeo
-   } else {
-     df <- ech::ipab_base2010_int
-   }
+  } else if (index == "IPC" & level == "I"){
+    df <- ech::ipc_base2010_int
+  } else if (index == "IPAB" & level == "G"){
+    df <- ech::ipab_base2010
+  }  else if (index == "IPAB" & level == "M"){
+    df <- ech::ipab_base2010_mdeo
+  } else {
+    df <- ech::ipab_base2010_int
+  }
 
-     mes_base <- df %>%
-       dplyr::filter(fecha == paste0(base_year, "-", base_month, "-01")) %>%
-       dplyr::select(indice) %>%
-       as.numeric()
+  mes_base <- df %>%
+    dplyr::filter(fecha == paste0(base_year, "-", base_month, "-01")) %>%
+    dplyr::select(indice) %>%
+    as.numeric()
 
-     rows1 <- which(df$fecha == paste0(as.numeric(df_year) - 1, "-",12, "-01"))
-     rows2 <- which(df$fecha == paste0(df_year, "-",11, "-01"))
+  rows1 <- which(df$fecha == paste0(as.numeric(df_year) - 1, "-",12, "-01"))
+  rows2 <- which(df$fecha == paste0(df_year, "-",11, "-01"))
 
-     indice <- df %>%
-       dplyr::slice(rows1:rows2) %>%
-       dplyr::select(indice)
+  indice <- df %>%
+    dplyr::slice(rows1:rows2) %>%
+    dplyr::select(indice)
 
-     indice <- as.numeric(indice$indice)
+  indice <- as.numeric(indice$indice)
 
-     deflate_forward <- mes_base/indice
-     deflate_backward <- indice/mes_base
+  deflate_forward <- mes_base/indice
+  deflate_backward <- indice/mes_base
 
-     deflate <- dplyr::bind_cols(deflate_backward = deflate_backward, deflate_forward = deflate_forward, mes = 1:12) %>%
-       dplyr::mutate(deflate = dplyr::case_when(as.numeric(df_year) < base_year  ~ deflate_forward,
-                                                as.numeric(df_year) >= base_year ~ deflate_backward)) %>%
-       dplyr::select(deflate, mes)
+  deflate <- dplyr::bind_cols(deflate_backward = deflate_backward, deflate_forward = deflate_forward, mes = 1:12) %>%
+    dplyr::mutate(deflate = dplyr::case_when(as.numeric(df_year) < base_year  ~ deflate_forward,
+                                             as.numeric(df_year) >= base_year ~ deflate_backward)) %>%
+    dplyr::select(deflate, mes)
 
 }
 
@@ -401,6 +413,8 @@ deflate <- function(base_month = NULL,
 
 basket_goods <- function(data = ech::cba_cbna_mdeo,
                          year = NULL){
+
+  assertthat::assert_that(is.data.frame(data), msg = "Sorry... :( \n \t data parameter must be data.frame")
 
   #ech::cba_cbna_int, ech::cba_cbna_rur
     rows1 <- which(data$fecha == paste0(as.numeric(year) - 1, "-",12, "-01"))
@@ -423,7 +437,7 @@ basket_goods <- function(data = ech::cba_cbna_mdeo,
 #' df <- unlabelled(data = ech::toy_ech_2018)
 
 unlabelled <- function(data = NULL){
-
+  assertthat::assert_that(is.data.frame(data), msg = "Sorry... :( \n \t data parameter must be data.frame")
   d <- data %>% dplyr::mutate_if(haven::is.labelled, labelled::to_factor) #%>%
     #dplyr::mutate_if(is.factor, as.character)
 
@@ -446,6 +460,10 @@ unlabelled <- function(data = NULL){
 age_groups <- function(data = ech::toy_ech_2018,
                        cut = c(0, 4, 11, 17, 24),
                        e27 = "e27") {
+
+  assertthat::assert_that(is.data.frame(data), msg = glue:glue("Sorry... :( \n \t data parameter must be data.frame"))
+  assertthat::assert_that(is.numeric(cut), msg = glue:glue("Sorry... :( \n \t cut parameter must be a numeric vector"))
+  assertthat::assert_that(e27 %in% names(data), msg =  glue:glue("Sorry... :( \n \t {e27} is not in data"))
 
   if (min(dplyr::pull(data[, e27])) < min(cut)){
     cut <- c(min(dplyr::pull(data[, e27])), cut)
