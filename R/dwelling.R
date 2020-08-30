@@ -179,18 +179,17 @@ housing_situation <- function(data = ech::toy_ech_2018,
 
   data <- data %>%
     dplyr::mutate(
-      housing_situation = ifelse(c5_1 == 2 & c5_2 == 2 &  c5_3 == 2 & c5_4 == 2 & c5_5 == 2 & c5_6 == 2 & c5_7 == 2 & c5_8 == 2 & c5_9 == 2 & c5_10 == 2 & c5_11 == 2 & c5_12 == 2, 1,
-                                 ifelse(c5_1 == 2 & c5_2 == 2 & c5_3 == 2 & c5_6 == 2  & c5_7 == 2  & c5_10 == 2 & c5_11 == 2 & c5_12 == 2  & (c5_4 == 1 | c5_5 == 1 | c5_8 == 1  | c5_9 == 1), 2,
-                                        ifelse(c5_3 == 2 & c5_10 == 2 & c5_11 == 2 & (c5_1 == 1 | c5_2 == 1 | c5_6 == 1 | c5_7 == 1 | c5_12 == 1), 3,
-                                               ifelse(c5_3 == 1 | c5_10 == 1  | c5_11 == 1, 4, NA)))),
+      housing_situation = ifelse(c5_1 == 2 & c5_2 == 2 & c5_3 == 2 & c5_4 == 2 & c5_5 == 2 & c5_6 == 2 & c5_7 == 2 & c5_8 == 2 & c5_9 == 2 & c5_10 == 2 & c5_11 == 2 & c5_12 == 2, 1, NA),
+      housing_situation = ifelse(c5_4 == 1 | c5_5 == 1 | c5_8 == 1  | c5_9 == 1, 2, housing_situation),
+      housing_situation = ifelse(c5_1 == 1 | c5_2 == 1 | c5_6 == 1 | c5_7 == 1 | c5_12 == 1, 3, housing_situation),
+      housing_situation = ifelse(c5_3 == 1 | c5_10 == 1  | c5_11 == 1, 4, housing_situation),
       housing_situation = haven::labelled(housing_situation,
                                           labels = c("Sin problemas" = 1, "Problemas leves" = 2, "Problemas moderados" = 3, "Problemas graves" = 4),
                                           label = "Situacion coyuntural de la vivienda"))
 
-  message("A variable has been created: \n \t housing_situation (situacion coyuntural de la vivienda)")
-  data
+ message("A variable has been created: \n \t housing_situation (situacion coyuntural de la vivienda)")
+ return(data)
 }
-
 
 #' This function allows you to calculate the housing conditions
 #' @family dwelling
@@ -221,16 +220,16 @@ housing_conditions <- function(data = ech::toy_ech_2018,
 
   data <- data %>%
     dplyr::mutate(
-      housing_conditions = ifelse(c2 == 6 | (c3 == 6 & c2 %in% c(2, 4, 5)) | (c3 == 6 & c4 %in% 4:5 & c2 %in% c(1,3)) | (c3 == 5 & c4 == 5 & c2 %in% c(2, 4, 5)) | (c3 == 4 & c4 == 5 & c2 %in% c(2, 4)), 4,
-                                  ifelse((c3== 6 & c4 %in% 1:3 & c2 %in% c(1, 3)) | (c3 == 4 & c4 %in% 1:4 & c2 %in% 1:5) | (c3 == 4 & c4 == 5 & c2 %in% c(1, 3, 5)) | (c3 == 5 & c4 %in% 1:4 & c2 == 4) | (c3 == 5 &  c4 == 5 & c2 %in% c(1, 3)) | (c3 == 5 & c4 == 4 & c2 == 2) | (c3 %in% 1:3 & c4 == 5 & c2 %in% 1:5) | (c3 %in% 1:3 & c4 == 4 & c2 %in% c(2, 4, 5)) | (c3 %in% 1:3  & c4 %in% 1:3 & c2 == 4) | (c3 %in% 2:3 & c4 == 3 & c2 == 2), 3,
-                                         ifelse((c3 == 5 & c4 == 4 & c2 %in% c(1, 3, 5)) | (c3 == 5 & c4 %in% 1:3 & c2 %in% c(2, 5)) | (c3 %in% 1:3 & c4 == 4  & c2 %in% 1:3) | (c3 %in% 1:3 & c4 %in% 2:3 & c2 == 5) | (c3 %in% 1:2 & c4 == 1 & c2 == 5) | (c3 == 3 & c4 %in% 1:2 & c2 == 2) | (c3 == 2 & c4 %in% 2:3 & c2 == 3) | (c3 %in% 1:2 & c4 %in% 1:2 & c2 == 2) | (c3 == 2 & c4 %in% 2:3 & c2 == 1) | (c3 == 1 & c4 == 3 & c2 == 2), 2,
-                                                ifelse((c3 %in% c(1, 3, 5) & c4 %in% 1:3 & c2 %in% c(1, 3)) | (c3 == 3 & c4 == 1 & c2 == 5) | (c3 == 2 & c4 == 1 & c2 %in% c(1, 3)), 1, NA)))),
+      housing_conditions = ifelse(c2 == 6 | (c3 == 6 & c2 %in% c(2, 4, 5)) | (c3 == 6 & c4 %in% 4:5 & c2 %in% c(1,3)) | (c3 == 5 & c4 == 5 & c2 %in% c(2, 4, 5)) | (c3 == 4 & c4 == 5 & c2 %in% c(2, 4)), 4, NA),
+      housing_conditions = ifelse((c3 == 6 & c4 %in% 1:3 & c2 %in% c(1, 3)) | (c3 == 4 & c4 %in% 1:4 & c2 %in% 1:5) | (c3 == 4 & c4 == 5 & c2 %in% c(1, 3, 5)) | (c3 == 5 & c4 %in% 1:4 & c2 == 4) | (c3 == 5 &  c4 == 5 & c2 %in% c(1, 3)) | (c3 == 5 & c4 == 4 & c2 == 2) | (c3 %in% 1:3 & c4 == 5 & c2 %in% 1:5) | (c3 %in% 1:3 & c4 == 4 & c2 %in% c(2, 4, 5)) | (c3 %in% 1:3  & c4 %in% 1:3 & c2 == 4) | (c3 %in% 2:3 & c4 == 3 & c2 == 2), 3, housing_conditions),
+      housing_conditions = ifelse((c3 == 5 & c4 == 4 & c2 %in% c(1, 3, 5)) | (c3 == 5 & c4 %in% 1:3 & c2 %in% c(2, 5)) | (c3 %in% 1:3 & c4 == 4  & c2 %in% 1:3) | (c3 %in% 1:3 & c4 %in% 2:3 & c2 == 5) | (c3 %in% 1:2 & c4 == 1 & c2 == 5) | (c3 == 3 & c4 %in% 1:2 & c2 == 2) | (c3 == 2 & c4 %in% 2:3 & c2 == 3) | (c3 %in% 1:2 & c4 %in% 1:2 & c2 == 2) | (c3 == 2 & c4 %in% 2:3 & c2 == 1) | (c3 == 1 & c4 == 3 & c2 == 2), 2, housing_conditions),
+      housing_conditions = ifelse((c3 %in% c(1, 3, 5) & c4 %in% 1:3 & c2 %in% c(1, 3)) | (c3 == 3 & c4 == 1 & c2 == 5) | (c3 == 2 & c4 == 1 & c2 %in% c(1, 3)), 1, housing_conditions),
       housing_conditions = haven::labelled(housing_conditions,
                                            labels = c("Buena" = 1, "Mediana" = 2, "Modesta" = 3, "Precaria" = 4),
                                            label = "Situacion estructural de la vivienda"))
 
   message("A variable has been created: \n \t housing_conditions (situacion estructural de la vivienda)")
-  data
+  return(data)
 }
 
 #' This function allows you to calculate overcrowding in the household
