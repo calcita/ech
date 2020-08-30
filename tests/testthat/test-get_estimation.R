@@ -12,7 +12,6 @@ test_that("get_estimation_mean works", {
   expect_equal(nrow(a), 49)
   a <- get_estimation_mean(data = df, variable = "pobre06", by.x = "e26", by.y = "mes", domain = "dpto == 1", level = "i")
   expect_equal(nrow(a), 35)
-
   b <- get_estimation_mean(data = df, variable = "ht11", level = "h", name = "hogares_pobre_mean")
   expect_equal(nrow(b), 1)
   b <- get_estimation_mean(data = df, variable = "ht11", domain = "dpto == 1", level = "h")
@@ -25,6 +24,8 @@ test_that("get_estimation_mean works", {
   expect_equal(nrow(b), 149)
   b <- get_estimation_mean(data = df, variable = "ht11", by.x = "secc", by.y = "mes", domain = "dpto == 1", level = "i")
   expect_equal(nrow(b), 117)
+  c <- get_estimation_mean(data = df, variable = "pobre06", pesoano = "pesoano", level = "h", ids = "upm_id", estrato = "estrato")
+  expect_equal(nrow(c), 2)
 })
 
 test_that("get_estimation_total works", {
@@ -41,7 +42,8 @@ test_that("get_estimation_total works", {
   expect_equal(nrow(a), 49)
   a <- get_estimation_total(variable = "pobre06", by.x = "secc", by.y = "mes", domain = "dpto == 1", level = "i")
   expect_equal(nrow(a), 123)
-
+  c <- get_estimation_total(data = df, variable = "pobre06", pesoano = "pesoano", level = "h", ids = "upm_id", estrato = "estrato")
+  expect_equal(nrow(c), 2)
   b <- get_estimation_total(data = df, variable = "ht11", level = "h", name = "hogares_pobre_total")
   expect_equal(nrow(b), 1)
   b <- get_estimation_total(data = df, variable = "ht11", domain = "dpto == 1", level = "h")
@@ -84,6 +86,8 @@ test_that("get_estimation_ratio works", {
   expect_equal(nrow(a), 149)
   a <- get_estimation_ratio(data = ech_2018, variable.x = "pd", variable.y = "pea", by.x = "secc", by.y = "mes", domain = "dpto == 1", level = "i")
   expect_equal(nrow(a), 117)
+  c <- get_estimation_ratio(data = ech_2018, variable.x = "pd", variable.y = "pea", level = "h", ids = "upm_id", estrato = "estrato")
+  expect_equal(nrow(c), 1)
 })
 
 test_that("get_estimation_median works", {
@@ -100,6 +104,9 @@ test_that("get_estimation_median works", {
   expect_equal(nrow(a), 8)
   a <- get_estimation_median(data = ech_2018, variable = "ht11", by.x = "region_4", by.y = "e26", domain = "dpto == 1", level = "i")
   expect_equal(nrow(a), 2)
+  expect_error(get_estimation_median(data = ech_2018, variable = "pobre06", level = "i"))
+  c <- get_estimation_median(data = ech_2018, variable = "ht11", pesoano = "pesoano", level = "h", ids = "upm_id", estrato = "estrato")
+  expect_equal(nrow(c), 1)
 })
 
 test_that("get_estimation_gini works", {
