@@ -301,7 +301,7 @@ get_microdata <- function(year = NULL,
 
 read_microdata <- function(path = NULL){
 
-  #stopifnot(is.character(filename))
+  assertthat::assert_that(is.character(path), msg = "Sorry... :( \n \t folder parameter must be character")
 
   if (!is.null(path)) {
     format = tolower(fs::path_ext(path))

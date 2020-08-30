@@ -137,7 +137,7 @@ Para citar ech en publicaciones, por favor usa:
 
 Mathieu, Gabriela & Detomasi, Richard (2020) "ech: Caja de herramientas para procesar la Encuesta Continua de Hogares". R package version 0.0.1.20. URL: <https://github.com/calcita/ech>.
 
-El formato BibTex para usar en sus archivos .bib:
+El formato BibTex para usar en tus archivos .bib o el gestor bibliográfico de tu preferencia:
 
     @Misc{ech20,
       title = {ech: Caja de herramientas para procesar la Encuesta Continua de Hogares},

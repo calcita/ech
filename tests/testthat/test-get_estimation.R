@@ -100,6 +100,7 @@ test_that("get_estimation_median works", {
   expect_equal(nrow(a), 8)
   a <- get_estimation_median(data = ech_2018, variable = "ht11", by.x = "region_4", by.y = "e26", domain = "dpto == 1", level = "i")
   expect_equal(nrow(a), 2)
+  expect_error(get_estimation_median(data = ech_2018, variable = "pobre06", level = "i"))
 })
 
 test_that("get_estimation_gini works", {

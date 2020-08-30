@@ -48,14 +48,14 @@ get_estimation_mean <- function(data = ech::toy_ech_2018,
     dom <- strsplit(domain, '[==><!]')[[1]][1] %>% stringr::str_trim()
     assertthat::assert_that(dom %in% names(data), msg = glue::glue("Sorry... :( \n  {dom} is not in data"))
   }
-
+  if(!is.null(ids)) {
+    assertthat::assert_that(ids %in% names(data), msg = glue::glue("Sorry... :( \n  {ids} is not in data"))
+  }
 
 # unlabelled
   d <- data %>% dplyr::select(!!!syms(c(variable, by.x, by.y, ids, numero, estrato, pesoano))) %>%
     unlabelled()
-
   d <- data %>% dplyr::select(if(!is.null(domain)){dom}) %>% dplyr::bind_cols(d, .)
-
   d <- d %>% tidyr::drop_na(dplyr::all_of(variable))
 
 # design ----
@@ -66,36 +66,35 @@ get_estimation_mean <- function(data = ech::toy_ech_2018,
   options(dplyr.summarise.inform = FALSE)
 
 # estimation ----
-
-    if (is.factor(dplyr::pull(d[,variable]))) {
-      if(is.null(by.x) & is.null(by.y) & is.null(domain)){
-        estimation <- design_ech %>%
-          srvyr::group_by(!!!syms(variable)) %>%
-          srvyr::summarise(colname = srvyr::survey_mean(vartype = "ci"))
-      } else if(is.character(by.x) & is.null(by.y) & is.null(domain)){
-        estimation <- design_ech %>%
-          srvyr::group_by(!!!syms(by.x), !!!syms(variable), .add = T) %>%
-          srvyr::summarise(colname = srvyr::survey_mean(vartype = "ci"))
-      } else if(is.character(by.x) & is.character(by.y) & is.null(domain)){
-        estimation <- design_ech %>%
-          srvyr::group_by(!!!syms(by.x), !!!syms(by.y), !!!syms(variable), .add = T) %>%
-          srvyr::summarise(colname = srvyr::survey_mean(vartype = "ci"))
-      } else if(is.null(by.x) & is.null(by.y) & !is.null(domain)){
-        estimation <- design_ech %>%
-          srvyr::filter(!!rlang::parse_expr(domain)) %>%
-          srvyr::group_by(!!!syms(variable)) %>%
-          srvyr::summarise(colname = srvyr::survey_mean(vartype = "ci"))
-      } else if(is.character(by.x) & is.null(by.y) & !is.null(domain)){
-        estimation <- design_ech %>%
-          srvyr::filter(!!rlang::parse_expr(domain)) %>%
-          srvyr::group_by(!!!syms(by.x), !!!syms(variable), .add = T) %>%
-          srvyr::summarise(colname = srvyr::survey_mean(vartype = "ci"))
-      } else {
-        estimation <- design_ech %>%
-          srvyr::filter(!!rlang::parse_expr(domain)) %>%
-          srvyr::group_by(!!!syms(by.x), !!!syms(by.y), !!!syms(variable), .add = T) %>%
-          srvyr::summarise(colname = srvyr::survey_mean(vartype = "ci"))
-      }
+  if (is.factor(dplyr::pull(d[,variable]))) {
+    if(is.null(by.x) & is.null(by.y) & is.null(domain)){
+      estimation <- design_ech %>%
+        srvyr::group_by(!!!syms(variable)) %>%
+        srvyr::summarise(colname = srvyr::survey_mean(vartype = "ci"))
+    } else if(is.character(by.x) & is.null(by.y) & is.null(domain)){
+      estimation <- design_ech %>%
+        srvyr::group_by(!!!syms(by.x), !!!syms(variable), .add = T) %>%
+        srvyr::summarise(colname = srvyr::survey_mean(vartype = "ci"))
+    } else if(is.character(by.x) & is.character(by.y) & is.null(domain)){
+      estimation <- design_ech %>%
+        srvyr::group_by(!!!syms(by.x), !!!syms(by.y), !!!syms(variable), .add = T) %>%
+        srvyr::summarise(colname = srvyr::survey_mean(vartype = "ci"))
+    } else if(is.null(by.x) & is.null(by.y) & !is.null(domain)){
+      estimation <- design_ech %>%
+        srvyr::filter(!!rlang::parse_expr(domain)) %>%
+        srvyr::group_by(!!!syms(variable)) %>%
+        srvyr::summarise(colname = srvyr::survey_mean(vartype = "ci"))
+    } else if(is.character(by.x) & is.null(by.y) & !is.null(domain)){
+      estimation <- design_ech %>%
+        srvyr::filter(!!rlang::parse_expr(domain)) %>%
+        srvyr::group_by(!!!syms(by.x), !!!syms(variable), .add = T) %>%
+        srvyr::summarise(colname = srvyr::survey_mean(vartype = "ci"))
+    } else {
+      estimation <- design_ech %>%
+        srvyr::filter(!!rlang::parse_expr(domain)) %>%
+        srvyr::group_by(!!!syms(by.x), !!!syms(by.y), !!!syms(variable), .add = T) %>%
+        srvyr::summarise(colname = srvyr::survey_mean(vartype = "ci"))
+    }
   } else {
     if(is.null(by.x) & is.null(by.y) & is.null(domain)){
       estimation <- design_ech %>%
@@ -186,7 +185,9 @@ get_estimation_median <- function(data = ech::toy_ech_2018,
     dom <- strsplit(domain, '[==><!]')[[1]][1] %>% stringr::str_trim()
     assertthat::assert_that(dom %in% names(data), msg = glue::glue("Sorry... :( \n  {dom} is not in data"))
   }
-
+  if(!is.null(ids)) {
+    assertthat::assert_that(ids %in% names(data), msg = glue::glue("Sorry... :( \n  {ids} is not in data"))
+  }
 
   # unlabelled
   d <- data %>% dplyr::select(!!!syms(c(variable, by.x, by.y, ids, numero, estrato, pesoano))) %>%
@@ -298,13 +299,14 @@ get_estimation_total <- function(data = ech::toy_ech_2018,
     dom <- strsplit(domain, '[==><!]')[[1]][1] %>% stringr::str_trim()
     assertthat::assert_that(dom %in% names(data), msg = glue::glue("Sorry... :( \n  {dom} is not in data"))
   }
+  if(!is.null(ids)) {
+    assertthat::assert_that(ids %in% names(data), msg = glue::glue("Sorry... :( \n  {ids} is not in data"))
+  }
 
   # unlabelled
   d <- data %>% dplyr::select(!!!syms(c(variable, by.x, by.y, ids, numero, estrato, pesoano))) %>%
     unlabelled()
-
   d <- data %>% dplyr::select(if(!is.null(domain)){dom}) %>% dplyr::bind_cols(d, .)
-
   d <- d %>% tidyr::drop_na(dplyr::all_of(variable))
 
   # design ----
@@ -441,6 +443,9 @@ get_estimation_ratio <- function(data = ech::toy_ech_2018,
     dom <- strsplit(domain, '[==><!]')[[1]][1] %>% stringr::str_trim()
     assertthat::assert_that(dom %in% names(data), msg = glue::glue("Sorry... :( \n  {dom} is not in data"))
   }
+  if(!is.null(ids)) {
+    assertthat::assert_that(ids %in% names(data), msg = glue::glue("Sorry... :( \n  {ids} is not in data"))
+  }
 
   # unlabelled
   d <- data %>% dplyr::select(!!!syms(c(by.x, by.y, ids, numero, estrato, pesoano))) %>%
@@ -543,6 +548,12 @@ get_estimation_gini <- function(data = ech::toy_ech_2018,
   assertthat::assert_that(all(variable %in% names(data)), msg = glue::glue("Sorry... :( \n {variable} is not in {data}"))
   assertthat::assert_that(all(pesoano %in% names(data)), msg = glue::glue("Sorry... :( \n {pesoano} is not in {data}"))
   assertthat::assert_that(all(numero %in% names(data)), msg = glue::glue("Sorry... :( \n {numero} is not in {data}"))
+  if(!is.null(estrato)) {
+    assertthat::assert_that(estrato %in% names(data), msg = glue::glue("Sorry... :( \n  {estrato} is not in data"))
+  }
+  if(!is.null(ids)) {
+    assertthat::assert_that(ids %in% names(data), msg = glue::glue("Sorry... :( \n  {ids} is not in data"))
+  }
 
   if (level == "h"){
     d <- data %>% dplyr::filter(duplicated(numero) == FALSE) %>%
@@ -694,8 +705,17 @@ get_estimation_gpg <- function(data = ech::toy_ech_2018,
   #assertthat::assert_that(!is.null(ids) & is.null(estrato), msg = "You must indicate the ids")
   assertthat::assert_that(all(variable %in% names(data)), msg = glue::glue("Sorry... :( \n {variable} is not in {data}"))
   assertthat::assert_that(all(pesoano %in% names(data)), msg = glue::glue("Sorry... :( \n {pesoano} is not in {data}"))
-   assertthat::assert_that(all(e26 %in% names(data)), msg = glue::glue("Sorry... :( \n {e26} is not in {data}"))
+  assertthat::assert_that(all(e26 %in% names(data)), msg = glue::glue("Sorry... :( \n {e26} is not in {data}"))
   assertthat::assert_that(all(stat %in% c("media", "median")), msg = glue::glue("Sorry... :( \n {stat} can be median or media"))
+  if(!is.null(estrato)) {
+    assertthat::assert_that(estrato %in% names(data), msg = glue::glue("Sorry... :( \n  {estrato} is not in data"))
+  }
+  if(!is.null(ids)) {
+    assertthat::assert_that(ids %in% names(data), msg = glue::glue("Sorry... :( \n  {ids} is not in data"))
+  }
+  if(!is.null(by)) {
+    assertthat::assert_that(by %in% names(data), msg = glue::glue("Sorry... :( \n  {by} is not in data"))
+  }
 
   d <- data %>% dplyr::select(!!!syms(c(variable, e26, by, ids, estrato, pesoano))) %>%
     unlabelled() %>%
@@ -772,6 +792,19 @@ get_estimation_qsr <- function(data = ech::toy_ech_2018,
                                ids = NULL,
                                estrato = NULL,
                                pesoano = "pesoano"){
+
+  #Checks----
+  assertthat::assert_that(variable %in% names(data), msg = glue::glue("Sorry... :( \n \t {variable} is not in {data}, you must use income_constant_prices function"))
+  assertthat::assert_that(pesoano %in% names(data), msg = glue::glue("Sorry... :( \n  \t {pesoano} is not in data"))
+  if(!is.null(estrato)) {
+    assertthat::assert_that(estrato %in% names(data), msg = glue::glue("Sorry... :( \n  \t {estrato} is not in data"))
+  }
+  if(!is.null(ids)) {
+    assertthat::assert_that(ids %in% names(data), msg = glue::glue("Sorry... :( \n  \t {ids} is not in data"))
+  }
+  if(!is.null(by)) {
+    assertthat::assert_that(by %in% names(data), msg = glue::glue("Sorry... :( \n  \t {by} is not in data"))
+  }
 
   d <- data %>% dplyr::select(!!!syms(c(variable, by, ids, estrato, pesoano))) %>%
     unlabelled()%>%
