@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>This function allows you to labelled variables — unlabelled • ech</title>
+<title>This function allows you to calculate age groups fix ht11 for 2013 to 2015 — organize_ht11 • ech</title>
 
 
 <!-- jquery -->
@@ -35,8 +35,8 @@
 
 
 
-<meta property="og:title" content="This function allows you to labelled variables — unlabelled" />
-<meta property="og:description" content="This function allows you to labelled variables" />
+<meta property="og:title" content="This function allows you to calculate age groups fix ht11 for 2013 to 2015 — organize_ht11" />
+<meta property="og:description" content="This function allows you to calculate age groups fix ht11 for 2013 to 2015" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -124,43 +124,55 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>This function allows you to labelled variables</h1>
+    <h1>This function allows you to calculate age groups fix ht11 for 2013 to 2015</h1>
     
-    <div class="hidden name"><code>unlabelled.Rd</code></div>
+    <div class="hidden name"><code>organize_ht11.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This function allows you to labelled variables</p>
+    <p>This function allows you to calculate age groups fix ht11 for 2013 to 2015</p>
     </div>
 
-    <pre class="usage"><span class='fu'>unlabelled</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>organize_ht11</span>(
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ech</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/ech/man/toy_ech_2018.html'>toy_ech_2018</a></span>,
+  <span class='kw'>year</span> <span class='kw'>=</span> <span class='fl'>2018</span>,
+  <span class='kw'>ht11</span> <span class='kw'>=</span> <span class='st'>"ht11"</span>,
+  <span class='kw'>numero</span> <span class='kw'>=</span> <span class='st'>"numero"</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>data</th>
-      <td><p>data frame</p></td>
+      <td><p>data.frame</p></td>
+    </tr>
+    <tr>
+      <th>year</th>
+      <td><p>survey year</p></td>
+    </tr>
+    <tr>
+      <th>ht11</th>
+      <td><p>Variable name of ht11</p></td>
+    </tr>
+    <tr>
+      <th>numero</th>
+      <td><p>Variable name of numero</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>data.frame</p>
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p>Other utils: 
-<code><a href='archive_extract.html'>archive_extract</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='fu'>unlabelled</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ech</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/ech/man/toy_ech_2018.html'>toy_ech_2018</a></span>)</div></pre>
+    <pre class="examples"><div class='input'><span class='no'>toy_ech_2018</span> <span class='kw'>&lt;-</span> <span class='fu'>organize_ht11</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='kw pkg'>ech</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/ech/man/toy_ech_2018.html'>toy_ech_2018</a></span>, <span class='kw'>year</span> <span class='kw'>=</span> <span class='fl'>2018</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       <li><a href="#value">Value</a></li>
-      <li><a href="#see-also">See also</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>
 
