@@ -45,6 +45,10 @@ income_constant_prices <- function(data = ech::toy_ech_2018,
   assertthat::assert_that(ht13  %in% names(data), msg =  glue::glue("Sorry... :( \n {ht13} is not in data"))
   assertthat::assert_that(ht19  %in% names(data), msg =  glue::glue("Sorry... :( \n {ht19} is not in data"))
 
+  if(max(data$anio) %in% 2013:2015){
+    data <- organize_ht11(data = data, year = max(data$anio))
+  }
+
   if (level == "G") {
     if(index == "IPC"){
       deflator <- deflate(base_month = base_month,

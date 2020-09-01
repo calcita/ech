@@ -472,6 +472,32 @@ age_groups <- function(data = ech::toy_ech_2018,
   return(data)
 }
 
+#'  This function allows you to calculate age groups fix ht11 for 2013 to 2015
+#'
+#' @param data data.frame
+#' @param year survey year
+#' @param ht11 Variable name of ht11
+#' @param numero Variable name of numero
+#'
+#' @return data.frame
+#' @export
+#'
+#' @examples
+#' toy_ech_2018 <- organize_ht11(data = ech::toy_ech_2018, year = 2018)
+organize_ht11 <- function(data = ech::toy_ech_2018,
+                          year = 2018,
+                          ht11 = "ht11",
+                          numero = "numero"){
+
+  if(year %in% 2013:2015){
+    data <- data %>%
+      dplyr::group_by(numero) %>%
+      dplyr::mutate(ht11 = max(ht11)) %>%
+      dplyr::ungroup()
+  }
+  return(data)
+}
+
 #' Pipe operator
 #' See \code{magrittr::\link[magrittr]{\%>\%}} for details.
 #' @name %>%
