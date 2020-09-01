@@ -65,11 +65,11 @@ income_constant_prices <- function(data = ech::toy_ech_2018,
       dplyr::left_join(deflator, by = c("aux" = "mes"), keep = F)
 
     data <- data %>%
-      dplyr::mutate(y_pc = ht11 / ht19, # income per capita
+      dplyr::mutate(y_pc = .data[[ht11]] / .data[[ht19]], # income per capita
                     y_pc_d = y_pc * deflator, # income per capita deflated
-                    rv_d = ht13 * deflator, # rental value deflated
-                    y_wrv_d = (ht11 - ht13) * deflator, # income without rental value deflated
-                    y_wrv_pc_d = ((ht11 - ht13) / ht19) * deflator) %>%  # income without rental value per capita deflated
+                    rv_d = .data[[ht13]] * deflator, # rental value deflated
+                    y_wrv_d = (.data[[ht11]] - .data[[ht13]]) * deflator, # income without rental value deflated
+                    y_wrv_pc_d = ((.data[[ht11]] - .data[[ht13]]) / .data[[ht19]]) * deflator) %>% # income without rental value per capita deflated
      dplyr::select(-aux, -deflator)
     message("Variables have been created: \n \t y_pc (income per capita current prices / ingreso per capita a precios corrientes);
     y_pc_d  (income per capita deflated / ingreso per capita deflactado);
@@ -96,11 +96,11 @@ income_constant_prices <- function(data = ech::toy_ech_2018,
 
     data <- data %>%
       dplyr::mutate(deflator_r = ifelse(dpto == 1, deflator_m, deflator_i),
-                    y_pc = ht11 / ht19, # income per capita
+                    y_pc = .data[[ht11]] / .data[[ht19]], # income per capita
                     y_pc_d_r = y_pc * deflator_r, # income per capita deflated
-                    rv_d_r = ht13 * deflator_r, # rental value deflated
-                    y_wrv_d_r = (ht11 - ht13) * deflator_r, # income without rental value deflated
-                    y_wrv_pc_d_r = ((ht11 - ht13) / ht19) * deflator_r) %>% # income without rental value per capita deflated
+                    rv_d_r = .data[[ht13]] * deflator_r, # rental value deflated
+                    y_wrv_d_r = (.data[[ht11]] - .data[[ht13]]) * deflator_r, # income without rental value deflated
+                    y_wrv_pc_d_r = ((.data[[ht11]] - .data[[ht13]]) / .data[[ht19]]) * deflator_r) %>% # income without rental value per capita deflated
       dplyr::select(-aux, -deflator_i, -deflator_m, -deflator_r)
     message("Variables have been created: \n \t y_pc (income per capita current prices / ingreso per capita a precios corrientes)
                 y_pc_d_r (income per capita deflated / ingreso per capita deflactado);

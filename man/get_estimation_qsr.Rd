@@ -32,6 +32,13 @@ table
 \description{
 This function allows you to estimate de Income Quintile Share Ratio
 }
+\examples{
+\donttest{
+toy_ech_2018 <- income_constant_prices(data = ech::toy_ech_2018, index = "IPC", level = "R",
+                                       base_month = "01", base_year = "2005")
+get_estimation_qsr(data = toy_ech_2018, variable = "y_pc_d_r", pesoano = "pesoano")
+}
+}
 \seealso{
 Other estimation: 
 \code{\link{get_estimation_gini}()},

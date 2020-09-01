@@ -4,7 +4,7 @@ test_that("dwelling works", {
   ech18 <- income_constant_prices(data = ech18, ht11 = "ht11_ech")
   ech18 <- income_quantiles(data = ech18)
   toy_ech_2018 <- housing_deprivation(data = ech18, c4 = "c4_ech")
-  expect_equal(ncol(toy_ech_2018), 601)
+  expect_equal(ncol(toy_ech_2018), 599)
 })
 
 test_that("housing works", {
