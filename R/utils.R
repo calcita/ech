@@ -388,13 +388,7 @@ deflate <- function(base_month = NULL,
 
   indice <- as.numeric(indice$indice)
 
-  deflate_forward <- mes_base/indice
-  deflate_backward <- indice/mes_base
-
-  deflate <- dplyr::bind_cols(deflate_backward = deflate_backward, deflate_forward = deflate_forward, mes = 1:12) %>%
-    dplyr::mutate(deflate = dplyr::case_when(as.numeric(df_year) < base_year  ~ deflate_forward,
-                                             as.numeric(df_year) >= base_year ~ deflate_backward)) %>%
-    dplyr::select(deflate, mes)
+  deflator <- dplyr::bind_cols(deflator = mes_base/indice, mes = 1:12)
 
 }
 

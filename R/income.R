@@ -11,7 +11,7 @@
 #' @param level  General ("G") or Regional ("R")
 #'
 #' @importFrom dplyr mutate left_join
-#' @importFrom magrittr %<>% %>%
+#' @importFrom magrittr %>%
 #' @importFrom haven zap_labels
 #' @importFrom rlang .data
 #' @export
@@ -37,7 +37,7 @@ income_constant_prices <- function(data = ech::toy_ech_2018,
 
   # checks ---
   assertthat::assert_that(is.data.frame(data))
-  assertthat::assert_that(dplyr::between(base_month,1,12), msg =  glue::glue("Sorry... :( \n base_month is not between 1 and 12"))
+  assertthat::assert_that(dplyr::between(as.numeric(base_month),1,12), msg =  glue::glue("Sorry... :( \n base_month is not between 1 and 12"))
   assertthat::assert_that(index  %in% c("IPC", "IPAB"), msg =  glue::glue("Sorry... :( \n index is not IPC or IPAB"))
   assertthat::assert_that(level  %in% c("G", "R"), msg =  glue::glue("Sorry... :( \n level is not G or R"))
   assertthat::assert_that(mes  %in% names(data), msg =  glue::glue("Sorry... :( \n {mes} is not in data"))
@@ -47,29 +47,31 @@ income_constant_prices <- function(data = ech::toy_ech_2018,
 
   if (level == "G") {
     if(index == "IPC"){
-      deflate <- deflate(base_month = base_month,
+      deflator <- deflate(base_month = base_month,
                               base_year = base_year,
                               index = "IPC",
                               level = "G",
                               df_year = max(data$anio))
     } else{
-      deflate <- deflate(base_month = base_month,
+      deflator <- deflate(base_month = base_month,
                               base_year = base_year,
                               index = "IPAB",
                               level = "G",
                               df_year = max(data$anio))
     }
 
-    data <- data %>% dplyr::mutate(aux = as.integer(haven::zap_labels(.data[[mes]]))) %>%
-      dplyr::left_join(deflate, by = c("aux" = "mes"), keep = F)
+    data <- data %>%
+      dplyr::mutate(aux = as.integer(haven::zap_labels(.data[[mes]]))) %>%
+      dplyr::left_join(deflator, by = c("aux" = "mes"), keep = F)
 
-    data %<>% dplyr::mutate(y_pc = .data[[ht11]] / .data[[ht19]], # income per capita
-                            y_pc_d = y_pc * deflate, # income per capita deflated
-                            rv_d = .data[[ht13]] * deflate, # rental value deflated
-                            y_wrv_d = (.data[[ht11]] - .data[[ht13]]) * deflate, # income without rental value deflated
-                            y_wrv_pc_d = (.data[[ht11]] - .data[[ht13]]) / .data[[ht19]] * deflate # income without rental value per capita deflated
-    )
-    message("Variables have been created: \n \t y_pc (income per capita current prices / ingreso per capita a precios corrientes)
+    data <- data %>%
+      dplyr::mutate(y_pc = .data[[ht11]] / .data[[ht19]], # income per capita
+                    y_pc_d = y_pc * deflator, # income per capita deflated
+                    rv_d = .data[[ht13]] * deflator, # rental value deflated
+                    y_wrv_d = (.data[[ht11]] - .data[[ht13]]) * deflator, # income without rental value deflated
+                    y_wrv_pc_d = ((.data[[ht11]] - .data[[ht13]]) / .data[[ht19]]) * deflator) %>%  # income without rental value per capita deflated
+     dplyr::select(-aux, -deflator)
+    message("Variables have been created: \n \t y_pc (income per capita current prices / ingreso per capita a precios corrientes);
     y_pc_d  (income per capita deflated / ingreso per capita deflactado);
          rv_d (rental value deflated / valor locativo deflactado);
          y_wrv_d (income without rental value deflated / ingreso sin valor locativo deflactado) &
@@ -78,29 +80,29 @@ income_constant_prices <- function(data = ech::toy_ech_2018,
 
   if (level == "R") {
     if(index == "IPC"){
-      deflactor_i <-  deflate(base_month = base_month, base_year = base_year, index = "IPC", level = "I", df_year = max(data$anio))
-      deflactor_m <-  deflate(base_month = base_month, base_year = base_year, index = "IPC", level = "M", df_year = max(data$anio))
+      deflator_i <-  deflate(base_month = base_month, base_year = base_year, index = "IPC", level = "I", df_year = max(data$anio))
+      deflator_m <-  deflate(base_month = base_month, base_year = base_year, index = "IPC", level = "M", df_year = max(data$anio))
     } else{
-      deflactor_i <-  deflate(base_month = base_month, base_year = base_year, index = "IPAB", level = "I", df_year = max(data$anio))
-      deflactor_m <-  deflate(base_month = base_month, base_year = base_year, index = "IPAB", level = "M", df_year = max(data$anio))
+      deflator_i <-  deflate(base_month = base_month, base_year = base_year, index = "IPAB", level = "I", df_year = max(data$anio))
+      deflator_m <-  deflate(base_month = base_month, base_year = base_year, index = "IPAB", level = "M", df_year = max(data$anio))
     }
 
     data <- data %>%
       dplyr::mutate(aux = as.integer(haven::zap_labels(data$mes))) %>%
-      dplyr::left_join(deflactor_i, by = c("aux" = "mes"), keep = F) %>%
-      dplyr::rename(deflactor_i = deflate) %>%
-      dplyr::left_join(deflactor_m, by = c("aux" = "mes"), keep = F) %>%
-      dplyr::rename(deflactor_m = deflate)
+      dplyr::left_join(deflator_i, by = c("aux" = "mes"), keep = F) %>%
+      dplyr::rename(deflator_i = deflator) %>%
+      dplyr::left_join(deflator_m, by = c("aux" = "mes"), keep = F) %>%
+      dplyr::rename(deflator_m = deflator)
 
-    data <- data %>%  dplyr::mutate(deflate_r = ifelse(dpto == 1, deflactor_m, deflactor_i),
-                                    y_pc = .data[[ht11]] / .data[[ht19]], # income per capita
-                                    y_pc_d_r = y_pc * deflate_r, # income per capita deflated
-                                    rv_d_r = .data[[ht13]] * deflate_r, # rental value deflated
-                                    y_wrv_d_r = (.data[[ht11]] - .data[[ht13]]) * deflate_r, # income without rental value deflated
-                                    y_wrv_pc_d_r = (.data[[ht11]] - .data[[ht13]]) / .data[[ht19]] * deflate_r) # income without rental value per capita deflated
-
-    message("Variables have been created: \n \t deflate_r (Deflactor regional) &
-                y_pc (income per capita current prices / ingreso per capita a precios corrientes)
+    data <- data %>%
+      dplyr::mutate(deflator_r = ifelse(dpto == 1, deflator_m, deflator_i),
+                    y_pc = .data[[ht11]] / .data[[ht19]], # income per capita
+                    y_pc_d_r = .data[[y_pc]] * .data[[deflator_r]], # income per capita deflated
+                    rv_d_r = .data[[ht13]] * .data[[deflator_r]], # rental value deflated
+                    y_wrv_d_r = (.data[[ht11]] - .data[[ht13]]) * .data[[deflator_r]], # income without rental value deflated
+                    y_wrv_pc_d_r = ((.data[[ht11]] - .data[[ht13]]) / .data[[ht19]]) * .data[[deflator_r]]) %>% # income without rental value per capita deflated
+      dplyr::select(-aux, -deflator_i, -deflator_m, -deflator_r)
+    message("Variables have been created: \n \t y_pc (income per capita current prices / ingreso per capita a precios corrientes)
                 y_pc_d_r (income per capita deflated / ingreso per capita deflactado);
                 rv_d_r (rental value deflated / valor locativo deflactado);
                 y_wrv_d_r (income without rental value deflated / ingreso sin valor locativo deflactado) &
@@ -291,6 +293,7 @@ labor_income_per_capita <- function(data = ech::toy_ech_2018,
   assertthat::assert_that(g144_2_4  %in% names(data), msg =  glue:glue("Sorry... :( \n {g144_2_4} is not in data"))
   assertthat::assert_that(g144_2_5  %in% names(data), msg =  glue:glue("Sorry... :( \n {g144_2_5} is not in data"))
 
+
   data <- data %>%
     dplyr::mutate(
       main_work = ifelse(pobpcoac %in% 2:5, g126_1 + g126_2 + g126_3 + g126_4 + g126_5 + g126_6 + g126_7 + g126_8 + g127_3 + g128_1 + g129_2 + g130_1 + g131_1 + g133_1 + g133_2/12, NA),
@@ -336,8 +339,8 @@ labor_income_per_hour <- function(data = ech::toy_ech_2018,
                                   f85 = "f85",
                                   pobpcoac = "pobpcoac",
                                   pt4 = "pt4",
-                                  base_month = NULL,
-                                  base_year = NULL,
+                                  base_month = 6,
+                                  base_year = 2018,
                                   mes = "mes"){
 
   # checks ---
@@ -349,17 +352,18 @@ labor_income_per_hour <- function(data = ech::toy_ech_2018,
   assertthat::assert_that(pt4  %in% names(data), msg =  glue::glue("Sorry... :( \n {pt4} is not in data"))
   assertthat::assert_that(f85  %in% names(data), msg =  glue::glue("Sorry... :( \n {f85} is not in data"))
 
-  deflate_mdeo <- ech::deflate(base_month = base_month, base_year = base_year, index = "IPC", level = "M", df_year = max(data$anio))
-  names(deflate_mdeo)[1] <- "deflate_mdeo"
+  deflator_mdeo <- deflate(base_month = base_month, base_year = base_year, index = "IPC", level = "M", df_year = max(data$anio))
+  names(deflator_mdeo)[1] <- "deflator_mdeo"
 
-  deflate_int <- ech::deflate(base_month = base_month, base_year = base_year, index = "IPC", level = "I", df_year = max(data$anio))
-  names(deflate_int)[1] <- "deflate_int"
+  deflator_int <- deflate(base_month = base_month, base_year = base_year, index = "IPC", level = "I", df_year = max(data$anio))
+  names(deflator_int)[1] <- "deflator_int"
 
   data <- data %>% dplyr::mutate(aux = as.integer(haven::zap_labels(mes))) %>%
-    dplyr::left_join(deflate_mdeo, by = c("aux" = "mes"), keep = F) %>%
-    dplyr::left_join(deflate_int, by = c("aux" = "mes"), keep = F) %>%
-    dplyr::mutate(deflate = dplyr::case_when(dpto == 1 ~ deflate_mdeo,
-                                             TRUE ~ deflate_int))
+    dplyr::left_join(deflator_mdeo, by = c("aux" = "mes"), keep = F) %>%
+    dplyr::left_join(deflator_int, by = c("aux" = "mes"), keep = F) %>%
+    dplyr::mutate(deflator = dplyr::case_when(dpto == 1 ~ deflate_mdeo,
+                                             TRUE ~ deflate_int)) %>%
+    dplyr::select(-aux, -deflator_int, -deflator_mdeo)
 
   data <- data %>%
     dplyr::mutate(

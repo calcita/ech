@@ -689,8 +689,10 @@ get_estimation_gini <- function(data = ech::toy_ech_2018,
 #' @export
 #'
 #' @examples
+#' \donttest{
 #' toy_ech_2018 <- labor_income_per_hour(data = ech::toy_ech_2018, base_month = 6, base_year = 2018)
 #' get_estimation_gpg(data = toy_ech_2018, variable = "total_income_per_hour", e26 = "e26")
+#' }
 
 get_estimation_gpg <- function(data = ech::toy_ech_2018,
                                variable = "total_income_per_hour",
@@ -782,12 +784,14 @@ get_estimation_gpg <- function(data = ech::toy_ech_2018,
 #' @export
 #'
 #' @examples
+#' \donttest{
 #' toy_ech_2018 <- income_constant_prices(data = ech::toy_ech_2018, index = "IPC", level = "R",
 #'                                        base_month = "01", base_year = "2005")
-#' get_estimation_qsr(data = toy_ech_2018, variable = "y_wrv_pc_d_r", pesoano = "pesoano")
-#
+#' get_estimation_qsr(data = toy_ech_2018, variable = "y_pc_d_r", pesoano = "pesoano")
+# }
+
 get_estimation_qsr <- function(data = ech::toy_ech_2018,
-                               variable = "y_wrv_pc_d_r",
+                               variable = "y_pc_d_r",
                                by = NULL,
                                ids = NULL,
                                estrato = NULL,

@@ -10,8 +10,8 @@ labor_income_per_hour(
   f85 = "f85",
   pobpcoac = "pobpcoac",
   pt4 = "pt4",
-  base_month = NULL,
-  base_year = NULL,
+  base_month = 6,
+  base_year = 2018,
   mes = "mes"
 )
 }
