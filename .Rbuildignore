@@ -10,3 +10,4 @@
 ^pkgdown$
 ^tests$
 ^CRAN-RELEASE$
+^cran-comments\.md$
