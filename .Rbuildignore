@@ -1,5 +1,7 @@
 ^ech\.Rproj$
 ^\.Rproj\.user$
+^\.Rprofile$
+^\.Rhistory$
 ^README\.Rmd$
 ^data-raw$
 ^\.travis\.yml$
@@ -11,3 +13,5 @@
 ^tests$
 ^CRAN-RELEASE$
 ^cran-comments\.md$
+^LICENSE\.md$
+^doc$

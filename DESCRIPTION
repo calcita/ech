@@ -11,7 +11,7 @@ Maintainer: Gabriela Mathieu <calcita@gmx.li>
 Description: R toolbox for the processing of the Encuesta Continua de Hogares (ECH) from Uruguay
             at <http://www.ine.gub.uy/encuesta-continua-de-hogares1> conducted by the
             Instituto Nacional de Estadistica (INE).
-License: GPL-3 + file LICENSE
+License: GPL-3
 Encoding: UTF-8
 ByteCompile: true
 LazyData: true
@@ -30,7 +30,6 @@ Imports:
     survey (>= 1.2.0), 
     stringr,
     readxl,
-    kableExtra,
     laeken,
     rlang,
     pdftables,
@@ -51,7 +50,7 @@ Suggests:
     knitr,
     testthat (>= 2.1.0),
     rmarkdown,
-    covr
+        covr
 SystemRequirements: 'unrar' (Linux/macOS) or '7-Zip' (Windows) to work with '.rar' files,
     GDAL (>= 3.0.2), 
     GEOS (>= 3.8.0), 
