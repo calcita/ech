@@ -30,6 +30,7 @@ Other income:
 \code{\link{income_constant_prices}()},
 \code{\link{income_quantiles}()},
 \code{\link{labor_income_per_capita}()},
-\code{\link{labor_income_per_hour}()}
+\code{\link{labor_income_per_hour}()},
+\code{\link{organize_ht11}()}
 }
 \concept{income}

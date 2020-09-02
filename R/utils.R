@@ -472,8 +472,8 @@ age_groups <- function(data = ech::toy_ech_2018,
   return(data)
 }
 
-#'  This function allows you to calculate age groups fix ht11 for 2013 to 2015
-#'
+#'  This function allows you to fix ht11 from 2013 to 2015
+#' @family income
 #' @param data data.frame
 #' @param year survey year
 #' @param ht11 Variable name of ht11

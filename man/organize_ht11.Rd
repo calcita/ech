@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{organize_ht11}
 \alias{organize_ht11}
-\title{This function allows you to calculate age groups fix ht11 for 2013 to 2015}
+\title{This function allows you to fix ht11 from 2013 to 2015}
 \usage{
 organize_ht11(
   data = ech::toy_ech_2018,
@@ -24,8 +24,18 @@ organize_ht11(
 data.frame
 }
 \description{
-This function allows you to calculate age groups fix ht11 for 2013 to 2015
+This function allows you to fix ht11 from 2013 to 2015
 }
 \examples{
 toy_ech_2018 <- organize_ht11(data = ech::toy_ech_2018, year = 2018)
 }
+\seealso{
+Other income: 
+\code{\link{basket_goods}()},
+\code{\link{deflate}()},
+\code{\link{income_constant_prices}()},
+\code{\link{income_quantiles}()},
+\code{\link{labor_income_per_capita}()},
+\code{\link{labor_income_per_hour}()}
+}
+\concept{income}
