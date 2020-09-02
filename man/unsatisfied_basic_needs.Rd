@@ -98,9 +98,11 @@ Disclaimer: This script is not an official INE product.
 Aviso: El script no es un producto oficial de INE.
 }
 \examples{
+\donttest{
 toy_ech_18 <- enrolled_school(data = ech::toy_ech_2018)
 toy_ech_18 <- years_of_schooling(toy_ech_18)
 toy_ech_18 <- unsatisfied_basic_needs(toy_ech_18)
+}
 }
 \seealso{
 Other poverty: 
