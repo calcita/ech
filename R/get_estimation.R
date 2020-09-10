@@ -62,6 +62,8 @@ get_estimation_mean <- function(data = ech::toy_ech_2018,
   design_ech <- ech::set_design(data = d, level = level, numero = numero, ids = ids, estrato = estrato, pesoano = pesoano)
 
 # supressed warnings ---
+  old <- options()
+  on.exit(options(old))
   options(survey.lonely.psu = "adjust")
   options(dplyr.summarise.inform = FALSE)
 
@@ -201,6 +203,8 @@ get_estimation_median <- function(data = ech::toy_ech_2018,
   design_ech <- ech::set_design(data = d, level = level, numero = numero, ids = ids, estrato = estrato, pesoano = pesoano)
 
   # supressed warnings ---
+  old <- options()
+  on.exit(options(old))
   options(survey.lonely.psu = "adjust")
   options(dplyr.summarise.inform = FALSE)
 
@@ -313,6 +317,8 @@ get_estimation_total <- function(data = ech::toy_ech_2018,
   design_ech <- ech::set_design(data = d, level = level, numero = numero, ids = ids, estrato = estrato, pesoano = pesoano)
 
   # supressed warnings ---
+  old <- options()
+  on.exit(options(old))
   options(survey.lonely.psu = "adjust")
   options(dplyr.summarise.inform = FALSE)
 
@@ -461,6 +467,8 @@ get_estimation_ratio <- function(data = ech::toy_ech_2018,
   design_ech <- ech::set_design(data = d, level = level, numero = numero, ids = ids, estrato = estrato, pesoano = pesoano)
 
   # supressed warnings ---
+  old <- options()
+  on.exit(options(old))
   options(survey.lonely.psu="adjust")
   options(dplyr.summarise.inform = FALSE)
 

@@ -4,9 +4,11 @@ Version: 0.1.0
 Authors@R: 
     c(person("Gabriela", "Mathieu", email = "calcita@gmx.li", role = c("aut", "cre"),
             comment = c(ORCID = "0000-0003-3965-9024")),
-            person("Richard", "Detomasi", email = "richard.detomasi@gmail.com", role = "aut",
+      person("Richard", "Detomasi", email = "richard.detomasi@gmail.com", role = "aut",
             comment = c(ORCID = "0000-0002-6725-0261")),
-            person(family = "Instituto Nacional de Estadistica, Uruguay (INE)", role = "dtc"))
+      person("Tati", "Micheletti", email = "tati.micheletti@gmail.com", role = c("ctb"),
+            comment = c(ORCID = "0000-0003-4838-8342")),
+      person(family = "Instituto Nacional de Estadistica, Uruguay (INE)", role = "dtc"))
 Maintainer: Gabriela Mathieu <calcita@gmx.li>
 Description: R toolbox for the processing of the Encuesta Continua de Hogares (ECH) from Uruguay
             at <http://www.ine.gub.uy/encuesta-continua-de-hogares1> conducted by the
@@ -50,7 +52,7 @@ Suggests:
     knitr,
     testthat (>= 2.1.0),
     rmarkdown,
-        covr
+    covr
 SystemRequirements: 'unrar' (Linux/macOS) or '7-Zip' (Windows) to work with '.rar' files,
     GDAL (>= 3.0.2), 
     GEOS (>= 3.8.0), 
