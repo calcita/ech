@@ -38,16 +38,11 @@ Imports:
     tidyr,
     textclean,
     rstudioapi,
-    geouy,
+    geouy(>= 0.2.3),
     purrr,
     labelled,
     tidyselect,
-    ggplot2,
-    ggthemes, 
-    ggspatial,
-    methods,
-    sf,
-    viridis
+    methods
 Suggests: 
     knitr,
     testthat (>= 2.1.0),

@@ -508,3 +508,20 @@ organize_ht11 <- function(data = ech::toy_ech_2018,
 #' @usage lhs \%>\% rhs
 NULL
 
+#' add_geom
+#' See \code{geouy::\link[geouy]{add_geom}} for details.
+#' @name add_geom
+#' @rdname add_geom
+#' @keywords internal
+#' @export
+#' @importFrom geouy add_geom
+NULL
+
+#' plot_geouy
+#' See \code{geouy::\link[geouy]{plot_geouy}} for details.
+#' @name plot_geouy
+#' @rdname plot_geouy
+#' @keywords internal
+#' @export
+#' @importFrom geouy plot_geouy
+NULL

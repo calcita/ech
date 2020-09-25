@@ -295,9 +295,9 @@ get_estimation_total <- function(data = ech::toy_ech_2018,
                                 name = "estimacion"){
   # checks ----
   assertthat::assert_that(!is.null(data) | !is.null(variable), msg = "You must indicate a variable")
-  assertthat::assert_that(all(variable %in% names(data)), msg = glue::glue("Sorry... :( \n  {variable} is not in {data}"))
-  if(!is.null(by.x)) assertthat::assert_that(by.x %in% names(data), msg = glue::glue("Sorry... :( \n  {by.x} is not in {data}"))
-  if(!is.null(by.y)) assertthat::assert_that(by.y %in% names(data), msg = glue::glue("Sorry... :( \n  {by.y} is not in {data}"))
+  assertthat::assert_that(all(variable %in% names(data)), msg = glue::glue("Sorry... :( \n  {variable} is not in data"))
+  if(!is.null(by.x)) assertthat::assert_that(by.x %in% names(data), msg = glue::glue("Sorry... :( \n  {by.x} is not in data"))
+  if(!is.null(by.y)) assertthat::assert_that(by.y %in% names(data), msg = glue::glue("Sorry... :( \n  {by.y} is not in data"))
   if(!is.null(level)) assertthat::assert_that(level %in% c("household", "h", "individual", "i"), msg = "Check the level selected")
   if(!is.null(domain)) {
     dom <- strsplit(domain, '[==><!]')[[1]][1] %>% stringr::str_trim()
@@ -440,10 +440,10 @@ get_estimation_ratio <- function(data = ech::toy_ech_2018,
 
   # checks ----
   assertthat::assert_that(!is.null(data) | !is.null(variable.x) | !is.null(variable.y), msg = "You must indicate a variable")
-  assertthat::assert_that(all(variable.x %in% names(data)), msg = glue::glue("Sorry... :( \n {variable.x} is not in {data}"))
-  assertthat::assert_that(all(variable.y %in% names(data)), msg = glue::glue("Sorry... :( \n {variable.y} is not in {data}"))
-  if(!is.null(by.x)) assertthat::assert_that(by.x %in% names(data), msg = glue::glue("Sorry... :( \n {by.x} is not in {data}"))
-  if(!is.null(by.y)) assertthat::assert_that(by.y %in% names(data), msg = glue::glue("Sorry... :( \n {by.y} is not in {data}"))
+  assertthat::assert_that(all(variable.x %in% names(data)), msg = glue::glue("Sorry... :( \n {variable.x} is not in data"))
+  assertthat::assert_that(all(variable.y %in% names(data)), msg = glue::glue("Sorry... :( \n {variable.y} is not in data"))
+  if(!is.null(by.x)) assertthat::assert_that(by.x %in% names(data), msg = glue::glue("Sorry... :( \n {by.x} is not in data"))
+  if(!is.null(by.y)) assertthat::assert_that(by.y %in% names(data), msg = glue::glue("Sorry... :( \n {by.y} is not in data"))
   if(!is.null(level)) assertthat::assert_that(level %in% c("household", "h", "individual", "i"), msg = "Check the level selected")
   if(!is.null(domain)) {
     dom <- strsplit(domain, '[==><!]')[[1]][1] %>% stringr::str_trim()
@@ -553,9 +553,9 @@ get_estimation_gini <- function(data = ech::toy_ech_2018,
 
 
   assertthat::assert_that(!is.null(data) | !is.null(variable) | !is.null(numero) | !is.null(pesoano) | !is.null(level), msg = "You must indicate a variable")
-  assertthat::assert_that(all(variable %in% names(data)), msg = glue::glue("Sorry... :( \n {variable} is not in {data}"))
-  assertthat::assert_that(all(pesoano %in% names(data)), msg = glue::glue("Sorry... :( \n {pesoano} is not in {data}"))
-  assertthat::assert_that(all(numero %in% names(data)), msg = glue::glue("Sorry... :( \n {numero} is not in {data}"))
+  assertthat::assert_that(all(variable %in% names(data)), msg = glue::glue("Sorry... :( \n {variable} is not in data"))
+  assertthat::assert_that(all(pesoano %in% names(data)), msg = glue::glue("Sorry... :( \n {pesoano} is not in data"))
+  assertthat::assert_that(all(numero %in% names(data)), msg = glue::glue("Sorry... :( \n {numero} is not in data"))
   if(!is.null(estrato)) {
     assertthat::assert_that(estrato %in% names(data), msg = glue::glue("Sorry... :( \n  {estrato} is not in data"))
   }
@@ -713,9 +713,9 @@ get_estimation_gpg <- function(data = ech::toy_ech_2018,
 
   assertthat::assert_that(!is.null(data) | !is.null(variable) | !is.null(pesoano) | !is.null(e26), msg = "You must indicate a variable")
   #assertthat::assert_that(!is.null(ids) & is.null(estrato), msg = "You must indicate the ids")
-  assertthat::assert_that(all(variable %in% names(data)), msg = glue::glue("Sorry... :( \n {variable} is not in {data}"))
-  assertthat::assert_that(all(pesoano %in% names(data)), msg = glue::glue("Sorry... :( \n {pesoano} is not in {data}"))
-  assertthat::assert_that(all(e26 %in% names(data)), msg = glue::glue("Sorry... :( \n {e26} is not in {data}"))
+  assertthat::assert_that(all(variable %in% names(data)), msg = glue::glue("Sorry... :( \n {variable} is not in data"))
+  assertthat::assert_that(all(pesoano %in% names(data)), msg = glue::glue("Sorry... :( \n {pesoano} is not in data"))
+  assertthat::assert_that(all(e26 %in% names(data)), msg = glue::glue("Sorry... :( \n {e26} is not in data"))
   assertthat::assert_that(all(stat %in% c("media", "median")), msg = glue::glue("Sorry... :( \n {stat} can be median or media"))
   if(!is.null(estrato)) {
     assertthat::assert_that(estrato %in% names(data), msg = glue::glue("Sorry... :( \n  {estrato} is not in data"))
@@ -806,7 +806,7 @@ get_estimation_qsr <- function(data = ech::toy_ech_2018,
                                pesoano = "pesoano"){
 
   #Checks----
-  assertthat::assert_that(variable %in% names(data), msg = glue::glue("Sorry... :( \n \t {variable} is not in {data}, you must use income_constant_prices function"))
+  assertthat::assert_that(variable %in% names(data), msg = glue::glue("Sorry... :( \n \t {variable} is not in data, you must use income_constant_prices function"))
   assertthat::assert_that(pesoano %in% names(data), msg = glue::glue("Sorry... :( \n  \t {pesoano} is not in data"))
   if(!is.null(estrato)) {
     assertthat::assert_that(estrato %in% names(data), msg = glue::glue("Sorry... :( \n  \t {estrato} is not in data"))
