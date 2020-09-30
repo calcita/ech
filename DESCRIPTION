@@ -42,7 +42,7 @@ Imports:
     purrr,
     labelled,
     tidyselect,
-    methods
+    methods, attempt, curl
 Suggests: 
     knitr,
     testthat (>= 2.1.0),

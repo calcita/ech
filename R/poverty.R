@@ -22,9 +22,9 @@
 #' @param e27 Variable name of age
 #' @param school_enrollment Variable name of school_enrollment
 #' @param years_schooling Variable name of years_schooling
-#' @param e201_1 Variable name of
-#' @param e212_1 Variable name of
-#' @param e238 Variable name of
+#' @param e201_1 Variable name of finished middle education level
+#' @param e212_1 Variable name of finished technical education level
+#' @param e238 Variable name of attendance to initial education
 #' @param anio Variable name of survey year
 #' @return data.frame
 #' @export

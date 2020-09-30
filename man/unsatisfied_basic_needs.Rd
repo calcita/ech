@@ -78,11 +78,11 @@ unsatisfied_basic_needs(
 
 \item{years_schooling}{Variable name of years_schooling}
 
-\item{e201_1}{Variable name of}
+\item{e201_1}{Variable name of finished middle education level}
 
-\item{e212_1}{Variable name of}
+\item{e212_1}{Variable name of finished technical education level}
 
-\item{e238}{Variable name of}
+\item{e238}{Variable name of attendance to initial education}
 
 \item{anio}{Variable name of survey year}
 }

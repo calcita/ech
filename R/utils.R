@@ -20,6 +20,7 @@
 get_ipc <- function(folder = tempdir()){
 
   assertthat::assert_that(is.character(folder), msg = "Sorry... :( \n \t folder parameter must be character")
+  attempt::stop_if_not(.x = curl::has_internet(), msg = "No internet access was detected. Please check your connection.")
   suppressMessages({
     u <- "http://www.ine.gub.uy/c/document_library/get_file?uuid=2e92084a-94ec-4fec-b5ca-42b40d5d2826&groupId=10181"
     f <- fs::path(folder, "IPC gral var M_B10.xls")
@@ -60,7 +61,7 @@ get_ipc <- function(folder = tempdir()){
 #' }
 #'
 get_ipc_region <- function(folder = tempdir(), region = "M", sheet = NULL){
-
+  attempt::stop_if_not(.x = curl::has_internet(), msg = "No internet access was detected. Please check your connection.")
   assertthat::assert_that(is.character(folder), msg = "Sorry... :( \n \t folder parameter must be character")
   assertthat::assert_that(region %in% c("M", "I"), msg = "Sorry... :( \n \t region parameter must be 'M' for Montevideo or 'I' for Interior")
   suppressMessages({
@@ -133,7 +134,7 @@ get_ipc_region <- function(folder = tempdir(), region = "M", sheet = NULL){
 #' get_cba_cbna(folder = tempdir(), sheet = 1, region = "M")
 #'
 get_cba_cbna <- function(folder = tempdir(), sheet = NULL, region = NULL){
-
+  attempt::stop_if_not(.x = curl::has_internet(), msg = "No internet access was detected. Please check your connection.")
   assertthat::assert_that(is.character(folder), msg =  "Sorry... :( \n \t folder parameter must be character")
   assertthat::assert_that(region %in% c("M", "I", "R"), msg =  "Sorry... :( \n \t region parameter must be 'M' for Montevideo, 'I' for Interior urbano or 'R' for Interior rural")
   suppressMessages({
@@ -197,7 +198,7 @@ get_cba_cbna <- function(folder = tempdir(), sheet = NULL, region = NULL){
 #' get_ipab(folder = tempdir(), sheet = 1)
 
 get_ipab <- function(folder = tempdir(), sheet = NULL){
-
+  attempt::stop_if_not(.x = curl::has_internet(), msg = "No internet access was detected. Please check your connection.")
   assertthat::assert_that(is.character(folder), msg =  "Sorry... :( \n \t folder parameter must be character")
   suppressMessages({
     u <- "http://www.ine.gub.uy/c/document_library/get_file?uuid=c4b5efaa-cdd4-497a-ab78-e3138e4f08dc&groupId=10181"
@@ -248,7 +249,7 @@ get_ipab <- function(folder = tempdir(), sheet = NULL){
 #' get_ipab_region(folder = tempdir(), sheet = 1, region = "M")
 #'
 get_ipab_region <- function(folder = tempdir(), sheet = NULL, region = "M"){
-
+  attempt::stop_if_not(.x = curl::has_internet(), msg = "No internet access was detected. Please check your connection.")
   assertthat::assert_that(is.character(folder), msg = "Sorry... :( \n \t folder parameter must be character")
   assertthat::assert_that(region %in% c("M", "I"), msg = "Sorry... :( \n \t region parameter must be 'M' for Montevideo or 'I' for Interior")
   suppressMessages({
@@ -315,7 +316,7 @@ get_ciiu <- function(folder = tempdir(),
                      version = 4){
   assertthat::assert_that(is.character(folder), msg = "Sorry... :( \n \t folder parameter must be character")
   assertthat::assert_that(is.numeric(version), msg = "Sorry... :( \n \t version parameter must be numeric")
-
+  attempt::stop_if_not(.x = curl::has_internet(), msg = "No internet access was detected. Please check your connection.")
   u <- "http://www.ine.gub.uy/documents/10181/33330/CORRESPONDENCIA+CIUU4+A+CIUU3.pdf/623c43cb-009c-4da9-b48b-45282745063b"
   f <- fs::path(folder, "ciiu4.pdf")
   try(utils::download.file(u, f, mode = "wb", method = "libcurl"))

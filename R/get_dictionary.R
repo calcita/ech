@@ -20,6 +20,7 @@ get_dictionary <- function(year = NULL,
                           folder = tempdir()){
 
   # checks ----
+  attempt::stop_if_not(.x = curl::has_internet(), msg = "No internet access was detected. Please check your connection.")
   stopifnot(is.numeric(year) | is.null(year) | length(year) <= 1)
   if (!is.character(folder) | length(folder) != 1) {
     stop(glue::glue("Sorry... ;( \n \t You must enter a directory..."))
