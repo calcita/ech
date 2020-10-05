@@ -2,6 +2,7 @@
 title: "Introducción a ech"
 output: learnr::tutorial
 runtime: shiny_prerendered
+description: "Aprende las nociones básicas de la librería ech"
 ---
 
 ```{r setup, include=FALSE}
@@ -68,32 +69,50 @@ Vea las funciones mean() y var()
 
 ## Conociendo la base
 
-### Exercise with Hint
+Selecciona los casos que tienen entre 3 y 5 años de edad y guarda en un objeto llamado `menores_3_5`. La variable `e27` es la edad.
 
+```{r filter, exercise=TRUE, exercise.lines = 5}
 
-Selecciona los casos que tienen entre 3 y 5 años de edad y guarda en un objeto llamado `menores_3_5`. La variable e27 es la edad.
+```
+```{r filter-hint}
+Vea la función filter() de dplyr (o tidyverse)
+```
 
-Selecciona los casos cuya vivienda tiene 4 o 6 habitaciones y guarda en un objeto llamado `habitaciones_4`. La variable d9 es el número de habitaciones.
+Selecciona los casos cuya vivienda tiene 4 o 6 habitaciones y guarda en un objeto llamado `habitaciones_4`. La variable `d9` es el número de habitaciones.
 
-Selecciona los últimos 5 casos de ech19 y guarda en un objeto llamado `ultimos_5`.
+```{r filter1, exercise=TRUE, exercise.lines = 5}
+
+```
+```{r filter1-hint}
+Vea la función filter() de dplyr (o tidyverse)
+```
 
 Selecciona un registro por hogar y guarda en un objeto llamado `hogares`. 
 
-Selecciona los hogares unipersonales y guarda en un objeto llamado `ech_unipersonal`.
+```{r filter2, exercise=TRUE, exercise.lines = 5}
 
-Selecciona los casos que declaran tener ascendencia afrodescendiente o indígena como su ascendencia principal y guarda en un objeto llamado `ech_afroindigena`.
+```
+```{r filter2-hint}
+Vea la función filter() de dplyr (o tidyverse)
+```
 
 Selecciona las variables referidas a las condiciones de la vivienda en paredes, techos y pisos y guarda en un objeto llamado `ech_materiales`.
 
-¿Cuál es el hogar con mayor cantidad de personas sin contar el servicio doméstico? Ver `?slice_max`
 
+```{r select, exercise=TRUE, exercise.lines = 5}
 
-```{r print-limit, exercise=TRUE, exercise.eval=TRUE}
-mtcars
+```
+```{r select-hint}
+Vea la función select() de dplyr (o tidyverse)
 ```
 
-```{r print-limit-hint}
-head(mtcars)
+¿Cuál es el hogar con mayor cantidad de personas sin contar el servicio doméstico?
+
+```{r slice, exercise=TRUE, exercise.lines = 5}
+
+```
+```{r slice-hint}
+Vea la función slice_max() de dplyr (o tidyverse)
 ```
 
 ## Cuestionario extra
