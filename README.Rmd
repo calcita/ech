@@ -33,7 +33,15 @@ Caja de herramientas para el procesamiento de la [Encuesta Continua de Hogares d
 Instalación
 ===========
 
-<!-- Para la versión estable -->
+Para la versión estable
+
+``` r
+install.packages('ech') 
+
+library(ech)
+```
+
+
 Para la versión en desarrollo
 
 ``` r

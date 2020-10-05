@@ -16,3 +16,4 @@
 ^LICENSE\.md$
 ^doc$
 ^man/figures$
+^inst/tutorials/intro/intro\.Rmd$

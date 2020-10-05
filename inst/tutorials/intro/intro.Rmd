@@ -1,0 +1,129 @@
+---
+title: "Introducción a ech"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+## Introducción
+
+### Ejercicio
+
+
+Instalar el paquete ech
+
+```{r inst, exercise=TRUE}
+
+```
+
+```{r inst-hint-1}
+install.packages('ech') 
+```
+
+```{r inst-hint-2}
+install.packages('devtools')
+devtools::install_github("calcita/ech")
+```
+
+Cargar el paquete ech
+
+```{r carg, exercise=TRUE}
+
+```
+```{r carg-hint}
+library(ech) 
+```
+
+Explora la ayuda de la función get_microdata
+
+```{r expl, exercise=TRUE}
+
+```
+```{r expl-hint}
+?get_microdata 
+```
+
+Leer los datos de la ECH 2019
+
+```{r leer, exercise=TRUE}
+
+```
+```{r leer-hint}
+ech19 <- get_microdata(2019) 
+```
+
+Calcular la media, mediana y varianza de las variables ht19 y d10. 
+
+```{r mean, exercise=TRUE, exercise.lines = 5}
+
+```
+```{r mean-hint}
+Vea las funciones mean() y var() 
+```
+
+## Conociendo la base
+
+### Exercise with Hint
+
+
+Selecciona los casos que tienen entre 3 y 5 años de edad y guarda en un objeto llamado `menores_3_5`. La variable e27 es la edad.
+
+Selecciona los casos cuya vivienda tiene 4 o 6 habitaciones y guarda en un objeto llamado `habitaciones_4`. La variable d9 es el número de habitaciones.
+
+Selecciona los últimos 5 casos de ech19 y guarda en un objeto llamado `ultimos_5`.
+
+Selecciona un registro por hogar y guarda en un objeto llamado `hogares`. 
+
+Selecciona los hogares unipersonales y guarda en un objeto llamado `ech_unipersonal`.
+
+Selecciona los casos que declaran tener ascendencia afrodescendiente o indígena como su ascendencia principal y guarda en un objeto llamado `ech_afroindigena`.
+
+Selecciona las variables referidas a las condiciones de la vivienda en paredes, techos y pisos y guarda en un objeto llamado `ech_materiales`.
+
+¿Cuál es el hogar con mayor cantidad de personas sin contar el servicio doméstico? Ver `?slice_max`
+
+
+```{r print-limit, exercise=TRUE, exercise.eval=TRUE}
+mtcars
+```
+
+```{r print-limit-hint}
+head(mtcars)
+```
+
+## Cuestionario extra
+
+Aquí hay algunas preguntas para evaluar tu curiosidad
+
+```{r quiz}
+learnr::quiz(
+  learnr::question("Qué años de la encuesta están cubiertos por la librería ech?",
+                   learnr::answer("2017 a 2019"),
+                   learnr::answer("1968 a 2019"),
+                   learnr::answer("2011 a 2019", correct = TRUE),
+                   submit_button = "Enviar respuesta",
+                   try_again_button = "Vuelve a intentar",
+                   correct = "Correcto!",
+                   incorrect = "Incorrecto",
+                   allow_retry = TRUE,
+                   random_answer_order = TRUE
+  ),
+  learnr::question("Qué tipos de estimaciones permite la libreria ech?",
+                   learnr::answer("mean", correct = TRUE),
+                   learnr::answer("median", correct = TRUE),
+                   learnr::answer("ratio", correct = TRUE),
+                   learnr::answer("total", correct = TRUE),
+                   submit_button = "Enviar respuesta",
+                   try_again_button = "Vuelve a intentar",
+                   correct = "Correcto!",
+                   incorrect = "Incorrecto",
+                   allow_retry = TRUE,
+                   random_answer_order = TRUE
+  )
+)
+```
