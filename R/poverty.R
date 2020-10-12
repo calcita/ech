@@ -22,8 +22,6 @@
 #' @param e27 Variable name of age
 #' @param school_enrollment Variable name of school_enrollment
 #' @param years_schooling Variable name of years_schooling
-#' @param e201_1 Variable name of finished middle education level
-#' @param e212_1 Variable name of finished technical education level
 #' @param e238 Variable name of attendance to initial education
 #' @param anio Variable name of survey year
 #' @return data.frame
@@ -62,37 +60,68 @@ unsatisfied_basic_needs <- function(data = ech::toy_ech_2018,
                                     e27 = "e27",
                                     school_enrollment = "school_enrollment",
                                     years_schooling = "years_schooling",
-                                    e201_1 = "e201_1",
-                                    e212_1 = "e212_1",
                                     e238 = "e238",
                                     anio = "anio"){
 
   # checks ---
   assertthat::assert_that(is.data.frame(data))
-  assertthat::assert_that(c2  %in% names(data), msg =  glue::glue("Sorry... :( \n {c2} is not in data"))
-  assertthat::assert_that(c3  %in% names(data), msg =  glue::glue("Sorry... :( \n {c3} is not in data"))
-  assertthat::assert_that(c4  %in% names(data), msg =  glue::glue("Sorry... :( \n {c4} is not in data"))
-  assertthat::assert_that(d9  %in% names(data), msg =  glue::glue("Sorry... :( \n {d9} is not in data"))
-  assertthat::assert_that(d11  %in% names(data), msg =  glue::glue("Sorry... :( \n {d11} is not in data"))
-  assertthat::assert_that(d12  %in% names(data), msg =  glue::glue("Sorry... :( \n {d12} is not in data"))
-  assertthat::assert_that(d13  %in% names(data), msg =  glue::glue("Sorry... :( \n {d13} is not in data"))
-  assertthat::assert_that(d14  %in% names(data), msg =  glue::glue("Sorry... :( \n {d14} is not in data"))
-  assertthat::assert_that(d15  %in% names(data), msg =  glue::glue("Sorry... :( \n {d15} is not in data"))
-  assertthat::assert_that(d16  %in% names(data), msg =  glue::glue("Sorry... :( \n {d16} is not in data"))
-  assertthat::assert_that(d18  %in% names(data), msg =  glue::glue("Sorry... :( \n {d18} is not in data"))
-  assertthat::assert_that(d19  %in% names(data), msg =  glue::glue("Sorry... :( \n {d19} is not in data"))
-  assertthat::assert_that(d21_1  %in% names(data), msg =  glue::glue("Sorry... :( \n {d21_1} is not in data"))
-  assertthat::assert_that(d21_2  %in% names(data), msg =  glue::glue("Sorry... :( \n {d21_2} is not in data"))
-  assertthat::assert_that(d21_3  %in% names(data), msg =  glue::glue("Sorry... :( \n {d21_3} is not in data"))
-  assertthat::assert_that(d260  %in% names(data), msg =  glue::glue("Sorry... :( \n {d260} is not in data"))
-  assertthat::assert_that(ht19  %in% names(data), msg =  glue::glue("Sorry... :( \n {ht19} is not in data"))
-  assertthat::assert_that(pobre06  %in% names(data), msg =  glue::glue("Sorry... :( \n {pobre06} is not in data"))
-  assertthat::assert_that(anio  %in% names(data), msg =  glue::glue("Sorry... :( \n {anio} is not in data"))
+  assertthat::assert_that(c2 %in% names(data), msg =  glue::glue("Sorry... :( \n {c2} is not in data"))
+  assertthat::assert_that(c3 %in% names(data), msg =  glue::glue("Sorry... :( \n {c3} is not in data"))
+  assertthat::assert_that(c4 %in% names(data), msg =  glue::glue("Sorry... :( \n {c4} is not in data"))
+  assertthat::assert_that(d9 %in% names(data), msg =  glue::glue("Sorry... :( \n {d9} is not in data"))
+  assertthat::assert_that(d11 %in% names(data), msg =  glue::glue("Sorry... :( \n {d11} is not in data"))
+  assertthat::assert_that(d12 %in% names(data), msg =  glue::glue("Sorry... :( \n {d12} is not in data"))
+  assertthat::assert_that(d13 %in% names(data), msg =  glue::glue("Sorry... :( \n {d13} is not in data"))
+  assertthat::assert_that(d14 %in% names(data), msg =  glue::glue("Sorry... :( \n {d14} is not in data"))
+  assertthat::assert_that(d15 %in% names(data), msg =  glue::glue("Sorry... :( \n {d15} is not in data"))
+  assertthat::assert_that(d16 %in% names(data), msg =  glue::glue("Sorry... :( \n {d16} is not in data"))
+  assertthat::assert_that(d18 %in% names(data), msg =  glue::glue("Sorry... :( \n {d18} is not in data"))
+  assertthat::assert_that(d19 %in% names(data), msg =  glue::glue("Sorry... :( \n {d19} is not in data"))
+  assertthat::assert_that(d21_1 %in% names(data), msg =  glue::glue("Sorry... :( \n {d21_1} is not in data"))
+  assertthat::assert_that(d21_2 %in% names(data), msg =  glue::glue("Sorry... :( \n {d21_2} is not in data"))
+  assertthat::assert_that(d21_3 %in% names(data), msg =  glue::glue("Sorry... :( \n {d21_3} is not in data"))
+  assertthat::assert_that(d260 %in% names(data), msg =  glue::glue("Sorry... :( \n {d260} is not in data"))
+  assertthat::assert_that(ht19 %in% names(data), msg =  glue::glue("Sorry... :( \n {ht19} is not in data"))
+  assertthat::assert_that(pobre06 %in% names(data), msg =  glue::glue("Sorry... :( \n {pobre06} is not in data"))
+  assertthat::assert_that(anio %in% names(data), msg =  glue::glue("Sorry... :( \n {anio} is not in data"))
   assertthat::assert_that(school_enrollment %in% names(data), msg = "Sorry... :( \n school_enrollment is not calculated, please run enrolled_school() to obtain the variable.")
   assertthat::assert_that(years_schooling %in% names(data), msg = "Sorry... :( \n years_schooling is not calculated, please run years_of_schooling() to obtain the variable.")
 
   yy <- max(as.numeric(data$anio))
-  if (yy <= 2013) {
+  if (yy == 2011) {
+    data <- data %>%
+      dplyr::group_by(numero) %>%
+      dplyr::mutate(
+        UBN_housing = ifelse((c2 == 6 | c3 == 6 | c4 == 5) | (ht19 / d9) > 2 | d19 == 3, 1, 0),
+        UBN_water = ifelse(d12 %in% 2:4 | d11 %in% 2:6, 1, 0),
+        UBN_sewerage = ifelse(d13 == 3 | d14 == 0 | d15 == 2 | d16 %in% 3:4, 1, 0),
+        UBN_electricity = ifelse(d18 > 2, 1, 0),
+        UBN_confort = ifelse(d21_3 == 2 | (d21_1 == 2 & d21_2 == 2), 1, 0)) %>%
+      dplyr::ungroup()
+    data <- data %>%
+      dplyr::mutate(UBN_education = ifelse(e27 %in% 4:17 & school_enrollment == 0 & years_schooling < 12, 1, 0)) %>%
+      dplyr::group_by(numero) %>%
+      dplyr::mutate(UBN_education = max(UBN_education),
+                    UBN_q = UBN_housing + UBN_water + UBN_sewerage + UBN_electricity + UBN_confort + UBN_education,
+                    UBN = dplyr::case_when(
+                      UBN_q == 0 ~ 0,
+                      UBN_q == 1 ~ 1,
+                      UBN_q == 2 ~ 2,
+                      UBN_q >= 3 ~ 3),
+                    UBN = haven::labelled(UBN, labels = c("Sin NBI" = 0, "Con 1 NBI" = 1, "Con 2 NBI" = 2, "Con 3 o mas NBI" = 3), label = "NBI")
+      ) %>%
+      dplyr::ungroup()
+
+    message(glue::glue("El objeto data es de 2011, en UBN_confort no se incluye fuente para calefaccionar (d260). En NBI educacion no se incluye educacion inicial (e238)."))
+    message("Variables have been created: \n \t UBN_housing (NBI vivienda);
+            UBN_water (NBI acceso al agua);
+            UBN_sewerage (NBI saneamiento);
+            UBN_electricity (NBI electricidad);
+            UBN_confort (NBI confort);
+            UBN_education (NBI educacion);
+            UBN_q (suma de NBIs) &
+            UBN (Categoria NBI)")
+  } else if (yy >= 2012 & yy <= 2013) {
     data <- data %>%
       dplyr::group_by(numero) %>%
       dplyr::mutate(
