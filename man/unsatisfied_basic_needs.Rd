@@ -27,8 +27,6 @@ unsatisfied_basic_needs(
   e27 = "e27",
   school_enrollment = "school_enrollment",
   years_schooling = "years_schooling",
-  e201_1 = "e201_1",
-  e212_1 = "e212_1",
   e238 = "e238",
   anio = "anio"
 )
@@ -77,10 +75,6 @@ unsatisfied_basic_needs(
 \item{school_enrollment}{Variable name of school_enrollment}
 
 \item{years_schooling}{Variable name of years_schooling}
-
-\item{e201_1}{Variable name of finished middle education level}
-
-\item{e212_1}{Variable name of finished technical education level}
 
 \item{e238}{Variable name of attendance to initial education}
 
