@@ -4,14 +4,14 @@
 \alias{get_ipc_region}
 \title{This function allows you to get the IPC data}
 \usage{
-get_ipc_region(folder = tempdir(), region = "M", sheet = NULL)
+get_ipc_region(folder = tempdir(), region, sheet = 1)
 }
 \arguments{
 \item{folder}{temporal folder}
 
 \item{region}{Montevideo ("M") or Interior ("I")}
 
-\item{sheet}{sheet number}
+\item{sheet}{sheet number. Default 1.}
 }
 \value{
 data.frame

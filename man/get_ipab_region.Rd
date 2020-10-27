@@ -4,14 +4,14 @@
 \alias{get_ipab_region}
 \title{This function allows you to get the IPAB (Indice de precios de alimentos y bebidas) data}
 \usage{
-get_ipab_region(folder = tempdir(), sheet = NULL, region = "M")
+get_ipab_region(folder = tempdir(), region, sheet = 1)
 }
 \arguments{
 \item{folder}{temporal folder}
 
-\item{sheet}{sheet number}
-
 \item{region}{Montevideo ("M"), Interior Urbano ("I")}
+
+\item{sheet}{sheet number. Default 1}
 }
 \value{
 data.frame
@@ -20,7 +20,7 @@ data.frame
 This function allows you to get the IPAB (Indice de precios de alimentos y bebidas) data
 }
 \examples{
-get_ipab_region(folder = tempdir(), sheet = 1, region = "M")
+get_ipab_region(folder = tempdir(), region = "M")
 
 }
 \seealso{

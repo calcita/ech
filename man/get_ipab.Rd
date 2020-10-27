@@ -4,12 +4,12 @@
 \alias{get_ipab}
 \title{This function allows you to get the IPAB (Indice de precios de alimentos y bebidas) data}
 \usage{
-get_ipab(folder = tempdir(), sheet = NULL)
+get_ipab(folder = tempdir(), sheet = 1)
 }
 \arguments{
 \item{folder}{temporal folder}
 
-\item{sheet}{sheet number}
+\item{sheet}{sheet number. Default 1}
 }
 \value{
 data.frame
@@ -22,7 +22,7 @@ Disclaimer: This script is not an official INE product.
 Aviso: El script no es un producto oficial de INE.
 }
 \examples{
-get_ipab(folder = tempdir(), sheet = 1)
+get_ipab(folder = tempdir())
 }
 \seealso{
 Other dwnld_read: 

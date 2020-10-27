@@ -4,14 +4,14 @@
 \alias{get_cba_cbna}
 \title{This function allows you to get the CBA and CBNA data}
 \usage{
-get_cba_cbna(folder = tempdir(), sheet = NULL, region = NULL)
+get_cba_cbna(folder = tempdir(), region, sheet = 1)
 }
 \arguments{
 \item{folder}{temporal folder}
 
-\item{sheet}{sheet number}
-
 \item{region}{Montevideo ("M"), Interior Urbano ("I"), Interior Rural ("R")}
+
+\item{sheet}{sheet number. Default 1.}
 }
 \value{
 data.frame
@@ -24,7 +24,7 @@ Disclaimer: This script is not an official INE product.
 Aviso: El script no es un producto oficial de INE.
 }
 \examples{
-get_cba_cbna(folder = tempdir(), sheet = 1, region = "M")
+get_cba_cbna(folder = tempdir(), region = "M")
 
 }
 \seealso{

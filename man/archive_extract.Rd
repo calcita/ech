@@ -25,6 +25,7 @@ archive_extract()
 }
 \seealso{
 Other utils: 
+\code{\link{dates_ech}()},
 \code{\link{unlabelled}()}
 }
 \concept{utils}
