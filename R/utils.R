@@ -149,8 +149,12 @@ get_cba_cbna <- function(folder = tempdir(), region, sheet = 1){
   assertthat::assert_that(region %in% c("M", "I", "R"), msg =  "Sorry... :( \n \t region parameter must be 'M' for Montevideo, 'I' for Interior urbano or 'R' for Interior rural")
   suppressMessages({
     u <- "http://www.ine.gub.uy/c/document_library/get_file?uuid=1675e7d0-6fe0-49bd-bf3f-a46bd6334c0c&groupId=10181"
-    f <- fs::path(folder, "CBA_LP_LI M.xls")
-    try(utils::download.file(u, f, mode = "wb", extra = '--no-check-certificate'))
+    f <- fs::path(folder, "CBA_LP_LI_M.xls")
+    if (identical(.Platform$OS.type, "windows")) {
+      utils::download.file(u, f, mode = 'wb', method = 'libcurl')
+    } else {
+      utils::download.file(u, f, mode = 'wb', method = 'curl', extra = '--no-check-certificate')
+    }
     df <- readxl::read_xls(f, sheet = sheet)
     date <- df[9:nrow(df),1]
     names(date) <- "fecha"
