@@ -90,7 +90,7 @@ dates_ech <- function(data) {
 #' \donttest{
 #' get_ipc_region(folder = tempdir(), region = "M")
 #' }
-#'
+
 get_ipc_region <- function(folder = tempdir(), region, sheet = 1){
   attempt::stop_if_not(.x = curl::has_internet(), msg = "No internet access was detected. Please check your connection.")
   assertthat::assert_that(is.character(folder), msg = "Sorry... :( \n \t folder parameter must be character")
@@ -111,12 +111,12 @@ get_ipc_region <- function(folder = tempdir(), region, sheet = 1){
     }
     df <- readxl::read_xls(f, sheet = sheet)
     df <- df[,-1] %>% janitor::remove_empty("rows")
-    df <- dplyr::bind_rows(slice(df, 1), dplyr::filter_all(df, dplyr::any_vars(grepl('ndice General', .))))
+    df <- dplyr::bind_rows(dplyr::slice(df, 1), dplyr::filter_all(df, dplyr::any_vars(grepl('ndice General', .))))
     names(df) <- df[1,]
     df <- df[-1,]
     df <- df %>% dplyr::select(dplyr::contains("20")) %>%
-      janitor::clean_names() %>%
-      tidyr::gather(fecha, indice, names(df)[1]:names(df)[ncol(df)], factor_key = TRUE) %>%
+      janitor::clean_names()
+    df <- df %>% tidyr::gather(fecha, indice, names(df)[1]:names(df)[ncol(df)], factor_key = TRUE) %>%
       tidyr::separate(fecha, into = c("mm", "yy"), sep = "_") %>%
       ech::dates_ech() %>%
       dplyr::select(fecha, indice)

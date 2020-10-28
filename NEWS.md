@@ -4,6 +4,7 @@
 * Improve utils functions debugging download.files used
 * Add a dates_ech function
 * Add more variables to 'dic'
+* Start a learnr tutorial
 
 -------------------------------------------------------
 ## ech v0.0.1.16
