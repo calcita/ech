@@ -1,5 +1,10 @@
 # log history of ech package development
 
+## ech v0.1.1
+* Improve utils functions debugging download.files used
+* Add a dates_ech function
+* Add more variables to 'dic'
+
 -------------------------------------------------------
 ## ech v0.0.1.16
 * Improvement of get_estimation...

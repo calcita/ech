@@ -153,7 +153,7 @@ get_cba_cbna <- function(folder = tempdir(), region, sheet = 1){
     if (identical(.Platform$OS.type, "windows")) {
       utils::download.file(u, f, mode = 'wb', method = 'libcurl')
     } else {
-      utils::download.file(u, f, mode = 'wb', method = 'curl', extra = '--no-check-certificate')
+      utils::download.file(u, f, mode = 'wb', method = 'wget', extra = '--no-check-certificate')
     }
     df <- readxl::read_xls(f, sheet = sheet)
     date <- df[9:nrow(df),1]
@@ -215,7 +215,11 @@ get_ipab <- function(folder = tempdir(), sheet = 1){
   suppressMessages({
     u <- "http://www.ine.gub.uy/c/document_library/get_file?uuid=c4b5efaa-cdd4-497a-ab78-e3138e4f08dc&groupId=10181"
     f <- fs::path(folder, "IPC Div M_B10.xls")
-    try(utils::download.file(u, f, mode = "wb", extra = '--no-check-certificate'))
+    if (identical(.Platform$OS.type, "windows")) {
+      utils::download.file(u, f, mode = 'wb', method = 'libcurl')
+    } else {
+      utils::download.file(u, f, mode = 'wb', method = 'wget', extra = '--no-check-certificate')
+    }
     df <- readxl::read_xls(f, sheet = sheet)
     df <- df[,-1:-2] %>% janitor::remove_empty("rows")
     df <- dplyr::bind_rows(dplyr::slice(df, 1), dplyr::filter_all(df, dplyr::any_vars(grepl(c('Divisiones'), .))), dplyr::filter_all(df, dplyr::any_vars(grepl(c('Alimentos y Bebidas No Alcoh'), .))))
@@ -258,7 +262,11 @@ get_ipab_region <- function(folder = tempdir(), region, sheet = 1){
       u <- "http://ine.gub.uy/c/document_library/get_file?uuid=61f9e884-781d-44be-9760-6d69f214b5b3&groupId=10181"
       f <- fs::path(folder, "IPC 3.2 indvarinc_ div M_B10_Int.xls")
     }
-    try(utils::download.file(u, f, mode = "wb", extra = '--no-check-certificate'))
+    if (identical(.Platform$OS.type, "windows")) {
+      utils::download.file(u, f, mode = 'wb', method = 'libcurl')
+    } else {
+      utils::download.file(u, f, mode = 'wb', method = 'wget', extra = '--no-check-certificate')
+    }
     df <- readxl::read_xls(f, sheet = sheet)
     df <- df[,-1] %>% janitor::remove_empty("rows")
     df <- dplyr::bind_rows(dplyr::slice(df, 1), dplyr::filter_all(df, dplyr::any_vars(grepl(c('Alimentos y Bebidas No Alcoh'), .))))
@@ -302,7 +310,11 @@ get_ciiu <- function(folder = tempdir(),
   attempt::stop_if_not(.x = curl::has_internet(), msg = "No internet access was detected. Please check your connection.")
   u <- "http://www.ine.gub.uy/documents/10181/33330/CORRESPONDENCIA+CIUU4+A+CIUU3.pdf/623c43cb-009c-4da9-b48b-45282745063b"
   f <- fs::path(folder, "ciiu4.pdf")
-  try(utils::download.file(u, f, mode = "wb", extra = '--no-check-certificate'))
+  if (identical(.Platform$OS.type, "windows")) {
+    utils::download.file(u, f, mode = 'wb', method = 'libcurl')
+  } else {
+    utils::download.file(u, f, mode = 'wb', method = 'wget', extra = '--no-check-certificate')
+  }
   key <- rstudioapi::askForSecret("api_key")
   pdftables::convert_pdf(f, "ciiu4.csv",api_key = key)
   df <- read.csv("ciiu4.csv")

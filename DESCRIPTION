@@ -1,6 +1,6 @@
 Package: ech
 Title: Toolbox for ECH with R
-Version: 0.1.0
+Version: 0.1.1
 Authors@R: 
     c(person("Gabriela", "Mathieu", email = "calcita@gmx.li", role = c("aut", "cre"),
             comment = c(ORCID = "0000-0003-3965-9024")),

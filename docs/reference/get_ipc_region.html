@@ -69,7 +69,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ech</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
       </span>
     </div>
 
@@ -133,7 +133,7 @@
     <p>This function allows you to get the IPC data</p>
     </div>
 
-    <pre class="usage"><span class='fu'>get_ipc_region</span>(<span class='kw'>folder</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='kw'>region</span> <span class='kw'>=</span> <span class='st'>"M"</span>, <span class='kw'>sheet</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>get_ipc_region</span>(<span class='kw'>folder</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='no'>region</span>, <span class='kw'>sheet</span> <span class='kw'>=</span> <span class='fl'>1</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -148,7 +148,7 @@
     </tr>
     <tr>
       <th>sheet</th>
-      <td><p>sheet number</p></td>
+      <td><p>sheet number. Default 1.</p></td>
     </tr>
     </table>
 
@@ -173,8 +173,10 @@ Aviso: El script no es un producto oficial de INE.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'>get_ipc_region</span>(<span class='kw'>folder</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='kw'>region</span> <span class='kw'>=</span> <span class='st'>"M"</span>)
-<span class='co'># }</span></div></pre>
+<span class='fu'>get_ipc_region</span>(<span class='kw'>folder</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='kw'>region</span> <span class='kw'>=</span> <span class='st'>"M"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: URL 'https://www.ine.gub.uy/c/document_library/get_file?uuid=c7628833-9b64-44a4-ac97-d13353ee79ac&amp;groupId=10181': status was 'Peer certificate cannot be authenticated with given CA certificates'</span></div><div class='output co'>#&gt; Error in utils::download.file(u, f, mode = "wb", extra = "--no-check-certificate") : 
+#&gt;   no fue posible abrir la URL 'http://www.ine.gub.uy/c/document_library/get_file?uuid=c7628833-9b64-44a4-ac97-d13353ee79ac&amp;groupId=10181'</div><div class='output co'>#&gt; <span class='error'>Error: `path` does not exist: ‘/tmp/RtmpfYs5XV/IPC 3.1 indvarinc_ div M_B10_Mon.xls’</span></div><div class='input'># }
+
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
