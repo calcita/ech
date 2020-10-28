@@ -24,7 +24,11 @@ get_ipc <- function(folder = tempdir()){
   suppressMessages({
     u <- "http://www.ine.gub.uy/c/document_library/get_file?uuid=2e92084a-94ec-4fec-b5ca-42b40d5d2826&groupId=10181"
     f <- fs::path(folder, "IPC gral var M_B10.xls")
-    try(utils::download.file(u, f, mode = "wb", extra = '--no-check-certificate'))
+    if (identical(.Platform$OS.type, "windows")) {
+      utils::download.file(u, f, mode = 'wb', method = 'libcurl')
+    } else {
+      utils::download.file(u, f, mode = 'wb', method = 'wget', extra = '--no-check-certificate')
+    }
     df <- readxl::read_xls(f) %>%
       dplyr::slice(7, 10:999)
     names(df) <- df[1,]
@@ -100,7 +104,11 @@ get_ipc_region <- function(folder = tempdir(), region, sheet = 1){
       u <- "http://www.ine.gub.uy/c/document_library/get_file?uuid=61f9e884-781d-44be-9760-6d69f214b5b3&groupId=10181"
       f <- fs::path(folder, "IPC 3.2 indvarinc_ div M_B10_Int.xls")
     }
-    try(utils::download.file(u, f, mode = "wb", extra = '--no-check-certificate'))
+    if (identical(.Platform$OS.type, "windows")) {
+      utils::download.file(u, f, mode = 'wb', method = 'libcurl')
+    } else {
+      utils::download.file(u, f, mode = 'wb', method = 'wget', extra = '--no-check-certificate')
+    }
     df <- readxl::read_xls(f, sheet = sheet)
     df <- df[,-1] %>% janitor::remove_empty("rows")
     df <- dplyr::bind_rows(slice(df, 1), dplyr::filter_all(df, dplyr::any_vars(grepl('ndice General', .))))
