@@ -27,7 +27,6 @@ Aviso: El script no es un producto oficial de INE.
 \donttest{
 get_ipc_region(folder = tempdir(), region = "M")
 }
-
 }
 \seealso{
 Other dwnld_read: 

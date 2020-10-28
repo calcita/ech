@@ -9,4 +9,6 @@ test_that("utils works", {
   expect_true("age_groups" %in% names(ech_2018))
   ech_2018 <- age_groups(data = ech::toy_ech_2018, cut = c(2, 4, 11, 17, 24))
   expect_true("age_groups" %in% names(ech_2018))
+  toy_ech_2018 <- organize_ht11(data = ech::toy_ech_2018, year = 2018)
+  expect_equal(ncol(toy_ech_2018), 581)
 })

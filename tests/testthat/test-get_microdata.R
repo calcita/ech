@@ -35,4 +35,5 @@ test_that("download dictionaries", {
   archivo <- archivo[which.max(file.info(archivo)$mtime)]
   testthat::expect_equal(length(archivo), 1)
   testthat::expect_error(get_dictionary(folder = 1))
+  testthat::expect_message(get_dictionary(year = 2019, folder = tempdir()))
 })
