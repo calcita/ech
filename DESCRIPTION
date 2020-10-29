@@ -48,7 +48,8 @@ Suggests:
     testthat (>= 2.1.0),
     rmarkdown,
     covr,
-    learnr
+    learnr, 
+    utf8
 SystemRequirements: 'unrar' (Linux/macOS) or '7-Zip' (Windows) to work with '.rar' files,
     GDAL (>= 3.0.2), 
     GEOS (>= 3.8.0), 

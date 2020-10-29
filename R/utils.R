@@ -24,10 +24,10 @@ get_ipc <- function(folder = tempdir()){
 
   u <- "http://www.ine.gub.uy/c/document_library/get_file?uuid=2e92084a-94ec-4fec-b5ca-42b40d5d2826&groupId=10181"
   f <- fs::path(folder, "IPC gral var M_B10.xls")
-  if (identical(.Platform$OS.type, "windows")) {
-    try(utils::download.file(u, f, mode = 'wb', method = 'libcurl'))
-  } else {
+  if (identical(.Platform$OS.type, "unix")) {
     try(utils::download.file(u, f, mode = 'wb', method = 'wget', extra = '--no-check-certificate'))
+  } else {
+    try(utils::download.file(u, f, mode = 'wb', method = 'libcurl'))
   }
   suppressMessages({
      df <- readxl::read_xls(f) %>%
@@ -105,10 +105,10 @@ get_ipc_region <- function(folder = tempdir(), region, sheet = 1){
     u <- "http://www.ine.gub.uy/c/document_library/get_file?uuid=61f9e884-781d-44be-9760-6d69f214b5b3&groupId=10181"
     f <- fs::path(folder, "IPC 3.2 indvarinc_ div M_B10_Int.xls")
   }
-  if (identical(.Platform$OS.type, "windows")) {
-    try(utils::download.file(u, f, mode = 'wb', method = 'libcurl'))
-  } else {
+  if (identical(.Platform$OS.type, "unix")) {
     try(utils::download.file(u, f, mode = 'wb', method = 'wget', extra = '--no-check-certificate'))
+  } else {
+    try(utils::download.file(u, f, mode = 'wb', method = 'libcurl'))
   }
   suppressMessages({
     df <- readxl::read_xls(f, sheet = sheet)
@@ -160,10 +160,10 @@ get_cba_cbna <- function(folder = tempdir(), region, sheet = 1){
 
   u <- "http://www.ine.gub.uy/c/document_library/get_file?uuid=1675e7d0-6fe0-49bd-bf3f-a46bd6334c0c&groupId=10181"
   f <- fs::path(folder, "CBA_LP_LI_M.xls")
-  if (identical(.Platform$OS.type, "windows")) {
-    try(utils::download.file(u, f, mode = 'wb', method = 'libcurl'))
-  } else {
+  if (identical(.Platform$OS.type, "unix")) {
     try(utils::download.file(u, f, mode = 'wb', method = 'wget', extra = '--no-check-certificate'))
+  } else {
+    try(utils::download.file(u, f, mode = 'wb', method = 'libcurl'))
   }
   suppressMessages({
     df <- readxl::read_xls(f, sheet = sheet)
@@ -226,10 +226,10 @@ get_ipab <- function(folder = tempdir(), sheet = 1){
 
   u <- "http://www.ine.gub.uy/c/document_library/get_file?uuid=c4b5efaa-cdd4-497a-ab78-e3138e4f08dc&groupId=10181"
   f <- fs::path(folder, "IPC Div M_B10.xls")
-  if (identical(.Platform$OS.type, "windows")) {
-    try(utils::download.file(u, f, mode = 'wb', method = 'libcurl'))
-  } else {
+  if (identical(.Platform$OS.type, "unix")) {
     try(utils::download.file(u, f, mode = 'wb', method = 'wget', extra = '--no-check-certificate'))
+  } else {
+    try(utils::download.file(u, f, mode = 'wb', method = 'libcurl'))
   }
   suppressMessages({
     df <- readxl::read_xls(f, sheet = sheet)
@@ -274,10 +274,10 @@ get_ipab_region <- function(folder = tempdir(), region, sheet = 1){
     u <- "http://ine.gub.uy/c/document_library/get_file?uuid=61f9e884-781d-44be-9760-6d69f214b5b3&groupId=10181"
     f <- fs::path(folder, "IPC 3.2 indvarinc_ div M_B10_Int.xls")
   }
-  if (identical(.Platform$OS.type, "windows")) {
-    try(utils::download.file(u, f, mode = 'wb', method = 'libcurl'))
-  } else {
+  if (identical(.Platform$OS.type, "unix")) {
     try(utils::download.file(u, f, mode = 'wb', method = 'wget', extra = '--no-check-certificate'))
+  } else {
+    try(utils::download.file(u, f, mode = 'wb', method = 'libcurl'))
   }
   suppressMessages({
     df <- readxl::read_xls(f, sheet = sheet)
@@ -323,10 +323,10 @@ get_ciiu <- function(folder = tempdir(),
   attempt::stop_if_not(.x = curl::has_internet(), msg = "No internet access was detected. Please check your connection.")
   u <- "http://www.ine.gub.uy/documents/10181/33330/CORRESPONDENCIA+CIUU4+A+CIUU3.pdf/623c43cb-009c-4da9-b48b-45282745063b"
   f <- fs::path(folder, "ciiu4.pdf")
-  if (identical(.Platform$OS.type, "windows")) {
-    try(utils::download.file(u, f, mode = 'wb', method = 'libcurl'))
-  } else {
+  if (identical(.Platform$OS.type, "unix")) {
     try(utils::download.file(u, f, mode = 'wb', method = 'wget', extra = '--no-check-certificate'))
+  } else {
+    try(utils::download.file(u, f, mode = 'wb', method = 'libcurl'))
   }
   key <- rstudioapi::askForSecret("api_key")
   pdftables::convert_pdf(f, "ciiu4.csv",api_key = key)
