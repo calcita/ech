@@ -18,11 +18,6 @@ Extract compressed archives
 Disclaimer: This script is not an official INE product.
 Aviso: El script no es un producto oficial de INE.
 }
-\examples{
-\donttest{
-archive_extract()
-}
-}
 \seealso{
 Other utils: 
 \code{\link{dates_ech}()},

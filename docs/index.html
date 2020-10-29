@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">ech</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1.1</span>
       </span>
     </div>
 
@@ -86,25 +86,25 @@
       </header><div class="row">
   <div class="contents col-md-9">
 
-<div id="ech" class="section level1">
+<div id="ech-" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#ech" class="anchor"></a>ech <img align="right" src="reference/figures/ech_logo.png" alt="logo" width="160">
+<a href="#ech-" class="anchor"></a>ech <img align="right" src="reference/figures/ech_logo.png" alt="logo" width="160">
 </h1></div>
 <!-- badges: start -->
 
 <p>Caja de herramientas para el procesamiento de la <a href="http://www.ine.gub.uy/encuesta-continua-de-hogares1">Encuesta Continua de Hogares de Uruguay</a> del Instituto Nacional de Estadística (INE). Pretendemos contribuir a la comunidad de usuaries de R en Uruguay, facilitando el uso de una de las encuestas socioeconómicas más importantes del país. En este sentido, el paquete implementa una serie de funciones que permiten el cálculo de los principales indicadores socioeconómicos que permite la encuesta.</p>
 </div>
-<div id="instalacion" class="section level1">
+<div id="instalación" class="section level1">
 <h1 class="hasAnchor">
-<a href="#instalacion" class="anchor"></a>Instalación</h1>
+<a href="#instalaci%C3%B3n" class="anchor"></a>Instalación</h1>
 <!-- Para la versión estable -->
 <p>Para la versión en desarrollo</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">
-<span class="co"># install.packages('devtools') </span>
-<span class="co"># si no tiene instalado devtools</span>
-
-devtools<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/devtools/man/remote-reexports.html">install_github</a></span>(<span class="st">"calcita/ech"</span>)
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ech)</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="co"># install.packages('devtools') </span></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="co"># si no tiene instalado devtools</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a></span>
+<span id="cb1-5"><a href="#cb1-5"></a>devtools<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/devtools/man/remote-reexports.html">install_github</a></span>(<span class="st">"calcita/ech"</span>)</span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ech)</span></code></pre></div>
 </div>
 <div id="funciones-para-leer-datos" class="section level1">
 <h1 class="hasAnchor">
@@ -134,47 +134,47 @@ devtools<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/
 <a href="#modo-de-uso" class="anchor"></a>Modo de uso</h1>
 <p>El paquete ech permite descargar los microdatos oficiales desde la web del INE o bien utilizar microdatos ya procesados. En el primer caso los datos se obtiene a través de la función <code><a href="reference/get_microdata.html">get_microdata()</a></code>. En el segundo caso, puede usar la función <code><a href="reference/read_microdata.html">read_microdata()</a></code> para leerlos. El paquete tiene tres grandes conjuntos de funciones: - las que leen datos desde la web del INE, se llaman get_<em>(). - las que calculan variables tanto a nivel hogares como personas, estas tienen nombres descriptivos en inglés que se detallan más adelante. - las que estiman indicadores y calculan los intervalos de confianza asociados, se llaman get_estimation_</em>().</p>
 <p>Ejemplo de descarga de microdatos:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">
-<span class="co"># Cargo la libreria</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ech)
-
-<span class="co"># Cargo la base</span>
-ech19 &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_microdata.html">get_microdata</a></span>(<span class="dt">year =</span> <span class="st">"2019"</span>, <span class="co"># Año/s a descargar (2011-2019)</span>
-              <span class="dt">folder =</span> <span class="kw"><a href="https://rdrr.io/r/base/tempfile.html">tempdir</a></span>(), <span class="co"># Carpeta para descarga   </span>
-              <span class="dt">toR =</span> <span class="ot">TRUE</span>) <span class="co"># Lo guarda en formato RData </span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="co"># Cargo la libreria</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ech)</span>
+<span id="cb2-4"><a href="#cb2-4"></a></span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="co"># Cargo la base</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a>ech19 &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_microdata.html">get_microdata</a></span>(<span class="dt">year =</span> <span class="st">"2019"</span>, <span class="co"># Año/s a descargar (2011-2019)</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a>              <span class="dt">folder =</span> <span class="kw"><a href="https://rdrr.io/r/base/tempfile.html">tempdir</a></span>(), <span class="co"># Carpeta para descarga   </span></span>
+<span id="cb2-8"><a href="#cb2-8"></a>              <span class="dt">toR =</span> <span class="ot">TRUE</span>) <span class="co"># Lo guarda en formato RData </span></span></code></pre></div>
 <p>Como un segundo paso, recomendamos utilizar la función <code><a href="reference/organize_names.html">organize_names()</a></code> que estandariza los nombres de variables llevándolas a los nombres de 2017. Este paso facilita el uso de las demás funciones en la medida que todas contienen parámetros que dan cuenta del nombre de alguna variable y cuyo valor por defecto es el nombre de la variable para 2017. La correspondencia entre variables para cada año se puede observar en el diccionario <code><a href="reference/dic.html">ech::dic</a></code>. No todas las variables de la ech están contempladas en el diccionario por lo que este proyecto está abierto a contribuciones que en la medida que se agreguen nuevas funciones serán necesarias.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Organizamos nombres de variables</span>
-
-ech19 &lt;-<span class="st"> </span><span class="kw"><a href="reference/organize_names.html">organize_names</a></span>(ech19, <span class="dv">2019</span>)</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># Organizamos nombres de variables</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a></span>
+<span id="cb3-3"><a href="#cb3-3"></a>ech19 &lt;-<span class="st"> </span><span class="kw"><a href="reference/organize_names.html">organize_names</a></span>(ech19, <span class="dv">2019</span>)</span></code></pre></div>
 <p>Para estimar la proporción de hogares pobres por departamento, usamos la variable <code>pobre06</code> que ya viene en la ECH calculada y elegimos la función de estimación <code><a href="reference/get_estimation_mean.html">get_estimation_mean()</a></code>. Para estimar por departamento definimos como variable de cruce <code>nomdpto</code>. Elegimos el nivel de la estimación, hogares o personas, en el argumento <code>level</code>, en este caso, lo definimos como “h”.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Genero una estimación:</span>
-
-pobre_x_dpto &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_estimation_mean.html">get_estimation_mean</a></span>(<span class="dt">data =</span> ech19, <span class="co"># Indico el data.frame</span>
-                           <span class="dt">variable =</span> <span class="st">"pobre06"</span>, <span class="co"># La variable a estimar</span>
-                           <span class="dt">by.x =</span> <span class="st">"nomdpto"</span>, <span class="co"># La variable de agrupación</span>
-                           <span class="dt">by.y =</span> <span class="ot">NULL</span>, <span class="co"># Se permite otra variable de agrupación</span>
-                           <span class="dt">domain =</span> <span class="ot">NULL</span>, <span class="co"># Se podría indicar un dominio</span>
-                           <span class="dt">level =</span> <span class="st">"h"</span>, <span class="co"># Defino que lo haga a nivel de hogar</span>
-                           <span class="dt">name =</span> <span class="st">"Pobreza"</span>) </code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># Genero una estimación:</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a></span>
+<span id="cb4-3"><a href="#cb4-3"></a>pobre_x_dpto &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_estimation_mean.html">get_estimation_mean</a></span>(<span class="dt">data =</span> ech19, <span class="co"># Indico el data.frame</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a>                           <span class="dt">variable =</span> <span class="st">"pobre06"</span>, <span class="co"># La variable a estimar</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a>                           <span class="dt">by.x =</span> <span class="st">"nomdpto"</span>, <span class="co"># La variable de agrupación</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a>                           <span class="dt">by.y =</span> <span class="ot">NULL</span>, <span class="co"># Se permite otra variable de agrupación</span></span>
+<span id="cb4-7"><a href="#cb4-7"></a>                           <span class="dt">domain =</span> <span class="ot">NULL</span>, <span class="co"># Se podría indicar un dominio</span></span>
+<span id="cb4-8"><a href="#cb4-8"></a>                           <span class="dt">level =</span> <span class="st">"h"</span>, <span class="co"># Defino que lo haga a nivel de hogar</span></span>
+<span id="cb4-9"><a href="#cb4-9"></a>                           <span class="dt">name =</span> <span class="st">"Pobreza"</span>) </span></code></pre></div>
 </div>
-<div id="ech-geouy" class="section level1">
+<div id="ech--geouy" class="section level1">
 <h1 class="hasAnchor">
-<a href="#ech-geouy" class="anchor"></a>ech &amp; geouy</h1>
+<a href="#ech--geouy" class="anchor"></a>ech &amp; geouy</h1>
 <p>El uso de este paquete se potencia al usarlo en conjunto con <a href="https://github.com/RichDeto/geouy">geouy</a> ya que permite acceder a diferentes capas geográficas de Uruguay y construir mapas temáticos. Por ejemplo, a la estimación anterior de hogares pobres por departamento se le pueden agregar las geometrías de los polígonos de cada departamento para construir un mapa de coropletas.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">
-<span class="co"># Solo me quedo con la estimación de pobre </span>
-
-pobre_x_dpto &lt;-<span class="st"> </span>pobre_x_dpto <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(pobre06 <span class="op">==</span><span class="st"> "Pobre"</span>)
-
-<span class="co"># Agrego geometrías</span>
-
-pobre_x_dpto_geo &lt;-<span class="st"> </span><span class="kw"><a href="reference/add_geom.html">add_geom</a></span>(<span class="dt">data =</span> pobre_x_dpto, <span class="co"># Los datos en una unidad geográfica</span>
-                            <span class="dt">unit =</span> <span class="st">"Departamentos"</span>, <span class="co"># Unidad de agregación de los datos</span>
-                            <span class="dt">variable =</span> <span class="st">"nomdpto"</span>) <span class="co"># Variable correspondiente a los códigos a la unidad</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a></span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="co"># Solo me quedo con la estimación de pobre </span></span>
+<span id="cb5-3"><a href="#cb5-3"></a></span>
+<span id="cb5-4"><a href="#cb5-4"></a>pobre_x_dpto &lt;-<span class="st"> </span>pobre_x_dpto <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(pobre06 <span class="op">==</span><span class="st"> "Pobre"</span>)</span>
+<span id="cb5-5"><a href="#cb5-5"></a></span>
+<span id="cb5-6"><a href="#cb5-6"></a><span class="co"># Agrego geometrías</span></span>
+<span id="cb5-7"><a href="#cb5-7"></a></span>
+<span id="cb5-8"><a href="#cb5-8"></a>pobre_x_dpto_geo &lt;-<span class="st"> </span><span class="kw"><a href="reference/add_geom.html">add_geom</a></span>(<span class="dt">data =</span> pobre_x_dpto, <span class="co"># Los datos en una unidad geográfica</span></span>
+<span id="cb5-9"><a href="#cb5-9"></a>                            <span class="dt">unit =</span> <span class="st">"Departamentos"</span>, <span class="co"># Unidad de agregación de los datos</span></span>
+<span id="cb5-10"><a href="#cb5-10"></a>                            <span class="dt">variable =</span> <span class="st">"nomdpto"</span>) <span class="co"># Variable correspondiente a los códigos a la unidad</span></span></code></pre></div>
 <p>Y con esto, podemos hacer un mapa con <code>ggplot2</code> muy fácilmente de estas estimaciones.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Hago un mapa</span>
-
-<span class="kw"><a href="reference/plot_geouy.html">plot_geouy</a></span>(<span class="dt">x =</span> pobre_x_dpto_geo, <span class="dt">col =</span> <span class="st">"Pobreza"</span>, <span class="dt">l =</span> <span class="st">"%"</span>)</code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co"># Hago un mapa</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a></span>
+<span id="cb6-3"><a href="#cb6-3"></a><span class="kw"><a href="reference/plot_geouy.html">plot_geouy</a></span>(<span class="dt">x =</span> pobre_x_dpto_geo, <span class="dt">col =</span> <span class="st">"Pobreza"</span>, <span class="dt">l =</span> <span class="st">"%"</span>)</span></code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-2-1.png" width="100%" style="display: block; margin: auto;"></p>
 <div id="aportes-de-la-comunidad" class="section level2">
 <h2 class="hasAnchor">
@@ -189,13 +189,13 @@ pobre_x_dpto_geo &lt;-<span class="st"> </span><span class="kw"><a href="referen
 <p>Para citar ech en publicaciones, por favor usa:</p>
 <p>Mathieu, Gabriela &amp; Detomasi, Richard (2020) “ech: Caja de herramientas para procesar la Encuesta Continua de Hogares”. R package version 0.0.1.20. URL: <a href="https://github.com/calcita/ech" class="uri">https://github.com/calcita/ech</a>.</p>
 <p>El formato BibTex para usar en tus archivos .bib o el gestor bibliográfico de tu preferencia:</p>
-<div class="sourceCode"><pre class="sourceCode R"><code class="sourceCode r"><span class="op">@</span>Misc{ech20,
-  title =<span class="st"> </span>{ech<span class="op">:</span><span class="st"> </span>Caja de herramientas para procesar la Encuesta Continua de Hogares},
-  author =<span class="st"> </span>{Gabriela Mathieu <span class="op">&amp;</span><span class="st"> </span>Richard Detomasi},
-  note =<span class="st"> </span>{R package version <span class="dv">0</span>.<span class="fl">2.1</span>},
-  year =<span class="st"> </span>{<span class="dv">2020</span>},
-  url  =<span class="st"> </span>{https<span class="op">:</span><span class="er">//</span>github.com<span class="op">/</span>calcita<span class="op">/</span>ech},
-}</code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="op">@</span>Misc{ech20,</span>
+<span id="cb7-2"><a href="#cb7-2"></a>  title =<span class="st"> </span>{ech<span class="op">:</span><span class="st"> </span>Caja de herramientas para procesar la Encuesta Continua de Hogares},</span>
+<span id="cb7-3"><a href="#cb7-3"></a>  author =<span class="st"> </span>{Gabriela Mathieu <span class="op">&amp;</span><span class="st"> </span>Richard Detomasi},</span>
+<span id="cb7-4"><a href="#cb7-4"></a>  note =<span class="st"> </span>{R package version <span class="dv">0</span>.<span class="fl">2.1</span>},</span>
+<span id="cb7-5"><a href="#cb7-5"></a>  year =<span class="st"> </span>{<span class="dv">2020</span>},</span>
+<span id="cb7-6"><a href="#cb7-6"></a>  url  =<span class="st"> </span>{https<span class="op">:</span><span class="er">//</span>github.com<span class="op">/</span>calcita<span class="op">/</span>ech},</span>
+<span id="cb7-7"><a href="#cb7-7"></a>}</span></code></pre></div>
 </div>
 </div>
 

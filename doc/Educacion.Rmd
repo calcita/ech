@@ -1,0 +1,76 @@
+---
+title: "Cálculo de variables educativas y estimación de indicadores"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Educacion}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  dpi = 400
+)
+```
+
+```{r setup}
+library(ech)
+```
+
+En este breve artículo, presentaremos las funciones de la librería `ech` vinculadas a la educación, empezando por `enrolled_school()` que identifica a la matriculación a un centro de educación formal. Mientras que por su parte,  `years_of_schooling()` calcula el acumulado de años de escolaridad. 
+
+Por otra parte, tenemos la función `level_education()` que permite categorizar a la población muestral según su máximo nivel alcanzado en:
+
+* Sin instrucción
+* Primaria
+* Secundaria
+* UTU
+* Magisterio o profesorado 
+* Universidad o similar
+
+Finalmente `level_completion()`, presenta un grupo de variables dicotómicas que establecen la completitud de primaria, ciclo basico, bachillerato y nivel terciario. Esta última incluye un parametro `n` para definir los años  de educación terciaria que se consideran necesarios para haber completado ese nivel. Dado que la educación terciaria se compone de diferentes carreras de variada duración no es posible establecer un cantidad de años determinada para considerar que ha completado ese nivel.
+
+Las variables educativas se relacionan con la edad de las personas, por lo tanto, conviene realizar las estimaciones considerando diferentes tramos de edad. La `función age_groups()` permite crear una variable con grupos de edad.
+
+Calculamos las variables age_groups, school_enrolment, years_of_schooling, level_education
+
+```{r eval = FALSE}
+df <- age_groups(df)
+df <- enrolled_school(df)
+df <- years_of_schooling(df)
+
+df <- level_education(df)
+```
+
+Estimamos la proporción de personas que asisten actualmente a un centro educativo formal entre personas entre 12 y 17 años:
+
+```{r eval = FALSE}
+get_estimation_mean(df, variable = "school_enrollment", domain = "age_groups == 3", level = "i", ids = "upm", estrato = "estrato")
+```
+
+Estimamos los años de educación según sexo para personas mayores de 24 años:
+
+```{r eval = FALSE}
+get_estimation_mean(df, variable = "years_schooling", by.x = "e26", domain = "e27 > 24", level = "i", ids = "upm", estrato = "estrato")
+
+```
+
+Estimamos el máximo nivel educativo alcanzado para una subpoblación, personas mayores de 24 años.
+
+```{r eval = FALSE}
+get_estimation_mean(df, variable = "level_education", domain = "e27 > 24", level = "i")
+```
+
+Calculamos las variables de completitud de cada nivel de enseñanza. Para calcular la completitud en el nivel terciario debemos definir la cantidad de años aprobados que consideramos completan el nivel. En este caso vamos a calcular la variable considerando n = 2 y luego, n = 4. Estimamos la completitud en primaria y ciclo báscio para personas mayores de 15 años y la completitud en bachillerato para las personas mayores de 17 años. Para estimar la completitud en el nivel terciario consideramos las personas mayores de 24 años:
+
+```{r eval = FALSE}
+df <- level_completion(df, n = 2)
+get_estimation_mean(df, variable = "primary_completion", domain = "e27 > 15", level = "i")
+get_estimation_mean(df, variable = "lower_secondary_completion", domain = "e27 > 15", level = "i")
+get_estimation_mean(df, variable = "upper_secondary_completion", domain = "e27 > 17", level = "i")
+get_estimation_mean(df, variable = "tertiary_completion", domain = "e27 > 24", level = "i")
+df <- level_completion(df, n = 4)
+get_estimation_mean(df, variable = "tertiary_completion", domain = "e27 > 24", level = "i")
+```

@@ -1,0 +1,85 @@
+---
+title: "Estimación de ingresos"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{estimacion_ingresos}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, echo = FALSE}
+LOCAL <- identical(Sys.getenv("LOCAL"), "TRUE")
+knitr::opts_chunk$set(purl = LOCAL)
+```
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  dpi = 400
+)
+```
+
+La medición de los ingresos tiene un rezago de un mes ya que si el hogar fue encuestado, por ejemplo en marzo, en este mes se preguntó por los ingresos del mes pasado, es decir de febrero. A su vez, estos ingresos están expresados a precios corrientes, por lo cual, para hacerlos comparables entre los diferentes meses de la encuesta o de otros años es necesario llevarlos a una medida común. Para convertir los ingresos de precios corrientes a precios constantes debemos elegir un índice como puede ser el IPC (Índice de Precios al Consumo) o el IPAB (Índice de Precios de Alimentos y Bebidas) para construir un deflactor. Por ejemplo, para expresar los ingresos del hogar con la información de la ECH 2019, elegimos como mes base junio y como año base 2019 y como deflactor el IPC. Esto implica que debemos considerar los valores del IPC mensual desde diciembre 2018 a noviembre 2019. 
+
+Obtener los datos del IPC es bastante sencillo usando el paquete `ech`, para ello existe la fucnión de hecho la función `get_ipc()` que descarga el archivo de la web del INE y lo guarda en un formato tidy en el data frame `ipc_base2010`. La estructura del objeto es la siguiente:
+
+```{r}
+tail(ech::ipc_base2010)
+```
+
+La función que permite obtener un deflactor es la función deflate(), que a su vez, utiliza internamente la función `get_ipc()`. No utilizamos directamente ninguna de estas funciones, sino que la simplicidad de ech radica en que para calcular ingresos a precios constantes usamos la función  `income_constant_prices()` la cual utiliza internamente las otras dos funciones ya mencionadas. 
+
+Antes de deflactar los ingresos del hogar, tenemos que tener cargado el objeto con los microdatos de la ECH. 
+```{r eval = FALSE}
+library(ech)
+df <- get_microdata(year = 2019)
+df <- organize_names(df)
+```
+Las variables a tener en cuenta en esta parte son: 
+
+- `ht11`: Ingreso total del hogar con valor locativo sin servicio doméstico 
+- `ht13`: Valor locativo 
+- `ht19`: Cantidad de personas sin servicio doméstico 
+- `numero`: Identificador del hogar
+
+Para convertir los ingresos del hogar, que están medidos en la variable `ht11`, de precios corrientes a precios constantes, usamos la función `income_constant_prices()` y definimos sus parámetros: mes base (`base_month`), año base (`base_year`), el tipo de índice (`index`) que puede IPC o IPAB y el nivel del índice (`level`) que puede ser "G" (general) o "R" (regional que distingue entre Montevideo e Interior).
+Definimos como base enero de 2005. 
+
+```{r eval = FALSE}
+df <- income_constant_prices(data = df, base_month = 1, base_year = 2005, index = "IPC", level = "G")
+```
+
+Esto crea una serie de variables:
+
+- `y_pc`: ingreso per cápita a precios corrientes
+- `y_pc_d`: ingreso per cápita a precios constantes
+- `rv_d`: valor locativo a precios constantes
+- `y_wrv_d`: ingreso sin valor locativo a precios constantes
+- `y_wrv_pc_d`: ingreso sin valor locativo per cápita a precios constantes
+
+Para obtener la estimación de alguna de estas variables usamos la función `get_estimation_mean()`, para estimar la media, `get_estimation_total()`, para estimar el total o `get_estimation_median()` para estimar la mediana. Estas funciones tienen algunos argumentos que refieren al diseño de muestreo como: 
+
+- `numero`: se debe indicar la variable que identifica a los hogares
+- `pesoano`: se debe indicar la variable uqe identifica los pesos asociados a cada hogar.
+- `ids`: se debe indicar la variable que identifica a la unidades primarias de muestreo.
+- `estrato`: se debe indicar la variable que identifica a los estratos.
+
+Para los microdatos de 2018 y 2019 la ECH pública cuenta con la información de las UPM y estratos. En la web del INE se encuentra en un archivo aparte pero la función `get_microdata()` ya la agrega a los microdatos que genera de manera que no es necesario hacer un merge entre ambas bases. Para años anteriores no están disponible estás variables en la base pública.
+ 
+Es necesario definir `ids` y `estrato` que vienen con valor por defecto NULL, las demás se pueden dejar con sus valores por defecto, salvo que se usen registros de un mes o semestre en ese caso se debe cambiar el ponderador de los casos según corresponda.
+
+```{r eval = FALSE}
+get_estimation_mean(df, variable = "y_pc_d", level = "i", ids = "upm", estrato = "estrato")
+```
+
+Para estimar el ingreso medio de los hogares a precios constantes de enero 2005 según departamento, se debe definir en el argumento by.x la variable "nomdpto"
+
+```{r eval = FALSE}
+# Estimación de ingresos promedio per cápita a pesos constantes de ene/05 según dpto
+get_estimation_mean(df, variable = "y_pc_d", by.x = "nomdpto", level = "i", ids = "upm", estrato = "estrato")
+```
+
+<!-- Una forma de mostrar estos resultados es mediante un gráfico como el siguiente: -->
+
+Podemos comparar estos resultados con los publicados por el Observatorio Territorio Uruguay de OPP que se encuentran [aquí](https://otu.opp.gub.uy/?q=listados/listados_datos_formato&id=2727&cant=0&fecha=2019-01-01). 

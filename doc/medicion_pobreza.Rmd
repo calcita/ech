@@ -1,0 +1,107 @@
+---
+title: "Medición de la pobreza"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{medicion_pobreza}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, echo = FALSE}
+LOCAL <- identical(Sys.getenv("LOCAL"), "TRUE")
+knitr::opts_chunk$set(purl = LOCAL)
+```
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  dpi = 400
+)
+```
+
+El paquete ech proveé tres funciones para instrumentar la medición de la pobreza de las personas y hogares: `poverty()`, `unsatisfied_basic_needs()` e `integrated_poverty_measure()`.
+
+La función `poverty()` permite calcular la pobreza e indigencia a nivel de hogares y personas. El cálculo de la variable `poor` e `indigent` utiliza la Metodología 2006 que establece la medición de la pobreza por el método del ingreso usando la línea de pobreza 2006. El Método del Ingreso, quizás el más clásico y el útilizado por el INE como medida oficial, define la pobreza a partir de los ingresos per cápita de los hogares. Se construye una línea de pobreza (LP) a partir de un estrato socioeconómico de referencia y estimaciones normativas sobre requerimientos mínimos nutricionales. Se computa la Canasta Básica de Alimentaria como el gasto en alimentos y la Canasta Básica No Alimentaria como el resto de los gastos del estrato de referencia. El valor de esas canastas se actualizan por IPC. De esta manera un hogar será considerado pobre si el ingreso per cápita no supera el valor de la LP. A su vez, todas las personas de ese hogar, si el hogar es considerado pobre, son consideradas pobres.
+
+La función `unsatisfied_basic_needs()` permite calcular variables que identifica necesidades básicas insatisfechas en ciertas dimensiones que el hogar debería satisfacer para lograr un mínimo de bienestar y luego agregarlas en un indicador.  Se usa una aproximación de la Metodología del Censo 2011. Las dimensiones consideradas son: hacinamiento, acceso a agua potable, acceso a energía eléctrica, materiales de la vivienda, evacuación del servicio sanitario y educación. La dimensión de educación se evalua para las personas entre 4 a 17 años y si al menos una de estas personas tiene una carencia en educación se considera que todo el hogar tiene carencia en esta dimensión. Se establece para cada una de estas dimensiones si hay o no carencia, luego se suman y se obtiene la variable UBN_q que puede tomar valores de 0 a  6. A partir de `UBN_q` se crea `UBN` con las siguientes categorías: “Sin NBI”, “Con 1 NBI”, “Con 2 NBI” y “Con 3 o más NBI”. Los resultados de estas dos variables que se calculan al nivel del hogar se imputan a todas las personas del hogar.
+
+La función `integrated_poverty_measure()` permite calcular un indicador que vincula los dos métodos anteriores, de ahí el nombre de método integrado. Se calcula la variable  `integrated_poverty_measure` que toma 4 valores: “No pobreza”, “Pobreza reciente”, “Pobreza inercial” y “Pobreza crónica”.
+
+Veamos la aplicación de cada una de estas funciones.
+
+```{r, eval = LOCAL}
+library(ech)
+# cargamos la base de ECH y estandarizamos los nombres de variables
+df <- get_microdata(year = 2019)
+df <- organize_names(df, year = 2019)
+
+# calculamos las variables de pobreza monteria
+df <- poverty(data = df)
+
+# Calculamos las variables de NBI
+df <- enrolled_school(df)
+df <- years_of_schooling(df)
+df <- unsatisfied_basic_needs(data = df)
+
+# calculamos la variable metodo integrado
+df <- integrated_poverty_measure(data = df)
+```
+
+Estimamos a nivel de hogares y personas los indicadores de pobreza a partir de las variables calculadas anteriormente. Dado que para 2019 contamos en la base pública con las UPM y los estrato, los definimos en la función.
+
+```{r, eval = LOCAL}
+# Distribución de hogares según cantidad de NBI que presenta
+nbi_hogares <- get_estimation_mean(df, variable = "UBN", level = "h", ids = "upm", estrato = "estrato")
+
+# Distribución de personas según cantidad de NBI que presenta el hogar
+nbi_personas <- get_estimation_mean(df, variable = "UBN", level = "i", ids = "upm", estrato = "estrato")
+
+# Hogares según situación de pobreza 
+pobres_hogares <- get_estimation_mean(df, variable = "poor", level = "h", ids = "upm", estrato = "estrato")
+
+# Personas según situación de pobreza 
+pobres_personas <- get_estimation_mean(df, variable = "poor", level = "i", ids = "upm", estrato = "estrato")
+
+# Hogares según situación de pobreza
+ipm_hogares <- get_estimation_mean(df, variable = "integrated_poverty_measure", level = "h", ids = "upm", estrato = "estrato")
+
+```
+
+Veamos los resultados de cada una de las estimaciones
+
+```{r, eval = LOCAL}
+nbi_hogares
+```
+
+```{r, eval = LOCAL}
+nbi_personas
+```
+```{r, eval = LOCAL}
+pobres_hogares
+```
+```{r, eval = LOCAL}
+pobres_personas
+```
+
+
+
+```{r, eval = LOCAL}
+ipm_hogares
+```
+
+Finalmente, podemos comparar estos resultados que brinda el paquete `ech`, con el [Boletín Técnico](http://www.ine.gub.uy/c/document_library/get_file?uuid=35dea1e6-98e0-41a5-ac79-46671dfcac6c&groupId=10181) que publica el INE.
+
+Concretamente para comparar los resultados con el cuadro 20 y 21, primero calculamos la variable `poor` con la función `poverty()` y luego estimamos la proporción de hogares y personas pobres según región (consideramos la variable `region_4`).
+
+```{r, eval = LOCAL}
+df <- poverty(data = df)
+
+# Hogares según situación de pobreza 
+pobres_hogares_region <- get_estimation_mean(df, variable = "poor", by.x = "region_3",level = "h", ids = "upm", estrato = "estrato")
+pobres_hogares_region %>% filter(poor == "Pobre")
+
+# Personas según situación de pobreza 
+pobres_personas_region <- get_estimation_mean(df, variable = "poor", by.x = "region_3", level = "i", ids = "upm", estrato = "estrato")
+pobres_personas_region %>% filter(poor == "Pobre")
+```
