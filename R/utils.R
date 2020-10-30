@@ -493,10 +493,13 @@ age_groups <- function(data = ech::toy_ech_2018,
 #'
 #' @examples
 #' toy_ech_2018 <- organize_ht11(data = ech::toy_ech_2018, year = 2018)
-organize_ht11 <- function(data = ech::toy_ech_2018,
-                          year = 2018,
-                          ht11 = "ht11",
-                          numero = "numero"){
+
+organize_ht11 <- function(data, year, ht11 = "ht11", numero = "numero") {
+
+  assertthat::assert_that(is.data.frame(data), msg = glue:glue("Sorry... :( \n \t data parameter must be data.frame"))
+  assertthat::assert_that(is.numeric(year), msg = glue:glue("Sorry... :( \n \t year parameter must be a numeric value"))
+  assertthat::assert_that(ht11 %in% names(data), msg =  glue:glue("Sorry... :( \n \t {ht11} is not in data"))
+  assertthat::assert_that(numero %in% names(data), msg =  glue:glue("Sorry... :( \n \t {numero} is not in data"))
 
   if (year %in% 2013:2015) {
     data <- data %>%

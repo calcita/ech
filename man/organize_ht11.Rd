@@ -4,12 +4,7 @@
 \alias{organize_ht11}
 \title{This function allows you to fix ht11 from 2013 to 2015}
 \usage{
-organize_ht11(
-  data = ech::toy_ech_2018,
-  year = 2018,
-  ht11 = "ht11",
-  numero = "numero"
-)
+organize_ht11(data, year, ht11 = "ht11", numero = "numero")
 }
 \arguments{
 \item{data}{data.frame}
