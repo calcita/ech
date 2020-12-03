@@ -23,7 +23,6 @@ get_ipc(folder = tempdir())
 }
 \seealso{
 Other dwnld_read: 
-\code{\link{get_cba_cbna}()},
 \code{\link{get_ciiu}()},
 \code{\link{get_dictionary}()},
 \code{\link{get_ipab_region}()},
