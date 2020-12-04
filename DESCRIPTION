@@ -1,6 +1,6 @@
 Package: ech
 Title: Toolbox for ECH with R
-Version: 0.1.1.1
+Version: 0.1.1.2
 Authors@R: 
     c(person("Gabriela", "Mathieu", email = "calcita@gmx.li", role = c("aut", "cre"),
             comment = c(ORCID = "0000-0003-3965-9024")),
@@ -48,8 +48,8 @@ Suggests:
     testthat (>= 2.1.0),
     rmarkdown,
     covr,
-    learnr, 
-    utf8
+    learnr
+remotes:  github::cran/utf8
 SystemRequirements: 'unrar' (Linux/macOS) or '7-Zip' (Windows) to work with '.rar' files,
     GDAL (>= 3.0.2), 
     GEOS (>= 3.8.0), 

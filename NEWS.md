@@ -1,12 +1,17 @@
 # log history of ech package development
 
+## ech v0.1.1.2
+* ommited get_cba_cnba function for bug in macos
+* include utf8 package by remotes: github::cran/utf8
+
+-------------------------------------------------------
+
 ## ech v0.1.1
 * Improve utils functions debugging download.files used
 * Add a dates_ech function
 * Add more variables to 'dic'
 * Start a learnr tutorial
 
--------------------------------------------------------
 ## ech v0.0.1.16
 * Improvement of get_estimation...
 * 
@@ -15,7 +20,6 @@
 * Variables used completed in dictionary 2011:2019
 * Variables used confirmed in dictionary 2013:2019
 * Improvemente of readme
-
 
 ## ech v0.0.1.14
 
