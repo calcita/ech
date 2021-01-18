@@ -11,7 +11,6 @@
 #' @param estrato strata
 #' @param pesoano weights
 #' @param name name for the estimation new column
-#' @import survey
 #' @import srvyr
 #' @importFrom assertthat assert_that
 #' @importFrom glue glue
@@ -265,7 +264,6 @@ get_estimation_median <- function(data = ech::toy_ech_2018,
 #' @param estrato strata
 #' @param pesoano weights
 #' @param name name for the estimation new column
-#' @import survey
 #' @import srvyr
 #' @importFrom assertthat assert_that
 #' @importFrom glue glue

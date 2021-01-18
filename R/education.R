@@ -13,7 +13,6 @@
 #' @return data.frame
 #' @export
 #' @importFrom dplyr mutate case_when
-#' @importFrom magrittr %<>%
 #' @importFrom rlang .data
 #' @importFrom glue glue
 #' @family  education
@@ -53,7 +52,7 @@ enrolled_school <- function(data = ech::toy_ech_2018,
   #   message("The data.frame already contains a variable with the name school_enrollment, it will be overwritten")
   # }
 
-  data %<>% dplyr::mutate(school_enrollment = dplyr::case_when((.data$e193 == 1 |
+  data <- data %>% dplyr::mutate(school_enrollment = dplyr::case_when((.data$e193 == 1 |
                                                                 .data$e197 == 1 |
                                                                 (.data$e201 == 1 & .data$e27 > 10) |
                                                                 .data$e212 == 1 |
@@ -86,7 +85,6 @@ enrolled_school <- function(data = ech::toy_ech_2018,
 #' @param max_years Maximum years of schooling
 #' @export
 #' @importFrom dplyr mutate case_when
-#' @importFrom magrittr %<>%
 #' @importFrom rlang .data
 #' @importFrom glue glue
 #' @details
@@ -132,7 +130,7 @@ years_of_schooling <- function(data = ech::toy_ech_2018,
   #   message("The data.frame already contains a variable with the name years_schooling, it will be overwritten")
   # }
 
-  data %<>%
+  data <- data %>%
     dplyr::mutate_at(dplyr::vars({{e51_2}}, {{e51_3}}, {{e51_4}}, {{e51_5}}, {{e51_6}}, {{e51_7}}, {{e51_8}}, {{e51_9}}, {{e51_10}}, {{e51_11}}), list(~ ifelse( . == 9, 0, .))) %>%
 
     dplyr::mutate(e51_71 = ifelse(e51_7_1 == 1, e51_7, 0),
@@ -141,7 +139,7 @@ years_of_schooling <- function(data = ech::toy_ech_2018,
                   e51_74 = ifelse(e51_7_1 == 4, e51_7, 0))
 
 
-  data %<>% dplyr::mutate(years_schooling = dplyr::case_when(e49 == 2 ~ 0, # nunca asistió
+  data <- data %>% dplyr::mutate(years_schooling = dplyr::case_when(e49 == 2 ~ 0, # nunca asistió
                                                        e51_11 %in% 1:6 ~ pmax(12 + e51_9 + e51_11, # sec + uni + pos
                                                                               12 + e51_8 + e51_11, # sec + mag + pos
                                                                               12 + e51_10 + e51_11), # sec + ter + pos
@@ -165,12 +163,12 @@ years_of_schooling <- function(data = ech::toy_ech_2018,
                                                        e193 %in% 1:2 ~ 0,
                                                        TRUE ~ 0))
 
-  data %<>% dplyr::mutate(years_schooling = dplyr::case_when(years_schooling < 12 & (e51_9 == 9 | e51_8 == 9 |
+  data <- data %>% dplyr::mutate(years_schooling = dplyr::case_when(years_schooling < 12 & (e51_9 == 9 | e51_8 == 9 |
                                                                            e51_10 == 9 | (e51_7 == 9 & e51_7_1 == 1)) ~ 12,
                                                        TRUE ~ years_schooling))
 
   if (!is.null(max_years)){
-    data %<>% dplyr::mutate(years_schooling = dplyr::case_when(years_schooling > max_years ~ max_years,
+    data <- data %>% dplyr::mutate(years_schooling = dplyr::case_when(years_schooling > max_years ~ max_years,
                                                                TRUE ~ years_schooling))
   }
 

@@ -3,12 +3,12 @@
 \name{\%>\%}
 \alias{\%>\%}
 \title{Pipe operator
-See \code{magrittr::\link[magrittr]{\%>\%}} for details.}
+See \code{dplyr::\link[dplyr]{\%>\%}} for details.}
 \usage{
 lhs \%>\% rhs
 }
 \description{
 Pipe operator
-See \code{magrittr::\link[magrittr]{\%>\%}} for details.
+See \code{dplyr::\link[dplyr]{\%>\%}} for details.
 }
 \keyword{internal}

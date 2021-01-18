@@ -8,7 +8,6 @@
 #' @param pesoano variable specifying weights
 #' @importFrom glue glue
 #' @importFrom srvyr as_survey_design
-#' @importFrom magrittr %>%
 #' @keywords design
 #' @return a list
 #' @export

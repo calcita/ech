@@ -10,8 +10,7 @@
 #' @param index IPC or IPAB
 #' @param level  General ("G") or Regional ("R")
 #'
-#' @importFrom dplyr mutate left_join
-#' @importFrom magrittr %>%
+#' @importFrom dplyr mutate left_join %>%
 #' @importFrom haven zap_labels
 #' @importFrom rlang .data
 #' @export
@@ -125,7 +124,6 @@ income_constant_prices <- function(data = ech::toy_ech_2018,
 #' @param income Variable name of income constant price. Default: "y_pc_d"
 #' @importFrom statar xtile
 #' @importFrom dplyr mutate pull
-#' @importFrom magrittr %<>%
 #' @export
 #' @return data.frame
 #' @details
@@ -151,11 +149,11 @@ income_quantiles <- function(data = ech::toy_ech_2018,
 
   if (quantile == 5) {
     ## quintiles
-    data %<>% dplyr::mutate(quintil = statar::xtile(.data[[income]], n = 5, wt = weights))
+    data <- data %>% dplyr::mutate(quintil = statar::xtile(.data[[income]], n = 5, wt = weights))
     message("A variable has been created: \n \t quintil (quintil de ingresos)")
   }  else {
     ## deciles
-    data %<>% dplyr::mutate(decil = statar::xtile(.data[[income]], n = 10, wt = weights))
+    data <- data %>% dplyr::mutate(decil = statar::xtile(.data[[income]], n = 10, wt = weights))
     message("A variable has been created: \n \t decil (decil de ingresos)")
   }
 

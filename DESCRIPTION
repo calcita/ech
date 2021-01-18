@@ -26,30 +26,24 @@ Imports:
     dplyr (>= 1.0.0),
     haven (>= 2.3.0),
     janitor,
-    magrittr,
     srvyr (>= 0.4.0),
+    survey (>= 1.2.0),
     statar,
-    survey (>= 1.2.0), 
     stringr,
-    readxl,
     laeken,
     rlang,
-    pdftables,
+    readxl,
     tidyr,
-    textclean,
-    rstudioapi,
     geouy(>= 0.2.3),
     purrr,
     labelled,
-    tidyselect,
-    methods, attempt, curl
+    attempt,
+    curl
 Suggests: 
     knitr,
     testthat (>= 2.1.0),
     rmarkdown,
-    covr,
-    learnr
-remotes:  github::cran/utf8
+    covr
 SystemRequirements: 'unrar' (Linux/macOS) or '7-Zip' (Windows) to work with '.rar' files,
     GDAL (>= 3.0.2), 
     GEOS (>= 3.8.0), 

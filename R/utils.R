@@ -2,12 +2,10 @@
 #' @family dwnld_read
 #' @param folder ruta temporal para descargar el archivo
 #' @importFrom readxl read_xls
-#' @importFrom dplyr slice mutate select everything
+#' @importFrom dplyr slice mutate select everything %>%
 #' @importFrom janitor clean_names excel_numeric_to_date
 #' @importFrom fs path
-#' @importFrom magrittr %>%
 #' @importFrom rlang .data
-#' @export
 #' @details
 #' Disclaimer: This script is not an official INE product.
 #' Aviso: El script no es un producto oficial de INE.
@@ -76,13 +74,11 @@ dates_ech <- function(data) {
 #' @param sheet sheet number. Default 1.
 #'
 #' @importFrom readxl read_xls
-#' @importFrom dplyr slice mutate select everything filter_all slice any_vars bind_rows
+#' @importFrom dplyr slice mutate select everything filter_all slice any_vars bind_rows %>%
 #' @importFrom tidyr gather separate
 #' @importFrom janitor clean_names excel_numeric_to_date
 #' @importFrom fs path
-#' @importFrom magrittr %>%
 #' @return data.frame
-#' @export
 #' @details
 #' Disclaimer: This script is not an official INE product.
 #' Aviso: El script no es un producto oficial de INE.
@@ -132,71 +128,70 @@ get_ipc_region <- function(folder = tempdir(), region, sheet = 1){
   })
 }
 
-# #' This function allows you to get the CBA and CBNA data
-# #' @family dwnld_read
-# #' @param folder temporal folder
-# #' @param region Montevideo ("M"), Interior Urbano ("I"), Interior Rural ("R")
-# #' @param sheet sheet number. Default 1.
-# #'
-# #' @importFrom readxl read_xls
-# #' @importFrom dplyr slice mutate bind_cols
-# #' @importFrom janitor clean_names excel_numeric_to_date remove_empty
-# #' @importFrom fs path
-# #' @importFrom magrittr %>%
-# #'
-# #' @return data.frame
-# #' @details
-# #' Disclaimer: This script is not an official INE product.
-# #' Aviso: El script no es un producto oficial de INE.
-#
-# get_cba_cbna <- function(folder = tempdir(), region, sheet = 1){
-#   attempt::stop_if_not(.x = curl::has_internet(), msg = "No internet access was detected. Please check your connection.")
-#   assertthat::assert_that(is.character(folder), msg =  "Sorry... :( \n \t folder parameter must be character")
-#   assertthat::assert_that(region %in% c("M", "I", "R"), msg =  "Sorry... :( \n \t region parameter must be 'M' for Montevideo, 'I' for Interior urbano or 'R' for Interior rural")
-#
-#   u <- "http://www.ine.gub.uy/c/document_library/get_file?uuid=1675e7d0-6fe0-49bd-bf3f-a46bd6334c0c&groupId=10181"
-#   f <- fs::path(folder, "CBA_LP_LI_M.xls")
-#   if (identical(.Platform$OS.type, "unix")) {
-#     try(utils::download.file(u, f, mode = 'wb', method = 'wget', extra = '--no-check-certificate'))
-#   } else {
-#     try(utils::download.file(u, f, mode = 'wb', method = 'libcurl'))
-#   }
-#   suppressMessages({
-#     df <- readxl::read_xls(f, sheet = sheet)
-#     date <- df[9:nrow(df),1]
-#     names(date) <- "fecha"
-#     date <- date %>%
-#       dplyr::mutate(fecha = janitor::excel_numeric_to_date(as.numeric(as.character(fecha)), date_system = "modern")) %>%
-#       janitor::remove_empty("rows")
-#     df <- df[,-1] %>% janitor::remove_empty("rows") %>% janitor::remove_empty("cols")
-#
-#     if (region == "M") {
-#       cba_mdeo <- df[, 1:3]
-#       names(cba_mdeo) <- df[2, 1:3]
-#       cba_mdeo <- cba_mdeo %>%
-#         dplyr::slice(-1:-3) %>%
-#         janitor::clean_names() %>%
-#         purrr::map_df(as.numeric) %>%
-#         dplyr::bind_cols(date,.)
-#     } else if (region == "I") {
-#       cba_int_urb <- df[, 4:6]
-#       names(cba_int_urb) <- df[2, 4:6]
-#       cba_int_urb <- cba_int_urb %>%
-#         dplyr::slice(-1:-3) %>%
-#         janitor::clean_names() %>%
-#         purrr::map_df(as.numeric) %>%
-#         dplyr::bind_cols(date,.)
-#     } else {
-#       cba_int_rur <- df[, 7:9]
-#       names(cba_int_rur) <- df[2, 7:9]
-#       cba_int_rur <- cba_int_rur %>%
-#         dplyr::slice(-1:-3) %>%
-#         janitor::clean_names() %>%
-#         purrr::map_df(as.numeric) %>%
-#         dplyr::bind_cols(date,.)
-#     }
-#   })
-# }
+#' This function allows you to get the CBA and CBNA data
+#' @family dwnld_read
+#' @param folder temporal folder
+#' @param region Montevideo ("M"), Interior Urbano ("I"), Interior Rural ("R")
+#' @param sheet sheet number. Default 1.
+#'
+#' @importFrom readxl read_xls
+#' @importFrom dplyr slice mutate bind_cols %>%
+#' @importFrom janitor clean_names excel_numeric_to_date remove_empty
+#' @importFrom fs path
+#'
+#' @return data.frame
+#' @details
+#' Disclaimer: This script is not an official INE product.
+#' Aviso: El script no es un producto oficial de INE.
+
+get_cba_cbna <- function(folder = tempdir(), region, sheet = 1){
+  attempt::stop_if_not(.x = curl::has_internet(), msg = "No internet access was detected. Please check your connection.")
+  assertthat::assert_that(is.character(folder), msg =  "Sorry... :( \n \t folder parameter must be character")
+  assertthat::assert_that(region %in% c("M", "I", "R"), msg =  "Sorry... :( \n \t region parameter must be 'M' for Montevideo, 'I' for Interior urbano or 'R' for Interior rural")
+
+  u <- "http://www.ine.gub.uy/c/document_library/get_file?uuid=1675e7d0-6fe0-49bd-bf3f-a46bd6334c0c&groupId=10181"
+  f <- fs::path(folder, "CBA_LP_LI_M.xls")
+  if (identical(.Platform$OS.type, "unix")) {
+    try(utils::download.file(u, f, mode = 'wb', method = 'wget', extra = '--no-check-certificate'))
+  } else {
+    try(utils::download.file(u, f, mode = 'wb', method = 'libcurl'))
+  }
+  suppressMessages({
+    df <- readxl::read_xls(f, sheet = sheet)
+    date <- df[9:nrow(df),1]
+    names(date) <- "fecha"
+    date <- date %>%
+      dplyr::mutate(fecha = janitor::excel_numeric_to_date(as.numeric(as.character(fecha)), date_system = "modern")) %>%
+      janitor::remove_empty("rows")
+    df <- df[,-1] %>% janitor::remove_empty("rows") %>% janitor::remove_empty("cols")
+
+    if (region == "M") {
+      cba_mdeo <- df[, 1:3]
+      names(cba_mdeo) <- df[2, 1:3]
+      cba_mdeo <- cba_mdeo %>%
+        dplyr::slice(-1:-3) %>%
+        janitor::clean_names() %>%
+        purrr::map_df(as.numeric) %>%
+        dplyr::bind_cols(date,.)
+    } else if (region == "I") {
+      cba_int_urb <- df[, 4:6]
+      names(cba_int_urb) <- df[2, 4:6]
+      cba_int_urb <- cba_int_urb %>%
+        dplyr::slice(-1:-3) %>%
+        janitor::clean_names() %>%
+        purrr::map_df(as.numeric) %>%
+        dplyr::bind_cols(date,.)
+    } else {
+      cba_int_rur <- df[, 7:9]
+      names(cba_int_rur) <- df[2, 7:9]
+      cba_int_rur <- cba_int_rur %>%
+        dplyr::slice(-1:-3) %>%
+        janitor::clean_names() %>%
+        purrr::map_df(as.numeric) %>%
+        dplyr::bind_cols(date,.)
+    }
+  })
+}
 
 
 #' This function allows you to get the IPAB (Indice de precios de alimentos y bebidas) data
@@ -208,13 +203,14 @@ get_ipc_region <- function(folder = tempdir(), region, sheet = 1){
 #' @importFrom dplyr bind_rows slice filter_all bind_cols any_vars mutate_all
 #' @importFrom tidyr fill
 #' @return data.frame
-#' @export
 #' @details
 #' Disclaimer: This script is not an official INE product.
 #' Aviso: El script no es un producto oficial de INE.
 #'
 #' @examples
+#' \donttest{
 #' get_ipab(folder = tempdir())
+#' }
 
 get_ipab <- function(folder = tempdir(), sheet = 1){
   attempt::stop_if_not(.x = curl::has_internet(), msg = "No internet access was detected. Please check your connection.")
@@ -253,10 +249,10 @@ get_ipab <- function(folder = tempdir(), sheet = 1){
 #' @importFrom dplyr bind_rows slice filter_all bind_cols any_vars mutate
 #' @importFrom tidyr drop_na separate
 #' @return data.frame
-#' @export
-#'
 #' @examples
+#' \donttest{
 #' get_ipab_region(folder = tempdir(), region = "M")
+#' }
 #'
 get_ipab_region <- function(folder = tempdir(), region, sheet = 1){
   attempt::stop_if_not(.x = curl::has_internet(), msg = "No internet access was detected. Please check your connection.")
@@ -300,39 +296,7 @@ get_ipab_region <- function(folder = tempdir(), region, sheet = 1){
   })
 }
 
-#' This function allows you to get the CIIU data
-#' @family dwnld_read
-#' @param folder temp folder
-#' @param version by default the last ciiu version
-#' @importFrom utils read.csv
-#' @importFrom pdftables convert_pdf
-#' @importFrom rstudioapi askForSecret
-#' @export
-#' @details
-#' Disclaimer: This script is not an official INE product.
-#' Aviso: El script no es un producto oficial de INE.
 
-get_ciiu <- function(folder = tempdir(),
-                     version = 4){
-  assertthat::assert_that(is.character(folder), msg = "Sorry... :( \n \t folder parameter must be character")
-  assertthat::assert_that(is.numeric(version), msg = "Sorry... :( \n \t version parameter must be numeric")
-  attempt::stop_if_not(.x = curl::has_internet(), msg = "No internet access was detected. Please check your connection.")
-  u <- "http://www.ine.gub.uy/documents/10181/33330/CORRESPONDENCIA+CIUU4+A+CIUU3.pdf/623c43cb-009c-4da9-b48b-45282745063b"
-  f <- fs::path(folder, "ciiu4.pdf")
-  if (identical(.Platform$OS.type, "unix")) {
-    try(utils::download.file(u, f, mode = 'wb', method = 'wget', extra = '--no-check-certificate'))
-  } else {
-    try(utils::download.file(u, f, mode = 'wb', method = 'libcurl'))
-  }
-  key <- rstudioapi::askForSecret("api_key")
-  pdftables::convert_pdf(f, "ciiu4.csv",api_key = key)
-  df <- read.csv("ciiu4.csv")
-  df <- df[,-3]
-  names(df) <- c("ciiu_4","description", "ciiu_3")
-  df <- df[-1,]
-  df[] <- lapply(df, textclean::replace_non_ascii)
-  ciiu4 <- df
-}
 
 #' This function allows you to calculate a deflator coefficient
 #' @family income
@@ -343,7 +307,6 @@ get_ciiu <- function(folder = tempdir(),
 #' @param df_year ECH year
 #' @importFrom dplyr select slice mutate
 #' @importFrom rlang .data
-#' @export
 #' @details
 #' Disclaimer: This script is not an official INE product.
 #' Aviso: El script no es un producto oficial de INE.
@@ -507,12 +470,12 @@ organize_ht11 <- function(data, year, ht11 = "ht11", numero = "numero") {
 }
 
 #' Pipe operator
-#' See \code{magrittr::\link[magrittr]{\%>\%}} for details.
+#' See \code{dplyr::\link[dplyr]{\%>\%}} for details.
 #' @name %>%
 #' @rdname pipe
 #' @keywords internal
 #' @export
-#' @importFrom magrittr %>%
+#' @importFrom dplyr %>%
 #' @usage lhs \%>\% rhs
 NULL
 
