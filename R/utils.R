@@ -9,11 +9,6 @@
 #' @details
 #' Disclaimer: This script is not an official INE product.
 #' Aviso: El script no es un producto oficial de INE.
-#'
-#' @examples
-#' \donttest{
-#' get_ipc(folder = tempdir())
-#' }
 
 get_ipc <- function(folder = tempdir()){
 
