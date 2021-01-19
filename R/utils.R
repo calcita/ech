@@ -313,6 +313,7 @@ get_ipab_region <- function(folder = tempdir(), region, sheet = 1){
 #' @param df_year ECH year
 #' @importFrom dplyr select slice mutate
 #' @importFrom rlang .data
+#' @export
 #' @details
 #' Disclaimer: This script is not an official INE product.
 #' Aviso: El script no es un producto oficial de INE.

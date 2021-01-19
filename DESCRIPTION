@@ -2,50 +2,62 @@ Package: ech
 Title: Toolbox for ECH with R
 Version: 0.1.1.2
 Authors@R: 
-    c(person("Gabriela", "Mathieu", email = "calcita@gmx.li", role = c("aut", "cre"),
-            comment = c(ORCID = "0000-0003-3965-9024")),
-      person("Richard", "Detomasi", email = "richard.detomasi@gmail.com", role = "aut",
-            comment = c(ORCID = "0000-0002-6725-0261")),
-      person("Tati", "Micheletti", email = "tati.micheletti@gmail.com", role = c("ctb"),
-            comment = c(ORCID = "0000-0003-4838-8342")),
-      person(family = "Instituto Nacional de Estadistica, Uruguay (INE)", role = "dtc"))
+    c(person(given = "Gabriela",
+             family = "Mathieu",
+             role = c("aut", "cre"),
+             email = "calcita@gmx.li",
+             comment = c(ORCID = "0000-0003-3965-9024")),
+      person(given = "Richard",
+             family = "Detomasi",
+             role = "aut",
+             email = "richard.detomasi@gmail.com",
+             comment = c(ORCID = "0000-0002-6725-0261")),
+      person(given = "Tati",
+             family = "Micheletti",
+             role = "ctb",
+             email = "tati.micheletti@gmail.com",
+             comment = c(ORCID = "0000-0003-4838-8342")),
+      person(family = "Instituto Nacional de Estadistica, Uruguay (INE)",
+             role = "dtc"))
 Maintainer: Gabriela Mathieu <calcita@gmx.li>
-Description: R toolbox for the processing of the Encuesta Continua de Hogares (ECH) from Uruguay
-            at <http://www.ine.gub.uy/encuesta-continua-de-hogares1> conducted by the
-            Instituto Nacional de Estadistica (INE).
+Description: R toolbox for the processing of the Encuesta
+    Continua de Hogares (ECH) from Uruguay at
+    <http://www.ine.gub.uy/encuesta-continua-de-hogares1> conducted by the
+    Instituto Nacional de Estadistica (INE).
 License: GPL-3
-Encoding: UTF-8
-ByteCompile: true
-LazyData: true
-RoxygenNote: 7.1.1
-Depends: R (>= 3.5.0)
+Depends: 
+    R (>= 3.5.0)
 Imports:
     assertthat,
-    fs,
-    glue,
-    dplyr (>= 1.0.0),
-    haven (>= 2.3.0),
-    janitor,
-    srvyr (>= 0.4.0),
-    survey (>= 1.2.0),
-    statar,
-    stringr,
-    laeken,
-    rlang,
-    readxl,
-    tidyr,
-    geouy(>= 0.2.3),
-    labelled,
     attempt,
     curl,
-    purrr
+    dplyr (>= 1.0.0),
+    fs,
+    geouy (>= 0.2.3),
+    glue,
+    haven (>= 2.3.0),
+    janitor,
+    labelled,
+    laeken,
+    purrr,
+    readxl,
+    rlang,
+    srvyr (>= 0.4.0),
+    statar,
+    stringr,
+    survey (>= 1.2.0),
+    tidyr,
+    utils
 Suggests: 
     knitr,
-    testthat (>= 2.1.0),
     rmarkdown,
-    covr
-SystemRequirements: 'unrar' (Linux/macOS) or '7-Zip' (Windows) to work with '.rar' files,
-    GDAL (>= 3.0.2), 
-    GEOS (>= 3.8.0), 
-    PROJ (>= 6.2.1)
-VignetteBuilder: knitr
+    testthat (>= 2.1.0)
+VignetteBuilder: 
+    knitr
+ByteCompile: true
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.1
+SystemRequirements: 'unrar' (Linux/macOS) or '7-Zip' (Windows)
+    to work with '.rar' files, GDAL (>= 3.0.2), GEOS (>= 3.8.0), PROJ (>=
+    6.2.1)
