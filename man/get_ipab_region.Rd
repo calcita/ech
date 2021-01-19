@@ -19,12 +19,6 @@ data.frame
 \description{
 This function allows you to get the IPAB (Indice de precios de alimentos y bebidas) data
 }
-\examples{
-\donttest{
-get_ipab_region(folder = tempdir(), region = "M")
-}
-
-}
 \seealso{
 Other dwnld_read: 
 \code{\link{get_cba_cbna}()},

@@ -21,11 +21,6 @@ This function allows you to get the IPAB (Indice de precios de alimentos y bebid
 Disclaimer: This script is not an official INE product.
 Aviso: El script no es un producto oficial de INE.
 }
-\examples{
-\donttest{
-get_ipab(folder = tempdir())
-}
-}
 \seealso{
 Other dwnld_read: 
 \code{\link{get_cba_cbna}()},

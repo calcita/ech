@@ -18,7 +18,7 @@
 get_ipc <- function(folder = tempdir()){
 
   assertthat::assert_that(is.character(folder), msg = "Sorry... :( \n \t folder parameter must be character")
-  attempt::stop_if_not(.x = curl::has_internet(), msg = "No internet access was detected. Please check your connection.")
+  assertthat::assert_that(.x = curl::has_internet(), msg = "No internet access was detected. Please check your connection.")
 
   u <- "http://www.ine.gub.uy/c/document_library/get_file?uuid=2e92084a-94ec-4fec-b5ca-42b40d5d2826&groupId=10181"
   f <- fs::path(folder, "IPC gral var M_B10.xls")
@@ -82,14 +82,9 @@ dates_ech <- function(data) {
 #' @details
 #' Disclaimer: This script is not an official INE product.
 #' Aviso: El script no es un producto oficial de INE.
-#'
-#' @examples
-#' \donttest{
-#' get_ipc_region(folder = tempdir(), region = "M")
-#' }
 
 get_ipc_region <- function(folder = tempdir(), region, sheet = 1){
-  attempt::stop_if_not(.x = curl::has_internet(), msg = "No internet access was detected. Please check your connection.")
+  assertthat::assert_that(.x = curl::has_internet(), msg = "No internet access was detected. Please check your connection.")
   assertthat::assert_that(is.character(folder), msg = "Sorry... :( \n \t folder parameter must be character")
   assertthat::assert_that(region %in% c("M", "I"), msg = "Sorry... :( \n \t region parameter must be 'M' for Montevideo or 'I' for Interior")
 
@@ -139,7 +134,6 @@ get_ipc_region <- function(folder = tempdir(), region, sheet = 1){
 #' @importFrom janitor clean_names excel_numeric_to_date remove_empty
 #' @importFrom fs path
 #' @importFrom purrr map_df
-#' @importFrom attempt stop_if_not
 #' @importFrom curl has_internet
 #'
 #' @return data.frame
@@ -148,7 +142,7 @@ get_ipc_region <- function(folder = tempdir(), region, sheet = 1){
 #' Aviso: El script no es un producto oficial de INE.
 
 get_cba_cbna <- function(folder = tempdir(), region, sheet = 1){
-  attempt::stop_if_not(.x = curl::has_internet(), msg = "No internet access was detected. Please check your connection.")
+  assertthat::assert_that(.x = curl::has_internet(), msg = "No internet access was detected. Please check your connection.")
   assertthat::assert_that(is.character(folder), msg =  "Sorry... :( \n \t folder parameter must be character")
   assertthat::assert_that(region %in% c("M", "I", "R"), msg =  "Sorry... :( \n \t region parameter must be 'M' for Montevideo, 'I' for Interior urbano or 'R' for Interior rural")
 
@@ -205,21 +199,15 @@ get_cba_cbna <- function(folder = tempdir(), region, sheet = 1){
 #' @importFrom janitor remove_empty
 #' @importFrom dplyr bind_rows slice filter_all bind_cols any_vars mutate_all
 #' @importFrom tidyr fill
-#' @importFrom attempt stop_if_not
 #' @importFrom curl has_internet
 #'
 #' @return data.frame
 #' @details
 #' Disclaimer: This script is not an official INE product.
 #' Aviso: El script no es un producto oficial de INE.
-#'
-#' @examples
-#' \donttest{
-#' get_ipab(folder = tempdir())
-#' }
 
 get_ipab <- function(folder = tempdir(), sheet = 1){
-  attempt::stop_if_not(.x = curl::has_internet(), msg = "No internet access was detected. Please check your connection.")
+  assertthat::assert_that(.x = curl::has_internet(), msg = "No internet access was detected. Please check your connection.")
   assertthat::assert_that(is.character(folder), msg =  "Sorry... :( \n \t folder parameter must be character")
 
   u <- "http://www.ine.gub.uy/c/document_library/get_file?uuid=c4b5efaa-cdd4-497a-ab78-e3138e4f08dc&groupId=10181"
@@ -255,13 +243,9 @@ get_ipab <- function(folder = tempdir(), sheet = 1){
 #' @importFrom dplyr bind_rows slice filter_all bind_cols any_vars mutate
 #' @importFrom tidyr drop_na separate
 #' @return data.frame
-#' @examples
-#' \donttest{
-#' get_ipab_region(folder = tempdir(), region = "M")
-#' }
-#'
+
 get_ipab_region <- function(folder = tempdir(), region, sheet = 1){
-  attempt::stop_if_not(.x = curl::has_internet(), msg = "No internet access was detected. Please check your connection.")
+  assertthat::assert_that(.x = curl::has_internet(), msg = "No internet access was detected. Please check your connection.")
   assertthat::assert_that(is.character(folder), msg = "Sorry... :( \n \t folder parameter must be character")
   assertthat::assert_that(region %in% c("M", "I"), msg = "Sorry... :( \n \t region parameter must be 'M' for Montevideo or 'I' for Interior")
 
@@ -302,8 +286,6 @@ get_ipab_region <- function(folder = tempdir(), region, sheet = 1){
   })
 }
 
-
-
 #' This function allows you to calculate a deflator coefficient
 #' @family income
 #' @param base_month baseline month
@@ -313,14 +295,9 @@ get_ipab_region <- function(folder = tempdir(), region, sheet = 1){
 #' @param df_year ECH year
 #' @importFrom dplyr select slice mutate
 #' @importFrom rlang .data
-#' @export
 #' @details
 #' Disclaimer: This script is not an official INE product.
 #' Aviso: El script no es un producto oficial de INE.
-#' @examples
-#' \donttest{
-#' deflate(base_month = 6, base_year = 2016, index = "IPC", level = "G", df_year = 2018)
-#' }
 
 deflate <- function(base_month = NULL,
                     base_year = NULL,
@@ -475,6 +452,41 @@ organize_ht11 <- function(data, year, ht11 = "ht11", numero = "numero") {
   }
   return(data)
 }
+
+# #' This function allows you to get the CIIU data
+# #' @family dwnld_read
+# #' @param folder temp folder
+# #' @param version by default the last ciiu version
+# #' @importFrom utils read.csv
+# #' @importFrom pdftables convert_pdf
+# #' @importFrom rstudioapi askForSecret
+# #' @export
+# #' @details
+# #' Disclaimer: This script is not an official INE product.
+# #' Aviso: El script no es un producto oficial de INE.
+#
+# get_ciiu <- function(folder = tempdir(),
+#                      version = 4){
+#   assertthat::assert_that(is.character(folder), msg = "Sorry... :( \n \t folder parameter must be character")
+#   assertthat::assert_that(is.numeric(version), msg = "Sorry... :( \n \t version parameter must be numeric")
+#   assertthat::assert_that(.x = curl::has_internet(), msg = "No internet access was detected. Please check your connection.")
+#   u <- "http://www.ine.gub.uy/documents/10181/33330/CORRESPONDENCIA+CIUU4+A+CIUU3.pdf/623c43cb-009c-4da9-b48b-45282745063b"
+#   f <- fs::path(folder, "ciiu4.pdf")
+#   if (identical(.Platform$OS.type, "unix")) {
+#     try(utils::download.file(u, f, mode = 'wb', method = 'wget', extra = '--no-check-certificate'))
+#   } else {
+#     try(utils::download.file(u, f, mode = 'wb', method = 'libcurl'))
+#   }
+#   key <- rstudioapi::askForSecret("api_key")
+#   pdftables::convert_pdf(f, "ciiu4.csv",api_key = key)
+#   df <- read.csv("ciiu4.csv")
+#   df <- df[,-3]
+#   names(df) <- c("ciiu_4","description", "ciiu_3")
+#   df <- df[-1,]
+#   df[] <- lapply(df, textclean::replace_non_ascii)
+#   ciiu4 <- df
+# }
+
 
 #' Pipe operator
 #' See \code{dplyr::\link[dplyr]{\%>\%}} for details.

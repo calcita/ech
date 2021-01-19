@@ -29,7 +29,6 @@ Depends:
     R (>= 3.5.0)
 Imports:
     assertthat,
-    attempt,
     curl,
     dplyr (>= 1.0.0),
     fs,

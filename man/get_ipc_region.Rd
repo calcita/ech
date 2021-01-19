@@ -23,11 +23,6 @@ This function allows you to get the IPC data
 Disclaimer: This script is not an official INE product.
 Aviso: El script no es un producto oficial de INE.
 }
-\examples{
-\donttest{
-get_ipc_region(folder = tempdir(), region = "M")
-}
-}
 \seealso{
 Other dwnld_read: 
 \code{\link{get_cba_cbna}()},

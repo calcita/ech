@@ -30,11 +30,6 @@ This function allows you to calculate a deflator coefficient
 Disclaimer: This script is not an official INE product.
 Aviso: El script no es un producto oficial de INE.
 }
-\examples{
-\donttest{
-deflate(base_month = 6, base_year = 2016, index = "IPC", level = "G", df_year = 2018)
-}
-}
 \seealso{
 Other income: 
 \code{\link{basket_goods}()},

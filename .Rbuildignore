@@ -4,7 +4,6 @@
 ^\.Rhistory$
 ^README\.Rmd$
 ^data-raw$
-^\.travis\.yml$
 ^appveyor\.yml$
 ^codecov\.yml$
 ^_pkgdown\.yml$
@@ -17,3 +16,4 @@
 ^doc$
 ^man/figures$
 ^inst/tutorials/intro/intro\.Rmd$
+^\.github$
