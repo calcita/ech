@@ -1,9 +1,9 @@
 # log history of ech package development
 
 ## ech v0.1.1.2
-* ommited get_cba_cnba function for bug in macos
-* include utf8 package by remotes: github::cran/utf8
-
+* ommited get_* functions for bug in macos
+* removed some dependences
+* changed travis to github ci
 -------------------------------------------------------
 
 ## ech v0.1.1
