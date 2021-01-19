@@ -35,10 +35,10 @@ Imports:
     readxl,
     tidyr,
     geouy(>= 0.2.3),
-    purrr,
     labelled,
     attempt,
-    curl
+    curl,
+    purrr
 Suggests: 
     knitr,
     testthat (>= 2.1.0),

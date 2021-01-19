@@ -138,6 +138,9 @@ get_ipc_region <- function(folder = tempdir(), region, sheet = 1){
 #' @importFrom dplyr slice mutate bind_cols %>%
 #' @importFrom janitor clean_names excel_numeric_to_date remove_empty
 #' @importFrom fs path
+#' @importFrom purrr map_df
+#' @importFrom attempt stop_if_not
+#' @importFrom curl has_internet
 #'
 #' @return data.frame
 #' @details
@@ -202,6 +205,9 @@ get_cba_cbna <- function(folder = tempdir(), region, sheet = 1){
 #' @importFrom janitor remove_empty
 #' @importFrom dplyr bind_rows slice filter_all bind_cols any_vars mutate_all
 #' @importFrom tidyr fill
+#' @importFrom attempt stop_if_not
+#' @importFrom curl has_internet
+#'
 #' @return data.frame
 #' @details
 #' Disclaimer: This script is not an official INE product.
