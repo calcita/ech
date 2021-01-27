@@ -4,6 +4,7 @@
 * ommited get_* functions for bug in macos
 * removed some dependences
 * changed travis to github ci
+* supressed 'no check certificate'
 -------------------------------------------------------
 
 ## ech v0.1.1
