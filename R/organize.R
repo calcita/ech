@@ -69,30 +69,32 @@ organize_names <- function(data, year, level = "hyp"){
 #     x
 # }
 
-# #' to_ascii
-# #'
-# #' @param x a column
-# #' @param upper logic
-# #'
-# #' @importFrom stringr str_replace_all
-# #' @return
-# #' @export
-# #' @examples
-# #' \donttest{
-# #' d <- lapply(dic, to_ascii)
-# #' }
-# to_ascii <- function(x, upper = T ){
-#   x <- x %>% as.character() %>%
-#     toupper() %>%
-#     stringr::str_replace_all("Ñ", "NI") %>%
-#     stringr::str_replace_all("Ó", "O") %>%
-#     stringr::str_replace_all("Á", "A") %>%
-#     stringr::str_replace_all("É", "E") %>%
-#     stringr::str_replace_all("Í", "I") %>%
-#     stringr::str_replace_all("Ú", "U")
-#   if (!upper == T) x <- tolower(x)
-#   x
-# }
+#' to_ascii
+#'
+#' @param x a column
+#' @param upper logic
+#'
+#' @importFrom stringr str_replace_all
+#' @return vector
+#' @export
+#' @examples
+#' \donttest{
+#' d <- lapply(dic, to_ascii)
+#' }
+to_ascii <- function(x, upper = T ){
+  x <- x %>% as.character() %>%
+    toupper() %>%
+    stringr::str_replace_all("\\u00D1", "NI") %>% # Ñ
+    stringr::str_replace_all("\\u00D3", "O") %>% # Ó
+    stringr::str_replace_all("\\u00C1", "A") %>% # Á
+    stringr::str_replace_all("\\u00C9", "E") %>% # É
+    stringr::str_replace_all("\\u00CD", "I") %>% # Í
+    stringr::str_replace_all("\\u00DA", "U") # Ú
+  if (!upper == T) x <- tolower(x)
+  x
+}
+
+# Para agregar más simbolos usar la función stringi::stri_escape_unicode para saber su raiz
 
 
 # dic <- read.csv2("data/diccionario.csv") #%>%
