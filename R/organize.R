@@ -23,25 +23,25 @@ organize_names <- function(data, year, level = "hyp"){
     nh <- n %>%
       dplyr::filter(!duplicated(var17)) %>%
       dplyr::select(paste0("var", c(substr(year,3,4), 17))) %>%
-      dplyr::filter(!. == "" & !.== " ")
-    data <- data %>% dplyr::select(nh[,1])
-    names(data) <- nh[,2]
+      tidyr::drop_na()
+    #data <- data %>% dplyr::select(vars(nh[,1]))
+    #names(data) <- nh[,2]
   }
   if(level %in% c("hogar","h")){
     nh <- n %>%
       dplyr::filter((unidad == "H" | unidad == "G") & !duplicated(var17)) %>%
       dplyr::select(paste0("var", c(substr(year,3,4), 17))) %>%
-      dplyr::filter(!. == "" & !.== " ")
-    data <- data %>% dplyr::select(nh[,1])
-    names(data) <- nh[,2]
+      tidyr::drop_na()
+    #data <- data %>% dplyr::select(c(nh[,1]))
+    #names(data) <- nh[,2]
   }
   if(level %in% c("individual", "i")){
     nh <- n %>%
       dplyr::filter((unidad == "P" | unidad == "G") & !duplicated(var17)) %>%
       dplyr::select(paste0("var", c(substr(year,3,4), 17))) %>%
-      dplyr::filter(!. == "" & !.== " ")
-    data <- data %>% dplyr::select(nh[,1])
-    names(data) <- nh[,2]
+      tidyr::drop_na()
+    #data <- data %>% dplyr::select(nh[,1])
+    #names(data) <- nh[,2]
   }
   return(data)
 }
