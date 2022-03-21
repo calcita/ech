@@ -4,6 +4,7 @@
 #' @param level (string) indicates whether the base to be labelled is of the type "household", "h", "individual", "i" or both, "hyp". Default "hyp"
 #' @param year numeric reference year of the data. Available from 2011 to 2019
 #' @export
+#' @importFrom dplyr if_any
 #' @details
 #' Disclaimer: This script is not an official INE product.
 #' Aviso: El script no es un producto oficial de INE.
@@ -23,9 +24,9 @@ organize_names <- function(data, year, level = "hyp"){
     nh <- n %>%
       dplyr::filter(!duplicated(var17)) %>%
       dplyr::select(paste0("var", c(substr(year,3,4), 17))) %>%
-      tidyr::drop_na()
-    #data <- data %>% dplyr::select(vars(nh[,1]))
-    #names(data) <- nh[,2]
+      dplyr::filter(if_any("", " "))
+    data <- data %>% dplyr::select(nh[,1])
+    names(data) <- nh[,2]
   }
   if(level %in% c("hogar","h")){
     nh <- n %>%

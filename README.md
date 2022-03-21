@@ -8,15 +8,15 @@
 [![CRAN/METACRAN
 Version](https://www.r-pkg.org/badges/version/ech)](https://CRAN.R-project.org/package=ech)
 [![CRAN/METACRAN Total
-downloads](http://cranlogs.r-pkg.org/badges/grand-total/ech?color=blue)](https://CRAN.R-project.org/package=ech)
+downloads](https://cranlogs.r-pkg.org/badges/grand-total/ech?color=blue)](https://CRAN.R-project.org/package=ech)
 [![CRAN/METACRAN downloads per
-month](http://cranlogs.r-pkg.org/badges/ech?color=orange)](https://CRAN.R-project.org/package=ech)
+month](https://cranlogs.r-pkg.org/badges/ech?color=orange)](https://CRAN.R-project.org/package=ech)
 [![R build
 status](https://github.com/calcita/ech//workflows/R-CMD-check/badge.svg)](https://github.com/calcita/ech//actions)
 [![AppVeyor build
 status](https://ci.appveyor.com/api/projects/status/github/calcita/ech?branch=master&svg=true)](https://ci.appveyor.com/project/calcita/ech)
 [![Codecov test
-coverage](https://codecov.io/gh/calcita/ech/branch/master/graph/badge.svg)](https://codecov.io/gh/calcita/ech?branch=master)
+coverage](https://codecov.io/gh/calcita/ech/branch/master/graph/badge.svg)](https://app.codecov.io/gh/calcita/ech?branch=master)
 [![DOI](https://zenodo.org/badge/224897952.svg)](https://zenodo.org/badge/latestdoi/224897952)
 <!-- badges: end -->
 

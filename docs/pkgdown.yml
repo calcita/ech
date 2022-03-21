@@ -1,9 +1,10 @@
-pandoc: 2.9.2.1
-pkgdown: 1.4.1
+pandoc: 2.14.2
+pkgdown: 2.0.2
 pkgdown_sha: ~
 articles:
   ech: ech.html
   Educacion: Educacion.html
   estimacion_ingresos: estimacion_ingresos.html
   medicion_pobreza: medicion_pobreza.html
+last_built: 2022-03-21T15:04Z
 

@@ -1,6 +1,6 @@
 Package: ech
 Title: Toolbox for ECH with R
-Version: 0.1.1.3
+Version: 0.1.2.0
 Authors@R: 
     c(person(given = "Gabriela",
              family = "Mathieu",
