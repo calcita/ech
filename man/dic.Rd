@@ -26,6 +26,7 @@ A data frame with 976 rows and 19 variables:
   \item{var17}{ECH variables names 2017}
   \item{var18}{ECH variables names 2018}
   \item{var19}{ECH variables names 2019}
+  \item{var21}{ECH variables names 2021 segundo semestre}
   ...
 }
 }
