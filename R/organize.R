@@ -17,14 +17,14 @@ organize_names <- function(data, year, level = "hyp"){
   assertthat::assert_that(is.data.frame(data))
   assertthat::assert_that(level %in% c("household", "h", "individual", "i", "hyp"),
                           msg = "Check the level selected")
-  assertthat::assert_that(year %in% 2011:2019,  msg = glue::glue("{year} not yet processed"))
+  assertthat::assert_that(year %in% c(2011:2019,2021),  msg = glue::glue("{year} not yet processed"))
   assertthat::assert_that(year != 2017,  msg = glue::glue("{year} is the reference year"))
   n <- ech::dic
   if(level %in% "hyp"){
     nh <- n %>%
       dplyr::filter(!duplicated(var17)) %>%
       dplyr::select(paste0("var", c(substr(year,3,4), 17))) %>%
-      dplyr::filter(if_any("", " "))
+      dplyr::filter_all(all_vars(. != "" | . != " " | !is.na(.)))
     data <- data %>% dplyr::select(nh[,1])
     names(data) <- nh[,2]
   }
