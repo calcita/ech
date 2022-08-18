@@ -24,7 +24,7 @@ organize_names <- function(data, year, level = "hyp"){
     nh <- n %>%
       dplyr::filter(!duplicated(var17)) %>%
       dplyr::select(paste0("var", c(substr(year,3,4), 17))) %>%
-      dplyr::filter_all(all_vars(. != "" | . != " " | !is.na(.)))
+      dplyr::filter(!.[,1] %in% c("", " "))
     data <- data %>% dplyr::select(nh[,1])
     names(data) <- nh[,2]
   }
