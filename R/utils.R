@@ -23,10 +23,11 @@ get_ipc <- function(folder = tempdir()){
     try(utils::download.file(u, f, mode = 'wb', method = 'libcurl'))
   }
   suppressMessages({
-     df <- readxl::read_xls(f) %>%
-       dplyr::slice(7, 10:999)
+     df <- readxl::read_xls(f)
+     df <- df %>%
+       dplyr::slice(7, 10:length(df[[1]])-3)
      names(df) <- df[1,]
-     df <- df[-1,]
+     df <- df[-c(1:4),]
      df <- janitor::clean_names(df) %>%
       dplyr::mutate(fecha = janitor::excel_numeric_to_date(as.numeric(as.character(.data$mes_y_ano)), date_system = "modern")) %>%
       dplyr::select(.data$fecha, dplyr::everything(), -.data$mes_y_ano)
