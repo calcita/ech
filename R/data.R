@@ -619,7 +619,7 @@
 
 #' A dataset containing variables names change of the ECH 2006-2018
 #' @family dataset
-#' @format A data frame with 976 rows and 19 variables:
+#' @format A data frame with 976 rows and 21 variables:
 #' \describe{
 #'   \item{codigos}{Code oh label}
 #'   \item{descripcion}{Description of label}
@@ -641,6 +641,7 @@
 #'   \item{var18}{ECH variables names 2018}
 #'   \item{var19}{ECH variables names 2019}
 #'   \item{var21}{ECH variables names 2021 segundo semestre}
+#'   \item{var21}{ECH variables names 2022 primer semestre}
 #'   ...
 #'}
 #' @source \url{http://www.ine.gub.uy/}

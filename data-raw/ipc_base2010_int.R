@@ -1,8 +1,8 @@
 ## code to prepare `ipc_base2010_int` dataset goes here
 
-df1 <- get_ipc_region(folder = tempdir(), region = "I", sheet = 1)
-df2 <- get_ipc_region(folder = tempdir(), region = "I", sheet = 2) %>% dplyr::slice(1:36)
-df3 <- get_ipc_region(folder = tempdir(), region = "I", sheet = 3)
+df1 <- ech:::get_ipc_region(folder = tempdir(), region = "I", sheet = 1)
+df2 <- ech:::get_ipc_region(folder = tempdir(), region = "I", sheet = 2) %>% dplyr::slice(1:36)
+df3 <- ech:::get_ipc_region(folder = tempdir(), region = "I", sheet = 3)
 
 ipc_base2010_int <- dplyr::bind_rows(df1, df2, df3)
 

@@ -1,8 +1,8 @@
 ## code to prepare `ipab_base2010_int` dataset goes here
 
-df1 <- get_ipab_region(folder = tempdir(), sheet = 1, region = "I")
-df2 <- get_ipab_region(folder = tempdir(), sheet = 2, region = "I") %>% dplyr::slice(-37:-42)
-df3 <- get_ipab_region(folder = tempdir(), sheet = 3, region = "I")
+df1 <- ech:::get_ipab_region(folder = tempdir(), sheet = 1, region = "I")
+df2 <- ech:::get_ipab_region(folder = tempdir(), sheet = 2, region = "I") %>% dplyr::slice(-37:-42)
+df3 <- ech:::get_ipab_region(folder = tempdir(), sheet = 3, region = "I")
 
 ipab_base2010_int <- dplyr::bind_rows(df1, df2, df3)
 ipab_base2010_int[45, "fecha"] = "2014-09-01"
