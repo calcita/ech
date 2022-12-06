@@ -641,7 +641,7 @@
 #'   \item{var18}{ECH variables names 2018}
 #'   \item{var19}{ECH variables names 2019}
 #'   \item{var21}{ECH variables names 2021 segundo semestre}
-#'   \item{var21}{ECH variables names 2022 primer semestre}
+#'   \item{var22}{ECH variables names 2022 primer semestre}
 #'   ...
 #'}
 #' @source \url{http://www.ine.gub.uy/}
@@ -673,7 +673,10 @@
 #' \describe{
 #'   \item{fecha}{date from 1937 to 2019}
 #'   \item{indice}{IPC}
-#'   \item{mensual}{value of IPC}
+#'   \item{mensual}{mensual value of IPC}
+#'   \item{trimestre}{three-month period value of IPC}
+#'   \item{cuatrimestre}{four-month period value of IPC}
+#'   \item{semestre}{six-month period value of IPC}
 #'   \item{acum_ano}{acumulated IPC}
 #'   \item{acum_12_meses}{acumulated IPC last 12 month}
 #'  }

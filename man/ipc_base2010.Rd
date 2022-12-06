@@ -9,7 +9,10 @@ A data frame with 990 rows and 5 variables:
 \describe{
   \item{fecha}{date from 1937 to 2019}
   \item{indice}{IPC}
-  \item{mensual}{value of IPC}
+  \item{mensual}{mensual value of IPC}
+  \item{trimestre}{three-month period value of IPC}
+  \item{cuatrimestre}{four-month period value of IPC}
+  \item{semestre}{six-month period value of IPC}
   \item{acum_ano}{acumulated IPC}
   \item{acum_12_meses}{acumulated IPC last 12 month}
  }
