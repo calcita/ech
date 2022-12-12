@@ -2,6 +2,7 @@
 
 ## ech v0.1.3 (in progress)
 * Add to dictionary variables of ech 2021
+* Add function organize_e193
 
 ## ech v0.1.2.0
 *minor changes. fix organize_names

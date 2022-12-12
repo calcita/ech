@@ -449,6 +449,35 @@ organize_ht11 <- function(data, year, ht11 = "ht11", numero = "numero") {
   return(data)
 }
 
+#' This function allows you to fix e193 from 2021
+#' @family education
+#' @param data data.frame
+#' @param year survey year
+#' @param e49 Variable name of e49
+#' @param e579 Variable name of e579
+#' @param numero Variable name of numero
+#'
+#' @return data.frame
+#' @export
+
+organize_e193 <- function(data, year, e49 = "e49", e579 = "e579", numero = "numero") {
+
+  assertthat::assert_that(is.data.frame(data), msg = glue:glue("Sorry... :( \n \t data parameter must be data.frame"))
+  assertthat::assert_that(is.numeric(year), msg = glue:glue("Sorry... :( \n \t year parameter must be a numeric value"))
+  assertthat::assert_that(e49 %in% names(data), msg =  glue:glue("Sorry... :( \n \t {e49} is not in data"))
+  assertthat::assert_that(e579 %in% names(data), msg =  glue:glue("Sorry... :( \n \t {e579} is not in data"))
+  assertthat::assert_that(numero %in% names(data), msg =  glue:glue("Sorry... :( \n \t {numero} is not in data"))
+
+  if (year %in% 2021:2022) {
+    data <- data %>%
+      dplyr::mutate(e193 = ifelse(e49 == 3 & e579 == 1, 1,
+                                  ifelse(e49 == 2 & e579 == 1, 2,
+                                         ifelse(e49 == 2, 3, 0))))
+  }
+  return(data)
+}
+
+
 # #' This function allows you to get the CIIU data
 # #' @family dwnld_read
 # #' @param folder temp folder
