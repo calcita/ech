@@ -100,5 +100,8 @@ if(getRversion() >= "2.15.1") utils::globalVariables(c(".",
                                                        "po",
                                                        "label",
                                                        "d9",
-                                                       "aux"
+                                                       "aux",
+                                                       "e201_1b",
+                                                       "e201_1c",
+                                                       "e201_1d"
                                                        ))

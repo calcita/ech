@@ -67,6 +67,6 @@ Other education:
 \code{\link{enrolled_school}()},
 \code{\link{level_completion}()},
 \code{\link{level_education}()},
-\code{\link{organize_e193}()}
+\code{\link{organize_educ}()}
 }
 \concept{education}

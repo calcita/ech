@@ -57,7 +57,7 @@ toy_ech_2018 <- enrolled_school(data = ech::toy_ech_2018)
 Other education: 
 \code{\link{level_completion}()},
 \code{\link{level_education}()},
-\code{\link{organize_e193}()},
+\code{\link{organize_educ}()},
 \code{\link{years_of_schooling}()}
 }
 \concept{education}

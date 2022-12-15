@@ -449,7 +449,7 @@ organize_ht11 <- function(data, year, ht11 = "ht11", numero = "numero") {
   return(data)
 }
 
-#' This function allows you to fix e193 from 2021
+#' This function allows you to fix education variables from 2021
 #' @family education
 #' @param data data.frame
 #' @param year survey year
@@ -460,7 +460,7 @@ organize_ht11 <- function(data, year, ht11 = "ht11", numero = "numero") {
 #' @return data.frame
 #' @export
 
-organize_e193 <- function(data, year, e49 = "e49", e579 = "e579", numero = "numero") {
+organize_educ <- function(data, year, e49 = "e49", e579 = "e579", numero = "numero") {
 
   assertthat::assert_that(is.data.frame(data), msg = glue:glue("Sorry... :( \n \t data parameter must be data.frame"))
   assertthat::assert_that(is.numeric(year), msg = glue:glue("Sorry... :( \n \t year parameter must be a numeric value"))
@@ -470,9 +470,33 @@ organize_e193 <- function(data, year, e49 = "e49", e579 = "e579", numero = "nume
 
   if (year %in% 2021:2022) {
     data <- data %>%
-      dplyr::mutate(e193 = ifelse(e49 == 3 & e579 == 1, 1,
-                                  ifelse(e49 == 2 & e579 == 1, 2,
-                                         ifelse(e49 == 2, 3, 0))))
+      dplyr::mutate(e193 = ifelse(e49 == 3 & e579 == 1, 1, # Variable name of attendance preescolar
+                                  ifelse(e49 == 2 & e579 == 1, 3,
+                                         ifelse(e49 == 1 & e579 == 1, 2, 0))),
+                    e197 = ifelse(e49 == 3 & e579 %in% c(2, 3), 1, # Variable name of attendance primary
+                                  ifelse(e49 == 2 & e579 %in% c(2, 3), 3,
+                                         ifelse(e49 == 1 & e579 %in% c(2, 3), 2, 0))),
+                    e201 = ifelse(e49 == 3 & e579 %in% c(4, 6), 1, # Variable name of attendance secondary
+                                  ifelse(e49 == 2 & e579 %in% c(4, 6), 3,
+                                         ifelse(e49 == 1 & e579 %in% c(4, 6), 2, 0))),
+                    e212 = ifelse(e49 == 3 & e579 %in% c(5, 7, 8), 1,# Variable name of attendance technical school (non-university)
+                                  ifelse(e49 == 2 & e579 %in% c(5, 7, 8), 3,
+                                         ifelse(e49 == 1 & e579 %in% c(5, 7, 8), 2, 0))),
+                    e215 = ifelse(e49 == 3 & e579 == 9, 1, # Variable name of attendance magisterio
+                                  ifelse(e49 == 2 & e579 == 9, 3,
+                                         ifelse(e49 == 1 & e579 == 9, 2, 0))),
+                    e218 = ifelse(e49 == 3 & e579 == 10, 1, # Variable name of attendance university
+                                  ifelse(e49 == 2 & e579 == 10, 3,
+                                         ifelse(e49 == 1 & e579 == 10, 2, 0))),
+                    e221 = ifelse(e49 == 3 & e579 == 11, 1, # Variable name of attendance tertiary
+                                  ifelse(e49 == 2 & e579 == 11, 3,
+                                         ifelse(e49 == 1 & e579 == 11, 2, 0))),
+                    e224 = ifelse(e49 == 3 & e579 == 12, 1, # Variable name of attendance postgrade
+                                  ifelse(e49 == 2 & e579 == 12, 3,
+                                         ifelse(e49 == 1 & e579 == 12, 2, 0))),
+                    e201_1 = e201_1c, # finalizo nivel edu media
+                    e212_1 = ifelse(e201_1d == 1, e201_1d, e201_1b) # finalizo nivel edu tecnica
+      )
   }
   return(data)
 }
