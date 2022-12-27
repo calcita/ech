@@ -495,8 +495,9 @@ organize_educ <- function(data, year, e49 = "e49", e579 = "e579", numero = "nume
                                   ifelse(e49 == 2 & e579 == 12, 3,
                                          ifelse(e49 == 1 & e579 == 12, 2, 0))),
                     e201_1 = e201_1c, # finalizo nivel edu media
-                    e212_1 = ifelse(e201_1d == 1, e201_1d, e201_1b) # finalizo nivel edu tecnica
-      )
+                    e212_1 = ifelse(e201_1d == 1, e201_1d, e201_1b), # finalizo nivel edu tecnica
+                    e51_4 = e51_4_a,
+                    e51_7 = e51_4_b)
   }
   return(data)
 }

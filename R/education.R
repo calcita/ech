@@ -120,7 +120,7 @@ years_of_schooling <- function(data = ech::toy_ech_2018,
   assertthat::assert_that(e51_5  %in% names(data), msg =  glue:glue("Sorry... :( \n {e51_5} is not in data"))
   assertthat::assert_that(e51_6  %in% names(data), msg =  glue:glue("Sorry... :( \n {e51_6} is not in data"))
   assertthat::assert_that(e51_7  %in% names(data), msg =  glue:glue("Sorry... :( \n {e51_7} is not in data"))
-  assertthat::assert_that(e51_7_1  %in% names(data), msg =  glue:glue("Sorry... :( \n {e51_7_1} is not in data"))
+  #assertthat::assert_that(e51_7_1  %in% names(data), msg =  glue:glue("Sorry... :( \n {e51_7_1} is not in data"))
   assertthat::assert_that(e51_8  %in% names(data), msg =  glue:glue("Sorry... :( \n {e51_8} is not in data"))
   assertthat::assert_that(e51_9  %in% names(data), msg =  glue:glue("Sorry... :( \n {e51_9} is not in data"))
   assertthat::assert_that(e51_10  %in% names(data), msg =  glue:glue("Sorry... :( \n {e51_10} is not in data"))
@@ -129,17 +129,18 @@ years_of_schooling <- function(data = ech::toy_ech_2018,
   # if ("years_schooling" %in% names(data)) {
   #   message("The data.frame already contains a variable with the name years_schooling, it will be overwritten")
   # }
+  if (unique(data$anio) %in% 2006:2019) {
+    data <- data %>%
+      dplyr::mutate_at(dplyr::vars({{e51_2}}, {{e51_3}}, {{e51_4}}, {{e51_5}}, {{e51_6}},
+                                   {{e51_7}}, {{e51_8}}, {{e51_9}}, {{e51_10}}, {{e51_11}}),
+                       list(~ ifelse( . == 9, 0, .))) %>%
+      #Requisitos educacion tecnica
+      dplyr::mutate(e51_71 = ifelse(e51_7_1 == 1, e51_7, 0), # Enseñanza secundaria completa
+                    e51_72 = ifelse(e51_7_1 == 2, e51_7, 0), # Ciclo Básico, liceo o UTU
+                    e51_73 = ifelse(e51_7_1 == 3, e51_7, 0), # Enseñanza primaria completa
+                    e51_74 = ifelse(e51_7_1 == 4, e51_7, 0)) %>% # Ninguna
 
-  data <- data %>%
-    dplyr::mutate_at(dplyr::vars({{e51_2}}, {{e51_3}}, {{e51_4}}, {{e51_5}}, {{e51_6}}, {{e51_7}}, {{e51_8}}, {{e51_9}}, {{e51_10}}, {{e51_11}}), list(~ ifelse( . == 9, 0, .))) %>%
-
-    dplyr::mutate(e51_71 = ifelse(e51_7_1 == 1, e51_7, 0),
-                  e51_72 = ifelse(e51_7_1 == 2, e51_7, 0),
-                  e51_73 = ifelse(e51_7_1 == 3, e51_7, 0),
-                  e51_74 = ifelse(e51_7_1 == 4, e51_7, 0))
-
-
-  data <- data %>% dplyr::mutate(years_schooling = dplyr::case_when(e49 == 2 ~ 0, # nunca asistió
+      dplyr::mutate(years_schooling = dplyr::case_when(e49 == 2 ~ 0, # nunca asistió
                                                        e51_11 %in% 1:6 ~ pmax(12 + e51_9 + e51_11, # sec + uni + pos
                                                                               12 + e51_8 + e51_11, # sec + mag + pos
                                                                               12 + e51_10 + e51_11), # sec + ter + pos
@@ -163,13 +164,46 @@ years_of_schooling <- function(data = ech::toy_ech_2018,
                                                        e193 %in% 1:2 ~ 0,
                                                        TRUE ~ 0))
 
-  data <- data %>% dplyr::mutate(years_schooling = dplyr::case_when(years_schooling < 12 & (e51_9 == 9 | e51_8 == 9 |
-                                                                           e51_10 == 9 | (e51_7 == 9 & e51_7_1 == 1)) ~ 12,
-                                                       TRUE ~ years_schooling))
+    data <- data %>% dplyr::mutate(years_schooling = dplyr::case_when(years_schooling < 12 & (e51_9 == 9 | e51_8 == 9 |
+                                                                                                e51_10 == 9 | (e51_7 == 9 & e51_7_1 == 1)) ~ 12,
+                                                                      TRUE ~ years_schooling))
+  }
+
+  if (unique(data$anio) %in% 2021:2022) {
+    data <- data %>%
+      dplyr::mutate_at(dplyr::vars({{e51_2}}, {{e51_3}}, {{e51_4}}, {{e51_5}}, {{e51_6}},
+                                   {{e51_7}}, {{e51_8}}, {{e51_9}}, {{e51_10}}, {{e51_11}}),
+                       list(~ ifelse( . == 9, 0, .))) %>%
+      dplyr::mutate(years_schooling = dplyr::case_when(e49 == 2 ~ 0, # nunca asistió
+                                                       e51_11 %in% 1:6 ~ pmax(12 + e51_9 + e51_11, # sec + uni + pos
+                                                                              12 + e51_8 + e51_11, # sec + mag + pos
+                                                                              12 + e51_10 + e51_11), # sec + ter + pos
+                                                       e51_9 %in% 1:8 | e51_10 %in% 1:8 |
+                                                         e51_8 %in% 1:8 | e51_7_1 == 1 |
+                                                         e51_6 > 3 ~ pmax(12 + e51_9, # sec + uni
+                                                                          12 + e51_10, # sec + ter
+                                                                          12 + e51_8, # sec + mag
+                                                                          9 + e51_6), # cb + tec
+                                                       e51_6 %in% 1:3 |
+                                                         e51_5 %in% 1:3 ~ pmax(9 + e51_6, # cb + bach tec.
+                                                                               9 + e51_5), # cb + bach
+                                                       e51_4 %in% 1:3 |
+                                                         e51_7 %in% 1:3 ~ pmax(6 + e51_4, # pri + cb
+                                                                               6 + e51_7), # pri + tec
+                                                       e51_2 %in% 1:6 |
+                                                         e51_3 %in% 1:4 ~ pmax(e51_2, # pri
+                                                                               e51_3), # pri esp
+                                                       e193 %in% 1:2 ~ 0,
+                                                       TRUE ~ 0))
+
+    data <- data %>% dplyr::mutate(years_schooling = dplyr::case_when(years_schooling < 12 & (e51_9 == 9 | e51_8 == 9 |
+                                                                                                e51_10 == 9 | (e51_7 == 9 & e51_7_1 == 1)) ~ 12,
+                                                                      TRUE ~ years_schooling))
+  }
 
   if (!is.null(max_years)){
     data <- data %>% dplyr::mutate(years_schooling = dplyr::case_when(years_schooling > max_years ~ max_years,
-                                                               TRUE ~ years_schooling))
+                                                                      TRUE ~ years_schooling))
   }
 
   message("A variable has been created: \n \t  years_schooling (anios de escolaridad)")
