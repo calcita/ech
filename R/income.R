@@ -36,7 +36,7 @@ income_constant_prices <- function(data = ech::toy_ech_2018,
 
   # checks ---
   assertthat::assert_that(is.data.frame(data))
-  assertthat::assert_that(dplyr::between(as.numeric(base_month),1,12), msg =  glue::glue("Sorry... :( \n base_month is not between 1 and 12"))
+  assertthat::assert_that(as.numeric(base_month) %in% c(1:12), msg =  glue::glue("Sorry... :( \n base_month is not between 1 and 12"))
   assertthat::assert_that(index  %in% c("IPC", "IPAB"), msg =  glue::glue("Sorry... :( \n index is not IPC or IPAB"))
   assertthat::assert_that(level  %in% c("G", "R"), msg =  glue::glue("Sorry... :( \n level is not G or R"))
   assertthat::assert_that(mes  %in% names(data), msg =  glue::glue("Sorry... :( \n {mes} is not in data"))
@@ -347,7 +347,7 @@ labor_income_per_hour <- function(data = ech::toy_ech_2018,
 
   # checks ---
   assertthat::assert_that(is.data.frame(data))
-  assertthat::assert_that(dplyr::between(base_month,1,12), msg =  glue::glue("Sorry... :( \n base_month is not between 1 and 12"))
+  assertthat::assert_that(as.numeric(base_month) %in% c(1:12), msg =  glue::glue("Sorry... :( \n base_month is not between 1 and 12"))
   assertthat::assert_that(mes  %in% names(data), msg =  glue::glue("Sorry... :( \n {mes} is not in data"))
   assertthat::assert_that(numero  %in% names(data), msg =  glue::glue("Sorry... :( \n {numero} is not in data"))
   assertthat::assert_that(pobpcoac  %in% names(data), msg =  glue::glue("Sorry... :( \n {pobpcoac} is not in data"))

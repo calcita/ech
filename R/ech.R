@@ -105,5 +105,6 @@ if(getRversion() >= "2.15.1") utils::globalVariables(c(".",
                                                        "e201_1c",
                                                        "e201_1d",
                                                        "e51_4_a",
-                                                       "e51_4_b"
+                                                       "e51_4_b",
+                                                       "mes_y_ano"
                                                        ))
