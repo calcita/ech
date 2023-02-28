@@ -95,7 +95,7 @@ library(ech)
 # Cargo la base
 ech19 <- get_microdata(year = "2019", # Año/s a descargar (2011-2019)
               folder = tempdir(), # Carpeta para descarga   
-              toR = TRUE) # Lo guarda en formato RData 
+              toR = FALSE) # No lo guarda en formato RData 
 ```
 
 Como un segundo paso, recomendamos utilizar la función `organize_names()` que estandariza los nombres de variables llevándolas a los nombres de 2017. Este paso facilita el uso de las demás funciones en la medida que todas contienen parámetros que dan cuenta del nombre de alguna variable y cuyo valor por defecto es el nombre de la variable para 2017. La correspondencia entre variables para cada año se puede observar en el diccionario `ech::dic`. No todas las variables de la ech están contempladas en el diccionario por lo que este proyecto está abierto a contribuciones que en la medida que se agreguen nuevas funciones serán necesarias.
@@ -103,8 +103,9 @@ Como un segundo paso, recomendamos utilizar la función `organize_names()` que e
 
 ``` r
 # Organizamos nombres de variables
-
-ech19 <- organize_names(ech19, 2019)
+# para el caso de 2019 no es necesario porque el diccionario base es el 2017 y las variables se llaman igual
+#ech19 <- organize_names(ech19, 2019)
+ech19 <- ech19 %>% dplyr::rename(upm = upm_fic)
 
 ```
 

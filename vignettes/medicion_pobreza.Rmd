@@ -34,7 +34,7 @@ Veamos la aplicación de cada una de estas funciones.
 library(ech)
 # cargamos la base de ECH y estandarizamos los nombres de variables
 df <- get_microdata(year = 2019)
-df <- organize_names(df, year = 2019)
+#df <- organize_names(df, year = 2019)
 
 # calculamos las variables de pobreza monteria
 df <- poverty(data = df)

@@ -34,7 +34,7 @@ Antes de deflactar los ingresos del hogar, tenemos que tener cargado el objeto c
 ```{r eval = FALSE}
 library(ech)
 df <- get_microdata(year = 2019)
-df <- organize_names(df)
+#df <- organize_names(df)
 ```
 Las variables a tener en cuenta en esta parte son: 
 
