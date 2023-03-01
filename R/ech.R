@@ -1,6 +1,6 @@
 #' \code{ech} package
 #' @family utils
-#' Caja de Herramientas para el procesamiento de la Encuesta Continua de Hogares de Uruguay
+#' @description Caja de Herramientas para el procesamiento de la Encuesta Continua de Hogares de Uruguay
 #'
 #' See the README on
 #' \href{https://github.com/calcita/ech/blob/master/README.md}{Github}

@@ -22,6 +22,7 @@ df <- unlabelled(data = ech::toy_ech_2018)
 Other utils: 
 \code{\link{archive_extract}()},
 \code{\link{dates_ech}()},
+\code{\link{ech}},
 \code{\link{unrarPath}}
 }
 \concept{utils}

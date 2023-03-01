@@ -18,6 +18,7 @@ The known path for unrar or 7z
 Other utils: 
 \code{\link{archive_extract}()},
 \code{\link{dates_ech}()},
+\code{\link{ech}},
 \code{\link{unlabelled}()}
 }
 \concept{utils}

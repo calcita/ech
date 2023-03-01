@@ -4,8 +4,17 @@
 \name{ech}
 \alias{ech}
 \title{\code{ech} package}
-\concept{utils
+\description{
 Caja de Herramientas para el procesamiento de la Encuesta Continua de Hogares de Uruguay
 
 See the README on
-\href{https://github.com/calcita/ech/blob/master/README.md}{Github}}
+\href{https://github.com/calcita/ech/blob/master/README.md}{Github}
+}
+\seealso{
+Other utils: 
+\code{\link{archive_extract}()},
+\code{\link{dates_ech}()},
+\code{\link{unlabelled}()},
+\code{\link{unrarPath}}
+}
+\concept{utils}
