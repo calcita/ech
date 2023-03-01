@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ech</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.3</span>
       </span>
     </div>
 
@@ -29,7 +29,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -66,29 +66,39 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">organize_names</span><span class="op">(</span><span class="va">data</span>, <span class="va">year</span>, level <span class="op">=</span> <span class="st">"hyp"</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">organize_names</span><span class="op">(</span><span class="va">data</span>, <span class="va">year</span>, level <span class="op">=</span> <span class="st">"hyp"</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>data</dt>
 <dd><p>data.frame contains the ECH microdata</p></dd>
+
+
 <dt>year</dt>
 <dd><p>numeric reference year of the data. Available from 2011 to 2019</p></dd>
+
+
 <dt>level</dt>
 <dd><p>(string) indicates whether the base to be labelled is of the type "household", "h", "individual", "i" or both, "hyp". Default "hyp"</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
     <p>Disclaimer: This script is not an official INE product.
 Aviso: El script no es un producto oficial de INE.</p>
     </div>
+    <div id="see-also">
+    <h2>See also</h2>
+    <div class="dont-index"><p>Other organize: 
+<code><a href="to_ascii.html">to_ascii</a>()</code></p></div>
+    </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># \donttest{</span></span>
-<span class="r-in"><span class="va">toy_ech_2018</span> <span class="op">&lt;-</span> <span class="fu">organize_names</span><span class="op">(</span>data <span class="op">=</span> <span class="fu">ech</span><span class="fu">::</span><span class="va"><a href="toy_ech_2018.html">toy_ech_2018</a></span>, year <span class="op">=</span> <span class="fl">2018</span>, level <span class="op">=</span> <span class="st">"h"</span><span class="op">)</span></span>
-<span class="r-in"><span class="co"># }</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
+<span class="r-in"><span><span class="va">toy_ech_2018</span> <span class="op">&lt;-</span> <span class="fu">organize_names</span><span class="op">(</span>data <span class="op">=</span> <span class="fu">ech</span><span class="fu">::</span><span class="va"><a href="toy_ech_2018.html">toy_ech_2018</a></span>, year <span class="op">=</span> <span class="fl">2018</span>, level <span class="op">=</span> <span class="st">"h"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -103,7 +113,7 @@ Aviso: El script no es un producto oficial de INE.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

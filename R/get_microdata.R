@@ -77,6 +77,7 @@ isWindows <- function() identical(.Platform$OS.type, "windows")
 }
 
 #' The known path for unrar or 7z
+#' @family utils
 #' @rdname unrarPath
 #' @name unrarPath
 .unrarPath <- NULL

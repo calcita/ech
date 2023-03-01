@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ech</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.3</span>
       </span>
     </div>
 
@@ -46,7 +46,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -90,66 +90,113 @@
 
     
     
-<p>El paquete ech proveé tres funciones para instrumentar la medición de la pobreza de las personas y hogares: <code><a href="../reference/poverty.html">poverty()</a></code>, <code><a href="../reference/unsatisfied_basic_needs.html">unsatisfied_basic_needs()</a></code> e <code><a href="../reference/integrated_poverty_measure.html">integrated_poverty_measure()</a></code>.</p>
-<p>La función <code><a href="../reference/poverty.html">poverty()</a></code> permite calcular la pobreza e indigencia a nivel de hogares y personas. El cálculo de la variable <code>poor</code> e <code>indigent</code> utiliza la Metodología 2006 que establece la medición de la pobreza por el método del ingreso usando la línea de pobreza 2006. El Método del Ingreso, quizás el más clásico y el útilizado por el INE como medida oficial, define la pobreza a partir de los ingresos per cápita de los hogares. Se construye una línea de pobreza (LP) a partir de un estrato socioeconómico de referencia y estimaciones normativas sobre requerimientos mínimos nutricionales. Se computa la Canasta Básica de Alimentaria como el gasto en alimentos y la Canasta Básica No Alimentaria como el resto de los gastos del estrato de referencia. El valor de esas canastas se actualizan por IPC. De esta manera un hogar será considerado pobre si el ingreso per cápita no supera el valor de la LP. A su vez, todas las personas de ese hogar, si el hogar es considerado pobre, son consideradas pobres.</p>
-<p>La función <code><a href="../reference/unsatisfied_basic_needs.html">unsatisfied_basic_needs()</a></code> permite calcular variables que identifica necesidades básicas insatisfechas en ciertas dimensiones que el hogar debería satisfacer para lograr un mínimo de bienestar y luego agregarlas en un indicador. Se usa una aproximación de la Metodología del Censo 2011. Las dimensiones consideradas son: hacinamiento, acceso a agua potable, acceso a energía eléctrica, materiales de la vivienda, evacuación del servicio sanitario y educación. La dimensión de educación se evalua para las personas entre 4 a 17 años y si al menos una de estas personas tiene una carencia en educación se considera que todo el hogar tiene carencia en esta dimensión. Se establece para cada una de estas dimensiones si hay o no carencia, luego se suman y se obtiene la variable UBN_q que puede tomar valores de 0 a 6. A partir de <code>UBN_q</code> se crea <code>UBN</code> con las siguientes categorías: “Sin NBI”, “Con 1 NBI”, “Con 2 NBI” y “Con 3 o más NBI”. Los resultados de estas dos variables que se calculan al nivel del hogar se imputan a todas las personas del hogar.</p>
-<p>La función <code><a href="../reference/integrated_poverty_measure.html">integrated_poverty_measure()</a></code> permite calcular un indicador que vincula los dos métodos anteriores, de ahí el nombre de método integrado. Se calcula la variable <code>integrated_poverty_measure</code> que toma 4 valores: “No pobreza”, “Pobreza reciente”, “Pobreza inercial” y “Pobreza crónica”.</p>
+<p>El paquete ech proveé tres funciones para instrumentar la medición de
+la pobreza de las personas y hogares: <code><a href="../reference/poverty.html">poverty()</a></code>,
+<code><a href="../reference/unsatisfied_basic_needs.html">unsatisfied_basic_needs()</a></code> e
+<code><a href="../reference/integrated_poverty_measure.html">integrated_poverty_measure()</a></code>.</p>
+<p>La función <code><a href="../reference/poverty.html">poverty()</a></code> permite calcular la pobreza e
+indigencia a nivel de hogares y personas. El cálculo de la variable
+<code>poor</code> e <code>indigent</code> utiliza la Metodología 2006
+que establece la medición de la pobreza por el método del ingreso usando
+la línea de pobreza 2006. El Método del Ingreso, quizás el más clásico y
+el útilizado por el INE como medida oficial, define la pobreza a partir
+de los ingresos per cápita de los hogares. Se construye una línea de
+pobreza (LP) a partir de un estrato socioeconómico de referencia y
+estimaciones normativas sobre requerimientos mínimos nutricionales. Se
+computa la Canasta Básica de Alimentaria como el gasto en alimentos y la
+Canasta Básica No Alimentaria como el resto de los gastos del estrato de
+referencia. El valor de esas canastas se actualizan por IPC. De esta
+manera un hogar será considerado pobre si el ingreso per cápita no
+supera el valor de la LP. A su vez, todas las personas de ese hogar, si
+el hogar es considerado pobre, son consideradas pobres.</p>
+<p>La función <code><a href="../reference/unsatisfied_basic_needs.html">unsatisfied_basic_needs()</a></code> permite calcular
+variables que identifica necesidades básicas insatisfechas en ciertas
+dimensiones que el hogar debería satisfacer para lograr un mínimo de
+bienestar y luego agregarlas en un indicador. Se usa una aproximación de
+la Metodología del Censo 2011. Las dimensiones consideradas son:
+hacinamiento, acceso a agua potable, acceso a energía eléctrica,
+materiales de la vivienda, evacuación del servicio sanitario y
+educación. La dimensión de educación se evalua para las personas entre 4
+a 17 años y si al menos una de estas personas tiene una carencia en
+educación se considera que todo el hogar tiene carencia en esta
+dimensión. Se establece para cada una de estas dimensiones si hay o no
+carencia, luego se suman y se obtiene la variable UBN_q que puede tomar
+valores de 0 a 6. A partir de <code>UBN_q</code> se crea
+<code>UBN</code> con las siguientes categorías: “Sin NBI”, “Con 1 NBI”,
+“Con 2 NBI” y “Con 3 o más NBI”. Los resultados de estas dos variables
+que se calculan al nivel del hogar se imputan a todas las personas del
+hogar.</p>
+<p>La función <code><a href="../reference/integrated_poverty_measure.html">integrated_poverty_measure()</a></code> permite calcular
+un indicador que vincula los dos métodos anteriores, de ahí el nombre de
+método integrado. Se calcula la variable
+<code>integrated_poverty_measure</code> que toma 4 valores: “No
+pobreza”, “Pobreza reciente”, “Pobreza inercial” y “Pobreza
+crónica”.</p>
 <p>Veamos la aplicación de cada una de estas funciones.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">ech</span><span class="op">)</span>
-<span class="co"># cargamos la base de ECH y estandarizamos los nombres de variables</span>
-<span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_microdata.html">get_microdata</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2019</span><span class="op">)</span>
-<span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/organize_names.html">organize_names</a></span><span class="op">(</span><span class="va">df</span>, year <span class="op">=</span> <span class="fl">2019</span><span class="op">)</span>
-
-<span class="co"># calculamos las variables de pobreza monteria</span>
-<span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/poverty.html">poverty</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">df</span><span class="op">)</span>
-
-<span class="co"># Calculamos las variables de NBI</span>
-<span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/enrolled_school.html">enrolled_school</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span>
-<span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/years_of_schooling.html">years_of_schooling</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span>
-<span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/unsatisfied_basic_needs.html">unsatisfied_basic_needs</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">df</span><span class="op">)</span>
-
-<span class="co"># calculamos la variable metodo integrado</span>
-<span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/integrated_poverty_measure.html">integrated_poverty_measure</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">df</span><span class="op">)</span></code></pre></div>
-<p>Estimamos a nivel de hogares y personas los indicadores de pobreza a partir de las variables calculadas anteriormente. Dado que para 2019 contamos en la base pública con las UPM y los estrato, los definimos en la función.</p>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">ech</span><span class="op">)</span></span>
+<span><span class="co"># cargamos la base de ECH y estandarizamos los nombres de variables</span></span>
+<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_microdata.html">get_microdata</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2019</span><span class="op">)</span></span>
+<span><span class="co">#df &lt;- organize_names(df, year = 2019)</span></span>
+<span></span>
+<span><span class="co"># calculamos las variables de pobreza monteria</span></span>
+<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/poverty.html">poverty</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">df</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Calculamos las variables de NBI</span></span>
+<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/enrolled_school.html">enrolled_school</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span>
+<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/years_of_schooling.html">years_of_schooling</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span>
+<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/unsatisfied_basic_needs.html">unsatisfied_basic_needs</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">df</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># calculamos la variable metodo integrado</span></span>
+<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/integrated_poverty_measure.html">integrated_poverty_measure</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">df</span><span class="op">)</span></span></code></pre></div>
+<p>Estimamos a nivel de hogares y personas los indicadores de pobreza a
+partir de las variables calculadas anteriormente. Dado que para 2019
+contamos en la base pública con las UPM y los estrato, los definimos en
+la función.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Distribución de hogares según cantidad de NBI que presenta</span>
-<span class="va">nbi_hogares</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_estimation_mean.html">get_estimation_mean</a></span><span class="op">(</span><span class="va">df</span>, variable <span class="op">=</span> <span class="st">"UBN"</span>, level <span class="op">=</span> <span class="st">"h"</span>, ids <span class="op">=</span> <span class="st">"upm"</span>, estrato <span class="op">=</span> <span class="st">"estrato"</span><span class="op">)</span>
-
-<span class="co"># Distribución de personas según cantidad de NBI que presenta el hogar</span>
-<span class="va">nbi_personas</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_estimation_mean.html">get_estimation_mean</a></span><span class="op">(</span><span class="va">df</span>, variable <span class="op">=</span> <span class="st">"UBN"</span>, level <span class="op">=</span> <span class="st">"i"</span>, ids <span class="op">=</span> <span class="st">"upm"</span>, estrato <span class="op">=</span> <span class="st">"estrato"</span><span class="op">)</span>
-
-<span class="co"># Hogares según situación de pobreza </span>
-<span class="va">pobres_hogares</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_estimation_mean.html">get_estimation_mean</a></span><span class="op">(</span><span class="va">df</span>, variable <span class="op">=</span> <span class="st">"poor"</span>, level <span class="op">=</span> <span class="st">"h"</span>, ids <span class="op">=</span> <span class="st">"upm"</span>, estrato <span class="op">=</span> <span class="st">"estrato"</span><span class="op">)</span>
-
-<span class="co"># Personas según situación de pobreza </span>
-<span class="va">pobres_personas</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_estimation_mean.html">get_estimation_mean</a></span><span class="op">(</span><span class="va">df</span>, variable <span class="op">=</span> <span class="st">"poor"</span>, level <span class="op">=</span> <span class="st">"i"</span>, ids <span class="op">=</span> <span class="st">"upm"</span>, estrato <span class="op">=</span> <span class="st">"estrato"</span><span class="op">)</span>
-
-<span class="co"># Hogares según situación de pobreza</span>
-<span class="va">ipm_hogares</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_estimation_mean.html">get_estimation_mean</a></span><span class="op">(</span><span class="va">df</span>, variable <span class="op">=</span> <span class="st">"integrated_poverty_measure"</span>, level <span class="op">=</span> <span class="st">"h"</span>, ids <span class="op">=</span> <span class="st">"upm"</span>, estrato <span class="op">=</span> <span class="st">"estrato"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Distribución de hogares según cantidad de NBI que presenta</span></span>
+<span><span class="va">nbi_hogares</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_estimation_mean.html">get_estimation_mean</a></span><span class="op">(</span><span class="va">df</span>, variable <span class="op">=</span> <span class="st">"UBN"</span>, level <span class="op">=</span> <span class="st">"h"</span>, ids <span class="op">=</span> <span class="st">"upm"</span>, estrato <span class="op">=</span> <span class="st">"estrato"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Distribución de personas según cantidad de NBI que presenta el hogar</span></span>
+<span><span class="va">nbi_personas</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_estimation_mean.html">get_estimation_mean</a></span><span class="op">(</span><span class="va">df</span>, variable <span class="op">=</span> <span class="st">"UBN"</span>, level <span class="op">=</span> <span class="st">"i"</span>, ids <span class="op">=</span> <span class="st">"upm"</span>, estrato <span class="op">=</span> <span class="st">"estrato"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Hogares según situación de pobreza </span></span>
+<span><span class="va">pobres_hogares</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_estimation_mean.html">get_estimation_mean</a></span><span class="op">(</span><span class="va">df</span>, variable <span class="op">=</span> <span class="st">"poor"</span>, level <span class="op">=</span> <span class="st">"h"</span>, ids <span class="op">=</span> <span class="st">"upm"</span>, estrato <span class="op">=</span> <span class="st">"estrato"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Personas según situación de pobreza </span></span>
+<span><span class="va">pobres_personas</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_estimation_mean.html">get_estimation_mean</a></span><span class="op">(</span><span class="va">df</span>, variable <span class="op">=</span> <span class="st">"poor"</span>, level <span class="op">=</span> <span class="st">"i"</span>, ids <span class="op">=</span> <span class="st">"upm"</span>, estrato <span class="op">=</span> <span class="st">"estrato"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Hogares según situación de pobreza</span></span>
+<span><span class="va">ipm_hogares</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_estimation_mean.html">get_estimation_mean</a></span><span class="op">(</span><span class="va">df</span>, variable <span class="op">=</span> <span class="st">"integrated_poverty_measure"</span>, level <span class="op">=</span> <span class="st">"h"</span>, ids <span class="op">=</span> <span class="st">"upm"</span>, estrato <span class="op">=</span> <span class="st">"estrato"</span><span class="op">)</span></span></code></pre></div>
 <p>Veamos los resultados de cada una de las estimaciones</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">nbi_hogares</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">nbi_hogares</span></span></code></pre></div>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">nbi_personas</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">nbi_personas</span></span></code></pre></div>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">pobres_hogares</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">pobres_hogares</span></span></code></pre></div>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">pobres_personas</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">pobres_personas</span></span></code></pre></div>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">ipm_hogares</span></code></pre></div>
-<p>Finalmente, podemos comparar estos resultados que brinda el paquete <code>ech</code>, con el <a href="http://www.ine.gub.uy/c/document_library/get_file?uuid=35dea1e6-98e0-41a5-ac79-46671dfcac6c&amp;groupId=10181" class="external-link">Boletín Técnico</a> que publica el INE.</p>
-<p>Concretamente para comparar los resultados con el cuadro 20 y 21, primero calculamos la variable <code>poor</code> con la función <code><a href="../reference/poverty.html">poverty()</a></code> y luego estimamos la proporción de hogares y personas pobres según región (consideramos la variable <code>region_4</code>).</p>
+<code class="sourceCode R"><span><span class="va">ipm_hogares</span></span></code></pre></div>
+<p>Finalmente, podemos comparar estos resultados que brinda el paquete
+<code>ech</code>, con el <a href="http://www.ine.gub.uy/c/document_library/get_file?uuid=35dea1e6-98e0-41a5-ac79-46671dfcac6c&amp;groupId=10181" class="external-link">Boletín
+Técnico</a> que publica el INE.</p>
+<p>Concretamente para comparar los resultados con el cuadro 20 y 21,
+primero calculamos la variable <code>poor</code> con la función
+<code><a href="../reference/poverty.html">poverty()</a></code> y luego estimamos la proporción de hogares y
+personas pobres según región (consideramos la variable
+<code>region_4</code>).</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/poverty.html">poverty</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">df</span><span class="op">)</span>
-
-<span class="co"># Hogares según situación de pobreza </span>
-<span class="va">pobres_hogares_region</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_estimation_mean.html">get_estimation_mean</a></span><span class="op">(</span><span class="va">df</span>, variable <span class="op">=</span> <span class="st">"poor"</span>, by.x <span class="op">=</span> <span class="st">"region_3"</span>,level <span class="op">=</span> <span class="st">"h"</span>, ids <span class="op">=</span> <span class="st">"upm"</span>, estrato <span class="op">=</span> <span class="st">"estrato"</span><span class="op">)</span>
-<span class="va">pobres_hogares_region</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">poor</span> <span class="op">==</span> <span class="st">"Pobre"</span><span class="op">)</span>
-
-<span class="co"># Personas según situación de pobreza </span>
-<span class="va">pobres_personas_region</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_estimation_mean.html">get_estimation_mean</a></span><span class="op">(</span><span class="va">df</span>, variable <span class="op">=</span> <span class="st">"poor"</span>, by.x <span class="op">=</span> <span class="st">"region_3"</span>, level <span class="op">=</span> <span class="st">"i"</span>, ids <span class="op">=</span> <span class="st">"upm"</span>, estrato <span class="op">=</span> <span class="st">"estrato"</span><span class="op">)</span>
-<span class="va">pobres_personas_region</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">poor</span> <span class="op">==</span> <span class="st">"Pobre"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/poverty.html">poverty</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">df</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Hogares según situación de pobreza </span></span>
+<span><span class="va">pobres_hogares_region</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_estimation_mean.html">get_estimation_mean</a></span><span class="op">(</span><span class="va">df</span>, variable <span class="op">=</span> <span class="st">"poor"</span>, by.x <span class="op">=</span> <span class="st">"region_3"</span>,level <span class="op">=</span> <span class="st">"h"</span>, ids <span class="op">=</span> <span class="st">"upm"</span>, estrato <span class="op">=</span> <span class="st">"estrato"</span><span class="op">)</span></span>
+<span><span class="va">pobres_hogares_region</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">poor</span> <span class="op">==</span> <span class="st">"Pobre"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Personas según situación de pobreza </span></span>
+<span><span class="va">pobres_personas_region</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_estimation_mean.html">get_estimation_mean</a></span><span class="op">(</span><span class="va">df</span>, variable <span class="op">=</span> <span class="st">"poor"</span>, by.x <span class="op">=</span> <span class="st">"region_3"</span>, level <span class="op">=</span> <span class="st">"i"</span>, ids <span class="op">=</span> <span class="st">"upm"</span>, estrato <span class="op">=</span> <span class="st">"estrato"</span><span class="op">)</span></span>
+<span><span class="va">pobres_personas_region</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">poor</span> <span class="op">==</span> <span class="st">"Pobre"</span><span class="op">)</span></span></code></pre></div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -167,7 +214,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>

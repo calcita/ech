@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ech</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.3</span>
       </span>
     </div>
 
@@ -46,7 +46,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -90,29 +90,54 @@
 
     
     
-<p>La medición de los ingresos tiene un rezago de un mes ya que si el hogar fue encuestado, por ejemplo en marzo, en este mes se preguntó por los ingresos del mes pasado, es decir de febrero. A su vez, estos ingresos están expresados a precios corrientes, por lo cual, para hacerlos comparables entre los diferentes meses de la encuesta o de otros años es necesario llevarlos a una medida común. Para convertir los ingresos de precios corrientes a precios constantes debemos elegir un índice como puede ser el IPC (Índice de Precios al Consumo) o el IPAB (Índice de Precios de Alimentos y Bebidas) para construir un deflactor. Por ejemplo, para expresar los ingresos del hogar con la información de la ECH 2019, elegimos como mes base junio y como año base 2019 y como deflactor el IPC. Esto implica que debemos considerar los valores del IPC mensual desde diciembre 2018 a noviembre 2019.</p>
-<p>Obtener los datos del IPC es bastante sencillo usando el paquete <code>ech</code>, para ello existe la fucnión de hecho la función <code><a href="../reference/get_ipc.html">get_ipc()</a></code> que descarga el archivo de la web del INE y lo guarda en un formato tidy en el data frame <code>ipc_base2010</code>. La estructura del objeto es la siguiente:</p>
+<p>La medición de los ingresos tiene un rezago de un mes ya que si el
+hogar fue encuestado, por ejemplo en marzo, en este mes se preguntó por
+los ingresos del mes pasado, es decir de febrero. A su vez, estos
+ingresos están expresados a precios corrientes, por lo cual, para
+hacerlos comparables entre los diferentes meses de la encuesta o de
+otros años es necesario llevarlos a una medida común. Para convertir los
+ingresos de precios corrientes a precios constantes debemos elegir un
+índice como puede ser el IPC (Índice de Precios al Consumo) o el IPAB
+(Índice de Precios de Alimentos y Bebidas) para construir un deflactor.
+Por ejemplo, para expresar los ingresos del hogar con la información de
+la ECH 2019, elegimos como mes base junio y como año base 2019 y como
+deflactor el IPC. Esto implica que debemos considerar los valores del
+IPC mensual desde diciembre 2018 a noviembre 2019.</p>
+<p>Obtener los datos del IPC es bastante sencillo usando el paquete
+<code>ech</code>, para ello existe la fucnión de hecho la función
+<code><a href="../reference/get_ipc.html">get_ipc()</a></code> que descarga el archivo de la web del INE y lo
+guarda en un formato tidy en el data frame <code>ipc_base2010</code>. La
+estructura del objeto es la siguiente:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">tail</a></span><span class="op">(</span><span class="fu">ech</span><span class="fu">::</span><span class="va"><a href="../reference/ipc_base2010.html">ipc_base2010</a></span><span class="op">)</span>
-<span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 x 5</span></span>
-<span class="co">#&gt;   fecha      indice             mensual               acum_ano    acum_12_meses </span>
-<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> 2019-07-01 197.94             0.76000000000000001   6.07000000~ 7.54          </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> 2019-08-01 199.69             0.88                  7           7.75999999999~</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> 2019-09-01 200.72             0.52000000000000002   7.55999999~ 7.78000000000~</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">4</span> 2019-10-01 202.22999999999999 0.75                  8.35999999~ 8.33999999999~</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">5</span> 2019-11-01 203.08000000000001 0.41999999999999998   8.82000000~ 8.40000000000~</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">6</span> 2019-12-01 203.02000000000001 -0.029999999999999999 8.78999999~ 8.78999999999~</span></code></pre></div>
-<p>La función que permite obtener un deflactor es la función deflate(), que a su vez, utiliza internamente la función <code><a href="../reference/get_ipc.html">get_ipc()</a></code>. No utilizamos directamente ninguna de estas funciones, sino que la simplicidad de ech radica en que para calcular ingresos a precios constantes usamos la función <code><a href="../reference/income_constant_prices.html">income_constant_prices()</a></code> la cual utiliza internamente las otras dos funciones ya mencionadas.</p>
-<p>Antes de deflactar los ingresos del hogar, tenemos que tener cargado el objeto con los microdatos de la ECH.</p>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">tail</a></span><span class="op">(</span><span class="fu">ech</span><span class="fu">::</span><span class="va"><a href="../reference/ipc_base2010.html">ipc_base2010</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 8</span></span></span>
+<span><span class="co">#&gt;   fecha      indice             mensual  acum_…¹ acum_…² trime…³ cuatr…⁴ semes…⁵</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> 2022-03-01 250.41999999999999 1.11000… 4.4199… 9.3800… 4.4243… 4.3199… 5.6713…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> 2022-04-01 251.65000000000001 0.48999… 4.9400… 9.3699… 3.0972… 4.9372… 5.0993…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> 2022-05-01 252.81999999999999 0.46000… 5.4299… 9.3699… 2.0752… 3.5765… 5.3197…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> 2022-06-01 254.30000000000001 0.58999… 6.04    9.2899… 1.5493… 2.6728… 6.0422…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> 2022-07-01 256.25999999999999 0.77000… 6.8600… 9.5600… 1.8319… 2.3320… 4.9858…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> 2022-08-01 258.38             0.82999… 7.7400… 9.5299… 2.1991… 2.6743… 4.3200…</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># … with abbreviated variable names ¹​acum_ano, ²​acum_12_meses, ³​trimestre,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   ⁴​cuatrimestre, ⁵​semestre</span></span></span></code></pre></div>
+<p>La función que permite obtener un deflactor es la función deflate(),
+que a su vez, utiliza internamente la función <code><a href="../reference/get_ipc.html">get_ipc()</a></code>. No
+utilizamos directamente ninguna de estas funciones, sino que la
+simplicidad de ech radica en que para calcular ingresos a precios
+constantes usamos la función <code><a href="../reference/income_constant_prices.html">income_constant_prices()</a></code> la
+cual utiliza internamente las otras dos funciones ya mencionadas.</p>
+<p>Antes de deflactar los ingresos del hogar, tenemos que tener cargado
+el objeto con los microdatos de la ECH.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">ech</span><span class="op">)</span>
-<span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_microdata.html">get_microdata</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2019</span><span class="op">)</span>
-<span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/organize_names.html">organize_names</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">ech</span><span class="op">)</span></span>
+<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_microdata.html">get_microdata</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2019</span><span class="op">)</span></span>
+<span><span class="co">#df &lt;- organize_names(df)</span></span></code></pre></div>
 <p>Las variables a tener en cuenta en esta parte son:</p>
 <ul>
 <li>
-<code>ht11</code>: Ingreso total del hogar con valor locativo sin servicio doméstico</li>
+<code>ht11</code>: Ingreso total del hogar con valor locativo sin
+servicio doméstico</li>
 <li>
 <code>ht13</code>: Valor locativo</li>
 <li>
@@ -120,9 +145,16 @@
 <li>
 <code>numero</code>: Identificador del hogar</li>
 </ul>
-<p>Para convertir los ingresos del hogar, que están medidos en la variable <code>ht11</code>, de precios corrientes a precios constantes, usamos la función <code><a href="../reference/income_constant_prices.html">income_constant_prices()</a></code> y definimos sus parámetros: mes base (<code>base_month</code>), año base (<code>base_year</code>), el tipo de índice (<code>index</code>) que puede IPC o IPAB y el nivel del índice (<code>level</code>) que puede ser “G” (general) o “R” (regional que distingue entre Montevideo e Interior). Definimos como base enero de 2005.</p>
+<p>Para convertir los ingresos del hogar, que están medidos en la
+variable <code>ht11</code>, de precios corrientes a precios constantes,
+usamos la función <code><a href="../reference/income_constant_prices.html">income_constant_prices()</a></code> y definimos sus
+parámetros: mes base (<code>base_month</code>), año base
+(<code>base_year</code>), el tipo de índice (<code>index</code>) que
+puede IPC o IPAB y el nivel del índice (<code>level</code>) que puede
+ser “G” (general) o “R” (regional que distingue entre Montevideo e
+Interior). Definimos como base enero de 2005.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/income_constant_prices.html">income_constant_prices</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">df</span>, base_month <span class="op">=</span> <span class="fl">1</span>, base_year <span class="op">=</span> <span class="fl">2005</span>, index <span class="op">=</span> <span class="st">"IPC"</span>, level <span class="op">=</span> <span class="st">"G"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/income_constant_prices.html">income_constant_prices</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">df</span>, base_month <span class="op">=</span> <span class="fl">1</span>, base_year <span class="op">=</span> <span class="fl">2005</span>, index <span class="op">=</span> <span class="st">"IPC"</span>, level <span class="op">=</span> <span class="st">"G"</span><span class="op">)</span></span></code></pre></div>
 <p>Esto crea una serie de variables:</p>
 <ul>
 <li>
@@ -132,31 +164,54 @@
 <li>
 <code>rv_d</code>: valor locativo a precios constantes</li>
 <li>
-<code>y_wrv_d</code>: ingreso sin valor locativo a precios constantes</li>
+<code>y_wrv_d</code>: ingreso sin valor locativo a precios
+constantes</li>
 <li>
-<code>y_wrv_pc_d</code>: ingreso sin valor locativo per cápita a precios constantes</li>
+<code>y_wrv_pc_d</code>: ingreso sin valor locativo per cápita a
+precios constantes</li>
 </ul>
-<p>Para obtener la estimación de alguna de estas variables usamos la función <code><a href="../reference/get_estimation_mean.html">get_estimation_mean()</a></code>, para estimar la media, <code><a href="../reference/get_estimation_total.html">get_estimation_total()</a></code>, para estimar el total o <code><a href="../reference/get_estimation_median.html">get_estimation_median()</a></code> para estimar la mediana. Estas funciones tienen algunos argumentos que refieren al diseño de muestreo como:</p>
+<p>Para obtener la estimación de alguna de estas variables usamos la
+función <code><a href="../reference/get_estimation_mean.html">get_estimation_mean()</a></code>, para estimar la media,
+<code><a href="../reference/get_estimation_total.html">get_estimation_total()</a></code>, para estimar el total o
+<code><a href="../reference/get_estimation_median.html">get_estimation_median()</a></code> para estimar la mediana. Estas
+funciones tienen algunos argumentos que refieren al diseño de muestreo
+como:</p>
 <ul>
 <li>
-<code>numero</code>: se debe indicar la variable que identifica a los hogares</li>
+<code>numero</code>: se debe indicar la variable que identifica a
+los hogares</li>
 <li>
-<code>pesoano</code>: se debe indicar la variable uqe identifica los pesos asociados a cada hogar.</li>
+<code>pesoano</code>: se debe indicar la variable uqe identifica los
+pesos asociados a cada hogar.</li>
 <li>
-<code>ids</code>: se debe indicar la variable que identifica a la unidades primarias de muestreo.</li>
+<code>ids</code>: se debe indicar la variable que identifica a la
+unidades primarias de muestreo.</li>
 <li>
-<code>estrato</code>: se debe indicar la variable que identifica a los estratos.</li>
+<code>estrato</code>: se debe indicar la variable que identifica a
+los estratos.</li>
 </ul>
-<p>Para los microdatos de 2018 y 2019 la ECH pública cuenta con la información de las UPM y estratos. En la web del INE se encuentra en un archivo aparte pero la función <code><a href="../reference/get_microdata.html">get_microdata()</a></code> ya la agrega a los microdatos que genera de manera que no es necesario hacer un merge entre ambas bases. Para años anteriores no están disponible estás variables en la base pública.</p>
-<p>Es necesario definir <code>ids</code> y <code>estrato</code> que vienen con valor por defecto NULL, las demás se pueden dejar con sus valores por defecto, salvo que se usen registros de un mes o semestre en ese caso se debe cambiar el ponderador de los casos según corresponda.</p>
+<p>Para los microdatos de 2018 y 2019 la ECH pública cuenta con la
+información de las UPM y estratos. En la web del INE se encuentra en un
+archivo aparte pero la función <code><a href="../reference/get_microdata.html">get_microdata()</a></code> ya la agrega
+a los microdatos que genera de manera que no es necesario hacer un merge
+entre ambas bases. Para años anteriores no están disponible estás
+variables en la base pública.</p>
+<p>Es necesario definir <code>ids</code> y <code>estrato</code> que
+vienen con valor por defecto NULL, las demás se pueden dejar con sus
+valores por defecto, salvo que se usen registros de un mes o semestre en
+ese caso se debe cambiar el ponderador de los casos según
+corresponda.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/get_estimation_mean.html">get_estimation_mean</a></span><span class="op">(</span><span class="va">df</span>, variable <span class="op">=</span> <span class="st">"y_pc_d"</span>, level <span class="op">=</span> <span class="st">"i"</span>, ids <span class="op">=</span> <span class="st">"upm"</span>, estrato <span class="op">=</span> <span class="st">"estrato"</span><span class="op">)</span></code></pre></div>
-<p>Para estimar el ingreso medio de los hogares a precios constantes de enero 2005 según departamento, se debe definir en el argumento by.x la variable “nomdpto”</p>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/get_estimation_mean.html">get_estimation_mean</a></span><span class="op">(</span><span class="va">df</span>, variable <span class="op">=</span> <span class="st">"y_pc_d"</span>, level <span class="op">=</span> <span class="st">"i"</span>, ids <span class="op">=</span> <span class="st">"upm"</span>, estrato <span class="op">=</span> <span class="st">"estrato"</span><span class="op">)</span></span></code></pre></div>
+<p>Para estimar el ingreso medio de los hogares a precios constantes de
+enero 2005 según departamento, se debe definir en el argumento by.x la
+variable “nomdpto”</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Estimación de ingresos promedio per cápita a pesos constantes de ene/05 según dpto</span>
-<span class="fu"><a href="../reference/get_estimation_mean.html">get_estimation_mean</a></span><span class="op">(</span><span class="va">df</span>, variable <span class="op">=</span> <span class="st">"y_pc_d"</span>, by.x <span class="op">=</span> <span class="st">"nomdpto"</span>, level <span class="op">=</span> <span class="st">"i"</span>, ids <span class="op">=</span> <span class="st">"upm"</span>, estrato <span class="op">=</span> <span class="st">"estrato"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Estimación de ingresos promedio per cápita a pesos constantes de ene/05 según dpto</span></span>
+<span><span class="fu"><a href="../reference/get_estimation_mean.html">get_estimation_mean</a></span><span class="op">(</span><span class="va">df</span>, variable <span class="op">=</span> <span class="st">"y_pc_d"</span>, by.x <span class="op">=</span> <span class="st">"nomdpto"</span>, level <span class="op">=</span> <span class="st">"i"</span>, ids <span class="op">=</span> <span class="st">"upm"</span>, estrato <span class="op">=</span> <span class="st">"estrato"</span><span class="op">)</span></span></code></pre></div>
 <!-- Una forma de mostrar estos resultados es mediante un gráfico como el siguiente: -->
-<p>Podemos comparar estos resultados con los publicados por el Observatorio Territorio Uruguay de OPP que se encuentran <a href="https://otu.opp.gub.uy/?q=listados/listados_datos_formato&amp;id=2727&amp;cant=0&amp;fecha=2019-01-01" class="external-link">aquí</a>.</p>
+<p>Podemos comparar estos resultados con los publicados por el
+Observatorio Territorio Uruguay de OPP que se encuentran <a href="https://otu.opp.gub.uy/?q=listados/listados_datos_formato&amp;id=2727&amp;cant=0&amp;fecha=2019-01-01" class="external-link">aquí</a>.</p>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -174,7 +229,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>

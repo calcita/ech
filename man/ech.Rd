@@ -4,10 +4,8 @@
 \name{ech}
 \alias{ech}
 \title{\code{ech} package}
-\description{
+\concept{utils
 Caja de Herramientas para el procesamiento de la Encuesta Continua de Hogares de Uruguay
-}
-\details{
+
 See the README on
-\href{https://github.com/calcita/ech/blob/master/README.md}{Github}
-}
+\href{https://github.com/calcita/ech/blob/master/README.md}{Github}}

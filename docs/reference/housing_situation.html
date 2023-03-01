@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ech</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.3</span>
       </span>
     </div>
 
@@ -29,7 +29,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -66,55 +66,82 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">housing_situation</span><span class="op">(</span>
-  data <span class="op">=</span> <span class="fu">ech</span><span class="fu">::</span><span class="va"><a href="toy_ech_2018.html">toy_ech_2018</a></span>,
-  c5_1 <span class="op">=</span> <span class="st">"c5_1"</span>,
-  c5_2 <span class="op">=</span> <span class="st">"c5_2"</span>,
-  c5_3 <span class="op">=</span> <span class="st">"c5_3"</span>,
-  c5_4 <span class="op">=</span> <span class="st">"c5_4"</span>,
-  c5_5 <span class="op">=</span> <span class="st">"c5_5"</span>,
-  c5_6 <span class="op">=</span> <span class="st">"c5_6"</span>,
-  c5_7 <span class="op">=</span> <span class="st">"c5_7"</span>,
-  c5_8 <span class="op">=</span> <span class="st">"c5_8"</span>,
-  c5_9 <span class="op">=</span> <span class="st">"c5_9"</span>,
-  c5_10 <span class="op">=</span> <span class="st">"c5_10"</span>,
-  c5_11 <span class="op">=</span> <span class="st">"c5_11"</span>,
-  c5_12 <span class="op">=</span> <span class="st">"c5_12"</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">housing_situation</span><span class="op">(</span></span>
+<span>  data <span class="op">=</span> <span class="fu">ech</span><span class="fu">::</span><span class="va"><a href="toy_ech_2018.html">toy_ech_2018</a></span>,</span>
+<span>  c5_1 <span class="op">=</span> <span class="st">"c5_1"</span>,</span>
+<span>  c5_2 <span class="op">=</span> <span class="st">"c5_2"</span>,</span>
+<span>  c5_3 <span class="op">=</span> <span class="st">"c5_3"</span>,</span>
+<span>  c5_4 <span class="op">=</span> <span class="st">"c5_4"</span>,</span>
+<span>  c5_5 <span class="op">=</span> <span class="st">"c5_5"</span>,</span>
+<span>  c5_6 <span class="op">=</span> <span class="st">"c5_6"</span>,</span>
+<span>  c5_7 <span class="op">=</span> <span class="st">"c5_7"</span>,</span>
+<span>  c5_8 <span class="op">=</span> <span class="st">"c5_8"</span>,</span>
+<span>  c5_9 <span class="op">=</span> <span class="st">"c5_9"</span>,</span>
+<span>  c5_10 <span class="op">=</span> <span class="st">"c5_10"</span>,</span>
+<span>  c5_11 <span class="op">=</span> <span class="st">"c5_11"</span>,</span>
+<span>  c5_12 <span class="op">=</span> <span class="st">"c5_12"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>data</dt>
 <dd><p>data.frame</p></dd>
+
+
 <dt>c5_1</dt>
 <dd><p>Variable name of roof condensation</p></dd>
+
+
 <dt>c5_2</dt>
 <dd><p>Variable name of roof drips</p></dd>
+
+
 <dt>c5_3</dt>
 <dd><p>Variable name of walls cracks</p></dd>
+
+
 <dt>c5_4</dt>
 <dd><p>Variable name of broken doors or windows</p></dd>
+
+
 <dt>c5_5</dt>
 <dd><p>Variable name of floors cracks</p></dd>
+
+
 <dt>c5_6</dt>
 <dd><p>Variable name of plaster drop on walls</p></dd>
+
+
 <dt>c5_7</dt>
 <dd><p>Variable name of detached ceilings</p></dd>
+
+
 <dt>c5_8</dt>
 <dd><p>Variable name of poor sunlight</p></dd>
+
+
 <dt>c5_9</dt>
 <dd><p>Variable name of poor ventilation</p></dd>
+
+
 <dt>c5_10</dt>
 <dd><p>Variable name of floods when it rains</p></dd>
+
+
 <dt>c5_11</dt>
 <dd><p>Variable name of in danger of collapse</p></dd>
+
+
 <dt>c5_12</dt>
 <dd><p>Variable name of dampness in the foundations</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>data.frame</p>
+    
+
+<p>data.frame</p>
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -132,7 +159,7 @@ Aviso: El script no es un producto oficial de INE.</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">toy_ech_2018</span> <span class="op">&lt;-</span> <span class="fu">housing_situation</span><span class="op">(</span>data <span class="op">=</span> <span class="fu">ech</span><span class="fu">::</span><span class="va"><a href="toy_ech_2018.html">toy_ech_2018</a></span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">toy_ech_2018</span> <span class="op">&lt;-</span> <span class="fu">housing_situation</span><span class="op">(</span>data <span class="op">=</span> <span class="fu">ech</span><span class="fu">::</span><span class="va"><a href="toy_ech_2018.html">toy_ech_2018</a></span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> A variable has been created: </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>  	 housing_situation (situacion coyuntural de la vivienda)</span>
 </code></pre></div>
@@ -149,7 +176,7 @@ Aviso: El script no es un producto oficial de INE.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

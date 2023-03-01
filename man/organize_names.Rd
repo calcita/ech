@@ -25,4 +25,8 @@ Aviso: El script no es un producto oficial de INE.
 toy_ech_2018 <- organize_names(data = ech::toy_ech_2018, year = 2018, level = "h")
 }
 }
+\seealso{
+Other organize: 
+\code{\link{to_ascii}()}
+}
 \concept{organize}

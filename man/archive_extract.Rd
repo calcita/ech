@@ -21,6 +21,7 @@ Aviso: El script no es un producto oficial de INE.
 \seealso{
 Other utils: 
 \code{\link{dates_ech}()},
-\code{\link{unlabelled}()}
+\code{\link{unlabelled}()},
+\code{\link{unrarPath}}
 }
 \concept{utils}

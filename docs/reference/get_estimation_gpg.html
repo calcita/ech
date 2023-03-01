@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ech</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.3</span>
       </span>
     </div>
 
@@ -29,7 +29,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -66,40 +66,57 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">get_estimation_gpg</span><span class="op">(</span>
-  data <span class="op">=</span> <span class="fu">ech</span><span class="fu">::</span><span class="va"><a href="toy_ech_2018.html">toy_ech_2018</a></span>,
-  variable <span class="op">=</span> <span class="st">"total_income_per_hour"</span>,
-  e26 <span class="op">=</span> <span class="st">"e26"</span>,
-  by <span class="op">=</span> <span class="cn">NULL</span>,
-  ids <span class="op">=</span> <span class="cn">NULL</span>,
-  estrato <span class="op">=</span> <span class="cn">NULL</span>,
-  pesoano <span class="op">=</span> <span class="st">"pesoano"</span>,
-  stat <span class="op">=</span> <span class="st">"media"</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">get_estimation_gpg</span><span class="op">(</span></span>
+<span>  data <span class="op">=</span> <span class="fu">ech</span><span class="fu">::</span><span class="va"><a href="toy_ech_2018.html">toy_ech_2018</a></span>,</span>
+<span>  variable <span class="op">=</span> <span class="st">"total_income_per_hour"</span>,</span>
+<span>  e26 <span class="op">=</span> <span class="st">"e26"</span>,</span>
+<span>  by <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  ids <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  estrato <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  pesoano <span class="op">=</span> <span class="st">"pesoano"</span>,</span>
+<span>  stat <span class="op">=</span> <span class="st">"media"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>data</dt>
 <dd><p>data.frame</p></dd>
+
+
 <dt>variable</dt>
 <dd><p>Variable name of total income per hour</p></dd>
+
+
 <dt>e26</dt>
 <dd><p>Variable name of sex</p></dd>
+
+
 <dt>by</dt>
 <dd><p>data frame column</p></dd>
+
+
 <dt>ids</dt>
 <dd><p>Variable name of cluster</p></dd>
+
+
 <dt>estrato</dt>
 <dd><p>Variable name of strata</p></dd>
+
+
 <dt>pesoano</dt>
 <dd><p>Variable name of weights</p></dd>
+
+
 <dt>stat</dt>
 <dd><p>Media or Median</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>table</p>
+    
+
+<p>table</p>
     </div>
     <div id="see-also">
     <h2>See also</h2>
@@ -115,15 +132,15 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># \donttest{</span></span>
-<span class="r-in"><span class="va">toy_ech_2018</span> <span class="op">&lt;-</span> <span class="fu"><a href="labor_income_per_hour.html">labor_income_per_hour</a></span><span class="op">(</span>data <span class="op">=</span> <span class="fu">ech</span><span class="fu">::</span><span class="va"><a href="toy_ech_2018.html">toy_ech_2018</a></span>, base_month <span class="op">=</span> <span class="fl">6</span>, base_year <span class="op">=</span> <span class="fl">2018</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
+<span class="r-in"><span><span class="va">toy_ech_2018</span> <span class="op">&lt;-</span> <span class="fu"><a href="labor_income_per_hour.html">labor_income_per_hour</a></span><span class="op">(</span>data <span class="op">=</span> <span class="fu">ech</span><span class="fu">::</span><span class="va"><a href="toy_ech_2018.html">toy_ech_2018</a></span>, base_month <span class="op">=</span> <span class="fl">6</span>, base_year <span class="op">=</span> <span class="fl">2018</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Variables have been created: </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>  	 hours_per_month (Cantidad de horas trabajadas al mes en ocupacion principal) &amp;</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>             total_income_per_hour (Total de ingresos por trabajo por hora)</span>
-<span class="r-in"><span class="fu">get_estimation_gpg</span><span class="op">(</span>data <span class="op">=</span> <span class="va">toy_ech_2018</span>, variable <span class="op">=</span> <span class="st">"total_income_per_hour"</span>, e26 <span class="op">=</span> <span class="st">"e26"</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu">get_estimation_gpg</span><span class="op">(</span>data <span class="op">=</span> <span class="va">toy_ech_2018</span>, variable <span class="op">=</span> <span class="st">"total_income_per_hour"</span>, e26 <span class="op">=</span> <span class="st">"e26"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        value</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.01808578</span>
-<span class="r-in"><span class="co"># }</span></span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -138,7 +155,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

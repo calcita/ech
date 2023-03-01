@@ -76,7 +76,7 @@ organize_names <- function(data, year, level = "hyp"){
 # }
 
 #' to_ascii
-#'
+#' @family organize
 #' @param x a column
 #' @param upper logic
 #'

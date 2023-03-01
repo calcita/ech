@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ech</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.3</span>
       </span>
     </div>
 
@@ -29,7 +29,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -66,19 +66,24 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">get_dictionary</span><span class="op">(</span>year <span class="op">=</span> <span class="cn">NULL</span>, folder <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">get_dictionary</span><span class="op">(</span>year <span class="op">=</span> <span class="cn">NULL</span>, folder <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>year</dt>
 <dd><p>allows download data from 2011 to 2019. Default the last year</p></dd>
+
+
 <dt>folder</dt>
 <dd><p>Folder where are the files or be download</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>unrar files from INE web and the respective data frame in tibble format</p>
+    
+
+<p>unrar files from INE web and the respective data frame in tibble format</p>
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -90,7 +95,6 @@ Aviso: El script no es un producto oficial de INE.</p>
     <div class="dont-index"><p>Other dwnld_read: 
 <code><a href="get_cba_cbna.html">get_cba_cbna</a>()</code>,
 <code><a href="get_ipab_region.html">get_ipab_region</a>()</code>,
-<code><a href="get_ipab.html">get_ipab</a>()</code>,
 <code><a href="get_ipc_region.html">get_ipc_region</a>()</code>,
 <code><a href="get_ipc.html">get_ipc</a>()</code>,
 <code><a href="get_microdata.html">get_microdata</a>()</code>,
@@ -109,7 +113,7 @@ Aviso: El script no es un producto oficial de INE.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

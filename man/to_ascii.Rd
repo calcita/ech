@@ -22,3 +22,8 @@ to_ascii
 d <- lapply(dic, to_ascii)
 }
 }
+\seealso{
+Other organize: 
+\code{\link{organize_names}()}
+}
+\concept{organize}

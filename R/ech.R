@@ -1,5 +1,5 @@
 #' \code{ech} package
-#'
+#' @family utils
 #' Caja de Herramientas para el procesamiento de la Encuesta Continua de Hogares de Uruguay
 #'
 #' See the README on
