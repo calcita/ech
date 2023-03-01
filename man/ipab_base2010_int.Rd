@@ -12,7 +12,7 @@ A data frame with 108 rows and 2 variables:
  }
 }
 \source{
-\url{http://www.ine.gub.uy/}
+\url{https://www.ine.gub.uy/}
 }
 \usage{
 ipab_base2010_int

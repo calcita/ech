@@ -18,7 +18,7 @@ A data frame with 990 rows and 5 variables:
  }
 }
 \source{
-\url{http://www.ine.gub.uy/}
+\url{https://www.ine.gub.uy/}
 }
 \usage{
 ipc_base2010

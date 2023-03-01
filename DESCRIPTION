@@ -22,7 +22,7 @@ Authors@R:
 Maintainer: Gabriela Mathieu <calcita@gmx.li>
 Description: R toolbox for the processing of the Encuesta
     Continua de Hogares (ECH) from Uruguay at
-    <http://www.ine.gub.uy/encuesta-continua-de-hogares1> conducted by the
+    <https://www.ine.gub.uy/encuesta-continua-de-hogares1> conducted by the
     Instituto Nacional de Estadistica (INE).
 License: GPL-3
 Depends: 

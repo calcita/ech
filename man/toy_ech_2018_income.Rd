@@ -22,7 +22,7 @@ A data frame with 1000 rows and 9 variables:
 }
 }
 \source{
-\url{http://www.ine.gub.uy/}
+\url{https://www.ine.gub.uy/}
 }
 \usage{
 toy_ech_2018_income

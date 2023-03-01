@@ -585,7 +585,7 @@
 #'   \item{estrato}{ }
 #'   ...
 #' }
-#' @source \url{http://www.ine.gub.uy/}
+#' @source \url{https://www.ine.gub.uy/}
 #' @details
 #' Disclaimer: This script is not an official INE product.
 #' Aviso: El script no es un producto oficial de INE.
@@ -609,7 +609,7 @@
 #'   \item{region_4}{}
 #'   ...
 #' }
-#' @source \url{http://www.ine.gub.uy/}
+#' @source \url{https://www.ine.gub.uy/}
 #' @details
 #' Disclaimer: This script is not an official INE product.
 #' Aviso: El script no es un producto oficial de INE.
@@ -644,7 +644,7 @@
 #'   \item{var22}{ECH variables names 2022 primer semestre}
 #'   ...
 #'}
-#' @source \url{http://www.ine.gub.uy/}
+#' @source \url{https://www.ine.gub.uy/}
 #' @details
 #' Disclaimer: This script is not an official INE product.
 #' Aviso: El script no es un producto oficial de INE.
@@ -660,7 +660,7 @@
 #'   \item{ciiu_3}{Code of Clasificación Industrial Internacional Uniforme Rev. 3}
 #'   ...
 #'  }
-#' @source \url{http://www.ine.gub.uy/}
+#' @source \url{https://www.ine.gub.uy/}
 #' @details
 #' Disclaimer: This script is not an official INE product.
 #' Aviso: El script no es un producto oficial de INE.
@@ -680,7 +680,7 @@
 #'   \item{acum_ano}{acumulated IPC}
 #'   \item{acum_12_meses}{acumulated IPC last 12 month}
 #'  }
-#' @source \url{http://www.ine.gub.uy/}
+#' @source \url{https://www.ine.gub.uy/}
 #' @details
 #' Disclaimer: This script is not an official INE product.
 #' Aviso: El script no es un producto oficial de INE.
@@ -694,7 +694,7 @@
 #'   \item{fecha}{date from 2011 to 2019}
 #'   \item{indice}{IPC}
 #'  }
-#' @source \url{http://www.ine.gub.uy/}
+#' @source \url{https://www.ine.gub.uy/}
 #' @details
 #' Disclaimer: This script is not an official INE product.
 #' Aviso: El script no es un producto oficial de INE.
@@ -707,7 +707,7 @@
 #'   \item{fecha}{date from 2011 to 2019}
 #'   \item{indice}{IPC}
 #'  }
-#' @source \url{http://www.ine.gub.uy/}
+#' @source \url{https://www.ine.gub.uy/}
 #' @details
 #' Disclaimer: This script is not an official INE product.
 #' Aviso: El script no es un producto oficial de INE.
@@ -722,7 +722,7 @@
 #'   \item{cbna}{CBNA}
 #'   \item{cbt_lp}{CBT}
 #'  }
-#' @source \url{http://www.ine.gub.uy/}
+#' @source \url{https://www.ine.gub.uy/}
 #' @details
 #' Disclaimer: This script is not an official INE product.
 #' Aviso: El script no es un producto oficial de INE.
@@ -737,7 +737,7 @@
 #'   \item{cbna}{CBNA}
 #'   \item{cbt_lp}{CBT}
 #'  }
-#' @source \url{http://www.ine.gub.uy/}
+#' @source \url{https://www.ine.gub.uy/}
 #' @details
 #' Disclaimer: This script is not an official INE product.
 #' Aviso: El script no es un producto oficial de INE.
@@ -753,7 +753,7 @@
 #'   \item{cbna}{CBNA}
 #'   \item{cbt_lp}{CBT}
 #'  }
-#' @source \url{http://www.ine.gub.uy/}
+#' @source \url{https://www.ine.gub.uy/}
 #' @details
 #' Disclaimer: This script is not an official INE product.
 #' Aviso: El script no es un producto oficial de INE.
@@ -767,7 +767,7 @@
 #'   \item{fecha}{date from 1997 to 2020}
 #'   \item{indice}{IPAB}
 #'  }
-#' @source \url{http://www.ine.gub.uy/}
+#' @source \url{https://www.ine.gub.uy/}
 #' @details
 #' Disclaimer: This script is not an official INE product.
 #' Aviso: El script no es un producto oficial de INE.
@@ -780,7 +780,7 @@
 #'   \item{fecha}{date from 2011 to 2019}
 #'   \item{indice}{IPAB}
 #'  }
-#' @source \url{http://www.ine.gub.uy/}
+#' @source \url{https://www.ine.gub.uy/}
 #' @details
 #' Disclaimer: This script is not an official INE product.
 #' Aviso: El script no es un producto oficial de INE.
@@ -793,7 +793,7 @@
 #'   \item{fecha}{date from 2011 to 2019}
 #'   \item{indice}{IPAB}
 #'  }
-#' @source \url{http://www.ine.gub.uy/}
+#' @source \url{https://www.ine.gub.uy/}
 #' @details
 #' Disclaimer: This script is not an official INE product.
 #' Aviso: El script no es un producto oficial de INE.
@@ -809,7 +809,7 @@
 #'   \item{upm_sav}{url for upm download}
 #'   \item{dic}{url for dictionary download}
 #'  }
-#' @source \url{http://www.ine.gub.uy/}
+#' @source \url{https://www.ine.gub.uy/}
 #' @details
 #' Disclaimer: This script is not an official INE product.
 #' Aviso: El script no es un producto oficial de INE.

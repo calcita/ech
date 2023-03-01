@@ -12,7 +12,7 @@ A data frame with 120 rows and 2 variables:
  }
 }
 \source{
-\url{http://www.ine.gub.uy/}
+\url{https://www.ine.gub.uy/}
 }
 \usage{
 ipc_base2010_mdeo

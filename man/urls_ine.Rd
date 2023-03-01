@@ -14,7 +14,7 @@ A data frame with 9 rows and 4 variables:
  }
 }
 \source{
-\url{http://www.ine.gub.uy/}
+\url{https://www.ine.gub.uy/}
 }
 \usage{
 urls_ine
