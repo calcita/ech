@@ -656,7 +656,11 @@ get_estimation_gini <- function(data = ech::toy_ech_2018,
     b <-  as.factor((d[, by]))
     e <- as.integer(d[, estrato])
     i <-  as.integer(d[, ids])
-    estimation <- laeken::gini(inc = v, weights = p, design = e, cluster = i, var = "bootstrap", bootType = "naive", breakdown = b, seed = 1234, R = r)
+    suppressWarnings({
+    estimation <- laeken::gini(inc = v, weights = p, design = e, cluster = i,
+                               var = "bootstrap", bootType = "naive",
+                               breakdown = b, seed = 1234, R = r)
+    })
     suppressMessages({
       value <- estimation[[2]]
       value_total <- data.frame(dplyr::bind_cols("Total",estimation[[1]]))

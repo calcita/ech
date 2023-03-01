@@ -56,7 +56,7 @@ VignetteBuilder:
 ByteCompile: true
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.2.1
+RoxygenNote: 7.2.3
 SystemRequirements: 'unrar' (Linux/macOS) or '7-Zip' (Windows)
     to work with '.rar' files, GDAL (>= 3.0.2), GEOS (>= 3.8.0), PROJ (>=
     6.2.1)

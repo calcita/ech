@@ -47,7 +47,7 @@ household_type <- function(data = ech::toy_ech_2018,
                   other_rel = ifelse(.data[[e30]] == 12, 1, 0),
                   no_rel = ifelse(.data[[e30]] == 13, 1, 0)) %>%
     dplyr::group_by(.data$numero, .add = T) %>%
-    dplyr::mutate(sex_householder = sum(.data$sex_householder),
+    dplyr::mutate(sex_householder = sum(sex_householder),
                   under_18 = sum(.data$under_18),
                   partner = sum(.data$partner),
                   child = sum(.data$child),
@@ -58,8 +58,8 @@ household_type <- function(data = ech::toy_ech_2018,
                   no_rel = sum(.data$no_rel),
                   household_type = ifelse(.data$partner ==0 & .data$child == 0 & .data$parents_brosis == 0 & .data$grandchild == 0 & .data$child_law == 0 & .data$other_rel == 0 & .data$no_rel == 0, 1, #Single person
                                           ifelse(.data$partner > 0 & .data$child == 0 & .data$parents_brosis == 0 & .data$grandchild == 0 & .data$child_law == 0 & .data$other_rel == 0 & .data$no_rel== 0, 2,#Couple without children
-                                                 ifelse(.data$partner == 0 & .data$child > 0  & .data$sex_householder == 1 & .data$parents_brosis == 0 & .data$grandchild == 0 & .data$child_law == 0 & .data$other_rel == 0 & .data$no_rel == 0, 3, #Single parent or Single father
-                                                        ifelse(.data$partner == 0 & .data$child > 0 & .data$sex_householder == 2 & .data$parents_brosis == 0 & .data$grandchild == 0 & .data$child_law == 0 & .data$other_rel == 0 & .data$no_rel == 0, 4, #Single parent or Single mother
+                                                 ifelse(.data$partner == 0 & .data$child > 0  & sex_householder == 1 & .data$parents_brosis == 0 & .data$grandchild == 0 & .data$child_law == 0 & .data$other_rel == 0 & .data$no_rel == 0, 3, #Single parent or Single father
+                                                        ifelse(.data$partner == 0 & .data$child > 0 & sex_householder == 2 & .data$parents_brosis == 0 & .data$grandchild == 0 & .data$child_law == 0 & .data$other_rel == 0 & .data$no_rel == 0, 4, #Single parent or Single mother
                                                                ifelse(.data$partner > 0 & .data$child > 0 & .data$parents_brosis ==0 &  .data$grandchild == 0 & .data$child_law == 0 &  .data$other_rel == 0 & .data$no_rel == 0, 5, #Couple with children
                                                                       ifelse((.data$parents_brosis > 0 | .data$grandchild > 0 | .data$child_law > 0 | .data$other_rel > 0) & .data$no_rel == 0, 6, #Extended
                                                                              ifelse(.data$no_rel > 0, 7, NA))))))), # composite) %>%
@@ -68,7 +68,7 @@ household_type <- function(data = ech::toy_ech_2018,
     ) %>%
     ungroup()
 
-  data <- data %>% dplyr::select(everything(), -.data$sex_householder:-.data$no_rel)
+  data <- data %>% dplyr::select(everything(), -sex_householder:-no_rel)
   message("A variable has been created: \n \t household_type (Tipo de hogar)")
   return(data)
 

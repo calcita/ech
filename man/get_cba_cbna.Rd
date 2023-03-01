@@ -27,7 +27,6 @@ Aviso: El script no es un producto oficial de INE.
 Other dwnld_read: 
 \code{\link{get_dictionary}()},
 \code{\link{get_ipab_region}()},
-\code{\link{get_ipab}()},
 \code{\link{get_ipc_region}()},
 \code{\link{get_ipc}()},
 \code{\link{get_microdata}()},

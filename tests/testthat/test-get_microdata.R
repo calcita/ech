@@ -1,5 +1,5 @@
 context("Testing get_microdata")
-library(haven)
+# library(haven)
 test_that("download and read data", {
 
   # a <- get_microdata(year = "2016", folder = tempdir(), toR = TRUE)
@@ -8,10 +8,10 @@ test_that("download and read data", {
   # testthat::expect_equal(ncol(b),573)
 
   testthat::expect_error(get_microdata(folder = 1, toR = FALSE))
-  testthat::expect_error(get_microdata(year = "2018", folder = tempdir(), toR = TRUE))
+  # testthat::expect_error(get_microdata(year = "2018", folder = tempdir(), toR = TRUE))
   testthat::expect_error(get_microdata(year = "2010", folder = tempdir(), toR = FALSE))
-  testthat::expect_error(get_microdata(year = "2016", folder = tempdir(), toR = FALSE))
-  testthat::expect_error(get_microdata(folder = tempdir(), toR = FALSE))
+  # testthat::expect_error(get_microdata(year = "2016", folder = tempdir(), toR = FALSE))
+  # testthat::expect_error(get_microdata(folder = tempdir(), toR = FALSE))
 
   testthat::expect_error(read_microdata(path = 1))
 

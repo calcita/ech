@@ -187,47 +187,47 @@ get_cba_cbna <- function(folder = tempdir(), region, sheet = 1){
 }
 
 
-#' This function allows you to get the IPAB (Indice de precios de alimentos y bebidas) data
-#' @family dwnld_read
-#' @param folder temporal folder
-#' @param sheet sheet number. Default 1
-#' @importFrom readxl read_xls
-#' @importFrom janitor remove_empty
-#' @importFrom dplyr bind_rows slice filter_all bind_cols any_vars mutate_all
-#' @importFrom tidyr fill
-#' @importFrom curl has_internet
-#'
-#' @return data.frame
-#' @details
-#' Disclaimer: This script is not an official INE product.
-#' Aviso: El script no es un producto oficial de INE.
+# This function allows you to get the IPAB (Indice de precios de alimentos y bebidas) data
+# @family dwnld_read
+# @param folder temporal folder
+# @param sheet sheet number. Default 1
+# @importFrom readxl read_xls
+# @importFrom janitor remove_empty
+# @importFrom dplyr bind_rows slice filter_all bind_cols any_vars mutate_all
+# @importFrom tidyr fill
+# @importFrom curl has_internet
+#
+# @return data.frame
+# @details
+# Disclaimer: This script is not an official INE product.
+# Aviso: El script no es un producto oficial de INE.
 
-get_ipab <- function(folder = tempdir(), sheet = 1){
-  assertthat::assert_that(.x = curl::has_internet(), msg = "No internet access was detected. Please check your connection.")
-  assertthat::assert_that(is.character(folder), msg =  "Sorry... :( \n \t folder parameter must be character")
-
-  u <- "https://www.ine.gub.uy/c/document_library/get_file?uuid=c4b5efaa-cdd4-497a-ab78-e3138e4f08dc&groupId=10181"
-  f <- fs::path(folder, "IPC Div M_B10.xls")
-  if (identical(.Platform$OS.type, "unix")) {
-    try(utils::download.file(u, f, mode = 'wb', method = 'wget'))
-  } else {
-    try(utils::download.file(u, f, mode = 'wb', method = 'libcurl'))
-  }
-  suppressMessages({
-    df <- readxl::read_xls(f, sheet = sheet)
-    df <- df[,-1:-2] %>% janitor::remove_empty("rows")
-    df <- dplyr::bind_rows(dplyr::slice(df, 1), dplyr::filter_all(df, dplyr::any_vars(grepl(c('Divisiones'), .))), dplyr::filter_all(df, dplyr::any_vars(grepl(c('Alimentos y Bebidas No Alcoh'), .))))
-    df[,1] <- c("yy", "mm", "indice")
-    df <- dplyr::bind_cols(t(df[1,]), t(df[2,]), t(df[3,]))
-    names(df) <- df[1,]
-    df <- df %>% dplyr::slice(-1) %>%
-      janitor::remove_empty("rows") %>%
-      tidyr::fill(yy) %>%
-      dplyr::mutate_all(tolower) %>%
-      ech::dates_ech() %>%
-      dplyr::select(fecha, indice)
-  })
-}
+# get_ipab <- function(folder = tempdir(), sheet = 1){
+#   assertthat::assert_that(.x = curl::has_internet(), msg = "No internet access was detected. Please check your connection.")
+#   assertthat::assert_that(is.character(folder), msg =  "Sorry... :( \n \t folder parameter must be character")
+#
+#   u <- "https://www.ine.gub.uy/c/document_library/get_file?uuid=c4b5efaa-cdd4-497a-ab78-e3138e4f08dc&groupId=10181"
+#   f <- fs::path(folder, "IPC Div M_B10.xls")
+#   if (identical(.Platform$OS.type, "unix")) {
+#     try(utils::download.file(u, f, mode = 'wb', method = 'wget'))
+#   } else {
+#     try(utils::download.file(u, f, mode = 'wb', method = 'libcurl'))
+#   }
+#   suppressMessages({
+#     df <- readxl::read_xls(f, sheet = sheet)
+#     df <- df[,-1:-2] %>% janitor::remove_empty("rows")
+#     df <- dplyr::bind_rows(dplyr::slice(df, 1), dplyr::filter_all(df, dplyr::any_vars(grepl(c('Divisiones'), .))), dplyr::filter_all(df, dplyr::any_vars(grepl(c('Alimentos y Bebidas No Alcoh'), .))))
+#     df[,1] <- c("yy", "mm", "indice")
+#     df <- dplyr::bind_cols(t(df[1,]), t(df[2,]), t(df[3,]))
+#     names(df) <- df[1,]
+#     df <- df %>% dplyr::slice(-1) %>%
+#       janitor::remove_empty("rows") %>%
+#       tidyr::fill(yy) %>%
+#       dplyr::mutate_all(tolower) %>%
+#       ech::dates_ech() %>%
+#       dplyr::select(fecha, indice)
+#   })
+# }
 
 #' This function allows you to get the IPAB (Indice de precios de alimentos y bebidas) data
 #' @family dwnld_read
