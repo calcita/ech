@@ -1,6 +1,6 @@
 #' \code{ech} package
 #' @family utils
-#' @description Caja de Herramientas para el procesamiento de la Encuesta Continua de Hogares de Uruguay
+#' @description Toolbox for Downloading and Processing Microdata from the Continuous Household Survey of Uruguay (ECH)
 #'
 #' See the README on
 #' \href{https://github.com/calcita/ech/blob/master/README.md}{Github}

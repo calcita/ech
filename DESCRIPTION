@@ -1,5 +1,5 @@
 Package: ech
-Title: Toolbox for downloading and processing microdata from the Continuous Household Survey of Uruguay (ECH)
+Title: Toolbox for Downloading and Processing Microdata from the Continuous Household Survey of Uruguay (ECH)
 Version: 0.1.3
 Authors@R: 
     c(person(given = "Gabriela",

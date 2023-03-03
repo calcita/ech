@@ -45,6 +45,7 @@ Other dataset:
 \code{\link{ipab_base2010}},
 \code{\link{ipc_base2010_int}},
 \code{\link{ipc_base2010_mdeo}},
+\code{\link{ipc_base2010}},
 \code{\link{toy_ech_2018}},
 \code{\link{urls_ine}}
 }
