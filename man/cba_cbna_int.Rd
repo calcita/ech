@@ -30,14 +30,12 @@ Aviso: El script no es un producto oficial de INE.
 Other dataset: 
 \code{\link{cba_cbna_mdeo}},
 \code{\link{cba_cbna_rur}},
-\code{\link{ciiu4}},
 \code{\link{dic}},
 \code{\link{ipab_base2010_int}},
 \code{\link{ipab_base2010_mdeo}},
 \code{\link{ipab_base2010}},
 \code{\link{ipc_base2010_int}},
 \code{\link{ipc_base2010_mdeo}},
-\code{\link{ipc_base2010}},
 \code{\link{toy_ech_2018_income}},
 \code{\link{toy_ech_2018}},
 \code{\link{urls_ine}}

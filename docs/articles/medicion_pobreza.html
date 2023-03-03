@@ -136,7 +136,7 @@ crónica”.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">ech</span><span class="op">)</span></span>
 <span><span class="co"># cargamos la base de ECH y estandarizamos los nombres de variables</span></span>
-<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_microdata.html">get_microdata</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2019</span><span class="op">)</span></span>
+<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_microdata.html">get_microdata</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2019</span>, folder <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#df &lt;- organize_names(df, year = 2019)</span></span>
 <span></span>
 <span><span class="co"># calculamos las variables de pobreza monteria</span></span>
@@ -180,7 +180,7 @@ la función.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ipm_hogares</span></span></code></pre></div>
 <p>Finalmente, podemos comparar estos resultados que brinda el paquete
-<code>ech</code>, con el <a href="http://www.ine.gub.uy/c/document_library/get_file?uuid=35dea1e6-98e0-41a5-ac79-46671dfcac6c&amp;groupId=10181" class="external-link">Boletín
+<code>ech</code>, con el <a href="https://www.ine.gub.uy/c/document_library/get_file?uuid=35dea1e6-98e0-41a5-ac79-46671dfcac6c&amp;groupId=10181" class="external-link">Boletín
 Técnico</a> que publica el INE.</p>
 <p>Concretamente para comparar los resultados con el cuadro 20 y 21,
 primero calculamos la variable <code>poor</code> con la función

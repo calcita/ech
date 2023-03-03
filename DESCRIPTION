@@ -1,5 +1,5 @@
 Package: ech
-Title: Toolbox for ECH with R
+Title: Toolbox for downloading and processing microdata from the Continuous Household Survey of Uruguay (ECH)
 Version: 0.1.3
 Authors@R: 
     c(person(given = "Gabriela",
@@ -20,10 +20,7 @@ Authors@R:
       person(family = "Instituto Nacional de Estadistica, Uruguay (INE)",
              role = "dtc"))
 Maintainer: Gabriela Mathieu <calcita@gmx.li>
-Description: R toolbox for the processing of the Encuesta
-    Continua de Hogares (ECH) from Uruguay at
-    <https://www.ine.gub.uy/encuesta-continua-de-hogares1> conducted by the
-    Instituto Nacional de Estadistica (INE).
+Description: This package allows downloading ECH data, processing them and generating new indicators: poverty, education, employment, etc. All data are downloaded from the official site of the National Institute of Statistics at <https://www.ine.gub.uy/encuesta-continua-de-hogares1>.
 License: GPL-3
 Depends: 
     R (>= 3.5.0)

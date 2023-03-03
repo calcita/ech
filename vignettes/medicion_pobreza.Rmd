@@ -7,17 +7,14 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r, echo = FALSE}
-LOCAL <- identical(Sys.getenv("LOCAL"), "TRUE")
-knitr::opts_chunk$set(purl = LOCAL)
-```
-
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
   dpi = 400
 )
+
+options(rmarkdown.html_vignette.check_title = FALSE)
 ```
 
 El paquete ech proveé tres funciones para instrumentar la medición de la pobreza de las personas y hogares: `poverty()`, `unsatisfied_basic_needs()` e `integrated_poverty_measure()`.
@@ -30,10 +27,10 @@ La función `integrated_poverty_measure()` permite calcular un indicador que vin
 
 Veamos la aplicación de cada una de estas funciones.
 
-```{r, eval = LOCAL}
+```{r, eval = FALSE}
 library(ech)
 # cargamos la base de ECH y estandarizamos los nombres de variables
-df <- get_microdata(year = 2019)
+df <- get_microdata(year = 2019, folder = tempdir())
 #df <- organize_names(df, year = 2019)
 
 # calculamos las variables de pobreza monteria
@@ -50,7 +47,7 @@ df <- integrated_poverty_measure(data = df)
 
 Estimamos a nivel de hogares y personas los indicadores de pobreza a partir de las variables calculadas anteriormente. Dado que para 2019 contamos en la base pública con las UPM y los estrato, los definimos en la función.
 
-```{r, eval = LOCAL}
+```{r, eval = FALSE}
 # Distribución de hogares según cantidad de NBI que presenta
 nbi_hogares <- get_estimation_mean(df, variable = "UBN", level = "h", ids = "upm", estrato = "estrato")
 
@@ -70,23 +67,23 @@ ipm_hogares <- get_estimation_mean(df, variable = "integrated_poverty_measure", 
 
 Veamos los resultados de cada una de las estimaciones
 
-```{r, eval = LOCAL}
+```{r, eval = FALSE}
 nbi_hogares
 ```
 
-```{r, eval = LOCAL}
+```{r, eval = FALSE}
 nbi_personas
 ```
-```{r, eval = LOCAL}
+```{r, eval = FALSE}
 pobres_hogares
 ```
-```{r, eval = LOCAL}
+```{r, eval = FALSE}
 pobres_personas
 ```
 
 
 
-```{r, eval = LOCAL}
+```{r, eval = FALSE}
 ipm_hogares
 ```
 
@@ -94,7 +91,7 @@ Finalmente, podemos comparar estos resultados que brinda el paquete `ech`, con e
 
 Concretamente para comparar los resultados con el cuadro 20 y 21, primero calculamos la variable `poor` con la función `poverty()` y luego estimamos la proporción de hogares y personas pobres según región (consideramos la variable `region_4`).
 
-```{r, eval = LOCAL}
+```{r, eval = FALSE}
 df <- poverty(data = df)
 
 # Hogares según situación de pobreza 
