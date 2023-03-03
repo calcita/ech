@@ -21,7 +21,7 @@ coverage](https://codecov.io/gh/calcita/ech/branch/master/graph/badge.svg)](http
 <!-- badges: end -->
 
 Caja de herramientas para el procesamiento de la [Encuesta Continua de
-Hogares de Uruguay](http://www.ine.gub.uy/encuesta-continua-de-hogares1)
+Hogares de Uruguay](https://www.ine.gub.uy/encuesta-continua-de-hogares1)
 del Instituto Nacional de Estadística (INE). Pretendemos contribuir a la
 comunidad de usuaries de R en Uruguay, facilitando el uso de una de las
 encuestas socioeconómicas más importantes del país. En este sentido, el

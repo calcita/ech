@@ -289,6 +289,7 @@ get_ipab_region <- function(folder = tempdir(), region, sheet = 1){
 #' @param index IPC or IPAB
 #' @param level General index ('G'), Montevideo index ('M') or Interior index ('I')
 #' @param df_year ECH year
+#' @return vector
 #' @importFrom dplyr select slice mutate
 #' @importFrom rlang .data
 #' @export
@@ -547,10 +548,12 @@ organize_educ <- function(data, year, e49 = "e49", e579 = "e579", numero = "nume
 #' @export
 #' @importFrom dplyr %>%
 #' @usage lhs \%>\% rhs
+#' @return No return value, called for side effects
 NULL
 
 #' add_geom
 #' See \code{geouy::\link[geouy]{add_geom}} for details.
+#' @return sf and data.frame object
 #' @name add_geom
 #' @rdname add_geom
 #' @keywords internal
@@ -560,6 +563,7 @@ NULL
 
 #' plot_geouy
 #' See \code{geouy::\link[geouy]{plot_geouy}} for details.
+#' @return ggplot object of a choropleth map with x geometries and col values.
 #' @name plot_geouy
 #' @rdname plot_geouy
 #' @keywords internal

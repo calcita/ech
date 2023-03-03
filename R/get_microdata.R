@@ -92,6 +92,7 @@ knownArchiveExtensions <- c(knownInternalArchiveExtensions, knownSystemArchiveEx
 #' @family utils
 #' @param archive.path Ruta de origen del archivo comprimido
 #' @param dest.path Ruta destino del archivo descomprimido
+#' @return No return value, called for side effects
 #' @export
 #' @details
 #' Disclaimer: This script is not an official INE product.
@@ -113,7 +114,7 @@ archive_extract <- function(archive.path = NULL, dest.path = NULL) {
 
   # unpack file
   system(cmd)
-  print("El archivo fue descomprimido correctamente")
+  message("El archivo fue descomprimido correctamente")
 }
 
 

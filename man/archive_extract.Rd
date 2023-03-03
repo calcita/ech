@@ -11,6 +11,9 @@ archive_extract(archive.path = NULL, dest.path = NULL)
 
 \item{dest.path}{Ruta destino del archivo descomprimido}
 }
+\value{
+No return value, called for side effects
+}
 \description{
 Extract compressed archives
 }

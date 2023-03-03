@@ -9,7 +9,7 @@
 #' @details
 #' Disclaimer: This script is not an official INE product.
 #' Aviso: El script no es un producto oficial de INE.
-#'
+#' @return data.frame, tbl and tbl_df object
 #' @examples
 #' \donttest{
 #' toy_ech_2018 <- employment(data = ech::toy_ech_2018, pobpcoac = "pobpcoac")

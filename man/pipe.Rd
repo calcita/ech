@@ -7,6 +7,9 @@ See \code{dplyr::\link[dplyr]{\%>\%}} for details.}
 \usage{
 lhs \%>\% rhs
 }
+\value{
+No return value, called for side effects
+}
 \description{
 Pipe operator
 See \code{dplyr::\link[dplyr]{\%>\%}} for details.

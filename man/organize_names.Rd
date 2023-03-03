@@ -13,6 +13,9 @@ organize_names(data, year, level = "hyp")
 
 \item{level}{(string) indicates whether the base to be labelled is of the type "household", "h", "individual", "i" or both, "hyp". Default "hyp"}
 }
+\value{
+data.frame
+}
 \description{
 This function allows you to organize the variables names of ECH with reference in 2017.
 }
