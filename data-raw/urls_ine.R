@@ -1,65 +1,36 @@
-urls_ine <- structure(list(yy = 2011:2019, md_sav = structure(c("https:/www.ine.gub.uy/c/document_library/get_file?uuid=cc986929-5916-4d4f-a87b-3fb20a169879&groupId=10181",
-                                                                "https:/www.ine.gub.uy/c/document_library/get_file?uuid=144daa3d-0ebf-4106-ae11-a150511addf9&groupId=10181",
-                                                                "https:/www.ine.gub.uy/c/document_library/get_file?uuid=9ddf38cc-99bb-4196-992b-77530b025237&groupId=10181",
-                                                                "https:/www.ine.gub.uy/c/document_library/get_file?uuid=68cc1d11-e017-4a6d-a749-5a1e1a4a5306&groupId=10181",
-                                                                "https:/www.ine.gub.uy/c/document_library/get_file?uuid=7c62ef78-0cc6-4fba-aae4-921ff5ceddd6&groupId=10181",
-                                                                "https:/www.ine.gub.uy/c/document_library/get_file?uuid=715c873b-539f-4e92-9159-d38063270951&groupId=10181",
-                                                                "https:/www.ine.gub.uy/c/document_library/get_file?uuid=e38ea53c-7253-4007-9f67-2f5f161eea91&groupId=10181",
-                                                                "https:/www.ine.gub.uy/c/document_library/get_file?uuid=b63b566f-8d11-443d-bcd8-944f137c5aaf&groupId=10181",
-                                                                "https:/www.ine.gub.uy/c/document_library/get_file?uuid=8c934d2a-ad67-4208-8f21-96989696510e&groupId=10181"),
+urls_ine <- structure(list(yy = 2011:2022, md_sav = structure(c("http://www.ine.gub.uy:82/Anda5/index.php/catalog/726/download/1096",
+                                                                "http://www.ine.gub.uy:82/Anda5/index.php/catalog/725/download/1088",
+                                                                "http://www.ine.gub.uy:82/Anda5/index.php/catalog/724/download/1079",
+                                                                "http://www.ine.gub.uy:82/Anda5/index.php/catalog/723/download/1071",
+                                                                "http://www.ine.gub.uy:82/Anda5/index.php/catalog/721/download/1062",
+                                                                "http://www.ine.gub.uy:82/Anda5/index.php/catalog/722/download/1044",
+                                                                "http://www.ine.gub.uy:82/Anda5/index.php/catalog/720/download/1019",
+                                                                "http://www.ine.gub.uy:82/Anda5/index.php/catalog/719/download/1015",
+                                                                "http://www.ine.gub.uy:82/Anda5/index.php/catalog/715/download/956",
+                                                                "http://www.ine.gub.uy:82/Anda5/index.php/catalog/714/download/957",
+                                                                "http://www.ine.gub.uy:82/Anda5/index.php/catalog/716/download/971", # Segundo semestre implantacion
+                                                                "http://www.ine.gub.uy:82/Anda5/index.php/catalog/717/download/984"), #Primer semestre implantacion
                                                               class = c("fs_path", "character")),
                            upm_sav = structure(c("https:/www.ine.gub.uy/c/document_library",
                                                  "https:/www.ine.gub.uy/c/document_library", "https:/www.ine.gub.uy/c/document_library",
                                                  "https:/www.ine.gub.uy/c/document_library", "https:/www.ine.gub.uy/c/document_library",
                                                  "https:/www.ine.gub.uy/c/document_library", "https:/www.ine.gub.uy/c/document_library",
-                                                 "https:/www.ine.gub.uy/c/document_library/get_file?uuid=1fd19a7a-5520-4c27-b648-b72053421f5b&groupId=10181",
-                                                 "https:/www.ine.gub.uy/c/document_library/get_file?uuid=c9d8b233-734a-4de6-890f-1cdbd48c063f&groupId=10181"), class = c("fs_path", "character")),
-                           dic = structure(c("https:/www.ine.gub.uy/c/document_library/get_file?uuid=54523778-5f53-4df1-a265-3ff520941bca&groupId=10181",
-                                             "https:/www.ine.gub.uy/c/document_library/get_file?uuid=8e8963a6-b9f2-47f3-abf5-119f988ad868&groupId=10181",
-                                             "https:/www.ine.gub.uy/c/document_library/get_file?uuid=055d37e5-d587-4ba7-8a0d-358cd99a9e24&groupId=10181",
-                                             "https:/www.ine.gub.uy/c/document_library/get_file?uuid=9c9612fd-3bc3-47c5-a684-06daaf25da6c&groupId=10181",
-                                             "https:/www.ine.gub.uy/c/document_library/get_file?uuid=6287d12b-1003-4402-86ba-a48866743d88&groupId=10181",
-                                             "https:/www.ine.gub.uy/c/document_library/get_file?uuid=54f72e41-e671-4bea-993c-631596e16883&groupId=10181",
-                                             "https:/www.ine.gub.uy/c/document_library/get_file?uuid=b60f247b-03cb-4bb1-b84b-5d7328479fe2&groupId=10181",
-                                             "https:/www.ine.gub.uy/c/document_library/get_file?uuid=73b6cc21-1bb0-483b-a463-819315b5fff3&groupId=10181",
-                                             "https:/www.ine.gub.uy/c/document_library/get_file?uuid=800e3c63-5cbc-4842-ad00-745f801f9220&groupId=10181"
+                                                 "http://www.ine.gub.uy:82/Anda5/index.php/catalog/719/download/1016",
+                                                 "https:/www.ine.gub.uy/c/document_library", "https:/www.ine.gub.uy/c/document_library",
+                                                 "https:/www.ine.gub.uy/c/document_library", "https:/www.ine.gub.uy/c/document_library"
+                                                 ), class = c("fs_path", "character")),
+                           dic = structure(c("http://www.ine.gub.uy:82/Anda5/index.php/catalog/726/download/1098",
+                                             "http://www.ine.gub.uy:82/Anda5/index.php/catalog/725/download/1089",
+                                             "http://www.ine.gub.uy:82/Anda5/index.php/catalog/724/download/1080",
+                                             "http://www.ine.gub.uy:82/Anda5/index.php/catalog/723/download/1073",
+                                             "http://www.ine.gub.uy:82/Anda5/index.php/catalog/721/download/1040",
+                                             "https://www5.ine.gub.uy/documents/ANDA/ECH/2016/Diccionario%20ECH%20%202016.xls",
+                                             "https://www5.ine.gub.uy/documents/ANDA/ECH/2017/Dicccionario%20de%20Variables%20ECH%202017.xls",
+                                             "https://www5.ine.gub.uy/documents/ANDA/ECH/2018/Diccionario%20de%20Variables%20ECH%202018.xlsx",
+                                             "https://www5.ine.gub.uy/documents/ANDA/ECH/2019/Diccionario%20de%20Variables%20ECH%202019%20(1).xlsx",
+                                             "https://www5.ine.gub.uy/documents/ANDA/ECH/2020/DICCIONARIO%20ECH%202020_tercerosBaseReducida%20(1).xlsx",
+                                             "https://www5.ine.gub.uy/documents/ANDA/ECH/2021/DICCIONARIO%20ECH%202021_2doSemestre_Terceros%20(2).xlsx", #Segundo semestre
+                                             "https://www5.ine.gub.uy/documents/ANDA/ECH/2022/DICCIONARIO%20ECH%202022_1erSemestre%20(1).xlsx" #primer semestre
                            ), class = c("fs_path", "character"))), class = "data.frame", row.names = c(NA, -9L))
-
-  #
-  #
-  # data.frame(yy = 2011:2019,
-  #                  md_sav = fs::path("https://www.ine.gub.uy/c/document_library",
-  #                                    c("get_file?uuid=cc986929-5916-4d4f-a87b-3fb20a169879&groupId=10181", #2011
-  #                                      "get_file?uuid=144daa3d-0ebf-4106-ae11-a150511addf9&groupId=10181",
-  #                                      "get_file?uuid=9ddf38cc-99bb-4196-992b-77530b025237&groupId=10181",
-  #                                      "get_file?uuid=68cc1d11-e017-4a6d-a749-5a1e1a4a5306&groupId=10181",
-  #                                      "get_file?uuid=7c62ef78-0cc6-4fba-aae4-921ff5ceddd6&groupId=10181", #2015
-  #                                      "get_file?uuid=715c873b-539f-4e92-9159-d38063270951&groupId=10181",
-  #                                      "get_file?uuid=e38ea53c-7253-4007-9f67-2f5f161eea91&groupId=10181",
-  #                                      "get_file?uuid=b63b566f-8d11-443d-bcd8-944f137c5aaf&groupId=10181",
-  #                                      "get_file?uuid=8c934d2a-ad67-4208-8f21-96989696510e&groupId=10181"  #2019
-  #                                    )),
-  #                  upm_sav = fs::path("https://www.ine.gub.uy/c/document_library/",
-  #                                     c("",
-  #                                       "",
-  #                                       "",
-  #                                       "",
-  #                                       "",
-  #                                       "",
-  #                                       "",
-  #                                       "get_file?uuid=1fd19a7a-5520-4c27-b648-b72053421f5b&groupId=10181",
-  #                                       "get_file?uuid=c9d8b233-734a-4de6-890f-1cdbd48c063f&groupId=10181"
-  #                                     )),
-  #                  dic = fs::path("https://www.ine.gub.uy/c/document_library",
-  #                                 c("get_file?uuid=54523778-5f53-4df1-a265-3ff520941bca&groupId=10181",
-  #                                   "get_file?uuid=8e8963a6-b9f2-47f3-abf5-119f988ad868&groupId=10181",
-  #                                   "get_file?uuid=055d37e5-d587-4ba7-8a0d-358cd99a9e24&groupId=10181",
-  #                                   "get_file?uuid=9c9612fd-3bc3-47c5-a684-06daaf25da6c&groupId=10181",
-  #                                   "get_file?uuid=6287d12b-1003-4402-86ba-a48866743d88&groupId=10181",
-  #                                   "get_file?uuid=54f72e41-e671-4bea-993c-631596e16883&groupId=10181",
-  #                                   "get_file?uuid=b60f247b-03cb-4bb1-b84b-5d7328479fe2&groupId=10181",
-  #                                   "get_file?uuid=73b6cc21-1bb0-483b-a463-819315b5fff3&groupId=10181",
-  #                                   "get_file?uuid=800e3c63-5cbc-4842-ad00-745f801f9220&groupId=10181")),
-  #                  stringsAsFactors = FALSE)
 
 usethis::use_data(urls_ine, overwrite = TRUE)
