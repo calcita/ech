@@ -23,6 +23,9 @@ deflate(
 
 \item{df_year}{ECH year}
 }
+\value{
+vector
+}
 \description{
 This function allows you to calculate a deflator coefficient
 }

@@ -11,6 +11,9 @@ employment(data = ech::toy_ech_2018, pobpcoac = "pobpcoac")
 
 \item{pobpcoac}{Variable name of definition of population by activity status. Default: "pobpcoac"}
 }
+\value{
+data.frame, tbl and tbl_df object
+}
 \description{
 This function allows you to calculate the variables: PEA, PET, PO, PD
 }

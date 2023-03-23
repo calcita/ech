@@ -14,4 +14,12 @@ An object of class \code{NULL} of length 0.
 \description{
 The known path for unrar or 7z
 }
+\seealso{
+Other utils: 
+\code{\link{archive_extract}()},
+\code{\link{dates_ech}()},
+\code{\link{ech}},
+\code{\link{unlabelled}()}
+}
+\concept{utils}
 \keyword{datasets}

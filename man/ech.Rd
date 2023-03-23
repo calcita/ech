@@ -5,9 +5,16 @@
 \alias{ech}
 \title{\code{ech} package}
 \description{
-Caja de Herramientas para el procesamiento de la Encuesta Continua de Hogares de Uruguay
-}
-\details{
+Toolbox for Downloading and Processing Microdata from the Continuous Household Survey of Uruguay (ECH)
+
 See the README on
 \href{https://github.com/calcita/ech/blob/master/README.md}{Github}
 }
+\seealso{
+Other utils: 
+\code{\link{archive_extract}()},
+\code{\link{dates_ech}()},
+\code{\link{unlabelled}()},
+\code{\link{unrarPath}}
+}
+\concept{utils}

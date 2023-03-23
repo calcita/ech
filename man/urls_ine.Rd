@@ -14,7 +14,7 @@ A data frame with 9 rows and 4 variables:
  }
 }
 \source{
-\url{http://www.ine.gub.uy/}
+\url{https://www.ine.gub.uy/}
 }
 \usage{
 urls_ine
@@ -31,7 +31,6 @@ Other dataset:
 \code{\link{cba_cbna_int}},
 \code{\link{cba_cbna_mdeo}},
 \code{\link{cba_cbna_rur}},
-\code{\link{ciiu4}},
 \code{\link{dic}},
 \code{\link{ipab_base2010_int}},
 \code{\link{ipab_base2010_mdeo}},

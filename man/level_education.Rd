@@ -50,6 +50,9 @@ level_education(
 
 \item{e49}{Variable name of attendance school ever}
 }
+\value{
+data.frame
+}
 \description{
 This function allows you to calculate the highest level of education achieved
 }

@@ -1,6 +1,6 @@
 #' \code{ech} package
-#'
-#' Caja de Herramientas para el procesamiento de la Encuesta Continua de Hogares de Uruguay
+#' @family utils
+#' @description Toolbox for Downloading and Processing Microdata from the Continuous Household Survey of Uruguay (ECH)
 #'
 #' See the README on
 #' \href{https://github.com/calcita/ech/blob/master/README.md}{Github}
@@ -105,5 +105,8 @@ if(getRversion() >= "2.15.1") utils::globalVariables(c(".",
                                                        "e201_1c",
                                                        "e201_1d",
                                                        "e51_4_a",
-                                                       "e51_4_b"
+                                                       "e51_4_b",
+                                                       "mes_y_ano",
+                                                       "no_rel",
+                                                       "sex_householder"
                                                        ))

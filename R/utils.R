@@ -15,7 +15,7 @@ get_ipc <- function(folder = tempdir()){
   assertthat::assert_that(is.character(folder), msg = "Sorry... :( \n \t folder parameter must be character")
   assertthat::assert_that(.x = curl::has_internet(), msg = "No internet access was detected. Please check your connection.")
 
-  u <- "http://www.ine.gub.uy/c/document_library/get_file?uuid=2e92084a-94ec-4fec-b5ca-42b40d5d2826&groupId=10181"
+  u <- "https://www.ine.gub.uy/c/document_library/get_file?uuid=2e92084a-94ec-4fec-b5ca-42b40d5d2826&groupId=10181"
   f <- fs::path(folder, "IPC gral var M_B10.xls")
   if (identical(.Platform$OS.type, "unix")) {
     try(utils::download.file(u, f, mode = 'wb', method = 'wget'))
@@ -30,7 +30,7 @@ get_ipc <- function(folder = tempdir()){
      df <- df[-c(1:4),]
      df <- janitor::clean_names(df) %>%
       dplyr::mutate(fecha = janitor::excel_numeric_to_date(as.numeric(as.character(.data$mes_y_ano)), date_system = "modern")) %>%
-      dplyr::select(.data$fecha, dplyr::everything(), -.data$mes_y_ano)
+      dplyr::select(fecha, dplyr::everything(), -mes_y_ano)
     ipc_base2010 <- df
   })
 }
@@ -85,11 +85,11 @@ get_ipc_region <- function(folder = tempdir(), region, sheet = 1){
   assertthat::assert_that(region %in% c("M", "I"), msg = "Sorry... :( \n \t region parameter must be 'M' for Montevideo or 'I' for Interior")
 
   if (region == "M") {
-    u <- "http://www.ine.gub.uy/c/document_library/get_file?uuid=c7628833-9b64-44a4-ac97-d13353ee79ac&groupId=10181"
+    u <- "https://www.ine.gub.uy/c/document_library/get_file?uuid=c7628833-9b64-44a4-ac97-d13353ee79ac&groupId=10181"
     f <- fs::path(folder, "IPC 3.1 indvarinc_ div M_B10_Mon.xls")
   }
   else {
-    u <- "http://www.ine.gub.uy/c/document_library/get_file?uuid=61f9e884-781d-44be-9760-6d69f214b5b3&groupId=10181"
+    u <- "https://www.ine.gub.uy/c/document_library/get_file?uuid=61f9e884-781d-44be-9760-6d69f214b5b3&groupId=10181"
     f <- fs::path(folder, "IPC 3.2 indvarinc_ div M_B10_Int.xls")
   }
   if (identical(.Platform$OS.type, "unix")) {
@@ -142,7 +142,7 @@ get_cba_cbna <- function(folder = tempdir(), region, sheet = 1){
   assertthat::assert_that(is.character(folder), msg =  "Sorry... :( \n \t folder parameter must be character")
   assertthat::assert_that(region %in% c("M", "I", "R"), msg =  "Sorry... :( \n \t region parameter must be 'M' for Montevideo, 'I' for Interior urbano or 'R' for Interior rural")
 
-  u <- "http://www.ine.gub.uy/c/document_library/get_file?uuid=1675e7d0-6fe0-49bd-bf3f-a46bd6334c0c&groupId=10181"
+  u <- "https://www.ine.gub.uy/c/document_library/get_file?uuid=1675e7d0-6fe0-49bd-bf3f-a46bd6334c0c&groupId=10181"
   f <- fs::path(folder, "CBA_LP_LI_M.xls")
   if (identical(.Platform$OS.type, "unix")) {
     try(utils::download.file(u, f, mode = 'wb', method = 'wget'))
@@ -187,47 +187,47 @@ get_cba_cbna <- function(folder = tempdir(), region, sheet = 1){
 }
 
 
-#' This function allows you to get the IPAB (Indice de precios de alimentos y bebidas) data
-#' @family dwnld_read
-#' @param folder temporal folder
-#' @param sheet sheet number. Default 1
-#' @importFrom readxl read_xls
-#' @importFrom janitor remove_empty
-#' @importFrom dplyr bind_rows slice filter_all bind_cols any_vars mutate_all
-#' @importFrom tidyr fill
-#' @importFrom curl has_internet
-#'
-#' @return data.frame
-#' @details
-#' Disclaimer: This script is not an official INE product.
-#' Aviso: El script no es un producto oficial de INE.
+# This function allows you to get the IPAB (Indice de precios de alimentos y bebidas) data
+# @family dwnld_read
+# @param folder temporal folder
+# @param sheet sheet number. Default 1
+# @importFrom readxl read_xls
+# @importFrom janitor remove_empty
+# @importFrom dplyr bind_rows slice filter_all bind_cols any_vars mutate_all
+# @importFrom tidyr fill
+# @importFrom curl has_internet
+#
+# @return data.frame
+# @details
+# Disclaimer: This script is not an official INE product.
+# Aviso: El script no es un producto oficial de INE.
 
-get_ipab <- function(folder = tempdir(), sheet = 1){
-  assertthat::assert_that(.x = curl::has_internet(), msg = "No internet access was detected. Please check your connection.")
-  assertthat::assert_that(is.character(folder), msg =  "Sorry... :( \n \t folder parameter must be character")
-
-  u <- "http://www.ine.gub.uy/c/document_library/get_file?uuid=c4b5efaa-cdd4-497a-ab78-e3138e4f08dc&groupId=10181"
-  f <- fs::path(folder, "IPC Div M_B10.xls")
-  if (identical(.Platform$OS.type, "unix")) {
-    try(utils::download.file(u, f, mode = 'wb', method = 'wget'))
-  } else {
-    try(utils::download.file(u, f, mode = 'wb', method = 'libcurl'))
-  }
-  suppressMessages({
-    df <- readxl::read_xls(f, sheet = sheet)
-    df <- df[,-1:-2] %>% janitor::remove_empty("rows")
-    df <- dplyr::bind_rows(dplyr::slice(df, 1), dplyr::filter_all(df, dplyr::any_vars(grepl(c('Divisiones'), .))), dplyr::filter_all(df, dplyr::any_vars(grepl(c('Alimentos y Bebidas No Alcoh'), .))))
-    df[,1] <- c("yy", "mm", "indice")
-    df <- dplyr::bind_cols(t(df[1,]), t(df[2,]), t(df[3,]))
-    names(df) <- df[1,]
-    df <- df %>% dplyr::slice(-1) %>%
-      janitor::remove_empty("rows") %>%
-      tidyr::fill(yy) %>%
-      dplyr::mutate_all(tolower) %>%
-      ech::dates_ech() %>%
-      dplyr::select(fecha, indice)
-  })
-}
+# get_ipab <- function(folder = tempdir(), sheet = 1){
+#   assertthat::assert_that(.x = curl::has_internet(), msg = "No internet access was detected. Please check your connection.")
+#   assertthat::assert_that(is.character(folder), msg =  "Sorry... :( \n \t folder parameter must be character")
+#
+#   u <- "https://www.ine.gub.uy/c/document_library/get_file?uuid=c4b5efaa-cdd4-497a-ab78-e3138e4f08dc&groupId=10181"
+#   f <- fs::path(folder, "IPC Div M_B10.xls")
+#   if (identical(.Platform$OS.type, "unix")) {
+#     try(utils::download.file(u, f, mode = 'wb', method = 'wget'))
+#   } else {
+#     try(utils::download.file(u, f, mode = 'wb', method = 'libcurl'))
+#   }
+#   suppressMessages({
+#     df <- readxl::read_xls(f, sheet = sheet)
+#     df <- df[,-1:-2] %>% janitor::remove_empty("rows")
+#     df <- dplyr::bind_rows(dplyr::slice(df, 1), dplyr::filter_all(df, dplyr::any_vars(grepl(c('Divisiones'), .))), dplyr::filter_all(df, dplyr::any_vars(grepl(c('Alimentos y Bebidas No Alcoh'), .))))
+#     df[,1] <- c("yy", "mm", "indice")
+#     df <- dplyr::bind_cols(t(df[1,]), t(df[2,]), t(df[3,]))
+#     names(df) <- df[1,]
+#     df <- df %>% dplyr::slice(-1) %>%
+#       janitor::remove_empty("rows") %>%
+#       tidyr::fill(yy) %>%
+#       dplyr::mutate_all(tolower) %>%
+#       ech::dates_ech() %>%
+#       dplyr::select(fecha, indice)
+#   })
+# }
 
 #' This function allows you to get the IPAB (Indice de precios de alimentos y bebidas) data
 #' @family dwnld_read
@@ -246,10 +246,10 @@ get_ipab_region <- function(folder = tempdir(), region, sheet = 1){
   assertthat::assert_that(region %in% c("M", "I"), msg = "Sorry... :( \n \t region parameter must be 'M' for Montevideo or 'I' for Interior")
 
   if (region == "M") {
-    u <- "http://ine.gub.uy/c/document_library/get_file?uuid=c7628833-9b64-44a4-ac97-d13353ee79ac&groupId=10181"
+    u <- "https://ine.gub.uy/c/document_library/get_file?uuid=c7628833-9b64-44a4-ac97-d13353ee79ac&groupId=10181"
     f <- fs::path(folder, "IPC 3.1 indvarinc_ div M_B10_Mon.xls")
   } else {
-    u <- "http://ine.gub.uy/c/document_library/get_file?uuid=61f9e884-781d-44be-9760-6d69f214b5b3&groupId=10181"
+    u <- "https://ine.gub.uy/c/document_library/get_file?uuid=61f9e884-781d-44be-9760-6d69f214b5b3&groupId=10181"
     f <- fs::path(folder, "IPC 3.2 indvarinc_ div M_B10_Int.xls")
   }
   if (identical(.Platform$OS.type, "unix")) {
@@ -289,8 +289,10 @@ get_ipab_region <- function(folder = tempdir(), region, sheet = 1){
 #' @param index IPC or IPAB
 #' @param level General index ('G'), Montevideo index ('M') or Interior index ('I')
 #' @param df_year ECH year
+#' @return vector
 #' @importFrom dplyr select slice mutate
 #' @importFrom rlang .data
+#' @export
 #' @details
 #' Disclaimer: This script is not an official INE product.
 #' Aviso: El script no es un producto oficial de INE.
@@ -524,7 +526,7 @@ organize_educ <- function(data, year, e49 = "e49", e579 = "e579", numero = "nume
 #   assertthat::assert_that(is.character(folder), msg = "Sorry... :( \n \t folder parameter must be character")
 #   assertthat::assert_that(is.numeric(version), msg = "Sorry... :( \n \t version parameter must be numeric")
 #   assertthat::assert_that(.x = curl::has_internet(), msg = "No internet access was detected. Please check your connection.")
-#   u <- "http://www.ine.gub.uy/documents/10181/33330/CORRESPONDENCIA+CIUU4+A+CIUU3.pdf/623c43cb-009c-4da9-b48b-45282745063b"
+#   u <- "https://www.ine.gub.uy/documents/10181/33330/CORRESPONDENCIA+CIUU4+A+CIUU3.pdf/623c43cb-009c-4da9-b48b-45282745063b"
 #   f <- fs::path(folder, "ciiu4.pdf")
 #   if (identical(.Platform$OS.type, "unix")) {
 #     try(utils::download.file(u, f, mode = 'wb', method = 'wget'))
@@ -550,10 +552,12 @@ organize_educ <- function(data, year, e49 = "e49", e579 = "e579", numero = "nume
 #' @export
 #' @importFrom dplyr %>%
 #' @usage lhs \%>\% rhs
+#' @return No return value, called for side effects
 NULL
 
 #' add_geom
 #' See \code{geouy::\link[geouy]{add_geom}} for details.
+#' @return sf and data.frame object
 #' @name add_geom
 #' @rdname add_geom
 #' @keywords internal
@@ -563,6 +567,7 @@ NULL
 
 #' plot_geouy
 #' See \code{geouy::\link[geouy]{plot_geouy}} for details.
+#' @return ggplot object of a choropleth map with x geometries and col values.
 #' @name plot_geouy
 #' @rdname plot_geouy
 #' @keywords internal

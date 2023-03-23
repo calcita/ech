@@ -4,12 +4,12 @@
 \alias{to_ascii}
 \title{to_ascii}
 \usage{
-to_ascii(x, upper = T)
+to_ascii(x, upper = TRUE)
 }
 \arguments{
 \item{x}{a column}
 
-\item{upper}{logic}
+\item{upper}{logic. Default TRUE}
 }
 \value{
 vector
@@ -22,3 +22,8 @@ to_ascii
 d <- lapply(dic, to_ascii)
 }
 }
+\seealso{
+Other organize: 
+\code{\link{organize_names}()}
+}
+\concept{organize}

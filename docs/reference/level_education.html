@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ech</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.3</span>
       </span>
     </div>
 
@@ -29,7 +29,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -66,55 +66,88 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">level_education</span><span class="op">(</span>
-  data <span class="op">=</span> <span class="fu">ech</span><span class="fu">::</span><span class="va"><a href="toy_ech_2018.html">toy_ech_2018</a></span>,
-  e51_2 <span class="op">=</span> <span class="st">"e51_2"</span>,
-  e51_3 <span class="op">=</span> <span class="st">"e51_3"</span>,
-  e51_4 <span class="op">=</span> <span class="st">"e51_4"</span>,
-  e51_5 <span class="op">=</span> <span class="st">"e51_5"</span>,
-  e51_6 <span class="op">=</span> <span class="st">"e51_6"</span>,
-  e51_7 <span class="op">=</span> <span class="st">"e51_7"</span>,
-  e51_7_1 <span class="op">=</span> <span class="st">"e51_7_1"</span>,
-  e51_8 <span class="op">=</span> <span class="st">"e51_8"</span>,
-  e51_9 <span class="op">=</span> <span class="st">"e51_9"</span>,
-  e51_10 <span class="op">=</span> <span class="st">"e51_10"</span>,
-  e51_11 <span class="op">=</span> <span class="st">"e51_11"</span>,
-  e193 <span class="op">=</span> <span class="st">"e193"</span>,
-  e49 <span class="op">=</span> <span class="st">"e49"</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">level_education</span><span class="op">(</span></span>
+<span>  data <span class="op">=</span> <span class="fu">ech</span><span class="fu">::</span><span class="va"><a href="toy_ech_2018.html">toy_ech_2018</a></span>,</span>
+<span>  e51_2 <span class="op">=</span> <span class="st">"e51_2"</span>,</span>
+<span>  e51_3 <span class="op">=</span> <span class="st">"e51_3"</span>,</span>
+<span>  e51_4 <span class="op">=</span> <span class="st">"e51_4"</span>,</span>
+<span>  e51_5 <span class="op">=</span> <span class="st">"e51_5"</span>,</span>
+<span>  e51_6 <span class="op">=</span> <span class="st">"e51_6"</span>,</span>
+<span>  e51_7 <span class="op">=</span> <span class="st">"e51_7"</span>,</span>
+<span>  e51_7_1 <span class="op">=</span> <span class="st">"e51_7_1"</span>,</span>
+<span>  e51_8 <span class="op">=</span> <span class="st">"e51_8"</span>,</span>
+<span>  e51_9 <span class="op">=</span> <span class="st">"e51_9"</span>,</span>
+<span>  e51_10 <span class="op">=</span> <span class="st">"e51_10"</span>,</span>
+<span>  e51_11 <span class="op">=</span> <span class="st">"e51_11"</span>,</span>
+<span>  e193 <span class="op">=</span> <span class="st">"e193"</span>,</span>
+<span>  e49 <span class="op">=</span> <span class="st">"e49"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>data</dt>
 <dd><p>data.frame</p></dd>
+
+
 <dt>e51_2</dt>
 <dd><p>Variable name of years passed in primary</p></dd>
+
+
 <dt>e51_3</dt>
 <dd><p>Variable name of years passed in special primary</p></dd>
+
+
 <dt>e51_4</dt>
 <dd><p>Variable name of years passed in lower secondary</p></dd>
+
+
 <dt>e51_5</dt>
 <dd><p>Variable name of years passed in upper secondary</p></dd>
+
+
 <dt>e51_6</dt>
 <dd><p>Variable name of years passed in technical upper secondary</p></dd>
+
+
 <dt>e51_7</dt>
 <dd><p>Variable name of years passed in technical school</p></dd>
+
+
 <dt>e51_7_1</dt>
 <dd><p>Variable name of technical school requirements</p></dd>
+
+
 <dt>e51_8</dt>
 <dd><p>Variable name of years passed in magisterio/profesorado</p></dd>
+
+
 <dt>e51_9</dt>
 <dd><p>Variable name of years passed in university or similar</p></dd>
+
+
 <dt>e51_10</dt>
 <dd><p>Variable name of years passed in tertiary (non-university)</p></dd>
+
+
 <dt>e51_11</dt>
 <dd><p>Variable name of years passed in postgrade</p></dd>
+
+
 <dt>e193</dt>
 <dd><p>Variable name of attendance school</p></dd>
+
+
 <dt>e49</dt>
 <dd><p>Variable name of attendance school ever</p></dd>
+
 </dl></div>
+    <div id="value">
+    <h2>Value</h2>
+    
+
+<p>data.frame</p>
+    </div>
     <div id="details">
     <h2>Details</h2>
     <p>Disclaimer: This script is not an official INE product.
@@ -125,16 +158,17 @@ Aviso: El script no es un producto oficial de INE.</p>
     <div class="dont-index"><p>Other education: 
 <code><a href="enrolled_school.html">enrolled_school</a>()</code>,
 <code><a href="level_completion.html">level_completion</a>()</code>,
+<code><a href="organize_educ.html">organize_educ</a>()</code>,
 <code><a href="years_of_schooling.html">years_of_schooling</a>()</code></p></div>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># \donttest{</span></span>
-<span class="r-in"><span class="va">toy_ech_2018</span> <span class="op">&lt;-</span> <span class="fu">level_education</span><span class="op">(</span>data <span class="op">=</span> <span class="fu">ech</span><span class="fu">::</span><span class="va"><a href="toy_ech_2018.html">toy_ech_2018</a></span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
+<span class="r-in"><span><span class="va">toy_ech_2018</span> <span class="op">&lt;-</span> <span class="fu">level_education</span><span class="op">(</span>data <span class="op">=</span> <span class="fu">ech</span><span class="fu">::</span><span class="va"><a href="toy_ech_2018.html">toy_ech_2018</a></span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> A variable has been created: </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>  	 highest level_education achieved (maximo nivel educativo alcanzado)</span>
-<span class="r-in"><span class="co"># }</span></span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -149,7 +183,7 @@ Aviso: El script no es un producto oficial de INE.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

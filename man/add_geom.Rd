@@ -4,6 +4,9 @@
 \alias{add_geom}
 \title{add_geom
 See \code{geouy::\link[geouy]{add_geom}} for details.}
+\value{
+sf and data.frame object
+}
 \description{
 add_geom
 See \code{geouy::\link[geouy]{add_geom}} for details.

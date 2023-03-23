@@ -4,6 +4,9 @@
 \alias{plot_geouy}
 \title{plot_geouy
 See \code{geouy::\link[geouy]{plot_geouy}} for details.}
+\value{
+ggplot object of a choropleth map with x geometries and col values.
+}
 \description{
 plot_geouy
 See \code{geouy::\link[geouy]{plot_geouy}} for details.

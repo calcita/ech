@@ -84,6 +84,7 @@ enrolled_school <- function(data = ech::toy_ech_2018,
 #' @param e51_11 Variable name of years passed in postgrade
 #' @param max_years Maximum years of schooling
 #' @export
+#' @return data.frame
 #' @importFrom dplyr mutate case_when
 #' @importFrom rlang .data
 #' @importFrom glue glue
@@ -227,6 +228,7 @@ years_of_schooling <- function(data = ech::toy_ech_2018,
 #' @param e51_11 Variable name of years passed in postgrade
 #' @param e193  Variable name of attendance school
 #' @param e49 Variable name of attendance school ever
+#' @return data.frame
 #' @export
 #' @details
 #' Disclaimer: This script is not an official INE product.

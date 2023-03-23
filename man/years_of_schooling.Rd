@@ -50,6 +50,9 @@ years_of_schooling(
 
 \item{max_years}{Maximum years of schooling}
 }
+\value{
+data.frame
+}
 \description{
 This function allows you to calculate the years of schooling
 }

@@ -23,7 +23,6 @@ This function allows you to get the IPAB (Indice de precios de alimentos y bebid
 Other dwnld_read: 
 \code{\link{get_cba_cbna}()},
 \code{\link{get_dictionary}()},
-\code{\link{get_ipab}()},
 \code{\link{get_ipc_region}()},
 \code{\link{get_ipc}()},
 \code{\link{get_microdata}()},

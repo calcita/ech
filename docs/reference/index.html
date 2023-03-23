@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ech</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.3</span>
       </span>
     </div>
 
@@ -29,7 +29,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -72,10 +72,6 @@
         </td>
         <td><p>This function allows you to download ECH dictionaries from INE website</p></td>
       </tr><tr><td>
-          <p><code><a href="get_ipab.html">get_ipab()</a></code> </p>
-        </td>
-        <td><p>This function allows you to get the IPAB (Indice de precios de alimentos y bebidas) data</p></td>
-      </tr><tr><td>
           <p><code><a href="get_ipab_region.html">get_ipab_region()</a></code> </p>
         </td>
         <td><p>This function allows you to get the IPAB (Indice de precios de alimentos y bebidas) data</p></td>
@@ -103,6 +99,10 @@
           <p><code><a href="organize_names.html">organize_names()</a></code> </p>
         </td>
         <td><p>This function allows you to organize the variables names of ECH with reference in 2017.</p></td>
+      </tr><tr><td>
+          <p><code><a href="to_ascii.html">to_ascii()</a></code> </p>
+        </td>
+        <td><p>to_ascii</p></td>
       </tr></tbody><tbody><tr><th colspan="2">
           <h2 id="education">Education <a href="#education" class="anchor" aria-hidden="true"></a></h2>
           <p class="section-desc"></p>
@@ -119,6 +119,10 @@
           <p><code><a href="level_education.html">level_education()</a></code> </p>
         </td>
         <td><p>This function allows you to calculate the highest level of education achieved</p></td>
+      </tr><tr><td>
+          <p><code><a href="organize_educ.html">organize_educ()</a></code> </p>
+        </td>
+        <td><p>This function allows you to fix education variables from 2021</p></td>
       </tr><tr><td>
           <p><code><a href="years_of_schooling.html">years_of_schooling()</a></code> </p>
         </td>
@@ -280,10 +284,6 @@
         </td>
         <td><p>A dataset containing the CBA and CBNA for the Interior Rural region</p></td>
       </tr><tr><td>
-          <p><code><a href="ciiu4.html">ciiu4</a></code> </p>
-        </td>
-        <td><p>A dataset containing Clasificación Industrial Internacional Uniforme Rev. 4 and 3</p></td>
-      </tr><tr><td>
           <p><code><a href="dic.html">dic</a></code> </p>
         </td>
         <td><p>A dataset containing variables names change of the ECH 2006-2018</p></td>
@@ -336,9 +336,17 @@
         </td>
         <td><p>This function allows you to organize dates</p></td>
       </tr><tr><td>
+          <p><code><a href="ech.html">ech</a></code> </p>
+        </td>
+        <td><p><code>ech</code> package</p></td>
+      </tr><tr><td>
           <p><code><a href="unlabelled.html">unlabelled()</a></code> </p>
         </td>
         <td><p>This function allows you to labelled variables</p></td>
+      </tr><tr><td>
+          <p><code><a href="unrarPath.html">.unrarPath</a></code> </p>
+        </td>
+        <td><p>The known path for unrar or 7z</p></td>
       </tr></tbody><tbody><tr><th colspan="2">
           <h2 id="geo">Geo <a href="#geo" class="anchor" aria-hidden="true"></a></h2>
           <p class="section-desc"></p>
@@ -356,7 +364,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

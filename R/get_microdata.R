@@ -77,6 +77,7 @@ isWindows <- function() identical(.Platform$OS.type, "windows")
 }
 
 #' The known path for unrar or 7z
+#' @family utils
 #' @rdname unrarPath
 #' @name unrarPath
 .unrarPath <- NULL
@@ -91,6 +92,7 @@ knownArchiveExtensions <- c(knownInternalArchiveExtensions, knownSystemArchiveEx
 #' @family utils
 #' @param archive.path Ruta de origen del archivo comprimido
 #' @param dest.path Ruta destino del archivo descomprimido
+#' @return No return value, called for side effects
 #' @export
 #' @details
 #' Disclaimer: This script is not an official INE product.
@@ -106,14 +108,13 @@ archive_extract <- function(archive.path = NULL, dest.path = NULL) {
   #z7path = shQuote('C:\\Program Files\\FusionInventory-Agent\\perl\\bin\\7z.exe')
 
   exe.path <- shQuote(archiveExtractBinary)
-  # file = paste('"', 'U:/base femicidio.rar', '"',sep = '')
 
   file = paste('"', archive.path, '"',sep = '')
   cmd = paste(exe.path, ' e ', file, ' -ir!*.* -o', '"', dest.path, '"', sep = '')
 
   # unpack file
   system(cmd)
-  print("El archivo fue descomprimido correctamente")
+  message("El archivo fue descomprimido correctamente")
 }
 
 
@@ -163,7 +164,7 @@ get_microdata <- function(year = NULL,
     year <- max(all_years)
   }
 
-  urls <- ech::urls_ine %>% mutate(file = paste0(folder, "/ech_", all_years, "_sav.rar"),
+  urls <- ech::urls_ine %>% dplyr::mutate(file = paste0(folder, "/ech_", all_years, "_sav.rar"),
                      file_extra = paste0(folder, "/upm_", all_years, "_sav.rar"))
   links <- urls %>% dplyr::filter(.data$yy %in% year)
 
@@ -262,14 +263,22 @@ get_microdata <- function(year = NULL,
     d <- upm %>% dplyr::select(numero, dplyr::starts_with("upm"), dplyr::starts_with("estrato")) %>%
       dplyr::left_join(d, ., by = "numero")
   }
+
+  # delete save, dbf y rar files
+  sav <- fs::dir_ls(folder, regexp = "\\.sav$")
+  try(fs::file_delete(sav))
+  rar <- fs::dir_ls(folder, regexp = "\\.rar$")
+  try(fs::file_delete(rar))
+  dbf <- fs::dir_ls(folder, regexp = "\\.dbf$")
+  try(fs::file_delete(dbf))
+
   # save ----
   if (isTRUE(toR)) {
     saveRDS(d, file = fs::path(folder, paste0("ECH_", year, ".Rds")))
     message(glue::glue("The ech {year} has been saved in R format"))
-    sav <- fs::dir_ls(folder, regexp = "\\.sav$")
-    fs::file_delete(archivo)
-    fs::file_delete(sav)
   }
+
+#  try(fs::dir_delete(folder))
 
   return(d)
 

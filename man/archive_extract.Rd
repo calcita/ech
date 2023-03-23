@@ -11,6 +11,9 @@ archive_extract(archive.path = NULL, dest.path = NULL)
 
 \item{dest.path}{Ruta destino del archivo descomprimido}
 }
+\value{
+No return value, called for side effects
+}
 \description{
 Extract compressed archives
 }
@@ -21,6 +24,8 @@ Aviso: El script no es un producto oficial de INE.
 \seealso{
 Other utils: 
 \code{\link{dates_ech}()},
-\code{\link{unlabelled}()}
+\code{\link{ech}},
+\code{\link{unlabelled}()},
+\code{\link{unrarPath}}
 }
 \concept{utils}

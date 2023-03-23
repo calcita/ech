@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ech</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.3</span>
       </span>
     </div>
 
@@ -29,7 +29,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -66,133 +66,212 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">labor_income_per_capita</span><span class="op">(</span>
-  data <span class="op">=</span> <span class="fu">ech</span><span class="fu">::</span><span class="va"><a href="toy_ech_2018.html">toy_ech_2018</a></span>,
-  numero <span class="op">=</span> <span class="st">"numero"</span>,
-  pobpcoac <span class="op">=</span> <span class="st">"pobpcoac"</span>,
-  g126_1 <span class="op">=</span> <span class="st">"g126_1"</span>,
-  g126_2 <span class="op">=</span> <span class="st">"g126_2"</span>,
-  g126_3 <span class="op">=</span> <span class="st">"g126_3"</span>,
-  g126_4 <span class="op">=</span> <span class="st">"g126_4"</span>,
-  g126_5 <span class="op">=</span> <span class="st">"g126_5"</span>,
-  g126_6 <span class="op">=</span> <span class="st">"g126_6"</span>,
-  g126_7 <span class="op">=</span> <span class="st">"g126_7"</span>,
-  g126_8 <span class="op">=</span> <span class="st">"g126_8"</span>,
-  g127_3 <span class="op">=</span> <span class="st">"g127_3"</span>,
-  g128_1 <span class="op">=</span> <span class="st">"g128_1"</span>,
-  g129_2 <span class="op">=</span> <span class="st">"g129_2"</span>,
-  g130_1 <span class="op">=</span> <span class="st">"g130_1"</span>,
-  g131_1 <span class="op">=</span> <span class="st">"g131_1"</span>,
-  g133_1 <span class="op">=</span> <span class="st">"g133_1"</span>,
-  g133_2 <span class="op">=</span> <span class="st">"g133_2"</span>,
-  g134_1 <span class="op">=</span> <span class="st">"g134_1"</span>,
-  g134_2 <span class="op">=</span> <span class="st">"g134_2"</span>,
-  g134_3 <span class="op">=</span> <span class="st">"g134_3"</span>,
-  g134_4 <span class="op">=</span> <span class="st">"g134_4"</span>,
-  g134_5 <span class="op">=</span> <span class="st">"g134_5"</span>,
-  g134_6 <span class="op">=</span> <span class="st">"g134_6"</span>,
-  g134_7 <span class="op">=</span> <span class="st">"g134_7"</span>,
-  g134_8 <span class="op">=</span> <span class="st">"g134_8"</span>,
-  g135_3 <span class="op">=</span> <span class="st">"g135_3"</span>,
-  g136_1 <span class="op">=</span> <span class="st">"g136_1"</span>,
-  g137_2 <span class="op">=</span> <span class="st">"g137_2"</span>,
-  g138_1 <span class="op">=</span> <span class="st">"g138_1"</span>,
-  g139_1 <span class="op">=</span> <span class="st">"g139_1"</span>,
-  g141_1 <span class="op">=</span> <span class="st">"g141_1"</span>,
-  g141_2 <span class="op">=</span> <span class="st">"g141_2"</span>,
-  g142 <span class="op">=</span> <span class="st">"g142"</span>,
-  g144_1 <span class="op">=</span> <span class="st">"g144_1"</span>,
-  g144_2_1 <span class="op">=</span> <span class="st">"g144_2_1"</span>,
-  g144_2_3 <span class="op">=</span> <span class="st">"g144_2_3"</span>,
-  g144_2_4 <span class="op">=</span> <span class="st">"g144_2_4"</span>,
-  g144_2_5 <span class="op">=</span> <span class="st">"g144_2_5"</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">labor_income_per_capita</span><span class="op">(</span></span>
+<span>  data <span class="op">=</span> <span class="fu">ech</span><span class="fu">::</span><span class="va"><a href="toy_ech_2018.html">toy_ech_2018</a></span>,</span>
+<span>  numero <span class="op">=</span> <span class="st">"numero"</span>,</span>
+<span>  pobpcoac <span class="op">=</span> <span class="st">"pobpcoac"</span>,</span>
+<span>  g126_1 <span class="op">=</span> <span class="st">"g126_1"</span>,</span>
+<span>  g126_2 <span class="op">=</span> <span class="st">"g126_2"</span>,</span>
+<span>  g126_3 <span class="op">=</span> <span class="st">"g126_3"</span>,</span>
+<span>  g126_4 <span class="op">=</span> <span class="st">"g126_4"</span>,</span>
+<span>  g126_5 <span class="op">=</span> <span class="st">"g126_5"</span>,</span>
+<span>  g126_6 <span class="op">=</span> <span class="st">"g126_6"</span>,</span>
+<span>  g126_7 <span class="op">=</span> <span class="st">"g126_7"</span>,</span>
+<span>  g126_8 <span class="op">=</span> <span class="st">"g126_8"</span>,</span>
+<span>  g127_3 <span class="op">=</span> <span class="st">"g127_3"</span>,</span>
+<span>  g128_1 <span class="op">=</span> <span class="st">"g128_1"</span>,</span>
+<span>  g129_2 <span class="op">=</span> <span class="st">"g129_2"</span>,</span>
+<span>  g130_1 <span class="op">=</span> <span class="st">"g130_1"</span>,</span>
+<span>  g131_1 <span class="op">=</span> <span class="st">"g131_1"</span>,</span>
+<span>  g133_1 <span class="op">=</span> <span class="st">"g133_1"</span>,</span>
+<span>  g133_2 <span class="op">=</span> <span class="st">"g133_2"</span>,</span>
+<span>  g134_1 <span class="op">=</span> <span class="st">"g134_1"</span>,</span>
+<span>  g134_2 <span class="op">=</span> <span class="st">"g134_2"</span>,</span>
+<span>  g134_3 <span class="op">=</span> <span class="st">"g134_3"</span>,</span>
+<span>  g134_4 <span class="op">=</span> <span class="st">"g134_4"</span>,</span>
+<span>  g134_5 <span class="op">=</span> <span class="st">"g134_5"</span>,</span>
+<span>  g134_6 <span class="op">=</span> <span class="st">"g134_6"</span>,</span>
+<span>  g134_7 <span class="op">=</span> <span class="st">"g134_7"</span>,</span>
+<span>  g134_8 <span class="op">=</span> <span class="st">"g134_8"</span>,</span>
+<span>  g135_3 <span class="op">=</span> <span class="st">"g135_3"</span>,</span>
+<span>  g136_1 <span class="op">=</span> <span class="st">"g136_1"</span>,</span>
+<span>  g137_2 <span class="op">=</span> <span class="st">"g137_2"</span>,</span>
+<span>  g138_1 <span class="op">=</span> <span class="st">"g138_1"</span>,</span>
+<span>  g139_1 <span class="op">=</span> <span class="st">"g139_1"</span>,</span>
+<span>  g141_1 <span class="op">=</span> <span class="st">"g141_1"</span>,</span>
+<span>  g141_2 <span class="op">=</span> <span class="st">"g141_2"</span>,</span>
+<span>  g142 <span class="op">=</span> <span class="st">"g142"</span>,</span>
+<span>  g144_1 <span class="op">=</span> <span class="st">"g144_1"</span>,</span>
+<span>  g144_2_1 <span class="op">=</span> <span class="st">"g144_2_1"</span>,</span>
+<span>  g144_2_3 <span class="op">=</span> <span class="st">"g144_2_3"</span>,</span>
+<span>  g144_2_4 <span class="op">=</span> <span class="st">"g144_2_4"</span>,</span>
+<span>  g144_2_5 <span class="op">=</span> <span class="st">"g144_2_5"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>data</dt>
 <dd><p>data frame</p></dd>
+
+
 <dt>numero</dt>
 <dd><p>Variable name of household id</p></dd>
+
+
 <dt>pobpcoac</dt>
 <dd><p>Variable name of definition of population by activity status</p></dd>
+
+
 <dt>g126_1</dt>
 <dd><p>Variable name of net salary</p></dd>
+
+
 <dt>g126_2</dt>
 <dd><p>Variable name of commissions, incentives, overtime payment, fringe benefits</p></dd>
+
+
 <dt>g126_3</dt>
 <dd><p>Variable name of non-surrendering expenses</p></dd>
+
+
 <dt>g126_4</dt>
 <dd><p>Variable name of tips</p></dd>
+
+
 <dt>g126_5</dt>
 <dd><p>Variable name of annual complementary salary</p></dd>
+
+
 <dt>g126_6</dt>
 <dd><p>Variable name of vacation pay</p></dd>
+
+
 <dt>g126_7</dt>
 <dd><p>Variable name of delayed payments</p></dd>
+
+
 <dt>g126_8</dt>
 <dd><p>Variable name of transportation tickets</p></dd>
+
+
 <dt>g127_3</dt>
 <dd><p>Variable name of received food or drink</p></dd>
+
+
 <dt>g128_1</dt>
 <dd><p>Variable name of received food tickets</p></dd>
+
+
 <dt>g129_2</dt>
 <dd><p>Variable name of received housing or accommodation</p></dd>
+
+
 <dt>g130_1</dt>
 <dd><p>Variable name of another type of compensation</p></dd>
+
+
 <dt>g131_1</dt>
 <dd><p>Variable name of received another type of supplement paid by the employer</p></dd>
+
+
 <dt>g133_1</dt>
 <dd><p>Variable name of the right to cultivate goods for own-consumption</p></dd>
+
+
 <dt>g133_2</dt>
 <dd><p>Variable name of the right to cultivate goods for own-consumption (amount received from the sale)</p></dd>
+
+
 <dt>g134_1</dt>
 <dd><p>Variable name of net salary</p></dd>
+
+
 <dt>g134_2</dt>
 <dd><p>Variable name of commissions, incentives, overtime payment, fringe benefits</p></dd>
+
+
 <dt>g134_3</dt>
 <dd><p>Variable name of non-surrendering expenses</p></dd>
+
+
 <dt>g134_4</dt>
 <dd><p>Variable name of tips</p></dd>
+
+
 <dt>g134_5</dt>
 <dd><p>Variable name of annual complementary salary</p></dd>
+
+
 <dt>g134_6</dt>
 <dd><p>Variable name of vacation pay</p></dd>
+
+
 <dt>g134_7</dt>
 <dd><p>Variable name of delayed payments</p></dd>
+
+
 <dt>g134_8</dt>
 <dd><p>Variable name of transportation tickets</p></dd>
+
+
 <dt>g135_3</dt>
 <dd><p>Variable name of received food or drink</p></dd>
+
+
 <dt>g136_1</dt>
 <dd><p>Variable name of received food tickets</p></dd>
+
+
 <dt>g137_2</dt>
 <dd><p>Variable name of received housing or accommodation</p></dd>
+
+
 <dt>g138_1</dt>
 <dd><p>Variable name of another type of compensation</p></dd>
+
+
 <dt>g139_1</dt>
 <dd><p>Variable name of received another type of supplement paid by the employer</p></dd>
+
+
 <dt>g141_1</dt>
 <dd><p>Variable name of the right to cultivate goods for own-consumption</p></dd>
+
+
 <dt>g141_2</dt>
 <dd><p>Variable name of the right to cultivate goods for own-consumption (amount received from the sale)</p></dd>
+
+
 <dt>g142</dt>
 <dd><p>Variable name of withdrawals for business household expenses you have or had</p></dd>
+
+
 <dt>g144_1</dt>
 <dd><p>Variable name of collected products for own consumption (non-agricultural worker)</p></dd>
+
+
 <dt>g144_2_1</dt>
 <dd><p>Variable name of collected products for own consumption (non-agricultural worker)</p></dd>
+
+
 <dt>g144_2_3</dt>
 <dd><p>Variable name of collected products for own consumption (non-agricultural worker)</p></dd>
+
+
 <dt>g144_2_4</dt>
 <dd><p>Variable name of collected products for own consumption (non-agricultural worker)</p></dd>
+
+
 <dt>g144_2_5</dt>
 <dd><p>Variable name of collected products for own consumption (non-agricultural worker)</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>data.frame</p>
+    
+
+<p>data.frame</p>
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -212,13 +291,13 @@ Aviso: El script no es un producto oficial de INE.</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># \donttest{</span></span>
-<span class="r-in"><span class="va">toy_ech_2018</span> <span class="op">&lt;-</span> <span class="fu">labor_income_per_capita</span><span class="op">(</span>data <span class="op">=</span> <span class="fu">ech</span><span class="fu">::</span><span class="va"><a href="toy_ech_2018.html">toy_ech_2018</a></span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
+<span class="r-in"><span><span class="va">toy_ech_2018</span> <span class="op">&lt;-</span> <span class="fu">labor_income_per_capita</span><span class="op">(</span>data <span class="op">=</span> <span class="fu">ech</span><span class="fu">::</span><span class="va"><a href="toy_ech_2018.html">toy_ech_2018</a></span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Variables have been created: </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>  	 labor_income (Ingresos laborales) &amp;</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>             labor_income_h (Ingresos laborales del hogar) &amp;</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>             labor_income_h_percapita (Ingresos laborales per capita)</span>
-<span class="r-in"><span class="co"># }</span></span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -233,7 +312,7 @@ Aviso: El script no es un producto oficial de INE.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

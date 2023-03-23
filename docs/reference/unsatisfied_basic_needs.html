@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ech</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.3</span>
       </span>
     </div>
 
@@ -29,7 +29,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -66,92 +66,141 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">unsatisfied_basic_needs</span><span class="op">(</span>
-  data <span class="op">=</span> <span class="fu">ech</span><span class="fu">::</span><span class="va"><a href="toy_ech_2018.html">toy_ech_2018</a></span>,
-  c2 <span class="op">=</span> <span class="st">"c2"</span>,
-  c3 <span class="op">=</span> <span class="st">"c3"</span>,
-  c4 <span class="op">=</span> <span class="st">"c4"</span>,
-  d9 <span class="op">=</span> <span class="st">"d9"</span>,
-  d11 <span class="op">=</span> <span class="st">"d11"</span>,
-  d12 <span class="op">=</span> <span class="st">"d12"</span>,
-  d13 <span class="op">=</span> <span class="st">"d13"</span>,
-  d14 <span class="op">=</span> <span class="st">"d14"</span>,
-  d15 <span class="op">=</span> <span class="st">"d15"</span>,
-  d16 <span class="op">=</span> <span class="st">"d16"</span>,
-  d18 <span class="op">=</span> <span class="st">"d18"</span>,
-  d19 <span class="op">=</span> <span class="st">"d19"</span>,
-  d21_1 <span class="op">=</span> <span class="st">"d21_1"</span>,
-  d21_2 <span class="op">=</span> <span class="st">"d21_2"</span>,
-  d21_3 <span class="op">=</span> <span class="st">"d21_3"</span>,
-  d260 <span class="op">=</span> <span class="st">"d260"</span>,
-  ht19 <span class="op">=</span> <span class="st">"ht19"</span>,
-  pobre06 <span class="op">=</span> <span class="st">"pobre06"</span>,
-  e27 <span class="op">=</span> <span class="st">"e27"</span>,
-  school_enrollment <span class="op">=</span> <span class="st">"school_enrollment"</span>,
-  years_schooling <span class="op">=</span> <span class="st">"years_schooling"</span>,
-  e238 <span class="op">=</span> <span class="st">"e238"</span>,
-  anio <span class="op">=</span> <span class="st">"anio"</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">unsatisfied_basic_needs</span><span class="op">(</span></span>
+<span>  data <span class="op">=</span> <span class="fu">ech</span><span class="fu">::</span><span class="va"><a href="toy_ech_2018.html">toy_ech_2018</a></span>,</span>
+<span>  c2 <span class="op">=</span> <span class="st">"c2"</span>,</span>
+<span>  c3 <span class="op">=</span> <span class="st">"c3"</span>,</span>
+<span>  c4 <span class="op">=</span> <span class="st">"c4"</span>,</span>
+<span>  d9 <span class="op">=</span> <span class="st">"d9"</span>,</span>
+<span>  d11 <span class="op">=</span> <span class="st">"d11"</span>,</span>
+<span>  d12 <span class="op">=</span> <span class="st">"d12"</span>,</span>
+<span>  d13 <span class="op">=</span> <span class="st">"d13"</span>,</span>
+<span>  d14 <span class="op">=</span> <span class="st">"d14"</span>,</span>
+<span>  d15 <span class="op">=</span> <span class="st">"d15"</span>,</span>
+<span>  d16 <span class="op">=</span> <span class="st">"d16"</span>,</span>
+<span>  d18 <span class="op">=</span> <span class="st">"d18"</span>,</span>
+<span>  d19 <span class="op">=</span> <span class="st">"d19"</span>,</span>
+<span>  d21_1 <span class="op">=</span> <span class="st">"d21_1"</span>,</span>
+<span>  d21_2 <span class="op">=</span> <span class="st">"d21_2"</span>,</span>
+<span>  d21_3 <span class="op">=</span> <span class="st">"d21_3"</span>,</span>
+<span>  d260 <span class="op">=</span> <span class="st">"d260"</span>,</span>
+<span>  ht19 <span class="op">=</span> <span class="st">"ht19"</span>,</span>
+<span>  pobre06 <span class="op">=</span> <span class="st">"pobre06"</span>,</span>
+<span>  e27 <span class="op">=</span> <span class="st">"e27"</span>,</span>
+<span>  school_enrollment <span class="op">=</span> <span class="st">"school_enrollment"</span>,</span>
+<span>  years_schooling <span class="op">=</span> <span class="st">"years_schooling"</span>,</span>
+<span>  e238 <span class="op">=</span> <span class="st">"e238"</span>,</span>
+<span>  anio <span class="op">=</span> <span class="st">"anio"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>data</dt>
 <dd><p>data.frame</p></dd>
+
+
 <dt>c2</dt>
 <dd><p>Variable name of predominant material on external walls</p></dd>
+
+
 <dt>c3</dt>
 <dd><p>Variable name of predominant roofing material</p></dd>
+
+
 <dt>c4</dt>
 <dd><p>Variable name of predominant flooring material</p></dd>
+
+
 <dt>d9</dt>
 <dd><p>Variable name of number of rooms</p></dd>
+
+
 <dt>d11</dt>
 <dd><p>Variable name of principal source of potable water</p></dd>
+
+
 <dt>d12</dt>
 <dd><p>Variable name of water supply network / water access</p></dd>
+
+
 <dt>d13</dt>
 <dd><p>Variable name of sanitary facilities</p></dd>
+
+
 <dt>d14</dt>
 <dd><p>Variable name of bathroom presence</p></dd>
+
+
 <dt>d15</dt>
 <dd><p>Variable name of private bathroom use</p></dd>
+
+
 <dt>d16</dt>
 <dd><p>Variable name of sewerage facilities</p></dd>
+
+
 <dt>d18</dt>
 <dd><p>Variable name of energy source for lighting</p></dd>
+
+
 <dt>d19</dt>
 <dd><p>Variable name of cooking space</p></dd>
+
+
 <dt>d21_1</dt>
 <dd><p>Variable name of heater or termophon presence</p></dd>
+
+
 <dt>d21_2</dt>
 <dd><p>Variable name of instantaneous water heater presence</p></dd>
+
+
 <dt>d21_3</dt>
 <dd><p>Variable name of fridge presence</p></dd>
+
+
 <dt>d260</dt>
 <dd><p>Variable name of energy source for heating</p></dd>
+
+
 <dt>ht19</dt>
 <dd><p>Variable name of number of individuals in the household</p></dd>
+
+
 <dt>pobre06</dt>
 <dd><p>Variable name of poverty</p></dd>
+
+
 <dt>e27</dt>
 <dd><p>Variable name of age</p></dd>
+
+
 <dt>school_enrollment</dt>
 <dd><p>Variable name of school_enrollment</p></dd>
+
+
 <dt>years_schooling</dt>
 <dd><p>Variable name of years_schooling</p></dd>
+
+
 <dt>e238</dt>
 <dd><p>Variable name of attendance to initial education</p></dd>
+
+
 <dt>anio</dt>
 <dd><p>Variable name of survey year</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>data.frame</p>
+    
+
+<p>data.frame</p>
     </div>
     <div id="details">
     <h2>Details</h2>
-    <p>Based on http://www.ine.gub.uy/documents/10181/34017/Atlas_fasciculo_1_NBI_versionrevisada.pdf/57ea17f9-3fd9-4306-b9ca-948abc7fab73
+    <p>Based on https://www.ine.gub.uy/documents/10181/34017/Atlas_fasciculo_1_NBI_versionrevisada.pdf/57ea17f9-3fd9-4306-b9ca-948abc7fab73
 Disclaimer: This script is not an official INE product.
 Aviso: El script no es un producto oficial de INE.</p>
     </div>
@@ -164,14 +213,14 @@ Aviso: El script no es un producto oficial de INE.</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># \donttest{</span></span>
-<span class="r-in"><span class="va">toy_ech_18</span> <span class="op">&lt;-</span> <span class="fu"><a href="enrolled_school.html">enrolled_school</a></span><span class="op">(</span>data <span class="op">=</span> <span class="fu">ech</span><span class="fu">::</span><span class="va"><a href="toy_ech_2018.html">toy_ech_2018</a></span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
+<span class="r-in"><span><span class="va">toy_ech_18</span> <span class="op">&lt;-</span> <span class="fu"><a href="enrolled_school.html">enrolled_school</a></span><span class="op">(</span>data <span class="op">=</span> <span class="fu">ech</span><span class="fu">::</span><span class="va"><a href="toy_ech_2018.html">toy_ech_2018</a></span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> A variable has been created: </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>  	  school_enrollment (matriculacion escolar)</span>
-<span class="r-in"><span class="va">toy_ech_18</span> <span class="op">&lt;-</span> <span class="fu"><a href="years_of_schooling.html">years_of_schooling</a></span><span class="op">(</span><span class="va">toy_ech_18</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="va">toy_ech_18</span> <span class="op">&lt;-</span> <span class="fu"><a href="years_of_schooling.html">years_of_schooling</a></span><span class="op">(</span><span class="va">toy_ech_18</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> A variable has been created: </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>  	  years_schooling (anios de escolaridad)</span>
-<span class="r-in"><span class="va">toy_ech_18</span> <span class="op">&lt;-</span> <span class="fu">unsatisfied_basic_needs</span><span class="op">(</span><span class="va">toy_ech_18</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="va">toy_ech_18</span> <span class="op">&lt;-</span> <span class="fu">unsatisfied_basic_needs</span><span class="op">(</span><span class="va">toy_ech_18</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Variables have been created: </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>  	 UBN_housing (NBI vivienda);</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>             UBN_water (NBI acceso al agua);</span>
@@ -181,7 +230,7 @@ Aviso: El script no es un producto oficial de INE.</p>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>             UBN_education (NBI educacion);</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>             UBN_q (suma de NBIs) &amp;</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>             UBN (Categoria NBI)</span>
-<span class="r-in"><span class="co"># }</span></span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -196,7 +245,7 @@ Aviso: El script no es un producto oficial de INE.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

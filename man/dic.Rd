@@ -32,7 +32,7 @@ A data frame with 976 rows and 21 variables:
 }
 }
 \source{
-\url{http://www.ine.gub.uy/}
+\url{https://www.ine.gub.uy/}
 }
 \usage{
 dic
@@ -49,7 +49,6 @@ Other dataset:
 \code{\link{cba_cbna_int}},
 \code{\link{cba_cbna_mdeo}},
 \code{\link{cba_cbna_rur}},
-\code{\link{ciiu4}},
 \code{\link{ipab_base2010_int}},
 \code{\link{ipab_base2010_mdeo}},
 \code{\link{ipab_base2010}},

@@ -130,7 +130,8 @@ test_that("get_estimation_gini works", {
   expect_is(b, "data.frame")
   a <- get_estimation_gini(data = ech_2018, variable = "y_wrv_pc_d_r", level = "i", ids = "upm_id", estrato = "estrato", bootstrap = T, r = 5)
   expect_is(a, "data.frame")
-  b <- get_estimation_gini(data = ech_2018, variable = "y_wrv_pc_d_r", level = "i", by = "nomdpto", ids = "upm_id", estrato = "estrato", bootstrap = T, r = 5)
+  b <- get_estimation_gini(data = ech_2018, variable = "y_wrv_pc_d_r", level = "i",
+                           by = "nomdpto", ids = "upm_id", estrato = "estrato", bootstrap = T, r = 5)
   expect_is(b, "data.frame")
 })
 

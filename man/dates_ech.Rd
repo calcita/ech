@@ -18,6 +18,8 @@ This function allows you to organize dates
 \seealso{
 Other utils: 
 \code{\link{archive_extract}()},
-\code{\link{unlabelled}()}
+\code{\link{ech}},
+\code{\link{unlabelled}()},
+\code{\link{unrarPath}}
 }
 \concept{utils}
