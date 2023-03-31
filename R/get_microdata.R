@@ -154,7 +154,7 @@ get_microdata <- function(year = NULL,
   # download ----
   try(dir.create(folder))
 
-  all_years <- 2011:2019
+  all_years <- 2011:2022
 
   if (!is.null(year) & any(year %in% all_years) == FALSE) {
     stop("Sorry... ;( \n \t At the moment ech only works for the period 2011 to 2019")
@@ -164,62 +164,70 @@ get_microdata <- function(year = NULL,
     year <- max(all_years)
   }
 
-  urls <- ech::urls_ine %>% dplyr::mutate(file = paste0(folder, "/ech_", all_years, "_sav.rar"),
-                     file_extra = paste0(folder, "/upm_", all_years, "_sav.rar"))
-  links <- urls %>% dplyr::filter(.data$yy %in% year)
+    if (year %in% c(2021, 2022)) {
+      links <- ech::urls_ine %>% dplyr::filter(yy == year)
+      u1 <- links$md_sav
+      y <- links$yy
+      d <- utils::read.csv(u1)
+    } else {
+      urls <- ech::urls_ine %>% dplyr::mutate(file = paste0(folder, "/ech_", all_years, "_sav.rar"),
+                                              file_extra = paste0(folder, "/upm_", all_years, "_sav.rar"))
+      links <- urls %>% dplyr::filter(.data$yy %in% year)
 
-  u1 <- links$md_sav
-  f1 <- links$file
-  y <- links$yy
-  u2 <- links$upm_sav
-  f2 <- links$file_extra
+      u1 <- links$md_sav
+      f1 <- links$file
+      y <- links$yy
+      u2 <- links$upm_sav
+      f2 <- links$file_extra
 
-  if (!file.exists(f1)) {
-    message(glue::glue("Trying to download ECH {y}..."))
-    try(utils::download.file(u1, f1, mode = "wb", method = "libcurl"))
-  } else {
-    message(glue::glue("ECH {y} already exists, the download is omitted"))
-  }
 
-  # read----
-  archivo <- fs::dir_ls(folder, regexp = "\\.rar$")
-  archivo <- archivo[which.max(file.info(archivo)$mtime)]
-  ext <- fs::path_ext(archivo)
-  compressed_formats <- c("zip", "rar")
-  uncompressed_formats <- "sav"
 
-  if (ext %in% c(compressed_formats, uncompressed_formats) != TRUE) {
-    formats_string <- paste(c(compressed_formats, uncompressed_formats[length(uncompressed_formats) - 1]),
-                            collapse = ", ")
-    formats_string <- paste(c(formats_string, uncompressed_formats[length(uncompressed_formats)]),
-                            collapse = " o ")
-    stop(glue::glue("The metadata in {archivo} indicates that this file is not useful. \n \t Make sure the format is {formats_string}."))
-  }
+      if (!file.exists(f1)) {
+        message(glue::glue("Trying to download ECH {y}..."))
+        try(utils::download.file(u1, f1, mode = "wb", method = "libcurl"))
+      } else {
+        message(glue::glue("ECH {y} already exists, the download is omitted"))
+      }
 
-  if (ext %in% compressed_formats) {
-    message(glue::glue("The metadata in {archivo} indicates that this file is useful. \n \t Trying to read..."))
-    try(archive_extract(archive.path = archivo, dest.path = folder))
-    descomprimido <- fs::dir_ls(folder, regexp = "\\.sav$")
-    descomprimido <- descomprimido[(stringr::str_detect(descomprimido, "HyP") == T |
-                                    stringr::str_detect(descomprimido, "HYP") == T |
-                                    stringr::str_detect(descomprimido, "FUSIONADO") == T |
-                                    stringr::str_detect(descomprimido, "Fusionado") == T) &
-                                    stringr::str_detect(descomprimido, as.character(year)) == T]
-    d <- try(haven::read_sav(descomprimido))
-  }
+      # read----
+      archivo <- fs::dir_ls(folder, regexp = "\\.rar$")
+      archivo <- archivo[which.max(file.info(archivo)$mtime)]
+      ext <- fs::path_ext(archivo)
+      compressed_formats <- c("zip", "rar")
+      uncompressed_formats <- "sav"
 
-  if (ext %in% uncompressed_formats) {
-    message(glue::glue("The metadata in {archivo} indicates that the uncompressed format is suitable,  \n \t Trying to read..."))
-    d <- haven::read_sav(archivo)
-  }
+      if (ext %in% c(compressed_formats, uncompressed_formats) != TRUE) {
+        formats_string <- paste(c(compressed_formats, uncompressed_formats[length(uncompressed_formats) - 1]),
+                                collapse = ", ")
+        formats_string <- paste(c(formats_string, uncompressed_formats[length(uncompressed_formats)]),
+                                collapse = " o ")
+        stop(glue::glue("The metadata in {archivo} indicates that this file is not useful. \n \t Make sure the format is {formats_string}."))
+      }
 
-  if (any(class(d) %in% "data.frame")) {
-    message(glue::glue("{archivo} could be read as tibble :-)"))
-    d <- janitor::clean_names(d)
-  } else {
-    stop(glue::glue("{archivo} could not be read as tibble :-("))
-  }
+      if (ext %in% compressed_formats) {
+        message(glue::glue("The metadata in {archivo} indicates that this file is useful. \n \t Trying to read..."))
+        try(archive_extract(archive.path = archivo, dest.path = folder))
+        descomprimido <- fs::dir_ls(folder, regexp = "\\.sav$")
+        descomprimido <- descomprimido[(stringr::str_detect(descomprimido, "HyP") == T |
+                                          stringr::str_detect(descomprimido, "HYP") == T |
+                                          stringr::str_detect(descomprimido, "FUSIONADO") == T |
+                                          stringr::str_detect(descomprimido, "Fusionado") == T) &
+                                         stringr::str_detect(descomprimido, as.character(year)) == T]
+        d <- try(haven::read_sav(descomprimido))
+      }
 
+      if (ext %in% uncompressed_formats) {
+        message(glue::glue("The metadata in {archivo} indicates that the uncompressed format is suitable,  \n \t Trying to read..."))
+        d <- haven::read_sav(archivo)
+      }
+
+      if (any(class(d) %in% "data.frame")) {
+        message(glue::glue("{archivo} could be read as tibble :-)"))
+        d <- janitor::clean_names(d)
+      } else {
+        stop(glue::glue("{archivo} could not be read as tibble :-("))
+      }
+    }
   # standarize names
   names(d) <- tolower(names(d))
 
