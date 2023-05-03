@@ -29,7 +29,7 @@ Imports:
     curl,
     dplyr (>= 1.0.0),
     fs,
-    geouy (>= 0.2.3),
+    geouy,
     glue,
     haven (>= 2.3.0),
     janitor,
@@ -41,7 +41,7 @@ Imports:
     srvyr (>= 0.4.0),
     statar,
     stringr,
-    survey (>= 1.2.0),
+    survey,
     tidyr,
     utils
 Suggests: 

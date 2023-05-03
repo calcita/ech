@@ -10,30 +10,30 @@
 #' Disclaimer: This script is not an official INE product.
 #' Aviso: El script no es un producto oficial de INE.
 
-get_ipc <- function(folder = tempdir()){
-
-  assertthat::assert_that(is.character(folder), msg = "Sorry... :( \n \t folder parameter must be character")
-  assertthat::assert_that(.x = curl::has_internet(), msg = "No internet access was detected. Please check your connection.")
-
-  u <- "https://www.ine.gub.uy/c/document_library/get_file?uuid=2e92084a-94ec-4fec-b5ca-42b40d5d2826&groupId=10181"
-  f <- fs::path(folder, "IPC gral var M_B10.xls")
-  if (identical(.Platform$OS.type, "unix")) {
-    try(utils::download.file(u, f, mode = 'wb', method = 'wget'))
-  } else {
-    try(utils::download.file(u, f, mode = 'wb', method = 'libcurl'))
-  }
-  suppressMessages({
-     df <- readxl::read_xls(f)
-     df <- df %>%
-       dplyr::slice(7, 10:length(df[[1]])-3)
-     names(df) <- df[1,]
-     df <- df[-c(1:4),]
-     df <- janitor::clean_names(df) %>%
-      dplyr::mutate(fecha = janitor::excel_numeric_to_date(as.numeric(as.character(.data$mes_y_ano)), date_system = "modern")) %>%
-      dplyr::select(fecha, dplyr::everything(), -mes_y_ano)
-    ipc_base2010 <- df
-  })
-}
+# get_ipc <- function(folder = tempdir()){
+#
+#   assertthat::assert_that(is.character(folder), msg = "Sorry... :( \n \t folder parameter must be character")
+#   assertthat::assert_that(.x = curl::has_internet(), msg = "No internet access was detected. Please check your connection.")
+#
+#   u <- "https://www.ine.gub.uy/c/document_library/get_file?uuid=2e92084a-94ec-4fec-b5ca-42b40d5d2826&groupId=10181"
+#   f <- fs::path(folder, "IPC gral var M_B10.xls")
+#   if (identical(.Platform$OS.type, "unix")) {
+#     try(utils::download.file(u, f, mode = 'wb', method = 'wget'))
+#   } else {
+#     try(utils::download.file(u, f, mode = 'wb', method = 'libcurl'))
+#   }
+#   suppressMessages({
+#      df <- readxl::read_xls(f)
+#      df <- df %>%
+#        dplyr::slice(7, 10:length(df[[1]])-3)
+#      names(df) <- df[1,]
+#      df <- df[-c(1:4),]
+#      df <- janitor::clean_names(df) %>%
+#       dplyr::mutate(fecha = janitor::excel_numeric_to_date(as.numeric(as.character(.data$mes_y_ano)), date_system = "modern")) %>%
+#       dplyr::select(fecha, dplyr::everything(), -mes_y_ano)
+#     ipc_base2010 <- df
+#   })
+# }
 
 #' This function allows you to organize dates
 #' @family utils
@@ -42,7 +42,7 @@ get_ipc <- function(folder = tempdir()){
 #' @return data.frame
 #' @export
 # @examples
-# df <- dates_ech(data = )
+# df <- dates_ech()
 
 dates_ech <- function(data) {
   data %>% dplyr::mutate(
@@ -79,45 +79,45 @@ dates_ech <- function(data) {
 #' Disclaimer: This script is not an official INE product.
 #' Aviso: El script no es un producto oficial de INE.
 
-get_ipc_region <- function(folder = tempdir(), region, sheet = 1){
-  assertthat::assert_that(.x = curl::has_internet(), msg = "No internet access was detected. Please check your connection.")
-  assertthat::assert_that(is.character(folder), msg = "Sorry... :( \n \t folder parameter must be character")
-  assertthat::assert_that(region %in% c("M", "I"), msg = "Sorry... :( \n \t region parameter must be 'M' for Montevideo or 'I' for Interior")
-
-  if (region == "M") {
-    u <- "https://www.ine.gub.uy/c/document_library/get_file?uuid=c7628833-9b64-44a4-ac97-d13353ee79ac&groupId=10181"
-    f <- fs::path(folder, "IPC 3.1 indvarinc_ div M_B10_Mon.xls")
-  }
-  else {
-    u <- "https://www.ine.gub.uy/c/document_library/get_file?uuid=61f9e884-781d-44be-9760-6d69f214b5b3&groupId=10181"
-    f <- fs::path(folder, "IPC 3.2 indvarinc_ div M_B10_Int.xls")
-  }
-  if (identical(.Platform$OS.type, "unix")) {
-    try(utils::download.file(u, f, mode = 'wb', method = 'wget'))
-  } else {
-    try(utils::download.file(u, f, mode = 'wb', method = 'libcurl'))
-  }
-  suppressMessages({
-    df <- readxl::read_xls(f, sheet = sheet)
-    df <- df[,-1] %>% janitor::remove_empty("rows")
-    df <- dplyr::bind_rows(dplyr::slice(df, 1), dplyr::filter_all(df, dplyr::any_vars(grepl('ndice General', .))))
-    names(df) <- df[1,]
-    df <- df[-1,]
-    df <- df %>% dplyr::select(dplyr::contains("20")) %>%
-      janitor::clean_names()
-    df <- df %>% tidyr::gather(fecha, indice, names(df)[1]:names(df)[ncol(df)], factor_key = TRUE) %>%
-      tidyr::separate(fecha, into = c("mm", "yy"), sep = "_") %>%
-      ech::dates_ech() %>%
-      dplyr::select(fecha, indice)
-
-    if (region == "M") {
-      ipc_base2010_mdeo <- df
-    }
-    else{
-      ipc_base2010_int <- df
-    }
-  })
-}
+# get_ipc_region <- function(folder = tempdir(), region, sheet = 1){
+#   assertthat::assert_that(.x = curl::has_internet(), msg = "No internet access was detected. Please check your connection.")
+#   assertthat::assert_that(is.character(folder), msg = "Sorry... :( \n \t folder parameter must be character")
+#   assertthat::assert_that(region %in% c("M", "I"), msg = "Sorry... :( \n \t region parameter must be 'M' for Montevideo or 'I' for Interior")
+#
+#   if (region == "M") {
+#     u <- "https://www.ine.gub.uy/c/document_library/get_file?uuid=c7628833-9b64-44a4-ac97-d13353ee79ac&groupId=10181"
+#     f <- fs::path(folder, "IPC 3.1 indvarinc_ div M_B10_Mon.xls")
+#   }
+#   else {
+#     u <- "https://www.ine.gub.uy/c/document_library/get_file?uuid=61f9e884-781d-44be-9760-6d69f214b5b3&groupId=10181"
+#     f <- fs::path(folder, "IPC 3.2 indvarinc_ div M_B10_Int.xls")
+#   }
+#   if (identical(.Platform$OS.type, "unix")) {
+#     try(utils::download.file(u, f, mode = 'wb', method = 'wget'))
+#   } else {
+#     try(utils::download.file(u, f, mode = 'wb', method = 'libcurl'))
+#   }
+#   suppressMessages({
+#     df <- readxl::read_xls(f, sheet = sheet)
+#     df <- df[,-1] %>% janitor::remove_empty("rows")
+#     df <- dplyr::bind_rows(dplyr::slice(df, 1), dplyr::filter_all(df, dplyr::any_vars(grepl('ndice General', .))))
+#     names(df) <- df[1,]
+#     df <- df[-1,]
+#     df <- df %>% dplyr::select(dplyr::contains("20")) %>%
+#       janitor::clean_names()
+#     df <- df %>% tidyr::gather(fecha, indice, names(df)[1]:names(df)[ncol(df)], factor_key = TRUE) %>%
+#       tidyr::separate(fecha, into = c("mm", "yy"), sep = "_") %>%
+#       ech::dates_ech() %>%
+#       dplyr::select(fecha, indice)
+#
+#     if (region == "M") {
+#       ipc_base2010_mdeo <- df
+#     }
+#     else{
+#       ipc_base2010_int <- df
+#     }
+#   })
+# }
 
 #' This function allows you to get the CBA and CBNA data
 #' @family dwnld_read
@@ -137,55 +137,55 @@ get_ipc_region <- function(folder = tempdir(), region, sheet = 1){
 #' Disclaimer: This script is not an official INE product.
 #' Aviso: El script no es un producto oficial de INE.
 
-get_cba_cbna <- function(folder = tempdir(), region, sheet = 1){
-  assertthat::assert_that(.x = curl::has_internet(), msg = "No internet access was detected. Please check your connection.")
-  assertthat::assert_that(is.character(folder), msg =  "Sorry... :( \n \t folder parameter must be character")
-  assertthat::assert_that(region %in% c("M", "I", "R"), msg =  "Sorry... :( \n \t region parameter must be 'M' for Montevideo, 'I' for Interior urbano or 'R' for Interior rural")
-
-  u <- "https://www.ine.gub.uy/c/document_library/get_file?uuid=1675e7d0-6fe0-49bd-bf3f-a46bd6334c0c&groupId=10181"
-  f <- fs::path(folder, "CBA_LP_LI_M.xls")
-  if (identical(.Platform$OS.type, "unix")) {
-    try(utils::download.file(u, f, mode = 'wb', method = 'wget'))
-  } else {
-    try(utils::download.file(u, f, mode = 'wb', method = 'libcurl'))
-  }
-  suppressMessages({
-    df <- readxl::read_xls(f, sheet = sheet)
-    date <- df[9:nrow(df),1]
-    names(date) <- "fecha"
-    date <- date %>%
-      dplyr::mutate(fecha = janitor::excel_numeric_to_date(as.numeric(as.character(fecha)), date_system = "modern")) %>%
-      janitor::remove_empty("rows")
-    df <- df[,-1] %>% janitor::remove_empty("rows") %>% janitor::remove_empty("cols")
-
-    if (region == "M") {
-      cba_mdeo <- df[, 1:3]
-      names(cba_mdeo) <- df[2, 1:3]
-      cba_mdeo <- cba_mdeo %>%
-        dplyr::slice(-1:-3) %>%
-        janitor::clean_names() %>%
-        purrr::map_df(as.numeric) %>%
-        dplyr::bind_cols(date,.)
-    } else if (region == "I") {
-      cba_int_urb <- df[, 4:6]
-      names(cba_int_urb) <- df[2, 4:6]
-      cba_int_urb <- cba_int_urb %>%
-        dplyr::slice(-1:-3) %>%
-        janitor::clean_names() %>%
-        purrr::map_df(as.numeric) %>%
-        dplyr::bind_cols(date,.)
-    } else {
-      cba_int_rur <- df[, 7:9]
-      names(cba_int_rur) <- df[2, 7:9]
-      cba_int_rur <- cba_int_rur %>%
-        dplyr::slice(-1:-3) %>%
-        janitor::clean_names() %>%
-        purrr::map_df(as.numeric) %>%
-        dplyr::bind_cols(date,.)
-    }
-  })
-}
-
+# get_cba_cbna <- function(folder = tempdir(), region, sheet = 1){
+#   assertthat::assert_that(.x = curl::has_internet(), msg = "No internet access was detected. Please check your connection.")
+#   assertthat::assert_that(is.character(folder), msg =  "Sorry... :( \n \t folder parameter must be character")
+#   assertthat::assert_that(region %in% c("M", "I", "R"), msg =  "Sorry... :( \n \t region parameter must be 'M' for Montevideo, 'I' for Interior urbano or 'R' for Interior rural")
+#
+#   u <- "https://www.ine.gub.uy/c/document_library/get_file?uuid=1675e7d0-6fe0-49bd-bf3f-a46bd6334c0c&groupId=10181"
+#   f <- fs::path(folder, "CBA_LP_LI_M.xls")
+#   if (identical(.Platform$OS.type, "unix")) {
+#     try(utils::download.file(u, f, mode = 'wb', method = 'wget'))
+#   } else {
+#     try(utils::download.file(u, f, mode = 'wb', method = 'libcurl'))
+#   }
+#   suppressMessages({
+#     df <- readxl::read_xls(f, sheet = sheet)
+#     date <- df[9:nrow(df),1]
+#     names(date) <- "fecha"
+#     date <- date %>%
+#       dplyr::mutate(fecha = janitor::excel_numeric_to_date(as.numeric(as.character(fecha)), date_system = "modern")) %>%
+#       janitor::remove_empty("rows")
+#     df <- df[,-1] %>% janitor::remove_empty("rows") %>% janitor::remove_empty("cols")
+#
+#     if (region == "M") {
+#       cba_mdeo <- df[, 1:3]
+#       names(cba_mdeo) <- df[2, 1:3]
+#       cba_mdeo <- cba_mdeo %>%
+#         dplyr::slice(-1:-3) %>%
+#         janitor::clean_names() %>%
+#         purrr::map_df(as.numeric) %>%
+#         dplyr::bind_cols(date,.)
+#     } else if (region == "I") {
+#       cba_int_urb <- df[, 4:6]
+#       names(cba_int_urb) <- df[2, 4:6]
+#       cba_int_urb <- cba_int_urb %>%
+#         dplyr::slice(-1:-3) %>%
+#         janitor::clean_names() %>%
+#         purrr::map_df(as.numeric) %>%
+#         dplyr::bind_cols(date,.)
+#     } else {
+#       cba_int_rur <- df[, 7:9]
+#       names(cba_int_rur) <- df[2, 7:9]
+#       cba_int_rur <- cba_int_rur %>%
+#         dplyr::slice(-1:-3) %>%
+#         janitor::clean_names() %>%
+#         purrr::map_df(as.numeric) %>%
+#         dplyr::bind_cols(date,.)
+#     }
+#   })
+# }
+#
 
 # This function allows you to get the IPAB (Indice de precios de alimentos y bebidas) data
 # @family dwnld_read
@@ -240,47 +240,47 @@ get_cba_cbna <- function(folder = tempdir(), region, sheet = 1){
 #' @importFrom tidyr drop_na separate
 #' @return data.frame
 
-get_ipab_region <- function(folder = tempdir(), region, sheet = 1){
-  assertthat::assert_that(.x = curl::has_internet(), msg = "No internet access was detected. Please check your connection.")
-  assertthat::assert_that(is.character(folder), msg = "Sorry... :( \n \t folder parameter must be character")
-  assertthat::assert_that(region %in% c("M", "I"), msg = "Sorry... :( \n \t region parameter must be 'M' for Montevideo or 'I' for Interior")
-
-  if (region == "M") {
-    u <- "https://ine.gub.uy/c/document_library/get_file?uuid=c7628833-9b64-44a4-ac97-d13353ee79ac&groupId=10181"
-    f <- fs::path(folder, "IPC 3.1 indvarinc_ div M_B10_Mon.xls")
-  } else {
-    u <- "https://ine.gub.uy/c/document_library/get_file?uuid=61f9e884-781d-44be-9760-6d69f214b5b3&groupId=10181"
-    f <- fs::path(folder, "IPC 3.2 indvarinc_ div M_B10_Int.xls")
-  }
-  if (identical(.Platform$OS.type, "unix")) {
-    try(utils::download.file(u, f, mode = 'wb', method = 'wget'))
-  } else {
-    try(utils::download.file(u, f, mode = 'wb', method = 'libcurl'))
-  }
-  suppressMessages({
-    df <- readxl::read_xls(f, sheet = sheet)
-    df <- df[,-1] %>% janitor::remove_empty("rows")
-    df <- dplyr::bind_rows(dplyr::slice(df, 1), dplyr::filter_all(df, dplyr::any_vars(grepl(c('Alimentos y Bebidas No Alcoh'), .))))
-    names(df) <- df[1,]
-    df <- df %>% janitor::remove_empty("cols")
-    df <- df[,-1]
-    df <- t(df)
-    df <- data.frame(df) %>%
-      tidyr::drop_na() %>%
-      tidyr::separate(X1, sep = " ", into = c("mm", "yy"))
-    names(df) <- c("mm", "yy", "indice")
-    df <- df %>% dplyr::mutate_all(tolower) %>%
-      ech::dates_ech() %>%
-      dplyr::select(fecha, indice)
-
-    if (region == "M") {
-      ipab_base2010_mdeo <- df
-    }
-    else{
-      ipab_base2010_int <- df
-    }
-  })
-}
+# get_ipab_region <- function(folder = tempdir(), region, sheet = 1){
+#   assertthat::assert_that(.x = curl::has_internet(), msg = "No internet access was detected. Please check your connection.")
+#   assertthat::assert_that(is.character(folder), msg = "Sorry... :( \n \t folder parameter must be character")
+#   assertthat::assert_that(region %in% c("M", "I"), msg = "Sorry... :( \n \t region parameter must be 'M' for Montevideo or 'I' for Interior")
+#
+#   if (region == "M") {
+#     u <- "https://ine.gub.uy/c/document_library/get_file?uuid=c7628833-9b64-44a4-ac97-d13353ee79ac&groupId=10181"
+#     f <- fs::path(folder, "IPC 3.1 indvarinc_ div M_B10_Mon.xls")
+#   } else {
+#     u <- "https://ine.gub.uy/c/document_library/get_file?uuid=61f9e884-781d-44be-9760-6d69f214b5b3&groupId=10181"
+#     f <- fs::path(folder, "IPC 3.2 indvarinc_ div M_B10_Int.xls")
+#   }
+#   if (identical(.Platform$OS.type, "unix")) {
+#     try(utils::download.file(u, f, mode = 'wb', method = 'wget'))
+#   } else {
+#     try(utils::download.file(u, f, mode = 'wb', method = 'libcurl'))
+#   }
+#   suppressMessages({
+#     df <- readxl::read_xls(f, sheet = sheet)
+#     df <- df[,-1] %>% janitor::remove_empty("rows")
+#     df <- dplyr::bind_rows(dplyr::slice(df, 1), dplyr::filter_all(df, dplyr::any_vars(grepl(c('Alimentos y Bebidas No Alcoh'), .))))
+#     names(df) <- df[1,]
+#     df <- df %>% janitor::remove_empty("cols")
+#     df <- df[,-1]
+#     df <- t(df)
+#     df <- data.frame(df) %>%
+#       tidyr::drop_na() %>%
+#       tidyr::separate(X1, sep = " ", into = c("mm", "yy"))
+#     names(df) <- c("mm", "yy", "indice")
+#     df <- df %>% dplyr::mutate_all(tolower) %>%
+#       ech::dates_ech() %>%
+#       dplyr::select(fecha, indice)
+#
+#     if (region == "M") {
+#       ipab_base2010_mdeo <- df
+#     }
+#     else{
+#       ipab_base2010_int <- df
+#     }
+#   })
+# }
 
 #' This function allows you to calculate a deflator coefficient
 #' @family income
@@ -399,7 +399,7 @@ unlabelled <- function(data = NULL){
 #' @export
 #'
 #' @examples
-#' toy_ech_2018 <- age_groups(data = ech::toy_ech_2018, cut = c(0, 4, 11, 17, 24))
+#'#' toy_ech_2018 <- age_groups(data = ech::toy_ech_2018, cut = c(0, 4, 11, 17, 24))
 
 age_groups <- function(data = ech::toy_ech_2018,
                        cut = c(0, 4, 11, 17, 24),
@@ -409,11 +409,11 @@ age_groups <- function(data = ech::toy_ech_2018,
   assertthat::assert_that(is.numeric(cut), msg = glue:glue("Sorry... :( \n \t cut parameter must be a numeric vector"))
   assertthat::assert_that(e27 %in% names(data), msg =  glue:glue("Sorry... :( \n \t {e27} is not in data"))
 
-  if (min(dplyr::pull(data[, e27])) < min(cut)) {
-    cut <- c(min(dplyr::pull(data[, e27])), cut)
+  if (min(data %>% dplyr::pull(e27)) < min(cut)) {
+    cut <- c(min(data %>% dplyr::pull(e27)), cut)
   }
   if (max(dplyr::pull(data[, e27])) > max(cut)) {
-    cut <- c(cut, max(dplyr::pull(data[, e27])))
+    cut <- c(cut, max(data %>% dplyr::pull(e27)))
   }
 
   data <- data %>% dplyr::mutate(age_groups = cut(e27, breaks = cut, include.lowest = TRUE, ordered_result = TRUE, labels = FALSE),

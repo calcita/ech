@@ -2698,7 +2698,7 @@ dic <- structure(list(
             "estred13", "estred13", "estred13", "estred13", "estred13",
             "estred13", "estred13", "estred13", "estred13", "estred13",
             "region", "region", "region", "region_4", "region_4", "region_4",
-            "region_4", "", "w_tri", "w_sem", "", "nper", "e557", "e557",
+            "region_4", "w_ano", "w_tri", "w_sem", "", "nper", "e557", "e557",
             "e557", "", "e26", "e26", "e27", "e29_1", "e29_2", "e29_3",
             "e29_4", "e29_5", "e29_5_1", "e29_6", "e29_6", "e29_6", "e29_6",
             "e29_6", "e30", "e30", "e30", "e30", "e30", "e30", "e30",

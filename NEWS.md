@@ -5,8 +5,15 @@
 * Add function organize_e193
 * minor changes. fix dplyr::between error
 * update get_microdata (delete files)
-* comment get_ipab (link error)
+* comment get_ipab (link removed)
 * fix tidyselect warnings
+* comment get_ipc (link removed)
+* comment get_dictionary (changed extension)
+* comment get_ipc_region (link removed)
+* comment get_cba_cbna (link removed)
+* comment get_ipab_region (link removed)
+* comment test_get_dictionary 
+* comment tes_¨get_ipc 
 
 ## ech v0.1.2.0
 *minor changes. fix organize_names

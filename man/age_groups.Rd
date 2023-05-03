@@ -20,7 +20,7 @@ data.frame
 This function allows you to calculate age groups
 }
 \examples{
-toy_ech_2018 <- age_groups(data = ech::toy_ech_2018, cut = c(0, 4, 11, 17, 24))
+#' toy_ech_2018 <- age_groups(data = ech::toy_ech_2018, cut = c(0, 4, 11, 17, 24))
 }
 \seealso{
 Other demographic: 
