@@ -2,37 +2,24 @@
 % Please edit documentation in R/utils.R
 \name{dates_ech}
 \alias{dates_ech}
-\title{This function allows you to get the IPC data}
+\title{This function allows you to organize dates}
 \usage{
 dates_ech(data)
 }
 \arguments{
 \item{data}{data frame with an 'yy' variable for the year, and a 'mm' variable for the month}
-
-\item{folder}{ruta temporal para descargar el archivo}
 }
 \value{
 data.frame
 }
 \description{
-This function allows you to get the IPC data
-}
-\details{
-Disclaimer: This script is not an official INE product.
-Aviso: El script no es un producto oficial de INE.
 This function allows you to organize dates
 }
 \seealso{
-Other dwnld_read: 
-\code{\link{deflate}()},
-\code{\link{get_microdata}()},
-\code{\link{read_microdata}()}
-
 Other utils: 
 \code{\link{archive_extract}()},
 \code{\link{ech}},
 \code{\link{unlabelled}()},
 \code{\link{unrarPath}}
 }
-\concept{dwnld_read}
 \concept{utils}

@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{deflate}
 \alias{deflate}
-\title{This function allows you to get the IPC data}
+\title{This function allows you to calculate a deflator coefficient}
 \usage{
 deflate(
   base_month = NULL,
@@ -22,54 +22,18 @@ deflate(
 \item{level}{General index ('G'), Montevideo index ('M') or Interior index ('I')}
 
 \item{df_year}{ECH year}
-
-\item{folder}{temporal folder}
-
-\item{region}{Montevideo ("M"), Interior Urbano ("I")}
-
-\item{sheet}{sheet number. Default 1}
 }
 \value{
-data.frame
-
-data.frame
-
-data.frame
-This function allows you to calculate a deflator coefficient
-
 vector
 }
 \description{
-This function allows you to get the IPC data
+This function allows you to calculate a deflator coefficient
 }
 \details{
 Disclaimer: This script is not an official INE product.
 Aviso: El script no es un producto oficial de INE.
-This function allows you to get the CBA and CBNA data
-
-Disclaimer: This script is not an official INE product.
-Aviso: El script no es un producto oficial de INE.
-This function allows you to get the IPAB (Indice de precios de alimentos y bebidas) data
-
-Disclaimer: This script is not an official INE product.
-Aviso: El script no es un producto oficial de INE.
 }
 \seealso{
-Other dwnld_read: 
-\code{\link{dates_ech}()},
-\code{\link{get_microdata}()},
-\code{\link{read_microdata}()}
-
-Other dwnld_read: 
-\code{\link{dates_ech}()},
-\code{\link{get_microdata}()},
-\code{\link{read_microdata}()}
-
-Other dwnld_read: 
-\code{\link{dates_ech}()},
-\code{\link{get_microdata}()},
-\code{\link{read_microdata}()}
-
 Other income: 
 \code{\link{basket_goods}()},
 \code{\link{income_constant_prices}()},
@@ -78,5 +42,4 @@ Other income:
 \code{\link{labor_income_per_hour}()},
 \code{\link{organize_ht11}()}
 }
-\concept{dwnld_read}
 \concept{income}

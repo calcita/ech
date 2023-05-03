@@ -108,5 +108,6 @@ if(getRversion() >= "2.15.1") utils::globalVariables(c(".",
                                                        "e51_4_b",
                                                        "mes_y_ano",
                                                        "no_rel",
-                                                       "sex_householder"
+                                                       "sex_householder",
+                                                       'everything'
                                                        ))

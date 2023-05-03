@@ -23,8 +23,6 @@ Aviso: El script no es un producto oficial de INE.
 }
 \seealso{
 Other dwnld_read: 
-\code{\link{dates_ech}()},
-\code{\link{deflate}()},
 \code{\link{get_microdata}()}
 }
 \concept{dwnld_read}

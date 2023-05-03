@@ -1,14 +1,14 @@
-#' This function allows you to get the IPC data
-#' @family dwnld_read
-#' @param folder ruta temporal para descargar el archivo
-#' @importFrom readxl read_xls
-#' @importFrom dplyr slice mutate select everything %>%
-#' @importFrom janitor clean_names excel_numeric_to_date
-#' @importFrom fs path
-#' @importFrom rlang .data
-#' @details
-#' Disclaimer: This script is not an official INE product.
-#' Aviso: El script no es un producto oficial de INE.
+# #' This function allows you to get the IPC data
+# #' @family dwnld_read
+# #' @param folder ruta temporal para descargar el archivo
+# #' @importFrom readxl read_xls
+# #' @importFrom dplyr slice mutate select everything %>%
+# #' @importFrom janitor clean_names excel_numeric_to_date
+# #' @importFrom fs path
+# #' @importFrom rlang .data
+# #' @details
+# #' Disclaimer: This script is not an official INE product.
+# #' Aviso: El script no es un producto oficial de INE.
 
 # get_ipc <- function(folder = tempdir()){
 #
@@ -63,21 +63,20 @@ dates_ech <- function(data) {
 }
 
 
-#' This function allows you to get the IPC data
-#' @family dwnld_read
-#' @param folder temporal folder
-#' @param region Montevideo ("M") or Interior ("I")
-#' @param sheet sheet number. Default 1.
-#'
-#' @importFrom readxl read_xls
-#' @importFrom dplyr slice mutate select everything filter_all slice any_vars bind_rows %>%
-#' @importFrom tidyr gather separate
-#' @importFrom janitor clean_names excel_numeric_to_date
-#' @importFrom fs path
-#' @return data.frame
-#' @details
-#' Disclaimer: This script is not an official INE product.
-#' Aviso: El script no es un producto oficial de INE.
+# #' This function allows you to get the IPC data
+# #' @family dwnld_read
+# #' @param folder temporal folder
+# #' @param region Montevideo ("M") or Interior ("I")
+# #' @param sheet sheet number. Default 1.
+# #' @importFrom readxl read_xls
+# #' @importFrom dplyr slice mutate select everything filter_all slice any_vars bind_rows %>%
+# #' @importFrom tidyr gather separate
+# #' @importFrom janitor clean_names excel_numeric_to_date
+# #' @importFrom fs path
+# #' @return data.frame
+# #' @details
+# #' Disclaimer: This script is not an official INE product.
+# #' Aviso: El script no es un producto oficial de INE.
 
 # get_ipc_region <- function(folder = tempdir(), region, sheet = 1){
 #   assertthat::assert_that(.x = curl::has_internet(), msg = "No internet access was detected. Please check your connection.")
@@ -119,23 +118,23 @@ dates_ech <- function(data) {
 #   })
 # }
 
-#' This function allows you to get the CBA and CBNA data
-#' @family dwnld_read
-#' @param folder temporal folder
-#' @param region Montevideo ("M"), Interior Urbano ("I"), Interior Rural ("R")
-#' @param sheet sheet number. Default 1.
-#'
-#' @importFrom readxl read_xls
-#' @importFrom dplyr slice mutate bind_cols %>%
-#' @importFrom janitor clean_names excel_numeric_to_date remove_empty
-#' @importFrom fs path
-#' @importFrom purrr map_df
-#' @importFrom curl has_internet
-#'
-#' @return data.frame
-#' @details
-#' Disclaimer: This script is not an official INE product.
-#' Aviso: El script no es un producto oficial de INE.
+# #' This function allows you to get the CBA and CBNA data
+# #' @family dwnld_read
+# #' @param folder temporal folder
+# #' @param region Montevideo ("M"), Interior Urbano ("I"), Interior Rural ("R")
+# #' @param sheet sheet number. Default 1.
+# #'
+# #' @importFrom readxl read_xls
+# #' @importFrom dplyr slice mutate bind_cols %>%
+# #' @importFrom janitor clean_names excel_numeric_to_date remove_empty
+# #' @importFrom fs path
+# #' @importFrom purrr map_df
+# #' @importFrom curl has_internet
+# #'
+# #' @return data.frame
+# #' @details
+# #' Disclaimer: This script is not an official INE product.
+# #' Aviso: El script no es un producto oficial de INE.
 
 # get_cba_cbna <- function(folder = tempdir(), region, sheet = 1){
 #   assertthat::assert_that(.x = curl::has_internet(), msg = "No internet access was detected. Please check your connection.")
@@ -229,16 +228,16 @@ dates_ech <- function(data) {
 #   })
 # }
 
-#' This function allows you to get the IPAB (Indice de precios de alimentos y bebidas) data
-#' @family dwnld_read
-#' @param folder temporal folder
-#' @param region Montevideo ("M"), Interior Urbano ("I")
-#' @param sheet sheet number. Default 1
-#' @importFrom readxl read_xls
-#' @importFrom janitor remove_empty
-#' @importFrom dplyr bind_rows slice filter_all bind_cols any_vars mutate
-#' @importFrom tidyr drop_na separate
-#' @return data.frame
+# This function allows you to get the IPAB (Indice de precios de alimentos y bebidas) data
+# @family dwnld_read
+# @param folder temporal folder
+# @param region Montevideo ("M"), Interior Urbano ("I")
+# @param sheet sheet number. Default 1
+# @importFrom readxl read_xls
+# @importFrom janitor remove_empty
+# @importFrom dplyr bind_rows slice filter_all bind_cols any_vars mutate
+# @importFrom tidyr drop_na separate
+# @return data.frame
 
 # get_ipab_region <- function(folder = tempdir(), region, sheet = 1){
 #   assertthat::assert_that(.x = curl::has_internet(), msg = "No internet access was detected. Please check your connection.")
