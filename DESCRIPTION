@@ -35,8 +35,6 @@ Imports:
     janitor,
     labelled,
     laeken,
-    purrr,
-    readxl,
     rlang,
     srvyr (>= 0.4.0),
     statar,

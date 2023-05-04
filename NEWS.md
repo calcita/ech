@@ -13,7 +13,8 @@
 * comment get_cba_cbna (link removed)
 * comment get_ipab_region (link removed)
 * comment test_get_dictionary 
-* comment tes_¨get_ipc 
+* comment tes_get_ipc 
+* remove readxl and purrr from description
 
 ## ech v0.1.2.0
 *minor changes. fix organize_names

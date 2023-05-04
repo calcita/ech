@@ -186,20 +186,20 @@ dates_ech <- function(data) {
 # }
 #
 
-# This function allows you to get the IPAB (Indice de precios de alimentos y bebidas) data
-# @family dwnld_read
-# @param folder temporal folder
-# @param sheet sheet number. Default 1
-# @importFrom readxl read_xls
-# @importFrom janitor remove_empty
-# @importFrom dplyr bind_rows slice filter_all bind_cols any_vars mutate_all
-# @importFrom tidyr fill
-# @importFrom curl has_internet
-#
-# @return data.frame
-# @details
-# Disclaimer: This script is not an official INE product.
-# Aviso: El script no es un producto oficial de INE.
+# # This function allows you to get the IPAB (Indice de precios de alimentos y bebidas) data
+# # @family dwnld_read
+# # @param folder temporal folder
+# # @param sheet sheet number. Default 1
+# # @importFrom readxl read_xls
+# # @importFrom janitor remove_empty
+# # @importFrom dplyr bind_rows slice filter_all bind_cols any_vars mutate_all
+# # @importFrom tidyr fill
+# # @importFrom curl has_internet
+# #
+# # @return data.frame
+# # @details
+# # Disclaimer: This script is not an official INE product.
+# # Aviso: El script no es un producto oficial de INE.
 
 # get_ipab <- function(folder = tempdir(), sheet = 1){
 #   assertthat::assert_that(.x = curl::has_internet(), msg = "No internet access was detected. Please check your connection.")
@@ -228,16 +228,16 @@ dates_ech <- function(data) {
 #   })
 # }
 
-# This function allows you to get the IPAB (Indice de precios de alimentos y bebidas) data
-# @family dwnld_read
-# @param folder temporal folder
-# @param region Montevideo ("M"), Interior Urbano ("I")
-# @param sheet sheet number. Default 1
-# @importFrom readxl read_xls
-# @importFrom janitor remove_empty
-# @importFrom dplyr bind_rows slice filter_all bind_cols any_vars mutate
-# @importFrom tidyr drop_na separate
-# @return data.frame
+# #' This function allows you to get the IPAB (Indice de precios de alimentos y bebidas) data
+# #' @family dwnld_read
+# #' @param folder temporal folder
+# #' @param region Montevideo ("M"), Interior Urbano ("I")
+# #' @param sheet sheet number. Default 1
+# #' @importFrom readxl read_xls
+# #' @importFrom janitor remove_empty
+# #' @importFrom dplyr bind_rows slice filter_all bind_cols any_vars mutate
+# #' @importFrom tidyr drop_na separate
+# #' @return data.frame
 
 # get_ipab_region <- function(folder = tempdir(), region, sheet = 1){
 #   assertthat::assert_that(.x = curl::has_internet(), msg = "No internet access was detected. Please check your connection.")
