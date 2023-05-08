@@ -592,7 +592,7 @@ A data frame with 1000 rows and 579 variables:
 }
 }
 \source{
-\url{https://www.ine.gub.uy/}
+\url{https://www.gub.uy/instituto-nacional-estadistica/}
 }
 \usage{
 toy_ech_2018

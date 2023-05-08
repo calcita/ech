@@ -27,7 +27,7 @@ knitr::opts_chunk$set(
 [![DOI](https://zenodo.org/badge/224897952.svg)](https://zenodo.org/badge/latestdoi/224897952)
 <!-- badges: end -->
 
-Caja de herramientas para el procesamiento de la [Encuesta Continua de Hogares de Uruguay](https://www.ine.gub.uy/encuesta-continua-de-hogares1) del Instituto Nacional de Estadística (INE). Pretendemos contribuir a la comunidad de usuaries de R en Uruguay, facilitando el uso de una de las encuestas socioeconómicas más importantes del país. En este sentido, el paquete implementa una serie de funciones que permiten el cálculo de los principales indicadores socioeconómicos que permite la encuesta.
+Caja de herramientas para el procesamiento de la [Encuesta Continua de Hogares de Uruguay](https://www.gub.uy/instituto-nacional-estadistica/datos-y-estadisticas/encuestas/encuesta-continua-hogares) del Instituto Nacional de Estadística (INE). Pretendemos contribuir a la comunidad de usuaries de R en Uruguay, facilitando el uso de una de las encuestas socioeconómicas más importantes del país. En este sentido, el paquete implementa una serie de funciones que permiten el cálculo de los principales indicadores socioeconómicos que permite la encuesta.
 
 
 Instalación

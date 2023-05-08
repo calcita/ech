@@ -4,16 +4,10 @@
     <loc>/404.html</loc>
   </url>
   <url>
-    <loc>/LICENSE-text.html</loc>
-  </url>
-  <url>
-    <loc>/LICENSE.html</loc>
+    <loc>/articles/ech.html</loc>
   </url>
   <url>
     <loc>/articles/Educacion.html</loc>
-  </url>
-  <url>
-    <loc>/articles/ech.html</loc>
   </url>
   <url>
     <loc>/articles/estimacion_ingresos.html</loc>
@@ -32,6 +26,12 @@
   </url>
   <url>
     <loc>/index.html</loc>
+  </url>
+  <url>
+    <loc>/LICENSE-text.html</loc>
+  </url>
+  <url>
+    <loc>/LICENSE.html</loc>
   </url>
   <url>
     <loc>/news/index.html</loc>
@@ -235,9 +235,6 @@
     <loc>/reference/set_design.html</loc>
   </url>
   <url>
-    <loc>/reference/to_ascii.html</loc>
-  </url>
-  <url>
     <loc>/reference/toy_ech_2017_income.html</loc>
   </url>
   <url>
@@ -245,6 +242,9 @@
   </url>
   <url>
     <loc>/reference/toy_ech_2018_income.html</loc>
+  </url>
+  <url>
+    <loc>/reference/to_ascii.html</loc>
   </url>
   <url>
     <loc>/reference/underemployment.html</loc>

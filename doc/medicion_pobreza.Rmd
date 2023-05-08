@@ -90,7 +90,7 @@ pobres_personas
 ipm_hogares
 ```
 
-Finalmente, podemos comparar estos resultados que brinda el paquete `ech`, con el [Boletín Técnico](https://www.ine.gub.uy/c/document_library/get_file?uuid=35dea1e6-98e0-41a5-ac79-46671dfcac6c&groupId=10181) que publica el INE.
+Finalmente, podemos comparar estos resultados que brinda el paquete `ech`, con el [Boletín Técnico](https://www5.ine.gub.uy/documents/Demograf%C3%ADayEESS/HTML/ECH/Pobreza/Estimaci%C3%B3n%20de%20la%20pobreza%20por%20el%20m%C3%A9todo%20del%20ingreso%202019.html) que publica el INE.
 
 Concretamente para comparar los resultados con el cuadro 20 y 21, primero calculamos la variable `poor` con la función `poverty()` y luego estimamos la proporción de hogares y personas pobres según región (consideramos la variable `region_4`).
 

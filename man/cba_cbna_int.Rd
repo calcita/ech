@@ -14,7 +14,7 @@ A data frame with 234 rows and 4 variables:
  }
 }
 \source{
-\url{https://www.ine.gub.uy/}
+\url{https://www.gub.uy/instituto-nacional-estadistica/}
 }
 \usage{
 cba_cbna_int

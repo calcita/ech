@@ -105,24 +105,24 @@ deflactor el IPC. Esto implica que debemos considerar los valores del
 IPC mensual desde diciembre 2018 a noviembre 2019.</p>
 <p>Obtener los datos del IPC es bastante sencillo usando el paquete
 <code>ech</code>, para ello existe la fucnión de hecho la función
-<code><a href="../reference/get_ipc.html">get_ipc()</a></code> que descarga el archivo de la web del INE y lo
+<code>get_ipc()</code> que descarga el archivo de la web del INE y lo
 guarda en un formato tidy en el data frame <code>ipc_base2010</code>. La
 estructura del objeto es la siguiente:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">tail</a></span><span class="op">(</span><span class="fu">ech</span><span class="fu">::</span><span class="va"><a href="../reference/ipc_base2010.html">ipc_base2010</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 8</span></span></span>
-<span><span class="co">#&gt;   fecha      indice             mensual  acum_…¹ acum_…² trime…³ cuatr…⁴ semes…⁵</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 x 8</span></span></span>
+<span><span class="co">#&gt;   fecha      indice             mensual  acum_~1 acum_~2 trime~3 cuatr~4 semes~5</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> 2022-03-01 250.41999999999999 1.11000… 4.4199… 9.3800… 4.4243… 4.3199… 5.6713…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> 2022-04-01 251.65000000000001 0.48999… 4.9400… 9.3699… 3.0972… 4.9372… 5.0993…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> 2022-05-01 252.81999999999999 0.46000… 5.4299… 9.3699… 2.0752… 3.5765… 5.3197…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> 2022-06-01 254.30000000000001 0.58999… 6.04    9.2899… 1.5493… 2.6728… 6.0422…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> 2022-07-01 256.25999999999999 0.77000… 6.8600… 9.5600… 1.8319… 2.3320… 4.9858…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> 2022-08-01 258.38             0.82999… 7.7400… 9.5299… 2.1991… 2.6743… 4.3200…</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># … with abbreviated variable names ¹​acum_ano, ²​acum_12_meses, ³​trimestre,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   ⁴​cuatrimestre, ⁵​semestre</span></span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> 2022-03-01 250.41999999999999 1.11000~ 4.4199~ 9.3800~ 4.4243~ 4.3199~ 5.6713~</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> 2022-04-01 251.65000000000001 0.48999~ 4.9400~ 9.3699~ 3.0972~ 4.9372~ 5.0993~</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> 2022-05-01 252.81999999999999 0.46000~ 5.4299~ 9.3699~ 2.0752~ 3.5765~ 5.3197~</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> 2022-06-01 254.30000000000001 0.58999~ 6.04    9.2899~ 1.5493~ 2.6728~ 6.0422~</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> 2022-07-01 256.25999999999999 0.77000~ 6.8600~ 9.5600~ 1.8319~ 2.3320~ 4.9858~</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> 2022-08-01 258.38             0.82999~ 7.7400~ 9.5299~ 2.1991~ 2.6743~ 4.3200~</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ... with abbreviated variable names 1: acum_ano, 2: acum_12_meses,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   3: trimestre, 4: cuatrimestre, 5: semestre</span></span></span></code></pre></div>
 <p>La función que permite obtener un deflactor es la función deflate(),
-que a su vez, utiliza internamente la función <code><a href="../reference/get_ipc.html">get_ipc()</a></code>. No
+que a su vez, utiliza internamente la función <code>get_ipc()</code>. No
 utilizamos directamente ninguna de estas funciones, sino que la
 simplicidad de ech radica en que para calcular ingresos a precios
 constantes usamos la función <code><a href="../reference/income_constant_prices.html">income_constant_prices()</a></code> la
@@ -229,7 +229,7 @@ Observatorio Territorio Uruguay de OPP que se encuentran <a href="https://otu.op
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>

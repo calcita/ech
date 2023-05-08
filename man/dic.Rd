@@ -32,7 +32,7 @@ A data frame with 976 rows and 21 variables:
 }
 }
 \source{
-\url{https://www.ine.gub.uy/}
+\url{https://www.gub.uy/instituto-nacional-estadistica/}
 }
 \usage{
 dic

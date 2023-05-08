@@ -2,12 +2,13 @@
 title: "Cálculo de variables educativas y estimación de indicadores"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Educacion}
+  %\VignetteIndexEntry{Cálculo de variables educativas y estimación de indicadores}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
 ```{r, include = FALSE}
+options(rmarkdown.html_vignette.check_title = FALSE)
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",

@@ -28,7 +28,7 @@
 #' @export
 #' @importFrom dplyr mutate case_when
 #' @details
-#' Based on https://www.ine.gub.uy/documents/10181/34017/Atlas_fasciculo_1_NBI_versionrevisada.pdf/57ea17f9-3fd9-4306-b9ca-948abc7fab73
+#' Based on [Fascículo I: Las Necesidades Básicas Insatisfechas a partir de los Censos 2011](https://www5.ine.gub.uy/documents/Demograf%C3%ADayEESS/PDF/Demograf%C3%ADa/Atlas_fasciculo_1_NBI_versionrevisada.pdf)
 #' Disclaimer: This script is not an official INE product.
 #' Aviso: El script no es un producto oficial de INE.
 #' @examples

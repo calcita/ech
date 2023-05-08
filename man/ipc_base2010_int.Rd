@@ -12,7 +12,7 @@ A data frame with 120 rows and 2 variables:
  }
 }
 \source{
-\url{https://www.ine.gub.uy/}
+\url{https://www.gub.uy/instituto-nacional-estadistica/}
 }
 \usage{
 ipc_base2010_int

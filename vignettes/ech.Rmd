@@ -23,7 +23,7 @@ options(rmarkdown.html_vignette.check_title = FALSE)
 ```
 
 
-El paquete `ech` es una caja de herramientas para el procesamiento de la [Encuesta Continua de Hogares de Uruguay](http://www.ine.gub.uy/encuesta-continua-de-hogares1) realizada por en Instituto Nacional de Estadística (INE). Pretendiendo contribuir a la comunidad de usuaries de R en Uruguay, facilitando el uso de una de las encuestas socioeconómicas más importantes del país. En este sentido, el paquete implementa una serie de funciones que permiten el cálculo de los principales indicadores socioeconómicos que permite la encuesta.
+El paquete `ech` es una caja de herramientas para el procesamiento de la [Encuesta Continua de Hogares de Uruguay](https://www.gub.uy/instituto-nacional-estadistica/datos-y-estadisticas/encuestas/encuesta-continua-hogares) realizada por en Instituto Nacional de Estadística (INE). Pretendiendo contribuir a la comunidad de usuaries de R en Uruguay, facilitando el uso de una de las encuestas socioeconómicas más importantes del país. En este sentido, el paquete implementa una serie de funciones que permiten el cálculo de los principales indicadores socioeconómicos que permite la encuesta.
 
 
 # Instalación

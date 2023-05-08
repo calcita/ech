@@ -20,7 +20,7 @@ Authors@R:
       person(family = "Instituto Nacional de Estadistica, Uruguay (INE)",
              role = "dtc"))
 Maintainer: Gabriela Mathieu <calcita@gmx.li>
-Description:  A consistent tool for downloading ECH data, processing them and generating new indicators: poverty, education, employment, etc. All data are downloaded from the official site of the National Institute of Statistics at <https://www.ine.gub.uy/encuesta-continua-de-hogares1>.
+Description:  A consistent tool for downloading ECH data, processing them and generating new indicators: poverty, education, employment, etc. All data are downloaded from the official site of the National Institute of Statistics at <https://www.gub.uy/instituto-nacional-estadistica/datos-y-estadisticas/encuestas/encuesta-continua-hogares>.
 License: GPL-3
 Depends: 
     R (>= 3.5.0)
