@@ -386,8 +386,8 @@ crónica”.</p>
 <p>Veamos la aplicación de cada una de estas funciones.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ech)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># cargamos la base de ECH y estandarizamos los nombres de variables</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">get_microdata</span>(<span class="at">year =</span> <span class="dv">2019</span>)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">organize_names</span>(df, <span class="at">year =</span> <span class="dv">2019</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">get_microdata</span>(<span class="at">year =</span> <span class="dv">2019</span>, <span class="at">folder =</span> <span class="fu">tempdir</span>())</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">#df &lt;- organize_names(df, year = 2019)</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># calculamos las variables de pobreza monteria</span></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">poverty</span>(<span class="at">data =</span> df)</span>
@@ -426,7 +426,7 @@ la función.</p>
 <p>Finalmente, podemos comparar estos resultados que brinda el paquete
 <code>ech</code>, con el <a href="https://www5.ine.gub.uy/documents/Demograf%C3%ADayEESS/HTML/ECH/Pobreza/Estimaci%C3%B3n%20de%20la%20pobreza%20por%20el%20m%C3%A9todo%20del%20ingreso%202019.html">Boletín
 Técnico</a> que publica el INE.</p>
-<p>Concretamente para comparar los resultados con el cuadro 20 y 21,
+<p>Concretamente para comparar los resultados con el cuadro 8 y 9,
 primero calculamos la variable <code>poor</code> con la función
 <code>poverty()</code> y luego estimamos la proporción de hogares y
 personas pobres según región (consideramos la variable

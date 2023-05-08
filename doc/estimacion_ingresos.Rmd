@@ -2,22 +2,20 @@
 title: "Estimación de ingresos"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{estimacion_ingresos}
+  %\VignetteIndexEntry{Estimación de ingresos}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r, echo = FALSE}
-LOCAL <- identical(Sys.getenv("LOCAL"), "TRUE")
-knitr::opts_chunk$set(purl = LOCAL)
-```
-
 ```{r, include = FALSE}
+options(rmarkdown.html_vignette.check_title = FALSE)
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
   dpi = 400
 )
+
+options(rmarkdown.html_vignette.check_title = FALSE)
 ```
 
 La medición de los ingresos tiene un rezago de un mes ya que si el hogar fue encuestado, por ejemplo en marzo, en este mes se preguntó por los ingresos del mes pasado, es decir de febrero. A su vez, estos ingresos están expresados a precios corrientes, por lo cual, para hacerlos comparables entre los diferentes meses de la encuesta o de otros años es necesario llevarlos a una medida común. Para convertir los ingresos de precios corrientes a precios constantes debemos elegir un índice como puede ser el IPC (Índice de Precios al Consumo) o el IPAB (Índice de Precios de Alimentos y Bebidas) para construir un deflactor. Por ejemplo, para expresar los ingresos del hogar con la información de la ECH 2019, elegimos como mes base junio y como año base 2019 y como deflactor el IPC. Esto implica que debemos considerar los valores del IPC mensual desde diciembre 2018 a noviembre 2019. 
@@ -33,8 +31,8 @@ La función que permite obtener un deflactor es la función deflate(), que a su 
 Antes de deflactar los ingresos del hogar, tenemos que tener cargado el objeto con los microdatos de la ECH. 
 ```{r eval = FALSE}
 library(ech)
-df <- get_microdata(year = 2019)
-df <- organize_names(df)
+df <- get_microdata(year = 2019, folder = tempdir(), toR = FALSE)
+#df <- organize_names(df)
 ```
 Las variables a tener en cuenta en esta parte son: 
 

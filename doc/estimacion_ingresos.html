@@ -380,8 +380,8 @@ cual utiliza internamente las otras dos funciones ya mencionadas.</p>
 <p>Antes de deflactar los ingresos del hogar, tenemos que tener cargado
 el objeto con los microdatos de la ECH.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ech)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">get_microdata</span>(<span class="at">year =</span> <span class="dv">2019</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">organize_names</span>(df)</span></code></pre></div>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">get_microdata</span>(<span class="at">year =</span> <span class="dv">2019</span>, <span class="at">folder =</span> <span class="fu">tempdir</span>(), <span class="at">toR =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">#df &lt;- organize_names(df)</span></span></code></pre></div>
 <p>Las variables a tener en cuenta en esta parte son:</p>
 <ul>
 <li><code>ht11</code>: Ingreso total del hogar con valor locativo sin
