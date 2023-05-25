@@ -16,8 +16,9 @@ urls_ine <- structure(list(yy = 2011:2022, md_sav = structure(c("https://www.ine
                                                  "https:/www.ine.gub.uy/c/document_library", "https:/www.ine.gub.uy/c/document_library",
                                                  "https:/www.ine.gub.uy/c/document_library", "https:/www.ine.gub.uy/c/document_library",
                                                  "https://www.ine.gub.uy/Anda5/index.php/catalog/719/download/1016",
+                                                 "https://www.ine.gub.uy/Anda5/index.php/catalog/715/download/1154",
                                                  "https:/www.ine.gub.uy/c/document_library", "https:/www.ine.gub.uy/c/document_library",
-                                                 "https:/www.ine.gub.uy/c/document_library", "https:/www.ine.gub.uy/c/document_library"
+                                                 "https:/www.ine.gub.uy/c/document_library"
                                                  ), class = c("fs_path", "character")),
                            dic = structure(c("https://www.ine.gub.uy/Anda5/index.php/catalog/726/download/1098",
                                              "https://www.ine.gub.uy/Anda5/index.php/catalog/725/download/1089",
