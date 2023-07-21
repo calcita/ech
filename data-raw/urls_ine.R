@@ -9,7 +9,7 @@ urls_ine <- structure(list(yy = 2011:2022, md_sav = structure(c("https://www.ine
                                                                 "https://www.ine.gub.uy/Anda5/index.php/catalog/715/download/956",
                                                                 "https://www.ine.gub.uy/Anda5/index.php/catalog/714/download/957",
                                                                 "https://www.ine.gub.uy/Anda5/index.php/catalog/716/download/971", # Segundo semestre implantacion
-                                                                "https://www.ine.gub.uy/Anda5/index.php/catalog/730/download/1143"),
+                                                                "https://www.ine.gub.uy/Anda5/index.php/catalog/730/download/1155"),
                                                               class = c("fs_path", "character")),
                            upm_sav = structure(c("https:/www.ine.gub.uy/c/document_library",
                                                  "https:/www.ine.gub.uy/c/document_library", "https:/www.ine.gub.uy/c/document_library",
