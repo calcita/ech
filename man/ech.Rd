@@ -3,6 +3,7 @@
 \docType{package}
 \name{ech}
 \alias{ech}
+\alias{ech-package}
 \title{\code{ech} package}
 \description{
 Toolbox for Downloading and Processing Microdata from the Continuous Household Survey of Uruguay (ECH)
