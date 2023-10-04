@@ -170,7 +170,7 @@ years_of_schooling <- function(data = ech::toy_ech_2018,
                                                                       TRUE ~ years_schooling))
   }
 
-  if (unique(data$anio) %in% 2021:2022) {
+  if (unique(data$anio) %in% 2021:2023) {
     data <- data %>%
       dplyr::mutate_at(dplyr::vars({{e51_2}}, {{e51_3}}, {{e51_4}}, {{e51_5}}, {{e51_6}},
                                    {{e51_7}}, {{e51_8}}, {{e51_9}}, {{e51_10}}, {{e51_11}}),

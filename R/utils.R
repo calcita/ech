@@ -411,7 +411,7 @@ age_groups <- function(data = ech::toy_ech_2018,
   if (min(data %>% dplyr::pull(e27)) < min(cut)) {
     cut <- c(min(data %>% dplyr::pull(e27)), cut)
   }
-  if (max(dplyr::pull(data[, e27])) > max(cut)) {
+  if (max(data %>% dplyr::pull(e27)) > max(cut)) {
     cut <- c(cut, max(data %>% dplyr::pull(e27)))
   }
 

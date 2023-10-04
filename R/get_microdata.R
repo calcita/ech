@@ -154,7 +154,7 @@ get_microdata <- function(year = NULL,
   # download ----
   try(dir.create(folder))
 
-  all_years <- 2011:2022
+  all_years <- 2011:2023
 
   if (!is.null(year) & any(year %in% all_years) == FALSE) {
     stop("Sorry... ;( \n \t At the moment ech only works for the period 2011 to 2019")
@@ -164,7 +164,7 @@ get_microdata <- function(year = NULL,
     year <- max(all_years)
   }
 
-    if (year %in% c(2021, 2022)) {
+    if (year %in% c(2021:2023)) {
       links <- ech::urls_ine %>% dplyr::filter(yy == year)
       u1 <- links$md_sav
       y <- links$yy
