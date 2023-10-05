@@ -154,7 +154,7 @@ Y con esto, podemos hacer un mapa con `ggplot2` muy fácilmente de estas estimac
 plot_geouy(x = pobre_x_dpto_geo, col = "Pobreza", l = "%")
 ```
 
-```{r echo=FALSE, fig.align="center", message=FALSE, warning=FALSE, fig.height=5, fig.width=7}
+```{r echo=FALSE, fig.align="center", message=FALSE, warning=FALSE, fig.height=5, fig.width=7, eval = FALSE}
 load("man/figures/pobre_readme.Rds")
 pobre_readme
 ```

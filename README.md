@@ -16,12 +16,13 @@ status](https://github.com/calcita/ech//workflows/R-CMD-check/badge.svg)](https:
 [![AppVeyor build
 status](https://ci.appveyor.com/api/projects/status/github/calcita/ech?branch=master&svg=true)](https://ci.appveyor.com/project/calcita/ech)
 [![Codecov test
-coverage](https://codecov.io/gh/calcita/ech/branch/master/graph/badge.svg)](https://app.codecov.io/gh/calcita/ech?branch=master)
+coverage](https://codecov.io/gh/calcita/ech/branch/master/graph/badge.svg)](https://codecov.io/gh/calcita/ech?branch=master)
 [![DOI](https://zenodo.org/badge/224897952.svg)](https://zenodo.org/badge/latestdoi/224897952)
 <!-- badges: end -->
 
 Caja de herramientas para el procesamiento de la [Encuesta Continua de
-Hogares de Uruguay](https://www.gub.uy/instituto-nacional-estadistica/datos-y-estadisticas/encuestas/encuesta-continua-hogares)
+Hogares de
+Uruguay](https://www.gub.uy/instituto-nacional-estadistica/datos-y-estadisticas/encuestas/encuesta-continua-hogares)
 del Instituto Nacional de Estadística (INE). Pretendemos contribuir a la
 comunidad de usuaries de R en Uruguay, facilitando el uso de una de las
 encuestas socioeconómicas más importantes del país. En este sentido, el
@@ -64,29 +65,29 @@ a 2019.
 Las funciones para crear variables se organizan según la dimensión a la
 cual corresponden, así tenemos:
 
-  - Vivienda (Dwelling): permite calcular la situación estructural y
-    coyuntural de la vivienda, las privaciones de la vivienda,
-    hacinamiento y la tenencia de la vivienda.
+- Vivienda (Dwelling): permite calcular la situación estructural y
+  coyuntural de la vivienda, las privaciones de la vivienda,
+  hacinamiento y la tenencia de la vivienda.
 
-  - Educación (Education): permite calcular el máximo nivel alcanzado,
-    los años de estudio, la completitud según niveles, la asistencia a
-    un centro educativo.
+- Educación (Education): permite calcular el máximo nivel alcanzado, los
+  años de estudio, la completitud según niveles, la asistencia a un
+  centro educativo.
 
-  - Mercado de trabajo (Employment): permite calcular la condición de
-    actividad, la PEA (población económicamente activa), PET (población
-    en edad de trabajar), PO (población ocupada) y PD (población
-    desocupada), las restricciones al empleo, subempleo y las ramas de
-    actividad según CIIU4.
+- Mercado de trabajo (Employment): permite calcular la condición de
+  actividad, la PEA (población económicamente activa), PET (población en
+  edad de trabajar), PO (población ocupada) y PD (población desocupada),
+  las restricciones al empleo, subempleo y las ramas de actividad según
+  CIIU4.
 
-  - Tipo de hogar (Household type): permite construir una tipología de
-    hogar.
+- Tipo de hogar (Household type): permite construir una tipología de
+  hogar.
 
-  - Ingresos y desigualdad (Income): permite calcular el ingreso
-    deflactado (por el índice y año base elegido), quintiles y deciles
-    de ingreso, el ingreso laboral per cápita y por hora.
+- Ingresos y desigualdad (Income): permite calcular el ingreso
+  deflactado (por el índice y año base elegido), quintiles y deciles de
+  ingreso, el ingreso laboral per cápita y por hora.
 
-  - Pobreza (Poverty): permite calcular pobreza e indigencia y las NBI
-    (Necesidad Básicas Insatisfechas).
+- Pobreza (Poverty): permite calcular pobreza e indigencia y las NBI
+  (Necesidad Básicas Insatisfechas).
 
 # Funciones para estimar indicadores
 
@@ -108,7 +109,7 @@ tiene tres grandes conjuntos de funciones: - las que leen datos desde la
 web del INE, se llaman get\_*(). - las que calculan variables tanto a
 nivel hogares como personas, estas tienen nombres descriptivos en inglés
 que se detallan más adelante. - las que estiman indicadores y calculan
-los intervalos de confianza asociados, se llaman get\_estimation\_*().
+los intervalos de confianza asociados, se llaman get_estimation\_*().
 
 Ejemplo de descarga de microdatos:
 
@@ -189,8 +190,6 @@ estimaciones.
 
 plot_geouy(x = pobre_x_dpto_geo, col = "Pobreza", l = "%")
 ```
-
-<img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" style="display: block; margin: auto;" />
 
 ## Aportes de la comunidad
 
